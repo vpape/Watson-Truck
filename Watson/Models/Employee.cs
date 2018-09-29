@@ -23,14 +23,14 @@ namespace Watson.Models
             this.Other_Insurance = new HashSet<Other_Insurance>();
             this.Vacations = new HashSet<Vacation>();
         }
-    
-        public int User_id { get; set; }
+
+        public int User_id { get; set; } = 0;
         public string EmployeeRole { get; set; }
         public string CurrentEmployer { get; set; }
         public string PreviousEmployer { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
+        public string FirstName { get; set; } = "";
+        public string MiddleName { get; set; } = "";
+        public string LastName { get; set; } = "";
         public System.DateTime DateOfBirth { get; set; }
         public string SSN { get; set; }
         public string MartialStatus { get; set; }
@@ -53,7 +53,7 @@ namespace Watson.Models
         public int HoursWorkedPerWeek { get; set; }
         public string JobTitle { get; set; }
         public string AnnualSalary { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Family_Info> Family_Info { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
