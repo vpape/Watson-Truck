@@ -1,0 +1,1129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WatsonTruckModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="address_id" />
+          </Key>
+          <Property Name="address_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MailingAddress" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PhysicalAddress" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="30" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
+          <Property Name="CellPhone" Type="varchar" MaxLength="30" />
+          <Property Name="County" Type="varchar" MaxLength="30" />
+          <Property Name="CityLimits" Type="bit" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Employee_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="User_id" />
+          </Key>
+          <Property Name="User_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeRole" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="CurrentEmployer" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PreviousEmployer" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="30" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="SSN" Type="varchar" MaxLength="15" />
+          <Property Name="MartialStatus" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Sex" Type="bit" Nullable="false" />
+          <Property Name="MailingAddress" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="PhysicalAddress" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
+          <Property Name="CellPhone" Type="varchar" MaxLength="30" />
+          <Property Name="County" Type="varchar" MaxLength="30" />
+          <Property Name="CityLimits" Type="bit" />
+          <Property Name="HireDate" Type="date" Nullable="false" />
+          <Property Name="EffectiveDate" Type="date" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="EligibilityDate" Type="date" Nullable="false" />
+          <Property Name="WorkStatus" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="HoursWorkedPerWeek" Type="int" Nullable="false" />
+          <Property Name="JobTitle" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AnnualSalary" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Family Info">
+          <Key>
+            <PropertyRef Name="FamilyMember_id" />
+          </Key>
+          <Property Name="FamilyMember_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OtherInsurance_id" Type="int" />
+          <Property Name="Employee_id" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="30" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="SSN" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="MailingAddress" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PhysicalAddress" Type="varchar" MaxLength="30" />
+          <Property Name="City" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="30" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
+          <Property Name="CellPhone" Type="varchar" MaxLength="30" />
+          <Property Name="County" Type="varchar" MaxLength="30" />
+          <Property Name="Sex" Type="bit" Nullable="false" />
+          <Property Name="Employer" Type="varchar" MaxLength="30" />
+          <Property Name="RelationshipToInsured" Type="varchar" MaxLength="15" />
+          <Property Name="EmployerMailingAddress" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="EmployerCity" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="EmployerState" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="EmployerZipCode" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="EmployerPhoneNumber" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Group Health">
+          <Key>
+            <PropertyRef Name="GroupHealthInsurance_id" />
+          </Key>
+          <Property Name="GroupHealthInsurance_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_id" Type="int" Nullable="false" />
+          <Property Name="Provider" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="InsuranceCoverageType" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="EEelectionPre-tax" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="PremiumPre-tax" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="EEelectionPost-tax" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="PremiumPost-tax" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="TotalPre-tax" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TotalPost-tax" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsuranceCarrier" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="GroupHealthOptions" Type="bit" Nullable="false" />
+          <Property Name="DropSpouse" Type="bit" Nullable="false" />
+          <Property Name="DropDependent" Type="bit" Nullable="false" />
+          <Property Name="PlacementDateOfAdoptedChild" Type="date" Nullable="false" />
+          <Property Name="CoverageRefusal" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="PolicyNumber" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="EmployeeSignature" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Life Insurance">
+          <Key>
+            <PropertyRef Name="LifeInsurance_id" />
+          </Key>
+          <Property Name="LifeInsurance_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employee_id" Type="int" Nullable="false" />
+          <Property Name="InsuranceCoverageType" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DateOfMarriage" Type="date" Nullable="false" />
+          <Property Name="SubtotalCode" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="EnrollmentType" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="EmployeeSignature" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DropCoverage" Type="bit" Nullable="false" />
+          <Property Name="EmployeeDentalDrop" Type="bit" Nullable="false" />
+          <Property Name="SpouseDentalDrop" Type="bit" Nullable="false" />
+          <Property Name="DependentDentalDrop" Type="bit" Nullable="false" />
+          <Property Name="EmployeeVisionDrop" Type="bit" Nullable="false" />
+          <Property Name="SpouseVisionDrop" Type="bit" Nullable="false" />
+          <Property Name="DependentVisionDrop" Type="bit" Nullable="false" />
+          <Property Name="DropBasicLife" Type="bit" Nullable="false" />
+          <Property Name="DropEmployee" Type="bit" Nullable="false" />
+          <Property Name="DropSpouse" Type="bit" Nullable="false" />
+          <Property Name="DropDependents" Type="bit" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="TerminationOfEmployment" Type="bit" Nullable="false" />
+          <Property Name="Retirement" Type="bit" Nullable="false" />
+          <Property Name="OtherEvent" Type="bit" Nullable="false" />
+          <Property Name="LossOfOtherCoverage" Type="bit" Nullable="false" />
+          <Property Name="CoverageLost" Type="bit" Nullable="false" />
+          <Property Name="DentalCoverageLost" Type="bit" Nullable="false" />
+          <Property Name="VisionCoverageLost" Type="bit" Nullable="false" />
+          <Property Name="DentalCoverage" Type="bit" Nullable="false" />
+          <Property Name="EmployeeOnly" Type="bit" Nullable="false" />
+          <Property Name="EE&amp;Spouse" Type="bit" Nullable="false" />
+          <Property Name="EE&amp;Dependents" Type="bit" Nullable="false" />
+          <Property Name="EE,Spouse&amp;Dependents" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Add" Type="bit" Nullable="false" />
+          <Property Name="Drop" Type="bit" Nullable="false" />
+          <Property Name="PolicyAmount" Type="bit" Nullable="false" />
+          <Property Name="PrimaryBeneficiaries" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ContingentBeneficiary" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Other Insurance">
+          <Key>
+            <PropertyRef Name="OtherInsurance_id" />
+          </Key>
+          <Property Name="FamilyMember_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OtherInsurance_id" Type="int" Nullable="false" />
+          <Property Name="Employee_id" Type="int" Nullable="false" />
+          <Property Name="InsuranceCompany" Type="varchar" MaxLength="30" />
+          <Property Name="PolicyNumber" Type="varchar" MaxLength="30" />
+          <Property Name="MailingAddress" Type="varchar" MaxLength="30" />
+          <Property Name="City" Type="varchar" MaxLength="30" />
+          <Property Name="State" Type="varchar" MaxLength="30" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="15" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
+          <Property Name="CoveredByOtherInsurance" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Vacation">
+          <Key>
+            <PropertyRef Name="Vacation_id" />
+          </Key>
+          <Property Name="Vacation_id" Type="int" Nullable="false" />
+          <Property Name="Employee_id" Type="int" Nullable="false" />
+          <Property Name="VactionRemaining" Type="int" Nullable="false" />
+          <Property Name="SickLeave" Type="int" Nullable="false" />
+          <Property Name="PTO" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Family Info_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Family Info" Type="Self.Family Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Family Info">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group Health_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Group Health" Type="Self.Group Health" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Group Health">
+              <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Life Insurance_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Life Insurance" Type="Self.Life Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Life Insurance">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Other Insurance_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Other Insurance" Type="Self.Other Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Other Insurance">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Other Insurance_Family Info">
+          <End Role="Family Info" Type="Self.Family Info" Multiplicity="1" />
+          <End Role="Other Insurance" Type="Self.Other Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family Info">
+              <PropertyRef Name="FamilyMember_id" />
+            </Principal>
+            <Dependent Role="Other Insurance">
+              <PropertyRef Name="FamilyMember_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacation_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Vacation" Type="Self.Vacation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Vacation">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WatsonTruckModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Family Info" EntityType="Self.Family Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group Health" EntityType="Self.Group Health" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Life Insurance" EntityType="Self.Life Insurance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Other Insurance" EntityType="Self.Other Insurance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vacation" EntityType="Self.Vacation" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Family Info_Employee" Association="Self.FK_Family Info_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Family Info" EntitySet="Family Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group Health_Employee" Association="Self.FK_Group Health_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Group Health" EntitySet="Group Health" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Life Insurance_Employee" Association="Self.FK_Life Insurance_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Life Insurance" EntitySet="Life Insurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Other Insurance_Employee" Association="Self.FK_Other Insurance_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Other Insurance" EntitySet="Other Insurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Other Insurance_Family Info" Association="Self.FK_Other Insurance_Family Info">
+            <End Role="Family Info" EntitySet="Family Info" />
+            <End Role="Other Insurance" EntitySet="Other Insurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacation_Employee" Association="Self.FK_Vacation_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Vacation" EntitySet="Vacation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WatsonTruckModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="address_id" />
+          </Key>
+          <Property Name="address_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MailingAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhysicalAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CellPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="County" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CityLimits" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Employee_id" Type="Int32" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="User_id" />
+          </Key>
+          <Property Name="User_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeRole" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CurrentEmployer" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PreviousEmployer" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SSN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="MartialStatus" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sex" Type="Boolean" Nullable="false" />
+          <Property Name="MailingAddress" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhysicalAddress" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CellPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="County" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CityLimits" Type="Boolean" />
+          <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EffectiveDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="EligibilityDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="WorkStatus" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HoursWorkedPerWeek" Type="Int32" Nullable="false" />
+          <Property Name="JobTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AnnualSalary" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Family_Info" Relationship="Self.FK_Family_Info_Employee" FromRole="Employee" ToRole="Family_Info" />
+          <NavigationProperty Name="Group_Health" Relationship="Self.FK_Group_Health_Employee" FromRole="Employee" ToRole="Group_Health" />
+          <NavigationProperty Name="Life_Insurance" Relationship="Self.FK_Life_Insurance_Employee" FromRole="Employee" ToRole="Life_Insurance" />
+          <NavigationProperty Name="Other_Insurance" Relationship="Self.FK_Other_Insurance_Employee" FromRole="Employee" ToRole="Other_Insurance" />
+          <NavigationProperty Name="Vacations" Relationship="Self.FK_Vacation_Employee" FromRole="Employee" ToRole="Vacation" />
+        </EntityType>
+        <EntityType Name="Family_Info">
+          <Key>
+            <PropertyRef Name="FamilyMember_id" />
+          </Key>
+          <Property Name="FamilyMember_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OtherInsurance_id" Type="Int32" />
+          <Property Name="Employee_id" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SSN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MailingAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhysicalAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CellPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="County" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="Boolean" Nullable="false" />
+          <Property Name="Employer" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="RelationshipToInsured" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerMailingAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployerCity" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployerState" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployerZipCode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployerPhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Family_Info_Employee" FromRole="Family_Info" ToRole="Employee" />
+          <NavigationProperty Name="Other_Insurance" Relationship="Self.FK_Other_Insurance_Family_Info" FromRole="Family_Info" ToRole="Other_Insurance" />
+        </EntityType>
+        <EntityType Name="Group_Health">
+          <Key>
+            <PropertyRef Name="GroupHealthInsurance_id" />
+          </Key>
+          <Property Name="GroupHealthInsurance_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_id" Type="Int32" Nullable="false" />
+          <Property Name="Provider" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InsuranceCoverageType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EEelectionPre_tax" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PremiumPre_tax" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EEelectionPost_tax" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PremiumPost_tax" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TotalPre_tax" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TotalPost_tax" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InsuranceCarrier" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GroupHealthOptions" Type="Boolean" Nullable="false" />
+          <Property Name="DropSpouse" Type="Boolean" Nullable="false" />
+          <Property Name="DropDependent" Type="Boolean" Nullable="false" />
+          <Property Name="PlacementDateOfAdoptedChild" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CoverageRefusal" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PolicyNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeSignature" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Group_Health_Employee" FromRole="Group_Health" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Life_Insurance">
+          <Key>
+            <PropertyRef Name="LifeInsurance_id" />
+          </Key>
+          <Property Name="LifeInsurance_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee_id" Type="Int32" Nullable="false" />
+          <Property Name="InsuranceCoverageType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfMarriage" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SubtotalCode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EnrollmentType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeSignature" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DropCoverage" Type="Boolean" Nullable="false" />
+          <Property Name="EmployeeDentalDrop" Type="Boolean" Nullable="false" />
+          <Property Name="SpouseDentalDrop" Type="Boolean" Nullable="false" />
+          <Property Name="DependentDentalDrop" Type="Boolean" Nullable="false" />
+          <Property Name="EmployeeVisionDrop" Type="Boolean" Nullable="false" />
+          <Property Name="SpouseVisionDrop" Type="Boolean" Nullable="false" />
+          <Property Name="DependentVisionDrop" Type="Boolean" Nullable="false" />
+          <Property Name="DropBasicLife" Type="Boolean" Nullable="false" />
+          <Property Name="DropEmployee" Type="Boolean" Nullable="false" />
+          <Property Name="DropSpouse" Type="Boolean" Nullable="false" />
+          <Property Name="DropDependents" Type="Boolean" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TerminationOfEmployment" Type="Boolean" Nullable="false" />
+          <Property Name="Retirement" Type="Boolean" Nullable="false" />
+          <Property Name="OtherEvent" Type="Boolean" Nullable="false" />
+          <Property Name="LossOfOtherCoverage" Type="Boolean" Nullable="false" />
+          <Property Name="CoverageLost" Type="Boolean" Nullable="false" />
+          <Property Name="DentalCoverageLost" Type="Boolean" Nullable="false" />
+          <Property Name="VisionCoverageLost" Type="Boolean" Nullable="false" />
+          <Property Name="DentalCoverage" Type="Boolean" Nullable="false" />
+          <Property Name="EmployeeOnly" Type="Boolean" Nullable="false" />
+          <Property Name="EE_Spouse" Type="Boolean" Nullable="false" />
+          <Property Name="EE_Dependents" Type="Boolean" Nullable="false" />
+          <Property Name="EE_Spouse_Dependents" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Add" Type="Boolean" Nullable="false" />
+          <Property Name="Drop" Type="Boolean" Nullable="false" />
+          <Property Name="PolicyAmount" Type="Boolean" Nullable="false" />
+          <Property Name="PrimaryBeneficiaries" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContingentBeneficiary" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Life_Insurance_Employee" FromRole="Life_Insurance" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Other_Insurance">
+          <Key>
+            <PropertyRef Name="OtherInsurance_id" />
+          </Key>
+          <Property Name="FamilyMember_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OtherInsurance_id" Type="Int32" Nullable="false" />
+          <Property Name="Employee_id" Type="Int32" Nullable="false" />
+          <Property Name="InsuranceCompany" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PolicyNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MailingAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CoveredByOtherInsurance" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Other_Insurance_Employee" FromRole="Other_Insurance" ToRole="Employee" />
+          <NavigationProperty Name="Family_Info" Relationship="Self.FK_Other_Insurance_Family_Info" FromRole="Other_Insurance" ToRole="Family_Info" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Vacation">
+          <Key>
+            <PropertyRef Name="Vacation_id" />
+          </Key>
+          <Property Name="Vacation_id" Type="Int32" Nullable="false" />
+          <Property Name="Employee_id" Type="Int32" Nullable="false" />
+          <Property Name="VactionRemaining" Type="Int32" Nullable="false" />
+          <Property Name="SickLeave" Type="Int32" Nullable="false" />
+          <Property Name="PTO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Vacation_Employee" FromRole="Vacation" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Family_Info_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Family_Info" Type="Self.Family_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Family_Info">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_Health_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Group_Health" Type="Self.Group_Health" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Group_Health">
+              <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Life_Insurance_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Life_Insurance" Type="Self.Life_Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Life_Insurance">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Other_Insurance_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Other_Insurance" Type="Self.Other_Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Other_Insurance">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacation_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Vacation" Type="Self.Vacation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Vacation">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Other_Insurance_Family_Info">
+          <End Role="Family_Info" Type="Self.Family_Info" Multiplicity="1" />
+          <End Role="Other_Insurance" Type="Self.Other_Insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family_Info">
+              <PropertyRef Name="FamilyMember_id" />
+            </Principal>
+            <Dependent Role="Other_Insurance">
+              <PropertyRef Name="FamilyMember_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="WatsonTruckEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Family_Infoes" EntityType="Self.Family_Info" />
+          <EntitySet Name="Group_Healths" EntityType="Self.Group_Health" />
+          <EntitySet Name="Life_Insurances" EntityType="Self.Life_Insurance" />
+          <EntitySet Name="Other_Insurances" EntityType="Self.Other_Insurance" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Vacations" EntityType="Self.Vacation" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Family_Info_Employee" Association="Self.FK_Family_Info_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Family_Info" EntitySet="Family_Infoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Health_Employee" Association="Self.FK_Group_Health_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Group_Health" EntitySet="Group_Healths" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Life_Insurance_Employee" Association="Self.FK_Life_Insurance_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Life_Insurance" EntitySet="Life_Insurances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Other_Insurance_Employee" Association="Self.FK_Other_Insurance_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Other_Insurance" EntitySet="Other_Insurances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacation_Employee" Association="Self.FK_Vacation_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Vacation" EntitySet="Vacations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Other_Insurance_Family_Info" Association="Self.FK_Other_Insurance_Family_Info">
+            <End Role="Family_Info" EntitySet="Family_Infoes" />
+            <End Role="Other_Insurance" EntitySet="Other_Insurances" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WatsonTruckModelStoreContainer" CdmEntityContainer="WatsonTruckEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="WatsonTruckModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="WatsonTruckModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="address_id" ColumnName="address_id" />
+                <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="CityLimits" ColumnName="CityLimits" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="WatsonTruckModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="WatsonTruckModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="WatsonTruckModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="WatsonTruckModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="WatsonTruckModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="EmployeeRole" ColumnName="EmployeeRole" />
+                <ScalarProperty Name="CurrentEmployer" ColumnName="CurrentEmployer" />
+                <ScalarProperty Name="PreviousEmployer" ColumnName="PreviousEmployer" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="SSN" ColumnName="SSN" />
+                <ScalarProperty Name="MartialStatus" ColumnName="MartialStatus" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="CityLimits" ColumnName="CityLimits" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="EligibilityDate" ColumnName="EligibilityDate" />
+                <ScalarProperty Name="WorkStatus" ColumnName="WorkStatus" />
+                <ScalarProperty Name="HoursWorkedPerWeek" ColumnName="HoursWorkedPerWeek" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="AnnualSalary" ColumnName="AnnualSalary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Family_Infoes">
+            <EntityTypeMapping TypeName="WatsonTruckModel.Family_Info">
+              <MappingFragment StoreEntitySet="Family Info">
+                <ScalarProperty Name="FamilyMember_id" ColumnName="FamilyMember_id" />
+                <ScalarProperty Name="OtherInsurance_id" ColumnName="OtherInsurance_id" />
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="SSN" ColumnName="SSN" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Employer" ColumnName="Employer" />
+                <ScalarProperty Name="RelationshipToInsured" ColumnName="RelationshipToInsured" />
+                <ScalarProperty Name="EmployerMailingAddress" ColumnName="EmployerMailingAddress" />
+                <ScalarProperty Name="EmployerCity" ColumnName="EmployerCity" />
+                <ScalarProperty Name="EmployerState" ColumnName="EmployerState" />
+                <ScalarProperty Name="EmployerZipCode" ColumnName="EmployerZipCode" />
+                <ScalarProperty Name="EmployerPhoneNumber" ColumnName="EmployerPhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group_Healths">
+            <EntityTypeMapping TypeName="WatsonTruckModel.Group_Health">
+              <MappingFragment StoreEntitySet="Group Health">
+                <ScalarProperty Name="GroupHealthInsurance_id" ColumnName="GroupHealthInsurance_id" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+                <ScalarProperty Name="InsuranceCoverageType" ColumnName="InsuranceCoverageType" />
+                <ScalarProperty Name="EEelectionPre_tax" ColumnName="EEelectionPre-tax" />
+                <ScalarProperty Name="PremiumPre_tax" ColumnName="PremiumPre-tax" />
+                <ScalarProperty Name="EEelectionPost_tax" ColumnName="EEelectionPost-tax" />
+                <ScalarProperty Name="PremiumPost_tax" ColumnName="PremiumPost-tax" />
+                <ScalarProperty Name="TotalPre_tax" ColumnName="TotalPre-tax" />
+                <ScalarProperty Name="TotalPost_tax" ColumnName="TotalPost-tax" />
+                <ScalarProperty Name="InsuranceCarrier" ColumnName="InsuranceCarrier" />
+                <ScalarProperty Name="GroupHealthOptions" ColumnName="GroupHealthOptions" />
+                <ScalarProperty Name="DropSpouse" ColumnName="DropSpouse" />
+                <ScalarProperty Name="DropDependent" ColumnName="DropDependent" />
+                <ScalarProperty Name="PlacementDateOfAdoptedChild" ColumnName="PlacementDateOfAdoptedChild" />
+                <ScalarProperty Name="CoverageRefusal" ColumnName="CoverageRefusal" />
+                <ScalarProperty Name="PolicyNumber" ColumnName="PolicyNumber" />
+                <ScalarProperty Name="EmployeeSignature" ColumnName="EmployeeSignature" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Life_Insurances">
+            <EntityTypeMapping TypeName="WatsonTruckModel.Life_Insurance">
+              <MappingFragment StoreEntitySet="Life Insurance">
+                <ScalarProperty Name="LifeInsurance_id" ColumnName="LifeInsurance_id" />
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="InsuranceCoverageType" ColumnName="InsuranceCoverageType" />
+                <ScalarProperty Name="DateOfMarriage" ColumnName="DateOfMarriage" />
+                <ScalarProperty Name="SubtotalCode" ColumnName="SubtotalCode" />
+                <ScalarProperty Name="EnrollmentType" ColumnName="EnrollmentType" />
+                <ScalarProperty Name="EmployeeSignature" ColumnName="EmployeeSignature" />
+                <ScalarProperty Name="DropCoverage" ColumnName="DropCoverage" />
+                <ScalarProperty Name="EmployeeDentalDrop" ColumnName="EmployeeDentalDrop" />
+                <ScalarProperty Name="SpouseDentalDrop" ColumnName="SpouseDentalDrop" />
+                <ScalarProperty Name="DependentDentalDrop" ColumnName="DependentDentalDrop" />
+                <ScalarProperty Name="EmployeeVisionDrop" ColumnName="EmployeeVisionDrop" />
+                <ScalarProperty Name="SpouseVisionDrop" ColumnName="SpouseVisionDrop" />
+                <ScalarProperty Name="DependentVisionDrop" ColumnName="DependentVisionDrop" />
+                <ScalarProperty Name="DropBasicLife" ColumnName="DropBasicLife" />
+                <ScalarProperty Name="DropEmployee" ColumnName="DropEmployee" />
+                <ScalarProperty Name="DropSpouse" ColumnName="DropSpouse" />
+                <ScalarProperty Name="DropDependents" ColumnName="DropDependents" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TerminationOfEmployment" ColumnName="TerminationOfEmployment" />
+                <ScalarProperty Name="Retirement" ColumnName="Retirement" />
+                <ScalarProperty Name="OtherEvent" ColumnName="OtherEvent" />
+                <ScalarProperty Name="LossOfOtherCoverage" ColumnName="LossOfOtherCoverage" />
+                <ScalarProperty Name="CoverageLost" ColumnName="CoverageLost" />
+                <ScalarProperty Name="DentalCoverageLost" ColumnName="DentalCoverageLost" />
+                <ScalarProperty Name="VisionCoverageLost" ColumnName="VisionCoverageLost" />
+                <ScalarProperty Name="DentalCoverage" ColumnName="DentalCoverage" />
+                <ScalarProperty Name="EmployeeOnly" ColumnName="EmployeeOnly" />
+                <ScalarProperty Name="EE_Spouse" ColumnName="EE&amp;Spouse" />
+                <ScalarProperty Name="EE_Dependents" ColumnName="EE&amp;Dependents" />
+                <ScalarProperty Name="EE_Spouse_Dependents" ColumnName="EE,Spouse&amp;Dependents" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Add" ColumnName="Add" />
+                <ScalarProperty Name="Drop" ColumnName="Drop" />
+                <ScalarProperty Name="PolicyAmount" ColumnName="PolicyAmount" />
+                <ScalarProperty Name="PrimaryBeneficiaries" ColumnName="PrimaryBeneficiaries" />
+                <ScalarProperty Name="ContingentBeneficiary" ColumnName="ContingentBeneficiary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Other_Insurances">
+            <EntityTypeMapping TypeName="WatsonTruckModel.Other_Insurance">
+              <MappingFragment StoreEntitySet="Other Insurance">
+                <ScalarProperty Name="FamilyMember_id" ColumnName="FamilyMember_id" />
+                <ScalarProperty Name="OtherInsurance_id" ColumnName="OtherInsurance_id" />
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="InsuranceCompany" ColumnName="InsuranceCompany" />
+                <ScalarProperty Name="PolicyNumber" ColumnName="PolicyNumber" />
+                <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CoveredByOtherInsurance" ColumnName="CoveredByOtherInsurance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="WatsonTruckModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacations">
+            <EntityTypeMapping TypeName="WatsonTruckModel.Vacation">
+              <MappingFragment StoreEntitySet="Vacation">
+                <ScalarProperty Name="Vacation_id" ColumnName="Vacation_id" />
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="VactionRemaining" ColumnName="VactionRemaining" />
+                <ScalarProperty Name="SickLeave" ColumnName="SickLeave" />
+                <ScalarProperty Name="PTO" ColumnName="PTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="WatsonTruckModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
