@@ -15,13 +15,13 @@ namespace Watson.Controllers
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        List<Employee> employee = new List<Employee>();
+        static List<Employee> employees = new List<Employee>();
 
         public AdminController()
         {
-            employee.Add(new Employee { FirstName = "Vernon", LastName = "Pape", User_id = 1 });
-            employee.Add(new Employee { FirstName = "Lynetta", LastName = "Richards", User_id = 2 });
-            employee.Add(new Employee { FirstName = "LaNita", LastName = "Palmer", User_id = 3 });
+            employees.Add(new Employee { FirstName = "Vernon", LastName = "Pape", User_id = 1 });
+            employees.Add(new Employee { FirstName = "Lynetta", LastName = "Richards", User_id = 2 });
+            employees.Add(new Employee { FirstName = "LaNita", LastName = "Palmer", User_id = 3 });
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Watson.Controllers
         {
             List<string> output = new List<string>();
 
-            foreach (var e in employee)
+            foreach (var e in employees)
             {
                 output.Add(e.FirstName);
             }
@@ -47,24 +47,32 @@ namespace Watson.Controllers
         // GET: api/Admin
         public List<Employee> Get()
         {
-            return employee;
+            return employees;
         }
 
         // GET: api/Admin/5
         public Employee Get(int id)
         {
-            return employee.Where(x => x.User_id == id).FirstOrDefault();
+            return employees.Where(x => x.User_id == id).FirstOrDefault();
         }
 
         // POST: api/Admin
-        public void Post(Employee val)
+        public void Post(Employee value)
         {
-            employee.Add(val);
+            employees.Add(value);
         }
+
+        // PUT: api/Admin/5
+        //public void Put(int id, Employee value)
+        //{
+        //    employees[id] = value;
+        //}
 
         // DELETE: api/Admin/5
         public void Delete(int id)
         {
+            employees.RemoveAt(id);
+
             //Employee employee = db.Employees.Find(id);
             //db.Employees.Remove(employee);
             //db.SaveChanges();
