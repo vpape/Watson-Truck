@@ -1,0 +1,126 @@
+﻿@model Watson.Models.Employee
+
+
+@{
+    @ViewBag.Title = "Create";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create Employee</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.User_id)
+
+        <div class="form-horizontal">
+            <hr />
+            <button class="collapsible"><h4>Employee Enrollment</h4></button>
+            <div class="content">
+                <form action="/api/Admin/CreateEmployee" method="post">
+                    <div class="form-group">
+                        <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="EmployeeRole" class="col-md-2 control-label">Employee Role</label>
+                        <div class="col-md-10">
+                            <select name="EmployeeRole" class="form-control">
+                                <option id="AdminRole"    value="Admin">Administrator</option>
+                                <option id="ManagerRole"  value="Manager">Manager</option>
+                                <option id="EmployeeRole" value="Employee">Employee</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    }
+</body>
+</html>
+
+@* need to validate using SQL- Used too much code on prev project.
+    needs to be clean and concise
+
+    function validateEmail(EmailAddress) {
+        var email = document.getElementById('EmailAddress');
+        var emailTest = RegExp("^[a-zA-Z0-9_.+-]+@@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
+        return emailTest.test(EmailAddress);
+
+    function validateForm() {
+    var CrntEmployer = document.getElementById("CurrentEmployer")
+    var PrvEmployer = document.getElementById("PreviousEmployer")
+    *@
+
+@*  if (CrntEmployer.value == "")
+    {
+        ErrorMessage += " Current Employer field is required. <br>"
+    }
+    if (ErrorMessage.length > 0)
+    {
+        Error.innerHTML = ErrorMessage
+    }
+
+    if (PrvEmployer.value == "")
+    {
+        ErrorMessage += "Previous Employer field is required. <br>"
+    }
+    if (ErrorMessage.length > 0)
+    {
+        Error.innerHTML = ErrorMessage
+    }
+    *@
+
+@* Collapsible button script *@
+<script>
+    var col = document.getElementByClassName("collapsible");
+    var i;
+
+    for (var i = 0; i < col.length; i++)
+    {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            }
+            else
+                content.style.display = "block"
+        });
+    }
+</script>
+
+@* Style for collaspsible button *@
+<style>
+    .collapsible {
+        background-color: #333333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+</style>

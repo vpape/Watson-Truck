@@ -4,82 +4,95 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+//using System.Web.Mvc;
 using Watson.Models;
+
+//ask if i need admin and employee model since i created 
+//two separate controllers or can i just use one model- employee
 
 namespace Watson.Controllers
 {
     /// <summary>
     /// This is where I give you all the information about my employees
     /// </summary>
+    //[Authorize]
     public class AdminController : ApiController
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        static List<Employee> employees = new List<Employee>();
+        static List<Employee> admin = new List<Employee>();
 
         public AdminController()
         {
-            employees.Add(new Employee { FirstName = "Vernon", LastName = "Pape", User_id = 1 });
-            employees.Add(new Employee { FirstName = "Lynetta", LastName = "Richards", User_id = 2 });
-            employees.Add(new Employee { FirstName = "LaNita", LastName = "Palmer", User_id = 3 });
+            admin.Add(new Employee { SSN = "", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "", JobTitle = "", User_id = 1});
+            admin.Add(new Employee { SSN = "", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "", JobTitle = "", User_id = 2});
+            admin.Add(new Employee { SSN = "", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "", JobTitle = "", User_id = 3});
+        }
+
+        //public AdminController(string SSN, string FirstName, string LastName, string EmployeeRole, string JobTitle, int id)
+        //{
+        //    admin.Add(new Employee { SSN = "", FirstName = "", LastName = "", EmployeeRole = "", JobTitle = "", User_id = id });
+        //}
+
+        // GET: api/Admin
+        public List<Employee> Index()
+        {
+            return db.Employees.ToList();
         }
 
         /// <summary>
-        /// Gets a list of the first names of all users
+        /// Gets a list of the admins
         /// </summary>
-        /// <param name="userId">The unique identifier for this person</param>
-        /// <param name="age">We want to know how old they are</param>
-        /// <returns>Alist of first names</returns>
-        [Route("api/Admin/GetFirstNames/{userId:int}/{age:int}")]
+        /// <param name="User_id">The unique identifier for this person</param>
+        /// <param name="SSN">We want to know their employee#</param>
+        /// <returns>A list of admin Emp#, FN, LN, EmpRole, & JobTitle</returns>
+        [Route("api/Employee/GetEmployees/{User_id:int}/{SSN:string}")]
         [HttpGet]
-        public List<string> GetFirstNames(int userId, int age)
+        public List<string> GetEmployees(int User_id, string SSN)
         {
             List<string> output = new List<string>();
 
-            foreach (var e in employees)
+            foreach (var a in admin)
             {
-                output.Add(e.FirstName);
+                output.Add(a.SSN);
+                output.Add(a.FirstName);
+                output.Add(a.LastName);
+                output.Add(a.EmployeeRole);
+                output.Add(a.JobTitle);
+                //output.Add(a.isActive);
             }
 
             return output;
         }
 
         // GET: api/Admin
-        public List<Employee> Get()
+        public List<Employee> GetAdmin()
         {
-            return employees;
+            return admin;
         }
 
         // GET: api/Admin/5
-        public Employee Get(int id)
+        public Employee GetAdmin(int id)
         {
-            return employees.Where(x => x.User_id == id).FirstOrDefault();
+            return admin.Where(x => x.User_id == id).FirstOrDefault();
         }
 
         // POST: api/Admin
-        public void Post(Employee value)
+        public void CreateAdmin(Employee value)
         {
-            employees.Add(value);
+            admin.Add(value);
         }
 
         // PUT: api/Admin/5
-        //public void Put(int id, Employee value)
+        //public void UpdateAdmin(int id, Employee value)
         //{
-        //    employees[id] = value;
+        //    admin[id] = value;
         //}
 
         // DELETE: api/Admin/5
-        public void Delete(int id)
+        public void DeleteAdmin(int id)
         {
-            employees.RemoveAt(id);
-
-            //Employee employee = db.Employees.Find(id);
-            //db.Employees.Remove(employee);
-            //db.SaveChanges();
-
-            //db.DeleteEmployeeAndDependents(id);
-
-            //return RedirectToAction("Index");
-        }
+            admin.RemoveAt(id);
+        }       
     }
 }
