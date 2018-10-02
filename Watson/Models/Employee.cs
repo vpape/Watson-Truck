@@ -64,5 +64,10 @@ namespace Watson.Models
         public virtual ICollection<Other_Insurance> Other_Insurance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vacation> Vacations { get; set; }
+
+        //internal void RemoveAt(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
