@@ -2,7 +2,7 @@
 
 
 @{
-    @ViewBag.Title = "EditEmployee";
+    @ViewBag.Title = "SpouseEnrollment";
 }
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Edit Employee</title>
+    <title>Spouse Enrollment</title>
 </head>
 <body>
     @using (Html.BeginForm())
@@ -20,13 +20,13 @@
 
         <div class="form-horizontal">
             <hr />
-            <button class="collapsible"><h4>Edit Employee</h4></button>
+            <button class="collapsible"><h4>Spouse Enrollment</h4></button>
             <div class="content">
-                <form action="/api/Admin/EditEmployee" method="post">
+                <form action="/api/Admin/SpouseEnrollment" method="post">
                     <div class="form-group">
-                        <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
+                        <label for="RelationshipToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
                         <div class="col-md-10">
-                            <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="" />
+                            <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="" />
                         </div>
                     </div>
                     <div class="form-group" id="EmpRole">
@@ -127,11 +127,11 @@
                 </form>
             </div>
         </div>
-    }
 
+    }
     <div>
-        <input type="submit" onclick="location.href='api/Admin/CreateEmployee'" value="Previous" class="btn btn-default" /> |
-        <input type="submit" onclick="location.href='api/Admin/Index'" value="Save" class="btn btn-default" />
+        <input type="submit" onclick="location.href='api/Emplyoee/CreateEmployee'" value="Previous" class="btn btn-default" /> |
+        <input type="submit" onclick="location.href='api/Emplyoee/SpouseContact'" value="Continue" class="btn btn-default" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
@@ -139,38 +139,6 @@
     </p>
 </body>
 </html>
-
-@* need to validate using SQL- Used too much code on prev project.
-    needs to be clean and concise
-
-    function validateEmail(EmailAddress) {
-        var email = document.getElementById('EmailAddress');
-        var emailTest = RegExp("^[a-zA-Z0-9_.+-]+@@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
-        return emailTest.test(EmailAddress);
-
-    function validateForm() {
-    var CrntEmployer = document.getElementById("CurrentEmployer")
-    var PrvEmployer = document.getElementById("PreviousEmployer")
-*@
-
-@*  if (CrntEmployer.value == "")
-    {
-        ErrorMessage += " Current Employer field is required. <br>"
-    }
-    if (ErrorMessage.length > 0)
-    {
-        Error.innerHTML = ErrorMessage
-    }
-
-    if (PrvEmployer.value == "")
-    {
-        ErrorMessage += "Previous Employer field is required. <br>"
-    }
-    if (ErrorMessage.length > 0)
-    {
-        Error.innerHTML = ErrorMessage
-    }
-*@
 
 @* Collapsible button script *@
 <script>

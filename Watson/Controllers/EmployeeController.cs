@@ -76,18 +76,6 @@ namespace Watson.Controllers
             return employee.Where(e => e.User_id == id).FirstOrDefault();
         }
 
-        // POST: api/Employee
-        public void CreateEmployee(Employee create)
-        {
-            employee.Add(create);
-        }
-
-        // POST: api/Employee
-        public void EmployeeContact(Employee contact)
-        {
-            employee.Add(contact);
-        }
-
 
         // PUT: api/Employee/5
         //public void UpdateEmployee(int id, Employee value)
@@ -104,7 +92,22 @@ namespace Watson.Controllers
             db.SaveChanges();
 
             //db.DeleteEmployeeAndDependents(id);
+           
+        }
 
+        //---------------POST Methods---------------//
+
+
+        // POST: api/Employee
+        public void CreateEmployee(Employee create)
+        {
+            employee.Add(create);
+        }
+
+        // POST: api/Employee
+        public void Contact(Employee contact)
+        {
+            employee.Add(contact);
         }
     }
 }

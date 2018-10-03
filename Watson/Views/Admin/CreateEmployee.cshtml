@@ -2,7 +2,7 @@
 
 
 @{
-    @ViewBag.Title = "Create";
+    @ViewBag.Title = "CreateEmployee";
 }
 
 <!DOCTYPE html>
@@ -38,109 +38,105 @@
                                 <option id="EmployeeRole" value="Employee">Employee</option>
                             </select>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="SSN" class="form-control" name="SSN" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="FirstName" class="col-md-2 control-label">First Name:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Gender:</label>
+                        <div class="col-md-10">
+                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
+                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="MartialStatus" class="col-md-2 control-label">Martial Status:</label>
+                        <div class="col-md-10">
+                            <select name="MartialStatus" class="form-control">
+                                <option id="MarriedwDep" name="MartialStatus">Married with Dependents</option>
+                                <option id="Married" name="MartialStatus">Married</option>
+                                <option id="SinglewDep" name="MartialStatus">Single with Dependents</option>
+                                <option id="Single" name="MartialStatus">Single</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="AdminEmpInfo">
                         <div class="form-group">
-                            <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
+                            <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
                             <div class="col-md-10">
-                                <input type="text" id="SSN" class="form-control" name="SSN" value="" />
+                                <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="FirstName" class="col-md-2 control-label">First Name:</label>
+                            <label for="HireDate" class="col-md-2 control-label">Hire Date:</label>
                             <div class="col-md-10">
-                                <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                                <input type="text" id="HireDate" class="form-control" name="HireDate" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                            <label for="EffectiveDate" class="col-md-2 control-label">Effective Date:</label>
                             <div class="col-md-10">
-                                <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                                <input type="text" id="EffectiveDate" class="form-control" name="EffectiveDate" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
+                            <label for="ElgibilityDate" class="col-md-2 control-label">Elgibility Date:</label>
                             <div class="col-md-10">
-                                <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                                <input type="text" id="ElgibilityDate" class="form-control" name="ElgibilityDate" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Gender:</label>
+                            <label for="EffectiveDate" class="col-md-2 control-label">Annual Salary:</label>
                             <div class="col-md-10">
-                                <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked/>Male</label>
-                                <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
+                                <input type="text" id="EffectiveDate" class="form-control" name="EffectiveDate" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="MartialStatus" class="col-md-2 control-label">Martial Status:</label>
+                            <label for="HoursWorkedPerWeek" class="col-md-2 control-label">Hours Worked Per Week:</label>
                             <div class="col-md-10">
-                                <select name="MartialStatus" class="form-control">
-                                    <option id="MarriedwDep" name="MartialStatus">Married with Dependents</option>
-                                    <option id="Married" name="MartialStatus">Married</option>
-                                    <option id="SinglewDep" name="MartialStatus">Single with Dependents</option>
-                                    <option id="Single" name="MartialStatus">Single</option>
-                                </select>
+                                <input type="text" id="HoursWorkedPerWeek" class="form-control" name="HoursWorkedPerWeek" value="" />
                             </div>
                         </div>
-                        <div id="AdditionalEmpInfo">
-                            <div class="form-group">
-                                <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
-                                <div class="col-md-10">
-                                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="HireDate" class="col-md-2 control-label">Hire Date:</label>
-                                <div class="col-md-10">
-                                    <input type="text" id="HireDate" class="form-control" name="HireDate" value="" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="EffectiveDate" class="col-md-2 control-label">Effective Date:</label>
-                                <div class="col-md-10">
-                                    <input type="text" id="EffectiveDate" class="form-control" name="EffectiveDate" value="" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="ElgibilityDate" class="col-md-2 control-label">Elgibility Date:</label>
-                                <div class="col-md-10">
-                                    <input type="text" id="ElgibilityDate" class="form-control" name="ElgibilityDate" value="" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="EffectiveDate" class="col-md-2 control-label">Annual Salary:</label>
-                                <div class="col-md-10">
-                                    <input type="text" id="EffectiveDate" class="form-control" name="EffectiveDate" value="" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="HoursWorkedPerWeek" class="col-md-2 control-label">Hours Worked Per Week:</label>
-                                <div class="col-md-10">
-                                    <input type="text" id="HoursWorkedPerWeek" class="form-control" name="HoursWorkedPerWeek" value="" />
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Save" onclick="return validateForm()" class="btn btn-default" />
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" onclick="return validateForm()" class="btn btn-default" />
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+
     }
-        <div>
-            <input type="button" onclick="location.href='api/Emplyoee/CreateEmployee'" value="Previous" class="btn btn-default" /> | 
-            <input type="button" onclick="location.href='api/Emplyoee/EmployeeContactInfo'" value="Continue" class="btn btn-default" />
-        </div>
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
+    <div>
+        <input type="submit" onclick="location.href='api/Emplyoee/CreateEmployee'" value="Previous" class="btn btn-default" /> |
+        <input type="submit" onclick="location.href='api/Emplyoee/EmployeeContact'" value="Continue" class="btn btn-default" />
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </body>
 </html>
 
@@ -155,7 +151,7 @@
     function validateForm() {
     var CrntEmployer = document.getElementById("CurrentEmployer")
     var PrvEmployer = document.getElementById("PreviousEmployer")
-    *@
+*@
 
 @*  if (CrntEmployer.value == "")
     {
@@ -174,15 +170,14 @@
     {
         Error.innerHTML = ErrorMessage
     }
-    *@
+*@
 
 @* Collapsible button script *@
 <script>
     var col = document.getElementByClassName("collapsible");
     var i;
 
-    for (var i = 0; i < col.length; i++)
-    {
+    for (var i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
             this.classList.toggle("active");
 

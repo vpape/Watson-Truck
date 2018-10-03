@@ -90,11 +90,11 @@ namespace Watson.Controllers
         }
 
         // PUT: api/Admin/5
-        public void UpdateEmployee(int id, Employee update)
-        {
-            employee[id] = update;
+        //public void UpdateEmployee(int id, Employee update)
+        //{
+        //    employee[id] = update;
             
-        }
+        //}
 
         // DELETE: api/Admin/5
         public void DeleteEmployee(int id)
@@ -104,6 +104,9 @@ namespace Watson.Controllers
             db.SaveChanges();
 
         }
+                
+        //---------------POST Methods---------------//
+
 
         // POST: api/Admin
         public void CreateEmployee(Employee create)
@@ -112,5 +115,18 @@ namespace Watson.Controllers
         }
 
         // POST: api/Admin/5
+
+
+        // POST: api/Admin
+        public void EmployeeContact(Employee contact)
+        {
+            employee.Add(contact);
+        }
+
+        // POST: api/Admin
+        public void SpouseEnrollment(Employee spouse)
+        {
+            employee.Add(spouse);
+        }
     }
 }
