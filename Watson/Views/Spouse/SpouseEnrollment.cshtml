@@ -1,4 +1,4 @@
-﻿@model Watson.Models.Employee
+﻿@model Watson.Models.Family_Info
 
 
 @{
@@ -16,33 +16,23 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.User_id)
+        @Html.HiddenFor(model => model.FamilyMember_id)
 
         <div class="form-horizontal">
             <hr />
             <button class="collapsible"><h4>Spouse Enrollment</h4></button>
             <div class="content">
-                <form action="/api/Admin/SpouseEnrollment" method="post">
+                <form action="/api/Spouse/SpouseEnrollment" method="post">
                     <div class="form-group">
                         <label for="RelationshipToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
                         <div class="col-md-10">
                             <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="" />
                         </div>
                     </div>
-                    <div class="form-group" id="EmpRole">
-                        <label for="EmployeeRole" class="col-md-2 control-label">Employee Role</label>
-                        <div class="col-md-10">
-                            <select name="EmployeeRole" class="form-control">
-                                <option id="AdminRole" value="Admin">Administrator</option>
-                                <option id="ManagerRole" value="Manager">Manager</option>
-                                <option id="EmployeeRole" value="Employee">Employee</option>
-                            </select>
-                        </div>
-                    </div>
                     <div class="form-group">
-                        <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
+                        <label for="" class="col-md-2 control-label">Employee Name:</label>
                         <div class="col-md-10">
-                            <input type="text" id="SSN" class="form-control" name="SSN" value="" />
+                            <input type="text" id="" class="form-control" name="" value="" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -69,53 +59,61 @@
                             <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
                             <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
                         </div>
-                    </div>
+                    </div>@*if address is same as employee, then populate using emp address*@
                     <div class="form-group">
-                        <label for="MartialStatus" class="col-md-2 control-label">Martial Status:</label>
+                        <label class="col-md-2 control-label">Is Mailing Address Same As Spouse?</label>
                         <div class="col-md-10">
-                            <select name="MartialStatus" class="form-control">
-                                <option id="MarriedwDep" name="MartialStatus">Married with Dependents</option>
-                                <option id="Married" name="MartialStatus">Married</option>
-                                <option id="SinglewDep" name="MartialStatus">Single with Dependents</option>
-                                <option id="Single" name="MartialStatus">Single</option>
-                            </select>
+                            <label class="radio-inline"><input type="radio" id="AddrSame" class="radio-inline" name="" value="true" onclick='SpouseContact()' checked />Yes</label>
+                            <label class="radio-inline"><input type="radio" id="AddrNotSame" class="radio-inline" name="" value="false" onclick='SpouseContact()' />No</label>
                         </div>
-                    </div>
-                    <div id="AdminEmpInfo">
+                    </div>@*if address is same as employee, then populate using emp address....need to call MailingAddress from Employee model. Use Foreach to iterate through Employee collection*@
+                    <div id="divSpouseContact">
                         <div class="form-group">
-                            <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
+                            <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
                             <div class="col-md-10">
-                                <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="" />
+                                <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="HireDate" class="col-md-2 control-label">Hire Date:</label>
+                            <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                             <div class="col-md-10">
-                                <input type="text" id="HireDate" class="form-control" name="HireDate" value="" />
+                                <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="EffectiveDate" class="col-md-2 control-label">Effective Date:</label>
+                            <label for="City" class="col-md-2 control-label">City:</label>
                             <div class="col-md-10">
-                                <input type="text" id="EffectiveDate" class="form-control" name="EffectiveDate" value="" />
+                                <input type="text" id="City" class="form-control" name="City" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="ElgibilityDate" class="col-md-2 control-label">Elgibility Date:</label>
+                            <label for="State" class="col-md-2 control-label">State:</label>
                             <div class="col-md-10">
-                                <input type="text" id="ElgibilityDate" class="form-control" name="ElgibilityDate" value="" />
+                                <input type="text" id="State" class="form-control" name="State" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="EffectiveDate" class="col-md-2 control-label">Annual Salary:</label>
+                            <label for="ZipCode" class="col-md-2 control-label">Zip Code:</label>
                             <div class="col-md-10">
-                                <input type="text" id="EffectiveDate" class="form-control" name="EffectiveDate" value="" />
+                                <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="HoursWorkedPerWeek" class="col-md-2 control-label">Hours Worked Per Week:</label>
+                            <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
                             <div class="col-md-10">
-                                <input type="text" id="HoursWorkedPerWeek" class="form-control" name="HoursWorkedPerWeek" value="" />
+                                <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="CellPhone" class="col-md-2 control-label">Cell Number:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="" />
                             </div>
                         </div>
                     </div>
@@ -134,7 +132,7 @@
         <input type="submit" onclick="location.href='api/Emplyoee/SpouseContact'" value="Continue" class="btn btn-default" />
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
 </body>
@@ -184,3 +182,10 @@
         background-color: #f1f1f1;
     }
 </style>
+
+<script>
+    function SpouseContact(){
+        var div = document.getElementById('divSpouseContact')
+        div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
+    }
+</script>

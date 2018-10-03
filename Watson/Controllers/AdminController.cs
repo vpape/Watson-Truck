@@ -70,6 +70,8 @@ namespace Watson.Controllers
         // GET: api/Admin/5
         public Employee GetEmployee(int id)
         {
+
+
             return employee.Where(x => x.User_id == id).FirstOrDefault();
         }
 
@@ -127,6 +129,7 @@ namespace Watson.Controllers
         public void SpouseEnrollment(Employee spouse)
         {
             employee.Add(spouse);
+            
         }
     }
 }
