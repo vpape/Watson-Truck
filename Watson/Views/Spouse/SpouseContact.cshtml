@@ -2,7 +2,7 @@
 
 
 @{
-    @ViewBag.Title = "SpouseEnrollment";
+    @ViewBag.Title = "SpouseContact";
 }
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Spouse Enrollment</title>
+    <title>Spouse Contact</title>
 </head>
 <body>
     @using (Html.BeginForm())
@@ -20,61 +20,18 @@
 
         <div class="form-horizontal">
             <hr />
-            <button class="collapsible"><h4>Spouse Enrollment</h4></button>
+            <button class="collapsible"><h4>Spouse Contact</h4></button>
             <div class="content">
-                <form action="/api/Family_Info/SpouseEnrollment" method="post">
-                    <div class="form-group">
-                        <label for="RelationshipToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="" />
-                        </div>
-                    </div>@*Use foreach to get Employee name and Employee Number from Employee model*@
-                    <div class="form-group" id="empName">
-                        <label for="" class="col-md-2 control-label">Employee Name:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="" class="form-control" name="" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group" id="empNumber">
-                        <label for="" class="col-md-2 control-label">Employee Number:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="" class="form-control" name="" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="FirstName" class="col-md-2 control-label">First Name:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="LastName" class="col-md-2 control-label">Last Name:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="LastName" class="form-control" name="LastName" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">Gender:</label>
-                        <div class="col-md-10">
-                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
-                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
-                        </div>
-                    </div>@*if address is same as employee, then populate using emp address*@
-                    <div class="form-group">
-                        @*<label class="col-md-2 control-label">Is Mailing Address Same As Spouse?</label>
+                <form action="/api/Family_Info/SpouseContact" method="post">
+                    <div class="form-group">@*if address is same as employee, then populate using emp address*@
+                        <label class="col-md-2 control-label">Is Mailing Address Same As Spouse?</label>
                         <div class="col-md-10">
                             <label class="radio-inline"><input type="radio" id="AddrSame" class="radio-inline" name="" value="true" onclick='SpouseContact()' checked />Yes</label>
                             <label class="radio-inline"><input type="radio" id="AddrNotSame" class="radio-inline" name="" value="false" onclick='EmployeeContact()' />No</label>
-                        </div>*@
+                        </div>
                     </div>@*if address is same as employee, then populate using emp address....need to call MailingAddress from Employee model. Use Foreach to iterate through Employee collection*@
                     <div id="divSpouseContact">
-                        @*<div class="form-group">
+                        <div class="form-group">
                             <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
                             <div class="col-md-10">
                                 <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="" />
@@ -121,7 +78,7 @@
                             <div class="col-md-10">
                                 <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="" />
                             </div>
-                        </div>*@
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
@@ -134,8 +91,8 @@
 
     }
     <div>
-        <input type="submit" onclick="location.href='api/Emplyoee/EmployeeContact'" value="Previous" class="btn btn-default" /> |
-        <input type="submit" onclick="location.href='api/Family_Info/SpouseContact'" value="Continue" class="btn btn-default" />
+        <input type="submit" onclick="location.href='api/Family_Info/SpouseEnrollment'" value="Previous" class="btn btn-default" /> |
+        <input type="submit" onclick="location.href='api/Family_Info/SpouseEmployment'" value="Continue" class="btn btn-default" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |
@@ -189,12 +146,22 @@
     }
 </style>
 
-<script>//if onclick= SpouseContact() is 'yes', then need to populate employee address info....otherwise spouse will need to fill out information
+<script>
+    //if onclick= SpouseContact() is 'no', then need to spouse will need to fill out information
     function SpouseContact() {
 
         var div = document.getElementById('divSpouseContact')
-       
-        div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
+
+        if (value == 'no') {
+
+            div.style.visibility = (div.style.visibility == 'visible')
+
+        }
+        else
+            div.style.visibility = (div.style.visibility == 'hidden')
+
+
+        //div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
 
     }
 
@@ -203,7 +170,15 @@
 
         var emp = document.getElementById('divEmpContact')
 
-        div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
+        if (value == 'yes') {
+
+            div.style.visibility = (div.style.visibility == 'visible')
+
+        }
+        else
+            div.style.visibility = (div.style.visibility == 'hidden')
+
+            
 
     }
 </script>

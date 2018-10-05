@@ -4,15 +4,27 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Watson.Models;
 
 namespace Watson.Controllers
 {
     public class Family_InfoController : ApiController
     {
-        // GET: api/Family_Info
-        public IEnumerable<string> Get()
+        private WatsonTruckEntities db = new WatsonTruckEntities();
+
+        static List<Family_Info> familyMember = new List<Family_Info>();
+
+        public Family_InfoController()
         {
-            return new string[] { "value1", "value2" };
+            familyMember.Add(new Family_Info { SSN = "", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "", JobTitle = "", User_id = 1 });
+            familyMember.Add(new Family_Info { SSN = "", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "", JobTitle = "", User_id = 2 });
+            familyMember.Add(new Family_Info { SSN = "", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "", JobTitle = "", User_id = 3 });
+        }
+
+        // GET: api/Family_Info
+        public List<Family_Info> Get()
+        {
+            return db.Family_Infoes.ToList();
         }
 
         // GET: api/Family_Info/5
@@ -34,6 +46,12 @@ namespace Watson.Controllers
         // DELETE: api/Family_Info/5
         public void Delete(int id)
         {
+        }
+
+        // POST: api/Family_Info
+        public void SpouseContact(Family_Info spouseContact)
+        {
+
         }
     }
 }
