@@ -398,6 +398,14 @@
     <Content Include="Views\Spouse\SpouseEmployment.cshtml" />
     <Content Include="Views\Dependent\DependentEnrollment.cshtml" />
     <Content Include="Views\Employee\Contact.cshtml" />
+    <Content Include="Views\Dependent\Delete.cshtml" />
+    <Content Include="Views\Dependent\Edit.cshtml" />
+    <Content Include="Views\Dependent\Detail.cshtml" />
+    <Content Include="Views\Dependent\Index.cshtml" />
+    <Content Include="Views\Spouse\Delete.cshtml" />
+    <Content Include="Views\Spouse\Edit.cshtml" />
+    <Content Include="Views\Spouse\Detail.cshtml" />
+    <Content Include="Views\Spouse\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
