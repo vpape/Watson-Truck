@@ -1,5 +1,8 @@
-﻿@{
-    Layout = null;
+﻿@model Watson.Models.Employee
+
+
+@{
+    @ViewBag.Title = "Edit";
 }
 
 <!DOCTYPE html>
@@ -7,11 +10,209 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <title>Edit Employee</title>
 </head>
 <body>
-    <div>
-    
-    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.User_id)
+
+        <div class="form-horizontal">
+            <hr />
+            <button class="collapsible"><h4>Edit Employee</h4></button>
+            <div class="content">
+                <form action="/api/Employee/Edit" method="post">
+                    <div class="form-group">
+                        <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group" id="EmpRole">
+                        <label for="EmployeeRole" class="col-md-2 control-label">Employee Role</label>
+                        <div class="col-md-10">
+                            <select name="EmployeeRole" class="form-control">
+                                <option id="AdminRole" value="Admin">Administrator</option>
+                                <option id="ManagerRole" value="Manager">Manager</option>
+                                <option id="EmployeeRole" value="Employee">Employee</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="SSN" class="form-control" name="SSN" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="FirstName" class="col-md-2 control-label">First Name:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Gender:</label>
+                        <div class="col-md-10">
+                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
+                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="MartialStatus" class="col-md-2 control-label">Martial Status:</label>
+                        <div class="col-md-10">
+                            <select name="MartialStatus" class="form-control">
+                                <option id="MarriedwDep" name="MartialStatus">Married with Dependents</option>
+                                <option id="Married" name="MartialStatus">Married</option>
+                                <option id="SinglewDep" name="MartialStatus">Single with Dependents</option>
+                                <option id="Single" name="MartialStatus">Single</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="AdminEmpInfo">
+                        <div class="form-group">
+                            <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="HireDate" class="col-md-2 control-label">Hire Date:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="HireDate" class="form-control" name="HireDate" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="EffectiveDate" class="col-md-2 control-label">Effective Date:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="EffectiveDate" class="form-control" name="EffectiveDate" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ElgibilityDate" class="col-md-2 control-label">Elgibility Date:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="ElgibilityDate" class="form-control" name="ElgibilityDate" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="EffectiveDate" class="col-md-2 control-label">Annual Salary:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="EffectiveDate" class="form-control" name="EffectiveDate" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="HoursWorkedPerWeek" class="col-md-2 control-label">Hours Worked Per Week:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="HoursWorkedPerWeek" class="form-control" name="HoursWorkedPerWeek" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" onclick="return validateForm()" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+
+    @*<div>
+        <input type="submit" onclick="location.href='api/Employee/Create'" value="Previous" class="btn btn-default" /> |
+        <input type="submit" onclick="location.href='api/Employee/Index'" value="Save" class="btn btn-default" />
+    </div>*@
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </body>
 </html>
+
+@* need to validate using SQL- Used too much code on prev project.
+    needs to be clean and concise
+
+    function validateEmail(EmailAddress) {
+        var email = document.getElementById('EmailAddress');
+        var emailTest = RegExp("^[a-zA-Z0-9_.+-]+@@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
+        return emailTest.test(EmailAddress);
+
+    function validateForm() {
+    var CrntEmployer = document.getElementById("CurrentEmployer")
+    var PrvEmployer = document.getElementById("PreviousEmployer")
+*@
+
+@*  if (CrntEmployer.value == "")
+    {
+        ErrorMessage += " Current Employer field is required. <br>"
+    }
+    if (ErrorMessage.length > 0)
+    {
+        Error.innerHTML = ErrorMessage
+    }
+
+    if (PrvEmployer.value == "")
+    {
+        ErrorMessage += "Previous Employer field is required. <br>"
+    }
+    if (ErrorMessage.length > 0)
+    {
+        Error.innerHTML = ErrorMessage
+    }
+*@
+
+@* Collapsible button script *@
+<script>
+    var col = document.getElementByClassName("collapsible");
+    var i;
+
+    for (var i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            }
+            else
+                content.style.display = "block"
+        });
+    }
+</script>
+
+@* Style for collaspsible button *@
+<style>
+    .collapsible {
+        background-color: #333333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+</style>

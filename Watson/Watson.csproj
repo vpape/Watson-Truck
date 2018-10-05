@@ -237,7 +237,10 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\Family_InfoController.cs" />
+    <Compile Include="Controllers\Group_HealthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Life_InsuranceController.cs" />
+    <Compile Include="Controllers\Other_InsuranceController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -393,6 +396,8 @@
     <Content Include="Views\Spouse\SpouseEnrollment.cshtml" />
     <Content Include="Views\Spouse\SpouseContact.cshtml" />
     <Content Include="Views\Spouse\SpouseEmployment.cshtml" />
+    <Content Include="Views\Dependent\DependentEnrollment.cshtml" />
+    <Content Include="Views\Employee\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

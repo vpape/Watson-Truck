@@ -1,0 +1,282 @@
+﻿@model Watson.Models.Family_Info
+
+
+@{
+    @ViewBag.Title = "DependentEnrollment";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dependent Enrollment</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.FamilyMember_id)
+
+        <div class="form-horizontal">
+            <hr />
+            <button class="collapsible"><h4>Dependent Enrollment</h4></button>
+            <div class="content">
+                <form action="/api/Family_Info/DependentEnrollment" method="post">
+                    <div class="form-group">
+                        <label for="RelationshipToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="" />
+                        </div>
+                    </div>@*Use foreach to get Employee name and Employee Number from Employee model*@
+                    <div class="form-group" id="empName">
+                        <label for="" class="col-md-2 control-label">Employee Name:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="" class="form-control" name="" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group" id="empNumber">
+                        <label for="" class="col-md-2 control-label">Employee Number:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="" class="form-control" name="" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="FirstName" class="col-md-2 control-label">First Name:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Gender:</label>
+                        <div class="col-md-10">
+                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
+                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" onclick="return validateForm()" id="submit" class="btn btn-default" />
+                            <input type="button" onclick="addInputSelection();" value="Add Dependent" id="addDep" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    }
+    <div>
+        <input type="submit" onclick="location.href='api/Family_Info/SpouseEmployment'" value="Previous" class="btn btn-default" /> |
+        <input type="submit" onclick="location.href='api/Family_Info/Index'" value="Continue" class="btn btn-default" />
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
+
+@* Collapsible button script *@
+<script>
+    var col = document.getElementByClassName("collapsible");
+    var i;
+
+    for (var i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            }
+            else
+                content.style.display = "block"
+        });
+    }
+</script>
+
+@* Style for collaspsible button *@
+<style>
+    .collapsible {
+        background-color: #333333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+</style>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        var cnt = 1;
+        /* This function recieves a name (string) and finds that element in the document, then removes it from it's parent node.
+         * You have to use the removeChild method on the parent node of the object.
+         */
+        function removeElement(name) {
+            var elementToRemove = document.getElementById(name);
+            elementToRemove.parentNode.removeChild(elementToRemove);
+        }
+
+        function createElement(name, type) {
+            var input = document.createElement("input");
+            input.type = type;
+            var newName = name + cnt;
+            input.name = newName;
+            input.id = newName;
+            return input;
+        }
+
+        /* This function recieves a name (string) and attempts to find it in the document object.  it's going to increment the number at the end
+         * of the name and create a new object, but only if that object doesn't already exist.
+         * It adds three elements, a file input, a red X inside a span tag, and a break tag
+         */
+        function addInputSelection() {
+            // skip the "fname" part of the name and grab the number that is the rest
+            newID = ++cnt;
+            //check to see if the next increment of that object already exists
+            if (document.getElementById("fname" + newID) == null) {
+                //get the form object so you have a reference to add child to for the three objects to create
+                var formObj = document.getElementById("dependantSelectForm");
+                // create the new input objects
+                formObj.appendChild(createElement('fname', 'text'));
+                formObj.appendChild(createElement('lname', 'text'));
+                formObj.appendChild(createElement('dob', 'date'));
+
+                //create the new span tag with the red X in it
+                var spanObj = document.createElement("span");
+                spanObj.id = "x" + newID;
+                spanObj.style = "color:red";
+                spanObj.addEventListener("click", function () {
+                    removeInputSelection(this);
+                })
+                spanObj.innerHTML = "X";
+                formObj.appendChild(spanObj);
+                //create the break tag to make a new line.  have to add an id so we know which one to remove when they click the X
+                var newBR = document.createElement("br");
+                newBR.id = "br" + newID;
+                with (document.getElementById('submit').style) {
+                    top = (cnt * 25) + 80 + "px";
+                }
+                with (document.getElementById('adddep').style) {
+                    top = (cnt * 25) + 80 + "px";
+                }
+                formObj.appendChild(newBR);
+
+            }
+        }
+        /* This function removes the file, span, and br tags with the same number at the end
+         */
+        function removeInputSelection(o) {
+            cnt--;
+            var elementIdNumber = parseInt(o.id.substring(2, o.id.length - 1));
+
+            removeElement("fname" + elementIdNumber);
+            removeElement("lname" + elementIdNumber);
+            removeElement("dob" + elementIdNumber);
+            removeElement("x" + elementIdNumber);
+            removeElement("br" + elementIdNumber);
+            with (document.getElementById('submit').style) {
+                top = (cnt * 25) + 80 + "px";
+            }
+            with (document.getElementById('adddep').style) {
+                top = (cnt * 25) + 80 + "px";
+            }
+        }
+    </script>
+</head>
+<body>
+    <form id="dependantSelectForm" action="\Home\DependantPoster" method="post">
+        <input type="text" name="fname1" id="fname1" />
+        <input type="text" name="lname1" id="lname1" />
+        <input type="date" name="dob1" id="dob1" />
+
+        <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
+        <br id="br1" />
+
+        <input type="submit" value="Submit" id="submit" style="position:absolute;top:80px;" />
+        <input type="button" onclick="addInputSelection();" value="add dependant" id="adddep" style="position:absolute;top:80px;left:160px">
+    </form>
+</body>
+</html>
+
+<script> //How to eliminate the validation form using SQL?
+    var validateForm = function (url) {
+        form.action = url;
+        form.submit();
+    }
+
+
+    function validateForm() {
+        var fName = document.getElementById("FirstName")
+        var mName = document.getElementById("MiddleName")
+        var lName = document.getElementById("LastName")
+        var relationToInsured = document.getElementById("RelationshipToInsured")
+        var DoB = document.getElementById("DateOfBirth")
+        //var Ssn = document.getElementById("SSN")
+
+        var insuranceCompany = document.getElementById("InsCompany")
+        var insuranceMailingAddress = document.getElementById("InsMailingAddress")
+        var insuranceCity = document.getElementById("InsCity")
+        var insuranceState = document.getElementById("InsState")
+        var insuranceZipCode = document.getElementById("InsZipCode")
+        var insurancePhone = document.getElementById("InsPhone")
+        var PolicyNum = document.getElementById("PolicyNumber")
+
+        var Error = document.getElementById("Error")
+        var ErrorMessage = "";
+
+
+        var $result = $("#Result");
+
+        $result.text("");
+
+        if (validateEmail(Email)) {
+            $result.text(Email + " is valid.");
+            $result.css("color", "green");
+
+        }
+        else {
+            $result.text(Email + " is not valid :(");
+            $result.css("color", "red");
+
+        }
+
+
+        if (fName.value == "") {
+            ErrorMessage += "First Name field is required. <br>"
+        }
+        if (ErrorMessage.length > 0) {
+            Error.innerHTML = ErrorMessage
+        }
+
+</script>

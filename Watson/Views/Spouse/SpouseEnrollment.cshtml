@@ -70,7 +70,7 @@
                         @*<label class="col-md-2 control-label">Is Mailing Address Same As Spouse?</label>
                         <div class="col-md-10">
                             <label class="radio-inline"><input type="radio" id="AddrSame" class="radio-inline" name="" value="true" onclick='SpouseContact()' checked />Yes</label>
-                            <label class="radio-inline"><input type="radio" id="AddrNotSame" class="radio-inline" name="" value="false" onclick='EmployeeContact()' />No</label>
+                            <label class="radio-inline"><input type="radio" id="AddrNotSame" class="radio-inline" name="" value="false" onclick='SpouseContact()' />No</label>
                         </div>*@
                     </div>@*if address is same as employee, then populate using emp address....need to call MailingAddress from Employee model. Use Foreach to iterate through Employee collection*@
                     <div id="divSpouseContact">
@@ -192,18 +192,24 @@
 <script>//if onclick= SpouseContact() is 'yes', then need to populate employee address info....otherwise spouse will need to fill out information
     function SpouseContact() {
 
-        var div = document.getElementById('divSpouseContact')
-       
-        div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
+        var spouse = document.getElementById('divSpouseContact')
+        var employee = document.getElementById('divEmpContact')
 
-    }
+        //div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
+        
+        if (spouse.value == "yes")
+        {
 
-    // emp contact info needs to populate when 'yes' option is selected for spouse contact is the same
-    function EmployeeContact() {
-
-        var emp = document.getElementById('divEmpContact')
-
-        div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
-
+            spouse.style.display = 'block';
+            employee.style.display = 'none';
+            
+        }
+        else
+        {
+            spouse.style.display = 'none';
+            employee.style.display = 'block';
+            
+        }
     }
 </script>
+

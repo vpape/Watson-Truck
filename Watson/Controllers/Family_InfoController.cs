@@ -16,9 +16,8 @@ namespace Watson.Controllers
 
         public Family_InfoController()
         {
-            familyMember.Add(new Family_Info { SSN = "", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "", JobTitle = "", User_id = 1 });
-            familyMember.Add(new Family_Info { SSN = "", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "", JobTitle = "", User_id = 2 });
-            familyMember.Add(new Family_Info { SSN = "", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "", JobTitle = "", User_id = 3 });
+            familyMember.Add(new Family_Info { FirstName = "Cindy", FamilyMember_id = 1 });
+            
         }
 
         // GET: api/Family_Info

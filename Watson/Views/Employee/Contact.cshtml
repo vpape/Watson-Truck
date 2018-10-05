@@ -2,7 +2,7 @@
 
 
 @{
-    @ViewBag.Title = "EmployeeContact";
+    @ViewBag.Title = "Contact";
 }
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
             <hr />
             <h4>Employee Contact</h4>
             <div class="content">
-                <form action="/api/Admin/EmployeeContact" method="post">
+                <form action="/api/Employee/Contact" method="post">
                     <div id="divEmpContact">
                         <div class="form-group">
                             <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
@@ -97,8 +97,8 @@
     }
 
     <div>
-        <input type="submit" onclick="location.href='api/Admin/CreateEmployee'" value="Previous" class="btn btn-default" /> |
-        <input type="submit" onclick="location.href='api/Admin/SpouseEnrollment'" value="Continue" class="btn btn-default" />
+        <input type="submit" onclick="location.href='api/Employee/Create'" value="Previous" class="btn btn-default" /> |
+        <input type="submit" onclick="location.href='api/Family_Info/SpouseEnrollment'" value="Continue" class="btn btn-default" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
@@ -106,3 +106,4 @@
     </p>
 </body>
 </html>
+

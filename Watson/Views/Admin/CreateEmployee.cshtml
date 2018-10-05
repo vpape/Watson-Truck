@@ -22,7 +22,7 @@
             <hr />
             <button class="collapsible"><h4>Employee Enrollment</h4></button>
             <div class="content">
-                <form action="/api/Employee/CreateEmployee" method="post">
+                <form action="/api/Admin/CreateEmployee" method="post">
                     <div class="form-group">
                         <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
                         <div class="col-md-10">
@@ -130,8 +130,8 @@
 
     }
     <div>
-        <input type="submit" onclick="location.href='api/Emplyoee/CreateEmployee'" value="Previous" class="btn btn-default" /> |
-        <input type="submit" onclick="location.href='api/Emplyoee/EmployeeContact'" value="Continue" class="btn btn-default" />
+        <input type="submit" onclick="location.href='api/Admin/CreateEmployee'" value="Previous" class="btn btn-default" /> |
+        <input type="submit" onclick="location.href='api/Admin/EmployeeContact'" value="Continue" class="btn btn-default" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
