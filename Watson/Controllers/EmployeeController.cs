@@ -8,9 +8,6 @@ using System.Web.Mvc;
 using Watson.Models;
 
 
-//ask if i need admin and employee model since i created 
-//two controllers or can i just use one model- employee
-
 namespace Watson.Controllers
 {   
     //[Authorize]
@@ -33,11 +30,6 @@ namespace Watson.Controllers
         //    employee.Add(new Employee { SSN = "", FirstName = "", LastName = "", EmployeeRole = "", JobTitle = "", User_id = id });
         //}
 
-        // GET: Employees
-        public List<Employee> Index()
-        {
-            return db.Employees.ToList();
-        }
 
         /// <summary>
         /// Gets a list of the employees
@@ -64,6 +56,24 @@ namespace Watson.Controllers
             return output;
         }
 
+        //public JsonResult GetEmployees()
+        //{
+        //    var output = (from e in db.Employees
+        //                  select new
+        //                  {
+        //                      e.User_id,
+        //                      e.SSN,
+        //                      e.FirstName,
+        //                      e.LastName,
+        //                      e.EmployeeRole,
+        //                      e.JobTitle,
+        //                      e.isActive
+        //                  });
+
+        //    return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+
+        //}
+
         // GET: api/Employee
         public List<Employee> GetEmployee()
         {
@@ -76,6 +86,39 @@ namespace Watson.Controllers
             return employee.Where(e => e.User_id == id).FirstOrDefault();
         }
 
+        //public JsonResult GetEmployee(int id)
+        //{
+        //    Employee e = db.Employees
+        //        .Where(i => i.User_id == id)
+        //        .SingleOrDefault();
+
+        //    return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+        //}
+
+        // GET: Employees
+        public List<Employee> Index()
+        {
+            return db.Employees.ToList();
+        }
+
+        // GET: api/Employee
+        public List<Employee> EmployeeEnrollment()
+        {
+            return employee;
+        }
+
+        //GET: api/Employee/5
+        public Employee EmployeeEnrollment(int id)
+        {
+            return employee.Where(e => e.User_id == id).FirstOrDefault();
+        }
+
+        //GET: api/Employee/5
+        public Employee Detail(int id)
+        {
+            return employee.Where(e => e.User_id == id).FirstOrDefault();
+        }
+
 
         // PUT: api/Employee/5
         //public void UpdateEmployee(int id, Employee value)
@@ -83,8 +126,15 @@ namespace Watson.Controllers
         //    employee[id] = value;
         //}
 
+        // GET: api/Employee/5
+        public void Edit(int? id)
+        {
+            Employee employee = db.Employees.Find(id);
+
+        }
+
         // DELETE: api/Employee/5
-        public void DeleteEmployee(int id)
+        public void Delete(int? id)
         {
             Employee employee = db.Employees.Find(id);
 
@@ -98,16 +148,69 @@ namespace Watson.Controllers
         //---------------POST Methods---------------//
 
 
-        // POST: api/Employee
-        public void CreateEmployee(Employee create)
+        // POST: api/Employee/5
+        public void EmployeeEnrollment(Employee employee)
         {
-            employee.Add(create);
+            if (ModelState.IsValid)
+            {
+                db.Employees.Add(employee);
+            }
+
+            db.Employees.Add(employee);
+
+            db.SaveChanges();
+
+            //if (employee.MartialStatus == "MarriedwDep")
+            //{
+            //    RedirectToAction("SpouseEnrollment", "Family_Info", new { employee.User_id, employee.MartialStatus });
+            //}
+            //else if (employee.MartialStatus == "SingleWDep")
+            //{
+            //    RedirectToRouteResult("DependentEnrollment", "Family_Info", new {employee.User_id, employee.MartialStatus});
+            //}
+            //else
+            //{
+            //    RedirectToRouteResult("Index", "Employee");
+            //}
+
         }
 
-        // POST: api/Employee
+        // POST: api/Employee/5
+        public void Edit(Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+
+                db.SaveChanges();
+            }
+        }
+
+        // POST: api/Employee/5
         public void Contact(Employee contact)
         {
             employee.Add(contact);
+        }
+
+        // POST: api/Employee/5
+        [System.Web.Http.HttpPost, System.Web.Http.ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public void Delete(int id)
+        {
+            Employee employee = db.Employees.Find(id);
+
+            db.Employees.Remove(employee);
+            db.SaveChanges();
+
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

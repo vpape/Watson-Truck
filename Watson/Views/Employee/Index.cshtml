@@ -1,17 +1,114 @@
-﻿@{
-    Layout = null;
+﻿@model List<Watson.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
 }
 
+<h2>Employee Overview</h2>
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <title>Employee Overview</title>
 </head>
 <body>
-    <div>
-    
-    </div>
-</body>
+    @*Need to create dynamic arrow button next to employee that goes to Spouse & Dep detail page*@
+    <table class="table">
+        <tr>
+            <th>User ID</th>
+            <th>Employee #</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Role</th>
+            <th>Job Title</th>
+            <th>Active</th>
+        @*<th>Hire Date</th>
+            <th>Mailing Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>*@
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User_id)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.SSN)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeRole)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobTitle)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.isActive)
+                </td>
+
+                @*<td>
+                        @item.HireDate.ToShortDateString()
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MailingAddress)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.State)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ZipCode)
+                    </td>*@
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.User_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.User_id }) |
+                    @Html.ActionLink("Insurance", "Insurance", new { id = item.User_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.User_id })
+
+                </td>
+            </tr>
+        }
+
+        </table>
+        <div>
+            <input type="button" onclick="location.href='api/Admin/CreateEmployee'" value="Create Employee" class="btn btn-default" />
+        </div>
+    </body>
 </html>
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+</style>

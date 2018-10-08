@@ -80,10 +80,10 @@
             </td>*@
 
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.User_id }) |
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.User_id }) |*@
                 @Html.ActionLink("Details", "Details", new { id = item.User_id }) |
                 @Html.ActionLink("Insurance", "Insurance", new { id = item.User_id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.User_id })
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.User_id })*@
 
             </td>
         </tr>
@@ -91,7 +91,7 @@
 
     </table>
     <div>
-        <input type="button" onclick="location.href='api/Admin/CreateEmployee'" value="Create Employee" class="btn btn-default" />
+        <input type="button" onclick="location.href='api/Employee/EmployeeEnrollment'" value="Create Employee" class="btn btn-default" />
     </div>
 </body>
 </html>
