@@ -26,115 +26,173 @@
                     <div class="form-group">
                         <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
                         <div class="col-md-10">
-                            <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="" />
+                            <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@Html.DisplayFor(model => model.CurrentEmployer)" />
                         </div>
                     </div>
-                    <div class="form-group" id="EmpRole">
+                    <div class="form-group" id="divEmpRole">
                         <label for="EmployeeRole" class="col-md-2 control-label">Employee Role</label>
                         <div class="col-md-10">
                             <select name="EmployeeRole" class="form-control">
-                                <option id="AdminRole" value="Admin">Administrator</option>
-                                <option id="ManagerRole" value="Manager">Manager</option>
-                                <option id="EmployeeRole" value="Employee">Employee</option>
+                                <option id="AdminRole" value="@Html.DisplayFor(model => model.EmployeeRole)">Administrator</option>
+                                <option id="ManagerRole" value="@Html.DisplayFor(model => model.EmployeeRole)">Manager</option>
+                                <option id="EmployeeRole" value="@Html.DisplayFor(model => model.EmployeeRole)">Employee</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
                         <div class="col-md-10">
-                            <input type="text" id="SSN" class="form-control" name="SSN" value="" />
+                            <input type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.SSN)" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                         <div class="col-md-10">
-                            <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                            <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(model => model.FirstName)" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="LastName" class="col-md-2 control-label">Last Name:</label>
                         <div class="col-md-10">
-                            <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                            <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(model => model.LastName)" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
                         <div class="col-md-10">
-                            <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                            <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Html.DisplayFor(model => model.DateOfBirth)" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label">Gender:</label>
                         <div class="col-md-10">
-                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
-                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
+                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" @((Model.Sex == true) ? "checked" : "") />Male</label>
+                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" @((Model.Sex == false) ? "checked" : "") />Female</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="MartialStatus" class="col-md-2 control-label">Martial Status:</label>
+                        <label for="MartialStatus" class="col-md-2 control-label">Martial Status</label>
                         <div class="col-md-10">
                             <select name="MartialStatus" class="form-control">
-                                <option id="MarriedwDep" name="MartialStatus">Married with Dependents</option>
-                                <option id="Married" name="MartialStatus">Married</option>
-                                <option id="SinglewDep" name="MartialStatus">Single with Dependents</option>
-                                <option id="Single" name="MartialStatus">Single</option>
+                                <option id="MarriedwDep" value="@Html.DisplayFor(model => model.MartialStatus)">Married with Dependents</option>
+                                <option id="Married" value="@Html.DisplayFor(model => model.MartialStatus)">Married</option>
+                                <option id="SinglewDep" value="@Html.DisplayFor(model => model.MartialStatus)">Single with Dependents</option>
+                                <option id="Single" value="@Html.DisplayFor(model => model.MartialStatus)">Single</option>
                             </select>
                         </div>
                     </div>
-                    <div id="AdminEmpInfo">
+                    <div id="divEmpInfo">
                         <div class="form-group">
                             <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
                             <div class="col-md-10">
-                                <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="" />
+                                <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@Html.DisplayFor(model => model.JobTitle)" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="HireDate" class="col-md-2 control-label">Hire Date:</label>
                             <div class="col-md-10">
-                                <input type="text" id="HireDate" class="form-control" name="HireDate" value="" />
+                                <input type="text" id="HireDate" class="form-control" name="HireDate" value="@Html.DisplayFor(model => model.HireDate)" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="EffectiveDate" class="col-md-2 control-label">Effective Date:</label>
                             <div class="col-md-10">
-                                <input type="text" id="EffectiveDate" class="form-control" name="EffectiveDate" value="" />
+                                <input type="text" id="EffectiveDate" class="form-control" name="EffectiveDate" value=@Html.DisplayFor(model => model.EffectiveDate) />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="ElgibilityDate" class="col-md-2 control-label">Elgibility Date:</label>
                             <div class="col-md-10">
-                                <input type="text" id="ElgibilityDate" class="form-control" name="ElgibilityDate" value="" />
+                                <input type="text" id="ElgibilityDate" class="form-control" name="ElgibilityDate" value="@Html.DisplayFor(model => model.EligibilityDate)" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="EffectiveDate" class="col-md-2 control-label">Annual Salary:</label>
                             <div class="col-md-10">
-                                <input type="text" id="EffectiveDate" class="form-control" name="EffectiveDate" value="" />
+                                <input type="text" id="EffectiveDate" class="form-control" name="EffectiveDate" value="@Html.DisplayFor(model => model.AnnualSalary)" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="HoursWorkedPerWeek" class="col-md-2 control-label">Hours Worked Per Week:</label>
                             <div class="col-md-10">
-                                <input type="text" id="HoursWorkedPerWeek" class="form-control" name="HoursWorkedPerWeek" value="" />
+                                <input type="text" id="HoursWorkedPerWeek" class="form-control" name="HoursWorkedPerWeek" value="@Html.DisplayFor(model => model.HoursWorkedPerWeek)" />
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" onclick="return validateForm()" class="btn btn-default" />
+                    <div id="divEmpContact">
+                        <div class="form-group">
+                            <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(model => model.MailingAddress)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@Html.DisplayFor(model => model.PhysicalAddress)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="City" class="col-md-2 control-label">City:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="City" class="form-control" name="City" value="@Html.DisplayFor(model => model.City)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="State" class="col-md-2 control-label">State:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="State" class="form-control" name="State" value="@Html.DisplayFor(model => model.State)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ZipCode" class="col-md-2 control-label">Zip Code:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(model => model.ZipCode)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="County" class="col-md-2 control-label">County:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="County" class="form-control" name="County" value="@Html.DisplayFor(model => model.County)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="CityLimits" class="col-md-2 control-label">Within City Limits?</label>
+                            <div class="col-md-10">
+                                <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" checked />Yes</label>
+                                <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" />No</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(model => model.EmailAddress)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(model => model.PhoneNumber)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="@Html.DisplayFor(model => model.CellPhone)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn-btn-default" />
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-    }
 
-    @*<div>
-        <input type="submit" onclick="location.href='api/Employee/Create'" value="Previous" class="btn btn-default" /> |
-        <input type="submit" onclick="location.href='api/Employee/Index'" value="Save" class="btn btn-default" />
-    </div>*@
+    }
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
 </body>
