@@ -35,64 +35,36 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.User_id)
                 </td>
-
                 <td>
                     @Html.DisplayFor(modelItem => item.SSN)
                 </td>
-
                 <td>
                     @Html.DisplayFor(modelItem => item.FirstName)
                 </td>
-
                 <td>
                     @Html.DisplayFor(modelItem => item.LastName)
                 </td>
-
                 <td>
                     @Html.DisplayFor(modelItem => item.EmployeeRole)
                 </td>
-
                 <td>
                     @Html.DisplayFor(modelItem => item.JobTitle)
                 </td>
-
                 <td>
                     @Html.DisplayFor(modelItem => item.isActive)
                 </td>
-
-                @*<td>
-                        @item.HireDate.ToShortDateString()
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MailingAddress)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.City)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.State)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ZipCode)
-                    </td>*@
-
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.User_id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.User_id }) |
+                    @Html.ActionLink("Detail", "Detail", new { id = item.User_id }) |
                     @Html.ActionLink("Insurance", "Insurance", new { id = item.User_id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.User_id })
-
                 </td>
             </tr>
         }
 
         </table>
         <div>
-            <input type="button" onclick="location.href='api/Admin/CreateEmployee'" value="Create Employee" class="btn btn-default" />
+            <input type="button" onclick="location.href='api/Employee/EmployeeEnrollment'" value="Create Employee" class="btn btn-default" />
         </div>
     </body>
 </html>
