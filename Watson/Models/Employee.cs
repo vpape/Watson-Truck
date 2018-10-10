@@ -11,6 +11,7 @@ namespace Watson.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Employee
     {
@@ -28,6 +29,7 @@ namespace Watson.Models
         public string EmployeeRole { get; set; }
         public string CurrentEmployer { get; set; }
         public string PreviousEmployer { get; set; }
+        [MaxLength(100)]
         public string FirstName { get; set; } = "";
         public string MiddleName { get; set; } = "";
         public string LastName { get; set; } = "";
@@ -40,8 +42,11 @@ namespace Watson.Models
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
+        [EmailAddress]
         public string EmailAddress { get; set; }
+        [Phone]
         public string PhoneNumber { get; set; }
+        [Phone]
         public string CellPhone { get; set; }
         public string County { get; set; }
         public Nullable<bool> CityLimits { get; set; }

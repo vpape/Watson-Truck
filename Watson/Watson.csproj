@@ -404,7 +404,7 @@
     <Content Include="Views\Dependent\Index.cshtml" />
     <Content Include="Views\Spouse\DeleteSpouse.cshtml" />
     <Content Include="Views\Spouse\EditSpouse.cshtml" />
-    <Content Include="Views\Spouse\SpoueDetail.cshtml" />
+    <Content Include="Views\Spouse\SpouseDetail.cshtml" />
     <Content Include="Views\Spouse\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -20,31 +20,73 @@ namespace Watson.Controllers
             
         }
 
-        // GET: api/Family_Info
-        public List<Family_Info> Get()
+        //[Route("api/Family_Info/GetFamilyMember/{User_id:int}/{SSN:string}")]
+        //[HttpGet]
+        public List<string> GetFamilyMembers(int FamilyMember_id)
         {
-            return db.Family_Infoes.ToList();
+            List<string> output = new List<string>();
+
+            foreach (var f in familyMember)
+            {
+                output.Add(f.FirstName);
+            }
+
+            return output;
+        }
+
+        // GET: api/Family_Info
+        public List<Family_Info> GetFamilyMembers()
+        {
+            return familyMember;
         }
 
         // GET: api/Family_Info/5
-        public string Get(int id)
+        public Family_Info GetFamilyMember(int id)
         {
-            return "value";
+            return familyMember.Where(f => f.FamilyMember_id == id).FirstOrDefault();
         }
 
-        // POST: api/Family_Info
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Family_Info/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //// PUT: api/Family_Info/5
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
         // DELETE: api/Family_Info/5
         public void Delete(int id)
         {
+        }
+
+        // GET: api/Family_Info
+        public void Edit()
+        {
+
+        }
+
+        //------------Post Methods-------------------------
+
+        // POST: api/Family_Info
+        public void SpouseEnrollment(Family_Info createSpouse)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Family_Infoes.Add(createSpouse);
+            }
+
+            db.Family_Infoes.Add(createSpouse);
+
+            db.SaveChanges();
+        }
+
+        public void SpouseEmployment(Family_Info spouseEmployment)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Family_Infoes.Add(spouseEmployment);
+            }
+
+            db.Family_Infoes.Add(spouseEmployment);
+
+            db.SaveChanges();
         }
 
         // POST: api/Family_Info

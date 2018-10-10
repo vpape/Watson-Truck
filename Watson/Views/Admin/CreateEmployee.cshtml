@@ -121,7 +121,8 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" onclick="return validateForm()" class="btn btn-default" />
+                            @* Need to fix the submit btn *@
+                            <input type="submit" value="Save" onclick="" class="btn btn-default" />
                         </div>
                     </div>
                 </form>
@@ -140,37 +141,6 @@
 </body>
 </html>
 
-@* need to validate using SQL- Used too much code on prev project.
-    needs to be clean and concise
-
-    function validateEmail(EmailAddress) {
-        var email = document.getElementById('EmailAddress');
-        var emailTest = RegExp("^[a-zA-Z0-9_.+-]+@@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
-        return emailTest.test(EmailAddress);
-
-    function validateForm() {
-    var CrntEmployer = document.getElementById("CurrentEmployer")
-    var PrvEmployer = document.getElementById("PreviousEmployer")
-*@
-
-@*  if (CrntEmployer.value == "")
-    {
-        ErrorMessage += " Current Employer field is required. <br>"
-    }
-    if (ErrorMessage.length > 0)
-    {
-        Error.innerHTML = ErrorMessage
-    }
-
-    if (PrvEmployer.value == "")
-    {
-        ErrorMessage += "Previous Employer field is required. <br>"
-    }
-    if (ErrorMessage.length > 0)
-    {
-        Error.innerHTML = ErrorMessage
-    }
-*@
 
 @* Collapsible button script *@
 <script>
