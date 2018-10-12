@@ -1,0 +1,155 @@
+﻿@model Watson.Models.Family_Info
+
+
+@{
+    @ViewBag.Title = "FamilyHomePage";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Family Enrollment Page</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.FamilyMember_id)
+       
+
+        <div class="form-horizontal">
+            <hr />
+            <button class="collapsible"><h4>Spouse Enrollment</h4></button>
+            <div class="content">
+                <form action="/api/Family_Info/SpouseEnrollment" method="post">
+                   
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" value="" onclick="return SpouseEnrollment()" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    }
+    @*<div>
+        <input type="button" onclick="location.href='api/Emplyoee/Contact'" value="Previous" class="btn btn-default" /> |
+        <input type="button" onclick="location.href='api/Family_Info/SpouseContact'" value="Continue" class="btn btn-default" />
+    </div>*@
+    <p>
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |*@
+        @*@Html.ActionLink("Back to List", "Index")*@
+    </p>
+</body>
+</html>
+
+<html>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.FamilyMember_id)
+        
+
+        <div class="form-horizontal">
+            <hr />
+            <button class="collapsible"><h4>Dependent Enrollment</h4></button>
+            <div class="content">
+                <form action="/api/Family_Info/DependentEnrollment" method="post">
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" value="" onclick="return DependentEnrollment()" class="btn btn-default" />
+                            @*<input type="button" onclick="addInputSelection();" value="Add Dependent" id="addDep" class="btn btn-default" />*@
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    }
+    @*<div>
+        <input type="button" onclick="location.href='api/Family_Info/SpouseEmployment'" value="Previous" class="btn btn-default" /> |
+        <input type="button" onclick="location.href='api/Family_Info/Index'" value="Continue" class="btn btn-default" />
+    </div>*@
+    <p>
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |*@
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
+
+
+@* Collapsible button script *@
+<script>
+    var col = document.getElementByClassName("collapsible");
+    var i;
+
+    for (var i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            }
+            else
+                content.style.display = "block"
+        });
+    }
+</script>
+
+@* Style for collaspsible button *@
+<style>
+    .collapsible {
+        background-color: #333333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+</style>
+
+@*<script>
+    //if onclick= SpouseContact() is 'yes', then need to populate employee address info....otherwise spouse will need to fill out information
+    function SpouseContact() {
+
+        var spouse = document.getElementById('divSpouseContact')
+        var employee = document.getElementById('divEmpContact')
+
+        if (spouse.value == "yes") {
+
+            spouse.style.display = 'none';
+            employee.style.display = 'block';
+
+            //employee.style.visibility = (employee.style.visibility == 'hidden') ? 'visible' : 'hidden';
+
+        }
+        else {
+            spouse.style.display = 'block';
+            employee.style.display = 'none';
+
+            //spouse.style.visibility = (spouse.style.visibility == 'hidden') ? 'visible' : 'hidden';
+
+        }
+    }
+</script>*@
+

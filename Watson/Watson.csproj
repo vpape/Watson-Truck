@@ -401,11 +401,11 @@
     <Content Include="Views\Dependent\DeleteDependent.cshtml" />
     <Content Include="Views\Dependent\EditDependent.cshtml" />
     <Content Include="Views\Dependent\DependentDetail.cshtml" />
-    <Content Include="Views\Dependent\Index.cshtml" />
     <Content Include="Views\Spouse\DeleteSpouse.cshtml" />
     <Content Include="Views\Spouse\EditSpouse.cshtml" />
     <Content Include="Views\Spouse\SpouseDetail.cshtml" />
     <Content Include="Views\Spouse\Index.cshtml" />
+    <Content Include="Views\FamilyHomePage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

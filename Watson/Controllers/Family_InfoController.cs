@@ -41,7 +41,7 @@ namespace Watson.Controllers
         }
 
         // GET: api/Family_Info/5
-        public Family_Info GetFamilyMember(int id)
+        public Family_Info GetFamilyMember(int? id)
         {
             return familyMember.Where(f => f.FamilyMember_id == id).FirstOrDefault();
         }
@@ -52,14 +52,24 @@ namespace Watson.Controllers
         //}
 
         // DELETE: api/Family_Info/5
-        public void Delete(int id)
+        public void Delete(int? id)
         {
+            Family_Info fMember = db.Family_Infoes.Find(id);
+
+            db.Family_Infoes.Remove(fMember);
+            db.SaveChanges();
+        }
+
+        // GET: api/Family_Info/5
+        public void Index(int? id)
+        {
+            Family_Info fMember = db.Family_Infoes.Find(id);
         }
 
         // GET: api/Family_Info
-        public void Edit()
+        public void Edit(int? id)
         {
-
+            Family_Info fMember = db.Family_Infoes.Find(id);
         }
 
         //------------Post Methods-------------------------
@@ -73,6 +83,19 @@ namespace Watson.Controllers
             }
 
             db.Family_Infoes.Add(createSpouse);
+
+            db.SaveChanges();
+        }
+
+        // POST: api/Family_Info
+        public void DependentEnrollment(Family_Info createDependent)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Family_Infoes.Add(createDependent);
+            }
+
+            db.Family_Infoes.Add(createDependent);
 
             db.SaveChanges();
         }
