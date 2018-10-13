@@ -1,0 +1,170 @@
+﻿@model Watson.Models.Family_Info
+
+
+@{
+    @ViewBag.Title = "SpouseContact";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Spouse Contact Information</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.FamilyMember_id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-horizontal">
+            <hr />
+            <button class="collapsible"><h4>Spouse Contact</h4></button>
+            <div class="content">
+                <form action="/api/Family_Info/SpouseContact" method="post">
+                    <div class="form-group">
+                        @*if address is same as employee, then populate using emp address*@
+                    <label class="col-md-2 control-label">Is Mailing Address Same As Spouse?</label>
+                    <div class="col-md-10">
+                        <label class="radio-inline"><input type="radio" id="AddrSame" class="radio-inline" name="" value="true" onclick='SpouseContact()' checked />Yes</label>
+                        <label class="radio-inline"><input type="radio" id="AddrNotSame" class="radio-inline" name="" value="false" onclick='SpouseContact()' />No</label>
+                    </div>
+                </div>@*if address is same as employee, then populate using emp address....need to call MailingAddress from Employee model. Use Foreach to iterate through Employee collection*@
+                <div id="divSpouseContact">
+                    <div class="form-group">
+                        <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="City" class="col-md-2 control-label">City:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="City" class="form-control" name="City" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="State" class="col-md-2 control-label">State:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="State" class="form-control" name="State" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ZipCode" class="col-md-2 control-label">Zip Code:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="CellPhone" class="col-md-2 control-label">Cell Number:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" onclick="return SpouseContact()" class="btn btn-default" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+}
+    <div>
+        <input type="submit" onclick="location.href='api/Family_Info/SpouseEnrollment'" value="Previous" class="btn btn-default" /> |
+        <input type="submit" onclick="location.href='api/Family_Info/SpouseEmployment'" value="Continue" class="btn btn-default" />
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
+
+<script>
+    var col = document.getElementByClassName("collapsible");
+    var i;
+
+    for (var i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            }
+            else
+                content.style.display = "block"
+        });
+    }
+</script>
+
+<style>
+    .collapsible {
+        background-color: #333333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+</style>
+
+<script>
+    //if onclick= SpouseContact() is 'yes', then employee address info will populate....otherwise spouse will need to fill out information
+    function SpouseContact() {
+
+        var spouse = document.getElementById('divSpouseContact')
+        var employee = document.getElementById('divEmpContact')
+
+        //div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
+
+        if (spouse.value == "yes") {
+
+            spouse.style.display = 'block';
+            employee.style.display = 'none';
+
+        }
+        else {
+            spouse.style.display = 'none';
+            employee.style.display = 'block';
+
+        }
+    }
+</script>

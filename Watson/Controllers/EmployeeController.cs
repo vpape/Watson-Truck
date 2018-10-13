@@ -19,10 +19,9 @@ namespace Watson.Controllers
 
         public EmployeeController()
         {
-            employee.Add(new Employee { SSN = "", FirstName = "", LastName = "", EmployeeRole = "", JobTitle = "", User_id = 1});
-            employee.Add(new Employee { SSN = "", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "", JobTitle = "", User_id = 2 });
-            employee.Add(new Employee { SSN = "", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "", JobTitle = "", User_id = 3 });
-            employee.Add(new Employee { SSN = "", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "", JobTitle = "", User_id = 4 });
+            employee.Add(new Employee { SSN = "0001", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "Admin", JobTitle = "", User_id = 1 });
+            employee.Add(new Employee { SSN = "", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "Admin", JobTitle = "", User_id = 2 });
+            employee.Add(new Employee { SSN = "", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "", User_id = 3 });
         }
 
         //public EmployeeController(string SSN, string FirstName, string LastName, string EmployeeRole, string JobTitle, int id)
@@ -96,10 +95,10 @@ namespace Watson.Controllers
         //}
 
         // GET: Employees
-        public List<Employee> Index()
-        {
-            return db.Employees.ToList();
-        }
+        //public List<Employee> GetEmployees()
+        //{
+        //    return db.Employees.ToList();
+        //}
 
         // GET: api/Employee
         public List<Employee> EmployeeEnrollment()
@@ -113,52 +112,31 @@ namespace Watson.Controllers
             return employee.Where(e => e.User_id == id).FirstOrDefault();
         }
 
-        //GET: api/Employee/5
-        public Employee Detail(int id)
-        {
-            return employee.Where(e => e.User_id == id).FirstOrDefault();
-        }
-
-
-        // PUT: api/Employee/5
-        //public void UpdateEmployee(int id, Employee value)
-        //{
-        //    employee[id] = value;
-        //}
-
-        // GET: api/Employee/5
-        public void Edit(int? id)
-        {
-            Employee employee = db.Employees.Find(id);
-
-        }
-
-        // DELETE: api/Employee/5
-        public void Delete(int? id)
-        {
-            Employee employee = db.Employees.Find(id);
-
-            db.Employees.Remove(employee);
-            db.SaveChanges();
-
-            //db.DeleteEmployeeAndDependents(id);
-           
-        }
-
-        //---------------POST Methods---------------//
-
-
-        // POST: api/Employee/5
-        public void EmployeeEnrollment(Employee employee)
+        // POST: api/Employee
+        [System.Web.Http.HttpPost]
+        [ValidateAntiForgeryToken]
+        public void EmployeeEnrollment([Bind(Include = "User_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
+            "Sex,MartialStatus")] Employee employee)
         {
             if (ModelState.IsValid)
             {
                 db.Employees.Add(employee);
+                db.SaveChanges();
+
             }
 
-            db.Employees.Add(employee);
+           
+            // POST: api/Employee/5
+            //public void EmployeeEnrollment(Employee employee)
+            //{
+            //    if (ModelState.IsValid)
+            //    {
+            //        db.Employees.Add(employee);
+            //    }
 
-            db.SaveChanges();
+            //    db.Employees.Add(employee);
+
+            //    db.SaveChanges();
 
             //if (employee.MartialStatus == "MarriedwDep")
             //{
@@ -175,8 +153,37 @@ namespace Watson.Controllers
 
         }
 
+        //GET: api/Employee/5
+        public Employee Detail(int id)
+        {
+            return employee.Where(e => e.User_id == id).FirstOrDefault();
+        }
+
+
+        // PUT: api/Employee/5
+        //public void UpdateEmployee(int id, Employee value)
+        //{
+        //    employee[id] = value;
+        //}
+
         // POST: api/Employee/5
-        public void Edit(Employee employee)
+        public void Contact(Employee contact)
+        {
+            employee.Add(contact);
+        }
+
+        // GET: api/Employee/5
+        public void Edit(int? id)
+        {
+            Employee employee = db.Employees.Find(id);
+
+        }
+
+        // POST: api/Employee/5
+        [System.Web.Http.HttpPost]
+        [ValidateAntiForgeryToken]
+        public void Edit([Bind(Include = "User_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
+            "Sex,MartialStatus")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -186,10 +193,16 @@ namespace Watson.Controllers
             }
         }
 
-        // POST: api/Employee/5
-        public void Contact(Employee contact)
+        // DELETE: api/Employee/5
+        public void Delete(int? id)
         {
-            employee.Add(contact);
+            Employee employee = db.Employees.Find(id);
+
+            db.Employees.Remove(employee);
+            db.SaveChanges();
+
+            //db.DeleteEmployeeAndDependents(id);
+           
         }
 
         // POST: api/Employee/5
@@ -202,7 +215,7 @@ namespace Watson.Controllers
             db.Employees.Remove(employee);
             db.SaveChanges();
 
-        }
+        }     
 
         protected override void Dispose(bool disposing)
         {

@@ -84,8 +84,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            @* Need to fix the submit btn *@
-                            <input type="submit" value="Save" onclick="return" class="btn btn-default" />
+                            <input type="submit" value="Save" onclick="return EmployeeEnrollment()" class="btn btn-default" />
                         </div>
                     </div>
                 </form>
@@ -98,14 +97,12 @@
         <input type="submit" onclick="location.href='api/Employee/Contact'" value="Continue" class="btn btn-default" />
     </div>
     <p>
-        @*@Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |*@
+        @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
 </body>
 </html>
 
-
-@* Collapsible button script *@
 <script>
     var col = document.getElementByClassName("collapsible");
     var i;
@@ -124,7 +121,6 @@
     }
 </script>
 
-@* Style for collaspsible button *@
 <style>
     .collapsible {
         background-color: #333333;

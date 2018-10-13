@@ -383,7 +383,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Admin\CreateEmployee.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\GetEmployees.cshtml" />
     <Content Include="Views\Admin\EmployeeDetail.cshtml" />
     <Content Include="Views\Admin\EditEmployee.cshtml" />
     <Content Include="Views\Admin\DeleteEmployee.cshtml" />
@@ -391,21 +391,20 @@
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Employee\Detail.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\GetEmployees.cshtml" />
     <Content Include="Views\Admin\EmployeeContact.cshtml" />
-    <Content Include="Views\Spouse\SpouseEnrollment.cshtml" />
-    <Content Include="Views\Spouse\SpouseContact.cshtml" />
-    <Content Include="Views\Spouse\SpouseEmployment.cshtml" />
-    <Content Include="Views\Dependent\DependentEnrollment.cshtml" />
+    <Content Include="Views\FamilyMember\SpouseEnrollment.cshtml" />
+    <Content Include="Views\FamilyMember\SpouseContact.cshtml" />
+    <Content Include="Views\FamilyMember\SpouseEmployment.cshtml" />
+    <Content Include="Views\FamilyMember\DependentEnrollment.cshtml" />
     <Content Include="Views\Employee\Contact.cshtml" />
-    <Content Include="Views\Dependent\DeleteDependent.cshtml" />
-    <Content Include="Views\Dependent\EditDependent.cshtml" />
-    <Content Include="Views\Dependent\DependentDetail.cshtml" />
-    <Content Include="Views\Spouse\DeleteSpouse.cshtml" />
-    <Content Include="Views\Spouse\EditSpouse.cshtml" />
-    <Content Include="Views\Spouse\SpouseDetail.cshtml" />
-    <Content Include="Views\Spouse\Index.cshtml" />
-    <Content Include="Views\FamilyHomePage\Index.cshtml" />
+    <Content Include="Views\FamilyMember\DeleteDependent.cshtml" />
+    <Content Include="Views\FamilyMember\EditDependent.cshtml" />
+    <Content Include="Views\FamilyMember\DependentDetail.cshtml" />
+    <Content Include="Views\FamilyMember\DeleteSpouse.cshtml" />
+    <Content Include="Views\FamilyMember\EditSpouse.cshtml" />
+    <Content Include="Views\FamilyMember\SpouseDetail.cshtml" />
+    <Content Include="Views\FamilyMember\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

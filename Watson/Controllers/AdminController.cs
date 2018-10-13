@@ -24,26 +24,25 @@ namespace Watson.Controllers
 
         public AdminController()
         {
-            employee.Add(new Employee { SSN = "", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "", JobTitle = "", User_id = 1 });
-            employee.Add(new Employee { SSN = "", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "", JobTitle = "", User_id = 2 });
-            employee.Add(new Employee { SSN = "", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "", JobTitle = "", User_id = 3 });
+            employee.Add(new Employee { SSN = "0001", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "Admin", JobTitle = "", User_id = 1 });
+            employee.Add(new Employee { SSN = "", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "Admin", JobTitle = "", User_id = 2 });
+            employee.Add(new Employee { SSN = "", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "", User_id = 3 });
         }
 
-        // GET: api/Admin
-        public List<Employee> Index()
-        {
-            return db.Employees.ToList();
-        }
+        //public EmployeeController(string SSN, string FirstName, string LastName, string EmployeeRole, string JobTitle, int id)
+        //{
+        //    employee.Add(new Employee { SSN = "", FirstName = "", LastName = "", EmployeeRole = "", JobTitle = "", User_id = id });
+        //}
+
 
         /// <summary>
-        /// Gets a list of the admins
+        /// Gets a list of the employees
         /// </summary>
         /// <param name="User_id">The unique identifier for this person</param>
         /// <param name="SSN">We want to know their employee#</param>
-        /// <returns>A list of admin Emp#, FN, LN, EmpRole, & JobTitle</returns>
-        
-        [System.Web.Http.Route("api/Admin/GetEmployees/{User_id:int}/{SSN:string}")]
-        [System.Web.Http.HttpGet]
+        /// <returns>A list of employees Emp#, FN, LN, EmpRole, & JobTitle</returns>
+        //[Route("api/Employee/GetEmployees/{User_id:int}/{SSN:string}")]
+        //[HttpGet]
         public List<string> GetEmployees(int User_id, string SSN)
         {
             List<string> output = new List<string>();
@@ -55,81 +54,181 @@ namespace Watson.Controllers
                 output.Add(e.LastName);
                 output.Add(e.EmployeeRole);
                 output.Add(e.JobTitle);
-                //output.Add(a.isActive);
+                //output.Add(e.isActive);
             }
 
             return output;
         }
-        
-        // GET: api/Admin
+
+        //public JsonResult GetEmployees()
+        //{
+        //    var output = (from e in db.Employees
+        //                  select new
+        //                  {
+        //                      e.User_id,
+        //                      e.SSN,
+        //                      e.FirstName,
+        //                      e.LastName,
+        //                      e.EmployeeRole,
+        //                      e.JobTitle,
+        //                      e.isActive
+        //                  });
+
+        //    return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+
+        //}
+
+        // GET: api/Employee
         public List<Employee> GetEmployee()
         {
             return employee;
         }
 
-        // GET: api/Admin/5
+        // GET: api/Employee/5
         public Employee GetEmployee(int id)
         {
-
-
-            return employee.Where(x => x.User_id == id).FirstOrDefault();
+            return employee.Where(e => e.User_id == id).FirstOrDefault();
         }
 
-        // GET: api/Admin/5
-        public Employee EmployeeDetail(int? id)
-        {
-         
-            var employee =db.Employees.Find(id);
-
-            return employee;
-        }
-
-        // GET: api/Admin/5
-        public List<Employee> EditEmployee(int? id)
-        {
-            
-            return employee;
-        }
-
-        // PUT: api/Admin/5
-        //public void UpdateEmployee(int id, Employee update)
+        //public JsonResult GetEmployee(int id)
         //{
-        //    employee[id] = update;
-            
+        //    Employee e = db.Employees
+        //        .Where(i => i.User_id == id)
+        //        .SingleOrDefault();
+
+        //    return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
         //}
 
-        // DELETE: api/Admin/5
-        public void DeleteEmployee(int id)
+        // GET: Employees
+        //public List<Employee> GetEmployees()
+        //{
+        //    return db.Employees.ToList();
+        //}
+
+        // GET: api/Employee
+        public List<Employee> CreateEmployee()
         {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
-            db.SaveChanges();
-
-        }
-                
-        //---------------POST Methods---------------//
-
-
-        // POST: api/Admin
-        public void CreateEmployee(Employee create)
-        {
-            employee.Add(create);
+            return employee;
         }
 
-        // POST: api/Admin/5
+        //GET: api/Employee/5
+        public Employee CreateEmployee(int id)
+        {
+            return employee.Where(e => e.User_id == id).FirstOrDefault();
+        }
+
+        // POST: api/Employee
+        [System.Web.Http.HttpPost]
+        [ValidateAntiForgeryToken]
+        public void CreateEmployee([Bind(Include = "User_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
+            "Sex,MartialStatus,JobTitle,HireDate,EffectiveDate,ElgibilityDate,AnnualSalary,HoursWorkedPerWeek")] Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Employees.Add(employee);
+                db.SaveChanges();
+
+            }
 
 
-        // POST: api/Admin
+            // POST: api/Employee/5
+            //public void EmployeeEnrollment(Employee employee)
+            //{
+            //    if (ModelState.IsValid)
+            //    {
+            //        db.Employees.Add(employee);
+            //    }
+
+            //    db.Employees.Add(employee);
+
+            //    db.SaveChanges();
+
+            //if (employee.MartialStatus == "MarriedwDep")
+            //{
+            //    RedirectToAction("SpouseEnrollment", "Family_Info", new { employee.User_id, employee.MartialStatus });
+            //}
+            //else if (employee.MartialStatus == "SingleWDep")
+            //{
+            //    RedirectToRouteResult("DependentEnrollment", "Family_Info", new {employee.User_id, employee.MartialStatus});
+            //}
+            //else
+            //{
+            //    RedirectToRouteResult("Index", "Employee");
+            //}
+
+        }
+
+        //GET: api/Employee/5
+        public Employee EmployeeDetail(int id)
+        {
+            return employee.Where(e => e.User_id == id).FirstOrDefault();
+        }
+
+
+        // PUT: api/Employee/5
+        //public void UpdateEmployee(int id, Employee value)
+        //{
+        //    employee[id] = value;
+        //}
+
+        // POST: api/Employee/5
         public void EmployeeContact(Employee contact)
         {
             employee.Add(contact);
         }
 
-        // POST: api/Admin
-        public void SpouseEnrollment(Employee spouse)
+        // GET: api/Employee/5
+        public void EditEmployee(int? id)
         {
-            employee.Add(spouse);
-            
+            Employee employee = db.Employees.Find(id);
+
+        }
+
+        // POST: api/Employee/5
+        [System.Web.Http.HttpPost]
+        [ValidateAntiForgeryToken]
+        public void EditEmployee([Bind(Include = "User_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
+            "Sex,MartialStatus,JobTitle,HireDate,EffectiveDate,ElgibilityDate,AnnualSalary,HoursWorkedPerWeek")] Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+
+                db.SaveChanges();
+            }
+        }
+
+        // DELETE: api/Employee/5
+        public void DeleteEmployee(int? id)
+        {
+            Employee employee = db.Employees.Find(id);
+
+            db.Employees.Remove(employee);
+            db.SaveChanges();
+
+            //db.DeleteEmployeeAndDependents(id);
+
+        }
+
+        // POST: api/Employee/5
+        [System.Web.Http.HttpPost, System.Web.Http.ActionName("DeleteEmployee")]
+        [ValidateAntiForgeryToken]
+        public void DeleteEmployee(int id)
+        {
+            Employee employee = db.Employees.Find(id);
+
+            db.Employees.Remove(employee);
+            db.SaveChanges();
+
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

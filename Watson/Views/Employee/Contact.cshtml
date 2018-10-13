@@ -17,6 +17,7 @@
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.User_id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-horizontal">
             <hr />
@@ -88,7 +89,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" onclick="return validateForm()" class="btn btn-default" />
+                            <input type="submit" value="Save" onclick="return Contact()" class="btn btn-default" />
                         </div>
                     </div>
                 </form>
@@ -98,7 +99,7 @@
 
     <div>
         <input type="submit" onclick="location.href='api/Employee/EmployeeEnrollment'" value="Previous" class="btn btn-default" /> |
-        <input type="submit" onclick="location.href='api/Family_Info/SpouseEnrollment'" value="Continue" class="btn btn-default" />
+        <input type="submit" onclick="location.href='api/Family_Info/Index'" value="Continue" class="btn btn-default" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |

@@ -1,4 +1,4 @@
-﻿@model Watson.Models.Family_Info
+﻿@*model Watson.Models.Family_Info
 
 
 @{
@@ -29,7 +29,7 @@
                         <div class="col-md-10">
                             <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="" />
                         </div>
-                    </div>@*Use foreach to get Employee name and Employee Number from Employee model*@
+                    </div>Use foreach to get Employee name and Employee Number from Employee model
                     <div class="form-group" id="empName">
                         <label for="" class="col-md-2 control-label">Employee Name:</label>
                         <div class="col-md-10">
@@ -81,15 +81,15 @@
     <div>
         <input type="submit" onclick="location.href='api/Family_Info/SpouseEmployment'" value="Previous" class="btn btn-default" /> |
         <input type="submit" onclick="location.href='api/Family_Info/Index'" value="Continue" class="btn btn-default" />
-    </div>
-    <p>
+    </div>*@
+    @*<p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
 </body>
-</html>
+</html>*@
 
-@* Collapsible button script *@
+ @*Collapsible button script 
 <script>
     var col = document.getElementByClassName("collapsible");
     var i;
@@ -106,9 +106,9 @@
                 content.style.display = "block"
         });
     }
-</script>
+</script>*@
 
-@* Style for collaspsible button *@
+@* Style for collaspsible button 
 <style>
     .collapsible {
         background-color: #333333;
@@ -230,28 +230,7 @@
 </body>
 </html>
 
-<script> //How to eliminate the validation form using SQL?
-    var validateForm = function (url) {
-        form.action = url;
-        form.submit();
-    }
 
-
-    function validateForm() {
-        var fName = document.getElementById("FirstName")
-        var mName = document.getElementById("MiddleName")
-        var lName = document.getElementById("LastName")
-        var relationToInsured = document.getElementById("RelationshipToInsured")
-        var DoB = document.getElementById("DateOfBirth")
-        //var Ssn = document.getElementById("SSN")
-
-        var insuranceCompany = document.getElementById("InsCompany")
-        var insuranceMailingAddress = document.getElementById("InsMailingAddress")
-        var insuranceCity = document.getElementById("InsCity")
-        var insuranceState = document.getElementById("InsState")
-        var insuranceZipCode = document.getElementById("InsZipCode")
-        var insurancePhone = document.getElementById("InsPhone")
-        var PolicyNum = document.getElementById("PolicyNumber")
 
         var Error = document.getElementById("Error")
         var ErrorMessage = "";
@@ -273,11 +252,6 @@
         }
 
 
-        if (fName.value == "") {
-            ErrorMessage += "First Name field is required. <br>"
-        }
-        if (ErrorMessage.length > 0) {
-            Error.innerHTML = ErrorMessage
-        }
+ 
 
-</script>
+</script>*@

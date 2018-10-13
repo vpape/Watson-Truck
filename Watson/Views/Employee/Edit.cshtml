@@ -17,6 +17,7 @@
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.User_id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-horizontal">
             <hr />
@@ -198,39 +199,6 @@
 </body>
 </html>
 
-@* need to validate using SQL- Used too much code on prev project.
-    needs to be clean and concise
-
-    function validateEmail(EmailAddress) {
-        var email = document.getElementById('EmailAddress');
-        var emailTest = RegExp("^[a-zA-Z0-9_.+-]+@@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
-        return emailTest.test(EmailAddress);
-
-    function validateForm() {
-    var CrntEmployer = document.getElementById("CurrentEmployer")
-    var PrvEmployer = document.getElementById("PreviousEmployer")
-*@
-
-@*  if (CrntEmployer.value == "")
-    {
-        ErrorMessage += " Current Employer field is required. <br>"
-    }
-    if (ErrorMessage.length > 0)
-    {
-        Error.innerHTML = ErrorMessage
-    }
-
-    if (PrvEmployer.value == "")
-    {
-        ErrorMessage += "Previous Employer field is required. <br>"
-    }
-    if (ErrorMessage.length > 0)
-    {
-        Error.innerHTML = ErrorMessage
-    }
-*@
-
-@* Collapsible button script *@
 <script>
     var col = document.getElementByClassName("collapsible");
     var i;
@@ -249,7 +217,6 @@
     }
 </script>
 
-@* Style for collaspsible button *@
 <style>
     .collapsible {
         background-color: #333333;
