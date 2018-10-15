@@ -27,119 +27,120 @@
                 <form action="/api/Family_Info/SpouseEnrollment" method="post">
                     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
                     <input type="hidden" id="MartialStatus" class="form-control" name="MartialStatus" value=@ViewBag.MartialStatus />
-                    <div class="form-group" id="divRelationshipToInsured">
-                        <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
-                        <div class="col-md-10">
-                            <select id="RelationToInsured" name="RelationShipToInsured" onchange="SpouseAndORDependent()" class="form-control">
-                                @if (ViewBag.spouseExist == false)
-                                {
-                                    <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "spouse") ? "selected" : "")>Spouse</option>
-                                }
-                                else
-                                {
-                                    <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                                }
-                            </select>
-                            @*<input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="" />*@
-                        </div>
-                    </div>@*Use foreach to get Employee name and Employee Number from Employee model*@
-                    <div class="form-group" id="empName">
-                        <label for="" class="col-md-2 control-label">Employee Name:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="" class="form-control" name="" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group" id="empNumber">
-                        <label for="" class="col-md-2 control-label">Employee Number:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="" class="form-control" name="" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="FirstName" class="col-md-2 control-label">First Name:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="LastName" class="col-md-2 control-label">Last Name:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="LastName" class="form-control" name="LastName" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">Gender:</label>
-                        <div class="col-md-10">
-                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
-                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
-                        </div>
-                    </div>@*if address is same as employee, then populate using emp address*@
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">Is Mailing Address Same As Spouse?</label>
-                        <div class="col-md-10">
-                            <label class="radio-inline"><input type="radio" id="AddrSame" class="radio-inline" name="" value="true" onclick='SpouseContact()' checked />Yes</label>
-                            <label class="radio-inline"><input type="radio" id="AddrNotSame" class="radio-inline" name="" value="false" onclick='SpouseContact()' />No</label>
-                        </div>
-                    </div>@*if address is same as employee, then populate using emp address....need to call MailingAddress from Employee model. Use Foreach to iterate through Employee collection*@
-                    <div id="divSpouseContact">
-                        <div class="form-group">
-                            <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
+                    <div id="divSpouseInfo">
+                        <div class="form-group" id="divRelationshipToInsured">
+                            <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
                             <div class="col-md-10">
-                                <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="" />
+                                <select id="RelationToInsured" name="RelationShipToInsured" onchange="SpouseAndORDependent()" class="form-control">
+                                    @if (ViewBag.spouseExist == false)
+                                    {
+                                        <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "spouse") ? "selected" : "")>Spouse</option>
+                                    }
+                                    else
+                                    {
+                                        <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>@*Use foreach to get Employee name and Employee Number from Employee model*@
+                        <div class="form-group" id="empName">
+                            <label for="" class="col-md-2 control-label">Employee Name:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="EmployeeName" class="form-control" name="" value="@Html.DisplayFor(m => Model.Employee.LastName)" />
+                            </div>
+                        </div>
+                        <div class="form-group" id="empNumber">
+                            <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(m => Model.Employee.SSN)" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
+                            <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                             <div class="col-md-10">
-                                <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="" />
+                                <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="City" class="col-md-2 control-label">City:</label>
+                            <label for="LastName" class="col-md-2 control-label">Last Name:</label>
                             <div class="col-md-10">
-                                <input type="text" id="City" class="form-control" name="City" value="" />
+                                <input type="text" id="LastName" class="form-control" name="LastName" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="State" class="col-md-2 control-label">State:</label>
+                            <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
                             <div class="col-md-10">
-                                <input type="text" id="State" class="form-control" name="State" value="" />
+                                <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="ZipCode" class="col-md-2 control-label">Zip Code:</label>
+                            <label class="col-md-2 control-label">Gender:</label>
                             <div class="col-md-10">
-                                <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="" />
+                                <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
+                                <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
+                            </div>
+                        </div>@*if address is same as employee, then populate using emp address*@
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Is Mailing Address Same As Spouse?</label>
+                            <div class="col-md-10">
+                                <label class="radio-inline"><input type="radio" id="AddrSame" class="radio-inline" name="" value="true" onclick='SpouseContact()' checked />Yes</label>
+                                <label class="radio-inline"><input type="radio" id="AddrNotSame" class="radio-inline" name="" value="false" onclick='SpouseContact()' />No</label>
+                            </div>
+                        </div>@*if address is same as employee, then populate using emp address....need to call MailingAddress from Employee model. Use Foreach to iterate through Employee collection*@
+                        <div id="divSpouseContact">
+                            <div class="form-group">
+                                <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
+                                <div class="col-md-10">
+                                    <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
+                                <div class="col-md-10">
+                                    <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="City" class="col-md-2 control-label">City:</label>
+                                <div class="col-md-10">
+                                    <input type="text" id="City" class="form-control" name="City" value="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="State" class="col-md-2 control-label">State:</label>
+                                <div class="col-md-10">
+                                    <input type="text" id="State" class="form-control" name="State" value="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ZipCode" class="col-md-2 control-label">Zip Code:</label>
+                                <div class="col-md-10">
+                                    <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
+                                <div class="col-md-10">
+                                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                                <div class="col-md-10">
+                                    <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="CellPhone" class="col-md-2 control-label">Cell Number:</label>
+                                <div class="col-md-10">
+                                    <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="" />
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="" />
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" onclick="return SpouseEnrollment()" class="btn btn-default" />
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="CellPhone" class="col-md-2 control-label">Cell Number:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" onclick="return SpouseEnrollment()" class="btn btn-default" />
                         </div>
                     </div>
                 </form>
@@ -161,63 +162,65 @@
             <div class="content">
                 <form id="dependentSelectForm" action="/api/Family_Info/DependentEnrollment" method="post">
                     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id  />
-                    <div class="form-group">
-                        <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
-                        <div class="col-md-10">
-                            <select id="RelationToInsured" name="RelationshipToInsured" onchange="SpouseAndORDependent()" class="form-control">
-                                @if (ViewBag.spouseExist == false)
-                                {
-                                    <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "spouse") ? "selected" : "")>Spouse</option>
-                                }
-                                else
-                                {
-                                    <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                                }
-                            </select>
-                            <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="" />
+                    <div id="divDependentInfo">
+                        <div class="form-group">
+                            <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
+                            <div class="col-md-10">
+                                <select id="RelationToInsured" name="RelationshipToInsured" onchange="SpouseAndORDependent()" class="form-control">
+                                    @if (ViewBag.spouseExist == false)
+                                    {
+                                        <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "spouse") ? "selected" : "")>Spouse</option>
+                                    }
+                                    else
+                                    {
+                                        <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                                    }
+                                </select>
+                                @*<input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="" />*@
+                            </div>
+                        </div>@*Use foreach to get Employee name and Employee Number from Employee model*@
+                        <div class="form-group" id="empName">
+                            <label for="" class="col-md-2 control-label">Employee Name:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="EmployeeName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.LastName)" />
+                            </div>
                         </div>
-                    </div>@*Use foreach to get Employee name and Employee Number from Employee model*@
-                    <div class="form-group" id="empName">
-                        <label for="" class="col-md-2 control-label">Employee Name:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="" class="form-control" name="" value="" />
+                        <div class="form-group" id="empNumber">
+                            <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.Employee.SSN)" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group" id="empNumber">
-                        <label for="" class="col-md-2 control-label">Employee Number:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="" class="form-control" name="" value="" />
+                        <div class="form-group">
+                            <label for="FirstName" class="col-md-2 control-label">First Name:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="FirstName" class="col-md-2 control-label">First Name:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                        <div class="form-group">
+                            <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="LastName" class="col-md-2 control-label">Last Name:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                        <div class="form-group">
+                            <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Gender:</label>
+                            <div class="col-md-10">
+                                <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
+                                <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">Gender:</label>
-                        <div class="col-md-10">
-                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
-                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" onclick="return DependentEnrollment()" id="submit" class="btn btn-default" />
-                            <input type="button" onclick="addInputSelection();" value="Add Dependent" id="addDep" class="btn btn-default" />
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" onclick="return DependentEnrollment()" id="submit" class="btn btn-default" />
+                                <input type="button" onclick="addInputSelection();" value="Add Dependent" id="addDep" class="btn btn-default" />
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -226,8 +229,8 @@
 
     }
     <div>
-        <input type="submit" onclick="location.href='api/Family_Info/Dependent'" value="Previous" class="btn btn-default" /> |
-        <input type="submit" onclick="location.href='api/Family_Info/Index'" value="Continue" class="btn btn-default" />
+        <input type="submit" onclick="location.href='api/Family_Info/SpouseContact'" value="Previous" class="btn btn-default" /> |
+        <input type="submit" onclick="location.href='api/Employee/GetEmployee'" value="Return to Employee Overview" class="btn btn-default" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |
@@ -237,7 +240,6 @@
 </html>
 
 
-@* Collapsible button script *@
 <script>
     var col = document.getElementByClassName("collapsible");
     var i;
@@ -256,7 +258,7 @@
     }
 </script>
 
-@* Style for collaspsible button *@
+
 <style>
     .collapsible {
         background-color: #333333;
@@ -285,9 +287,9 @@
 <script>
     function SpouseAndORDependent()
     {
-        var choice = document.getelementbyid("relationtoinsured")
-        var dependent = document.getelementbyid("divdependentinfo")
-        var spouse = document.getelementbyid("divspouseinfo")
+        var choice = document.getelementbyid("RelationToInsured")
+        var dependent = document.getelementbyid("divDependentInfo")
+        var spouse = document.getelementbyid("divSpouseInfo")
         if (choice.value == "spouse")
         {
             spouse.style.display = 'block';
@@ -300,30 +302,34 @@
 
         }
     }
+</script>
 
-    <script>
-        //if onclick= SpouseContact() is 'yes', then need to populate employee address info....otherwise spouse will need to fill out information
-        function SpouseContact() {
-
+    
+<script>
+    //if onclick= SpouseContact() is 'yes', then need to populate employee address info....otherwise spouse will need to fill out information
+    function SpouseContact()
+    {
         var spouse = document.getElementById('divSpouseContact')
         var employee = document.getElementById('divEmpContact')
 
-        if (spouse.value == "yes") {
+        if (spouse.value == "yes")
+        {
 
-            spouse.style.display = 'none';
+        spouse.style.display = 'none';
         employee.style.display = 'block';
 
         //employee.style.visibility = (employee.style.visibility == 'hidden') ? 'visible' : 'hidden';
 
-    }
-        else {
-            spouse.style.display = 'block';
+        }
+        else
+        {
+        spouse.style.display = 'block';
         employee.style.display = 'none';
 
         //spouse.style.visibility = (spouse.style.visibility == 'hidden') ? 'visible' : 'hidden';
 
+        }
     }
-}
 </script>
 
 
@@ -424,26 +430,4 @@
 </body>
 </html>
 
-<script>
-
-        var Error = document.getElementById("Error")
-        var ErrorMessage = "";
-
-
-        var $result = $("#Result");
-
-        $result.text("");
-
-        if (validateEmail(Email)) {
-            $result.text(Email + " is valid.");
-            $result.css("color", "green");
-
-        }
-        else {
-            $result.text(Email + " is not valid :(");
-            $result.css("color", "red");
-
-        }
-
-</script>
 

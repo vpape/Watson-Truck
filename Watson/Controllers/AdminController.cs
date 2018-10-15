@@ -24,16 +24,10 @@ namespace Watson.Controllers
 
         public AdminController()
         {
-            employee.Add(new Employee { SSN = "0001", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "Admin", JobTitle = "", User_id = 1 });
-            employee.Add(new Employee { SSN = "", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "Admin", JobTitle = "", User_id = 2 });
-            employee.Add(new Employee { SSN = "", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "", User_id = 3 });
+            employee.Add(new Employee { SSN = "0001", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "Admin", JobTitle = "Contractor", User_id = 1 });
+            employee.Add(new Employee { SSN = "0002", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "Admin", JobTitle = "HR Manager", User_id = 2 });
+            employee.Add(new Employee { SSN = "0003", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "HR Manager", User_id = 3 });
         }
-
-        //public EmployeeController(string SSN, string FirstName, string LastName, string EmployeeRole, string JobTitle, int id)
-        //{
-        //    employee.Add(new Employee { SSN = "", FirstName = "", LastName = "", EmployeeRole = "", JobTitle = "", User_id = id });
-        //}
-
 
         /// <summary>
         /// Gets a list of the employees
@@ -132,7 +126,7 @@ namespace Watson.Controllers
 
 
             // POST: api/Employee/5
-            //public void EmployeeEnrollment(Employee employee)
+            //public void CreateEmployee(Employee employee)
             //{
             //    if (ModelState.IsValid)
             //    {
@@ -171,10 +165,25 @@ namespace Watson.Controllers
         //    employee[id] = value;
         //}
 
-        // POST: api/Employee/5
-        public void EmployeeContact(Employee contact)
+        // GET: api/Employee/5
+        public void EmployeeContact(int? id)
         {
-            employee.Add(contact);
+            Employee employee = db.Employees.Find(id);
+        }
+
+        // POST: api/Employee/5
+        [System.Web.Http.HttpPost]
+        [ValidateAntiForgeryToken]
+        public void EmployeeContact([Bind(Include = "User_id,MailingAddress,PhysicalAddress,City,State,ZipCode,County,CityLimits,EmailAddress,PhoneNumber," +
+            "CellPhone")] Employee contact)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Employees.Add(contact);
+                db.SaveChanges();
+
+            }
+    
         }
 
         // GET: api/Employee/5
@@ -188,12 +197,53 @@ namespace Watson.Controllers
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
         public void EditEmployee([Bind(Include = "User_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
-            "Sex,MartialStatus,JobTitle,HireDate,EffectiveDate,ElgibilityDate,AnnualSalary,HoursWorkedPerWeek")] Employee employee)
+            "Sex,MartialStatus,JobTitle,HireDate,EffectiveDate,ElgibilityDate,AnnualSalary,HoursWorkedPerWeek,MailingAddress,PhysicalAddress," +
+            "City,State,ZipCode,County,CityLimits,EmailAddress,PhoneNumber,CellPhone")] Employee employee)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
 
+        // GET: api/FamilyMember/5
+        public void EditSpouse(int? id)
+        {
+            Family_Info fmember = db.Family_Infoes.Find(id);
+
+        }
+
+        // POST: api/FamilyMember/5
+        [System.Web.Http.HttpPost]
+        [ValidateAntiForgeryToken]
+        public void EditSpouse([Bind(Include = "User_id,FamilyMember_id,CurrentEmployer,EmployerAddress,EmployerCity,EmployerState,EmployerZipCode,EmployerPhoneNumber," +
+            "EmployeeName,RelationShipToInsured,FirstName,MiddleName,LastName,DateOfBirth,Sex,MartialStatus,MailingAddress,PhysicalAddress,City,State,ZipCode," +
+            "County,CityLimits,EmailAddress,PhoneNumber,CellPhone")] Family_Info fmember)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        // GET: api/FamilyMember/5
+        public void EditDependent(int? id)
+        {
+            Family_Info fmember = db.Family_Infoes.Find(id);
+
+        }
+
+        // POST: api/Employee/5
+        [System.Web.Http.HttpPost]
+        [ValidateAntiForgeryToken]
+        public void EditDependent([Bind(Include = "User_id,FamilyMember_id,RelationshipToInsured,EmployeeRole,EmployeeName,FirstName,MiddleName,LastName," +
+            "DateOfBirth,Sex")] Family_Info fmember)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
         }

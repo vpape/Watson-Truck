@@ -11,7 +11,6 @@ namespace Watson.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Employee
     {
@@ -24,41 +23,26 @@ namespace Watson.Models
             this.Other_Insurance = new HashSet<Other_Insurance>();
             this.Vacations = new HashSet<Vacation>();
         }
-
-        public int User_id { get; set; } = 0;
+    
+        public int User_id { get; set; }
         public string EmployeeRole { get; set; }
-        [MaxLength(30)]
         public string CurrentEmployer { get; set; }
-        [MaxLength(40)]
         public string PreviousEmployer { get; set; }
-        [MaxLength(40)]
-        public string FirstName { get; set; } = "";
-        [MaxLength(40)]
-        public string MiddleName { get; set; } = "";
-        [MaxLength(40)]
-        public string LastName { get; set; } = "";
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
         public System.DateTime DateOfBirth { get; set; }
-        [MaxLength(4)]
         public string SSN { get; set; }
         public string MartialStatus { get; set; }
         public bool Sex { get; set; }
-        [MaxLength(40)]
         public string MailingAddress { get; set; }
-        [MaxLength(40)]
         public string PhysicalAddress { get; set; }
-        [MaxLength(30)]
         public string City { get; set; }
-        [MaxLength(30)]
         public string State { get; set; }
-        [MaxLength(5)]
         public string ZipCode { get; set; }
-        [EmailAddress]
         public string EmailAddress { get; set; }
-        [Phone]
         public string PhoneNumber { get; set; }
-        [Phone]
         public string CellPhone { get; set; }
-        [MaxLength(25)]
         public string County { get; set; }
         public Nullable<bool> CityLimits { get; set; }
         public System.DateTime HireDate { get; set; }
@@ -67,11 +51,9 @@ namespace Watson.Models
         public System.DateTime EligibilityDate { get; set; }
         public string WorkStatus { get; set; }
         public int HoursWorkedPerWeek { get; set; }
-        [MaxLength(25)]
         public string JobTitle { get; set; }
-        [MaxLength(9)]
         public string AnnualSalary { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Family_Info> Family_Info { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -82,10 +64,5 @@ namespace Watson.Models
         public virtual ICollection<Other_Insurance> Other_Insurance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vacation> Vacations { get; set; }
-
-        //internal void RemoveAt(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

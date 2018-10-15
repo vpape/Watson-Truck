@@ -391,7 +391,7 @@
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Employee\Detail.cshtml" />
-    <Content Include="Views\Employee\GetEmployees.cshtml" />
+    <Content Include="Views\Employee\GetEmployee.cshtml" />
     <Content Include="Views\Admin\EmployeeContact.cshtml" />
     <Content Include="Views\FamilyMember\SpouseEnrollment.cshtml" />
     <Content Include="Views\FamilyMember\SpouseContact.cshtml" />

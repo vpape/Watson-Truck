@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Create Employee</title>
 </head>
-<body onload="AdminOrEmployee()">
+<body>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -30,14 +30,10 @@
                             <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="" />
                         </div>
                     </div>
-                    <div class="form-group" id="EmpRole">
-                        <label for="EmployeeRole" class="col-md-2 control-label">Employee Role</label>
+                    <div class="form-group">
+                        <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
                         <div class="col-md-10">
-                            <select name="EmployeeRole" class="form-control">
-                                <option id="AdminRole" value="Admin">Administrator</option>
-                                <option id="ManagerRole" value="Manager">Manager</option>
-                                <option id="EmployeeRole" value="Employee">Employee</option>
-                            </select>
+                            <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -93,7 +89,7 @@
 
     }
     <div>
-        <input type="submit" onclick="location.href='api/Employee/Index'" value="Previous" class="btn btn-default" /> |
+        <input type="submit" onclick="location.href='api/Employee/GetEmployees'" value="Previous" class="btn btn-default" /> |
         <input type="submit" onclick="location.href='api/Employee/Contact'" value="Continue" class="btn btn-default" />
     </div>
     <p>

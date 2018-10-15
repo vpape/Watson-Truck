@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
 using Watson.Models;
 
 namespace Watson.Controllers
@@ -13,6 +14,7 @@ namespace Watson.Controllers
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
         static List<Family_Info> familyMember = new List<Family_Info>();
+        private object ViewBag;
 
         public Family_InfoController()
         {
@@ -46,6 +48,66 @@ namespace Watson.Controllers
             return familyMember.Where(f => f.FamilyMember_id == id).FirstOrDefault();
         }
 
+        //GET: api/Family_Info/5
+        public Family_Info SpouseEnrollment(int id)
+        {
+            return familyMember.Where(s => s.FamilyMember_id == id).FirstOrDefault();
+        }
+
+        //POST: api/Family_Info
+        [System.Web.Http.HttpPost]
+        [ValidateAntiForgeryToken]
+        public void SpouseEnrollment([Bind(Include = "")]Family_Info createSpouse)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Family_Infoes.Add(createSpouse);
+                db.SaveChanges();
+            }
+        }
+
+        //GET: api/Family_Info/5
+        public Family_Info DependentEnrollment(int id)
+        {
+            return familyMember.Where(d => d.FamilyMember_id == id).FirstOrDefault();
+        }
+
+        //public ActionResult DependentEnrollment(int? id, string MartialStatus)
+        //{
+        //    ViewBag.Employee_id = id;
+        //    ViewBag.spouseExist = true;
+
+        //    Employee employee = db.Employees.Find(id);
+
+        //    if (employee.MartialStatus == "Single")
+        //    {
+        //        ViewBag.spouseExist = false;
+        //        ViewBag.RelationshipToInsured = "Single";
+        //    }
+        //    else if (employee.MartialStatus == "SinglewDep")
+        //    {
+        //        ViewBag.RelationshipToInsured = "Spouse";
+        //    }
+        //    else
+        //    {
+        //        ViewBag.RelationshipToInsured = "Dependent";
+        //    }
+
+        //    return ViewBag();
+        //}
+
+        //POST: api/Family_Info
+        public void DependentEnrollment([Bind(Include = "")] Family_Info createDependent)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Family_Infoes.Add(createDependent);
+                db.SaveChanges();
+            }
+            
+        }
+
+
         //// PUT: api/Family_Info/5
         //public void Put(int id, [FromBody]string value)
         //{
@@ -72,33 +134,6 @@ namespace Watson.Controllers
             Family_Info fMember = db.Family_Infoes.Find(id);
         }
 
-        //------------Post Methods-------------------------
-
-        // POST: api/Family_Info
-        public void SpouseEnrollment(Family_Info createSpouse)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Family_Infoes.Add(createSpouse);
-            }
-
-            db.Family_Infoes.Add(createSpouse);
-
-            db.SaveChanges();
-        }
-
-        // POST: api/Family_Info
-        public void DependentEnrollment(Family_Info createDependent)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Family_Infoes.Add(createDependent);
-            }
-
-            db.Family_Infoes.Add(createDependent);
-
-            db.SaveChanges();
-        }
 
         public void SpouseEmployment(Family_Info spouseEmployment)
         {

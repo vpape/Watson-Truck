@@ -9,7 +9,7 @@ using Watson.Models;
 
 
 namespace Watson.Controllers
-{   
+{
     //[Authorize]
     public class EmployeeController : ApiController
     {
@@ -24,54 +24,6 @@ namespace Watson.Controllers
             employee.Add(new Employee { SSN = "", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "", User_id = 3 });
         }
 
-        //public EmployeeController(string SSN, string FirstName, string LastName, string EmployeeRole, string JobTitle, int id)
-        //{
-        //    employee.Add(new Employee { SSN = "", FirstName = "", LastName = "", EmployeeRole = "", JobTitle = "", User_id = id });
-        //}
-
-
-        /// <summary>
-        /// Gets a list of the employees
-        /// </summary>
-        /// <param name="User_id">The unique identifier for this person</param>
-        /// <param name="SSN">We want to know their employee#</param>
-        /// <returns>A list of employees Emp#, FN, LN, EmpRole, & JobTitle</returns>
-        //[Route("api/Employee/GetEmployees/{User_id:int}/{SSN:string}")]
-        //[HttpGet]
-        public List<string> GetEmployees(int User_id, string SSN)
-        {
-            List<string> output = new List<string>();
-
-            foreach (var e in employee)
-            {
-                output.Add(e.SSN);
-                output.Add(e.FirstName);
-                output.Add(e.LastName);
-                output.Add(e.EmployeeRole);
-                output.Add(e.JobTitle);
-                //output.Add(e.isActive);
-            }
-
-            return output;
-        }
-
-        //public JsonResult GetEmployees()
-        //{
-        //    var output = (from e in db.Employees
-        //                  select new
-        //                  {
-        //                      e.User_id,
-        //                      e.SSN,
-        //                      e.FirstName,
-        //                      e.LastName,
-        //                      e.EmployeeRole,
-        //                      e.JobTitle,
-        //                      e.isActive
-        //                  });
-
-        //    return Json(new { data = output }, JsonRequestBehavior.AllowGet);
-
-        //}
 
         // GET: api/Employee
         public List<Employee> GetEmployee()
@@ -122,34 +74,7 @@ namespace Watson.Controllers
             {
                 db.Employees.Add(employee);
                 db.SaveChanges();
-
             }
-
-           
-            // POST: api/Employee/5
-            //public void EmployeeEnrollment(Employee employee)
-            //{
-            //    if (ModelState.IsValid)
-            //    {
-            //        db.Employees.Add(employee);
-            //    }
-
-            //    db.Employees.Add(employee);
-
-            //    db.SaveChanges();
-
-            //if (employee.MartialStatus == "MarriedwDep")
-            //{
-            //    RedirectToAction("SpouseEnrollment", "Family_Info", new { employee.User_id, employee.MartialStatus });
-            //}
-            //else if (employee.MartialStatus == "SingleWDep")
-            //{
-            //    RedirectToRouteResult("DependentEnrollment", "Family_Info", new {employee.User_id, employee.MartialStatus});
-            //}
-            //else
-            //{
-            //    RedirectToRouteResult("Index", "Employee");
-            //}
 
         }
 
@@ -166,13 +91,23 @@ namespace Watson.Controllers
         //    employee[id] = value;
         //}
 
-        // POST: api/Employee/5
-        public void Contact(Employee contact)
+        // GET: api/Employee/5
+        public void Contact(int? id)
         {
-            employee.Add(contact);
+            Employee employee = db.Employees.Find(id);
         }
 
-        // GET: api/Employee/5
+        // POST: api/Employee/5
+        public void Contact([Bind(Include = "User_id,MailingAddress,PhysicalAddress,City,State,ZipCode,County,CityLimits,EmailAddress" +
+            "PhoneNumber,CellPhone")] Employee contact)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Employees.Add(contact);
+                db.SaveChanges();
+            }
+        }
+            // GET: api/Employee/5
         public void Edit(int? id)
         {
             Employee employee = db.Employees.Find(id);
@@ -188,7 +123,6 @@ namespace Watson.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
-
                 db.SaveChanges();
             }
         }
