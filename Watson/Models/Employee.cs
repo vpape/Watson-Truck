@@ -11,7 +11,8 @@ namespace Watson.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,23 +27,38 @@ namespace Watson.Models
     
         public int User_id { get; set; }
         public string EmployeeRole { get; set; }
+        [StringLength(35)]
         public string CurrentEmployer { get; set; }
+        [StringLength(35)]
         public string PreviousEmployer { get; set; }
+        [StringLength(35)]
         public string FirstName { get; set; }
+        [StringLength(35)]
         public string MiddleName { get; set; }
+        [StringLength(35)]
         public string LastName { get; set; }
         public System.DateTime DateOfBirth { get; set; }
+        [MaxLength(9)]
         public string SSN { get; set; }
         public string MartialStatus { get; set; }
         public bool Sex { get; set; }
+        [StringLength(50)]
         public string MailingAddress { get; set; }
+        [StringLength(50)]
         public string PhysicalAddress { get; set; }
+        [StringLength(20)]
         public string City { get; set; }
+        [StringLength(20)]
         public string State { get; set; }
+        [StringLength(5)]
         public string ZipCode { get; set; }
+        [EmailAddress]
         public string EmailAddress { get; set; }
+        [Phone]
         public string PhoneNumber { get; set; }
+        [Phone]
         public string CellPhone { get; set; }
+        [StringLength(20)]
         public string County { get; set; }
         public Nullable<bool> CityLimits { get; set; }
         public System.DateTime HireDate { get; set; }
@@ -50,8 +66,11 @@ namespace Watson.Models
         public bool isActive { get; set; }
         public System.DateTime EligibilityDate { get; set; }
         public string WorkStatus { get; set; }
+        [MaxLength(3)]
         public int HoursWorkedPerWeek { get; set; }
+        [StringLength(20)]
         public string JobTitle { get; set; }
+        [StringLength(9)]
         public string AnnualSalary { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
