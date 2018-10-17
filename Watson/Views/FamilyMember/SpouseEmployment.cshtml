@@ -74,11 +74,11 @@
 
     <div>
         <input type="submit" onclick="location.href='api/Family_Info/SpouesContact'" value="Previous" class="btn btn-default" /> |
-        <input type="submit" onclick="location.href='api/Family_Info/DependentEnrollment'" value="Continue" class="btn btn-default" />
+        <input type="submit" onclick="location.href='api/Family_Info/Index'" value="Continue" class="btn btn-default" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to Family Overview", "")
     </p>
 </body>
 </html>

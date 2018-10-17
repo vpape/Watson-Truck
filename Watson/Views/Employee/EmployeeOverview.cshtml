@@ -1,7 +1,7 @@
 ﻿@model List<Watson.Models.Employee>
 
 @{
-    ViewBag.Title = "GetEmployees";
+    ViewBag.Title = "EmployeeOverview";
 }
 
 <h2>Employee Overview</h2>
@@ -13,11 +13,11 @@
     <title>Employee Overview</title>
 </head>
 <body>
-    @*Need to create dynamic arrow button next to employee that goes to Spouse & Dep detail page*@
+    @*Create a column for a dynmaic button to call spouse and dependent Overview)*@
     <table class="table">
         <tr>
             <th>User ID</th>
-            <th>Employee #</th>
+            <th>Employee Number</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Role</th>
@@ -61,7 +61,7 @@
 
         </table>
         <div>
-            <input type="button" onclick="location.href='api/Employee/EmployeeEnrollment'" value="Create Employee" class="btn btn-default" />
+            <input type="button" onclick="location.href='api/Employee/EnrollmentSelection'" value="Enrollment Selection" class="btn btn-default" />
         </div>
     </body>
 </html>

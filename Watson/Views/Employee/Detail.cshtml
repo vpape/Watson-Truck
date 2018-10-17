@@ -22,7 +22,7 @@
             <hr />
             <button class="collapsible"><h4>Employee Detail</h4></button>
             <div class="content">
-                <form action="/api/Employee/Detail" method="post">
+                <form class="disabled" action="/api/Employee/Detail" method="post">
                     <div class="form-group">
                         <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
                         <div class="col-md-10">
@@ -185,7 +185,7 @@
     }
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to Overview", "EmployeeOverview")
     </p>
 </body>
 </html>

@@ -391,7 +391,7 @@
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Employee\Detail.cshtml" />
-    <Content Include="Views\Employee\GetEmployee.cshtml" />
+    <Content Include="Views\Employee\EmployeeOverview.cshtml" />
     <Content Include="Views\Admin\EmployeeContact.cshtml" />
     <Content Include="Views\FamilyMember\SpouseEnrollment.cshtml" />
     <Content Include="Views\FamilyMember\SpouseContact.cshtml" />
@@ -404,7 +404,18 @@
     <Content Include="Views\FamilyMember\DeleteSpouse.cshtml" />
     <Content Include="Views\FamilyMember\EditSpouse.cshtml" />
     <Content Include="Views\FamilyMember\SpouseDetail.cshtml" />
-    <Content Include="Views\FamilyMember\Index.cshtml" />
+    <Content Include="Views\FamilyMember\FamilyMemberEnrollment.cshtml" />
+    <Content Include="Views\Employee\EnrollmentSelection.cshtml" />
+    <Content Include="Views\Employee\Insurance.cshtml" />
+    <Content Include="Views\GroupHealthInsurance\GroupHealthEnrollment.cshtml" />
+    <Content Include="Views\GroupHealthInsurance\EditGroupHealthInsurance.cshtml" />
+    <Content Include="Views\LifeInsurance\LifeInsuranceEnrollment.cshtml" />
+    <Content Include="Views\LifeInsurance\EditLifeInsurance.cshtml" />
+    <Content Include="Views\FamilyMember\FamilyMemberOverview.cshtml" />
+    <Content Include="Views\GroupHealthInsurance\GroupHealthDetail.cshtml" />
+    <Content Include="Views\GroupHealthInsurance\DeleteGroupHealth.cshtml" />
+    <Content Include="Views\LifeInsurance\LifeInsuranceDetail.cshtml" />
+    <Content Include="Views\LifeInsurance\DeleteLifeInsurance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

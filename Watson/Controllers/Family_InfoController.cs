@@ -14,8 +14,7 @@ namespace Watson.Controllers
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
         static List<Family_Info> familyMember = new List<Family_Info>();
-        private object ViewBag;
-
+       
         public Family_InfoController()
         {
             familyMember.Add(new Family_Info { FirstName = "Cindy", FamilyMember_id = 1 });
@@ -37,13 +36,13 @@ namespace Watson.Controllers
         }
 
         // GET: api/Family_Info
-        public List<Family_Info> GetFamilyMembers()
+        public List<Family_Info> FamilyMemberOverview()
         {
             return familyMember;
         }
 
         // GET: api/Family_Info/5
-        public Family_Info GetFamilyMember(int? id)
+        public Family_Info FamilyMemberOverview(int? id)
         {
             return familyMember.Where(f => f.FamilyMember_id == id).FirstOrDefault();
         }

@@ -1,0 +1,62 @@
+﻿@model Watson.Models.Family_Info
+
+
+@{
+    @ViewBag.Title = "FamilyMemberEnrollment";
+}
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Family Enrollment Page</title>
+</head>
+<body onload="SpouseAndORDependent()">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.FamilyMember_id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-horizontal">
+            <hr />
+            <button><h4>Spouse Enrollment</h4></button>
+            <div class="content">
+                <form action="/api/Family_Info/SpouseEnrollment" method="post">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" @*value="Save"*@ onclick="return SpouseEnrollment()" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <p>
+            @*@Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |*@
+            @Html.ActionLink("Back to Family Enrollment", "FamilyMemberEnrollment")
+        </p>
+
+        @*Dependent Enrollment*@
+        <div class="form-horizontal">
+            <hr />
+            <button><h4>Dependent Enrollment</h4></button>
+            <div class="content">
+                <form id="dependentSelectForm" action="/api/Family_Info/DependentEnrollment" method="post">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" @*value="Save"*@ onclick="return DependentEnrollment()" id="submit" class="btn btn-default" />
+                            @*<input type="button" onclick="addInputSelection();" value="Add Dependent" id="addDep" class="btn btn-default" />*@
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+    <p>
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |*@
+        @Html.ActionLink("Back to Family Enrollment", "FamilyMemberEnrollment")
+    </p>
+</body>
+</html>

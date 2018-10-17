@@ -19,37 +19,31 @@ namespace Watson.Controllers
 
         public EmployeeController()
         {
-            employee.Add(new Employee { SSN = "0001", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "Admin", JobTitle = "", User_id = 1 });
-            employee.Add(new Employee { SSN = "", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "Admin", JobTitle = "", User_id = 2 });
-            employee.Add(new Employee { SSN = "", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "", User_id = 3 });
+            employee.Add(new Employee { SSN = "0001", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "Admin", JobTitle = "Analyst", User_id = 1 });
+            employee.Add(new Employee { SSN = "0002", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "Admin", JobTitle = "HR Manager", User_id = 2 });
+            employee.Add(new Employee { SSN = "0003", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "HR Manager", User_id = 3 });
         }
 
-
+      
         // GET: api/Employee
-        public List<Employee> GetEmployee()
+        public List<Employee> EmployeeOverview()
         {
             return employee;
         }
 
         // GET: api/Employee/5
-        public Employee GetEmployee(int id)
+        public Employee EmployeeOverview(int id)
         {
             return employee.Where(e => e.User_id == id).FirstOrDefault();
         }
 
-        //public JsonResult GetEmployee(int id)
+        //public JsonResult EmployeeOverview(int id)
         //{
         //    Employee e = db.Employees
         //        .Where(i => i.User_id == id)
         //        .SingleOrDefault();
 
         //    return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
-        //}
-
-        // GET: Employees
-        //public List<Employee> GetEmployees()
-        //{
-        //    return db.Employees.ToList();
         //}
 
         // GET: api/Employee

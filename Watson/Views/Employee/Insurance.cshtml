@@ -1,0 +1,61 @@
+﻿@model Watson.Models.Employee
+
+
+@{
+    @ViewBag.Title = "Insurance";
+}
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Insurance Overview</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.User_id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-horizontal">
+            <hr />
+            <button><h4>Group Health Insurance Detail</h4></button>
+            <div class="content">
+                <form action="/api/Employee/Insurance" method="post">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" value="Save" onclick="return GroupHealthEnrollment()" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "GroupHealthEnrollment", new { id = Model.User_id }) |
+            @Html.ActionLink("Back to Overview", "GetEmployee", new { id = Model.User_id })
+        </p>
+
+        @*Life Insurance Enrollment*@
+        <div class="form-horizontal">
+            <hr />
+            <button><h4>Life Insurance Enrollment</h4></button>
+            <div class="content">
+                <form action="/api/Employee/Insurance" method="post">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" value="Save" onclick="return LifeInsuranceEnrollment()" id="submit" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "LifeInsuranceEnrollment", new { id = Model.User_id }) |
+            @Html.ActionLink("Back to Overview", "GetEmployee", new { id = Model.User_id })
+        </p>
+    }
+</body>
+</html>
