@@ -24,51 +24,41 @@
             <hr />
             <button><h4>Employee Enrollment</h4></button>
             <div class="content">
-                @*<form action="/api/Employee/EnrollmentSelection" method="post">*@
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="button" @*value="Save"*@ onclick="return EmployeeEnrollment()" class="btn btn-default" />
-                        </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" onclick="EmployeeEnrollment();" @*value="Save"*@ id="EmployeeEnrollment" class="btn btn-default" />
                     </div>
-                @*</form>*@
+                </div>
             </div>
         </div>
         <p>
             @*@Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |*@
-            @Html.ActionLink("Back to Employee Overview", "GetEmployee", new { id = Model.User_id })
+            @Html.ActionLink("Back to Overview", "EmployeeOverview", new { id = Model.User_id })
         </p>
-
-        @*Group Health Enrollment*@
         <div class="form-horizontal">
             <hr />
             <button><h4>Group Health Enrollment</h4></button>
             <div class="content">
-                @*<form action="/api/Employee/GroupHealthEnrollment" method="post">*@
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="button" @*value="Save"*@ onclick="return GroupHealthEnrollment()" id="submit" class="btn btn-default" />
-                        </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" onclick="GroupHealthEnrollment();" @*value="Save"*@  id="GroupHealthEnrollment" class="btn btn-default" />
                     </div>
-                @*</form>*@
+                </div>
             </div>
         </div>
         <p>
             @*@Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |*@
-            @Html.ActionLink("Back to Employee Overview", "GetEmployee", new { id = Model.User_id })
+            @Html.ActionLink("Back to Overview", "EmployeeOverview", new { id = Model.User_id })
         </p>
-
-        @*Life Insurance Enrollment*@
         <div class="form-horizontal">
             <hr />
             <button><h4>Life Insurance Enrollment</h4></button>
             <div class="content">
-                @*<form action="/api/Employee/LifeInsuranceEnrollment" method="post">*@
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="button" @*value="Save"*@ onclick="return LifeInsuranceEnrollment()" id="submit" class="btn btn-default" />
-                        </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" onclick="LifeInsuranceEnrollment();" @*value="Save"*@ id="LifeInsuranceEnrollment" class="btn btn-default" />
                     </div>
-                @*</form>*@
+                </div>
             </div>
         </div>
         <p>
@@ -78,3 +68,64 @@
     }
 </body>
 </html>
+
+<script>
+    function EmployeeEnrollment() {
+        EmployeeEnrollment = document.getElementById("EmployeeEnrollment").value;
+        
+        postData('/postUser', {
+            EmployeeEnrollment: EmployeeEnrollment
+        })
+            .then(data => EmployeeEnrollment(data))
+            .catch(error => console.error(error))
+    }
+
+    function GroupHealthEnrollment() {
+        GroupHealthEnrollment = document.getElementById("GroupHealthEnrollment").value;
+
+        postData('/postUser', {
+            GroupHealthEnrollment: GroupHealthEnrollment
+        })
+            .then(data => GroupHealthEnrollment(data))
+            .catch(error => console.error(error))
+    }
+
+    function LifeInsuranceEnrollment() {
+        LifeInsuranceEnrollment = document.getElementById("LifeInsuranceEnrollment").value;
+
+        postData('/postUser', {
+            LifeInsuranceEnrollment: LifeInsuranceEnrollment
+        })
+            .then(data => LifeInsuranceEnrollment(data))
+            .catch(error => console.error(error))
+    }
+
+    function InsMgtAuthorizationForm() {
+        InsMgtAuthorizationForm = document.getElementById("InsMgtAuthorizationForm").value;
+
+        postData('/postUser', {
+            InsMgtAuthorizationForm: InsMgtAuthorizationForm
+        })
+            .then(data => InsMgtAuthorizationForm(data))
+            .catch(error => console.error(error))
+    }
+
+
+    function postData(url, data) {
+        //Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        })
+            .then(Response => Response.json()) //parses response to JSON
+    }
+</script>
