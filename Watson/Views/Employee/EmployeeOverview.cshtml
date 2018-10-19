@@ -13,7 +13,7 @@
     <title>Employee Overview</title>
 </head>
 <body>
-    @*Create a column for a dynmaic button to call spouse and dependent Overview)*@
+    @*Create a column for a dynmaic button using mapping characters?? to call spouse and dependent Overview)*@
     <table class="table">
         <tr>
             <th>User ID</th>
@@ -32,9 +32,9 @@
             @foreach (var item in Model)
             {
             <tr>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.User_id)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.SSN)
                 </td>
@@ -47,14 +47,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.JobTitle)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.isActive)
-                </td>
+                </td>*@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.User_id }) |
                     @Html.ActionLink("Detail", "Detail", new { id = item.User_id }) |
                     @Html.ActionLink("Insurance", "Insurance", new { id = item.User_id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.User_id })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.User_id })*@
                 </td>
             </tr>
         }

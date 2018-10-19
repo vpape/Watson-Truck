@@ -23,7 +23,7 @@
             <hr />
             <button class="collapsible"><h4>Employee Enrollment</h4></button>
             <div class="content">
-                <form action="/api/Employee/EmployeeEnrollment" method="post">
+                @*<form action="/api/Employee/EmployeeEnrollment" method="post">*@
                     <div class="form-group">
                         <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
                         <div class="col-md-10">
@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
                         <div class="col-md-10">
-                            <input type="text" id="SSN" class="form-control" name="SSN" value="" />
+                            <input type="number" id="SSN" class="form-control" name="SSN" value="" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -57,7 +57,7 @@
                     <div class="form-group">
                         <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
                         <div class="col-md-10">
-                            <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                            <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -80,17 +80,18 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" onclick="return EmployeeEnrollment()" class="btn btn-default" />
+                            @*<input type="submit" value="Save" onclick=" return EmployeeEnrollment()" class="btn btn-default" />*@
+                            <button type="submit" class="btn btn-outline-primary" onclick="EmployeeEnrollment();">Save</button>
                         </div>
                     </div>
-                </form>
+                @*</form>*@
             </div>
         </div>
 
     }
     <div>
-        <input type="submit" onclick="location.href='api/Employee/GetEmployees'" value="Previous" class="btn btn-default" /> |
-        <input type="submit" onclick="location.href='api/Employee/Contact'" value="Continue" class="btn btn-default" />
+        <input type="button" onclick="location.href='api/Employee/GetEmployees'" value="Previous" class="btn btn-outline-secondary" /> |
+        <input type="button" onclick="Contact();" @*onclick="location.href='api/Employee/Contact'"*@ value="Continue" class="btn btn-outline-secondary" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
@@ -141,3 +142,61 @@
         background-color: #f1f1f1;
     }
 </style>
+
+<script>
+    function EmployeeEnrollment() {
+        CurrentEmployer = document.getElementById("CurrentEmployer").value;
+        JobTitle = document.getElementById("JobTitle").value;
+        EmployeeNumber = document.getElementById("SSN").value;
+        FirstName = document.getElementById("FirstName").value;
+        LastName = document.getElementById("LastName").value;
+        DateOfBirth = document.getElementById("DateOfBirth").value;
+        Gender = document.getElementById("Male", "Female").value;
+        MartialStatus = document.getElementById("MarriedWDep", "Married", "SingleWDep", "Single").value;
+
+
+        postData('/postUser', {
+            CurrentEmployer: CurrentEmployer, JobTitle: JobTitle, EmployeeNumber: EmployeeNumber, FirstName: FirstName,
+            LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MartialStatus: MartialStatus
+        })
+            .then(data => EmployeeEnrollment(data))
+            .catch(error => console.error(error))
+    }
+
+    function postData(url, data) {
+        //Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        })
+            .then(Response => Response.json()) //parses response to JSON
+    }
+</script>
+
+@*<body> EXAMPLE
+    This is a post.  It will actually take you to another page<br />
+    <div>
+        <form method="post" action="/postUser">
+            <label for="firstname">First Name: </label><input type="text" name="firstname" /><br />
+            <label for="lastname">Last Name: </label><input type="text" name="lastname" /><br />
+            <label for="age">Age: </label><input type="number" name="age" /><br />
+            <input type="submit" /><br />
+        </form>
+    </div>
+    <div>
+        This is not a post.  This uses Javascript to post the data behind the scenes<br />
+        <label for="fname">First Name: </label><input type="text" name="fname" id="fname" /><br />
+        <label for="lname">Last Name: </label><input type="text" name="lname" id="lname" /><br />
+        <label for="a">Age: </label><input type="number" name="a" id="a" /><br />
+        <button onclick="submitUser();">Submit</button><br />
+    </div>
+</body>*@

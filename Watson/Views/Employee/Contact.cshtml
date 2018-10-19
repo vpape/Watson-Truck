@@ -23,7 +23,7 @@
             <hr />
             <h4>Employee Contact</h4>
             <div class="content">
-                <form action="/api/Employee/Contact" method="post">
+                @*<form action="/api/Employee/Contact" method="post">*@
                     <div id="divEmpContact">
                         <div class="form-group">
                             <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
@@ -89,17 +89,18 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" onclick="return Contact()" class="btn btn-default" />
+                            @*<input type="submit" value="Save" onclick="return Contact()" class="btn btn-default" />*@
+                            <button type="submit" class="btn btn-outline-primary" onclick="Contact();">Save</button>
                         </div>
                     </div>
-                </form>
+                @*</form>*@
             </div>
         </div>
     }
 
     <div>
-        <input type="submit" onclick="location.href='api/Employee/EmployeeEnrollment'" value="Previous" class="btn btn-default" /> |
-        <input type="submit" onclick="location.href='api/Family_Info/Index'" value="Continue" class="btn btn-default" />
+        <input type="button" onclick="Contact();" @*onclick="location.href='api/Employee/EmployeeEnrollment'"*@ value="Previous" class="btn btn-outline-secondary" /> |
+        <input type="button" onclick="location.href='api/Family_Info/Index'" value="Continue" class="btn btn-outline-secondary" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
@@ -108,3 +109,62 @@
 </body>
 </html>
 
+<script>
+    function Contact() {
+        MailingAddress = document.getElementById("MailingAddress").value;
+        PhyscialAddress = document.getElementById("PhyscialAddress").value;
+        City = document.getElementById("City").value;
+        State = document.getElementById("State").value;
+        ZipCode = document.getElementById("ZipCode").value;
+        County = document.getElementById("County").value;
+        CityLimits = document.getElementById("YesCityLimits", "NoCityLimits").value;
+        Email = document.getElementById("EmailAddress").value;
+        Phone = document.getElementById("PhoneNumber").value;
+        Cell = document.getElementById("CellPhone").value;
+
+
+        postData('/postUser', {
+            MailingAddress: MailingAddress, PhyscialAddress: PhyscialAddress, City: City, State: State,
+            ZipCode: ZipCode, CityLimits: CityLimits, Email: Email, Phone: Phone, Cell: Cell
+        })
+            .then(data => Contact(data))
+            .catch(error => console.error(error))
+    }
+
+    function postData(url, data) {
+        //Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        })
+            .then(Response => Response.json()) //parses response to JSON
+    }
+</script>
+
+@*<body> EXAMPLE
+        This is a post.  It will actually take you to another page<br />
+        <div>
+            <form method="post" action="/postUser">
+                <label for="firstname">First Name: </label><input type="text" name="firstname" /><br />
+                <label for="lastname">Last Name: </label><input type="text" name="lastname" /><br />
+                <label for="age">Age: </label><input type="number" name="age" /><br />
+                <input type="submit" /><br />
+            </form>
+        </div>
+        <div>
+            This is not a post.  This uses Javascript to post the data behind the scenes<br />
+            <label for="fname">First Name: </label><input type="text" name="fname" id="fname" /><br />
+            <label for="lname">Last Name: </label><input type="text" name="lname" id="lname" /><br />
+            <label for="a">Age: </label><input type="number" name="a" id="a" /><br />
+            <button onclick="submitUser();">Submit</button><br />
+        </div>
+    </body>*@

@@ -111,7 +111,7 @@ namespace Watson.Controllers
         // POST: api/Employee/5
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
-        public void Edit([Bind(Include = "User_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
+        public void Edit([Bind(Include = "User_id,CurrentEmployer,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
             "Sex,MartialStatus")] Employee employee)
         {
             if (ModelState.IsValid)
