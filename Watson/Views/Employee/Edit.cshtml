@@ -241,7 +241,7 @@
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
         Gender = document.getElementById("Male", "Female").value;
-        MartialStatus = document.getElementById("MarriedWDep", "Married", "SingleWDep", "Single").value;
+        MaritalStatus = document.getElementById("MarriedWDep", "Married", "SingleWDep", "Single").value;
 
         HireDate = document.getElementById("HireDate").value;
         EffectivDate = document.getElementById("EffectiveDate").value;
@@ -264,8 +264,8 @@
 
         postData('/postUser', {
             CurrentEmployer: CurrentEmployer, JobTitle: JobTitle, EmployeeNumber: EmployeeNumber, FirstName: FirstName,
-            LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MartialStatus: MartialStatus,
-            HireDate: HireDate, EffectiveDate: Effective Date, ElgibilityDate: ElgibilityDate, AnnualSalary: AnnualSalary, HoursWorkedPerWeek: HoursWorkedPerWeek,
+            LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MaritalStatus: MaritalStatus,
+            HireDate: HireDate, EffectiveDate: EffectiveDate, ElgibilityDate: ElgibilityDate, AnnualSalary: AnnualSalary, HoursWorkedPerWeek: HoursWorkedPerWeek,
             MailingAddress: MailingAddress, PhyscialAddress: PhyscialAddress, City: City, State: State,
             ZipCode: ZipCode, CityLimits: CityLimits, Email: Email, Phone: Phone, Cell: Cell
         })

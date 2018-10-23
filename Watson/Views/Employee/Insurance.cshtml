@@ -27,15 +27,15 @@
                 <form action="/api/Employee/Insurance" method="post">
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="button" value="Save" onclick="return GroupHealthEnrollment()" class="btn btn-default" />
+                            <input type="button" value="GroupHealth" onclick="return GroupHealthEnrollment()" class="btn btn-default" />
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <p>
-            @Html.ActionLink("Edit", "GroupHealthEnrollment", new { id = Model.User_id }) |
-            @Html.ActionLink("Back to Overview", "GetEmployee", new { id = Model.User_id })
+            @Html.ActionLink("EditGroupHealth", "GroupHealthEnrollment", new { id = Model.User_id }) |
+            @Html.ActionLink("Back to Overview", "EmployeeOverview", new { id = Model.User_id })
         </p>
 
         @*Life Insurance Enrollment*@
@@ -46,15 +46,15 @@
                 <form action="/api/Employee/Insurance" method="post">
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="button" value="Save" onclick="return LifeInsuranceEnrollment()" id="submit" class="btn btn-default" />
+                            <input type="button" value="LifeInsurance" onclick="return LifeInsuranceEnrollment()" id="submit" class="btn btn-default" />
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <p>
-            @Html.ActionLink("Edit", "LifeInsuranceEnrollment", new { id = Model.User_id }) |
-            @Html.ActionLink("Back to Overview", "GetEmployee", new { id = Model.User_id })
+            @Html.ActionLink("EditLifeInsurance", "LifeInsuranceEnrollment", new { id = Model.User_id }) |
+            @Html.ActionLink("Back to Overview", "EmployeeOverview", new { id = Model.User_id })
         </p>
     }
 </body>

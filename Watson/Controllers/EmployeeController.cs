@@ -137,6 +137,46 @@ namespace Watson.Controllers
             }
         }
 
+        // GET: api/Employee/5
+        public void EditGroupHealth(int? id)
+        {
+            Employee employee = db.Employees.Find(id);
+
+        }
+
+        // POST: api/Employee/5
+        [System.Web.Http.HttpPost]
+        [ValidateAntiForgeryToken]
+        public void EditGroupHealth([Bind(Include = " " +
+            " ")] Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        // GET: api/Employee/5
+        public void EditLifeInsurance(int? id)
+        {
+            Employee employee = db.Employees.Find(id);
+
+        }
+
+        // POST: api/Employee/5
+        [System.Web.Http.HttpPost]
+        [ValidateAntiForgeryToken]
+        public void EditLifeInsurance([Bind(Include = " " +
+            " ")] Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
         // DELETE: api/Employee/5
         public void Delete(int? id)
         {
