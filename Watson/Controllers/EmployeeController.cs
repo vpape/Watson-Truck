@@ -24,12 +24,28 @@ namespace Watson.Controllers
             employee.Add(new Employee { SSN = "0003", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "HR Manager", User_id = 3 });
         }
 
-      
+
         // GET: api/Employee
         public List<Employee> EmployeeOverview()
         {
             return employee;
         }
+
+        //public JsonResult EmployeeOverview()
+        //{
+        //    var output = (from e in db.Employees
+        //                  select new
+        //                  {
+        //                      e.User_id,
+        //                      e.SSN,
+        //                      e.FirstName,
+        //                      e.LastName,
+        //                      e.JobTitle,
+        //                  });
+
+        //    return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+
+        //}
 
         // GET: api/Employee/5
         public Employee EmployeeOverview(int id)
