@@ -16,25 +16,25 @@
     @*Create a column for a dynmaic button using mapping characters?? to call spouse and dependent Overview)*@
     <table class="table">
         <tr>
-            <th>User ID</th>
+            <th>User_id</th>
             <th>Employee Number</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Role</th>
             <th>Job Title</th>
-            <th>Active</th>
-        @*<th>Hire Date</th>
             <th>Mailing Address</th>
             <th>City</th>
             <th>State</th>
-            <th>Zip Code</th>*@
+        
 
             @foreach (var item in Model)
             {
             <tr>
-                @*<td>
+                <td>
+                    
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.User_id)
-                </td>*@
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.SSN)
                 </td>
@@ -47,9 +47,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.JobTitle)
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.isActive)
-                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.MailingAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.User_id }) |
                     @Html.ActionLink("Detail", "Detail", new { id = item.User_id }) |

@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="MartialStatus" class="col-md-2 control-label">Martial Status:</label>
+                        <label for="MartialStatus" class="col-md-2 control-label">Marital Status:</label>
                         <div class="col-md-10">
                             <select name="MartialStatus" class="form-control">
                                 <option id="MarriedwDep" name="MartialStatus">Married with Dependents</option>
@@ -90,7 +90,7 @@
 
     }
     <div>
-        <input type="button" onclick="location.href='api/Employee/GetEmployees'" value="Previous" class="btn btn-outline-secondary" /> |
+        <input type="button" onclick="EnrollmentSelection();" @*onclick="location.href='api/Employee/EmployeeOverview'"*@ value="Previous" class="btn btn-outline-secondary" /> |
         <input type="button" onclick="Contact();" @*onclick="location.href='api/Employee/Contact'"*@ value="Continue" class="btn btn-outline-secondary" />
     </div>
     <p>
@@ -144,7 +144,7 @@
 </style>
 
 <script>
-    function EmployeeEnrollment() {
+      function EmployeeEnrollment() {
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;
         EmployeeNumber = document.getElementById("SSN").value;
