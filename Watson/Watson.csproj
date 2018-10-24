@@ -411,7 +411,6 @@
     <Content Include="Views\GroupHealthInsurance\EditGroupHealthInsurance.cshtml" />
     <Content Include="Views\LifeInsurance\LifeInsuranceEnrollment.cshtml" />
     <Content Include="Views\LifeInsurance\EditLifeInsurance.cshtml" />
-    <Content Include="Views\FamilyMember\FamilyMemberOverview.cshtml" />
     <Content Include="Views\GroupHealthInsurance\GroupHealthDetail.cshtml" />
     <Content Include="Views\GroupHealthInsurance\DeleteGroupHealth.cshtml" />
     <Content Include="Views\LifeInsurance\LifeInsuranceDetail.cshtml" />

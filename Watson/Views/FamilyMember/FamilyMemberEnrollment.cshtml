@@ -24,33 +24,27 @@
             <hr />
             <button><h4>Spouse Enrollment</h4></button>
             <div class="content">
-                <form action="/api/Family_Info/SpouseEnrollment" method="post">
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="button" @*value="Save"*@ onclick="return SpouseEnrollment()" class="btn btn-default" />
-                        </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" onclick="return SpouseEnrollment()" id="SpouseEnrollment" class="btn btn-outline-primary" />
                     </div>
-                </form>
+                </div>
             </div>
         </div>
         <p>
             @*@Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |*@
             @Html.ActionLink("Back to Family Enrollment", "FamilyMemberEnrollment")
         </p>
-
-        @*Dependent Enrollment*@
         <div class="form-horizontal">
             <hr />
             <button><h4>Dependent Enrollment</h4></button>
             <div class="content">
-                <form id="dependentSelectForm" action="/api/Family_Info/DependentEnrollment" method="post">
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" @*value="Save"*@ onclick="return DependentEnrollment()" id="submit" class="btn btn-default" />
-                            @*<input type="button" onclick="addInputSelection();" value="Add Dependent" id="addDep" class="btn btn-default" />*@
-                        </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" onclick="return DependentEnrollment()" id="DependentEnrollment" cclass="btn btn-outline-primary" />
+                            
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     }
@@ -60,3 +54,44 @@
     </p>
 </body>
 </html>
+
+<script>
+    function SpouseEnrollment() {
+        SpouseEnrollment = document.getElementById("SpouseEnrollment").value;
+
+        postData('/postUser', {
+            SpouseEnrollment: SpouseEnrollment
+        })
+            .then(data => SpouseEnrollment(data))
+            .catch(error => console.error(error))
+    }
+
+    function DependentEnrollment() {
+        DependentEnrollment = document.getElementById("DependentEnrollment").value;
+
+        postData('/postUser', {
+            DependentEnrollment: DependentEnrollment
+        })
+            .then(data => DependentEnrollment(data))
+            .catch(error => console.error(error))
+    }
+
+
+    function postData(url, data) {
+        //Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        })
+            .then(Response => Response.json()) //parses response to JSON
+    }
+</script>
