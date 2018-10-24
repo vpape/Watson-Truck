@@ -111,13 +111,13 @@
 
 <script>
     function Contact() {
-        MailingAddress = document.getElementById("MailingAddress").value;
-        PhyscialAddress = document.getElementById("PhyscialAddress").value;
+        MailingAddress = document.getElementsByName("MailingAddress").value;
+        PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
         City = document.getElementById("City").value;
         State = document.getElementById("State").value;
         ZipCode = document.getElementById("ZipCode").value;
         County = document.getElementById("County").value;
-        CityLimits = document.getElementById("YesCityLimits", "NoCityLimits").value;
+        CityLimits = document.getElementsByName("CityLimits").value;
         Email = document.getElementById("EmailAddress").value;
         Phone = document.getElementById("PhoneNumber").value;
         Cell = document.getElementById("CellPhone").value;

@@ -151,8 +151,8 @@
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
-        Gender = document.getElementById("Male", "Female").value;
-        MartialStatus = document.getElementById("MarriedWDep", "Married", "SingleWDep", "Single").value;
+        Gender = document.getElementsByName("Sex").value;
+        MartialStatus = document.getElementsByName("MartialStatus").value;
 
 
         postData('/postUser', {

@@ -240,8 +240,8 @@
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
-        Gender = document.getElementById("Male", "Female").value;
-        MaritalStatus = document.getElementById("MarriedWDep", "Married", "SingleWDep", "Single").value;
+        Gender = document.getElementsByName("Sex").value;
+        MaritalStatus = document.getElementsByName("MartialStatus").value;
 
         HireDate = document.getElementById("HireDate").value;
         EffectivDate = document.getElementById("EffectiveDate").value;
@@ -250,13 +250,13 @@
         HoursWorkedPerWeek = document.getElementById("HoursWorkedPerWeek").value;
 
 
-        MailingAddress = document.getElementById("MailingAddress").value;
-        PhyscialAddress = document.getElementById("PhyscialAddress").value;
+        MailingAddress = document.getElementsByName("MailingAddress").value;
+        PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
         City = document.getElementById("City").value;
         State = document.getElementById("State").value;
         ZipCode = document.getElementById("ZipCode").value;
         County = document.getElementById("County").value;
-        CityLimits = document.getElementById("YesCityLimits", "NoCityLimits").value;
+        CityLimits = document.getElementsByName("CityLimits").value;
         Email = document.getElementById("EmailAddress").value;
         Phone = document.getElementById("PhoneNumber").value;
         Cell = document.getElementById("CellPhone").value;
