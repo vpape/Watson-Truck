@@ -81,7 +81,7 @@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             @*<input type="submit" value="Save" onclick=" return EmployeeEnrollment()" class="btn btn-default" />*@
-                            <button type="submit" onclick="EmployeeEnrollment();" class="btn btn-outline-primary">Save</button>
+                            <button type="submit" onclick="location.href='api/Employee/EmployeeEnrollment'" class="btn btn-outline-primary">Save</button>
                         </div>
                     </div>
                 @*</form>*@
@@ -90,8 +90,8 @@
 
     }
     <div>
-        <input type="button" onclick="EnrollmentSelection();" @*onclick="location.href='api/Employee/EmployeeOverview'"*@ value="Previous" class="btn btn-outline-secondary" /> |
-        <input type="button" onclick="Contact();" @*onclick="location.href='api/Employee/Contact'"*@ value="Continue" class="btn btn-outline-secondary" />
+        <input type="button" onclick="location.href='api/Employee/EnrollmentSelection'" value="Previous" class="btn btn-outline-secondary" /> |
+        <input type="button" onclick="location.href='api/Employee/Contact'" @*onclick="location.href='api/Employee/Contact'"*@ value="Continue" class="btn btn-outline-secondary" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
@@ -151,8 +151,8 @@
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
-        Gender = document.getElementsByName("Sex").value;
-        MartialStatus = document.getElementsByName("MartialStatus").value;
+          Gender = document.getElementsByName("Sex").element;
+          MartialStatus = document.getElementsByName("MartialStatus").element;
 
 
         postData('/postUser', {

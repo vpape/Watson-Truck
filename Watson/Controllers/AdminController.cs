@@ -35,8 +35,8 @@ namespace Watson.Controllers
         /// <param name="User_id">The unique identifier for this person</param>
         /// <param name="SSN">We want to know their employee#</param>
         /// <returns>A list of employees Emp#, FN, LN, EmpRole, & JobTitle</returns>
-        //[Route("api/Employee/GetEmployees/{User_id:int}/{SSN:string}")]
-        //[HttpGet]
+        [System.Web.Http.Route("api/Employee/GetEmployees/{User_id:int}/{SSN:string}")]
+        [System.Web.Http.HttpGet]
         public List<string> GetEmployees(int User_id, string SSN)
         {
             List<string> output = new List<string>();

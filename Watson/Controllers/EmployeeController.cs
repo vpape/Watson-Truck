@@ -24,8 +24,30 @@ namespace Watson.Controllers
             employee.Add(new Employee { SSN = "0003", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "HR Manager", User_id = 3 });
         }
 
+        [System.Web.Http.Route("api/Employee/EmployeeOverview/{User_id:int}/{SSN:string}")]
+        [System.Web.Http.HttpGet]
+        public List<string> EmployeeOverview(int User_id, string SSN)
+        {
+            List<string> output = new List<string>();
+
+            foreach (var e in employee)
+            {
+                output.Add(e.SSN);
+                output.Add(e.FirstName);
+                output.Add(e.LastName);
+                output.Add(e.JobTitle);
+                output.Add(e.MailingAddress);
+                output.Add(e.City);
+                output.Add(e.State);
+            }
+
+            return output;
+        }
 
         // GET: api/Employee
+        //[System.Web.Http.Route("api/Employee/EmployeeOverview/{User_id:int}/{SSN:string}")]
+        [System.Web.Http.Route("api/Employee/EmployeeOverview")]
+        [System.Web.Http.HttpGet]
         public List<Employee> EmployeeOverview()
         {
             return employee;
@@ -48,6 +70,8 @@ namespace Watson.Controllers
         //}
 
         // GET: api/Employee/5
+        [System.Web.Http.Route("api/Employee/EmployeeOverview/{User_id:int}")]
+        [System.Web.Http.HttpGet]
         public Employee EmployeeOverview(int id)
         {
             return employee.Where(e => e.User_id == id).FirstOrDefault();
@@ -63,18 +87,23 @@ namespace Watson.Controllers
         //}
 
         // GET: api/Employee
+        [System.Web.Http.Route("api/Employee/EmployeeEnrollment")]
+        [System.Web.Http.HttpGet]
         public List<Employee> EmployeeEnrollment()
         {
             return employee;
         }
 
         //GET: api/Employee/5
+        [System.Web.Http.Route("api/Employee/EmployeeEnrollment/{User_id:int}")]
+        [System.Web.Http.HttpGet]
         public Employee EmployeeEnrollment(int id)
         {
             return employee.Where(e => e.User_id == id).FirstOrDefault();
         }
 
         // POST: api/Employee
+        [System.Web.Http.Route("api/Employee/EmployeeEnrollment")]
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
         public void EmployeeEnrollment([Bind(Include = "User_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
@@ -89,6 +118,8 @@ namespace Watson.Controllers
         }
 
         //GET: api/Employee/5
+        [System.Web.Http.Route("api/Employee/Detail/{User_id:int}")]
+        [System.Web.Http.HttpGet]
         public Employee Detail(int id)
         {
             return employee.Where(e => e.User_id == id).FirstOrDefault();
@@ -102,6 +133,8 @@ namespace Watson.Controllers
         //}
 
         // GET: api/Employee/5
+        [System.Web.Http.Route("api/Employee/Contact/{User_id:int}")]
+        [System.Web.Http.HttpGet]
         public void Contact(int? id)
         {
             Employee employee = db.Employees.Find(id);
@@ -117,7 +150,9 @@ namespace Watson.Controllers
                 db.SaveChanges();
             }
         }
-            // GET: api/Employee/5
+        // GET: api/Employee/5
+        [System.Web.Http.Route("api/Employee/Edit/{User_id:int}")]
+        [System.Web.Http.HttpGet]
         public void Edit(int? id)
         {
             Employee employee = db.Employees.Find(id);
@@ -125,6 +160,7 @@ namespace Watson.Controllers
         }
 
         // POST: api/Employee/5
+        [System.Web.Http.Route("api/Employee/Edit")]
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
         public void Edit([Bind(Include = "User_id,CurrentEmployer,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
@@ -178,6 +214,8 @@ namespace Watson.Controllers
         }
 
         // DELETE: api/Employee/5
+        //[System.Web.Http.Route("api/Employee/Delete/{User_id:int}")]
+        //[System.Web.Http.HttpGet]
         public void Delete(int? id)
         {
             Employee employee = db.Employees.Find(id);

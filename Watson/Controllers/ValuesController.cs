@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Web.Mvc;
 using System.Net.Http;
 using System.Web.Http;
+
 
 namespace Watson.Controllers
 {
     //[Authorize]
-    public class ValuesController : ApiController
+    public class ValuesController : Controller
     {
         static List<string> strings = new List<string>()
         {

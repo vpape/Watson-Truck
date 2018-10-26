@@ -23,13 +23,13 @@
             <hr />
             <button class="collapsible"><h4>Spouse Contact</h4></button>
             <div class="content">
-                <form action="/api/Family_Info/SpouseContact" method="post">
+                @*<form action="/api/Family_Info/SpouseContact" method="post">*@
                     <div class="form-group">
                         @*if address is same as employee, then populate using emp address*@
                     <label class="col-md-2 control-label">Is Mailing Address Same As Spouse?</label>
                     <div class="col-md-10">
-                        <label class="radio-inline"><input type="radio" id="AddrSame" class="radio-inline" name="" value="true" onclick='SpouseContact()' checked />Yes</label>
-                        <label class="radio-inline"><input type="radio" id="AddrNotSame" class="radio-inline" name="" value="false" onclick='SpouseContact()' />No</label>
+                        <label class="radio-inline"><input type="radio" id="AddrSame" class="radio-inline" name="MailingAddress" value="true" onclick='Contact()' checked />Yes</label>
+                        <label class="radio-inline"><input type="radio" id="AddrNotSame" class="radio-inline" name="MailingAddress" value="false" onclick='SpouseContact()' />No</label>
                     </div>
                 </div>@*if address is same as employee, then populate using emp address....need to call MailingAddress from Employee model. Use Foreach to iterate through Employee collection*@
                 <div id="divSpouseContact">
@@ -87,7 +87,7 @@
                         <input type="submit" value="Save" onclick="return SpouseContact()" class="btn btn-default" />
                     </div>
                 </div>
-            </form>
+            @*</form>*@
         </div>
     </div>
 

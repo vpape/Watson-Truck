@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
 using Watson.Models;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace Watson.Controllers
 {
@@ -51,6 +53,15 @@ namespace Watson.Controllers
         public Family_Info SpouseEnrollment(int id)
         {
             return familyMember.Where(s => s.FamilyMember_id == id).FirstOrDefault();
+        }
+
+        public HttpResponseMessage SpouseEnrollment() {
+
+            var path = "~/SpouseEnrollment.html";
+            var response = new HttpResponseMessage();
+            response.Content = new StringContent(File.ReadAllText(path));
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+            return response;
         }
 
         //POST: api/Family_Info

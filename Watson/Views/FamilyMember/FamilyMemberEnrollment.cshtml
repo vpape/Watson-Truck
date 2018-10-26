@@ -26,7 +26,7 @@
             <div class="content">
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="button" onclick="return SpouseEnrollment()" id="SpouseEnrollment" class="btn btn-outline-primary" />
+                        <input type="button" onclick="location.href='SpouseEnrollment'" id="SpouseEnrollment" class="btn btn-outline-primary" />
                     </div>
                 </div>
             </div>
@@ -41,8 +41,7 @@
             <div class="content">
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="button" onclick="return DependentEnrollment()" id="DependentEnrollment" cclass="btn btn-outline-primary" />
-                            
+                        <input type="button" onclick="location.href='DependentEnrollment'" id="DependentEnrollment" class="btn btn-outline-primary" />     
                     </div>
                 </div>
             </div>
@@ -56,27 +55,6 @@
 </html>
 
 <script>
-    function SpouseEnrollment() {
-        SpouseEnrollment = document.getElementById("SpouseEnrollment").value;
-
-        postData('/postUser', {
-            SpouseEnrollment: SpouseEnrollment
-        })
-            .then(data => SpouseEnrollment(data))
-            .catch(error => console.error(error))
-    }
-
-    function DependentEnrollment() {
-        DependentEnrollment = document.getElementById("DependentEnrollment").value;
-
-        postData('/postUser', {
-            DependentEnrollment: DependentEnrollment
-        })
-            .then(data => DependentEnrollment(data))
-            .catch(error => console.error(error))
-    }
-
-
     function postData(url, data) {
         //Default options are marked with *
         return fetch(url, {

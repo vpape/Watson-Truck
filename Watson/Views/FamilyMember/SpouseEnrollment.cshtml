@@ -85,6 +85,7 @@
                             <label class="radio-inline"><input type="radio" id="AddrSame" class="radio-inline" name="MailingAddress" value="true" onclick='Contact()' checked />Yes</label>
                             <label class="radio-inline"><input type="radio" id="AddrNotSame" class="radio-inline" name="MailingAddress" value="false" onclick='SpouseContact()' />No</label>
                         </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <input type="submit" onclick="SpouseEnrollment();" value="Save" class="btn btn-primary"/>
@@ -94,7 +95,7 @@
             </div>
         </div>
         <div>
-            <button onclick="Contact();"  class="btn btn-secondary">Previous</button> |
+            <button onclick="FamilyMemberEnrollment();"  class="btn btn-secondary">Previous</button> |
             <button onclick="SpouseContact();" class="btn btn-secondary">Continue</button>
         </div>
         <p>
@@ -174,16 +175,20 @@
 </script>
 
 <script>
+    function FamilyMemberEnrollment() {
+
+    }
+
     function SpouseEnrollment() {
-        RelationshipToInsured = getElementById("RelationToInsured").value;
+        RelationshipToInsured = getElementsByName("RelationshipToInsured").element;
+        RelationToInsured = getElementById("RelationToInsured").value;
         EmployeeNumber = getElementById("SSN").value;
         FirstName = getElementById("FirstName").value;
         LastName = getElementById("LastName").value;
         DateOfBirth = getElementById("DateOfBirth").value;
-        Gender = getElementsByName("Sex").value;
-        Address = getElementById("AddrSame", "AddrNotSame").value;
-        MailingAddress = getElementsByName("MailingAddress").value;
-        PhysicalAddress = getElementsByName("PhysicalAddress").value;
+        Gender = getElementsByName("Sex").element;
+        MailingAddress = getElementsByName("MailingAddress").element;
+        PhysicalAddress = getElementsByName("PhysicalAddress").element;
         City = getElementById("City").value;
         State = getElementById("State").value;
         ZipCode = getElementById("ZipCode").value;
@@ -192,33 +197,56 @@
         CellPhone = getElementById("CellPhone").value;
 
         postData('/postUser', {
-            RelationshipToInsured: RelationshipToInsured, EmployeeNumber: EmployeeNumber, FirstName: FirstName, LastName: LastName,
-            DateOfBirth: DateOfBirth, Gender: Gender, Address: Address, MailingAddress: MailingAddress, PhysicalAddress: PhysicalAddress,
-            City: City, State: State, ZipCode: ZipCode, Email: Email, PhoneNumber: PhoneNumber, CellPhone: CellPhone
-                .then(data => SpouseEnrollment(data))
-                .catch(error => console.error(error))
-        }
-
-
-        )
-
-
-
-    
+            RelationshipToInsured: RelationshipToInsured, RelationToInsured: RelationToInsured, EmployeeNumber: EmployeeNumber,
+            FirstName: FirstName, LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MailingAddress: MailingAddress,
+            PhysicalAddress: PhysicalAddress, City: City, State: State, ZipCode: ZipCode, Email: Email, PhoneNumber: PhoneNumber, CellPhone: CellPhone
+        })
+            .then(data => SpouseEnrollment(data))
+            .catch(error => console.error(error))
     }
-
+        
     function SpouseContact() {
+        MailingAddress = getElementsByName("MailingAddress").element;
+        PhysicalAddress = getElementsByName("PhysicalAddress").element;
+        City = getElementById("City").value;
+        State = getElementById("State").value;
+        ZipCode = getElementById("ZipCode").value;
+        Email = getElementById("EmailAddress").value;
+        PhoneNumber = getElementById("PhoneNumber").value;
+        CellPhone = getElementById("CellPhone").value;
 
+        postData('/postUser', {
+            MailingAddress: MailingAddress, PhysicalAddress: PhysicalAddress, City: City,
+            State: State, ZipCode: ZipCode, Email: Email, PhoneNumber: PhoneNumber, CellPhone: CellPhone
+        })
+            .then(data => SpouseContact(data))
+        .catch(error => console.error(error))
     }
 
     function Contact() {
+        MailingAddress = document.getElementsByName("MailingAddress").element;
+        PhyscialAddress = document.getElementsByName("PhyscialAddress").element;
+        City = document.getElementById("City").value;
+        State = document.getElementById("State").value;
+        ZipCode = document.getElementById("ZipCode").value;
+        County = document.getElementById("County").value;
+        CityLimits = document.getElementsByName("CityLimits").element;
+        Email = document.getElementById("EmailAddress").value;
+        Phone = document.getElementById("PhoneNumber").value;
+        Cell = document.getElementById("CellPhone").value;
 
+        postData('/postUser', {
+            MailingAddress: MailingAddress, PhyscialAddress: PhyscialAddress, City: City, State: State,
+            ZipCode: ZipCode, CityLimits: CityLimits, Email: Email, Phone: Phone, Cell: Cell
+        })
+            .then(data => Contact(data))
+            .catch(error => console.error(error))
     }
 
     function postData(url, data) {
         // Default options are marked with *
         return fetch(url, {
-            body: JSON.stringify(data),
+            body: JSON.stringify(data), //
             cache: 'no-cache',
             credentials: 'same-origin',
             headers: {
