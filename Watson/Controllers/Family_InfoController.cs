@@ -55,14 +55,14 @@ namespace Watson.Controllers
             return familyMember.Where(s => s.FamilyMember_id == id).FirstOrDefault();
         }
 
-        public HttpResponseMessage SpouseEnrollment() {
+        //public HttpResponseMessage SpouseEnrollment() {
 
-            var path = "~/SpouseEnrollment.html";
-            var response = new HttpResponseMessage();
-            response.Content = new StringContent(File.ReadAllText(path));
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
-            return response;
-        }
+        //    var path = "~/SpouseEnrollment.html";
+        //    var response = new HttpResponseMessage();
+        //    response.Content = new StringContent(File.ReadAllText(path));
+        //    response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+        //    return response;
+        //}
 
         //POST: api/Family_Info
         [System.Web.Http.HttpPost]

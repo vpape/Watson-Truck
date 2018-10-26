@@ -50,6 +50,19 @@ namespace Watson.Controllers
         [System.Web.Http.HttpGet]
         public List<Employee> EmployeeOverview()
         {
+            List<string> output = new List<string>();
+
+            foreach (var e in employee)
+            {
+                output.Add(e.SSN);
+                output.Add(e.FirstName);
+                output.Add(e.LastName);
+                output.Add(e.JobTitle);
+                output.Add(e.MailingAddress);
+                output.Add(e.City);
+                output.Add(e.State);
+            }
+
             return employee;
         }
 
@@ -106,7 +119,7 @@ namespace Watson.Controllers
         [System.Web.Http.Route("api/Employee/EmployeeEnrollment")]
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
-        public void EmployeeEnrollment([Bind(Include = "User_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
+        public void EmployeeEnrollment([Bind(Include = "User_id,CurrentEmployer,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
             "Sex,MartialStatus")] Employee employee)
         {
             if (ModelState.IsValid)
