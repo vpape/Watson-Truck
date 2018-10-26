@@ -11,7 +11,7 @@ using Watson.Models;
 namespace Watson.Controllers
 {
     //[Authorize]
-    public class EmployeeController : ApiController
+    public class EmployeeController : System.Web.Mvc.Controller
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
@@ -99,6 +99,7 @@ namespace Watson.Controllers
         //    return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
         //}
 
+      
         // GET: api/Employee
         [System.Web.Http.Route("api/Employee/EmployeeEnrollment")]
         [System.Web.Http.HttpGet]
