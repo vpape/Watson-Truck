@@ -24,27 +24,9 @@ namespace Watson.Controllers
             employee.Add(new Employee { SSN = "0003", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "HR Manager", User_id = 3 });
         }
 
-        //[System.Web.Http.Route("api/Employee/EmployeeOverview/{User_id:int}/{SSN:string}")]
-        //[System.Web.Http.HttpGet]
-        //public List<string> EmployeeOverview(int User_id, string SSN)
-        //{
-        //    List<string> output = new List<string>();
-
-        //    foreach (var e in employee)
-        //    {
-        //        output.Add(e.SSN);
-        //        output.Add(e.FirstName);
-        //        output.Add(e.LastName);
-        //        output.Add(e.JobTitle);
-        //        output.Add(e.MailingAddress);
-        //        output.Add(e.City);
-        //        output.Add(e.State);
-        //    }
-
-        //    return output;
-        //}
 
         // GET: api/Employee
+        //I changed List<Employee> to List<string>
         //[System.Web.Http.Route("api/Employee/EmployeeOverview/{User_id:int}/{SSN:string}")]
         [System.Web.Http.Route("api/Employee/EmployeeOverview")]
         [System.Web.Http.HttpGet]
@@ -152,9 +134,11 @@ namespace Watson.Controllers
         // GET: api/Employee/5
         [System.Web.Http.Route("api/Employee/Contact/{User_id:int}")]
         [System.Web.Http.HttpGet]
-        public void Contact(int? id)
+        public ActionResult Contact(int? id)
         {
             Employee employee = db.Employees.Find(id);
+
+            return View(employee);
         }
 
         // POST: api/Employee/5
@@ -176,18 +160,9 @@ namespace Watson.Controllers
         [System.Web.Http.Route("api/Employee/Edit/{User_id:int}")]
         [System.Web.Http.HttpGet]
         public ActionResult Edit(int? id)
-        {
-            if(id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
+        {        
             Employee employee = db.Employees.Find(id);
-            if (employee == null)
-            {
-                return HttpNotFound();
-            }          
-
+                
             return View(employee);
         }
 
@@ -213,25 +188,17 @@ namespace Watson.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditGroupHealth(int? id)
         {
-            if(id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
             Employee employee = db.Employees.Find(id);
-            if(employee == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View();
+      
+            return View(employee);
 
         }
 
         // POST: api/Employee/5
+        [System.Web.Http.Route("api/Employee/EditGroupHealth")]
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
-        public void EditGroupHealth([Bind(Include = " " +
+        public ActionResult EditGroupHealth([Bind(Include = " " +
             " ")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -240,19 +207,26 @@ namespace Watson.Controllers
                 db.SaveChanges();
             }
 
+            return View(employee);
         }
 
         // GET: api/Employee/5
-        public void EditLifeInsurance(int? id)
+        [System.Web.Http.Route("api/Employee/EditLifeInsurance/{User_id:int}")]
+        [System.Web.Http.HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditLifeInsurance(int? id)
         {
             Employee employee = db.Employees.Find(id);
+
+            return View(employee);
 
         }
 
         // POST: api/Employee/5
+        [System.Web.Http.Route("api/Employee/EditLifeInsurance")]
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
-        public void EditLifeInsurance([Bind(Include = " " +
+        public ActionResult EditLifeInsurance([Bind(Include = " " +
             " ")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -260,19 +234,19 @@ namespace Watson.Controllers
                 db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
+
+            return View(employee);
         }
 
         // DELETE: api/Employee/5
-        //[System.Web.Http.Route("api/Employee/Delete/{User_id:int}")]
-        //[System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/Employee/Delete/{User_id:int}")]
+        [System.Web.Http.HttpGet]
         public void Delete(int? id)
         {
             Employee employee = db.Employees.Find(id);
 
             db.Employees.Remove(employee);
             db.SaveChanges();
-
-            //db.DeleteEmployeeAndDependents(id);
            
         }
 
@@ -286,7 +260,8 @@ namespace Watson.Controllers
             db.Employees.Remove(employee);
             db.SaveChanges();
 
-        }     
+            //db.DeleteEmployeeAndDependents(id);
+        }
 
         protected override void Dispose(bool disposing)
         {
