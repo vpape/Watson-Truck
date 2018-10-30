@@ -24,87 +24,135 @@ namespace Watson.Controllers
             employee.Add(new Employee { SSN = "0003", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "HR Manager", User_id = 3 });
         }
 
+        //JSON
+        // GET: api/Employee
+        //[System.Web.Http.Route("api/Employee/EmployeeOverview")]
+        //[System.Web.Http.HttpGet]
+        public JsonResult EmployeeOverview()
+        {
+            var output = (from e in db.Employees
+                          select new
+                          {
+                             e.User_id,
+                             e.SSN,
+                             e.JobTitle,
+                             e.FirstName,
+                             e.LastName,
+                             e.MailingAddress,
+                             e.City,
+                             e.State,
+
+                          });
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        //JSON
+        //GET: api/Employee/5
+        //[System.Web.Http.Route("api/Employee/EmployeeOverview/{User_id:int}")]
+        //[System.Web.Http.HttpGet]
+        public JsonResult EmployeeOverview(int id)
+        {
+            Employee e = db.Employees
+                .Where(i => i.User_id == id)
+                .SingleOrDefault();
+
+            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+        }
 
         // GET: api/Employee
         //I changed List<Employee> to List<string>
         //[System.Web.Http.Route("api/Employee/EmployeeOverview/{User_id:int}/{SSN:string}")]
-        [System.Web.Http.Route("api/Employee/EmployeeOverview")]
-        [System.Web.Http.HttpGet]
-        public List<Employee> EmployeeOverview()
-        {
-            List<string> output = new List<string>();
+        //[System.Web.Http.Route("api/Employee/EmployeeOverview")]
+        //[System.Web.Http.HttpGet]
+        //public List<Employee> EmployeeOverview()
+        //{
+        //    List<string> output = new List<string>();
 
-            foreach (var e in employee)
-            {
-                output.Add(e.SSN);
-                output.Add(e.FirstName);
-                output.Add(e.LastName);
-                output.Add(e.JobTitle);
-                output.Add(e.MailingAddress);
-                output.Add(e.City);
-                output.Add(e.State);
-            }
+        //    foreach (var e in employee)
+        //    {
+        //        output.Add(e.SSN);
+        //        output.Add(e.FirstName);
+        //        output.Add(e.LastName);
+        //        output.Add(e.JobTitle);
+        //        output.Add(e.MailingAddress);
+        //        output.Add(e.City);
+        //        output.Add(e.State);
+        //    }
 
-            return employee;
-        }
+        //    return employee;
+        //}
 
         // GET: api/Employee/5
-        [System.Web.Http.Route("api/Employee/EmployeeOverview/{User_id:int}")]
-        [System.Web.Http.HttpGet]
-        public Employee EmployeeOverview(int id)
+        //[System.Web.Http.Route("api/Employee/EmployeeOverview/{User_id:int}")]
+        //[System.Web.Http.HttpGet]
+        //public Employee EmployeeOverview(int id)
+        //{
+        //    return employee.Where(e => e.User_id == id).FirstOrDefault();
+        //}
+
+
+        //JSON
+        // GET: api/Employee
+        //Database column "MartialStatus" is spelled incorrectly...need to fix
+        //[System.Web.Http.Route("api/Employee/EmployeeEnrollment")]
+        //[System.Web.Http.HttpGet]
+        public JsonResult EmployeeEnrollment()
         {
-            return employee.Where(e => e.User_id == id).FirstOrDefault();
+            var output = (from e in db.Employees
+                          select new
+                          {
+                              e.User_id,
+                              e.CurrentEmployer,
+                              e.JobTitle,
+                              e.SSN,
+                              e.FirstName,
+                              e.LastName,
+                              e.DateOfBirth,
+                              e.Sex,
+                              e.MartialStatus,
+                          });
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+
         }
 
-        //public JsonResult EmployeeOverview()
-        //{
-        //    var output = (from e in db.Employees
-        //                  select new
-        //                  {
-        //                      e.User_id,
-        //                      e.SSN,
-        //                      e.FirstName,
-        //                      e.LastName,
-        //                      e.JobTitle,
-        //                  });
+        //JSON
+        //GET: api/Employee/5
+        //[System.Web.Http.Route("api/Employee/EmployeeEnrollment/{User_id:int}")]
+        //[System.Web.Http.HttpGet]
+        public JsonResult EmployeeEnrollment(int id)
+        {
+            Employee e = db.Employees
+                .Where(i => i.User_id == id)
+                .SingleOrDefault();
 
-        //    return Json(new { data = output }, JsonRequestBehavior.AllowGet);
-
-        //}
-
-
-        //public JsonResult EmployeeOverview(int id)
-        //{
-        //    Employee e = db.Employees
-        //        .Where(i => i.User_id == id)
-        //        .SingleOrDefault();
-
-        //    return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
-        //}
-
+            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+        }
 
         // GET: api/Employee
-        [System.Web.Http.Route("api/Employee/EmployeeEnrollment")]
-        [System.Web.Http.HttpGet]
-        public List<Employee> EmployeeEnrollment()
-        {
-            return employee;
-        }
+        //[System.Web.Http.Route("api/Employee/EmployeeEnrollment")]
+        //[System.Web.Http.HttpGet]
+        //public List<Employee> EmployeeEnrollment()
+        //{
+        //    return employee;
+        //}
 
         //GET: api/Employee/5
-        [System.Web.Http.Route("api/Employee/EmployeeEnrollment/{User_id:int}")]
-        [System.Web.Http.HttpGet]
-        public Employee EmployeeEnrollment(int id)
-        {
-            return employee.Where(e => e.User_id == id).FirstOrDefault();
-        }
+        //[System.Web.Http.Route("api/Employee/EmployeeEnrollment/{User_id:int}")]
+        //[System.Web.Http.HttpGet]
+        //public Employee EmployeeEnrollment(int id)
+        //{
+        //    return employee.Where(e => e.User_id == id).FirstOrDefault();
+        //}
 
               
         // POST: api/Employee
         [System.Web.Http.Route("api/Employee/EmployeeEnrollment")]
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EmployeeEnrollment([Bind(Include = "User_id,CurrentEmployer,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
+        public ActionResult EmployeeEnrollment([Bind(Include = "User_id,CurrentEmployer,JobTitle,SSN,FirstName,LastName,DateOfBirth," +
             "Sex,MartialStatus")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -116,30 +164,59 @@ namespace Watson.Controllers
             return View(employee);
         }
 
-        //GET: api/Employee/5
-        [System.Web.Http.Route("api/Employee/Detail/{User_id:int}")]
-        [System.Web.Http.HttpGet]
-        public Employee Detail(int? id)
-        {
-            return employee.Where(e => e.User_id == id).FirstOrDefault();
-        }
-
-
         // PUT: api/Employee/5
         //public void UpdateEmployee(int id, Employee value)
         //{
         //    employee[id] = value;
         //}
 
-        // GET: api/Employee/5
-        [System.Web.Http.Route("api/Employee/Contact/{User_id:int}")]
-        [System.Web.Http.HttpGet]
-        public ActionResult Contact(int? id)
+        //JSON
+        // GET: api/Employee
+        //[System.Web.Http.Route("api/Employee/Contact/{User_id:int}")]
+        //[System.Web.Http.HttpGet]
+        public JsonResult Contact()
         {
-            Employee employee = db.Employees.Find(id);
-
-            return View(employee);
+            var output = (from e in db.Employees
+                          select new
+                          {
+                              e.User_id,
+                              e.MailingAddress,
+                              e.PhysicalAddress,
+                              e.City,
+                              e.State,
+                              e.ZipCode,
+                              e.County,
+                              e.CityLimits,
+                              e.EmailAddress,
+                              e.PhoneNumber,
+                              e.CellPhone,
+                          });
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+                          
         }
+
+        //JSON
+        // GET: api/Employee/5
+        //[System.Web.Http.Route("api/Employee/Contact/{User_id:int}")]
+        //[System.Web.Http.HttpGet]
+        public JsonResult Contact(int id)
+        {
+            Employee e = db.Employees
+                .Where(i => i.User_id == id)
+                .SingleOrDefault();
+
+            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: api/Employee/5
+        //[System.Web.Http.Route("api/Employee/Contact/{User_id:int}")]
+        //[System.Web.Http.HttpGet]
+        //public ActionResult Contact(int? id)
+        //{
+        //    Employee employee = db.Employees.Find(id);
+
+        //    return View(employee);
+        //}
 
         // POST: api/Employee
         [System.Web.Http.Route("api/Employee/Contact")]
@@ -156,6 +233,7 @@ namespace Watson.Controllers
 
             return View(contact);
         }
+
         // GET: api/Employee/5
         [System.Web.Http.Route("api/Employee/Edit/{User_id:int}")]
         [System.Web.Http.HttpGet]
@@ -180,6 +258,22 @@ namespace Watson.Controllers
             }
 
             return View(employee);
+        }
+
+        //GET: api/Employee/5
+        [System.Web.Http.Route("api/Employee/Detail/{User_id:int}")]
+        [System.Web.Http.HttpGet]
+        public Employee Detail(int? id)
+        {
+            return employee.Where(e => e.User_id == id).FirstOrDefault();
+        }
+
+        //GET: api/Employee/5
+        [System.Web.Http.Route("api/Employee/Insurance/{User_id:int}")]
+        [System.Web.Http.HttpGet]
+        public Employee Insurance(int? id)
+        {
+            return employee.Where(e => e.User_id == id).FirstOrDefault();
         }
 
         // GET: api/Employee/5
