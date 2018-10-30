@@ -141,7 +141,7 @@ namespace Watson.Controllers
             return View(employee);
         }
 
-        // POST: api/Employee/5
+        // POST: api/Employee
         [System.Web.Http.Route("api/Employee/Contact")]
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
@@ -166,7 +166,7 @@ namespace Watson.Controllers
             return View(employee);
         }
 
-        // POST: api/Employee/5
+        // POST: api/Employee
         [System.Web.Http.Route("api/Employee/Edit")]
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
@@ -194,7 +194,7 @@ namespace Watson.Controllers
 
         }
 
-        // POST: api/Employee/5
+        // POST: api/Employee
         [System.Web.Http.Route("api/Employee/EditGroupHealth")]
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
@@ -222,7 +222,7 @@ namespace Watson.Controllers
 
         }
 
-        // POST: api/Employee/5
+        // POST: api/Employee
         [System.Web.Http.Route("api/Employee/EditLifeInsurance")]
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
