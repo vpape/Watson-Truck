@@ -24,7 +24,7 @@
             <button class="collapsible"><h4>Employee Enrollment</h4></button>
             <div class="content">
                 @*<form action="/api/Employee/EmployeeEnrollment" method="post">*@
-                      <div class="form-group">
+                    <div class="form-group">
                         <label for="User_id" class="col-md-2 control-label">User_id:</label>
                         <div class="col-md-10">
                             <input type="text" id="User_id" class="form-control" name="User_id" value=@Html.DisplayFor(Model => Model.User_id) />
@@ -69,18 +69,18 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label">Gender:</label>
                         <div class="col-md-10">
-                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
-                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
+                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="Male" checked />Male</label>
+                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="Female" />Female</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="MartialStatus" class="col-md-2 control-label">Marital Status:</label>
                         <div class="col-md-10">
                             <select name="MartialStatus" class="form-control">
-                                <option id="MarriedwDep" name="MartialStatus">Married with Dependents</option>
-                                <option id="Married" name="MartialStatus">Married</option>
-                                <option id="SinglewDep" name="MartialStatus">Single with Dependents</option>
-                                <option id="Single" name="MartialStatus">Single</option>
+                                <option id="MarriedwDep" name="MartialStatus" value="MarriedwDep">Married with Dependents</option>
+                                <option id="Married" name="MartialStatus" value="Married">Married</option>
+                                <option id="SinglewDep" name="MartialStatus" value="SinglewDep">Single with Dependents</option>
+                                <option id="Single" name="MartialStatus" value="Single">Single</option>
                             </select>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
 <script>
     //var Employee;
 
-    function EmployeeEnrollment(data) {
+    function EmployeeEnrollment() {
         //Employee = data;
         
         User_id = document.getElementById("User_id").value;

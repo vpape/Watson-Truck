@@ -125,7 +125,7 @@ namespace Watson.Controllers
         }
 
 
-        //----------------------------------------------------------------------------------------
+        //API----------------------------------------------------------------------------------------
         // GET: api/Employee
         //[System.Web.Http.Route("api/Employee/EmployeeEnrollment")]
         //[System.Web.Http.HttpGet]
@@ -196,11 +196,14 @@ namespace Watson.Controllers
                 .Where(i => i.User_id == id)
                 .SingleOrDefault();
 
+            db.Employees.Add(e);
+            db.SaveChanges();
+
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 
 
-        //----------------------------------------------------------------------------------------
+        //API----------------------------------------------------------------------------------------
 
         // GET: api/Employee/5
         //[System.Web.Http.Route("api/Employee/Contact/{User_id:int}")]
@@ -252,10 +255,14 @@ namespace Watson.Controllers
             Employee e = db.Employees
                 .Where(i => i.User_id == id)
                 .SingleOrDefault();
+
+            db.Employees.Add(e);
+            db.SaveChanges();
+
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 
-        //----------------------------------------------------------------------------------------
+        //API----------------------------------------------------------------------------------------
 
         // GET: api/Employee/5
         //[System.Web.Http.Route("api/Employee/Edit/{User_id:int}")]
@@ -285,15 +292,29 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
 
-        //stopping point for JSON 
-
-        //GET: api/Employee/5
-        [System.Web.Http.Route("api/Employee/Detail/{User_id:int}")]
-        [System.Web.Http.HttpGet]
-        public Employee Detail(int? id)
+        public JsonResult Detail(int? id)
         {
-            return employee.Where(e => e.User_id == id).FirstOrDefault();
+            Employee e = db.Employees
+                .Where(i => i.User_id == id)
+                .FirstOrDefault();
+
+            return Json(new { data = "success" }, "application/Javascript", JsonRequestBehavior.AllowGet);
         }
+
+
+        //API----------------------------------------------------------------------------------------
+        //GET: api/Employee/5
+        //[System.Web.Http.Route("api/Employee/Detail/{User_id:int}")]
+        //[System.Web.Http.HttpGet]
+        //public Employee Detail(int? id)
+        //{
+        //    return employee.Where(e => e.User_id == id).FirstOrDefault();
+        //}
+
+        //----------------------------------------------------------------------------------------
+
+
+        //stopping point for JSON (Insurance)
 
         //GET: api/Employee/5
         [System.Web.Http.Route("api/Employee/Insurance/{User_id:int}")]
