@@ -150,13 +150,11 @@
 </style>
 
 <script>
-    var Employee;
+    //var Employee;
 
-    function EmployeeEnrollment() {
-        document.getElementById("EmployeeEnrollment").disabled = true;
-
-        Employee = data;
-
+    function EmployeeEnrollment(data) {
+        //Employee = data;
+        
         User_id = document.getElementById("User_id").value;
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;
@@ -166,6 +164,16 @@
         DateOfBirth = document.getElementById("DateOfBirth").value;
         Gender = document.getElementsByName("Sex").value;
         MartialStatus = document.getElementsByName("MartialStatus").value;
+
+        //User_id = document.getElementById("User_id").value = data.User_id;
+        //CurrentEmployer = document.getElementById("CurrentEmployer").value = data.CurrentEmployer;
+        //JobTitle = document.getElementById("JobTitle").value = data.JobTitle;
+        //EmployeeNumber = document.getElementById("SSN").value = data.SSN;
+        //FirstName = document.getElementById("FirstName").value = data.FirstName;
+        //LastName = document.getElementById("LastName").value = data.LastName;
+        //DateOfBirth = document.getElementById("DateOfBirth").value = data.DateOfBirth;
+        //Gender = document.getElementsByName("Sex").value = data.Sex;
+        //MartialStatus = document.getElementsByName("MartialStatus").value = data.MartialStatus;
 
 
         postData('/Employee/EmployeeEnrollment', {
