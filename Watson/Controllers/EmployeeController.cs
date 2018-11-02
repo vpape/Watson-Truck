@@ -118,6 +118,9 @@ namespace Watson.Controllers
                 .Where(i => i.User_id == id)
                 .SingleOrDefault();
 
+            db.Employees.Add(e);
+            db.SaveChanges();
+
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 

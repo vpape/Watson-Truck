@@ -24,6 +24,12 @@
             <button class="collapsible"><h4>Employee Enrollment</h4></button>
             <div class="content">
                 @*<form action="/api/Employee/EmployeeEnrollment" method="post">*@
+                      <div class="form-group">
+                        <label for="User_id" class="col-md-2 control-label">User_id:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="User_id" class="form-control" name="User_id" value=@Html.DisplayFor(Model => Model.User_id) />
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
                         <div class="col-md-10">
@@ -81,7 +87,7 @@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             @*<input type="submit" value="Save" onclick=" return EmployeeEnrollment()" class="btn btn-default" />*@
-                            <button type="submit" onclick="location.href='api/Employee/EmployeeEnrollment'" class="btn btn-outline-primary">Save</button>
+                            <button type="submit" onclick="EmployeeEnrollment()" id="EmployeeEnrollment" class="btn btn-outline-primary">Save</button>
                         </div>
                     </div>
                 @*</form>*@
@@ -144,19 +150,26 @@
 </style>
 
 <script>
-      function EmployeeEnrollment() {
+    var Employee;
+
+    function EmployeeEnrollment() {
+        document.getElementById("EmployeeEnrollment").disabled = true;
+
+        Employee = data;
+
+        User_id = document.getElementById("User_id").value;
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;
         EmployeeNumber = document.getElementById("SSN").value;
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
-        Gender = document.getElementsByName("Sex").element;
-        MartialStatus = document.getElementsByName("MartialStatus").element;
+        Gender = document.getElementsByName("Sex").value;
+        MartialStatus = document.getElementsByName("MartialStatus").value;
 
 
-        postData('/postUser', {
-            CurrentEmployer: CurrentEmployer, JobTitle: JobTitle, EmployeeNumber: EmployeeNumber, FirstName: FirstName,
+        postData('/Employee/EmployeeEnrollment', {
+            User_id: User_id, CurrentEmployer: CurrentEmployer, JobTitle: JobTitle, EmployeeNumber: EmployeeNumber, FirstName: FirstName,
             LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MartialStatus: MartialStatus
         })
             .then(data => EmployeeEnrollment(data))
