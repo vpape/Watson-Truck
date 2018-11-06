@@ -6,12 +6,11 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
 using Watson.Models;
-using System.IO;
-using System.Net.Http.Headers;
+
 
 namespace Watson.Controllers
 {
-    public class Family_InfoController : ApiController
+    public class Family_InfoController : System.Web.Mvc.Controller
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
@@ -19,35 +18,67 @@ namespace Watson.Controllers
        
         public Family_InfoController()
         {
-            familyMember.Add(new Family_Info { FirstName = "Cindy", FamilyMember_id = 1 });
-            
+            familyMember.Add(new Family_Info { SSN = "0001", FirstName = "Vernon", LastName = "Pape", FamilyMember_id = 1 });
+            familyMember.Add(new Family_Info { SSN = "0002", FirstName = "Lynetta", LastName = "Richards", FamilyMember_id = 2 });
+            familyMember.Add(new Family_Info { SSN = "0003", FirstName = "LaNita", LastName = "Palmer", FamilyMember_id = 3 });
+
         }
+
+        //GET: Family_info
+        public JsonResult SpouseAndDependentOverview()
+        {
+            var output = (from f in db.Family_Infoes
+                          select new
+                          {
+                              f.FamilyMember_id,
+                              f.SSN,
+                              f.FirstName,
+                              f.LastName,
+                              f.MailingAddress,
+                          });
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult SpouseAndDependentOverview(int id)
+        {
+            Family_Info f = db.Family_Infoes
+                .Where(i => i.FamilyMember_id == id)
+                .SingleOrDefault();
+
+            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
 
         //[Route("api/Family_Info/GetFamilyMember/{User_id:int}/{SSN:string}")]
         //[HttpGet]
-        public List<string> GetFamilyMembers(int FamilyMember_id)
-        {
-            List<string> output = new List<string>();
+        //public List<string> GetFamilyMembers(int FamilyMember_id)
+        //{
+        //    List<string> output = new List<string>();
 
-            foreach (var f in familyMember)
-            {
-                output.Add(f.FirstName);
-            }
+        //    foreach (var f in familyMember)
+        //    {
+        //        output.Add(f.FirstName);
+        //    }
 
-            return output;
-        }
+        //    return output;
+        //}
 
-        // GET: api/Family_Info
-        public List<Family_Info> FamilyMemberOverview()
-        {
-            return familyMember;
-        }
+        //// GET: api/Family_Info
+        //public List<Family_Info> FamilyMemberOverview()
+        //{
+        //    return familyMember;
+        //}
 
-        // GET: api/Family_Info/5
-        public Family_Info FamilyMemberOverview(int? id)
-        {
-            return familyMember.Where(f => f.FamilyMember_id == id).FirstOrDefault();
-        }
+        //// GET: api/Family_Info/5
+        //public Family_Info FamilyMemberOverview(int? id)
+        //{
+        //    return familyMember.Where(f => f.FamilyMember_id == id).FirstOrDefault();
+        //}
+
+        //----------------------------------------------------------------------------------------
 
         //GET: api/Family_Info/5
         public Family_Info SpouseEnrollment(int id)

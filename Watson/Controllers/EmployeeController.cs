@@ -24,7 +24,7 @@ namespace Watson.Controllers
             employee.Add(new Employee { SSN = "0003", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "HR Manager", User_id = 3 });
         }
 
-        // GET: api/Employee
+        //GET: Employee
         public JsonResult EmployeeOverview()
         {
             var output = (from e in db.Employees
@@ -45,7 +45,7 @@ namespace Watson.Controllers
 
         }
 
-        //GET: api/Employee/5
+        //GET: Employee/5
         public JsonResult EmployeeOverview(int id)
         {
             Employee e = db.Employees
@@ -89,7 +89,7 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
 
-        // GET: api/Employee
+        // GET: Employee
         //Database column "MartialStatus" is spelled incorrectly...need to fix
         public JsonResult EmployeeEnrollment()
         {
@@ -111,7 +111,7 @@ namespace Watson.Controllers
 
         }
         
-        //GET: api/Employee/5
+        //GET: Employee/5
         public JsonResult EmployeeEnrollment(int id)
         {
             Employee e = db.Employees
@@ -125,7 +125,7 @@ namespace Watson.Controllers
         }
 
 
-        //API----------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------
         // GET: api/Employee
         //[System.Web.Http.Route("api/Employee/EmployeeEnrollment")]
         //[System.Web.Http.HttpGet]
@@ -167,7 +167,7 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
 
-        // GET: api/Employee
+        // GET: Employee
         public JsonResult Contact()
         {
             var output = (from e in db.Employees
@@ -189,7 +189,7 @@ namespace Watson.Controllers
                           
         }
 
-        // GET: api/Employee/5
+        // GET: Employee/5
         public JsonResult Contact(int id)
         {
             Employee e = db.Employees
@@ -203,7 +203,7 @@ namespace Watson.Controllers
         }
 
 
-        //API----------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------
 
         // GET: api/Employee/5
         //[System.Web.Http.Route("api/Employee/Contact/{User_id:int}")]
@@ -232,6 +232,7 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
+        // GET: Employee
         public JsonResult Edit()
         {
             var output = (from e in db.Employees
@@ -250,6 +251,7 @@ namespace Watson.Controllers
             return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 
+        // GET: Employee/5
         public JsonResult Edit(int? id)
         {
             Employee e = db.Employees
@@ -262,7 +264,7 @@ namespace Watson.Controllers
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 
-        //API----------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------
 
         // GET: api/Employee/5
         //[System.Web.Http.Route("api/Employee/Edit/{User_id:int}")]
@@ -291,7 +293,7 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-
+        // GET: Employee/5
         public JsonResult Detail(int? id)
         {
             Employee e = db.Employees
@@ -302,7 +304,7 @@ namespace Watson.Controllers
         }
 
 
-        //API----------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------
 
         //GET: api/Employee/5
         //[System.Web.Http.Route("api/Employee/Detail/{User_id:int}")]
@@ -315,7 +317,11 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
 
-        
+
+
+        //Stopping point        
+
+        //----------------------------------------------------------------------------------------
 
         //GET: api/Employee/5
         [System.Web.Http.Route("api/Employee/Insurance/{User_id:int}")]
@@ -325,22 +331,22 @@ namespace Watson.Controllers
             return employee.Where(e => e.User_id == id).FirstOrDefault();
         }
 
-        // GET: api/Employee/5
+        //GET: api/Employee/5
         [System.Web.Http.Route("api/Employee/EditGroupHealth/{User_id:int}")]
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditGroupHealth(int? id)
         {
             Employee employee = db.Employees.Find(id);
-      
+
             return View(employee);
 
         }
 
-        // POST: api/Employee
-        [System.Web.Http.Route("api/Employee/EditGroupHealth")]
-        [System.Web.Http.HttpPost]
-        [ValidateAntiForgeryToken]
+       //POST: api/Employee
+       [System.Web.Http.Route("api/Employee/EditGroupHealth")]
+       [System.Web.Http.HttpPost]
+       [ValidateAntiForgeryToken]
         public ActionResult EditGroupHealth([Bind(Include = " " +
             " ")] Employee employee)
         {
@@ -353,7 +359,7 @@ namespace Watson.Controllers
             return View(employee);
         }
 
-        // GET: api/Employee/5
+        //GET: api/Employee/5
         [System.Web.Http.Route("api/Employee/EditLifeInsurance/{User_id:int}")]
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
@@ -365,10 +371,10 @@ namespace Watson.Controllers
 
         }
 
-        // POST: api/Employee
-        [System.Web.Http.Route("api/Employee/EditLifeInsurance")]
-        [System.Web.Http.HttpPost]
-        [ValidateAntiForgeryToken]
+        //POST: api/Employee
+       [System.Web.Http.Route("api/Employee/EditLifeInsurance")]
+       [System.Web.Http.HttpPost]
+       [ValidateAntiForgeryToken]
         public ActionResult EditLifeInsurance([Bind(Include = " " +
             " ")] Employee employee)
         {
@@ -380,6 +386,8 @@ namespace Watson.Controllers
 
             return View(employee);
         }
+
+        //----------------------------------------------------------------------------------------
 
         // DELETE: api/Employee/5
         [System.Web.Http.Route("api/Employee/Delete/{User_id:int}")]
