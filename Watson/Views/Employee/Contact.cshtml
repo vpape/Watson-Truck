@@ -99,8 +99,8 @@
     }
 
     <div>
-        <input type="button" onclick="location.href='api/Employee/EmployeeEnrollment'" @*onclick="location.href='api/Employee/EmployeeEnrollment'"*@ value="Previous" class="btn btn-outline-secondary" /> |
-        <input type="button" onclick="location.href='api/Family_Info/FamilyMemberEnrollment'" @*onclick="location.href='api/Family_Info/FamilyMemberEnrollment'"*@ value="Continue" class="btn btn-outline-secondary" />
+        <input type="button" onclick="location.href='Employee/EmployeeEnrollment'" @*onclick="location.href='api/Employee/EmployeeEnrollment'"*@ value="Previous" class="btn btn-outline-secondary" /> |
+        <input type="button" onclick="location.href='Family_Info/FamilyMemberEnrollment'" @*onclick="location.href='api/Family_Info/FamilyMemberEnrollment'"*@ value="Continue" class="btn btn-outline-secondary" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
@@ -111,18 +111,18 @@
 
 <script>
     function Contact() {
-        MailingAddress = document.getElementsByName("MailingAddress").element;
-        PhyscialAddress = document.getElementsByName("PhyscialAddress").element;
+        MailingAddress = document.getElementsByName("MailingAddress").value;
+        PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
         City = document.getElementById("City").value;
         State = document.getElementById("State").value;
         ZipCode = document.getElementById("ZipCode").value;
         County = document.getElementById("County").value;
-        CityLimits = document.getElementsByName("CityLimits").element;
+        CityLimits = document.getElementsByName("CityLimits").value;
         Email = document.getElementById("EmailAddress").value;
         Phone = document.getElementById("PhoneNumber").value;
         Cell = document.getElementById("CellPhone").value;
 
-        postData('/postUser', {
+        postData('/Employee/Contact', {
             MailingAddress: MailingAddress, PhyscialAddress: PhyscialAddress, City: City, State: State,
             ZipCode: ZipCode, CityLimits: CityLimits, Email: Email, Phone: Phone, Cell: Cell
         })

@@ -303,6 +303,7 @@ namespace Watson.Controllers
 
 
         //API----------------------------------------------------------------------------------------
+
         //GET: api/Employee/5
         //[System.Web.Http.Route("api/Employee/Detail/{User_id:int}")]
         //[System.Web.Http.HttpGet]
@@ -314,7 +315,7 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
 
-        //stopping point for JSON (Insurance)
+        
 
         //GET: api/Employee/5
         [System.Web.Http.Route("api/Employee/Insurance/{User_id:int}")]

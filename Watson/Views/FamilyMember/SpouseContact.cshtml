@@ -93,8 +93,8 @@
 
 }
     <div>
-        <input type="submit" onclick="location.href='api/Family_Info/SpouseEnrollment'" value="Previous" class="btn btn-default" /> |
-        <input type="submit" onclick="location.href='api/Family_Info/SpouseEmployment'" value="Continue" class="btn btn-default" />
+        <input type="submit" onclick="location.href='Family_Info/SpouseEnrollment'" value="Previous" class="btn btn-default" /> |
+        <input type="submit" onclick="location.href='Family_Info/SpouseEmployment'" value="Continue" class="btn btn-default" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |
@@ -157,14 +157,54 @@
 
         if (spouse.value == "yes") {
 
-            spouse.style.display = 'block';
-            employee.style.display = 'none';
-
-        }
-        else {
             spouse.style.display = 'none';
             employee.style.display = 'block';
 
         }
+        else {
+            spouse.style.display = 'block';
+            employee.style.display = 'none';
+
+        }
+    }
+</script>
+
+<script>
+    function Contact() {
+        MailingAddress = document.getElementsByName("MailingAddress").value;
+        PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
+        City = document.getElementById("City").value;
+        State = document.getElementById("State").value;
+        ZipCode = document.getElementById("ZipCode").value;
+        County = document.getElementById("County").value;
+        CityLimits = document.getElementsByName("CityLimits").value;
+        Email = document.getElementById("EmailAddress").value;
+        Phone = document.getElementById("PhoneNumber").value;
+        Cell = document.getElementById("CellPhone").value;
+
+        postData('/Employee/Contact', {
+            MailingAddress: MailingAddress, PhyscialAddress: PhyscialAddress, City: City, State: State,
+            ZipCode: ZipCode, CityLimits: CityLimits, Email: Email, Phone: Phone, Cell: Cell
+        })
+            .then(data => Contact(data))
+            .catch(error => console.error(error))
+    }
+
+    function postData(url, data) {
+        //Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Get', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        })
+            .then(Response => Response.json()) //parses response to JSON
     }
 </script>

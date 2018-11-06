@@ -36,6 +36,12 @@
                         <input type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.SSN)" />
                     </div>
                 </div>
+                  <div class="form-group">
+                    <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@Html.DisplayFor(model => model.JobTitle)" />
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                     <div class="col-md-10">
@@ -66,48 +72,10 @@
                     <div class="col-md-10">
                         <select name="MartialStatus" class="form-control">
                             <option id="MarriedwDep" value="@Html.DisplayFor(model => model.MartialStatus)">Married with Dependents</option>
-                            <option id="Married" value="@Html.DisplayFor(model => model.MartialStatus)">Married</option>
-                            <option id="SinglewDep" value="@Html.DisplayFor(model => model.MartialStatus)">Single with Dependents</option>
-                            <option id="Single" value="@Html.DisplayFor(model => model.MartialStatus)">Single</option>
+                            <option id="Married"     value="@Html.DisplayFor(model => model.MartialStatus)">Married</option>
+                            <option id="SinglewDep"  value="@Html.DisplayFor(model => model.MartialStatus)">Single with Dependents</option>
+                            <option id="Single"      value="@Html.DisplayFor(model => model.MartialStatus)">Single</option>
                         </select>
-                    </div>
-                </div>
-                <div id="divEmpInfo">
-                    <div class="form-group">
-                        <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@Html.DisplayFor(model => model.JobTitle)" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="HireDate" class="col-md-2 control-label">Hire Date:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="HireDate" class="form-control" name="HireDate" value="@Html.DisplayFor(model => model.HireDate)" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="EffectiveDate" class="col-md-2 control-label">Effective Date:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="EffectiveDate" class="form-control" name="EffectiveDate" value=@Html.DisplayFor(model => model.EffectiveDate) />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="ElgibilityDate" class="col-md-2 control-label">Elgibility Date:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="ElgibilityDate" class="form-control" name="ElgibilityDate" value="@Html.DisplayFor(model => model.EligibilityDate)" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="AnnualSalary" class="col-md-2 control-label">Annual Salary:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="AnnualSalary" class="form-control" name="AnnualSalary" value="@Html.DisplayFor(model => model.AnnualSalary)" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="HoursWorkedPerWeek" class="col-md-2 control-label">Hours Worked Per Week:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="HoursWorkedPerWeek" class="form-control" name="HoursWorkedPerWeek" value="@Html.DisplayFor(model => model.HoursWorkedPerWeek)" />
-                        </div>
                     </div>
                 </div>
                 <div id="divEmpContact">
@@ -150,8 +118,8 @@
                     <div class="form-group">
                         <label for="CityLimits" class="col-md-2 control-label">Within City Limits?</label>
                         <div class="col-md-10">
-                            <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" checked />Yes</label>
-                            <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" />No</label>
+                            <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" @((Model.Sex == true) ? "checked" : "") checked />Yes</label>
+                            <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" @((Model.Sex == false) ? "checked" : "") />No</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -184,7 +152,7 @@
 
     }
     <p>
-        @Html.ActionLink("Back to Overview", "EmployeeOverview")
+        @Html.ActionLink("Back to HomePage", "EmployeeOverview")
     </p>
 </body>
 </html>
@@ -240,33 +208,23 @@
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
-        Gender = document.getElementsByName("Sex").element;
-        MaritalStatus = document.getElementsByName("MartialStatus").element;
+        Gender = document.getElementsByName("Sex").value;
+        MartialStatus = document.getElementsByName("MartialStatus").value;
 
-        HireDate = document.getElementById("HireDate").value;
-        EffectivDate = document.getElementById("EffectiveDate").value;
-        ElgibilityDate = document.getElementById("ElgibilityDate").value;
-        AnnualSalary = document.getElementById("AnnualSalary").value;
-        HoursWorkedPerWeek = document.getElementById("HoursWorkedPerWeek").value;
-
-
-        MailingAddress = document.getElementsByName("MailingAddress").element;
-        PhyscialAddress = document.getElementsByName("PhyscialAddress").element;
+        MailingAddress = document.getElementsByName("MailingAddress").value;
+        PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
         City = document.getElementById("City").value;
         State = document.getElementById("State").value;
         ZipCode = document.getElementById("ZipCode").value;
         County = document.getElementById("County").value;
-        CityLimits = document.getElementsByName("CityLimits").element;
+        CityLimits = document.getElementsByName("CityLimits").value;
         Email = document.getElementById("EmailAddress").value;
         Phone = document.getElementById("PhoneNumber").value;
         Cell = document.getElementById("CellPhone").value;
 
-
-        postData('/postUser', {
-            CurrentEmployer: CurrentEmployer, JobTitle: JobTitle, EmployeeNumber: EmployeeNumber,
-            FirstName: FirstName, LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender,
-            MaritalStatus: MaritalStatus, HireDate: HireDate, EffectiveDate: EffectiveDate,
-            ElgibilityDate: ElgibilityDate, AnnualSalary: AnnualSalary, HoursWorkedPerWeek: HoursWorkedPerWeek,
+        postData('/Employee/Edit', {
+            CurrentEmployer: CurrentEmployer, JobTitle: JobTitle, EmployeeNumber: EmployeeNumber, FirstName: FirstName,
+            LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MartialStatus: MartialStatus,
             MailingAddress: MailingAddress, PhyscialAddress: PhyscialAddress, City: City, State: State,
             ZipCode: ZipCode, CityLimits: CityLimits, Email: Email, Phone: Phone, Cell: Cell
         })
