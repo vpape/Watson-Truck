@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
                         <div class="col-md-10">
-                            <select id="RelationToInsured" name="RelationshipToInsured" onchange="SpouseAndORDependent()" class="form-control">
+                            <select id="RelationToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control">
                                 @if (ViewBag.spouseExist == false)
                                 {
                                     <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "spouse") ? "selected" : "")>Spouse</option>

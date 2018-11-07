@@ -41,6 +41,7 @@ namespace Watson.Controllers
 
         }
 
+        //GET: Family_info/5
         public JsonResult SpouseAndDependentOverview(int id)
         {
             Family_Info f = db.Family_Infoes
@@ -51,7 +52,6 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-
         //[Route("api/Family_Info/GetFamilyMember/{User_id:int}/{SSN:string}")]
         //[HttpGet]
         //public List<string> GetFamilyMembers(int FamilyMember_id)
@@ -77,13 +77,58 @@ namespace Watson.Controllers
         //{
         //    return familyMember.Where(f => f.FamilyMember_id == id).FirstOrDefault();
         //}
-
         //----------------------------------------------------------------------------------------
+
+        //stopping point
+
+        public JsonResult SpouseEnrollment(int id, string MartialStatus)
+        {         
+
+            var output = (from f in db.Family_Infoes
+                          select new
+                          {
+                              f.RelationshipToInsured,
+                              f.FirstName,
+                              f.LastName,
+                              f.DateOfBirth,
+                              f.Sex,
+                              f.MailingAddress,
+                              f.PhysicalAddress,
+                              f.City,
+                              f.State,
+                              f.ZipCode,
+                              f.PhoneNumber,
+                              f.CellPhone,
+                          });
+
+            ViewBag.Employee_id = id;
+            ViewBag.spouseExist = true;
+
+            Employee employee = db.Employees.Find(id);
+            if (employee.MartialStatus == "Single")
+            {
+                ViewBag.spouseExist = false;
+                ViewBag.RelationshipToInsured = "Single";
+            }
+            else if (employee.MartialStatus == "SinglewDep")
+            {
+                ViewBag.spouseExist = false;
+                ViewBag.RelationshipToInsured = "Spouse";
+            }
+            else
+            {
+                ViewBag.RelationshipToInsured = "Dependent";
+            }
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+        }
+
+
 
         //GET: api/Family_Info/5
         public Family_Info SpouseEnrollment(int id)
         {
-            return familyMember.Where(s => s.FamilyMember_id == id).FirstOrDefault();
+            return familyMember.Where(i => i.FamilyMember_id == id).FirstOrDefault();
         }
 
         //public HttpResponseMessage SpouseEnrollment() {
@@ -110,7 +155,7 @@ namespace Watson.Controllers
         //GET: api/Family_Info/5
         public Family_Info DependentEnrollment(int id)
         {
-            return familyMember.Where(d => d.FamilyMember_id == id).FirstOrDefault();
+            return familyMember.Where(i => i.FamilyMember_id == id).FirstOrDefault();
         }
 
         //public ActionResult DependentEnrollment(int? id, string MartialStatus)

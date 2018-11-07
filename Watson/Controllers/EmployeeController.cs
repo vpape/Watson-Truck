@@ -204,7 +204,6 @@ namespace Watson.Controllers
 
 
         //----------------------------------------------------------------------------------------
-
         // GET: api/Employee/5
         //[System.Web.Http.Route("api/Employee/Contact/{User_id:int}")]
         //[System.Web.Http.HttpGet]
@@ -265,7 +264,6 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-
         // GET: api/Employee/5
         //[System.Web.Http.Route("api/Employee/Edit/{User_id:int}")]
         //[System.Web.Http.HttpGet]
@@ -305,7 +303,6 @@ namespace Watson.Controllers
 
 
         //----------------------------------------------------------------------------------------
-
         //GET: api/Employee/5
         //[System.Web.Http.Route("api/Employee/Detail/{User_id:int}")]
         //[System.Web.Http.HttpGet]
@@ -313,7 +310,6 @@ namespace Watson.Controllers
         //{
         //    return employee.Where(e => e.User_id == id).FirstOrDefault();
         //}
-
         //----------------------------------------------------------------------------------------
 
 
@@ -322,7 +318,6 @@ namespace Watson.Controllers
         //Stopping point        
 
         //----------------------------------------------------------------------------------------
-
         //GET: api/Employee/5
         [System.Web.Http.Route("api/Employee/Insurance/{User_id:int}")]
         [System.Web.Http.HttpGet]
@@ -388,7 +383,6 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-
         // DELETE: api/Employee/5
         [System.Web.Http.Route("api/Employee/Delete/{User_id:int}")]
         [System.Web.Http.HttpGet]
