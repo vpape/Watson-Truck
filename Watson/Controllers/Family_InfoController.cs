@@ -42,7 +42,7 @@ namespace Watson.Controllers
         }
 
         //GET: Family_info/5
-        public JsonResult SpouseAndDependentOverview(int id)
+        public JsonResult SpouseAndDependentOverview(int? id)
         {
             Family_Info f = db.Family_Infoes
                 .Where(i => i.FamilyMember_id == id)
@@ -79,7 +79,6 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        //stopping point
 
         public JsonResult SpouseEnrollment(int id, string MartialStatus)
         {         
@@ -123,13 +122,28 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-
-
-        //GET: api/Family_Info/5
-        public Family_Info SpouseEnrollment(int id)
+        public JsonResult SpouseEnrollment(int? id, string MartialStatus)
         {
-            return familyMember.Where(i => i.FamilyMember_id == id).FirstOrDefault();
+            Employee e = db.Employees
+                .Where(i => i.User_id == id)
+                .SingleOrDefault();
+
+            ViewBag.Employee_id = id;
+            ViewBag.MartialStatus = MartialStatus;
+
+            db.Employees.Add(e);
+            db.SaveChanges();
+
+            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
+
+
+        //----------------------------------------------------------------------------------------
+        //GET: api/Family_Info/5
+        //public Family_Info SpouseEnrollment(int id)
+        //{
+        //    return familyMember.Where(i => i.FamilyMember_id == id).FirstOrDefault();
+        //}
 
         //public HttpResponseMessage SpouseEnrollment() {
 
@@ -140,17 +154,19 @@ namespace Watson.Controllers
         //    return response;
         //}
 
+
         //POST: api/Family_Info
-        [System.Web.Http.HttpPost]
-        [ValidateAntiForgeryToken]
-        public void SpouseEnrollment([Bind(Include = "")]Family_Info createSpouse)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Family_Infoes.Add(createSpouse);
-                db.SaveChanges();
-            }
-        }
+        //[System.Web.Http.HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public void SpouseEnrollment([Bind(Include = "")]Family_Info createSpouse)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Family_Infoes.Add(createSpouse);
+        //        db.SaveChanges();
+        //    }
+        //}
+        //----------------------------------------------------------------------------------------
 
         //GET: api/Family_Info/5
         public Family_Info DependentEnrollment(int id)

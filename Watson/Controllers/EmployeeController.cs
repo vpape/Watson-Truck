@@ -118,6 +118,7 @@ namespace Watson.Controllers
                 .Where(i => i.User_id == id)
                 .SingleOrDefault();
 
+
             db.Employees.Add(e);
             db.SaveChanges();
 

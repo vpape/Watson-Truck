@@ -27,10 +27,10 @@
                 @*<form action="/api/Family_Info/SpouseEnrollment" method="post">*@
                     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
                     <input type="hidden" id="MartialStatus" class="form-control" name="MartialStatus" value=@ViewBag.MartialStatus />
-                    <div class="form-group" id="divRelationshipToInsured">
+                    @*<div class="form-group" id="divRelationshipToInsured">
                         <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
                         <div class="col-md-10">
-                            <select id="RelationToInsured" disabled name="RelationShipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control">
+                            <select id="RelationToInsured" name="RelationShipToInsured" @*onchange="SpouseOrDependent()" class="form-control">
                                 @if (ViewBag.spouseExist == false)
                                 {
                                     <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
@@ -41,13 +41,21 @@
                                 }
                             </select>
                         </div>
-                    </div>
+                    </div>*@
+                    <div class="form-group" id="divRelationshipToInsured">
+                        <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
+                        <div class="col-md-10">
+                            <select id="RelationToInsured" name="RelationShipToInsured" class="form-control">
+                                <option id="Spouse" name="RelationshipToInsured" value="Spouse">Spouse</option>
+                                <option id="Dependent" name="RelationshipToInsured" value="Dependent">Dependent</option>
+                             </select>
+                        </div>
                     <div class="form-group" id="empNumber">
                         <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
                         <div class="col-md-10">
                             <text type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(m => Model.Employee.SSN)" />
                         </div>
-                    </div>                    
+                    </div>
                     <div class="form-group" id="empName">
                         <label for="" class="col-md-2 control-label">Employee Name:</label>
                         <div class="col-md-10">
@@ -86,8 +94,10 @@
                         </div>
                     </div>
                 @*</form>*@
+                </div>
             </div>
         </div>
+    }
         <div>
             <button onclick="location.href='Family_Info/FamilyMemberEnrollment'"  class="btn btn-secondary">Previous</button> |
             <button onclick="location.href='Family_Info/SpoueContact'" class="btn btn-secondary">Continue</button>
