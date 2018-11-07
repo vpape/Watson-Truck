@@ -91,50 +91,56 @@ namespace Watson.Controllers
                               f.LastName,
                               f.DateOfBirth,
                               f.Sex,
-                              f.MailingAddress,
-                              f.PhysicalAddress,
-                              f.City,
-                              f.State,
-                              f.ZipCode,
-                              f.PhoneNumber,
-                              f.CellPhone,
+                           
                           });
 
-            ViewBag.Employee_id = id;
-            ViewBag.spouseExist = true;
+            //Move to Admin Controller
+            //ViewBag.Employee_id = id;
+            //ViewBag.spouseExist = true;
 
-            Employee employee = db.Employees.Find(id);
-            if (employee.MartialStatus == "Single")
-            {
-                ViewBag.spouseExist = false;
-                ViewBag.RelationshipToInsured = "Single";
-            }
-            else if (employee.MartialStatus == "SinglewDep")
-            {
-                ViewBag.spouseExist = false;
-                ViewBag.RelationshipToInsured = "Spouse";
-            }
-            else
-            {
-                ViewBag.RelationshipToInsured = "Dependent";
-            }
+            //Employee employee = db.Employees.Find(id);
+            //if (employee.MartialStatus == "Single")
+            //{
+            //    ViewBag.spouseExist = false;
+            //    ViewBag.RelationshipToInsured = "Single";
+            //}
+            //else if (employee.MartialStatus == "SinglewDep")
+            //{
+            //    ViewBag.spouseExist = false;
+            //    ViewBag.RelationshipToInsured = "Spouse";
+            //}
+            //else
+            //{
+            //    ViewBag.RelationshipToInsured = "Dependent";
+            //}
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult SpouseEnrollment(int? id, string MartialStatus)
         {
-            Employee e = db.Employees
-                .Where(i => i.User_id == id)
+            Family_Info f = db.Family_Infoes
+                .Where(i => i.FamilyMember_id == id)
                 .SingleOrDefault();
 
-            ViewBag.Employee_id = id;
-            ViewBag.MartialStatus = MartialStatus;
-
-            db.Employees.Add(e);
+            db.Family_Infoes.Add(f);
             db.SaveChanges();
 
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+
+            //Move to Admin Controller
+            //Employee e = db.Employees
+            //    .Where(i => i.User_id == id)
+            //    .SingleOrDefault();
+
+            //ViewBag.Employee_id = id;
+            //ViewBag.MartialStatus = MartialStatus;
+
+
+
+            //Move to Admin Controller
+            //db.Employees.Add(e);
+
         }
 
 
@@ -167,6 +173,28 @@ namespace Watson.Controllers
         //    }
         //}
         //----------------------------------------------------------------------------------------
+
+        public JsonResult SpouseContact()
+        {
+            var output = (from f in db.Family_Infoes
+                          select new
+                          {
+                              f.MailingAddress,
+                              f.PhysicalAddress,
+                              f.City,
+                              f.State,
+                              f.ZipCode,
+                              f.PhoneNumber,
+                              f.CellPhone,
+                          });
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SpouseContact(int? id)
+        {
+
+        }
 
         //GET: api/Family_Info/5
         public Family_Info DependentEnrollment(int id)
