@@ -193,7 +193,14 @@ namespace Watson.Controllers
 
         public JsonResult SpouseContact(int? id)
         {
+            Family_Info f = db.Family_Infoes
+                .Where(i => i.FamilyMember_id == id)
+                .SingleOrDefault();
 
+            db.Family_Infoes.Add(f);
+            db.SaveChanges();
+
+            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 
         //GET: api/Family_Info/5
