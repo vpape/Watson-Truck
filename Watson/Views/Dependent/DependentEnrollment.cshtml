@@ -95,7 +95,7 @@
         <button onclick="EmployeeOverview();" class="btn btn-outline-secondary">Return to Employee Overview</button>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |
+        @Html.ActionLink("Edit", "EditDependent", "Family_Info", new { id = Model.FamilyMember_id }) |
         @Html.ActionLink("Back to Family Enrollment", "FamilyMemberEnrollment")
     </p>
 </body>

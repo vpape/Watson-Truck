@@ -13,9 +13,10 @@
     <title>Employee Overview</title>
 </head>
 <body>
-    @*Create a column for a dynmaic button using mapping characters?? to call spouse and dependent Overview)*@
+    @*Create a column for a dynmaic button using image mapping?? to call SpouseAndDependentOverview)*@
     <table class="table">
         <tr>
+            <th>Family Member Overview</th>
             <th>User_id</th>
             <th>Employee Number</th>
             <th>First Name</th>
@@ -24,11 +25,15 @@
             <th>Mailing Address</th>
             <th>City</th>
             <th>State</th>
-        
+        </tr>
+
 
             @foreach (var item in Model)
             {
             <tr>
+                <td>
+                    @* Image mapping character  *@
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.User_id)
                 </td>
@@ -54,10 +59,10 @@
                     @Html.DisplayFor(modelItem => item.State)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.User_id }) |
-                    @Html.ActionLink("Detail", "Detail", new { id = item.User_id }) |
-                    @Html.ActionLink("Insurance", "Insurance", new { id = item.User_id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.User_id })
+                    @Html.ActionLink("Edit", "Edit", "Employee", new { id = item.User_id }) |
+                    @Html.ActionLink("Detail", "Detail", "Employee", new { id = item.User_id }) |
+                    @Html.ActionLink("Insurance", "Insurance", "Employee", new { id = item.User_id }) |
+                    @Html.ActionLink("Delete", "Delete", "Employee", new { id = item.User_id })
                 </td>
             </tr>
         }

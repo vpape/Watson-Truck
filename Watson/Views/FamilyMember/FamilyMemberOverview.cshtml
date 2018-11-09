@@ -1,0 +1,89 @@
+﻿@model List<Watson.Models.Family_Info>
+
+@{
+    ViewBag.Title = "SpouseAndDependentOverview";
+}
+
+<h2>Spouse and Dependent Overview</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Spouse and Dependent Overview</title>
+</head>
+<body>
+    @*Create a column for a dynmaic button using image mapping?? to call SpouseAndDependentOverview)*@
+    <table class="table">
+        <tr>
+            <th>Insurance Overview</th>
+            <th>FamilyMember_id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Relation To Employee</th>
+            <th>Employee Number</th>
+            <th>Employee Last Name</th>
+        </tr>
+
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @* Image map for Insurance *@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FamilyMember_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RelationshipToInsured)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.SSN)
+                </td>
+                  <td>                   
+                    @Html.DisplayFor(modelItem => item.Employee.LastName)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "EditSpouse", "Family_Info", new { id = item.FamilyMember_id }) |
+                    @Html.ActionLink("Edit", "EditDependent", "Family_Info", new { id = item.FamilyMember_id }) |*@
+                    @Html.ActionLink("Detail", "SpouseDetail", "Family_Info", new { id = item.FamilyMember_id }) |
+                    @Html.ActionLink("Edit", "DependentDetail", "Family_Info", new { id = item.FamilyMember_id }) |
+                    @*@Html.ActionLink("Delete", "DeleteSpouse", "Family_Info", new { id = item.FamilyMember_id })
+                    @Html.ActionLink("Delete", "DeleteDependent", "Family_Info", new { id = item.FamilyMember_id })*@
+                </td>
+            </tr>
+        }
+
+        </table>
+        <div>
+            <input type="button" onclick="location.href='Family_Info/DependentEnrollment'" value="Add Dependent" class="btn btn-default" />
+        </div>
+    </body>
+</html>
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+</style>
+
+<script>
+
+</script>
