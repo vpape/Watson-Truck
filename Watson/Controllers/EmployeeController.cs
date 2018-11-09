@@ -106,6 +106,20 @@ namespace Watson.Controllers
                               e.Sex,
                               e.MartialStatus,
                           });
+                          
+           //Redirect is based on marital status, which it's not working
+            //if (e.MartialStatus == "Married")
+            //{
+            //    return RedirectToAction("SpouseEnrollment", "Family_Info", new { e.User_id, e.MartialStatus });
+            //}
+            //else if (e.MartialStatus == "MarriedwDep")
+            //{
+            //    return RedirectToAction("SpouseEnrollment", "Family_Info", new { e.User_id, e.MartialStatus });
+            //}
+            //else if (e.MartialStatus == "SinglewDep")
+            //{
+            //    return RedirectToAction("DependentEnrollment", "Family_Info", new { e.User_id, e.MartialStatus });
+            //}
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
 
@@ -117,7 +131,6 @@ namespace Watson.Controllers
             Employee e = db.Employees
                 .Where(i => i.User_id == id)
                 .SingleOrDefault();
-
 
             db.Employees.Add(e);
             db.SaveChanges();

@@ -25,12 +25,12 @@
             <div class="content">
                 @*<form action="/api/Family_Info/SpouseContact" method="post">*@
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Is Mailing Address Same As Spouse?</label>
+                    <label class="col-md-2 control-label">Is Contact information Same As Spouse?</label>
                 <div class="col-md-10">
                     <label class="radio-inline"><input type="radio" id="AddrSame" class="radio-inline" name="MailingAddress" value="true" onclick='SpouseContact()' checked />Yes</label>
                     <label class="radio-inline"><input type="radio" id="AddrNotSame" class="radio-inline" name="MailingAddress" value="false" onclick='SpouseContact()' />No</label>
                 </div>
-                </div>@*if address is same as employee, then populate using emp address....need to call MailingAddress from Employee model. Use Foreach to iterate through Employee collection*@
+                </div>@*if contact info same as employee, then populate using emp contact....need to call MailingAddress from Employee model. Use Foreach to iterate through Employee collection*@
             <div id="divSpouseContact">
                 <div class="form-group">
                     <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
@@ -86,6 +86,7 @@
                         <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="" />
                     </div>
                 </div>
+                @* Employee Contact *@
             <div id="divEmpContact">
                 <div class="form-group">
                     <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
@@ -123,10 +124,28 @@
                         <input type="text" id="County" class="form-control" name="County" value="@Html.DisplayFor(m => Model.Employee.County)" />
                     </div>
                 </div>
+                    <div class="form-group">
+                    <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(m => Model.Employee.EmailAddress)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(m => Model.Employee.PhoneNumber)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="@Html.DisplayFor(m => Model.Employee.CellPhone)" />
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" onclick="return SpouseContact()" class="btn btn-default" />
+                    <input type="submit" value="Save" onclick="SpouseContact()" class="btn btn-primary" />
                 </div>
             </div>
             @*</form>*@
@@ -136,8 +155,8 @@
 
 }
     <div>
-        <input type="submit" onclick="location.href='Family_Info/SpouseEnrollment'" value="Previous" class="btn btn-default" /> |
-        <input type="submit" onclick="location.href='Family_Info/SpouseEmployment'" value="Continue" class="btn btn-default" />
+        <input type="submit" onclick="location.href='Family_Info/SpouseEnrollment'" value="Previous" class= "btn btn-secondary" /> |
+        <input type="submit" onclick="location.href='Family_Info/SpouseEmployment'" value="Continue" class= "btn btn-secondary" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |
@@ -190,7 +209,7 @@
 </style>
 
 <script>
-    //if onclick= SpouseContact() is 'yes', then employee address info will populate....otherwise spouse will need to fill out information
+    //if onclick= SpouseContact() is 'yes', then employee contact info will populate....otherwise spouse will need to fill out information
     function SpouseContact() {
 
         var spouse = document.getElementById('divSpouseContact')

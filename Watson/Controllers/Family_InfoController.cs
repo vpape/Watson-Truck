@@ -94,11 +94,13 @@ namespace Watson.Controllers
                            
                           });
 
-            //Move to Admin Controller
+            //Realtionship Status for Spouse and Dependent Enrollment View isn't working
             //ViewBag.Employee_id = id;
-            //ViewBag.spouseExist = true;
+            //ViewBag.spouseExist = true;            
+            //ViewBag.MartialStatus = MartialStatus;
 
             //Employee employee = db.Employees.Find(id);
+
             //if (employee.MartialStatus == "Single")
             //{
             //    ViewBag.spouseExist = false;
@@ -117,7 +119,7 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SpouseEnrollment(int? id, string MartialStatus)
+        public JsonResult SpouseEnrollment(int? id)
         {
             Family_Info f = db.Family_Infoes
                 .Where(i => i.FamilyMember_id == id)
@@ -128,19 +130,6 @@ namespace Watson.Controllers
 
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
 
-            //Move to Admin Controller
-            //Employee e = db.Employees
-            //    .Where(i => i.User_id == id)
-            //    .SingleOrDefault();
-
-            //ViewBag.Employee_id = id;
-            //ViewBag.MartialStatus = MartialStatus;
-
-
-
-            //Move to Admin Controller
-            //db.Employees.Add(e);
-
         }
 
 
@@ -150,16 +139,6 @@ namespace Watson.Controllers
         //{
         //    return familyMember.Where(i => i.FamilyMember_id == id).FirstOrDefault();
         //}
-
-        //public HttpResponseMessage SpouseEnrollment() {
-
-        //    var path = "~/SpouseEnrollment.html";
-        //    var response = new HttpResponseMessage();
-        //    response.Content = new StringContent(File.ReadAllText(path));
-        //    response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
-        //    return response;
-        //}
-
 
         //POST: api/Family_Info
         //[System.Web.Http.HttpPost]
@@ -184,6 +163,8 @@ namespace Watson.Controllers
                               f.City,
                               f.State,
                               f.ZipCode,
+                              f.County,
+                              f.EmailAddress,
                               f.PhoneNumber,
                               f.CellPhone,
                           });
@@ -203,35 +184,31 @@ namespace Watson.Controllers
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 
+        //----------------------------------------------------------------------------------------
+        //GET: api/Family_Info/5
+        //public Family_Info SpouseContact(int id)
+        //{
+        //    return familyMember.Where(i => i.FamilyMember_id == id).FirstOrDefault();
+        //}
+
+        //POST: api/Family_Info
+        //[System.Web.Http.HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public void SpouseContact([Bind(Include = "")]Family_Info spouseContact)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Family_Infoes.Add(spouseContact);
+        //        db.SaveChanges();
+        //    }
+        //}
+        //----------------------------------------------------------------------------------------
+
         //GET: api/Family_Info/5
         public Family_Info DependentEnrollment(int id)
         {
             return familyMember.Where(i => i.FamilyMember_id == id).FirstOrDefault();
         }
-
-        //public ActionResult DependentEnrollment(int? id, string MartialStatus)
-        //{
-        //    ViewBag.Employee_id = id;
-        //    ViewBag.spouseExist = true;
-
-        //    Employee employee = db.Employees.Find(id);
-
-        //    if (employee.MartialStatus == "Single")
-        //    {
-        //        ViewBag.spouseExist = false;
-        //        ViewBag.RelationshipToInsured = "Single";
-        //    }
-        //    else if (employee.MartialStatus == "SinglewDep")
-        //    {
-        //        ViewBag.RelationshipToInsured = "Spouse";
-        //    }
-        //    else
-        //    {
-        //        ViewBag.RelationshipToInsured = "Dependent";
-        //    }
-
-        //    return ViewBag();
-        //}
 
         //POST: api/Family_Info
         public void DependentEnrollment([Bind(Include = "")] Family_Info createDependent)
@@ -243,12 +220,6 @@ namespace Watson.Controllers
             }
             
         }
-
-
-        //// PUT: api/Family_Info/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
 
         // DELETE: api/Family_Info/5
         public void Delete(int? id)
