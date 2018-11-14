@@ -1,17 +1,322 @@
-﻿@{
-    Layout = null;
+﻿@model Watson.Models.Family_Info
+
+
+@{
+    @ViewBag.Title = "EditSpouse";
 }
 
 <!DOCTYPE html>
 
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <title>Spouse Edit Page</title>
 </head>
 <body>
-    <div>
-    
-    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.FamilyMember_id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-horizontal">
+            <hr />
+            <button class="collapsible"><h4>Spouse Edit</h4></button>
+            <div class="content">
+                @*<form action="/api/Family_Info/EditSpouse" method="post">*@
+                <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+                <input type="hidden" id="MartialStatus" class="form-control" name="MartialStatus" value=@ViewBag.MartialStatus />
+                <div class="form-group" id="divRelationshipToInsured">
+                    <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
+                    <div class="col-md-10">
+                        <select id="RelationToInsured" name="RelationShipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control">
+                            @if (ViewBag.spouseExist == false)
+                            {
+                                <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((Model.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                            }
+                            else
+                            {
+                                <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((Model.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" id="empNumber">
+                    <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
+                    <div class="col-md-10">
+                        <text type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.Employee.SSN)" />
+                    </div>
+                </div>
+                <div class="form-group" id="empName">
+                    <label for="" class="col-md-2 control-label">Employee Name:</label>
+                    <div class="col-md-10">
+                        <text type="text" id="EmployeeFName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.FirstName)" />
+                        <text type="text" id="EmployeeLName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.LastName)" />
+                    </div>
+                </div>
+                <div class="form-group" div="divSpouseInfo">
+                    <label for="FirstName" class="col-md-2 control-label">First Name:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(model => model.FirstName)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(model => model.LastName)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Html.DisplayFor(model => model.DateOfBirth)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Gender:</label>
+                    <div class="col-md-10">
+                        <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" @((Model.Sex == true) ? "checked" : "") />Male</label>
+                        <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" @((Model.Sex == false) ? "checked" : "") />Female</label>
+                    </div>
+                </div>
+
+
+            <div id="divSpouseContact">
+                <h4>Spouse Contact Information</h4>
+                <div class="form-group">
+                    <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(model => model.MailingAddress)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@Html.DisplayFor(model => model.PhysicalAddress)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="City" class="col-md-2 control-label">City:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="City" class="form-control" name="City" value="@Html.DisplayFor(model => model.City)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="State" class="col-md-2 control-label">State:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="State" class="form-control" name="State" value="@Html.DisplayFor(model => model.State)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ZipCode" class="col-md-2 control-label">Zip Code:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(model => model.ZipCode)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ZipCode" class="col-md-2 control-label">County:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(model => model.County)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(model => model.EmailAddress)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(model => model.PhoneNumber)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="@Html.DisplayFor(model => model.CellPhone)" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="divSpouseEmployment">
+                <h4>Spouse Employment</h4>
+                <div class="form-group">
+                    <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="EmployerAddress" class="col-md-2 control-label">Employer Address:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="EmployerAddress" class="form-control" name="EmployerAddress" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="EmployerCity" class="col-md-2 control-label">City:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="EmployerState" class="col-md-2 control-label">State:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="EmployerState" class="form-control" name="EmployerState" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="EmployerZipCode" class="col-md-2 control-label">Zip Code:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="EmployerPhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" value="" />
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" onclick="EditSpouse();" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
+                @*</form>*@
+            </div>
+        </div>
+         
+
+    }
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.FamilyMember_id }) |
+        @Html.ActionLink("Back to Family Enrollment", "FamilyMemberEnrollment")
+    </p>
 </body>
 </html>
+
+
+<script>
+    var col = document.getElementByClassName("collapsible");
+    var i;
+
+    for (var i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            }
+            else
+                content.style.display = "block"
+        });
+    }
+</script>
+
+
+<style>
+    .collapsible {
+        background-color: #333333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+</style>
+
+<script>
+    //function SpouseOrDependent()
+    //{
+    //    var choice = document.getElementById("RelationToInsured").value;
+    //    var spouse = document.getElementById("divSpouseInfo").value;
+    //    var dependent = document.getElementById("divDependentInfo").value;
+
+    //    if (choice == "Spouse")
+    //    {
+    //        spouse.style.display = 'block';
+    //        dependent.style.display = 'none';
+
+    //    }
+    //    else {
+    //        spouse.style.display = 'none';
+    //        dependent.style.display = 'block';
+    //    }
+    //}
+</script>
+
+<script>
+    function EditSpouse() {
+        RelationshipToInsured = document.getElementsByName("RelationshipToInsured").value;
+        EmployeeNumber = document.getElementById("SSN").value;
+        EmpFName = document.getElementById("EmployeeFName").value;
+        EmpLName = document.getElementById("EmployeeLName").value;
+
+        FirstName = document.getElementById("FirstName").value;
+        LastName = document.getElementById("LastName").value;
+        DateOfBirth = document.getElementById("DateOfBirth").value;
+        Gender = document.getElementsByName("Sex").value;
+
+        MailingAddress = document.getElementsByName("MailingAddress").value;
+        PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
+        City = document.getElementById("City").value;
+        State = document.getElementById("State").value;
+        ZipCode = document.getElementById("ZipCode").value;
+        County = document.getElementById("County").value;
+        Email = document.getElementById("EmailAddress").value;
+        PhoneNumber = document.getElementById("PhoneNumber").value;
+        CellPhone = document.getElementById("CellPhone").value;
+
+        postData('/Family_Info/EditSpouse', {
+            RelationshipToInsured: RelationshipToInsured, EmployeeNumber: EmployeeNumber, EmpFName: EmpFName, EmpLName: EmpLName,
+            FirstName: FirstName, LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MailingAddress: MailingAddress,
+            PhyscialAddress: PhyscialAddress, City: City, State: State, ZipCode: ZipCode, County: County, Email: Email,
+            PhoneNumber: PhoneNumber, CellPhone: CellPhone
+        })
+            .then(data => EditSpouse(data))
+            .catch(error => console.error(error))
+    }
+
+    function postData(url, data) {
+        // Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify(data), //
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post',
+            mode: 'cors',
+            redirect: 'follow',
+            referrer: 'no-referrer',
+        })
+        .then(response => response.JSON())
+    }
+
+</script>
+

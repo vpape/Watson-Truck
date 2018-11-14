@@ -354,6 +354,8 @@ namespace Watson.Controllers
                 .Where(i => i.FamilyMember_id == id)
                 .SingleOrDefault();
 
+
+            //db.DeleteEmployeeAndDependents(id);
             db.Family_Infoes.Remove(f);
             db.SaveChanges();
 
