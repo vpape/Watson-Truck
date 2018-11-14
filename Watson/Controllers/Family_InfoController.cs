@@ -52,7 +52,7 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-        //[Route("api/Family_Info/GetFamilyMember/{User_id:int}/{SSN:string}")]
+        //[Route("api/Family_Info/GetFamilyMember/{FamilyMember_id:int}/{SSN:string}")]
         //[HttpGet]
         //public List<string> GetFamilyMembers(int FamilyMember_id)
         //{
@@ -93,6 +93,8 @@ namespace Watson.Controllers
                           select new
                           {
                               f.RelationshipToInsured,
+                              //Employee Number
+                              //Employee Name
                               f.FirstName,
                               f.LastName,
                               f.DateOfBirth,
@@ -253,7 +255,7 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
 
-        // GET: Employee
+        // GET: Family_Info
         public JsonResult EditSpouse()
         {
             var output = (from f in db.Family_Infoes
@@ -265,7 +267,7 @@ namespace Watson.Controllers
             return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Employee/5
+        // GET: Family_Info/5
         public JsonResult EditSpouse(int? id)
         {
             Family_Info f = db.Family_Infoes
@@ -280,7 +282,7 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
         // GET: api/Family_Info/5
-        //[System.Web.Http.Route("api/Family_Info/EditSpouse/{User_id:int}")]
+        //[System.Web.Http.Route("api/Family_Info/EditSpouse/{FamilyMember_id:int}")]
         //[System.Web.Http.HttpGet]
         //public ActionResult Edit(int? id)
         //{        
@@ -325,24 +327,93 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
         //GET: api/Family_Info/5
-        //[System.Web.Http.Route("api/Family_Info/Detail/{User_id:int}")]
+        //[System.Web.Http.Route("api/Family_Info/Detail/{FamilyMember_id:int}")]
         //[System.Web.Http.HttpGet]
         //public Family_Info Detail(int? id)
         //{
-        //    return family_info.Where(e => e.FamilyMember_id == id).FirstOrDefault();
+        //    return family_info.Where(f => f.FamilyMember_id == id).FirstOrDefault();
         //}
         //----------------------------------------------------------------------------------------
 
+        // GET: Family_Info
+        public JsonResult DeleteSpouse()
+        {
+            var output = (from f in db.Family_Infoes
+                          select new
+                          {
 
+                          });
 
-        //----------------------------------------------------------------------------------------
-        // DELETE: api/Family_Info/5
-        //public void Delete(int? id)
+            return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: Family_Info/5
+        public JsonResult DeleteSpouse(int? id)
+        {
+            Family_Info f = db.Family_Infoes
+                .Where(i => i.FamilyMember_id == id)
+                .SingleOrDefault();
+
+            db.Family_Infoes.Remove(f);
+            db.SaveChanges();
+
+            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        //----------------------------------------------------------------------------------------        
+        //DELETE: api/Family_Info/5
+        //[System.Web.Http.Route("api/Family_Info/Delete/{FamilyMember_id:int}")]
+        //[System.Web.Http.HttpGet]
+        //public ActionResult DeleteSpouse(int? id)
         //{
-        //    Family_Info fMember = db.Family_Infoes.Find(id);
+        //    if(id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
 
-        //    db.Family_Infoes.Remove(fMember);
+        //    Family_Info f = db.Family_Infoes.Find(id);
+
+        //    if(familyMember == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    return View(familyMember);
+
+
+        //    db.Family_Infoes.Remove(f);
         //    db.SaveChanges();
+
+        //}
+
+        // POST: api/Family_Info/5
+        //[System.Web.Http.HttpPost, System.Web.Http.ActionName("DeleteSpouse")]
+        //[ValidateAntiForgeryToken]
+        //public void DeleteSpouse(int id)
+        //{
+        //    Family_Info f = db.Family_Infoes.Find(id);
+        //    db.Family_Infoes.Remove(f);
+        //    db.SaveChanges();
+
+        //    db.DeleteEmployeeAndDependents(id);
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
         //}
         //----------------------------------------------------------------------------------------
 
