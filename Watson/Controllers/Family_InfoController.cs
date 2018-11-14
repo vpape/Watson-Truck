@@ -15,7 +15,7 @@ namespace Watson.Controllers
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
         static List<Family_Info> familyMember = new List<Family_Info>();
-       
+
         public Family_InfoController()
         {
             familyMember.Add(new Family_Info { SSN = "0001", FirstName = "Vernon", LastName = "Pape", FamilyMember_id = 1 });
@@ -77,11 +77,17 @@ namespace Watson.Controllers
         //{
         //    return familyMember.Where(f => f.FamilyMember_id == id).FirstOrDefault();
         //}
+
+        // GET: api/Family_Info/5
+        //public void Index(int? id)
+        //{
+        //    Family_Info fMember = db.Family_Infoes.Find(id);
+        //}
         //----------------------------------------------------------------------------------------
 
 
         public JsonResult SpouseEnrollment(int id, string MartialStatus)
-        {         
+        {
 
             var output = (from f in db.Family_Infoes
                           select new
@@ -91,7 +97,7 @@ namespace Watson.Controllers
                               f.LastName,
                               f.DateOfBirth,
                               f.Sex,
-                           
+
                           });
 
             //Realtionship Status for Spouse and Dependent Enrollment View isn't working
@@ -204,61 +210,173 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        //GET: api/Family_Info/5
-        public Family_Info DependentEnrollment(int id)
+
+        public JsonResult SpouseEmployment()
         {
-            return familyMember.Where(i => i.FamilyMember_id == id).FirstOrDefault();
+            var output = (from f in db.Family_Infoes
+                          select new
+                          {
+
+                          });
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult SpouseEmployment(int? id)
+        {
+            Family_Info f = db.Family_Infoes
+                .Where(i => i.FamilyMember_id == id)
+                .SingleOrDefault();
+
+            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+        }
+
+
+        //----------------------------------------------------------------------------------------
+        //GET: api/Family_Info/5
+        //public Family_Info SpouseEmployment(int id)
+        //{
+        //    return familyMember.Where(i => i.FamilyMember_id == id).FirstOrDefault();
+        //}
 
         //POST: api/Family_Info
-        public void DependentEnrollment([Bind(Include = "")] Family_Info createDependent)
+        //[System.Web.Http.HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public void SpouseEmployment([Bind(Include = "")]Family_Info spouseEmployment)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Family_Infoes.Add(spouseEmployment);
+        //        db.SaveChanges();
+        //    }
+        //}
+        //----------------------------------------------------------------------------------------
+
+
+        // GET: Employee
+        public JsonResult EditSpouse()
         {
-            if (ModelState.IsValid)
-            {
-                db.Family_Infoes.Add(createDependent);
-                db.SaveChanges();
-            }
-            
+            var output = (from f in db.Family_Infoes
+                          select new
+                          {
+
+                          });
+
+            return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 
-        // DELETE: api/Family_Info/5
-        public void Delete(int? id)
+        // GET: Employee/5
+        public JsonResult EditSpouse(int? id)
         {
-            Family_Info fMember = db.Family_Infoes.Find(id);
+            Family_Info f = db.Family_Infoes
+                .Where(i => i.FamilyMember_id == id)
+                .SingleOrDefault();
 
-            db.Family_Infoes.Remove(fMember);
+            db.Family_Infoes.Add(f);
             db.SaveChanges();
+
+            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 
+        //----------------------------------------------------------------------------------------
         // GET: api/Family_Info/5
-        public void Index(int? id)
-        {
-            Family_Info fMember = db.Family_Infoes.Find(id);
-        }
+        //[System.Web.Http.Route("api/Family_Info/EditSpouse/{User_id:int}")]
+        //[System.Web.Http.HttpGet]
+        //public ActionResult Edit(int? id)
+        //{        
+        //    Family_Info familyMember = db.Family_Infoes.Find(id);
 
-        // GET: api/Family_Info
-        public void Edit(int? id)
-        {
-            Family_Info fMember = db.Family_Infoes.Find(id);
-        }
-
-
-        public void SpouseEmployment(Family_Info spouseEmployment)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Family_Infoes.Add(spouseEmployment);
-            }
-
-            db.Family_Infoes.Add(spouseEmployment);
-
-            db.SaveChanges();
-        }
+        //    return View(familyMember);
+        //}
 
         // POST: api/Family_Info
-        public void SpouseContact(Family_Info spouseContact)
+        //[System.Web.Http.Route("api/Family_Info/EditSpouse")]
+        //[System.Web.Http.HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult EditSpouse([Bind(Include = "User_id,CurrentEmployer,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
+        //    "Sex,MartialStatus")] Family_Info editSpouse)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(editSpouse).State = System.Data.Entity.EntityState.Modified;
+        //        db.SaveChanges();
+        //    }
+
+        //    return View(editSpouse);
+        //}
+
+        // GET: api/Family_Info
+        //public void Edit(int? id)
+        //{
+        //    Family_Info fMember = db.Family_Infoes.Find(id);
+        //}
+        //----------------------------------------------------------------------------------------
+
+        // GET: Family_Info/5
+        public JsonResult SpouseDetail(int? id)
         {
+            Family_Info f = db.Family_Infoes
+                .Where(i => i.FamilyMember_id == id)
+                .FirstOrDefault();
+
+            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
 
         }
+
+        //----------------------------------------------------------------------------------------
+        //GET: api/Family_Info/5
+        //[System.Web.Http.Route("api/Family_Info/Detail/{User_id:int}")]
+        //[System.Web.Http.HttpGet]
+        //public Family_Info Detail(int? id)
+        //{
+        //    return family_info.Where(e => e.FamilyMember_id == id).FirstOrDefault();
+        //}
+        //----------------------------------------------------------------------------------------
+
+
+
+        //----------------------------------------------------------------------------------------
+        // DELETE: api/Family_Info/5
+        //public void Delete(int? id)
+        //{
+        //    Family_Info fMember = db.Family_Infoes.Find(id);
+
+        //    db.Family_Infoes.Remove(fMember);
+        //    db.SaveChanges();
+        //}
+        //----------------------------------------------------------------------------------------
+
+
+
+
+        //----------------------------------------------------------------------------------------
+        //GET: api/Family_Info/5
+        //public Family_Info DependentEnrollment(int id)
+        //{
+        //    return familyMember.Where(i => i.FamilyMember_id == id).FirstOrDefault();
+        //}
+
+        ////POST: api/Family_Info
+        //public void DependentEnrollment([Bind(Include = "")] Family_Info createDependent)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Family_Infoes.Add(createDependent);
+        //        db.SaveChanges();
+        //    }
+
+        //}
+        //----------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
     }
+
 }
