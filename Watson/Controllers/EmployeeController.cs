@@ -327,74 +327,192 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
 
+        public JsonResult Insurance()
+        {
+            var output = (from e in db.Employees
+                          select new
+                          {
+
+                              
+                          });
+
+            return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult Insurance(int? id)
+        {
+            Employee e = db.Employees
+                .Where(i => i.User_id == id)
+                .SingleOrDefault();
+
+            db.Employees.Add(e);
+            db.SaveChanges();
+
+            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+
+        }
 
 
-        //Stopping point        
+
 
         //----------------------------------------------------------------------------------------
         //GET: api/Employee/5
-        [System.Web.Http.Route("api/Employee/Insurance/{User_id:int}")]
-        [System.Web.Http.HttpGet]
-        public Employee Insurance(int? id)
+        //[System.Web.Http.Route("api/Employee/Insurance/{User_id:int}")]
+        //[System.Web.Http.HttpGet]
+        //public Employee Insurance(int? id)
+        //{
+        //    return employee.Where(e => e.User_id == id).FirstOrDefault();
+        //}
+
+        // POST: api/Employee
+        //[System.Web.Http.Route("api/Employee/Insurance")]
+        //[System.Web.Http.HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Insurance([Bind(Include = "User_id,CurrentEmployer,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
+        //    "Sex,MartialStatus")] Employee employee)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+        //        db.SaveChanges();
+        //    }
+
+        //    return View(employee);
+        //}
+        //----------------------------------------------------------------------------------------
+
+        // GET: Employee
+        public JsonResult EditGroupHealth()
         {
-            return employee.Where(e => e.User_id == id).FirstOrDefault();
+            var output = (from e in db.Employees
+                          select new
+                          {
+                              e.User_id,
+                              e.CurrentEmployer,
+                              e.SSN,
+                              e.FirstName,
+                              e.LastName,
+                              e.DateOfBirth,
+                              e.Sex,
+                              e.MartialStatus,
+                          });
+
+            return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 
+        // GET: Employee/5
+        public JsonResult EditGroupHealth(int? id)
+        {
+            Employee e = db.Employees
+                .Where(i => i.User_id == id)
+                .SingleOrDefault();
+
+            db.Employees.Add(e);
+            db.SaveChanges();
+
+            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        //----------------------------------------------------------------------------------------
+        // GET: api/Employee/5
+        //[System.Web.Http.Route("api/Employee/EditGroupHealth/{User_id:int}")]
+        //[System.Web.Http.HttpGet]
+        //public ActionResult EditGroupHealth(int? id)
+        //{        
+        //    Employee employee = db.Employees.Find(id);
+
+        //    return View(employee);
+        //}
+
+        // POST: api/Employee
+        //[System.Web.Http.Route("api/Employee/EditGroupHealth")]
+        //[System.Web.Http.HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult EditGroupHealth([Bind(Include = "User_id,CurrentEmployer,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
+        //    "Sex,MartialStatus")] Employee employee)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+        //        db.SaveChanges();
+        //    }
+
+        //    return View(employee);
+        //}
+        //----------------------------------------------------------------------------------------
+
+
+        // GET: Employee
+        public JsonResult EditLifeInsurance()
+        {
+            var output = (from e in db.Employees
+                          select new
+                          {
+                              e.User_id,
+                              e.CurrentEmployer,
+                              e.SSN,
+                              e.FirstName,
+                              e.LastName,
+                              e.DateOfBirth,
+                              e.Sex,
+                              e.MartialStatus,
+                          });
+
+            return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: Employee/5
+        public JsonResult EditLifeInsurance(int? id)
+        {
+            Employee e = db.Employees
+                .Where(i => i.User_id == id)
+                .SingleOrDefault();
+
+            db.Employees.Add(e);
+            db.SaveChanges();
+
+            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        //----------------------------------------------------------------------------------------
         //GET: api/Employee/5
-        [System.Web.Http.Route("api/Employee/EditGroupHealth/{User_id:int}")]
-        [System.Web.Http.HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditGroupHealth(int? id)
-        {
-            Employee employee = db.Employees.Find(id);
+        // [System.Web.Http.Route("api/Employee/EditLifeInsurance/{User_id:int}")]
+        // [System.Web.Http.HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public ActionResult EditLifeInsurance(int? id)
+        // {
+        //     Employee employee = db.Employees.Find(id);
 
-            return View(employee);
+        //     return View(employee);
 
-        }
+        // }
 
-       //POST: api/Employee
-       [System.Web.Http.Route("api/Employee/EditGroupHealth")]
-       [System.Web.Http.HttpPost]
-       [ValidateAntiForgeryToken]
-        public ActionResult EditGroupHealth([Bind(Include = " " +
-            " ")] Employee employee)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-            }
+        // //POST: api/Employee
+        //[System.Web.Http.Route("api/Employee/EditLifeInsurance")]
+        //[System.Web.Http.HttpPost]
+        //[ValidateAntiForgeryToken]
+        // public ActionResult EditLifeInsurance([Bind(Include = " " +
+        //     " ")] Employee employee)
+        // {
+        //     if (ModelState.IsValid)
+        //     {
+        //         db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+        //         db.SaveChanges();
+        //     }
 
-            return View(employee);
-        }
+        //     return View(employee);
+        // }
+        //----------------------------------------------------------------------------------------
 
-        //GET: api/Employee/5
-        [System.Web.Http.Route("api/Employee/EditLifeInsurance/{User_id:int}")]
-        [System.Web.Http.HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditLifeInsurance(int? id)
-        {
-            Employee employee = db.Employees.Find(id);
 
-            return View(employee);
 
-        }
 
-        //POST: api/Employee
-       [System.Web.Http.Route("api/Employee/EditLifeInsurance")]
-       [System.Web.Http.HttpPost]
-       [ValidateAntiForgeryToken]
-        public ActionResult EditLifeInsurance([Bind(Include = " " +
-            " ")] Employee employee)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-            }
 
-            return View(employee);
-        }
 
         //----------------------------------------------------------------------------------------
         // DELETE: api/Employee/5
