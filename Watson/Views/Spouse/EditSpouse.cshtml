@@ -22,7 +22,7 @@
 
         <div class="form-horizontal">
             <hr />
-            <button class="collapsible"><h4>Spouse Edit</h4></button>
+            <button class="collapsible"><h4>Edit Spouse Information</h4></button>
             <div class="content">
                 @*<form action="/api/Family_Info/EditSpouse" method="post">*@
                 <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
@@ -45,14 +45,14 @@
                 <div class="form-group" id="empNumber">
                     <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
                     <div class="col-md-10">
-                        <text type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.Employee.SSN)" />
+                        <text type="text"  id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.Employee.SSN)" disabled />
                     </div>
                 </div>
                 <div class="form-group" id="empName">
                     <label for="" class="col-md-2 control-label">Employee Name:</label>
                     <div class="col-md-10">
-                        <text type="text" id="EmployeeFName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.FirstName)" />
-                        <text type="text" id="EmployeeLName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.LastName)" />
+                        <text type="text" id="EmployeeFName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.FirstName)" disabled />
+                        <text type="text" id="EmployeeLName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.LastName)" disabled />
                     </div>
                 </div>
                 <div class="form-group" div="divSpouseInfo">
@@ -143,39 +143,39 @@
             <div id="divSpouseEmployment">
                 <h4>Spouse Employment</h4>
                 <div class="form-group">
-                    <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
+                    <label for="Employer" class="col-md-2 control-label">Current Employer:</label>
                     <div class="col-md-10">
-                        <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="" />
+                        <input type="text" id="Employer" class="form-control" name="Employer" value="@Html.DisplayFor(model => model.Employer)" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="EmployerAddress" class="col-md-2 control-label">Employer Address:</label>
+                    <label for="EmployerMailingAddress" class="col-md-2 control-label">Employer Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="EmployerAddress" class="form-control" name="EmployerAddress" value="" />
+                        <input type="text" id="EmployerMailingAddress" class="form-control" name="EmployerMailingAddress" value="@Html.DisplayFor(model => model.EmployerMailingAddress)" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="EmployerCity" class="col-md-2 control-label">City:</label>
                     <div class="col-md-10">
-                        <input type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="" />
+                        <input type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="@Html.DisplayFor(model => model.EmployerCity)" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="EmployerState" class="col-md-2 control-label">State:</label>
                     <div class="col-md-10">
-                        <input type="text" id="EmployerState" class="form-control" name="EmployerState" value="" />
+                        <input type="text" id="EmployerState" class="form-control" name="EmployerState" value="@Html.DisplayFor(model => model.EmployerState)" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="EmployerZipCode" class="col-md-2 control-label">Zip Code:</label>
                     <div class="col-md-10">
-                        <input type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="" />
+                        <input type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="@Html.DisplayFor(model => model.EmployerZipCode)" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="EmployerPhoneNumber" class="col-md-2 control-label">Phone Number:</label>
                     <div class="col-md-10">
-                        <input type="text" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" value="" />
+                        <input type="text" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" value="@Html.DisplayFor(model => model.EmployerPhoneNumber)" />
                     </div>
                 </div>
             </div>
@@ -187,7 +187,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" onclick="EditSpouse();" value="Save" class="btn btn-primary" />
+                        <input type="submit" onclick="EditSpouse()" value="Save" class="btn btn-primary" />
                     </div>
                 </div>
                 @*</form>*@
@@ -272,8 +272,8 @@
     function EditSpouse() {
         RelationshipToInsured = document.getElementsByName("RelationshipToInsured").value;
         EmployeeNumber = document.getElementById("SSN").value;
-        EmpFName = document.getElementById("EmployeeFName").value;
-        EmpLName = document.getElementById("EmployeeLName").value;
+        EmployeeFName = document.getElementById("EmployeeFName").value;
+        EmployeeLName = document.getElementById("EmployeeLName").value;
 
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
@@ -286,15 +286,23 @@
         State = document.getElementById("State").value;
         ZipCode = document.getElementById("ZipCode").value;
         County = document.getElementById("County").value;
-        Email = document.getElementById("EmailAddress").value;
+        EmailAddress = document.getElementById("EmailAddress").value;
         PhoneNumber = document.getElementById("PhoneNumber").value;
         CellPhone = document.getElementById("CellPhone").value;
 
+        Employer = document.getElementById("Employer").value;
+        EmployerMailingAddress = document.getElementById("EmployerMailingAddress").value;
+        EmployerCity = document.getElementById("EmployerCity").value;
+        EmployerState = document.getElementById("EmployerState").value;
+        EmployerZipCode = document.getElementById("EmployerZipCode").value;
+        EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber");
+
         postData('/Family_Info/EditSpouse', {
-            RelationshipToInsured: RelationshipToInsured, EmployeeNumber: EmployeeNumber, EmpFName: EmpFName, EmpLName: EmpLName,
+            RelationshipToInsured: RelationshipToInsured, EmployeeNumber: EmployeeNumber, EmployeeFName: EmployeeFName, EmployeeLName: EmployeeLName,
             FirstName: FirstName, LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MailingAddress: MailingAddress,
-            PhyscialAddress: PhyscialAddress, City: City, State: State, ZipCode: ZipCode, County: County, Email: Email,
-            PhoneNumber: PhoneNumber, CellPhone: CellPhone
+            PhyscialAddress: PhyscialAddress, City: City, State: State, ZipCode: ZipCode, County: County, EmailAddress: EmailAddress,
+            PhoneNumber: PhoneNumber, CellPhone: CellPhone, Employer: Employer, EmployerMailingAddress: EmployerMailingAddress,
+            EmployerCity: EmployerCity, EmployerState: EmployerState, EmployerZipCode: EmployerZipCode, EmployerPhoneNumber: EmployerPhoneNumber
         })
             .then(data => EditSpouse(data))
             .catch(error => console.error(error))
