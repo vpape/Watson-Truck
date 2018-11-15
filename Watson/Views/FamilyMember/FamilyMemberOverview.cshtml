@@ -1,16 +1,16 @@
 ﻿@model List<Watson.Models.Family_Info>
 
 @{
-    ViewBag.Title = "SpouseAndDependentOverview";
+    ViewBag.Title = "FamilyMemberOverview";
 }
 
-<h2>Spouse and Dependent Overview</h2>
+<h2>Family Member Overview</h2>
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Spouse and Dependent Overview</title>
+    <title>Family Member Overview</title>
 </head>
 <body>
     @*Create a column for a dynmaic button using image mapping?? to call SpouseAndDependentOverview)*@
@@ -51,10 +51,10 @@
                     @Html.DisplayFor(modelItem => item.Employee.LastName)
                 </td>
                 <td>
-                    @*@Html.ActionLink("Edit", "EditSpouse", "Family_Info", new { id = item.FamilyMember_id }) |
-                    @Html.ActionLink("Edit", "EditDependent", "Family_Info", new { id = item.FamilyMember_id }) |*@
+                    @Html.ActionLink("Edit", "EditSpouse", "Family_Info", new { id = item.FamilyMember_id }) |
+                    @Html.ActionLink("Edit", "EditDependent", "Family_Info", new { id = item.FamilyMember_id }) |                   
                     @Html.ActionLink("Detail", "SpouseDetail", "Family_Info", new { id = item.FamilyMember_id }) |
-                    @Html.ActionLink("Edit", "DependentDetail", "Family_Info", new { id = item.FamilyMember_id }) |
+                    @Html.ActionLink("Detail", "DependentDetail", "Family_Info", new { id = item.FamilyMember_id }) |
                     @*@Html.ActionLink("Delete", "DeleteSpouse", "Family_Info", new { id = item.FamilyMember_id })
                     @Html.ActionLink("Delete", "DeleteDependent", "Family_Info", new { id = item.FamilyMember_id })*@
                 </td>
@@ -62,9 +62,11 @@
         }
 
         </table>
-        <div>
-            <input type="button" onclick="location.href='Family_Info/DependentEnrollment'" value="Add Dependent" class="btn btn-default" />
-        </div>
+    <div>@*Have button display based on martial status (ie....if employee is single during employment and gets married at a later date and will need to add spouse to insurance plan)
+             (or if they need to add dependent because they just had a baby*@
+        <input type="button" onclick="location.href='Family_Info/SpouseEnrollment'" value="Add Spouse" class="btn btn-primary" />
+        <input type="button" onclick="location.href='Family_Info/DependentEnrollment'" value="Add Dependent" class="btn btn-primary" />
+    </div>
     </body>
 </html>
 

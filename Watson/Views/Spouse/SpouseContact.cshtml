@@ -215,7 +215,7 @@
         var spouse = document.getElementById('divSpouseContact')
         var employee = document.getElementById('divEmpContact')
 
-        //div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
+        div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
 
         if (spouse.value == "yes") {
 
@@ -261,11 +261,11 @@
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
-            method: 'Get', //*GET, POST, PUT, DELETE, etc...
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
             mode: 'cors', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer
         })
-            .then(Response => Response.json()) //parses response to JSON
+            .then(response => response.JSON()) //parses response to JSON
     }
 </script>
