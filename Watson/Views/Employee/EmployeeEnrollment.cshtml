@@ -96,8 +96,8 @@
 
     }
     <div>
-        <input type="button" onclick="location.href='Employee/EnrollmentSelection'" value="Previous" class="btn btn-outline-secondary" /> |
-        <input type="button" onclick="location.href='Employee/Contact'" @*onclick="location.href='api/Employee/Contact'"*@ value="Continue" class="btn btn-outline-secondary" />
+        <button onclick="location.href='Employee/EnrollmentSelection'" value="Previous" class="previous" /> |
+        <button onclick="location.href='Employee/Contact'" @*onclick="location.href='api/Employee/Contact'"*@  value="Next" class="next" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
@@ -146,6 +146,27 @@
         display: none;
         overflow: hidden;
         background-color: #f1f1f1;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+    a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .previous {
+        background-color: #f1f1f1;
+        color: black;
+    }
+
+    .next {
+        background-color: #2e4593;
+        color: white;
     }
 </style>
 
