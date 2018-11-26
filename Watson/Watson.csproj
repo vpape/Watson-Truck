@@ -417,6 +417,9 @@
     <Content Include="Views\LifeInsurance\DeleteLifeInsurance.cshtml" />
     <Content Include="Views\FamilyMember\FamilyMemberOverview.cshtml" />
     <Content Include="Views\Employee\EmployeeInsurance.cshtml" />
+    <Content Include="Views\GroupHealthInsurance\HealthInsurancePremiums.cshtml" />
+    <Content Include="Views\GroupHealthInsurance\HealthInsuranceSupplement.cshtml" />
+    <Content Include="Views\GroupHealthInsurance\SalarayRedirectionAgreement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
