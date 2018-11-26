@@ -28,46 +28,48 @@
 
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                <a href="#" onclick="Insurance()" class="next round">&#8250;</a>   @* Character map for Insurance(create a collaspible button for Life and Group Health to view onclick) *@
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FamilyMember_id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RelationshipToInsured)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.SSN)
-            </td>
-                <td>                   
-                @Html.DisplayFor(modelItem => item.Employee.LastName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditSpouse", "Family_Info", new { id = item.FamilyMember_id }) |
-                @Html.ActionLink("Edit", "EditDependent", "Family_Info", new { id = item.FamilyMember_id }) |                   
-                @Html.ActionLink("Detail", "SpouseDetail", "Family_Info", new { id = item.FamilyMember_id }) |
-                @Html.ActionLink("Detail", "DependentDetail", "Family_Info", new { id = item.FamilyMember_id }) |
-                @*@Html.ActionLink("Delete", "DeleteSpouse", "Family_Info", new { id = item.FamilyMember_id })
-                @Html.ActionLink("Delete", "DeleteDependent", "Family_Info", new { id = item.FamilyMember_id })*@
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    <a href="#" onclick="EmployeeInsurance()" class="next round">&#8250;</a>   @* Character map for Insurance(create a collaspible button for Life and Group Health to view onclick) *@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FamilyMember_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RelationshipToInsured)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.SSN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.LastName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit Spouse", "EditSpouse", "Family_Info", new { id = item.FamilyMember_id }) |
+                    @Html.ActionLink("Edit Dependent", "EditDependent", "Family_Info", new { id = item.FamilyMember_id }) |
+                    @Html.ActionLink("Detail Spouse", "SpouseDetail", "Family_Info", new { id = item.FamilyMember_id }) |
+                    @Html.ActionLink("Detail Dependent", "DependentDetail", "Family_Info", new { id = item.FamilyMember_id }) |
+                </td>
+            </tr>
         }
 
-        </table>
-    <div>@*Have button display based on martial status (ie....if employee is single during employment and gets married at a later date and will need to add spouse to insurance plan)
-             (or if they need to add dependent because they just had a baby*@
+    </table>
+    <div>
+        @*Have button display based on martial status (ie....if employee is single during employment and gets married at a later date, will need to add spouse to insurance plan)
+            (or if they need to add dependent because they just had a baby*@
         <input type="button" onclick="SpouseEnrollment()" value="Add Spouse" class="btn btn-primary" />
         <input type="button" onclick="DependentEnrollemnt()" value="Add Dependent" class="btn btn-primary" />
     </div>
-    </body>
+    <p>
+        @Html.ActionLink("Back to HomePage", "EmployeeOverview")
+    </p>
+</body>
 </html>
 
 <style>
@@ -91,10 +93,10 @@
         padding: 8px 16px;
     }
 
-    a:hover {
-        background-color: #ddd;
-        color: black;
-    }
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
 
     .next {
         background-color: #2e4593;

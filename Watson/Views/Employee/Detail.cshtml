@@ -70,6 +70,8 @@
                     <label for="Sex" class="col-md-2 control-label">Gender:</label>
                 </dt>
                 <dd class="col-md-10">
+                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Sex" value="true" @((Model.Sex == true) ? "checked" : "") />Male</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Sex" value="false" @((Model.Sex == false) ? "checked" : "") />Female</label>
                     @Html.DisplayFor(model => model.Sex)
                 </dd>
 
@@ -162,12 +164,9 @@
                     <label for="CityLimits" class="col-md-2 control-label">Within City Limits?</label>
                 </dt>
                 <dd class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" @Html.DisplayFor(model => model.CityLimits) checked />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" @Html.DisplayFor(model => model.CityLimits) />No</label>
+                    <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" @((Model.CityLimits == true) ? "checked" : "") />Yes</label>
+                    <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="false" @((Model.CityLimits == false) ? "checked" : "") />No</label>
                 </dd>
-
-                
-                    
 
                 <dt>
                     <label for="EmailAddress" class="col-md-2 control-label">Email:</label>

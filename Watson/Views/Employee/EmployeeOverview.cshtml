@@ -1,5 +1,6 @@
 ﻿@model List<Watson.Models.Employee>
 
+
 @{
     ViewBag.Title = "EmployeeOverview";
 }
@@ -61,7 +62,7 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", "Employee", new { id = item.User_id }) |
                     @Html.ActionLink("Detail", "Detail", "Employee", new { id = item.User_id }) |
-                    @Html.ActionLink("Insurance", "Insurance", "Employee", new { id = item.User_id }) |
+                    @Html.ActionLink("Insurance", "EmployeeInsurance", "Employee", new { id = item.User_id }) |
                     @Html.ActionLink("Delete", "Delete", "Employee", new { id = item.User_id })
                 </td>
             </tr>
@@ -101,7 +102,7 @@
     }
 
     .next {
-        background-color: #2e4593;
+        background-color: #2d499c;
         color: white;
     }
 </style>

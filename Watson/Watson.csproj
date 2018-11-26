@@ -407,7 +407,6 @@
     <Content Include="Views\Spouse\SpouseDetail.cshtml" />
     <Content Include="Views\FamilyMember\FamilyMemberEnrollment.cshtml" />
     <Content Include="Views\Employee\EnrollmentSelection.cshtml" />
-    <Content Include="Views\Employee\Insurance.cshtml" />
     <Content Include="Views\GroupHealthInsurance\GroupHealthEnrollment.cshtml" />
     <Content Include="Views\GroupHealthInsurance\EditGroupHealthInsurance.cshtml" />
     <Content Include="Views\LifeInsurance\LifeInsuranceEnrollment.cshtml" />
@@ -417,6 +416,7 @@
     <Content Include="Views\LifeInsurance\LifeInsuranceDetail.cshtml" />
     <Content Include="Views\LifeInsurance\DeleteLifeInsurance.cshtml" />
     <Content Include="Views\FamilyMember\FamilyMemberOverview.cshtml" />
+    <Content Include="Views\Employee\EmployeeInsurance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
