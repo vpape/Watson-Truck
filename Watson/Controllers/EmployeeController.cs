@@ -24,7 +24,6 @@ namespace Watson.Controllers
             employee.Add(new Employee { SSN = "0003", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "HR Manager", User_id = 3 });
         }
 
-        //GET: Employee
         public JsonResult EmployeeOverview()
         {
             var output = (from e in db.Employees
@@ -45,7 +44,6 @@ namespace Watson.Controllers
 
         }
 
-        //GET: Employee/5
         public JsonResult EmployeeOverview(int id)
         {
             Employee e = db.Employees
@@ -88,8 +86,6 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-
-        // GET: Employee
         //Database column "MartialStatus" is spelled incorrectly...need to fix
         public JsonResult EmployeeEnrollment()
         {
@@ -125,7 +121,6 @@ namespace Watson.Controllers
 
         }
         
-        //GET: Employee/5
         public JsonResult EmployeeEnrollment(int id)
         {
             Employee e = db.Employees
@@ -180,8 +175,6 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-
-        // GET: Employee
         public JsonResult Contact()
         {
             var output = (from e in db.Employees
@@ -203,7 +196,6 @@ namespace Watson.Controllers
                           
         }
 
-        // GET: Employee/5
         public JsonResult Contact(int id)
         {
             Employee e = db.Employees
@@ -245,7 +237,6 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        // GET: Employee
         public JsonResult Edit()
         {
             var output = (from e in db.Employees
@@ -264,7 +255,6 @@ namespace Watson.Controllers
             return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Employee/5
         public JsonResult Edit(int? id)
         {
             Employee e = db.Employees
@@ -305,7 +295,6 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        // GET: Employee/5
         public JsonResult Detail(int? id)
         {
             Employee e = db.Employees
@@ -315,6 +304,19 @@ namespace Watson.Controllers
             return Json(new { data = "success" }, "application/Javascript", JsonRequestBehavior.AllowGet);
         }
 
+        //public ActionResult Detail(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Employee e = db.Employees.Find(id);
+        //    if (e == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(e);
+        //}
 
         //----------------------------------------------------------------------------------------
         //GET: api/Employee/5
@@ -326,8 +328,7 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-
-        public JsonResult Insurance()
+        public JsonResult EmployeeInsurance()
         {
             var output = (from e in db.Employees
                           select new
@@ -340,7 +341,7 @@ namespace Watson.Controllers
 
         }
 
-        public JsonResult Insurance(int? id)
+        public JsonResult EmployeeInsurance(int? id)
         {
             Employee e = db.Employees
                 .Where(i => i.User_id == id)
@@ -352,9 +353,6 @@ namespace Watson.Controllers
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
 
         }
-
-
-
 
         //----------------------------------------------------------------------------------------
         //GET: api/Employee/5
@@ -382,70 +380,26 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        // GET: Employee
-        public JsonResult EditGroupHealth()
+        public JsonResult LifeInsuranceEnrollemnt()
         {
             var output = (from e in db.Employees
                           select new
                           {
-                              e.User_id,
-                              e.CurrentEmployer,
-                              e.SSN,
-                              e.FirstName,
-                              e.LastName,
-                              e.DateOfBirth,
-                              e.Sex,
-                              e.MartialStatus,
+                              e.User_id
                           });
 
             return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Employee/5
-        public JsonResult EditGroupHealth(int? id)
+        public JsonResult LifeInsuranceEnrollment(int? id)
         {
             Employee e = db.Employees
                 .Where(i => i.User_id == id)
                 .SingleOrDefault();
 
-            db.Employees.Add(e);
-            db.SaveChanges();
-
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 
-
-
-        //----------------------------------------------------------------------------------------
-        // GET: api/Employee/5
-        //[System.Web.Http.Route("api/Employee/EditGroupHealth/{User_id:int}")]
-        //[System.Web.Http.HttpGet]
-        //public ActionResult EditGroupHealth(int? id)
-        //{        
-        //    Employee employee = db.Employees.Find(id);
-
-        //    return View(employee);
-        //}
-
-        // POST: api/Employee
-        //[System.Web.Http.Route("api/Employee/EditGroupHealth")]
-        //[System.Web.Http.HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult EditGroupHealth([Bind(Include = "User_id,CurrentEmployer,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
-        //    "Sex,MartialStatus")] Employee employee)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
-        //        db.SaveChanges();
-        //    }
-
-        //    return View(employee);
-        //}
-        //----------------------------------------------------------------------------------------
-
-
-        // GET: Employee
         public JsonResult EditLifeInsurance()
         {
             var output = (from e in db.Employees
@@ -464,7 +418,6 @@ namespace Watson.Controllers
             return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Employee/5
         public JsonResult EditLifeInsurance(int? id)
         {
             Employee e = db.Employees
@@ -476,8 +429,6 @@ namespace Watson.Controllers
 
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
-
-
 
         //----------------------------------------------------------------------------------------
         //GET: api/Employee/5
@@ -527,7 +478,8 @@ namespace Watson.Controllers
            
         }
 
-        // POST: api/Employee/5
+
+        // DELETE: api/Employee/5
         [System.Web.Http.HttpPost, System.Web.Http.ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public void Delete(int id)

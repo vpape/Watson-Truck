@@ -266,15 +266,15 @@
         ZipCode = document.getElementById("ZipCode").value;
         County = document.getElementById("County").value;
         CityLimits = document.getElementsByName("CityLimits").value;
-        Email = document.getElementById("EmailAddress").value;
-        Phone = document.getElementById("PhoneNumber").value;
-        Cell = document.getElementById("CellPhone").value;
+        EmailAddress = document.getElementById("EmailAddress").value;
+        PhoneNumber = document.getElementById("PhoneNumber").value;
+        CellPhone = document.getElementById("CellPhone").value;
 
         postData('/Employee/Detail', {
             CurrentEmployer: CurrentEmployer, JobTitle: JobTitle, EmployeeNumber: EmployeeNumber, FirstName: FirstName,
             LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MartialStatus: MartialStatus,
             MailingAddress: MailingAddress, PhyscialAddress: PhyscialAddress, City: City, State: State,
-            ZipCode: ZipCode, CityLimits: CityLimits, Email: Email, Phone: Phone, Cell: Cell
+            ZipCode: ZipCode, CityLimits: CityLimits, EmailAddress: EmailAddress, PhoneNumber: PhoneNumber, CellPhone: CellPhone
         })
             .then(data => Detail(data))
             .catch(error => console.error(error))

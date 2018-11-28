@@ -408,7 +408,7 @@
     <Content Include="Views\FamilyMember\FamilyMemberEnrollment.cshtml" />
     <Content Include="Views\Employee\EnrollmentSelection.cshtml" />
     <Content Include="Views\GroupHealthInsurance\GroupHealthEnrollment.cshtml" />
-    <Content Include="Views\GroupHealthInsurance\EditGroupHealthInsurance.cshtml" />
+    <Content Include="Views\GroupHealthInsurance\EditGroupHealth.cshtml" />
     <Content Include="Views\LifeInsurance\LifeInsuranceEnrollment.cshtml" />
     <Content Include="Views\LifeInsurance\EditLifeInsurance.cshtml" />
     <Content Include="Views\GroupHealthInsurance\GroupHealthDetail.cshtml" />
