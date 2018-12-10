@@ -25,18 +25,21 @@ namespace Watson.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Beneficiary> Beneficiaries { get; set; }
+        public virtual DbSet<BeneficiaryType> BeneficiaryTypes { get; set; }
+        public virtual DbSet<Deduction> Deductions { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<Family_Info> Family_Infoes { get; set; }
-        public virtual DbSet<Group_Health> Group_Healths { get; set; }
-        public virtual DbSet<Life_Insurance> Life_Insurances { get; set; }
-        public virtual DbSet<Other_Insurance> Other_Insurances { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Family_Info> Family_Info { get; set; }
+        public virtual DbSet<Group_Health> Group_Health { get; set; }
+        public virtual DbSet<InsurancePlan> InsurancePlans { get; set; }
+        public virtual DbSet<InsurancePlanDetail> InsurancePlanDetails { get; set; }
+        public virtual DbSet<InsurancePremium> InsurancePremiums { get; set; }
+        public virtual DbSet<Life_Insurance> Life_Insurance { get; set; }
+        public virtual DbSet<Other_Insurance> Other_Insurance { get; set; }
         public virtual DbSet<Vacation> Vacations { get; set; }
     }
 }

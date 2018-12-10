@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using Watson.Models;
 
+
 //ask if i need admin and employee model since i created 
 //two separate controllers or can i just use one model- employee
 
@@ -24,9 +25,9 @@ namespace Watson.Controllers
 
         public AdminController()
         {
-            employee.Add(new Employee { SSN = "0001", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "Admin", JobTitle = "Analyst", User_id = 1 });
-            employee.Add(new Employee { SSN = "0002", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "Admin", JobTitle = "HR Manager", User_id = 2 });
-            employee.Add(new Employee { SSN = "0003", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "HR Manager", User_id = 3 });
+            employee.Add(new Employee { SSN = "0001", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "Admin", JobTitle = "Analyst", Employee_id = 1 });
+            employee.Add(new Employee { SSN = "0002", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "Admin", JobTitle = "HR Manager", Employee_id = 2 });
+            employee.Add(new Employee { SSN = "0003", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "HR Manager", Employee_id = 3 });
         }
 
         /// <summary>
@@ -37,7 +38,7 @@ namespace Watson.Controllers
         /// <returns>A list of employees Emp#, FN, LN, EmpRole, & JobTitle</returns>
         [System.Web.Http.Route("api/Employee/GetEmployees/{User_id:int}/{SSN:string}")]
         [System.Web.Http.HttpGet]
-        public List<string> GetEmployees(int User_id, string SSN)
+        public List<string> GetEmployees(int Employee_id, string SSN)
         {
             List<string> output = new List<string>();
 
@@ -87,7 +88,7 @@ namespace Watson.Controllers
         // GET: api/Employee/5
         public Employee EmployeeOverview(int id)
         {
-            return employee.Where(e => e.User_id == id).FirstOrDefault();
+            return employee.Where(e => e.Employee_id == id).FirstOrDefault();
         }
 
         //public JsonResult EmployeeOverview(int id)
@@ -110,14 +111,14 @@ namespace Watson.Controllers
         //GET: api/Employee/5
         public Employee CreateEmployee(int id)
         {
-            return employee.Where(e => e.User_id == id).FirstOrDefault();
+            return employee.Where(e => e.Employee_id == id).FirstOrDefault();
         }
 
         // POST: api/Employee
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
-        public void CreateEmployee([Bind(Include = "User_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
-            "Sex,MartialStatus,JobTitle,HireDate,EffectiveDate,ElgibilityDate,AnnualSalary,HoursWorkedPerWeek")] Employee employee)
+        public void CreateEmployee([Bind(Include = "Employee_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
+            "Sex,MaritalStatus,JobTitle,HireDate,EffectiveDate,ElgibilityDate,AnnualSalary,HoursWorkedPerWeek")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -157,7 +158,7 @@ namespace Watson.Controllers
         //GET: api/Employee/5
         public Employee EmployeeDetail(int id)
         {
-            return employee.Where(e => e.User_id == id).FirstOrDefault();
+            return employee.Where(e => e.Employee_id == id).FirstOrDefault();
         }
 
 
@@ -176,7 +177,7 @@ namespace Watson.Controllers
         // POST: api/Employee/5
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
-        public void EmployeeContact([Bind(Include = "User_id,MailingAddress,PhysicalAddress,City,State,ZipCode,County,CityLimits,EmailAddress,PhoneNumber," +
+        public void EmployeeContact([Bind(Include = "Employee_id,MailingAddress,PhysicalAddress,City,State,ZipCode,County,CityLimits,EmailAddress,PhoneNumber," +
             "CellPhone")] Employee contact)
         {
             if (ModelState.IsValid)
@@ -198,8 +199,8 @@ namespace Watson.Controllers
         // POST: api/Employee/5
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
-        public void EditEmployee([Bind(Include = "User_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
-            "Sex,MartialStatus,JobTitle,HireDate,EffectiveDate,ElgibilityDate,AnnualSalary,HoursWorkedPerWeek,MailingAddress,PhysicalAddress," +
+        public void EditEmployee([Bind(Include = "Employee_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
+            "Sex,MaritalStatus,JobTitle,HireDate,EffectiveDate,ElgibilityDate,AnnualSalary,HoursWorkedPerWeek,MailingAddress,PhysicalAddress," +
             "City,State,ZipCode,County,CityLimits,EmailAddress,PhoneNumber,CellPhone")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -212,15 +213,15 @@ namespace Watson.Controllers
         // GET: api/FamilyMember/5
         public void EditSpouse(int? id)
         {
-            Family_Info fmember = db.Family_Infoes.Find(id);
+            Family_Info fmember = db.Family_Info.Find(id);
 
         }
 
         // POST: api/FamilyMember/5
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
-        public void EditSpouse([Bind(Include = "User_id,FamilyMember_id,CurrentEmployer,EmployerAddress,EmployerCity,EmployerState,EmployerZipCode,EmployerPhoneNumber," +
-            "EmployeeName,RelationShipToInsured,FirstName,MiddleName,LastName,DateOfBirth,Sex,MartialStatus,MailingAddress,PhysicalAddress,City,State,ZipCode," +
+        public void EditSpouse([Bind(Include = "Employee_id,FamilyMember_id,CurrentEmployer,EmployerAddress,EmployerCity,EmployerState,EmployerZipCode,EmployerPhoneNumber," +
+            "EmployeeName,RelationShipToInsured,FirstName,MiddleName,LastName,DateOfBirth,Sex,MaritalStatus,MailingAddress,PhysicalAddress,City,State,ZipCode," +
             "County,CityLimits,EmailAddress,PhoneNumber,CellPhone")] Family_Info fmember)
         {
             if (ModelState.IsValid)
@@ -233,14 +234,14 @@ namespace Watson.Controllers
         // GET: api/FamilyMember/5
         public void EditDependent(int? id)
         {
-            Family_Info fmember = db.Family_Infoes.Find(id);
+            Family_Info fmember = db.Family_Info.Find(id);
 
         }
 
         // POST: api/Employee/5
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
-        public void EditDependent([Bind(Include = "User_id,FamilyMember_id,RelationshipToInsured,EmployeeRole,EmployeeName,FirstName,MiddleName,LastName," +
+        public void EditDependent([Bind(Include = "Employee_id,FamilyMember_id,RelationshipToInsured,EmployeeRole,EmployeeName,FirstName,MiddleName,LastName," +
             "DateOfBirth,Sex")] Family_Info fmember)
         {
             if (ModelState.IsValid)

@@ -12,11 +12,13 @@ namespace Watson.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class C__MigrationHistory
+    public partial class InsurancePlanDetail
     {
-        public string MigrationId { get; set; }
-        public string ContextKey { get; set; }
-        public byte[] Model { get; set; }
-        public string ProductVersion { get; set; }
+        public int InsurancePlanDetail_id { get; set; }
+        public int InsurancePlan_id { get; set; }
+        public string Item { get; set; }
+        public string Detail { get; set; }
+    
+        public virtual InsurancePlan InsurancePlan { get; set; }
     }
 }

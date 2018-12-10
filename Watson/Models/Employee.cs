@@ -11,69 +11,41 @@ namespace Watson.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
+            this.Beneficiaries = new HashSet<Beneficiary>();
+            this.Deductions = new HashSet<Deduction>();
             this.Family_Info = new HashSet<Family_Info>();
             this.Group_Health = new HashSet<Group_Health>();
+            this.InsurancePlans = new HashSet<InsurancePlan>();
             this.Life_Insurance = new HashSet<Life_Insurance>();
             this.Other_Insurance = new HashSet<Other_Insurance>();
             this.Vacations = new HashSet<Vacation>();
         }
     
-        public int User_id { get; set; }
+        public int Employee_id { get; set; }
         public string EmployeeRole { get; set; }
-
-        [StringLength(35)]
         public string CurrentEmployer { get; set; }
-
-        [StringLength(35)]
         public string PreviousEmployer { get; set; }
-
-        [StringLength(35)]
         public string FirstName { get; set; }
-
-        [StringLength(35)]
         public string MiddleName { get; set; }
-
-        [StringLength(35)]
         public string LastName { get; set; }
         public System.DateTime DateOfBirth { get; set; }
-
-        [StringLength(9)]
         public string SSN { get; set; }
-        public string MartialStatus { get; set; }
+        public string MaritalStatus { get; set; }
         public bool Sex { get; set; }
-
-        [StringLength(50)]
         public string MailingAddress { get; set; }
-
-        [StringLength(50)]
         public string PhysicalAddress { get; set; }
-
-        [StringLength(20)]
         public string City { get; set; }
-
-        [StringLength(20)]
         public string State { get; set; }
-
-        [StringLength(5)]
         public string ZipCode { get; set; }
-
-        [EmailAddress]
         public string EmailAddress { get; set; }
-
-        [Phone]
         public string PhoneNumber { get; set; }
-
-        [Phone]
         public string CellPhone { get; set; }
-
-        [StringLength(20)]
         public string County { get; set; }
         public Nullable<bool> CityLimits { get; set; }
         public System.DateTime HireDate { get; set; }
@@ -81,20 +53,24 @@ namespace Watson.Models
         public bool isActive { get; set; }
         public System.DateTime EligibilityDate { get; set; }
         public string WorkStatus { get; set; }
-
-        [MaxLength(5)]
         public int HoursWorkedPerWeek { get; set; }
-
-        [StringLength(20)]
         public string JobTitle { get; set; }
-
-        [StringLength(9)]
         public string AnnualSalary { get; set; }
+        public string Department { get; set; }
+        public string EnrollmentType { get; set; }
+        public int Payroll_id { get; set; }
+        public string Class { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Beneficiary> Beneficiaries { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Deduction> Deductions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Family_Info> Family_Info { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Group_Health> Group_Health { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InsurancePlan> InsurancePlans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Life_Insurance> Life_Insurance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

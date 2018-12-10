@@ -17,30 +17,17 @@ namespace Watson.Controllers
 
         public Group_HealthController()
         {
-            groupHealth = new Group_Health { User_id = 1 , PolicyNumber = "0001"};
+            groupHealth = new Group_Health { Employee_id = 1 , PolicyNumber = "0001"};
         }
 
         public JsonResult GroupHealthEnrollment()
         {
-            var output = (from g in db.Group_Healths
+            var output = (from g in db.Group_Health
                           select new
                           {
                               g.GroupHealthInsurance_id,
-                              g.User_id,
-                              g.Provider,
-                              g.InsuranceCoverageType,
-                              g.EEelectionPre_tax,
-                              g.EEelectionPost_tax,
-                              g.PremiumPre_tax,
-                              g.PremiumPost_tax,
-                              g.TotalPre_tax,
-                              g.TotalPost_tax,
-                              g.InsuranceCarrier,
-                              g.GroupHealthOptions,
-                              g.DropSpouse,
-                              g.DropDependent,
-                              g.PlacementDateOfAdoptedChild,
-                              g.CoverageRefusal,
+                              g.Employee_id,
+                              g.InsuranceCarrier,                            
                               g.PolicyNumber,
                               g.EmployeeSignature,
                               g.Employee
@@ -51,8 +38,8 @@ namespace Watson.Controllers
 
         public JsonResult GroupHealthEnrollment(int? id)
         {
-            Group_Health g = db.Group_Healths
-                .Where(i => i.User_id == id)
+            Group_Health g = db.Group_Health
+                .Where(i => i.Employee_id == id)
                 .Where(i => i.GroupHealthInsurance_id == id)
                 .SingleOrDefault();
 
@@ -102,25 +89,12 @@ namespace Watson.Controllers
 
         public JsonResult EditGroupHealth()
         {
-            var output = (from g in db.Group_Healths
+            var output = (from g in db.Group_Health
                           select new
                           {
                               g.GroupHealthInsurance_id,
-                              g.User_id,
-                              g.Provider,
-                              g.InsuranceCoverageType,
-                              g.EEelectionPre_tax,
-                              g.EEelectionPost_tax,
-                              g.PremiumPre_tax,
-                              g.PremiumPost_tax,
-                              g.TotalPre_tax,
-                              g.TotalPost_tax,
-                              g.InsuranceCarrier,
-                              g.GroupHealthOptions,
-                              g.DropSpouse,
-                              g.DropDependent,
-                              g.PlacementDateOfAdoptedChild,
-                              g.CoverageRefusal,
+                              g.Employee_id,                        
+                              g.InsuranceCarrier,                             
                               g.PolicyNumber,
                               g.EmployeeSignature,
                               g.Employee
@@ -132,12 +106,12 @@ namespace Watson.Controllers
 
         public JsonResult EditGroupHealth(int? id)
         {
-            Group_Health g = db.Group_Healths
-                .Where(i => i.User_id == id)
+            Group_Health g = db.Group_Health
+                .Where(i => i.Employee_id == id)
                 .Where(i => i.GroupHealthInsurance_id == id)
                 .SingleOrDefault();
 
-            db.Group_Healths.Add(g);
+            db.Group_Health.Add(g);
             db.SaveChanges();
 
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
@@ -177,7 +151,7 @@ namespace Watson.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group_Health g = db.Group_Healths.Find(id);
+            Group_Health g = db.Group_Health.Find(id);
             if (g == null)
             {
                 return HttpNotFound();

@@ -247,9 +247,6 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Address.cs">
-      <DependentUpon>WatsonTruck.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
@@ -262,7 +259,13 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
+    <Compile Include="Models\Beneficiary.cs">
+      <DependentUpon>WatsonTruck.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BeneficiaryType.cs">
+      <DependentUpon>WatsonTruck.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Deduction.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs">
@@ -275,13 +278,19 @@
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\InsurancePlan.cs">
+      <DependentUpon>WatsonTruck.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InsurancePlanDetail.cs">
+      <DependentUpon>WatsonTruck.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InsurancePremium.cs">
+      <DependentUpon>WatsonTruck.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Life_Insurance.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Other_Insurance.cs">
-      <DependentUpon>WatsonTruck.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Vacation.cs">
@@ -368,7 +377,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="SpouseEnrollment.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

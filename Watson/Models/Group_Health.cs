@@ -15,23 +15,30 @@ namespace Watson.Models
     public partial class Group_Health
     {
         public int GroupHealthInsurance_id { get; set; }
-        public int User_id { get; set; }
-        public string Provider { get; set; }
-        public string InsuranceCoverageType { get; set; }
-        public string EEelectionPre_tax { get; set; }
-        public string PremiumPre_tax { get; set; }
-        public string EEelectionPost_tax { get; set; }
-        public string PremiumPost_tax { get; set; }
-        public string TotalPre_tax { get; set; }
-        public string TotalPost_tax { get; set; }
+        public int Employee_id { get; set; }
         public string InsuranceCarrier { get; set; }
-        public bool GroupHealthOptions { get; set; }
-        public bool DropSpouse { get; set; }
-        public bool DropDependent { get; set; }
-        public System.DateTime PlacementDateOfAdoptedChild { get; set; }
-        public string CoverageRefusal { get; set; }
         public string PolicyNumber { get; set; }
+        public string GroupName { get; set; }
+        public string IMSGroupNumber { get; set; }
+        public string PhoneNumber { get; set; }
+        public string ReasonForGrpCoverageRefusal { get; set; }
+        public bool OtherCoverage { get; set; }
+        public bool OtherReason { get; set; }
+        public bool Myself { get; set; }
+        public bool Spouse { get; set; }
+        public bool Dependent { get; set; }
+        public string OtherInsuranceCoverage { get; set; }
+        public System.DateTime CafeteriaPlanYear { get; set; }
+        public bool NoMedicalPlan { get; set; }
+        public bool EmployeeOnly { get; set; }
+        public bool EmployeeAndSpouse { get; set; }
+        public bool EmployeeAndDependent { get; set; }
+        public bool EmployeeAndFamily { get; set; }
         public string EmployeeSignature { get; set; }
+        public System.DateTime EmployeeSignatureDate { get; set; }
+        public string EmployeeInitials { get; set; }
+        public string OtherSignature { get; set; }
+        public System.DateTime OtherSignatureDate { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

@@ -16,12 +16,34 @@ namespace Watson.Models
     {
         public int LifeInsurance_id { get; set; }
         public int Employee_id { get; set; }
-        public string InsuranceCoverageType { get; set; }
+        public string GroupPlanNumber { get; set; }
+        public System.DateTime BenefitsEffectiveDate { get; set; }
+        public bool InitialEnrollment { get; set; }
+        public bool ReEnrollment { get; set; }
+        public bool AddEmployeeAndDependents { get; set; }
+        public bool DropRefuseCoverage { get; set; }
+        public bool InformationChange { get; set; }
+        public bool IncreaseAmount { get; set; }
+        public bool FamilyStatusChange { get; set; }
+        public bool MarriedOrHaveSpouse { get; set; }
+        public bool HaveChildrenOrHaveDependents { get; set; }
         public System.DateTime DateOfMarriage { get; set; }
-        public string SubtotalCode { get; set; }
-        public string EnrollmentType { get; set; }
-        public string EmployeeSignature { get; set; }
-        public bool DropCoverage { get; set; }
+        public System.DateTime PlacementDateOfAdoptedChild { get; set; }
+        public bool AddDependent { get; set; }
+        public bool DropDependent { get; set; }
+        public bool Student { get; set; }
+        public bool Disabled { get; set; }
+        public bool NonStandardDependent { get; set; }
+        public bool DropEmployee { get; set; }
+        public bool DropSpouse { get; set; }
+        public bool DropDependents { get; set; }
+        public System.DateTime LastDayOfCoverage { get; set; }
+        public bool TerminationOfEmployment { get; set; }
+        public bool Retirement { get; set; }
+        public System.DateTime LastDayWorked { get; set; }
+        public bool OtherEvent { get; set; }
+        public string OtherEventReason { get; set; }
+        public System.DateTime OtherEventDate { get; set; }
         public bool EmployeeDentalDrop { get; set; }
         public bool SpouseDentalDrop { get; set; }
         public bool DependentDentalDrop { get; set; }
@@ -29,28 +51,39 @@ namespace Watson.Models
         public bool SpouseVisionDrop { get; set; }
         public bool DependentVisionDrop { get; set; }
         public bool DropBasicLife { get; set; }
-        public bool DropEmployee { get; set; }
-        public bool DropSpouse { get; set; }
-        public bool DropDependents { get; set; }
-        public System.DateTime Date { get; set; }
-        public bool TerminationOfEmployment { get; set; }
-        public bool Retirement { get; set; }
-        public bool OtherEvent { get; set; }
-        public bool LossOfOtherCoverage { get; set; }
-        public bool CoverageLost { get; set; }
+        public bool DropDental { get; set; }
+        public bool DropVision { get; set; }
+        public System.DateTime TerminationOfEmploymentDate { get; set; }
+        public bool Divorce { get; set; }
+        public System.DateTime DivorceDate { get; set; }
+        public bool DeathOfSpouse { get; set; }
+        public System.DateTime DeathOfSpouseDate { get; set; }
+        public bool TerminationOrExpirationOfCoverage { get; set; }
+        public System.DateTime TerminationOrExpirationOfCoverageDate { get; set; }
         public bool DentalCoverageLost { get; set; }
         public bool VisionCoverageLost { get; set; }
-        public bool DentalCoverage { get; set; }
+        public bool CoveredUnderOtherInsurance { get; set; }
+        public string CoveredUnderOtherInsReason { get; set; }
         public bool EmployeeOnly { get; set; }
-        public bool EE_Spouse { get; set; }
-        public bool EE_Dependents { get; set; }
-        public bool EE_Spouse_Dependents { get; set; }
-        public bool Status { get; set; }
-        public bool Add { get; set; }
-        public bool Drop { get; set; }
-        public bool PolicyAmount { get; set; }
-        public string PrimaryBeneficiaries { get; set; }
-        public string ContingentBeneficiary { get; set; }
+        public bool EmployeeAndSpouse { get; set; }
+        public bool EmployeeAndDependent { get; set; }
+        public bool EmployeeAndFamily { get; set; }
+        public bool DoNotWantDentalCoverage { get; set; }
+        public bool EmployeeCoveredUnderOtherDentalPlan { get; set; }
+        public bool SpouseCoveredUnderOtherDentalPlan { get; set; }
+        public bool DependentsCoveredUnderOtherDentalPlan { get; set; }
+        public bool DoNotWantVisionCoverage { get; set; }
+        public bool EmployeeCoveredUnderOtherVisionPlan { get; set; }
+        public bool SpouseCoveredUnderOtherVisionPlan { get; set; }
+        public bool DependentsCoveredUnderOtherVisionPlan { get; set; }
+        public decimal OwnerBasicLifeWithADandDPolicyAmount { get; set; }
+        public decimal ManagerBasicLifeWithADandDPolicyAmount { get; set; }
+        public decimal EmployeeBasicLifeWithADandDPolicyAmount { get; set; }
+        public decimal SpouseBasicLifeWithADandDPolicyAmount { get; set; }
+        public bool DoNotWantBasicLifeCoverageWithADandD { get; set; }
+        public decimal AmountOfPreviousPolicy { get; set; }
+        public string EmployeeSignature { get; set; }
+        public System.DateTime EmployeeSignatureDate { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

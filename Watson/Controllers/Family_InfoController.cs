@@ -27,7 +27,7 @@ namespace Watson.Controllers
         //GET: Family_info
         public JsonResult SpouseAndDependentOverview()
         {
-            var output = (from f in db.Family_Infoes
+            var output = (from f in db.Family_Info
                           select new
                           {
                               f.FamilyMember_id,
@@ -44,7 +44,7 @@ namespace Watson.Controllers
         //GET: Family_info/5
         public JsonResult SpouseAndDependentOverview(int? id)
         {
-            Family_Info f = db.Family_Infoes
+            Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
                 .SingleOrDefault();
 
@@ -86,10 +86,10 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
 
-        public JsonResult SpouseEnrollment(int id, string MartialStatus)
+        public JsonResult SpouseEnrollment(int id, string MaritalStatus)
         {
 
-            var output = (from f in db.Family_Infoes
+            var output = (from f in db.Family_Info
                           select new
                           {
                               f.RelationshipToInsured,
@@ -129,11 +129,11 @@ namespace Watson.Controllers
 
         public JsonResult SpouseEnrollment(int? id)
         {
-            Family_Info f = db.Family_Infoes
+            Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
                 .SingleOrDefault();
 
-            db.Family_Infoes.Add(f);
+            db.Family_Info.Add(f);
             db.SaveChanges();
 
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
@@ -163,7 +163,7 @@ namespace Watson.Controllers
 
         public JsonResult SpouseContact()
         {
-            var output = (from f in db.Family_Infoes
+            var output = (from f in db.Family_Info
                           select new
                           {
                               f.MailingAddress,
@@ -182,11 +182,11 @@ namespace Watson.Controllers
 
         public JsonResult SpouseContact(int? id)
         {
-            Family_Info f = db.Family_Infoes
+            Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
                 .SingleOrDefault();
 
-            db.Family_Infoes.Add(f);
+            db.Family_Info.Add(f);
             db.SaveChanges();
 
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
@@ -215,7 +215,7 @@ namespace Watson.Controllers
 
         public JsonResult SpouseEmployment()
         {
-            var output = (from f in db.Family_Infoes
+            var output = (from f in db.Family_Info
                           select new
                           {
 
@@ -226,7 +226,7 @@ namespace Watson.Controllers
 
         public JsonResult SpouseEmployment(int? id)
         {
-            Family_Info f = db.Family_Infoes
+            Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
                 .SingleOrDefault();
 
@@ -258,7 +258,7 @@ namespace Watson.Controllers
         // GET: Family_Info
         public JsonResult EditSpouse()
         {
-            var output = (from f in db.Family_Infoes
+            var output = (from f in db.Family_Info
                           select new
                           {
 
@@ -270,11 +270,11 @@ namespace Watson.Controllers
         // GET: Family_Info/5
         public JsonResult EditSpouse(int? id)
         {
-            Family_Info f = db.Family_Infoes
+            Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
                 .SingleOrDefault();
 
-            db.Family_Infoes.Add(f);
+            db.Family_Info.Add(f);
             db.SaveChanges();
 
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
@@ -317,7 +317,7 @@ namespace Watson.Controllers
         // GET: Family_Info/5
         public JsonResult SpouseDetail(int? id)
         {
-            Family_Info f = db.Family_Infoes
+            Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
                 .FirstOrDefault();
 
@@ -338,7 +338,7 @@ namespace Watson.Controllers
         // GET: Family_Info
         public JsonResult DeleteSpouse()
         {
-            var output = (from f in db.Family_Infoes
+            var output = (from f in db.Family_Info
                           select new
                           {
 
@@ -350,13 +350,13 @@ namespace Watson.Controllers
         // GET: Family_Info/5
         public JsonResult DeleteSpouse(int? id)
         {
-            Family_Info f = db.Family_Infoes
+            Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
                 .SingleOrDefault();
 
 
             //db.DeleteEmployeeAndDependents(id);
-            db.Family_Infoes.Remove(f);
+            db.Family_Info.Remove(f);
             db.SaveChanges();
 
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);

@@ -12,12 +12,16 @@ namespace Watson.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class InsurancePremium
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int InsurancePremium_id { get; set; }
+        public int InsurancePlan_id { get; set; }
+        public string EmployeeOnly { get; set; }
+        public string EmployeeAndSpouse { get; set; }
+        public string EmployeeAndDependent { get; set; }
+        public string EmployeeAndFamily { get; set; }
+        public decimal YearlyPremiumCost { get; set; }
+    
+        public virtual InsurancePlan InsurancePlan { get; set; }
     }
 }

@@ -14,14 +14,15 @@ namespace Watson.Controllers
     public class EmployeeController : System.Web.Mvc.Controller
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
+        private 
 
         static List<Employee> employee = new List<Employee>();
 
         public EmployeeController()
         {
-            employee.Add(new Employee { SSN = "0001", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "Admin", JobTitle = "Analyst", User_id = 1 });
-            employee.Add(new Employee { SSN = "0002", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "Admin", JobTitle = "HR Manager", User_id = 2 });
-            employee.Add(new Employee { SSN = "0003", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "HR Manager", User_id = 3 });
+            employee.Add(new Employee { SSN = "0001", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "Admin", JobTitle = "Analyst", Employee_id = 1 });
+            employee.Add(new Employee { SSN = "0002", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "Admin", JobTitle = "HR Manager", Employee_id = 2 });
+            employee.Add(new Employee { SSN = "0003", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "HR Manager", Employee_id = 3 });
         }
 
         public JsonResult EmployeeOverview()
@@ -29,7 +30,7 @@ namespace Watson.Controllers
             var output = (from e in db.Employees
                           select new
                           {
-                             e.User_id,
+                             e.Employee_id,
                              e.SSN,
                              e.JobTitle,
                              e.FirstName,
@@ -47,7 +48,7 @@ namespace Watson.Controllers
         public JsonResult EmployeeOverview(int id)
         {
             Employee e = db.Employees
-                .Where(i => i.User_id == id)
+                .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
@@ -92,7 +93,7 @@ namespace Watson.Controllers
             var output = (from e in db.Employees
                           select new
                           {
-                              e.User_id,
+                              e.Employee_id,
                               e.CurrentEmployer,
                               e.JobTitle,
                               e.SSN,
@@ -100,7 +101,7 @@ namespace Watson.Controllers
                               e.LastName,
                               e.DateOfBirth,
                               e.Sex,
-                              e.MartialStatus,
+                              e.MaritalStatus,
                           });
                           
            //Redirect is based on marital status, which it's not working
@@ -124,7 +125,7 @@ namespace Watson.Controllers
         public JsonResult EmployeeEnrollment(int id)
         {
             Employee e = db.Employees
-                .Where(i => i.User_id == id)
+                .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
             db.Employees.Add(e);
@@ -180,7 +181,7 @@ namespace Watson.Controllers
             var output = (from e in db.Employees
                           select new
                           {
-                              e.User_id,
+                              e.Employee_id,
                               e.MailingAddress,
                               e.PhysicalAddress,
                               e.City,
@@ -199,7 +200,7 @@ namespace Watson.Controllers
         public JsonResult Contact(int id)
         {
             Employee e = db.Employees
-                .Where(i => i.User_id == id)
+                .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
             db.Employees.Add(e);
@@ -242,14 +243,14 @@ namespace Watson.Controllers
             var output = (from e in db.Employees
                           select new
                           {
-                              e.User_id,
+                              e.Employee_id,
                               e.CurrentEmployer,
                               e.SSN,
                               e.FirstName,
                               e.LastName,
                               e.DateOfBirth,
                               e.Sex,
-                              e.MartialStatus,
+                              e.MaritalStatus,
                           });
 
             return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
@@ -258,7 +259,7 @@ namespace Watson.Controllers
         public JsonResult Edit(int? id)
         {
             Employee e = db.Employees
-                .Where(i => i.User_id == id)
+                .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
             db.Employees.Add(e);
@@ -298,7 +299,7 @@ namespace Watson.Controllers
         public JsonResult Detail(int? id)
         {
             Employee e = db.Employees
-                .Where(i => i.User_id == id)
+                .Where(i => i.Employee_id == id)
                 .FirstOrDefault();
 
             return Json(new { data = "success" }, "application/Javascript", JsonRequestBehavior.AllowGet);
@@ -344,7 +345,7 @@ namespace Watson.Controllers
         public JsonResult EmployeeInsurance(int? id)
         {
             Employee e = db.Employees
-                .Where(i => i.User_id == id)
+                .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
             db.Employees.Add(e);
@@ -385,7 +386,7 @@ namespace Watson.Controllers
             var output = (from e in db.Employees
                           select new
                           {
-                              e.User_id
+                              e.Employee_id
                           });
 
             return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
@@ -394,7 +395,7 @@ namespace Watson.Controllers
         public JsonResult LifeInsuranceEnrollment(int? id)
         {
             Employee e = db.Employees
-                .Where(i => i.User_id == id)
+                .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
@@ -405,14 +406,14 @@ namespace Watson.Controllers
             var output = (from e in db.Employees
                           select new
                           {
-                              e.User_id,
+                              e.Employee_id,
                               e.CurrentEmployer,
                               e.SSN,
                               e.FirstName,
                               e.LastName,
                               e.DateOfBirth,
                               e.Sex,
-                              e.MartialStatus,
+                              e.MaritalStatus,
                           });
 
             return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
@@ -421,7 +422,7 @@ namespace Watson.Controllers
         public JsonResult EditLifeInsurance(int? id)
         {
             Employee e = db.Employees
-                .Where(i => i.User_id == id)
+                .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
             db.Employees.Add(e);
