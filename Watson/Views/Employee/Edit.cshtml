@@ -16,7 +16,7 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.User_id)
+        @Html.HiddenFor(model => model.Employee_id)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-horizontal">
@@ -71,10 +71,10 @@
                     <label for="MartialStatus" class="col-md-2 control-label">Martial Status</label>
                     <div class="col-md-10">
                         <select name="MartialStatus" class="form-control">
-                            <option id="MarriedwDep" value="@Html.DisplayFor(model => model.MartialStatus)">Married with Dependents</option>
-                            <option id="Married"     value="@Html.DisplayFor(model => model.MartialStatus)">Married</option>
-                            <option id="SinglewDep"  value="@Html.DisplayFor(model => model.MartialStatus)">Single with Dependents</option>
-                            <option id="Single"      value="@Html.DisplayFor(model => model.MartialStatus)">Single</option>
+                            <option id="MarriedwDep" value="@Html.DisplayFor(model => model.MaritalStatus)">Married with Dependents</option>
+                            <option id="Married"     value="@Html.DisplayFor(model => model.MaritalStatus)">Married</option>
+                            <option id="SinglewDep"  value="@Html.DisplayFor(model => model.MaritalStatus)">Single with Dependents</option>
+                            <option id="Single"      value="@Html.DisplayFor(model => model.MaritalStatus)">Single</option>
                         </select>
                     </div>
                 </div>
@@ -209,7 +209,7 @@
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
         Gender = document.getElementsByName("Sex").value;
-        MartialStatus = document.getElementsByName("MartialStatus").value;
+        MaritalStatus = document.getElementsByName("MaritalStatus").value;
 
         MailingAddress = document.getElementsByName("MailingAddress").value;
         PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
@@ -224,7 +224,7 @@
 
         postData('/Employee/Edit', {
             CurrentEmployer: CurrentEmployer, JobTitle: JobTitle, EmployeeNumber: EmployeeNumber, FirstName: FirstName,
-            LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MartialStatus: MartialStatus,
+            LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MaritalStatus: MaritalStatus,
             MailingAddress: MailingAddress, PhyscialAddress: PhyscialAddress, City: City, State: State,
             ZipCode: ZipCode, CityLimits: CityLimits, Email: Email, PhoneNumber: PhoneNumber, CellPhone: CellPhone
         })

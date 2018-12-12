@@ -16,18 +16,18 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.User_id)
+        @Html.HiddenFor(model => model.Employee_id)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-horizontal">
             <hr />
             <button class="collapsible"><h4>Employee Enrollment</h4></button>
             <div class="content">
-            @*<form action="/api/Employee/EmployeeEnrollment" method="post">*@
+            <form action="EmployeeEnrollment()">
                 <div class="form-group">
-                    <label for="User_id" class="col-md-2 control-label">User_id:</label>
+                    <label for="Employee_id" class="col-md-2 control-label">Employee_id:</label>
                     <div class="col-md-10">
-                        <input type="text" id="User_id" class="form-control" name="User_id" value=@Html.DisplayFor(Model => Model.User_id) />
+                        <input type="text" id="Employee_id" class="form-control" name="Employee_id" value=@Html.DisplayFor(Model => Model.Employee_id) />
                     </div>
                 </div>
                 <div class="form-group">
@@ -87,20 +87,20 @@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         @*<input type="submit" value="Save" onclick=" return EmployeeEnrollment()" class="btn btn-default" />*@
-                        <button type="submit" onclick="EmployeeEnrollment()" id="EmployeeEnrollment" class="btn btn-outline-primary">Save</button>
+                        <button type="submit" onclick="EmployeeEnrollmentUpdate()" id="EmployeeEnrollment" class="btn btn-outline-primary">Save</button>
                     </div>
                 </div>
-            @*</form>*@
+            </form>
             </div>
         </div>
 
     }
     <div>
-        <button onclick="location.href='Employee/EnrollmentSelection'" value="Previous" class="previous" /> |
-        <button onclick="location.href='Employee/Contact'" @*onclick="location.href='api/Employee/Contact'"*@  value="Next" class="next" />
+        <button onclick= "EnrollmentSelection()" value="Previous" class="previous" /> |
+        <button onclick="Contact()" value="Continue" class="btn" />
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Employee_id }) |
         @Html.ActionLink("Back to Overview", "EmployeeOverview")
     </p>
 </body>
@@ -124,59 +124,27 @@
     }
 </script>
 
-<style>
-    .collapsible {
-        background-color: #333333;
-        color: white;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 15px;
-    }
 
-        .active, .collapsible:hover {
-            background-color: #555;
-        }
-
-    .content {
-        padding: 0 18px;
-        display: none;
-        overflow: hidden;
-        background-color: #f1f1f1;
-    }
-
-    a {
-        text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
-    }
-
-    a:hover {
-        background-color: #ddd;
-        color: black;
-    }
-
-    .previous {
-        background-color: #f1f1f1;
-        color: black;
-    }
-
-    .next {
-        background-color: #2e4593;
-        color: white;
-    }
-</style>
 
 <script>
-    //var Employee;
+    function EnrollmentSelection() {
 
-    function EmployeeEnrollment() {
+        location.href = "location.href='Employee/EnrollmentSelection";
+    }
+
+    function Contact() {
+
+        location.href = "location.href='Employee/Contact";
+    }
+</script>
+
+<script>
+        //var Employee;
+
+    function GetEmployeeEnrollment() {
         //Employee = data;
         
-        User_id = document.getElementById("User_id").value;
+        Employee_id = document.getElementById("Employee_id").value;
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;
         EmployeeNumber = document.getElementById("SSN").value;
@@ -184,23 +152,15 @@
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
         Gender = document.getElementsByName("Sex").value;
-        MartialStatus = document.getElementsByName("MartialStatus").value;
+        MaritalStatus = document.getElementsByName("MaritalStatus").value;
 
-        //User_id = document.getElementById("User_id").value = data.User_id;
-        //CurrentEmployer = document.getElementById("CurrentEmployer").value = data.CurrentEmployer;
-        //JobTitle = document.getElementById("JobTitle").value = data.JobTitle;
-        //EmployeeNumber = document.getElementById("SSN").value = data.SSN;
-        //FirstName = document.getElementById("FirstName").value = data.FirstName;
-        //LastName = document.getElementById("LastName").value = data.LastName;
-        //DateOfBirth = document.getElementById("DateOfBirth").value = data.DateOfBirth;
-        //Gender = document.getElementsByName("Sex").value = data.Sex;
-        //MartialStatus = document.getElementsByName("MartialStatus").value = data.MartialStatus;
+        
 
-        postData('/Employee/EmployeeEnrollment', {
-            User_id: User_id, CurrentEmployer: CurrentEmployer, JobTitle: JobTitle, EmployeeNumber: EmployeeNumber, FirstName: FirstName,
-            LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MartialStatus: MartialStatus
+        postData('/Employee/GetEmployeeEnrollment', {
+            Employee_id: Employee_id, CurrentEmployer: CurrentEmployer, JobTitle: JobTitle, EmployeeNumber: EmployeeNumber, FirstName: FirstName,
+            LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MaritalStatus: MaritalStatus
         })
-            .then(data => EmployeeEnrollment(data))
+            .then(data => EmployeeEnrollmentUpdate(data))
             .catch(error => console.error(error))
     }
 
@@ -222,6 +182,52 @@
             .then(Response => Response.json()) //parses response to JSON
     }
 </script>
+
+<style>
+    .collapsible {
+        background-color: #333333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+    .active, .collapsible:hover {
+        background-color: #555;
+    }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+    a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .previous {
+        background-color: #2e4593;
+        color: black;
+    }
+
+    .btn {
+        background-color: #2e4593;
+        color: white;
+    }
+</style>
 
 @*<body> EXAMPLE
     This is a post.  It will actually take you to another page<br />

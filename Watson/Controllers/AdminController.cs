@@ -17,78 +17,93 @@ namespace Watson.Controllers
     /// This is where I give you all the information about my employees
     /// </summary>
     //[Authorize]
-    public class AdminController : ApiController
+    public class AdminController : Controller
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        static List<Employee> employee = new List<Employee>();
+        static List<Employee> employees = new List<Employee>();
 
         public AdminController()
         {
-            employee.Add(new Employee { SSN = "0001", FirstName = "Vernon", LastName = "Pape", EmployeeRole = "Admin", JobTitle = "Analyst", Employee_id = 1 });
-            employee.Add(new Employee { SSN = "0002", FirstName = "Lynetta", LastName = "Richards", EmployeeRole = "Admin", JobTitle = "HR Manager", Employee_id = 2 });
-            employee.Add(new Employee { SSN = "0003", FirstName = "LaNita", LastName = "Palmer", EmployeeRole = "Admin", JobTitle = "HR Manager", Employee_id = 3 });
+           
         }
 
-        /// <summary>
-        /// Gets a list of the employees
-        /// </summary>
-        /// <param name="User_id">The unique identifier for this person</param>
-        /// <param name="SSN">We want to know their employee#</param>
-        /// <returns>A list of employees Emp#, FN, LN, EmpRole, & JobTitle</returns>
-        [System.Web.Http.Route("api/Employee/GetEmployees/{User_id:int}/{SSN:string}")]
-        [System.Web.Http.HttpGet]
-        public List<string> GetEmployees(int Employee_id, string SSN)
+        public ActionResult Employees()
         {
-            List<string> output = new List<string>();
-
-            foreach (var e in employee)
-            {
-                output.Add(e.SSN);
-                output.Add(e.FirstName);
-                output.Add(e.LastName);
-                output.Add(e.EmployeeRole);
-                output.Add(e.JobTitle);
-                //output.Add(e.isActive);
-            }
-
-            return output;
+            return View();
         }
+
+        //[System.Web.Http.Route("api/Employee/GetEmployees/{Employee_id:int}")]
+
+        //[System.Web.Http.HttpGet]
+        //public List<string> GetEmployees(int Employee_id)
+        //{
+        //    List<string> output = new List<string>();
+
+        //    foreach (var e in employee)
+        //    {
+        //        output.Add(e.SSN);
+        //        output.Add(e.FirstName);
+        //        output.Add(e.LastName);
+        //        output.Add(e.EmployeeRole);
+        //        output.Add(e.JobTitle);
+        //        //output.Add(e.isActive);
+        //        //output.Add(e.HireDate);
+        //    }
+
+        //    return output;
+        //}
 
         //GET: Employees
-        public List<Employee> GetEmployees()
+        //public List<Employee> GetEmployees()
+        //{
+        //    return db.Employees.ToList();
+        //}
+
+        public JsonResult GetEmployees()
         {
-            return db.Employees.ToList();
+            var output = (from e in db.Employees
+                          select new
+                          {
+                              e.Employee_id,
+                              e.SSN,
+                              e.FirstName,
+                              e.LastName,
+                              e.EmployeeRole,
+                              e.JobTitle,
+                              e.isActive,
+                              e.HireDate,
+                              e.EmailAddress,
+                              e.MailingAddress,
+                              e.City,
+                              e.State,
+                              e.ZipCode,
+                              e.Department,
+                              e.AnnualSalary,
+                              e.EnrollmentType,
+                              e.Class,
+                              e.Payroll_id,
+                              e.WorkStatus,
+                              e.HoursWorkedPerWeek,
+
+                          });
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+
         }
 
-        //public JsonResult EmployeeOverview()
-        //{
-        //    var output = (from e in db.Employees
-        //                  select new
-        //                  {
-        //                      e.User_id,
-        //                      e.SSN,
-        //                      e.FirstName,
-        //                      e.LastName,
-        //                      e.EmployeeRole,
-        //                      e.JobTitle,
-        //                      e.isActive
-        //                  });
 
-        //    return Json(new { data = output }, JsonRequestBehavior.AllowGet);
-
-        //}
 
         // GET: api/Employee
         public List<Employee> EmployeeOverview()
         {
-            return employee;
+            return employees;
         }
 
         // GET: api/Employee/5
         public Employee EmployeeOverview(int id)
         {
-            return employee.Where(e => e.Employee_id == id).FirstOrDefault();
+            return employees.Where(e => e.Employee_id == id).FirstOrDefault();
         }
 
         //public JsonResult EmployeeOverview(int id)
@@ -105,13 +120,13 @@ namespace Watson.Controllers
         // GET: api/Employee
         public List<Employee> CreateEmployee()
         {
-            return employee;
+            return employees;
         }
 
         //GET: api/Employee/5
         public Employee CreateEmployee(int id)
         {
-            return employee.Where(e => e.Employee_id == id).FirstOrDefault();
+            return employees.Where(e => e.Employee_id == id).FirstOrDefault();
         }
 
         // POST: api/Employee
@@ -158,7 +173,7 @@ namespace Watson.Controllers
         //GET: api/Employee/5
         public Employee EmployeeDetail(int id)
         {
-            return employee.Where(e => e.Employee_id == id).FirstOrDefault();
+            return employees.Where(e => e.Employee_id == id).FirstOrDefault();
         }
 
 
@@ -226,7 +241,7 @@ namespace Watson.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(employees).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
         }
@@ -246,7 +261,7 @@ namespace Watson.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(employees).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
         }

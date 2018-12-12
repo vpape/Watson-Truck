@@ -4,7 +4,7 @@
     ViewBag.Title = "GetEmployees";
 }
 
-<h2>Employee Overview</h2>
+<h2>Company Employee List</h2>
 <!DOCTYPE html>
 
 <html>
@@ -15,26 +15,30 @@
 <body> @*Need to create dynamic arrow button next to employee that goes to Spouse & Dep detail page*@
     <table class="table">
         <tr>
-            <th>User ID</th>
+            <th>Family Member Overview</th>
             <th>Employee #</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Role</th>
             <th>Job Title</th>
             <th>Active</th>
-            @*<th>Hire Date</th>
+            <th>Hire Date</th>
+            <th>Email Address</th>
             <th>Mailing Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>ZipCode</th>
+            @*<th>Mailing Address</th>
             <th>City</th>
             <th>State</th>
             <th>Zip Code</th>*@
 
-        @foreach (var item in Model)
-        {
-        <tr>
+            @foreach (var item in Model)
+            {
+<tr>
             <td>
-                @Html.DisplayFor(modelItem => item.User_id)
-            </td>
-
+                <a href="#" onclick="FamilyMemberOverview()" class="next round">&#8250;</a>   @* Dynamic button (image mapping??) to redirect to spouse and dependent overview *@
+                
             <td>
                 @Html.DisplayFor(modelItem => item.SSN)
             </td>
@@ -59,7 +63,7 @@
                 @Html.DisplayFor(modelItem => item.isActive)
             </td>
 
-            @*<td>
+            <td>
                 @item.HireDate.ToShortDateString()
             </td>
 
@@ -77,13 +81,13 @@
 
             <td>
                 @Html.DisplayFor(modelItem => item.ZipCode)
-            </td>*@
+            </td>
 
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.User_id }) |
-                @Html.ActionLink("Detail", "Detail", new { id = item.User_id }) |
-                @Html.ActionLink("Insurance", "Insurance", new { id = item.User_id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.User_id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Employee_id }) |
+                @Html.ActionLink("Detail", "Detail", new { id = item.Employee_id }) |
+                @Html.ActionLink("Insurance", "Insurance", new { id = item.Employee_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Employee_id })
 
             </td>
         </tr>
@@ -91,7 +95,7 @@
 
     </table>
     <div>
-        <input type="button" onclick="location.href='api/Employee/EmployeeEnrollment'" value="Create Employee" class="btn btn-default" />
+        <input type="button" onclick="location.href='api/Employee/EmployeeEnrollment'" value="Create Employee" class="next" />
     </div>
 </body>
 </html>
@@ -109,5 +113,21 @@
 
     tr:nth-child(even) {
         background-color: #f2f2f2
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+    a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .next {
+        background-color: #2d499c;
+        color: white;
     }
 </style>

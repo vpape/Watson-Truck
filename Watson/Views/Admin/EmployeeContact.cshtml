@@ -16,7 +16,7 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.User_id)
+        @Html.HiddenFor(model => model.Employee_id)
 
         <div class="form-horizontal">
             <hr />
@@ -101,7 +101,7 @@
         <input type="submit" onclick="location.href='api/Admin/SpouseEnrollment'" value="Continue" class="btn btn-default" />
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Employee_id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
 </body>

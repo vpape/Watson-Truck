@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Employees";
+}
+
+
+
+<div id="container"></div>
+@*<div id="edit" style="visibility:hidden;">
+    <label for="firstName">First Name:</label><input type="text" name="firstName" id="firstName" /><br />
+    <label for="lastName">Last Name:</label><input type="text" name="lastName" id="lastName" /><br />
+    <button value="submit">submit</button>
+</div>*@
+
+@section scripts
+{
+    <script src="https://cdn.fancygrid.com/fancy.min.js"></script>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            new FancyGrid({
+                title: 'Employees',
+                renderTo: 'container',
+                width: 1000,
+                height: 500,
+                data: {
+                    proxy: {
+                        url: 'GetEmployees'
+                    }
+                },
+                defaults: {
+                    type: 'string',
+                    width: 100,
+                    sortable: true
+                },
+                columns: [{
+                    index: 'Employee_id',
+                    hidden: true
+                },
+                    {
+                        index: 'FirstName',
+                        title: 'First Name'
+                    }, {
+                        index: 'LastName',
+                        title: 'Last Name'
+                    }, {
+                        index: 'SSN',
+                        title: 'Employee #'
+                    }, {
+                        index: 'EmployeeRole',
+                        title: 'Employee Role'
+                    }, {
+                        index: 'JobTitle',
+                        title: 'Job Title'
+                    }, {
+                        index: 'isActive',
+                        title: 'Active?'
+                    }, {
+                        index: 'HireDate',
+                        title: 'Hire Date',
+                        type: 'date',
+                        format: {
+                            read: 'm/d/Y'
+                        }
+                    }, {
+                        index: 'EmailAddress',
+                        title: 'Email Address'
+                    }, {
+                        index: 'MailingAddress',
+                        title: 'Mailing Address'
+                    }, {
+                        index: 'City',
+                        title: 'City'
+                    }, {
+                        index: 'State',
+                        title: 'State'
+                    }, {
+                        index: 'ZipCode',
+                        title: 'ZipCode'
+                    }, {
+                        index: 'Department',
+                        title: 'Department'
+                    }, {
+                        index: 'AnnualSalary',
+                        title: 'Salary'
+                    }, {
+                        index: 'EnrollmentType',
+                        title: 'Enrollment Type'
+                    }, {
+                        index: 'Class',
+                        title: 'Class'
+                    }, {
+                        index: 'Payroll_id',
+                        title: 'Payroll ID'
+                    }, {
+                        index: 'Workstatus',
+                        title: 'Work Status'
+                    }, {
+                        index: 'HoursWorkedPerWeek',
+                        title: 'Min. Hours Worked'
+                    
+                    }],
+
+                events: [{
+                    cellclick: function (g, o) {
+                        var options = '{columnIndex:' + o.columnIndex + ', rowIndex:' + o.rowIndex + ', value: ' + o.value + ', ...}';
+                        window.location.href = "/Employee/EmployeeEnrollment?id=" + o.item.get('Employee_id');
+                        // Employee/EmployeeEnrollment
+                        //alert(o.item.get('Employee_id'));
+                        //alert(options);
+                        //document.getElementById("firstName").value = o.item.get('FirstName');
+                        //document.getElementById("lastName").value = o.item.get('LastName');
+                        //document.getElementById("edit").style.visibility = "visible";
+                    }
+                }]
+            });
+        });
+
+
+    </script>
+}
