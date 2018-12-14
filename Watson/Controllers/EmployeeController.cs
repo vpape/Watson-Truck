@@ -104,11 +104,9 @@ namespace Watson.Controllers
             return View();
         }
 
-        public ActionResult EmployeeEnrollment(int id)
+        public ActionResult EmployeeEnrollment()
         {
-            Employee employee = db.Employees.Find(id);
-
-            return View(employee);
+            return View();
         }
 
         public JsonResult GetEmployeeEnrollment()
@@ -198,14 +196,12 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        public ActionResult Contact(int id)
+        public ActionResult Contact()
         {
-            Employee employee = db.Employees.Find(id);
-
-            return View(employee);
+            return View();
         }
 
-        public JsonResult Contact()
+        public JsonResult GetContact()
         {
             var output = (from e in db.Employees
                           select new
@@ -222,12 +218,14 @@ namespace Watson.Controllers
                               e.PhoneNumber,
                               e.CellPhone,
                           });
+
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
                           
         }
 
+        [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Contact(int? id)
+        public JsonResult ContactUpdate(int? id)
         {
             Employee e = db.Employees
                 .Where(i => i.Employee_id == id)
@@ -243,35 +241,23 @@ namespace Watson.Controllers
         }
 
 
-        //----------------------------------------------------------------------------------------
-        // GET: api/Employee/5
-        //[System.Web.Http.Route("api/Employee/Contact/{User_id:int}")]
-        //[System.Web.Http.HttpGet]
-        //public ActionResult Contact(int? id)
-        //{
-        //    Employee employee = db.Employees.Find(id);
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-        //    return View(employee);
-        //}
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
 
-        // POST: api/Employee
-        //[System.Web.Http.Route("api/Employee/Contact")]
-        //[System.Web.Http.HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Contact([Bind(Include = "User_id,MailingAddress,PhysicalAddress,City,State,ZipCode,County,CityLimits,EmailAddress" +
-        //    "PhoneNumber,CellPhone")] Employee contact)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Employees.Add(contact);
-        //        db.SaveChanges();
-        //    }
+            return View(employee);
+        }
 
-        //    return View(contact);
-        //}
-        //----------------------------------------------------------------------------------------
-
-        public JsonResult Edit()
+        public JsonResult GetEmployeeEdit()
         {
             var output = (from e in db.Employees
                           select new
@@ -286,19 +272,24 @@ namespace Watson.Controllers
                               e.MaritalStatus,
                           });
 
-            return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult Edit(int? id)
+        [System.Web.Mvc.HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult EmployeeEditUpdate(int id)
         {
             Employee e = db.Employees
                 .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
-            db.Employees.Add(e);
-            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }            
 
-            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
@@ -328,39 +319,31 @@ namespace Watson.Controllers
         //    return View(employee);
         //}
         //----------------------------------------------------------------------------------------
+            
+        public ActionResult Detail(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-        public JsonResult Detail(int? id)
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(employee);
+        }
+
+        public JsonResult GetDetail(int id)
         {
             Employee e = db.Employees
                 .Where(i => i.Employee_id == id)
                 .FirstOrDefault();
 
-            return Json(new { data = "success" }, "application/Javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
-
-        //public ActionResult Detail(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Employee e = db.Employees.Find(id);
-        //    if (e == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(e);
-        //}
-
-        //----------------------------------------------------------------------------------------
-        //GET: api/Employee/5
-        //[System.Web.Http.Route("api/Employee/Detail/{User_id:int}")]
-        //[System.Web.Http.HttpGet]
-        //public Employee Detail(int? id)
-        //{
-        //    return employee.Where(e => e.User_id == id).FirstOrDefault();
-        //}
-        //----------------------------------------------------------------------------------------
 
         public JsonResult EmployeeInsurance()
         {
@@ -371,7 +354,7 @@ namespace Watson.Controllers
                               
                           });
 
-            return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -384,7 +367,7 @@ namespace Watson.Controllers
             db.Employees.Add(e);
             db.SaveChanges();
 
-            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -422,7 +405,7 @@ namespace Watson.Controllers
                               e.Employee_id
                           });
 
-            return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult LifeInsuranceEnrollment(int? id)
@@ -431,7 +414,7 @@ namespace Watson.Controllers
                 .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
-            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult EditLifeInsurance()
@@ -449,7 +432,7 @@ namespace Watson.Controllers
                               e.MaritalStatus,
                           });
 
-            return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult EditLifeInsurance(int? id)
@@ -461,7 +444,7 @@ namespace Watson.Controllers
             db.Employees.Add(e);
             db.SaveChanges();
 
-            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
@@ -499,31 +482,34 @@ namespace Watson.Controllers
 
 
 
-        //----------------------------------------------------------------------------------------
-        // DELETE: api/Employee/5
-        [System.Web.Http.Route("api/Employee/Delete/{User_id:int}")]
-        [System.Web.Http.HttpGet]
-        public void Delete(int? id)
+        //----------------------------------------------------------------------------------------        
+        public ActionResult Delete(int? id)
         {
-            Employee employee = db.Employees.Find(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-            db.Employees.Remove(employee);
-            db.SaveChanges();
-           
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(employee);           
         }
 
-
-        // DELETE: api/Employee/5
-        [System.Web.Http.HttpPost, System.Web.Http.ActionName("Delete")]
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
             Employee employee = db.Employees.Find(id);
-
             db.Employees.Remove(employee);
             db.SaveChanges();
 
             //db.DeleteEmployeeAndDependents(id);
+
+            return RedirectToAction("EmployeeOverview");
         }
 
         protected override void Dispose(bool disposing)

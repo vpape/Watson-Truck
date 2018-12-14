@@ -16,101 +16,112 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.User_id)
+        @Html.HiddenFor(model => model.Employee_id)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-horizontal">
             <hr />
             <h4>Employee Contact</h4>
             <div class="content">
-            @*<form action="/api/Employee/Contact" method="post">*@
-                <div id="divEmpContact">
-                    <div class="form-group">
-                        <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="" />
+                <form action="Contact()" method="post">
+                    <div id="divEmpContact">
+                        <div class="form-group">
+                            <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="City" class="col-md-2 control-label">City:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="City" class="form-control" name="City" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="State" class="col-md-2 control-label">State:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="State" class="form-control" name="State" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ZipCode" class="col-md-2 control-label">Zip Code:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="County" class="col-md-2 control-label">County:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="County" class="form-control" name="County" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="CityLimits" class="col-md-2 control-label">Within City Limits?</label>
+                            <div class="col-md-10">
+                                <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" checked />Yes</label>
+                                <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" />No</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="" />
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="" />
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn" onclick="ContactUpdate()">Save</button>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="City" class="col-md-2 control-label">City:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="City" class="form-control" name="City" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="State" class="col-md-2 control-label">State:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="State" class="form-control" name="State" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="ZipCode" class="col-md-2 control-label">Zip Code:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="County" class="col-md-2 control-label">County:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="County" class="form-control" name="County" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="CityLimits" class="col-md-2 control-label">Within City Limits?</label>
-                        <div class="col-md-10">
-                            <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" checked />Yes</label>
-                            <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" />No</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="" />
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        @*<input type="submit" value="Save" onclick="return Contact()" class="btn btn-default" />*@
-                        <button type="submit" class="btn btn-outline-primary" onclick="Contact();">Save</button>
-                    </div>
-                </div>
-            @*</form>*@
+                </form>
             </div>
         </div>
     }
 
     <div>
-        <button onclick="location.href='Employee/EmployeeEnrollment'" value="Previous" class="previous" /> |
-        <button onclick="location.href='Family_Info/FamilyMemberEnrollment'" value="Next" class="next" />
+        <button onclick="EmployeeEnrollment()" value="Previous" class="previous" /> |
+        <button onclick="FamilyMemberEnrollment()" value="Continue" class="btn" />
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.User_id }) |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Employee_id }) |
         @Html.ActionLink("Back to Overview", "EmployeeOverview")
     </p>
 </body>
 </html>
 
 <script>
-    function Contact() {
+    function EmployeeEnrollment(){
+
+        location.href = "Employee/EmployeeEnrollment";
+    }
+
+    function FamilyMemberEnrollment() {
+
+        location.href = "Employee/FamilyMemberEnrollment";
+    }
+</script>
+
+<script>
+    function GetContact() {
         MailingAddress = document.getElementsByName("MailingAddress").value;
         PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
         City = document.getElementById("City").value;
@@ -121,15 +132,15 @@
         Email = document.getElementById("EmailAddress").value;
         Phone = document.getElementById("PhoneNumber").value;
         Cell = document.getElementById("CellPhone").value;
-
+    
         postData('/Employee/Contact', {
             MailingAddress: MailingAddress, PhyscialAddress: PhyscialAddress, City: City, State: State,
             ZipCode: ZipCode, CityLimits: CityLimits, Email: Email, Phone: Phone, Cell: Cell
         })
-            .then(data => Contact(data))
-            .catch(error => console.error(error))
+            .then(data => ContactUpdate(data))
+        .catch(error => console.error(error))
     }
-
+    
     function postData(url, data) {
         //Default options are marked with *
         return fetch(url, {
@@ -188,11 +199,11 @@
     }
 
     .previous {
-        background-color: #f1f1f1;
+        background-color: #2e4593;
         color: black;
     }
 
-    .next {
+    .btn {
         background-color: #2e4593;
         color: white;
     }

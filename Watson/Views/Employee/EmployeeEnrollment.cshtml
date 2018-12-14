@@ -23,7 +23,7 @@
             <hr />
             <button class="collapsible"><h4>Employee Enrollment</h4></button>
             <div class="content">
-            <form action="EmployeeEnrollment()">
+            <form action="EmployeeEnrollment()" method="post">
                 <div class="form-group">
                     <label for="Employee_id" class="col-md-2 control-label">Employee_id:</label>
                     <div class="col-md-10">
@@ -74,20 +74,20 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="MartialStatus" class="col-md-2 control-label">Marital Status:</label>
+                    <label for="MaritalStatus" class="col-md-2 control-label">Marital Status:</label>
                     <div class="col-md-10">
                         <select name="MartialStatus" class="form-control">
-                            <option id="MarriedwDep" name="MartialStatus" value="MarriedwDep">Married with Dependents</option>
-                            <option id="Married" name="MartialStatus" value="Married">Married</option>
-                            <option id="SinglewDep" name="MartialStatus" value="SinglewDep">Single with Dependents</option>
-                            <option id="Single" name="MartialStatus" value="Single">Single</option>
+                            <option id="MarriedwDep" name="MaritalStatus" value="MarriedwDep">Married with Dependents</option>
+                            <option id="Married" name="MaritalStatus" value="Married">Married</option>
+                            <option id="SinglewDep" name="MaritalStatus" value="SinglewDep">Single with Dependents</option>
+                            <option id="Single" name="MaritalStatus" value="Single">Single</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         @*<input type="submit" value="Save" onclick=" return EmployeeEnrollment()" class="btn btn-default" />*@
-                        <button type="submit" onclick="EmployeeEnrollmentUpdate()" id="EmployeeEnrollment" class="btn btn-outline-primary">Save</button>
+                        <button type="submit" onclick="EmployeeEnrollmentUpdate()" id="EmployeeEnrollmentUpdate" class="btn">Save</button>
                     </div>
                 </div>
             </form>
@@ -97,7 +97,7 @@
     }
     <div>
         <button onclick= "EnrollmentSelection()" value="Previous" class="previous" /> |
-        <button onclick="Contact()" value="Continue" class="btn" />
+        <button onclick= "Contact()" value="Continue" class="btn" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Employee_id }) |
@@ -105,6 +105,18 @@
     </p>
 </body>
 </html>
+
+<script>
+    function EnrollmentSelection() {
+
+        location.href = "location.href='Employee/EnrollmentSelection";
+    }
+
+    function Contact() {
+
+        location.href = "location.href='Employee/Contact";
+    }
+</script>
 
 <script>
     var col = document.getElementByClassName("collapsible");
@@ -124,26 +136,9 @@
     }
 </script>
 
-
-
 <script>
-    function EnrollmentSelection() {
-
-        location.href = "location.href='Employee/EnrollmentSelection";
-    }
-
-    function Contact() {
-
-        location.href = "location.href='Employee/Contact";
-    }
-</script>
-
-<script>
-        //var Employee;
-
     function GetEmployeeEnrollment() {
-        //Employee = data;
-        
+               
         Employee_id = document.getElementById("Employee_id").value;
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;
@@ -154,9 +149,7 @@
         Gender = document.getElementsByName("Sex").value;
         MaritalStatus = document.getElementsByName("MaritalStatus").value;
 
-        
-
-        postData('/Employee/GetEmployeeEnrollment', {
+        postData('/Employee/EmployeeEnrollment', {
             Employee_id: Employee_id, CurrentEmployer: CurrentEmployer, JobTitle: JobTitle, EmployeeNumber: EmployeeNumber, FirstName: FirstName,
             LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MaritalStatus: MaritalStatus
         })
