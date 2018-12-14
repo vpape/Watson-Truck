@@ -26,6 +26,7 @@
             <th>Mailing Address</th>
             <th>City</th>
             <th>State</th>
+            <th>ZipCode</th>
         </tr>
 
 
@@ -60,10 +61,12 @@
                     @Html.DisplayFor(modelItem => item.State)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.ZipCode)
+                </td>
+                <td>
                     @Html.ActionLink("Edit", "Edit", "Employee", new { id = item.Employee_id }) |
                     @Html.ActionLink("Detail", "Detail", "Employee", new { id = item.Employee_id }) |
                     @Html.ActionLink("Insurance", "EmployeeInsurance", "Employee", new { id = item.Employee_id }) |
-                    @*@Html.ActionLink("Delete", "Delete", "Employee", new { id = item.Employee_id })*@
                 </td>
             </tr>
         }

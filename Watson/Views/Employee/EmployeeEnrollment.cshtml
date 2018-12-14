@@ -18,7 +18,6 @@
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.Employee_id)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         <div class="form-horizontal">
             <hr />
             <button class="collapsible"><h4>Employee Enrollment</h4></button>
@@ -137,8 +136,7 @@
 </script>
 
 <script>
-    function GetEmployeeEnrollment() {
-               
+    function GetEmployeeEnrollment() {               
         Employee_id = document.getElementById("Employee_id").value;
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;

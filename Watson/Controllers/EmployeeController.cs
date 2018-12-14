@@ -25,11 +25,8 @@ namespace Watson.Controllers
         public ActionResult EmployeeOverview(int id)
         {
             Employee employee = db.Employees.Find(id);
-            //Family_Info family = db.Family_Info.Find(id);
 
             return View(employee);
-
-            //return View(db.Employees.ToList());
         }
 
         public JsonResult GetEmployee()
@@ -42,7 +39,6 @@ namespace Watson.Controllers
                              e.FirstName,
                              e.LastName,
                              e.JobTitle,
-                             e.EmailAddress,
                              e.MailingAddress,
                              e.City,
                              e.State,
@@ -125,19 +121,7 @@ namespace Watson.Controllers
                               e.MaritalStatus,
                           });
 
-            //Redirect is based on marital status, which it's not working
-            //if (e.MaritalStatus == "Married")
-            //{
-            //    return RedirectToAction("SpouseEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
-            //}
-            //else if (e.MaritalStatus == "MarriedwDep")
-            //{
-            //    return RedirectToAction("SpouseEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
-            //}
-            //else if (e.MaritalStatus == "SinglewDep")
-            //{
-            //    return RedirectToAction("DependentEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
-            //}
+      
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
 
@@ -145,16 +129,43 @@ namespace Watson.Controllers
         
         [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult EmployeeEnrollmentUpdate(int? id)
+        public JsonResult EmployeeEnrollmentUpdate(int id)
         {
-            Employee e = db.Employees
+            Employee employee = db.Employees
                 .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
             if (ModelState.IsValid)
             {
-                db.Employees.Add(e);
-                db.SaveChanges();
+                db.Employees.Add(employee);
+
+                try
+                {
+                    db.SaveChanges();
+
+                    //Redirect is based on marital status, which it's not working
+                    //if (employee.MaritalStatus == "Married")
+                    //{
+                    //    return RedirectToAction("SpouseEnrollment", "Family_Info", new { employee.Employee_id, employee.MaritalStatus });
+                    //}
+                    //else if (employee.MaritalStatus == "MarriedwDep")
+                    //{
+                    //    return RedirectToAction("SpouseEnrollment", "Family_Info", new { employee.Employee_id, employee.MaritalStatus });
+                    //}
+                    //else if (employee.MaritalStatus == "SinglewDep")
+                    //{
+                    //    return RedirectToAction("DependentEnrollment", "Family_Info", new { employee.Employee_id, employee.MaritalStatus });
+                    //}
+                    //else
+                    //{
+                    //    return RedirectToAction("EmployeeOverview", "Employee");
+                    //}
+                }
+
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
             
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
@@ -225,7 +236,7 @@ namespace Watson.Controllers
 
         [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult ContactUpdate(int? id)
+        public JsonResult ContactUpdate(int id)
         {
             Employee e = db.Employees
                 .Where(i => i.Employee_id == id)
@@ -336,7 +347,36 @@ namespace Watson.Controllers
             return View(employee);
         }
 
-        public JsonResult GetDetail(int id)
+        public JsonResult GetDetail()
+        {
+            var output = (from e in db.Employees
+                          select new
+                          {
+                              e.Employee_id,
+                              e.CurrentEmployer,
+                              e.JobTitle,
+                              e.SSN,
+                              e.FirstName,
+                              e.LastName,
+                              e.DateOfBirth,
+                              e.Sex,
+                              e.MaritalStatus,
+                              e.MailingAddress,
+                              e.PhysicalAddress,
+                              e.City,
+                              e.State,
+                              e.ZipCode,
+                              e.County,
+                              e.CityLimits,
+                              e.EmailAddress,
+                              e.PhoneNumber,
+                              e.CellPhone,
+                          });
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);    
+        }
+
+        public JsonResult DetailUpdate(int id)
         {
             Employee e = db.Employees
                 .Where(i => i.Employee_id == id)

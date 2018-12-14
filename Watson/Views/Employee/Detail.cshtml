@@ -208,11 +208,8 @@
     }
 </style>
 
-@*<script>
-    //var Employee;
-
-    function Detail() {
-        //Employee = data;
+<script>
+    function GetDetail() {
 
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;
@@ -221,7 +218,7 @@
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
         Gender = document.getElementsByName("Gender").value;
-        MartialStatus = document.getElementsByName("MartialStatus").value;
+        MaritalStatus = document.getElementsByName("MaritalStatus").value;
 
         MailingAddress = document.getElementsByName("MailingAddress").value;
         PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
@@ -236,7 +233,7 @@
 
         postData('/Employee/Detail', {
             CurrentEmployer: CurrentEmployer, JobTitle: JobTitle, EmployeeNumber: EmployeeNumber, FirstName: FirstName,
-            LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MartialStatus: MartialStatus,
+            LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MaritalStatus: MaritalStatus,
             MailingAddress: MailingAddress, PhyscialAddress: PhyscialAddress, City: City, State: State,
             ZipCode: ZipCode, CityLimits: CityLimits, EmailAddress: EmailAddress, PhoneNumber: PhoneNumber, CellPhone: CellPhone
         })
@@ -261,4 +258,4 @@
         })
             .then(Response => Response.json()) //parses response to JSON
     }
-</script>*@
+</script>

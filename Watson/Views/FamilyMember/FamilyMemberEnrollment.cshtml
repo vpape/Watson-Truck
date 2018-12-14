@@ -18,8 +18,7 @@
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.FamilyMember_id)
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })        
         <div class="form-horizontal">
             <hr />
             <button><h4>Spouse Enrollment</h4></button>
@@ -31,9 +30,6 @@
                 </div>
             </div>
         </div>
-        <p>
-            @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
-        </p>
         <div class="form-horizontal">
             <hr />
             <button><h4>Dependent Enrollment</h4></button>
