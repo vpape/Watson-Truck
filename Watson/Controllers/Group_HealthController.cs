@@ -131,7 +131,7 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
 
-        public ActionResult EditGroupHealthInsurance(int? id)
+        public ActionResult EditGroupHealth(int? id)
         {            
             if (id == null)
             {
@@ -238,6 +238,44 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
             return View(groupHealth);
-        }        
+        }
+
+        public ActionResult DeleteGroupHealth(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Group_Health groupHealth = db.Group_Health.Find(id);
+            if (groupHealth == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(groupHealth);
+        }
+
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteGroupHealth")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteGroupHealth(int id)
+        {
+            Group_Health groupHealth = db.Group_Health.Find(id);
+            db.Group_Health.Remove(groupHealth);
+            db.SaveChanges();
+
+            //db.DeleteEmployeeAndDependents(id);
+
+            return RedirectToAction("GroupHealthEnrollment");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }
