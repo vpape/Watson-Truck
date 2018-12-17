@@ -396,38 +396,6 @@ namespace Watson.Controllers
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GroupHealthInsurance(int id)
-        {
-            Group_Health healthIns = db.Group_Health.Find(id);
-            return View(healthIns);
-        }
-
-        public JsonResult GetEmployeeInsurance()
-        {
-            var output = (from e in db.Employees
-                          select new
-                          {
-
-                              
-                          });
-
-            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
-
-        }
-
-        public JsonResult EmployeeGroupHealthInsuranceUpdate(int? id)
-        {
-            Employee e = db.Employees
-                .Where(i => i.Employee_id == id)
-                .SingleOrDefault();
-
-            db.Employees.Add(e);
-            db.SaveChanges();
-
-            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-
-        }
-
         //----------------------------------------------------------------------------------------
         //GET: api/Employee/5
         //[System.Web.Http.Route("api/Employee/Insurance/{User_id:int}")]

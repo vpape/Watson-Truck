@@ -20,32 +20,81 @@ namespace Watson.Controllers
            
         }
 
-        public JsonResult GroupHealthEnrollment()
+        public ActionResult GroupHealthInsurance()
+        {
+            return View(db.Group_Health.ToList());
+        }
+
+        public ActionResult GroupHealthEnrollment()
+        {
+            return View();
+        }
+
+        public JsonResult GetGroupHealthInsurance()
         {
             var output = (from g in db.Group_Health
                           select new
                           {
+                              g.Employee,
                               g.GroupHealthInsurance_id,
                               g.Employee_id,
                               g.InsuranceCarrier,                            
                               g.PolicyNumber,
+                              g.GroupName,
+                              g.IMSGroupNumber,
+                              g.PhoneNumber,
+                              g.ReasonForGrpCoverageRefusal,
+                              g.OtherCoverage,
+                              g.OtherReason,
+                              g.Myself,
+                              g.Spouse,
+                              g.Dependent,
+                              g.OtherInsuranceCoverage,
+                              g.CafeteriaPlanYear,
+                              g.NoMedicalPlan,
+                              g.EmployeeOnly,
+                              g.EmployeeAndSpouse,
+                              g.EmployeeAndDependent,
+                              g.EmployeeAndFamily,                            
                               g.EmployeeSignature,
-                              g.Employee
+                              g.EmployeeSignatureDate,
+                              g.EmployeeInitials,
+                              g.OtherSignature,
+                              g.OtherSignatureDate,
                           });
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GroupHealthEnrollment(int? id)
+        public JsonResult GroupHealthEnrollmentUpdate(int? id)
         {
             Group_Health g = db.Group_Health
                 .Where(i => i.Employee_id == id)
                 .Where(i => i.GroupHealthInsurance_id == id)
                 .SingleOrDefault();
 
-            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
+
+        //public ActionResult GroupHealthInsurance(int id)
+        //{
+        //    Group_Health healthIns = db.Group_Health.Find(id);
+        //    return View(healthIns);
+        //}
+
+        //public JsonResult GroupHealthInsuranceUpdate(int? id)
+        //{
+        //    Employee e = db.Employees
+        //        .Where(i => i.Employee_id == id)
+        //        .SingleOrDefault();
+
+        //    db.Employees.Add(e);
+        //    db.SaveChanges();
+
+        //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
+
+        //}
         //----------------------------------------------------------------------------------------
         // GET: api/Employee
         //[System.Web.Http.Route("api/Group_Health/GroupHealthEnrollment")]
@@ -79,15 +128,26 @@ namespace Watson.Controllers
 
         //    return View(groupHealth);
         //}
-
-        // PUT: api/Employee/5
-        //public void UpdateEmployee(int id, Employee value)
-        //{
-        //    employee[id] = value;
-        //}
         //----------------------------------------------------------------------------------------
 
-        public JsonResult EditGroupHealth()
+
+        public ActionResult EditGroupHealthInsurance(int? id)
+        {            
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Group_Health groupHealth = db.Group_Health.Find(id);
+            if (groupHealth == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(groupHealth);
+        }
+
+        public JsonResult GetGroupHealthInsuranceEdit()
         {
             var output = (from g in db.Group_Health
                           select new
@@ -96,25 +156,46 @@ namespace Watson.Controllers
                               g.Employee_id,                        
                               g.InsuranceCarrier,                             
                               g.PolicyNumber,
+                              g.GroupName,
+                              g.IMSGroupNumber,
+                              g.PhoneNumber,
+                              g.ReasonForGrpCoverageRefusal,
+                              g.OtherCoverage,
+                              g.OtherReason,
+                              g.Myself,
+                              g.Spouse,
+                              g.Dependent,
+                              g.OtherInsuranceCoverage,
+                              g.CafeteriaPlanYear,
+                              g.NoMedicalPlan,
+                              g.EmployeeOnly,
+                              g.EmployeeAndSpouse,
+                              g.EmployeeAndDependent,
+                              g.EmployeeAndFamily,
                               g.EmployeeSignature,
-                              g.Employee
-
+                              g.EmployeeSignatureDate,
+                              g.EmployeeInitials,
+                              g.OtherSignature,
+                              g.OtherSignatureDate,
                           });
 
-            return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult EditGroupHealth(int? id)
+        public JsonResult GroupHealthInsuranceUpdate(int? id)
         {
             Group_Health g = db.Group_Health
                 .Where(i => i.Employee_id == id)
                 .Where(i => i.GroupHealthInsurance_id == id)
                 .SingleOrDefault();
 
-            db.Group_Health.Add(g);
-            db.SaveChanges();
-
-            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+            if (ModelState.IsValid)
+            {
+                db.Entry(groupHealth).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+           
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
@@ -151,36 +232,12 @@ namespace Watson.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group_Health g = db.Group_Health.Find(id);
+            Group_Health groupHealth = db.Group_Health.Find(id);
             if (g == null)
             {
                 return HttpNotFound();
             }
-            return View(g);
-        }
-
-        //public JsonResult GroupHealthDetail(int? id)
-        //{
-        //    Group_Health g = db.Group_Healths
-        //        .Where(i => i.User_id == id)
-        //        .Where(i => i.GroupHealthInsurance_id == id)
-        //        .FirstOrDefault();
-
-        //    return Json(new { data = "success" }, "application/Javascript", JsonRequestBehavior.AllowGet);
-        //}
-
-
-
-        //----------------------------------------------------------------------------------------
-        //GET: api/Employee/5
-        //[System.Web.Http.Route("api/Employee/GroupHealthDetail/{User_id:int}")]
-        //[System.Web.Http.HttpGet]
-        //public Employee GroupHealthDetail(int? id)
-        //{
-        //    return employee.Where(e => e.User_id == id).FirstOrDefault();
-        //}
-        //----------------------------------------------------------------------------------------
-
-        
+            return View(groupHealth);
+        }        
     }
 }
