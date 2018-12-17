@@ -22,39 +22,69 @@
 
         <div class="form-horizontal">
             <hr />
-            <button><h4>Group Health Insurance Detail</h4></button>
+            <button class="collapsible"><h4>Group Health Insurance</h4></button>
             <div class="content">
                 <form action="Insurance()" method="post">
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="button" value="GroupHealth" onclick="GroupHealthEnrollment()" class="btn" />
+                            <input type="button" value="GroupHealthInsurance" onclick="GroupHealthInsurance()" class="btn" />
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <p>
-            @Html.ActionLink("EditGroupHealth", "GroupHealthEnrollment", new { id = Model.Employee_id }) |
+            @Html.ActionLink("EditGroupHealth", "", new { id = Model.Employee_id }) |
             @Html.ActionLink("Back to HomePage", "EmployeeOverview", new { id = Model.Employee_id })
         </p>
 
         <div class="form-horizontal">
             <hr />
-            <button><h4>Life Insurance Enrollment</h4></button>
+            <button class="collapsible"><h4>Life Insurance</h4></button>
             <div class="content">
                 <form action="/api/Employee/Insurance" method="post">
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="button" value="LifeInsurance" onclick="LifeInsuranceEnrollment()" id="submit" class="btn" />
+                            <input type="button" value="LifeInsurance" onclick="LifeInsurance()" id="submit" class="btn" />
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <p>
-            @Html.ActionLink("EditLifeInsurance", "LifeInsuranceEnrollment", new { id = Model.Employee_id}) |
+            @Html.ActionLink("EditLifeInsurance", "", new { id = Model.Employee_id}) |
             @Html.ActionLink("Back to HomePage", "EmployeeOverview", new { id = Model.Employee_id })
         </p>
     }
 </body>
 </html>
+
+<script>
+    var col = document.getElementByClassName("collapsible");
+    var i;
+
+    for (var i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            }
+            else
+                content.style.display = "block"
+        });
+    }
+</script>
+
+<script>
+    function GroupHealthInsurance() {
+
+        location.href = "location.href='Employee/GroupHealthInsurance";
+    }
+
+    function LifeInsurance() {
+
+        location.href = "location.href='Employee/LifeInsurance";
+    }
+</script>

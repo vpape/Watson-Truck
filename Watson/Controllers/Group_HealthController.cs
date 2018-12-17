@@ -13,11 +13,11 @@ namespace Watson.Controllers
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        static Group_Health groupHealth = new Group_Health();
+        private static Group_Health groupHealth = new Group_Health();
 
         public Group_HealthController()
         {
-            groupHealth = new Group_Health { Employee_id = 1 , PolicyNumber = "0001"};
+           
         }
 
         public JsonResult GroupHealthEnrollment()
@@ -33,7 +33,7 @@ namespace Watson.Controllers
                               g.Employee
                           });
 
-            return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GroupHealthEnrollment(int? id)

@@ -275,12 +275,23 @@ namespace Watson.Controllers
                           {
                               e.Employee_id,
                               e.CurrentEmployer,
+                              e.JobTitle,
                               e.SSN,
                               e.FirstName,
                               e.LastName,
                               e.DateOfBirth,
                               e.Sex,
                               e.MaritalStatus,
+                              e.MailingAddress,
+                              e.PhysicalAddress,
+                              e.City,
+                              e.State,
+                              e.ZipCode,
+                              e.County,
+                              e.CityLimits,
+                              e.EmailAddress,
+                              e.PhoneNumber,
+                              e.CellPhone,
                           });
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
@@ -385,7 +396,13 @@ namespace Watson.Controllers
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult EmployeeInsurance()
+        public ActionResult GroupHealthInsurance(int id)
+        {
+            Group_Health healthIns = db.Group_Health.Find(id);
+            return View(healthIns);
+        }
+
+        public JsonResult GetEmployeeInsurance()
         {
             var output = (from e in db.Employees
                           select new
@@ -398,7 +415,7 @@ namespace Watson.Controllers
 
         }
 
-        public JsonResult EmployeeInsurance(int? id)
+        public JsonResult EmployeeGroupHealthInsuranceUpdate(int? id)
         {
             Employee e = db.Employees
                 .Where(i => i.Employee_id == id)
@@ -436,6 +453,13 @@ namespace Watson.Controllers
         //    return View(employee);
         //}
         //----------------------------------------------------------------------------------------
+
+
+        public ActionResult LifeInsurance(int id)
+        {
+            Life_Insurance lifeIns = db.Life_Insurance.Find(id);
+            return View(lifeIns);
+        }
 
         public JsonResult LifeInsuranceEnrollemnt()
         {
