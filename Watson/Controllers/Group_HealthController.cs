@@ -17,7 +17,7 @@ namespace Watson.Controllers
 
         public Group_HealthController()
         {
-           
+
         }
 
         public ActionResult GroupHealthInsurance()
@@ -38,7 +38,7 @@ namespace Watson.Controllers
                               g.Employee,
                               g.GroupHealthInsurance_id,
                               g.Employee_id,
-                              g.InsuranceCarrier,                            
+                              g.InsuranceCarrier,
                               g.PolicyNumber,
                               g.GroupName,
                               g.IMSGroupNumber,
@@ -55,7 +55,7 @@ namespace Watson.Controllers
                               g.EmployeeOnly,
                               g.EmployeeAndSpouse,
                               g.EmployeeAndDependent,
-                              g.EmployeeAndFamily,                            
+                              g.EmployeeAndFamily,
                               g.EmployeeSignature,
                               g.EmployeeSignatureDate,
                               g.EmployeeInitials,
@@ -132,7 +132,7 @@ namespace Watson.Controllers
 
 
         public ActionResult EditGroupHealth(int? id)
-        {            
+        {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -153,8 +153,8 @@ namespace Watson.Controllers
                           select new
                           {
                               g.GroupHealthInsurance_id,
-                              g.Employee_id,                        
-                              g.InsuranceCarrier,                             
+                              g.Employee_id,
+                              g.InsuranceCarrier,
                               g.PolicyNumber,
                               g.GroupName,
                               g.IMSGroupNumber,
@@ -194,7 +194,7 @@ namespace Watson.Controllers
                 db.Entry(groupHealth).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
-           
+
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
@@ -239,6 +239,117 @@ namespace Watson.Controllers
             }
             return View(groupHealth);
         }
+
+
+
+
+
+
+
+        public ActionResult HealthInsurancePremiums(int id)
+        {
+            InsurancePremium insurancePremium = db.InsurancePremiums.Find(id);
+            return View(insurancePremium);
+        }
+
+        public JsonResult GetHealthInsurancePremium()
+        {
+            var output = (from insurancePremium in db.InsurancePremiums
+                          select new
+                          {
+                              insurancePremium.InsurancePremium_id,
+                              insurancePremium.InsurancePlan_id,
+                              insurancePremium.EmployeeOnly,
+                              insurancePremium.EmployeeAndSpouse,
+                              insurancePremium.EmployeeAndDependent,
+                              insurancePremium.EmployeeAndFamily,
+                              insurancePremium.YearlyPremiumCost,                  
+                          });
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult HealthInsurancePremiumUpdate(int? id)
+        {
+            InsurancePremium insurancePremium = db.InsurancePremiums
+                .Where(i => i.InsurancePremium_id == id)
+                .Where(i=> i.InsurancePlan_id == id)
+                .SingleOrDefault();
+
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        //Not sure whether i use db.InsPremium, db.InsPlan, db.InsPlanDetails or all three??
+        public ActionResult HealthInsuranceSupplement(int id)
+        {
+            InsurancePlanDetail insSupplement = db.InsurancePlanDetails.Find(id);
+            return View(insSupplement);
+        }
+
+        public JsonResult GetHealthInsuranceSupplement()
+        {
+            var output = (from insPlandetail in db.InsurancePlanDetails
+                          select new
+                          {
+                              insPlandetail.InsurancePlanDetail_id,
+                              insPlandetail.Item,
+                              insPlandetail.Detail,
+
+                          });
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult HealthInsuranceSupplementUpdate(int? id)
+        {
+            InsurancePlanDetail insPlandetail = db.InsurancePlanDetails
+                .Where(i => i.InsurancePlanDetail_id == id)
+                .Where(i => i.InsurancePlan_id == id)
+                .SingleOrDefault();
+
+            return Json(new { data = "success}" }, JsonRequestBehavior.AllowGet);
+        }
+
+        // not sure whether I use both db.Deductions and db.InsurancePlan or just db.Deductions
+        //need to add employee signature and signature date to db.Deductions table and change data types
+        public ActionResult SalaryRedirectionAgreement()
+        {
+            return View();
+        }
+
+        
+        public JsonResult GetSalaryRedirectionAgreement()
+        {
+            var output = (from d in db.Deductions
+                          select new
+                          {
+                              d.Deductions_id,
+                              d.Employee_id,
+                              d.Coverage,
+                              d.Provider,
+                              d.EEelectionPreTax,
+                              d.PremiumPreTax,
+                              d.EEelectionPostTax,
+                              d.PremiumPostTax,
+                              d.TotalPreTax,
+                              d.TotalPostTax,
+                          });
+
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SalaryRedirectionAgreementUpdate(int id)
+        {
+            Deduction deduction = db.Deductions
+                .Where(i => i.Deductions_id == id)
+                .Where(i => i.Employee_id == id)
+                .SingleOrDefault();
+
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
+        }
+
 
         public ActionResult DeleteGroupHealth(int? id)
         {

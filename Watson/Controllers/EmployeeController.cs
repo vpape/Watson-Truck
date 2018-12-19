@@ -425,8 +425,8 @@ namespace Watson.Controllers
 
         public ActionResult LifeInsurance(int id)
         {
-            Life_Insurance lifeIns = db.Life_Insurance.Find(id);
-            return View(lifeIns);
+           Life_Insurance lifeIns = db.Life_Insurance.Find(id);
+            return View(lifeIns); 
         }
 
         public JsonResult LifeInsuranceEnrollemnt()

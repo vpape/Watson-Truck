@@ -11,39 +11,59 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Family Enrollment Page</title>
+    <title>Family Member Enrollment</title>
 </head>
 <body>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.FamilyMember_id)
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })        
-        <div class="form-horizontal">
-            <hr />
-            <button><h4>Spouse Enrollment</h4></button>
-            <div class="content">
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="button" onclick="SpouseEnrollment()" id="SpouseEnrollment" class="btn btn-outline-primary" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <form class="FamilyMemberEnrollment()">
+            <div class="form-horizontal">
+                <hr />
+                <button class="collaspsible"><h4>Spouse Enrollment</h4></button>
+                <div class="content">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" onclick="SpouseEnrollment()" id="SpouseEnrollment" class="btn" />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="form-horizontal">
-            <hr />
-            <button><h4>Dependent Enrollment</h4></button>
-            <div class="content">
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="button" onclick="DependentEnrollment()" id="DependentEnrollment" class="btn btn-outline-primary" />     
+            <div class="form-horizontal">
+                <hr />
+                <button><h4>Dependent Enrollment</h4></button>
+                <div class="content">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" onclick="DependentEnrollment()" id="DependentEnrollment" class="btn" />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     }
     <p>
         @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
     </p>
 </body>
 </html>
+
+<script>
+    var col = document.getElementByClassName("collapsible");
+    var i;
+
+    for (var i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            }
+            else
+                content.style.display = "block"
+        });
+    }
+</script>

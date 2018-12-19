@@ -59,6 +59,11 @@
         }
 
     </table>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" onclick= "FamilyMemberEnrollment()" value="Family Member Enrollment" class="btn" />
+        </div>
+    </div>
     <div>
         @*button needs to display based on martial status (ie....if employee is single during employment and gets married at a later date, then will need to add spouse to insurance plan)
             (or if they need to add dependent because they just had a baby*@
@@ -70,6 +75,25 @@
     </p>
 </body>
 </html>
+
+
+<script>
+    function FamilyMemberEnrollment() {
+
+        location.href = "location.href='Family_Info/FamilyMemberEnrollment";
+    }
+
+    function SpouseEnrollment() {
+
+        location.href = "location.href='Family_Info/SpouseEnrollment";
+    }
+
+    function DependentEnrollment() {
+
+        location.href = "location.href='Family_Info/DependentEnrollment";
+    }
+
+</script>
 
 <style>
     table {
