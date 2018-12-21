@@ -67,18 +67,6 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        //[System.Web.Mvc.HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public JsonResult FamilyMemberUpdate(int id) 
-        //{
-        //    Family_Info f = db.Family_Info
-        //        .Where(i => i.FamilyMember_id == id)
-        //        .SingleOrDefault();
-
-        //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-
-        //}
-
         public ActionResult FamilyMemberEnrollment()
         {
             return View();
@@ -108,27 +96,26 @@ namespace Watson.Controllers
                               f.Sex,
                           });
 
-            //Realtionship Status for Spouse and Dependent Enrollment View isn't working
-            //ViewBag.Employee_id = id;
-            //ViewBag.spouseExist = true;
-            //ViewBag.MartialStatus = MaritalStatus;
+            ViewBag.Employee_id = id;
+            ViewBag.spouseExist = true;
+            ViewBag.MartialStatus = MaritalStatus;
 
-            //Employee employee = db.Employees.Find(id);
+            Employee employee = db.Employees.Find(id);
 
-            //if (employee.MaritalStatus == "Single")
-            //{
-            //    ViewBag.spouseExist = false;
-            //    ViewBag.RelationshipToInsured = "Single";
-            //}
-            //else if (employee.MaritalStatus == "SinglewDep")
-            //{
-            //    ViewBag.spouseExist = false;
-            //    ViewBag.RelationshipToInsured = "Spouse";
-            //}
-            //else
-            //{
-            //    ViewBag.RelationshipToInsured = "Dependent";
-            //}
+            if (employee.MaritalStatus == "Single")
+            {
+                ViewBag.spouseExist = false;
+                ViewBag.RelationshipToInsured = "Single";
+            }
+            else if (employee.MaritalStatus == "SinglewDep")
+            {
+                ViewBag.spouseExist = false;
+                ViewBag.RelationshipToInsured = "Spouse";
+            }
+            else
+            {
+                ViewBag.RelationshipToInsured = "Dependent";
+            }
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
 
@@ -208,7 +195,7 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SpouseContactUpdate(int? id)
+        public JsonResult SpouseContactUpdate(int id)
         {
             Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
