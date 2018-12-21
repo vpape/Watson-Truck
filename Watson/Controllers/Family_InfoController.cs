@@ -21,32 +21,134 @@ namespace Watson.Controllers
            
         }
 
-        //GET: Family_info
-        public JsonResult SpouseAndDependentOverview()
+        public ActionResult FamilyMemberOverview(int id)
+        {
+            Family_Info family = db.Family_Info.Find(id);
+
+            return View(family);
+        }
+
+        public JsonResult GetFamilyMember()
         {
             var output = (from f in db.Family_Info
                           select new
                           {
                               f.FamilyMember_id,
+                              f.Employee_id,
+                              f.OtherInsurance_id,
+                              f.FirstName,
+                              f.MiddleName,
+                              f.LastName,
+                              f.SSN,
+                              f.DateOfBirth,
+                              f.MailingAddress,
+                              f.PhysicalAddress,
+                              f.City,
+                              f.State,
+                              f.ZipCode,
+                              f.EmailAddress,
+                              f.PhoneNumber,
+                              f.CellPhone,
+                              f.County,
+                              f.Sex,
+                              f.Employer,
+                              f.RelationshipToInsured,
+                              f.EmployerMailingAddress,
+                              f.EmployerCity,
+                              f.EmployerState,
+                              f.EmployerZipCode,
+                              f.EmployerPhoneNumber,
+                              f.Medical,
+                              f.Dental,
+                              f.Vision,
+                              f.Indemnity,
+                          });
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+        }
+
+        //[System.Web.Mvc.HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public JsonResult FamilyMemberUpdate(int id) 
+        //{
+        //    Family_Info f = db.Family_Info
+        //        .Where(i => i.FamilyMember_id == id)
+        //        .SingleOrDefault();
+
+        //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
+
+        //}
+
+        public ActionResult FamilyMemberEnrollment()
+        {
+            return View();
+        }
+
+        public ActionResult SpouseEnrollment(int id)
+        {
+            ViewBag.Employee_id = id;
+
+            return View();
+        }
+
+        //GET: Family_info
+        public JsonResult GetSpouseEnrollment(int id, string MaritalStatus)
+        {
+            var output = (from f in db.Family_Info
+                          select new
+                          {
+                              f.FamilyMember_id,
+                              f.OtherInsurance_id,
+                              f.Employee_id,
+                              f.RelationshipToInsured,
                               f.SSN,
                               f.FirstName,
                               f.LastName,
-                              f.MailingAddress,
+                              f.DateOfBirth,
+                              f.Sex,
                           });
+
+            //Realtionship Status for Spouse and Dependent Enrollment View isn't working
+            //ViewBag.Employee_id = id;
+            //ViewBag.spouseExist = true;
+            //ViewBag.MartialStatus = MaritalStatus;
+
+            //Employee employee = db.Employees.Find(id);
+
+            //if (employee.MaritalStatus == "Single")
+            //{
+            //    ViewBag.spouseExist = false;
+            //    ViewBag.RelationshipToInsured = "Single";
+            //}
+            //else if (employee.MaritalStatus == "SinglewDep")
+            //{
+            //    ViewBag.spouseExist = false;
+            //    ViewBag.RelationshipToInsured = "Spouse";
+            //}
+            //else
+            //{
+            //    ViewBag.RelationshipToInsured = "Dependent";
+            //}
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
 
         }
 
-        //GET: Family_info/5
-        public JsonResult SpouseAndDependentOverview(int? id)
+
+        [System.Web.Mvc.HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult SpouseEnrollmentUpdate(int id)
         {
-            Family_Info f = db.Family_Info
+            Family_Info family = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
                 .SingleOrDefault();
 
-            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+                db.Family_Info.Add(family);
+                db.SaveChanges();
+
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
+
 
         //----------------------------------------------------------------------------------------
         //[Route("api/Family_Info/GetFamilyMember/{FamilyMember_id:int}/{SSN:string}")]
@@ -82,83 +184,12 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-
-        public JsonResult SpouseEnrollment(int id, string MaritalStatus)
+        public ActionResult SpouseContact()
         {
-
-            var output = (from f in db.Family_Info
-                          select new
-                          {
-                              f.RelationshipToInsured,
-                              //Employee Number
-                              //Employee Name
-                              f.FirstName,
-                              f.LastName,
-                              f.DateOfBirth,
-                              f.Sex,
-
-                          });
-
-            //Realtionship Status for Spouse and Dependent Enrollment View isn't working
-            //ViewBag.Employee_id = id;
-            //ViewBag.spouseExist = true;            
-            //ViewBag.MartialStatus = MartialStatus;
-
-            //Employee employee = db.Employees.Find(id);
-
-            //if (employee.MartialStatus == "Single")
-            //{
-            //    ViewBag.spouseExist = false;
-            //    ViewBag.RelationshipToInsured = "Single";
-            //}
-            //else if (employee.MartialStatus == "SinglewDep")
-            //{
-            //    ViewBag.spouseExist = false;
-            //    ViewBag.RelationshipToInsured = "Spouse";
-            //}
-            //else
-            //{
-            //    ViewBag.RelationshipToInsured = "Dependent";
-            //}
-
-            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+            return View();
         }
 
-        public JsonResult SpouseEnrollment(int? id)
-        {
-            Family_Info f = db.Family_Info
-                .Where(i => i.FamilyMember_id == id)
-                .SingleOrDefault();
-
-            db.Family_Info.Add(f);
-            db.SaveChanges();
-
-            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
-
-        }
-
-
-        //----------------------------------------------------------------------------------------
-        //GET: api/Family_Info/5
-        //public Family_Info SpouseEnrollment(int id)
-        //{
-        //    return familyMember.Where(i => i.FamilyMember_id == id).FirstOrDefault();
-        //}
-
-        //POST: api/Family_Info
-        //[System.Web.Http.HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public void SpouseEnrollment([Bind(Include = "")]Family_Info createSpouse)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Family_Infoes.Add(createSpouse);
-        //        db.SaveChanges();
-        //    }
-        //}
-        //----------------------------------------------------------------------------------------
-
-        public JsonResult SpouseContact()
+        public JsonResult GetSpouseContact()
         {
             var output = (from f in db.Family_Info
                           select new
@@ -177,7 +208,7 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SpouseContact(int? id)
+        public JsonResult SpouseContactUpdate(int? id)
         {
             Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
@@ -188,6 +219,8 @@ namespace Watson.Controllers
 
             return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
         }
+
+
 
         //----------------------------------------------------------------------------------------
         //GET: api/Family_Info/5

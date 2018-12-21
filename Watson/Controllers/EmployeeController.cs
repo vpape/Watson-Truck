@@ -58,6 +58,9 @@ namespace Watson.Controllers
                 .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
+            db.Employees.Add(e);
+            db.SaveChanges();
+
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
@@ -242,12 +245,9 @@ namespace Watson.Controllers
                 .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
-            if (ModelState.IsValid)
-            {
-                db.Employees.Add(e);
-                db.SaveChanges();
-            }
-
+            db.Employees.Add(e);
+            db.SaveChanges();
+            
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 

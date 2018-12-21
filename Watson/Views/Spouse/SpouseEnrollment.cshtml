@@ -11,95 +11,153 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Spouse Enrollment Page</title>
+    <title>Spouse Enrollment</title>
 </head>
 <body>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.FamilyMember_id)
+        @Html.HiddenFor(model => model.Employee_id)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         <div class="form-horizontal">
             <hr />
             <button class="collapsible"><h4>Spouse Enrollment</h4></button>
             <div class="content">
-            @*<form action="/api/Family_Info/SpouseEnrollment" method="post">*@
-                <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
-                <input type="hidden" id="MartialStatus" class="form-control" name="MartialStatus" value=@ViewBag.MartialStatus />
-                <div class="form-group" id="divRelationshipToInsured">
-                    <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
-                    <div class="col-md-10">
-                        <select id="RelationToInsured" name="RelationShipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control">
-                            @if (ViewBag.spouseExist == false)
-                            {
-                                <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                            }
-                            else
-                            {
-                                <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                            }
-                        </select>
+                <form action="SpouseEnrollment()" method="post">
+                    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+                    <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value=@ViewBag.MaritalStatus />
+                    <div class="form-group" id="divRelationshipToInsured">
+                        <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
+                        <div class="col-md-10">
+                            <select id="RelationToInsured" name="RelationShipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control">
+                                @if (ViewBag.spouseExist == false)
+                                {
+                                    <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                                }
+                                else
+                                {
+                                    <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                                }
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group" id="empNumber">
-                    <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
-                    <div class="col-md-10">
-                        <text type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(m => Model.Employee.SSN)" />
+                    <div class="form-group" id="empNumber">
+                        <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
+                        <div class="col-md-10">
+                            <text type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(m => Model.Employee.SSN)" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group" id="empName">
-                    <label for="" class="col-md-2 control-label">Employee Name:</label>
-                    <div class="col-md-10">
-                        <text type="text" id="EmployeeFName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.FirstName)" />
-                        <text type="text" id="EmployeeLName" class="form-control" name="" value= "@Html.DisplayFor(model => model.Employee.LastName)" />
+                    <div class="form-group" id="empName">
+                        <label for="" class="col-md-2 control-label">Employee Name:</label>
+                        <div class="col-md-10">
+                            <text type="text" id="EmployeeFName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.FirstName)"/>
+                            <text type="text" id="EmployeeLName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.LastName)" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group" div="divSpouseInfo">
-                    <label for="FirstName" class="col-md-2 control-label">First Name:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                    <div class="form-group" div="divSpouseInfo">
+                        <label for="FirstName" class="col-md-2 control-label">First Name:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="LastName" class="col-md-2 control-label">Last Name:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                    <div class="form-group">
+                        <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                    <div class="form-group">
+                        <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-2 control-label">Gender:</label>
-                    <div class="col-md-10">
-                        <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
-                        <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Gender:</label>
+                        <div class="col-md-10">
+                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
+                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" onclick="SpouseEnrollment();" value="Save" class="btn btn-primary"/>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" onclick="SpouseEnrollmentUpdate();" value="Save" class="btn btn-primary" />
+                        </div>
                     </div>
-                </div>
-            @*</form>*@
+                </form>
             </div>
         </div>
-        
+
     }
-        <div>
-            <button onclick="location.href='Family_Info/FamilyMemberEnrollment'"  class="btn btn-secondary">Previous</button> |
-            <button onclick="location.href='Family_Info/SpouseContact'" class="btn btn-secondary">Continue</button>
-        </div>
-        <p>
-            @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
-        </p>
+    <div>
+        <button onclick="FamilyMemberEnrollment()" class="btn">Previous</button> |
+        <button onclick="SpouseContact()" class="btn">Continue</button>
+    </div>
+    <p>
+        @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
+    </p>
 </body>
 </html>
 
+
+@*<script>
+    function SpouseOrDependent()
+    {
+        var choice = document.getElementById("RelationToInsured").value;
+        var spouse = document.getElementById("divSpouseInfo").value;
+        var dependent = document.getElementById("divDependentInfo").value;
+
+        if (choice == "Spouse")
+        {
+            spouse.style.display = 'block';
+            dependent.style.display = 'none';
+
+        }
+        else {
+            spouse.style.display = 'none';
+            dependent.style.display = 'block';
+        }
+    }
+</script>*@
+
+<script>
+    function GetSpouseEnrollment() {
+        RelationshipToInsured = document.getElementsByName("RelationshipToInsured").value;
+        EmployeeNumber = document.getElementById("SSN").value;
+        EmpFName = document.getElementById("EmployeeFName").value;
+        EmpLName = document.getElementById("EmployeeLName").value;
+
+        FirstName = document.getElementById("FirstName").value;
+        LastName = document.getElementById("LastName").value;
+        DateOfBirth = document.getElementById("DateOfBirth").value;
+        Gender = document.getElementsByName("Sex").value;
+
+        postData('/Family_Info/SpouseEnrollment', {
+            RelationshipToInsured: RelationshipToInsured, EmployeeNumber: EmployeeNumber, EmpFName: EmpFName, EmpLName: EmpLName,
+            FirstName: FirstName, LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender,
+        })
+            .then(data => SpouseEnrollmentUpdate(data))
+            .catch(error => console.error(error))
+    }
+
+    function postData(url, data) {
+        //Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        })
+            .then(response => response.JSON()) //parses response to JSON
+    }
+</script>
 
 <script>
     var col = document.getElementByClassName("collapsible");
@@ -133,9 +191,9 @@
         font-size: 15px;
     }
 
-        .active, .collapsible:hover {
-            background-color: #555;
-        }
+    .active, .collapsible:hover {
+        background-color: #555;
+    }
 
     .content {
         padding: 0 18px;
@@ -144,63 +202,3 @@
         background-color: #f1f1f1;
     }
 </style>
-
-<script>
-    //function SpouseOrDependent()
-    //{
-    //    var choice = document.getElementById("RelationToInsured").value;
-    //    var spouse = document.getElementById("divSpouseInfo").value;
-    //    var dependent = document.getElementById("divDependentInfo").value;
-        
-    //    if (choice == "Spouse")
-    //    {
-    //        spouse.style.display = 'block';
-    //        dependent.style.display = 'none';
-
-    //    }
-    //    else {
-    //        spouse.style.display = 'none';
-    //        dependent.style.display = 'block';
-    //    }
-    //}
-</script>
-
-<script>
-    function SpouseEnrollment() {
-        RelationshipToInsured = document.getElementsByName("RelationshipToInsured").value;
-        EmployeeNumber = document.getElementById("SSN").value;
-        EmpFName = document.getElementById("EmployeeFName").value;
-        EmpLName = document.getElementById("EmployeeLName").value;
-
-        FirstName = document.getElementById("FirstName").value;
-        LastName = document.getElementById("LastName").value;
-        DateOfBirth = document.getElementById("DateOfBirth").value;
-        Gender = document.getElementsByName("Sex").value;
-
-        postData('/Family_Info/SpouseEnrollment', {
-            RelationshipToInsured: RelationshipToInsured, EmployeeNumber: EmployeeNumber, EmpFName: EmpFName, EmpLName: EmpLName,
-            FirstName: FirstName, LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, 
-        })
-            .then(data => SpouseEnrollment(data))
-            .catch(error => console.error(error))
-    }
-        
-    function postData(url, data) {
-        //Default options are marked with *
-        return fetch(url, {
-            body: JSON.stringify(data), //must match 'Content-Type' header
-            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', //include, same-origin, *omit
-            headers: {
-                'user-agent': 'Mozilla/4.0 MDN Example',
-                'content-type': 'application/json'
-            },
-            method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            mode: 'cors', //no-cors, cors, *same-origin
-            redirect: 'follow', //manual, *follow, error
-            referrer: 'no-referrer', //*client, no-referrer
-        })
-            .then(response => response.JSON()) //parses response to JSON
-    }
-</script>
-

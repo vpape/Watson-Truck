@@ -17,7 +17,6 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.FamilyMember_id)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <form class="FamilyMemberEnrollment()">
             <div class="form-horizontal">
@@ -33,11 +32,11 @@
             </div>
             <div class="form-horizontal">
                 <hr />
-                <button><h4>Dependent Enrollment</h4></button>
+                <button class="collapsible"><h4>Dependent Enrollment</h4></button>
                 <div class="content">
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="button" onclick="DependentEnrollment()" id="DependentEnrollment" class="btn" />
+                            <input type="button" onclick="DependentEnrollment()" id="DependentEnrollment" class="btn btn-primary" />
                         </div>
                     </div>
                 </div>
@@ -67,3 +66,44 @@
         });
     }
 </script>
+
+<style>
+    .collapsible {
+        background-color: #333333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+    .active, .collapsible:hover {
+        background-color: #555;
+    }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+    a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .btn {
+        background-color: #2e4593;
+        color: white;
+    }
+</style>

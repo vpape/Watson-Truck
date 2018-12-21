@@ -18,14 +18,13 @@
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.FamilyMember_id)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         <div class="form-horizontal">
             <hr />
             <button class="collapsible"><h4>Spouse Contact</h4></button>
             <div class="content">
                 @*<form action="/api/Family_Info/SpouseContact" method="post">*@
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Is Contact information Same As Spouse?</label>
+                    <label class="col-md-2 control-label">Is Contact information same as Spouse?</label>
                 <div class="col-md-10">
                     <label class="radio-inline"><input type="radio" id="AddrSame" class="radio-inline" name="MailingAddress" value="true" onclick='SpouseContact()' checked />Yes</label>
                     <label class="radio-inline"><input type="radio" id="AddrNotSame" class="radio-inline" name="MailingAddress" value="false" onclick='SpouseContact()' />No</label>

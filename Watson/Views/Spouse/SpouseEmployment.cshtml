@@ -18,12 +18,11 @@
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.FamilyMember_id)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         <div class="form-horizontal">
             <hr />
             <h4>Spouse Employment</h4>
             <div class="content">
-                @*<form action="/api/Family_Info/SpouseEmployment" method="post">*@
+                <form action="SpouseEmployment()" method="post">
                     <div id="divSpouseEmployment">
                         <div class="form-group">
                             <label for="Employer" class="col-md-2 control-label">Current Employer:</label>
@@ -64,17 +63,17 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" onclick="SpouseEmployment()" class="btn btn-primary" />
+                            <input type="submit" value="Save" onclick="SpouseEmploymentUpdate()" class="btn btn-primary" />
                         </div>
                     </div>
-                @*</form>*@
+                </form>
             </div>
         </div>
     }
 
     <div>
-        <button onclick="location.href='Family_Info/SpouesContact'" value="Previous" class="btn btn-secondary" /> |
-        <button onclick="location.href='Family_Info/FamilyMemberOverview'" value="Finished" class="btn btn-secondary" />
+        <button onclick="SpouesContact()" value="Previous" class="btn btn-secondary" /> |
+        <button onclick="FamilyMemberOverview()" value="Finished" class="btn btn-secondary" />
     </div>
     <p>
         @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
@@ -83,7 +82,7 @@
 </html>
 
 <script>
-    function SpouseEmployment() {
+    function GetSpouseEmployment() {
 
         Employer = document.getElementById("Employer").value;
         EmployerAddress = document.getElementById("EmployerAddress").value;
@@ -97,7 +96,7 @@
             EmployerState: EmployerState, EmployerZipCode: EmployerZipCode, EmployerPhoneNumber: EmployerPhoneNumber
 
         })
-            .then(data => SpouseEmployment(data))
+            .then(data => SpouseEmploymentUpdate(data))
             .catch(error => error.console(error))
 
     }
@@ -119,3 +118,47 @@
         })
     }
 </script>
+
+<script>
+    var col = document.getElementByClassName("collapsible");
+    var i;
+
+    for (var i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            }
+            else
+                content.style.display = "block"
+        });
+    }
+</script>
+
+
+<style>
+    .collapsible {
+        background-color: #333333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+</style>

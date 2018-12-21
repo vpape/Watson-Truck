@@ -22,81 +22,81 @@
             <hr />
             <button class="collapsible"><h4>Employee Enrollment</h4></button>
             <div class="content">
-            <form action="EmployeeEnrollment()" method="post">
-                <div class="form-group">
-                    <label for="Employee_id" class="col-md-2 control-label">Employee_id:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="Employee_id" class="form-control" name="Employee_id" value=@Html.DisplayFor(Model => Model.Employee_id) />
+                <form action="EmployeeEnrollment()" method="post">
+                    <div class="form-group">
+                        <label for="Employee_id" class="col-md-2 control-label">Employee_id:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="Employee_id" class="form-control" name="Employee_id" value=@Html.DisplayFor(Model => Model.Employee_id) />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="" />
+                    <div class="form-group">
+                        <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="" />
+                    <div class="form-group">
+                        <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
-                    <div class="col-md-10">
-                        <input type="number" id="SSN" class="form-control" name="SSN" value="" />
+                    <div class="form-group">
+                        <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
+                        <div class="col-md-10">
+                            <input type="number" id="SSN" class="form-control" name="SSN" value="" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="FirstName" class="col-md-2 control-label">First Name:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                    <div class="form-group">
+                        <label for="FirstName" class="col-md-2 control-label">First Name:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="LastName" class="col-md-2 control-label">Last Name:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                    <div class="form-group">
+                        <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
-                    <div class="col-md-10">
-                        <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                    <div class="form-group">
+                        <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
+                        <div class="col-md-10">
+                            <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-2 control-label">Gender:</label>
-                    <div class="col-md-10">
-                        <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="Male" checked />Male</label>
-                        <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="Female" />Female</label>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Gender:</label>
+                        <div class="col-md-10">
+                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="Male" checked />Male</label>
+                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="Female" />Female</label>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="MaritalStatus" class="col-md-2 control-label">Marital Status:</label>
-                    <div class="col-md-10">
-                        <select name="MartialStatus" class="form-control">
-                            <option id="MarriedwDep" name="MaritalStatus" value="MarriedwDep">Married with Dependents</option>
-                            <option id="Married" name="MaritalStatus" value="Married">Married</option>
-                            <option id="SinglewDep" name="MaritalStatus" value="SinglewDep">Single with Dependents</option>
-                            <option id="Single" name="MaritalStatus" value="Single">Single</option>
-                        </select>
+                    <div class="form-group">
+                        <label for="MaritalStatus" class="col-md-2 control-label">Marital Status:</label>
+                        <div class="col-md-10">
+                            <select name="MartialStatus" class="form-control">
+                                <option id="MarriedwDep" name="MaritalStatus" value="MarriedwDep">Married with Dependents</option>
+                                <option id="Married" name="MaritalStatus" value="Married">Married</option>
+                                <option id="SinglewDep" name="MaritalStatus" value="SinglewDep">Single with Dependents</option>
+                                <option id="Single" name="MaritalStatus" value="Single">Single</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        @*<input type="submit" value="Save" onclick=" return EmployeeEnrollment()" class="btn btn-default" />*@
-                        <button type="submit" onclick="EmployeeEnrollmentUpdate()" id="EmployeeEnrollmentUpdate" class="btn">Save</button>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            @*<input type="submit" value="Save" onclick=" return EmployeeEnrollment()" class="btn btn-default" />*@
+                            <button type="submit" onclick="EmployeeEnrollmentUpdate()" id="EmployeeEnrollmentUpdate" class="btn">Save</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
             </div>
         </div>
 
     }
     <div>
-        <button onclick= "EnrollmentSelection()" value="Previous" class="previous" /> |
-        <button onclick= "Contact()" value="Continue" class="btn" />
+        <button onclick="EnrollmentSelection()" value="Previous" class="previous" /> |
+        <button onclick="Contact()" value="Continue" class="btn" />
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Employee_id }) |
@@ -104,18 +104,6 @@
     </p>
 </body>
 </html>
-
-<script>
-    function EnrollmentSelection() {
-
-        location.href = "location.href='Employee/EnrollmentSelection";
-    }
-
-    function Contact() {
-
-        location.href = "location.href='Employee/Contact";
-    }
-</script>
 
 <script>
     var col = document.getElementByClassName("collapsible");
@@ -136,7 +124,20 @@
 </script>
 
 <script>
-    function GetEmployeeEnrollment() {               
+    function EnrollmentSelection() {
+
+        location.href = "location.href='Employee/EnrollmentSelection";
+    }
+
+    function Contact() {
+
+        location.href = "location.href='Employee/Contact";
+    }
+</script>
+
+
+<script>
+    function GetEmployeeEnrollment() {
         Employee_id = document.getElementById("Employee_id").value;
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;
@@ -204,10 +205,10 @@
         padding: 8px 16px;
     }
 
-    a:hover {
-        background-color: #ddd;
-        color: black;
-    }
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
 
     .previous {
         background-color: #2e4593;
@@ -221,20 +222,20 @@
 </style>
 
 @*<body> EXAMPLE
-    This is a post.  It will actually take you to another page<br />
-    <div>
-        <form method="post" action="/postUser">
-            <label for="firstname">First Name: </label><input type="text" name="firstname" /><br />
-            <label for="lastname">Last Name: </label><input type="text" name="lastname" /><br />
-            <label for="age">Age: </label><input type="number" name="age" /><br />
-            <input type="submit" /><br />
-        </form>
-    </div>
-    <div>
-        This is not a post.  This uses Javascript to post the data behind the scenes<br />
-        <label for="fname">First Name: </label><input type="text" name="fname" id="fname" /><br />
-        <label for="lname">Last Name: </label><input type="text" name="lname" id="lname" /><br />
-        <label for="a">Age: </label><input type="number" name="a" id="a" /><br />
-        <button onclick="submitUser();">Submit</button><br />
-    </div>
-</body>*@
+        This is a post.  It will actually take you to another page<br />
+        <div>
+            <form method="post" action="/postUser">
+                <label for="firstname">First Name: </label><input type="text" name="firstname" /><br />
+                <label for="lastname">Last Name: </label><input type="text" name="lastname" /><br />
+                <label for="age">Age: </label><input type="number" name="age" /><br />
+                <input type="submit" /><br />
+            </form>
+        </div>
+        <div>
+            This is not a post.  This uses Javascript to post the data behind the scenes<br />
+            <label for="fname">First Name: </label><input type="text" name="fname" id="fname" /><br />
+            <label for="lname">Last Name: </label><input type="text" name="lname" id="lname" /><br />
+            <label for="a">Age: </label><input type="number" name="a" id="a" /><br />
+            <button onclick="submitUser();">Submit</button><br />
+        </div>
+    </body>*@
