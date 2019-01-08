@@ -195,6 +195,8 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
+        [System.Web.Mvc.HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult SpouseContactUpdate(int id)
         {
             Family_Info f = db.Family_Info
@@ -204,7 +206,7 @@ namespace Watson.Controllers
             db.Family_Info.Add(f);
             db.SaveChanges();
 
-            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -235,19 +237,27 @@ namespace Watson.Controllers
             var output = (from f in db.Family_Info
                           select new
                           {
+                              f.Employer,
+                              f.EmployerMailingAddress,
+                              f.EmployerCity,
+                              f.EmployerState,
+                              f.EmployerZipCode,
+                              f.EmployerPhoneNumber,
 
                           });
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SpouseEmployment(int? id)
+        [System.Web.Mvc.HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult SpouseEmploymentUpdate(int id)
         {
             Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
                 .SingleOrDefault();
 
-            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -281,7 +291,7 @@ namespace Watson.Controllers
 
                           });
 
-            return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Family_Info/5
@@ -294,7 +304,7 @@ namespace Watson.Controllers
             db.Family_Info.Add(f);
             db.SaveChanges();
 
-            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
