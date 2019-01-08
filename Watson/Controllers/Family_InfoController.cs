@@ -231,8 +231,12 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
+        public ActionResult SpouseEmployment()
+        {
+            return View();
+        }
 
-        public JsonResult SpouseEmployment()
+        public JsonResult GetSpouseEmployment()
         {
             var output = (from f in db.Family_Info
                           select new
@@ -281,21 +285,25 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
+        public ActionResult EditSpouse()
+        {
+            return View();
+        }
 
         // GET: Family_Info
-        public JsonResult EditSpouse()
+        public JsonResult GetEditSpouse()
         {
             var output = (from f in db.Family_Info
                           select new
                           {
-
+                              
                           });
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Family_Info/5
-        public JsonResult EditSpouse(int? id)
+        public JsonResult EditSpouseUpdate(int id)
         {
             Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
