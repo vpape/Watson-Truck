@@ -420,8 +420,40 @@ namespace Watson.Controllers
             var output = (from f in db.Family_Info
                           select new
                           {
-                              f.
+                              f.FamilyMember_id,
+                              f.Employee_id,
+                              f.OtherInsurance_id,
+                              f.RelationshipToInsured,
+                              f.SSN,
+                              f.FirstName,
+                              f.LastName,
+                              f.DateOfBirth,
+                              f.Sex,
+                              f.MailingAddress,
+                              f.PhysicalAddress,
+                              f.City,
+                              f.State,
+                              f.ZipCode,
+                              f.County,
+                              f.EmailAddress,
+                              f.PhoneNumber,
+                              f.CellPhone,
+                              f.Employer,
+                              f.EmployerMailingAddress,
+                              f.EmployerCity,
+                              f.EmployerState,
+                              f.EmployerZipCode,
+                              f.EmployerPhoneNumber,
                           });
+
+            var output2 = (from e in db.Employees
+                           select new
+                           {
+                               e.Employee_id,
+                               e.FirstName,
+                               e.LastName,
+                               e.SSN,
+                           });
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
