@@ -251,7 +251,6 @@ namespace Watson.Controllers
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -423,6 +422,7 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
 
+        //Need to finish Group and Life Insurance 
         public ActionResult LifeInsurance(int id)
         {
            Life_Insurance lifeIns = db.Life_Insurance.Find(id);

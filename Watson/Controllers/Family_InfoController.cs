@@ -79,7 +79,6 @@ namespace Watson.Controllers
             return View();
         }
 
-        //GET: Family_info
         public JsonResult GetSpouseEnrollment(int id, string MaritalStatus)
         {
             var output = (from f in db.Family_Info
@@ -181,6 +180,9 @@ namespace Watson.Controllers
             var output = (from f in db.Family_Info
                           select new
                           {
+                              f.FamilyMember_id,
+                              f.Employee_id,
+                              f.OtherInsurance_id,
                               f.MailingAddress,
                               f.PhysicalAddress,
                               f.City,
@@ -208,8 +210,6 @@ namespace Watson.Controllers
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
-
-
 
         //----------------------------------------------------------------------------------------
         //GET: api/Family_Info/5
@@ -241,6 +241,9 @@ namespace Watson.Controllers
             var output = (from f in db.Family_Info
                           select new
                           {
+                              f.FamilyMember_id,
+                              f.Employee_id,
+                              f.OtherInsurance_id,
                               f.Employer,
                               f.EmployerMailingAddress,
                               f.EmployerCity,
@@ -264,7 +267,6 @@ namespace Watson.Controllers
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-
         //----------------------------------------------------------------------------------------
         //GET: api/Family_Info/5
         //public Family_Info SpouseEmployment(int id)
@@ -285,24 +287,72 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        public ActionResult EditSpouse()
+        public ActionResult EditSpouse(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Family_Info family = db.Family_Info.Find(id);
+            if (family == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Employee_id = id;
+     
+            return View(family);
         }
 
-        // GET: Family_Info
-        public JsonResult GetEditSpouse()
+        public JsonResult GetEditSpouse(int id, string MaritalStatus)
         {
             var output = (from f in db.Family_Info
                           select new
                           {
-                              
+                              f.FamilyMember_id,
+                              f.Employee_id,
+                              f.OtherInsurance_id,
+                              f.RelationshipToInsured,
+                              f.SSN,
+                              f.FirstName,
+                              f.LastName,
+                              f.DateOfBirth,
+                              f.Sex,
+                              f.MailingAddress,
+                              f.PhysicalAddress,
+                              f.City,
+                              f.State,
+                              f.ZipCode,
+                              f.County,
+                              f.EmailAddress,
+                              f.PhoneNumber,
+                              f.CellPhone,
+                              f.Employer,
+                              f.EmployerMailingAddress,
+                              f.EmployerCity,
+                              f.EmployerState,
+                              f.EmployerZipCode,
+                              f.EmployerPhoneNumber,
                           });
 
-            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+            var output2 = (from e in db.Employees
+                           select new
+                           {
+                               e.Employee_id,
+                               e.FirstName,
+                               e.LastName,
+                               e.SSN,
+                           });
+
+            ViewBag.Employee_id = id;
+            ViewBag.MaritalStatus = MaritalStatus;
+
+            return Json(new { data = output, output2 }, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Family_Info/5
+        [System.Web.Mvc.HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult EditSpouseUpdate(int id)
         {
             Family_Info f = db.Family_Info
@@ -349,16 +399,44 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        // GET: Family_Info/5
-        public JsonResult SpouseDetail(int? id)
+        public ActionResult SpouseDetail(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Family_Info family = db.Family_Info.Find(id);
+            if (family == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(family);
+        }
+
+        public JsonResult GetSpouseDetail()
+        {
+            var output = (from f in db.Family_Info
+                          select new
+                          {
+                              f.
+                          });
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SpouseDetailUpdate(int id)
         {
             Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
                 .FirstOrDefault();
 
-            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
 
         }
+
+
 
         //----------------------------------------------------------------------------------------
         //GET: api/Family_Info/5
