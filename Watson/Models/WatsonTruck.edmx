@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WatsonTruckModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WatsonTruckModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -112,13 +112,13 @@
           <Property Name="DateOfBirth" Type="date" Nullable="false" />
           <Property Name="SSN" Type="varchar" MaxLength="15" />
           <Property Name="MaritalStatus" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Sex" Type="bit" Nullable="false" />
-          <Property Name="MailingAddress" Type="varchar" MaxLength="35" Nullable="false" />
-          <Property Name="PhysicalAddress" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="6" />
+          <Property Name="MailingAddress" Type="varchar" MaxLength="150" />
+          <Property Name="PhysicalAddress" Type="varchar" MaxLength="150" />
           <Property Name="City" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="State" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="ZipCode" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="EmailAddress" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="150" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
           <Property Name="CellPhone" Type="varchar" MaxLength="30" />
           <Property Name="County" Type="varchar" MaxLength="30" />
@@ -129,12 +129,12 @@
           <Property Name="EligibilityDate" Type="date" Nullable="false" />
           <Property Name="WorkStatus" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="HoursWorkedPerWeek" Type="int" Nullable="false" />
-          <Property Name="JobTitle" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="AnnualSalary" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Department" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="EnrollmentType" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="Payroll_id" Type="int" Nullable="false" />
-          <Property Name="Class" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="JobTitle" Type="varchar" MaxLength="25" />
+          <Property Name="AnnualSalary" Type="decimal" Precision="13" Scale="4" />
+          <Property Name="Department" Type="varchar" MaxLength="25" />
+          <Property Name="EnrollmentType" Type="varchar" MaxLength="25" />
+          <Property Name="Payroll_id" Type="int" />
+          <Property Name="Class" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Family_Info">
           <Key>
@@ -148,27 +148,27 @@
           <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="SSN" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="DateOfBirth" Type="date" Nullable="false" />
-          <Property Name="MailingAddress" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="PhysicalAddress" Type="varchar" MaxLength="30" />
+          <Property Name="MailingAddress" Type="varchar" MaxLength="150" />
+          <Property Name="PhysicalAddress" Type="varchar" MaxLength="150" />
           <Property Name="City" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="State" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="ZipCode" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="EmailAddress" Type="varchar" MaxLength="30" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="150" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
           <Property Name="CellPhone" Type="varchar" MaxLength="30" />
-          <Property Name="County" Type="varchar" MaxLength="30" />
-          <Property Name="Sex" Type="bit" Nullable="false" />
+          <Property Name="County" Type="varchar" MaxLength="40" />
+          <Property Name="Gender" Type="varchar" MaxLength="6" />
           <Property Name="Employer" Type="varchar" MaxLength="30" />
           <Property Name="RelationshipToInsured" Type="varchar" MaxLength="15" />
-          <Property Name="EmployerMailingAddress" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="EmployerCity" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="EmployerState" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="EmployerZipCode" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="EmployerMailingAddress" Type="varchar" MaxLength="150" />
+          <Property Name="EmployerCity" Type="varchar" MaxLength="40" />
+          <Property Name="EmployerState" Type="varchar" MaxLength="40" />
+          <Property Name="EmployerZipCode" Type="varchar" MaxLength="13" />
           <Property Name="EmployerPhoneNumber" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Medical" Type="bit" Nullable="false" />
-          <Property Name="Dental" Type="bit" Nullable="false" />
-          <Property Name="Vision" Type="bit" Nullable="false" />
-          <Property Name="Indemnity" Type="bit" Nullable="false" />
+          <Property Name="Medical" Type="bit" />
+          <Property Name="Dental" Type="bit" />
+          <Property Name="Vision" Type="bit" />
+          <Property Name="Indemnity" Type="bit" />
         </EntityType>
         <EntityType Name="Group_Health">
           <Key>
@@ -534,6 +534,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="DeleteEmployeeAndDependents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empid" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="WatsonTruckModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -617,8 +620,7 @@
             <End Role="Vacation" EntitySet="Vacation" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WatsonTruckModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -732,12 +734,12 @@
           <Property Name="SSN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="MaritalStatus" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Sex" Type="Boolean" Nullable="false" />
-          <Property Name="MailingAddress" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhysicalAddress" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MailingAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PhysicalAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ZipCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EmailAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="CellPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="County" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -748,12 +750,12 @@
           <Property Name="EligibilityDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="WorkStatus" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HoursWorkedPerWeek" Type="Int32" Nullable="false" />
-          <Property Name="JobTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="AnnualSalary" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Department" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EnrollmentType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Payroll_id" Type="Int32" Nullable="false" />
-          <Property Name="Class" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="JobTitle" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="AnnualSalary" Type="String" />
+          <Property Name="Department" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="EnrollmentType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Payroll_id" Type="Int32" />
+          <Property Name="Class" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Beneficiaries" Relationship="Self.FK_Beneficiary_Employee" FromRole="Employee" ToRole="Beneficiary" />
           <NavigationProperty Name="Deductions" Relationship="Self.FK_Deductions_Employee" FromRole="Employee" ToRole="Deductions" />
           <NavigationProperty Name="Family_Info" Relationship="Self.FK_Family_Info_Employee" FromRole="Employee" ToRole="Family_Info" />
@@ -762,6 +764,7 @@
           <NavigationProperty Name="Life_Insurance" Relationship="Self.FK_Life_Insurance_Employee" FromRole="Employee" ToRole="Life_Insurance" />
           <NavigationProperty Name="Other_Insurance" Relationship="Self.FK_Other_Insurance_Employee" FromRole="Employee" ToRole="Other_Insurance" />
           <NavigationProperty Name="Vacations" Relationship="Self.FK_Vacation_Employee" FromRole="Employee" ToRole="Vacation" />
+          <Property Name="Gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Family_Info">
           <Key>
@@ -775,29 +778,30 @@
           <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SSN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="MailingAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhysicalAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MailingAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PhysicalAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ZipCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EmailAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="CellPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="County" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="County" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="Sex" Type="Boolean" Nullable="false" />
           <Property Name="Employer" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="RelationshipToInsured" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="EmployerMailingAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EmployerCity" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EmployerState" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EmployerZipCode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployerMailingAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerCity" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerState" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerZipCode" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="EmployerPhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Medical" Type="Boolean" Nullable="false" />
-          <Property Name="Dental" Type="Boolean" Nullable="false" />
-          <Property Name="Vision" Type="Boolean" Nullable="false" />
-          <Property Name="Indemnity" Type="Boolean" Nullable="false" />
+          <Property Name="Medical" Type="Boolean" />
+          <Property Name="Dental" Type="Boolean" />
+          <Property Name="Vision" Type="Boolean" />
+          <Property Name="Indemnity" Type="Boolean" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Family_Info_Employee" FromRole="Family_Info" ToRole="Employee" />
           <NavigationProperty Name="Other_Insurance" Relationship="Self.FK_Other_Insurance_Family_Info" FromRole="Family_Info" ToRole="Other_Insurance" />
+          <Property Name="Gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Group_Health">
           <Key>
@@ -1226,6 +1230,9 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <FunctionImport Name="DeleteEmployeeAndDependents">
+            <Parameter Name="empid" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -1328,6 +1335,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="WatsonTruckModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
                 <ScalarProperty Name="EmployeeRole" ColumnName="EmployeeRole" />
                 <ScalarProperty Name="CurrentEmployer" ColumnName="CurrentEmployer" />
@@ -1338,7 +1346,6 @@
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="SSN" ColumnName="SSN" />
                 <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
-                <ScalarProperty Name="Sex" ColumnName="Sex" />
                 <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
                 <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
                 <ScalarProperty Name="City" ColumnName="City" />
@@ -1367,6 +1374,7 @@
           <EntitySetMapping Name="Family_Info">
             <EntityTypeMapping TypeName="WatsonTruckModel.Family_Info">
               <MappingFragment StoreEntitySet="Family_Info">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="FamilyMember_id" ColumnName="FamilyMember_id" />
                 <ScalarProperty Name="OtherInsurance_id" ColumnName="OtherInsurance_id" />
                 <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
@@ -1384,7 +1392,6 @@
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
                 <ScalarProperty Name="County" ColumnName="County" />
-                <ScalarProperty Name="Sex" ColumnName="Sex" />
                 <ScalarProperty Name="Employer" ColumnName="Employer" />
                 <ScalarProperty Name="RelationshipToInsured" ColumnName="RelationshipToInsured" />
                 <ScalarProperty Name="EmployerMailingAddress" ColumnName="EmployerMailingAddress" />
@@ -1578,6 +1585,7 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="DeleteEmployeeAndDependents" FunctionName="WatsonTruckModel.Store.DeleteEmployeeAndDependents" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -12,6 +12,8 @@ namespace Watson.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class WatsonTruckEntities : DbContext
     {
@@ -41,5 +43,14 @@ namespace Watson.Models
         public virtual DbSet<Life_Insurance> Life_Insurance { get; set; }
         public virtual DbSet<Other_Insurance> Other_Insurance { get; set; }
         public virtual DbSet<Vacation> Vacations { get; set; }
+    
+        public virtual int DeleteEmployeeAndDependents(Nullable<int> empid)
+        {
+            var empidParameter = empid.HasValue ?
+                new ObjectParameter("empid", empid) :
+                new ObjectParameter("empid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteEmployeeAndDependents", empidParameter);
+        }
     }
 }

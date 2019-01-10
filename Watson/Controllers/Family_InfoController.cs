@@ -85,8 +85,8 @@ namespace Watson.Controllers
                           select new
                           {
                               f.FamilyMember_id,
-                              f.OtherInsurance_id,
-                              f.Employee_id,
+                              f.Employee_id,                              
+                              f.OtherInsurance_id,                              
                               f.RelationshipToInsured,
                               f.SSN,
                               f.FirstName,
@@ -181,8 +181,7 @@ namespace Watson.Controllers
                           select new
                           {
                               f.FamilyMember_id,
-                              f.Employee_id,
-                              f.OtherInsurance_id,
+                              f.Employee_id,                              
                               f.MailingAddress,
                               f.PhysicalAddress,
                               f.City,
@@ -242,8 +241,7 @@ namespace Watson.Controllers
                           select new
                           {
                               f.FamilyMember_id,
-                              f.Employee_id,
-                              f.OtherInsurance_id,
+                              f.Employee_id,                             
                               f.Employer,
                               f.EmployerMailingAddress,
                               f.EmployerCity,
@@ -311,8 +309,7 @@ namespace Watson.Controllers
                           select new
                           {
                               f.FamilyMember_id,
-                              f.Employee_id,
-                              f.OtherInsurance_id,
+                              f.Employee_id,                              
                               f.RelationshipToInsured,
                               f.SSN,
                               f.FirstName,
@@ -421,8 +418,7 @@ namespace Watson.Controllers
                           select new
                           {
                               f.FamilyMember_id,
-                              f.Employee_id,
-                              f.OtherInsurance_id,
+                              f.Employee_id,                              
                               f.RelationshipToInsured,
                               f.SSN,
                               f.FirstName,
@@ -480,7 +476,6 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        // GET: Family_Info
         public JsonResult DeleteSpouse()
         {
             var output = (from f in db.Family_Info
@@ -489,10 +484,9 @@ namespace Watson.Controllers
 
                           });
 
-            return Json(new { data = output }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Family_Info/5
         public JsonResult DeleteSpouse(int? id)
         {
             Family_Info f = db.Family_Info
@@ -500,11 +494,11 @@ namespace Watson.Controllers
                 .SingleOrDefault();
 
 
-            //db.DeleteEmployeeAndDependents(id);
+            db.DeleteEmployeeAndDependents(id);
             db.Family_Info.Remove(f);
             db.SaveChanges();
 
-            return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
