@@ -37,7 +37,7 @@ namespace Watson.Models
         public string PhoneNumber { get; set; }
         public string CellPhone { get; set; }
         public string County { get; set; }
-        public bool Sex { get; set; }
+        public string Gender { get; set; }
         public string Employer { get; set; }
         public string RelationshipToInsured { get; set; }
         public string EmployerMailingAddress { get; set; }
@@ -49,7 +49,6 @@ namespace Watson.Models
         public Nullable<bool> Dental { get; set; }
         public Nullable<bool> Vision { get; set; }
         public Nullable<bool> Indemnity { get; set; }
-        public string Gender { get; set; }
     
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

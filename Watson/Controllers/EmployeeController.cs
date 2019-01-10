@@ -120,7 +120,7 @@ namespace Watson.Controllers
                               e.FirstName,
                               e.LastName,
                               e.DateOfBirth,
-                              e.Sex,
+                              e.Gender,
                               e.MaritalStatus,
                           });
 
@@ -279,7 +279,7 @@ namespace Watson.Controllers
                               e.FirstName,
                               e.LastName,
                               e.DateOfBirth,
-                              e.Sex,
+                              e.Gender,
                               e.MaritalStatus,
                               e.MailingAddress,
                               e.PhysicalAddress,
@@ -369,7 +369,7 @@ namespace Watson.Controllers
                               e.FirstName,
                               e.LastName,
                               e.DateOfBirth,
-                              e.Sex,
+                              e.Gender,
                               e.MaritalStatus,
                               e.MailingAddress,
                               e.PhysicalAddress,
@@ -460,7 +460,7 @@ namespace Watson.Controllers
                               e.FirstName,
                               e.LastName,
                               e.DateOfBirth,
-                              e.Sex,
+                              e.Gender,
                               e.MaritalStatus,
                           });
 

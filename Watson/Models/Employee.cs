@@ -37,7 +37,7 @@ namespace Watson.Models
         public System.DateTime DateOfBirth { get; set; }
         public string SSN { get; set; }
         public string MaritalStatus { get; set; }
-        public bool Sex { get; set; }
+        public string Gender { get; set; }
         public string MailingAddress { get; set; }
         public string PhysicalAddress { get; set; }
         public string City { get; set; }
@@ -55,12 +55,11 @@ namespace Watson.Models
         public string WorkStatus { get; set; }
         public int HoursWorkedPerWeek { get; set; }
         public string JobTitle { get; set; }
-        public string AnnualSalary { get; set; }
+        public Nullable<decimal> AnnualSalary { get; set; }
         public string Department { get; set; }
         public string EnrollmentType { get; set; }
         public Nullable<int> Payroll_id { get; set; }
         public string Class { get; set; }
-        public string Gender { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Beneficiary> Beneficiaries { get; set; }

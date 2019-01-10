@@ -233,7 +233,7 @@ namespace Watson.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Group_Health groupHealth = db.Group_Health.Find(id);
-            if (g == null)
+            if (groupHealth == null)
             {
                 return HttpNotFound();
             }

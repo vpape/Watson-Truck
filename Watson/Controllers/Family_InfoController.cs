@@ -50,7 +50,7 @@ namespace Watson.Controllers
                               f.PhoneNumber,
                               f.CellPhone,
                               f.County,
-                              f.Sex,
+                              f.Gender,
                               f.Employer,
                               f.RelationshipToInsured,
                               f.EmployerMailingAddress,
@@ -92,7 +92,7 @@ namespace Watson.Controllers
                               f.FirstName,
                               f.LastName,
                               f.DateOfBirth,
-                              f.Sex,
+                              f.Gender,
                           });
 
             ViewBag.Employee_id = id;
@@ -315,7 +315,7 @@ namespace Watson.Controllers
                               f.FirstName,
                               f.LastName,
                               f.DateOfBirth,
-                              f.Sex,
+                              f.Gender,
                               f.MailingAddress,
                               f.PhysicalAddress,
                               f.City,
@@ -424,7 +424,7 @@ namespace Watson.Controllers
                               f.FirstName,
                               f.LastName,
                               f.DateOfBirth,
-                              f.Sex,
+                              f.Gender,
                               f.MailingAddress,
                               f.PhysicalAddress,
                               f.City,
