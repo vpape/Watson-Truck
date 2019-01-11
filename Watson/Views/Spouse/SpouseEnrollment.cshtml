@@ -76,8 +76,8 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label">Gender:</label>
                         <div class="col-md-10">
-                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
-                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
+                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="Male" checked />Male</label>
+                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="Female" />Female</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -131,7 +131,7 @@
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
-        Gender = document.getElementsByName("Sex").value;
+        Gender = document.getElementsByName("Gender").value;
 
         postData('/Family_Info/SpouseEnrollment', {
             RelationshipToInsured: RelationshipToInsured, EmployeeNumber: EmployeeNumber, EmpFName: EmpFName, EmpLName: EmpLName,

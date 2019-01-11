@@ -85,8 +85,8 @@
                             </dt>
 
                             <dd>
-                                <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="true" @((Model.Gender = true) ? "checked" : "") />Male</label>
-                                <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="false" @((Model.Sex = false) ? "checked" : "") />Female</label>
+                                <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((Model.Gender == "Male") ? "checked" : "") />Male</label>
+                                <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((Model.Gender == "Female") ? "checked" : "") />Female</label>
                             </dd>
 
                             <dt>
