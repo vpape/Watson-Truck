@@ -85,8 +85,7 @@ namespace Watson.Controllers
                           select new
                           {
                               f.FamilyMember_id,
-                              f.Employee_id,                              
-                              f.OtherInsurance_id,                              
+                              f.Employee_id,                                                          
                               f.RelationshipToInsured,
                               f.SSN,
                               f.FirstName,
@@ -127,6 +126,7 @@ namespace Watson.Controllers
         {
             Family_Info family = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
+                .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
                 db.Family_Info.Add(family);
@@ -202,6 +202,7 @@ namespace Watson.Controllers
         {
             Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
+                .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
             db.Family_Info.Add(f);
@@ -248,7 +249,6 @@ namespace Watson.Controllers
                               f.EmployerState,
                               f.EmployerZipCode,
                               f.EmployerPhoneNumber,
-
                           });
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
@@ -260,6 +260,7 @@ namespace Watson.Controllers
         {
             Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
+                .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
@@ -336,7 +337,6 @@ namespace Watson.Controllers
             var output2 = (from e in db.Employees
                            select new
                            {
-                               e.Employee_id,
                                e.FirstName,
                                e.LastName,
                                e.SSN,
@@ -354,6 +354,7 @@ namespace Watson.Controllers
         {
             Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
+                .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
 
             db.Family_Info.Add(f);
@@ -445,7 +446,6 @@ namespace Watson.Controllers
             var output2 = (from e in db.Employees
                            select new
                            {
-                               e.Employee_id,
                                e.FirstName,
                                e.LastName,
                                e.SSN,
@@ -458,7 +458,8 @@ namespace Watson.Controllers
         {
             Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
-                .FirstOrDefault();
+                .Where(i => i.Employee_id == id)
+                .SingleOrDefault();
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
 
@@ -476,23 +477,61 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        public JsonResult DeleteSpouse()
+
+        public ActionResult DeleteSpouse(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Family_Info family = db.Family_Info.Find(id);
+            if (family == null)
+            {
+                return HttpNotFound();
+            }
+            return View(family);
+        }
+
+        public JsonResult GetSpouse()
         {
             var output = (from f in db.Family_Info
                           select new
                           {
-
+                              f.Employee_id,
+                              f.FamilyMember_id,
+                              f.RelationshipToInsured,
+                              f.FirstName,
+                              f.LastName,
+                              f.DateOfBirth,
+                              f.Gender,
+                              f.MailingAddress,
+                              f.PhysicalAddress,
+                              f.City,
+                              f.State,
+                              f.ZipCode,
+                              f.County,
+                              f.EmailAddress,
+                              f.PhoneNumber,
+                              f.CellPhone,
+                              f.Employer,
+                              f.EmployerMailingAddress,
+                              f.EmployerCity,
+                              f.EmployerState,
+                              f.EmployerZipCode,
+                              f.EmployerPhoneNumber,
                           });
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult DeleteSpouse(int? id)
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteSpouse")]
+        [ValidateAntiForgeryToken]
+        public JsonResult DeleteSpouse(int id)
         {
             Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == id)
+                .Where(i => i.Employee_id == id)
                 .SingleOrDefault();
-
 
             db.DeleteEmployeeAndDependents(id);
             db.Family_Info.Remove(f);
@@ -511,50 +550,29 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------        
-        //DELETE: api/Family_Info/5
-        //[System.Web.Http.Route("api/Family_Info/Delete/{FamilyMember_id:int}")]
-        //[System.Web.Http.HttpGet]
-        //public ActionResult DeleteSpouse(int? id)
+        //public ActionResult Delete(int? id)
         //{
-        //    if(id == null)
+        //    if (id == null)
         //    {
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
-
-        //    Family_Info f = db.Family_Infoes.Find(id);
-
-        //    if(familyMember == null)
+        //    Family_Info family = db.Family_Info.Find(id);
+        //    if (family == null)
         //    {
         //        return HttpNotFound();
         //    }
-
-        //    return View(familyMember);
-
-
-        //    db.Family_Infoes.Remove(f);
-        //    db.SaveChanges();
-
+        //    return View(family);
         //}
 
-        // POST: api/Family_Info/5
-        //[System.Web.Http.HttpPost, System.Web.Http.ActionName("DeleteSpouse")]
+        //// POST: Family_Info/Delete/5
+        //[System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("Delete")]
         //[ValidateAntiForgeryToken]
-        //public void DeleteSpouse(int id)
+        //public ActionResult DeleteConfirmed(int id)
         //{
-        //    Family_Info f = db.Family_Infoes.Find(id);
-        //    db.Family_Infoes.Remove(f);
+        //    Family_Info family = db.Family_Info.Find(id);
+        //    db.Family_Info.Remove(family);
         //    db.SaveChanges();
-
-        //    db.DeleteEmployeeAndDependents(id);
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
+        //    return RedirectToAction("FamilyMemberOverview");
         //}
         //----------------------------------------------------------------------------------------
 

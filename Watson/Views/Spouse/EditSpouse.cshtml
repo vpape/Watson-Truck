@@ -77,8 +77,8 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">Gender:</label>
                             <div class="col-md-10">
-                                <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" @((Model.Sex == true) ? "checked" : "") />Male</label>
-                                <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" @((Model.Sex == false) ? "checked" : "") />Female</label>
+                                <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="true" @((Model.Gender == "Male") ? "checked" : "") />Male</label>
+                                <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="false" @((Model.Gender == "Female") ? "checked" : "") />Female</label>
                             </div>
                         </div>
                     </div>
@@ -271,7 +271,7 @@
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
-        Gender = document.getElementsByName("Sex").value;
+        Gender = document.getElementsByName("Gender").value;
 
         MailingAddress = document.getElementsByName("MailingAddress").value;
         PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
