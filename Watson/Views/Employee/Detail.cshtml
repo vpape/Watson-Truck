@@ -17,7 +17,6 @@
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.Employee_id)
-
         <div class="form-horizontal">
             <hr />
             <button class="collapsible"><h4>Employee Detail</h4></button>
@@ -70,9 +69,9 @@
                             <label for="Sex" class="col-md-2 control-label">Gender:</label>
                         </dt>
                         <dd class="col-md-10">
-                            <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="true" @((Model.Sex == true) ? "checked" : "") />Male</label>
-                            <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="false" @((Model.Sex == false) ? "checked" : "") />Female</label>
-                            @Html.DisplayFor(model => model.Sex)
+                            <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((Model.Gender == "Male") ? "checked" : "") />Male</label>
+                            <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((Model.Gender == "Female") ? "checked" : "") />Female</label>
+                            @Html.DisplayFor(model => model.Gender)
                         </dd>
 
                         <dt>

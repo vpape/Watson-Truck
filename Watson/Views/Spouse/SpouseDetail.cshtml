@@ -1,5 +1,8 @@
-﻿@{
-    Layout = null;
+﻿@model Watson.Models.Family_Info
+
+
+@{
+    @ViewBag.Title = "SpouseDetail";
 }
 
 <!DOCTYPE html>
@@ -7,11 +10,289 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <title>Spouse Detail</title>
 </head>
 <body>
-    <div>
-    
-    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.FamilyMember_id)
+        @Html.HiddenFor(model => model.Employee_id)
+        <div class="form-horizontal">
+            <hr />
+            <button class="collapsible"><h4>Spouse Detail</h4></button>
+            <div class="content">
+                <form class="disabled" action="SpouseDetail()" method="post">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.Employee.SSN)
+                        </dd>
+
+                        <dt>
+                            <label for="SSN" class="col-md-2 control-label">Employee Name:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.Employee.FirstName)
+                        </dd>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.Employee.LastName)
+                        </dd>
+
+                        <dt>
+                            <label for="JobTitle" class="col-md-2 control-label">Spouse First Name:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.FirstName)
+                        </dd>
+
+                        <dt>
+                            <label for="FirstName" class="col-md-2 control-label">Last Name:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.LastName)
+                        </dd>
+
+                        <dt>
+                            <label for="LastName" class="col-md-2 control-label">Date of Birth:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.DateOfBirth)
+                        </dd>
+
+                        <dt>
+                            <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.DateOfBirth)
+                        </dd>
+
+                        <dt>
+                            <label for="Gender" class="col-md-2 control-label">Gender:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((Model.Gender == "Male") ? "checked" : "") />Male</label>
+                            <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((Model.Gender == "Female") ? "checked" : "") />Female</label>
+                        </dd>
+
+                        <dt>
+                            <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.MailingAddress)
+                        </dd>
+
+                        <dt>
+                            <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.PhysicalAddress)
+                        </dd>
+
+                        <dt>
+                            <label for="City" class="col-md-2 control-label">City:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.City)
+                        </dd>
+
+                        <dt>
+                            <label for="State" class="col-md-2 control-label">State:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.State)
+                        </dd>
+
+                        <dt>
+                            <label for="ZipCode" class="col-md-2 control-label">Zip Code:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.ZipCode)
+                        </dd>
+
+                        <dt>
+                            <label for="County" class="col-md-2 control-label">County:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.County)
+                        </dd>
+
+                        <dt>
+                            <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.EmailAddress)
+                        </dd>
+
+                        <dt>
+                            <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </dd>
+
+                        <dt>
+                            <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.CellPhone)
+                        </dd>
+
+                        <dt>
+                            <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.Employer)
+                        </dd>
+
+                        <dt>
+                            <label for="EmployerMailingAddress" class="col-md-2 control-label">Employer Address:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.EmployerMailingAddress)
+                        </dd>
+
+                        <dt>
+                            <label for="EmployerCity" class="col-md-2 control-label">City:</label>
+                        </dt>
+
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.EmployerCity)
+                        </dd>
+
+                        <dt>
+                            <label for="EmployerState" class="col-md-2 control-label">State:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.EmployerState)
+                        </dd>
+
+                        <dt>
+                            <label for="EmployerZipCode" class="col-md-2 control-label">Zip Code:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.EmployerZipCode)
+                        </dd>
+
+                        <dt>
+                            <label for="EmployerPhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                        </dt>
+                        <dd class="col-md-10">
+                            @Html.DisplayFor(model => model.EmployerPhoneNumber)
+                        </dd>
+                    </dl>
+                </form>
+            </div>
+        </div>
+
+    }
+    <p>
+        @Html.ActionLink("Detail", "SpouseDetail", new { id = Model.FamilyMember_id }) |
+        @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
+    </p>
 </body>
 </html>
+
+<script>
+    var col = document.getElementByClassName("collapsible");
+    var i;
+
+    for (var i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            }
+            else
+                content.style.display = "block"
+        });
+    }
+</script>
+
+<style>
+    .collapsible {
+        background-color: #333333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+</style>
+
+<script>
+    function GetSpouseDetail() {
+        RelationshipToInsured = document.getElementsByName("RelationshipToInsured").value;
+        EmployeeNumber = document.getElementById("SSN").value;
+        EmployeeFName = document.getElementById("EmployeeFName").value;
+        EmployeeLName = document.getElementById("EmployeeLName").value;
+
+        FirstName = document.getElementById("FirstName").value;
+        LastName = document.getElementById("LastName").value;
+        DateOfBirth = document.getElementById("DateOfBirth").value;
+        Gender = document.getElementsByName("Gender").value;
+
+        MailingAddress = document.getElementsByName("MailingAddress").value;
+        PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
+        City = document.getElementById("City").value;
+        State = document.getElementById("State").value;
+        ZipCode = document.getElementById("ZipCode").value;
+        County = document.getElementById("County").value;
+        EmailAddress = document.getElementById("EmailAddress").value;
+        PhoneNumber = document.getElementById("PhoneNumber").value;
+        CellPhone = document.getElementById("CellPhone").value;
+
+        Employer = document.getElementById("Employer").value;
+        EmployerMailingAddress = document.getElementById("EmployerMailingAddress").value;
+        EmployerCity = document.getElementById("EmployerCity").value;
+        EmployerState = document.getElementById("EmployerState").value;
+        EmployerZipCode = document.getElementById("EmployerZipCode").value;
+        EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber");
+
+        postData('/Family_Info/SpouseDetail', {
+            RelationshipToInsured: RelationshipToInsured, EmployeeNumber: EmployeeNumber, EmployeeFName: EmployeeFName, EmployeeLName: EmployeeLName,
+            FirstName: FirstName, LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MailingAddress: MailingAddress,
+            PhyscialAddress: PhyscialAddress, City: City, State: State, ZipCode: ZipCode, County: County, EmailAddress: EmailAddress,
+            PhoneNumber: PhoneNumber, CellPhone: CellPhone, Employer: Employer, EmployerMailingAddress: EmployerMailingAddress,
+            EmployerCity: EmployerCity, EmployerState: EmployerState, EmployerZipCode: EmployerZipCode, EmployerPhoneNumber: EmployerPhoneNumber
+        })
+            .then(data => EditSpouseUpdate(data))
+            .catch(error => console.error(error))
+    }
+
+    function postData(url, data) {
+        //Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        })
+            .then(Response => Response.json()) //parses response to JSON
+    }
+</script>
