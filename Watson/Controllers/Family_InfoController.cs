@@ -75,13 +75,15 @@ namespace Watson.Controllers
         public ActionResult SpouseEnrollment(int id)
         {
             ViewBag.Employee_id = id;
-
+            
             return View();
         }
 
-        public JsonResult GetSpouseEnrollment(int id, string MaritalStatus)
+        public JsonResult GetSpouseEnrollment(int fm_id, int e_id, string MaritalStatus)
         {
             var output = (from f in db.Family_Info
+                          where f.FamilyMember_id == fm_id
+                          where f.Employee_id == e_id
                           select new
                           {
                               f.FamilyMember_id,
@@ -94,11 +96,11 @@ namespace Watson.Controllers
                               f.Gender,
                           });
 
-            ViewBag.Employee_id = id;
+            ViewBag.Employee_id = e_id;
             ViewBag.spouseExist = true;
             ViewBag.MartialStatus = MaritalStatus;
 
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.Employees.Find(e_id);
 
             if (employee.MaritalStatus == "Single")
             {
@@ -122,11 +124,11 @@ namespace Watson.Controllers
 
         [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult SpouseEnrollmentUpdate(int id)
+        public JsonResult SpouseEnrollmentUpdate(int fm_id, int e_id)
         {
             Family_Info family = db.Family_Info
-                .Where(i => i.FamilyMember_id == id)
-                .Where(i => i.Employee_id == id)
+                .Where(i => i.FamilyMember_id == fm_id)
+                .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
                 db.Family_Info.Add(family);
@@ -175,9 +177,11 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GetSpouseContact()
+        public JsonResult GetSpouseContact(int fm_id, int e_id)
         {
             var output = (from f in db.Family_Info
+                          where f.FamilyMember_id == fm_id
+                          where f.Employee_id == e_id
                           select new
                           {
                               f.FamilyMember_id,
@@ -198,11 +202,11 @@ namespace Watson.Controllers
 
         [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult SpouseContactUpdate(int id)
+        public JsonResult SpouseContactUpdate(int fm_id, int e_id)
         {
             Family_Info f = db.Family_Info
-                .Where(i => i.FamilyMember_id == id)
-                .Where(i => i.Employee_id == id)
+                .Where(i => i.FamilyMember_id == fm_id)
+                .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
             db.Family_Info.Add(f);
@@ -236,9 +240,11 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GetSpouseEmployment()
+        public JsonResult GetSpouseEmployment(int fm_id, int e_id)
         {
             var output = (from f in db.Family_Info
+                          where f.FamilyMember_id == fm_id
+                          where f.Employee_id == e_id
                           select new
                           {
                               f.FamilyMember_id,
@@ -256,11 +262,11 @@ namespace Watson.Controllers
 
         [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult SpouseEmploymentUpdate(int id)
+        public JsonResult SpouseEmploymentUpdate(int fm_id, int e_id)
         {
             Family_Info f = db.Family_Info
-                .Where(i => i.FamilyMember_id == id)
-                .Where(i => i.Employee_id == id)
+                .Where(i => i.FamilyMember_id == fm_id)
+                .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
@@ -303,10 +309,12 @@ namespace Watson.Controllers
      
             return View(family);
         }
-
-        public JsonResult GetEditSpouse(int id, string MaritalStatus)
+         
+        public JsonResult GetEditSpouse(int fm_id, int e_id, string MaritalStatus)
         {
             var output = (from f in db.Family_Info
+                          where f.FamilyMember_id == fm_id
+                          where f.Employee_id == e_id
                           select new
                           {
                               f.FamilyMember_id,
@@ -334,27 +342,19 @@ namespace Watson.Controllers
                               f.EmployerPhoneNumber,
                           });
 
-            var output2 = (from e in db.Employees
-                           select new
-                           {
-                               e.FirstName,
-                               e.LastName,
-                               e.SSN,
-                           });
-
-            ViewBag.Employee_id = id;
+            ViewBag.Employee_id = e_id;
             ViewBag.MaritalStatus = MaritalStatus;
 
-            return Json(new { data = output, output2 }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
         [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult EditSpouseUpdate(int id)
+        public JsonResult EditSpouseUpdate(int fm_id, int e_id)
         {
             Family_Info f = db.Family_Info
-                .Where(i => i.FamilyMember_id == id)
-                .Where(i => i.Employee_id == id)
+                .Where(i => i.FamilyMember_id == fm_id)
+                .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
             db.Family_Info.Add(f);
@@ -413,9 +413,11 @@ namespace Watson.Controllers
             return View(family);
         }
 
-        public JsonResult GetSpouseDetail()
+        public JsonResult GetSpouseDetail(int fm_id, int e_id)
         {
             var output = (from f in db.Family_Info
+                          where f.FamilyMember_id == fm_id
+                          where f.Employee_id == e_id
                           select new
                           {
                               f.FamilyMember_id,
@@ -443,22 +445,14 @@ namespace Watson.Controllers
                               f.EmployerPhoneNumber,
                           });
 
-            var output2 = (from e in db.Employees
-                           select new
-                           {
-                               e.FirstName,
-                               e.LastName,
-                               e.SSN,
-                           });
-
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SpouseDetailUpdate(int id)
+        public JsonResult SpouseDetailUpdate(int fm_id, int e_id)
         {
             Family_Info f = db.Family_Info
-                .Where(i => i.FamilyMember_id == id)
-                .Where(i => i.Employee_id == id)
+                .Where(i => i.FamilyMember_id == fm_id)
+                .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
@@ -490,9 +484,11 @@ namespace Watson.Controllers
             return View(family);
         }
 
-        public JsonResult GetSpouse()
+        public JsonResult GetSpouse(int fm_id, int e_id)
         {
             var output = (from f in db.Family_Info
+                          where f.FamilyMember_id == fm_id
+                          where f.Employee_id == e_id
                           select new
                           {
                               f.Employee_id,
@@ -524,14 +520,15 @@ namespace Watson.Controllers
 
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteSpouse")]
         [ValidateAntiForgeryToken]
-        public JsonResult DeleteSpouse(int id)
+        public JsonResult DeleteSpouse(int fm_id, int e_id)
         {
             Family_Info f = db.Family_Info
-                .Where(i => i.FamilyMember_id == id)
-                .Where(i => i.Employee_id == id)
+                .Where(i => i.FamilyMember_id == fm_id)
+                .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
-            db.DeleteEmployeeAndDependents(id);
+            db.DeleteEmployeeAndDependents(fm_id);
+            db.DeleteEmployeeAndDependents(e_id);
             db.Family_Info.Remove(f);
             db.SaveChanges();
 

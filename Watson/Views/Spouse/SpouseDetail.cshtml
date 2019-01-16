@@ -16,8 +16,10 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.FamilyMember_id)
-        @Html.HiddenFor(model => model.Employee_id)
+        @Html.HiddenFor(model => model.FamilyMember_id, new { @id = "FamilyMember_id"})
+        @Html.HiddenFor(model => model.Employee_id, new { @id = "Employee_id"})
+        @*@Html.HiddenFor(model => model.FamilyMember_id)*@
+        @*@Html.HiddenFor(model => model.Employee_id)*@
         <div class="form-horizontal">
             <hr />
             <button class="collapsible"><h4>Spouse Detail</h4></button>
@@ -240,42 +242,42 @@
 
 <script>
     function GetSpouseDetail() {
-        RelationshipToInsured = document.getElementsByName("RelationshipToInsured").value;
-        EmployeeNumber = document.getElementById("SSN").value;
-        EmployeeFName = document.getElementById("EmployeeFName").value;
-        EmployeeLName = document.getElementById("EmployeeLName").value;
+        //RelationshipToInsured = document.getElementsByName("RelationshipToInsured").value;
+        //EmployeeNumber = document.getElementById("SSN").value;
+        //EmployeeFName = document.getElementById("EmployeeFName").value;
+        //EmployeeLName = document.getElementById("EmployeeLName").value;
 
-        FirstName = document.getElementById("FirstName").value;
-        LastName = document.getElementById("LastName").value;
-        DateOfBirth = document.getElementById("DateOfBirth").value;
-        Gender = document.getElementsByName("Gender").value;
+        //FirstName = document.getElementById("FirstName").value;
+        //LastName = document.getElementById("LastName").value;
+        //DateOfBirth = document.getElementById("DateOfBirth").value;
+        //Gender = document.getElementsByName("Gender").value;
 
-        MailingAddress = document.getElementsByName("MailingAddress").value;
-        PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
-        City = document.getElementById("City").value;
-        State = document.getElementById("State").value;
-        ZipCode = document.getElementById("ZipCode").value;
-        County = document.getElementById("County").value;
-        EmailAddress = document.getElementById("EmailAddress").value;
-        PhoneNumber = document.getElementById("PhoneNumber").value;
-        CellPhone = document.getElementById("CellPhone").value;
+        //MailingAddress = document.getElementsByName("MailingAddress").value;
+        //PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
+        //City = document.getElementById("City").value;
+        //State = document.getElementById("State").value;
+        //ZipCode = document.getElementById("ZipCode").value;
+        //County = document.getElementById("County").value;
+        //EmailAddress = document.getElementById("EmailAddress").value;
+        //PhoneNumber = document.getElementById("PhoneNumber").value;
+        //CellPhone = document.getElementById("CellPhone").value;
 
-        Employer = document.getElementById("Employer").value;
-        EmployerMailingAddress = document.getElementById("EmployerMailingAddress").value;
-        EmployerCity = document.getElementById("EmployerCity").value;
-        EmployerState = document.getElementById("EmployerState").value;
-        EmployerZipCode = document.getElementById("EmployerZipCode").value;
-        EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber");
+        //Employer = document.getElementById("Employer").value;
+        //EmployerMailingAddress = document.getElementById("EmployerMailingAddress").value;
+        //EmployerCity = document.getElementById("EmployerCity").value;
+        //EmployerState = document.getElementById("EmployerState").value;
+        //EmployerZipCode = document.getElementById("EmployerZipCode").value;
+        //EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber");
 
-        postData('/Family_Info/SpouseDetail', {
-            RelationshipToInsured: RelationshipToInsured, EmployeeNumber: EmployeeNumber, EmployeeFName: EmployeeFName, EmployeeLName: EmployeeLName,
-            FirstName: FirstName, LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MailingAddress: MailingAddress,
-            PhyscialAddress: PhyscialAddress, City: City, State: State, ZipCode: ZipCode, County: County, EmailAddress: EmailAddress,
-            PhoneNumber: PhoneNumber, CellPhone: CellPhone, Employer: Employer, EmployerMailingAddress: EmployerMailingAddress,
-            EmployerCity: EmployerCity, EmployerState: EmployerState, EmployerZipCode: EmployerZipCode, EmployerPhoneNumber: EmployerPhoneNumber
-        })
-            .then(data => EditSpouseUpdate(data))
-            .catch(error => console.error(error))
+        //postData('/Family_Info/SpouseDetail', {
+        //    RelationshipToInsured: RelationshipToInsured, EmployeeNumber: EmployeeNumber, EmployeeFName: EmployeeFName, EmployeeLName: EmployeeLName,
+        //    FirstName: FirstName, LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MailingAddress: MailingAddress,
+        //    PhyscialAddress: PhyscialAddress, City: City, State: State, ZipCode: ZipCode, County: County, EmailAddress: EmailAddress,
+        //    PhoneNumber: PhoneNumber, CellPhone: CellPhone, Employer: Employer, EmployerMailingAddress: EmployerMailingAddress,
+        //    EmployerCity: EmployerCity, EmployerState: EmployerState, EmployerZipCode: EmployerZipCode, EmployerPhoneNumber: EmployerPhoneNumber
+        //})
+        //    .then(data => EditSpouseUpdate(data))
+        //    .catch(error => console.error(error))
     }
 
     function postData(url, data) {
