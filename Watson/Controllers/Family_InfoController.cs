@@ -28,9 +28,11 @@ namespace Watson.Controllers
             return View(family);
         }
 
-        public JsonResult GetFamilyMember()
+        public JsonResult GetFamilyMember(int fm_id, int e_id)
         {
             var output = (from f in db.Family_Info
+                          where f.FamilyMember_id == fm_id
+                          where f.Employee_id == e_id
                           select new
                           {
                               f.FamilyMember_id,
@@ -72,9 +74,9 @@ namespace Watson.Controllers
             return View();
         }
 
-        public ActionResult SpouseEnrollment(int id)
+        public ActionResult SpouseEnrollment(int e_id)
         {
-            ViewBag.Employee_id = id;
+            ViewBag.Employee_id = e_id;
             
             return View();
         }
@@ -292,20 +294,20 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        public ActionResult EditSpouse(int? id)
+        public ActionResult EditSpouse(int? fm_id)
         {
-            if (id == null)
+            if (fm_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Family_Info family = db.Family_Info.Find(id);
+            Family_Info family = db.Family_Info.Find(fm_id);
             if (family == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.Employee_id = id;
+            ViewBag.Employee_id = fm_id;
      
             return View(family);
         }

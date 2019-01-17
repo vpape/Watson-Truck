@@ -16,10 +16,8 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.FamilyMember_id, new { @id = "FamilyMember_id"})
-        @Html.HiddenFor(model => model.Employee_id, new { @id = "Employee_id"})
-        @*@Html.HiddenFor(model => model.FamilyMember_id)*@
-        @*@Html.HiddenFor(model => model.Employee_id)*@
+        @Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id})
+        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})
         <div class="form-horizontal">
             <hr />
             <button class="collapsible"><h4>Spouse Detail</h4></button>

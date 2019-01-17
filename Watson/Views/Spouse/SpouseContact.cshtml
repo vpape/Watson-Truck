@@ -16,7 +16,7 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.FamilyMember_id)
+        @Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id})
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
@@ -145,7 +145,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" onclick="SpouseContactUpdate()" class="btn btn-primary" />
+                            <input id="Submit" type="submit" value="Save" onclick="SpouseContactUpdate()" class="btn btn-primary" />
                         </div>
                     </div>
                 </form>

@@ -22,16 +22,17 @@ namespace Watson.Controllers
      
         }
 
-        public ActionResult EmployeeOverview(int id)
+        public ActionResult EmployeeOverview(int e_id)
         {
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.Employees.Find(e_id);
 
             return View(employee);
         }
 
-        public JsonResult GetEmployee()
+        public JsonResult GetEmployee(int e_id)
         {
             var output = (from e in db.Employees
+                          where e.Employee_id == e_id
                           select new
                           {
                              e.Employee_id,
@@ -52,10 +53,10 @@ namespace Watson.Controllers
 
         [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult EmployeeUpdate(int id)
+        public JsonResult EmployeeUpdate(int e_id)
         {
             Employee e = db.Employees
-                .Where(i => i.Employee_id == id)
+                .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
             db.Employees.Add(e);
@@ -108,9 +109,10 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GetEmployeeEnrollment()
+        public JsonResult GetEmployeeEnrollment(int e_id)
         {
             var output = (from e in db.Employees
+                          where e.Employee_id == e_id
                           select new
                           {
                               e.Employee_id,
@@ -132,10 +134,10 @@ namespace Watson.Controllers
         
         [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult EmployeeEnrollmentUpdate(int id)
+        public JsonResult EmployeeEnrollmentUpdate(int e_id)
         {
             Employee employee = db.Employees
-                .Where(i => i.Employee_id == id)
+                .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
             if (ModelState.IsValid)
@@ -215,9 +217,10 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GetContact()
+        public JsonResult GetContact(int e_id)
         {
             var output = (from e in db.Employees
+                          where e.Employee_id == e_id
                           select new
                           {
                               e.Employee_id,
@@ -239,10 +242,10 @@ namespace Watson.Controllers
 
         [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult ContactUpdate(int id)
+        public JsonResult ContactUpdate(int e_id)
         {
             Employee e = db.Employees
-                .Where(i => i.Employee_id == id)
+                .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
             db.Employees.Add(e);
@@ -251,14 +254,14 @@ namespace Watson.Controllers
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? e_id)
         {
-            if (id == null)
+            if (e_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.Employees.Find(e_id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -267,9 +270,10 @@ namespace Watson.Controllers
             return View(employee);
         }
 
-        public JsonResult GetEmployeeEdit()
+        public JsonResult GetEmployeeEdit(int e_id)
         {
             var output = (from e in db.Employees
+                          where e.Employee_id == e_id
                           select new
                           {
                               e.Employee_id,
@@ -298,10 +302,10 @@ namespace Watson.Controllers
 
         [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult EmployeeEditUpdate(int id)
+        public JsonResult EmployeeEditUpdate(int e_id)
         {
             Employee e = db.Employees
-                .Where(i => i.Employee_id == id)
+                .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
             if (ModelState.IsValid)
@@ -341,14 +345,14 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
             
-        public ActionResult Detail(int? id)
+        public ActionResult Detail(int? e_id)
         {
-            if (id == null)
+            if (e_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.Employees.Find(e_id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -357,9 +361,10 @@ namespace Watson.Controllers
             return View(employee);
         }
 
-        public JsonResult GetDetail()
+        public JsonResult GetDetail(int e_id)
         {
             var output = (from e in db.Employees
+                          where e.Employee_id == e_id
                           select new
                           {
                               e.Employee_id,
@@ -386,10 +391,10 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);    
         }
 
-        public JsonResult DetailUpdate(int id)
+        public JsonResult DetailUpdate(int e_id)
         {
             Employee e = db.Employees
-                .Where(i => i.Employee_id == id)
+                .Where(i => i.Employee_id == e_id)
                 .FirstOrDefault();
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
