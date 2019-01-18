@@ -21,9 +21,9 @@ namespace Watson.Controllers
            
         }
 
-        public ActionResult FamilyMemberOverview(int id)
+        public ActionResult FamilyMemberOverview(int fm_id)
         {
-            Family_Info family = db.Family_Info.Find(id);
+            Family_Info family = db.Family_Info.Find(fm_id);
 
             return View(family);
         }
@@ -399,14 +399,14 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        public ActionResult SpouseDetail(int? id)
+        public ActionResult SpouseDetail(int? fm_id)
         {
-            if (id == null)
+            if (fm_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Family_Info family = db.Family_Info.Find(id);
+            Family_Info family = db.Family_Info.Find(fm_id);
             if (family == null)
             {
                 return HttpNotFound();
