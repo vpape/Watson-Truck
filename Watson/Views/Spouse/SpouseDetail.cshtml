@@ -22,7 +22,7 @@
             <hr />
             <button class="collapsible"><h4>Spouse Detail</h4></button>
             <div class="content">
-                <form id="SpouseInfo" class="disabled" action="SpouseDetail()" method="post">
+                <form id="SpouseDetail" class="disabled" action="SpouseDetail()" method="post">
                     <dl class="dl-horizontal">
                         <dt>
                             <label class="col-md-2 control-label">Employee Number:</label>
@@ -234,45 +234,39 @@
 <script>
     function GetSpouseDetail() {
 
-        EmployeeNumber = document.getElementById("EmpNumber").innerHTML
-        EmployeeFirstName = document.getElementById("EmpFirstName").innerHTML
-        EmployeeLastName = document.getElementById("EmpLastName").innerHTML
+        EmployeeNumber = document.getElementById("EmpNumber").value
+        EmployeeFirstName = document.getElementById("EmpFirstName").value
+        EmployeeLastName = document.getElementById("EmpLastName").value
 
-        FirstName = document.getElementById("SpouseFirstName").innerHTML
-        LastName = document.getElementById("SpouseLastName").innerHTML
-        DateOfBirth = document.getElementById("SpouseDofB").innerHTML
-        Gender = document.getElementById("Gender").innerHTML
+        FirstName = document.getElementById("SpouseFirstName").value
+        LastName = document.getElementById("SpouseLastName").value
+        DateOfBirth = document.getElementById("SpouseDofB").value
+        Gender = document.getElementById("Gender").value
 
-        MailingAddress = document.getElementById("SpouseMailingAddress").innerHTML;
-        PhyscialAddress = document.getElementById("SpousePhyscialAddress").innerHTML;
-        City = document.getElementById("SpouseCity").innerHTML;
-        State = document.getElementById("SpouseState").innerHTML;
-        ZipCode = document.getElementById("SpouseZipCode").innerHTML;
-        County = document.getElementById("SpouseCounty").innerHTML;
-        EmailAddress = document.getElementById("SpouseEmailAddress").innerHTML;
-        PhoneNumber = document.getElementById("SpousePhoneNumber").innerHTML;
-        CellPhone = document.getElementById("SpouseCellPhone").innerHTML;
+        MailingAddress = document.getElementById("SpouseMailingAddress").value;
+        PhyscialAddress = document.getElementById("SpousePhyscialAddress").value;
+        City = document.getElementById("SpouseCity").value;
+        State = document.getElementById("SpouseState").value;
+        ZipCode = document.getElementById("SpouseZipCode").value;
+        County = document.getElementById("SpouseCounty").value;
+        EmailAddress = document.getElementById("SpouseEmailAddress").value;
+        PhoneNumber = document.getElementById("SpousePhoneNumber").value;
+        CellPhone = document.getElementById("SpouseCellPhone").value;
 
-        Employer = document.getElementById("Employer").innerHTML
-        EmployerMailingAddress = document.getElementById("EmployerMailingAddress").innerHTML
-        EmployerCity = document.getElementById("EmployerCity").innerHTML
-        EmployerState = document.getElementById("EmployerState").innerHTML
-        EmployerZipCode = document.getElementById("EmployerZipCode").innerHTML
-        EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").innerHTML
+        Employer = document.getElementById("Employer").value
+        EmployerMailingAddress = document.getElementById("EmployerMailingAddress").value
+        EmployerCity = document.getElementById("EmployerCity").value
+        EmployerState = document.getElementById("EmployerState").value
+        EmployerZipCode = document.getElementById("EmployerZipCode").value
+        EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value
 
         var s = '{"EmpNumber" : "EmployeeNumber", "EmpFirstName" : "EmployeeFirstName", "EmpLastName" : "EmployeeLastName, "SpouseFirstName" : "FirstName"}';
         var obj = JSON.parse(s);
 
-        document.getElementById("SpouseInfo").innerHTML =
+        document.getElementById("SpouseDetail").value =
             "Employee Number: " + obj.EmployeeNumber + "<br>" +
             "Employee First Name: " + obj.EmployeeFirstName + "<br>" +
 
-        
-      
-        for (var is = 0; s < s.length; i++) {
-
-            document.querySelector('#myId')[s].innerHTML = jsonData[s].EmployeeNumber);
-        }
 
         //postData('/Family_Info/SpouseDetail', {
         //    RelationshipToInsured: RelationshipToInsured, EmployeeNumber: EmployeeNumber, EmployeeFName: EmployeeFName, EmployeeLName: EmployeeLName,
