@@ -27,38 +27,38 @@
                         <dt>
                             <label class="col-md-2 control-label">Employee Number:</label>
                         </dt>
-                        <dd id="EmpNumber" class="col-md-10">
+                        <dd id="EmployeeNumber" class="col-md-10">
                             @Html.DisplayFor(model => model.Employee.SSN)
                         </dd>
 
                         <dt>
                             <label class="col-md-2 control-label">Employee Name:</label>
                         </dt>
-                        <dd id="EmpFirstName"class="col-md-10">
+                        <dd id="EmployeeFirstName"class="col-md-10">
                             @Html.DisplayFor(model => model.Employee.FirstName)
                         </dd>
-                        <dd id="EmpLastName" class="col-md-10">
+                        <dd id="EmployeeLastName" class="col-md-10">
                             @Html.DisplayFor(model => model.Employee.LastName)
                         </dd>
 
                         <dt>
                             <label class="col-md-2 control-label">Spouse First Name:</label>
                         </dt>
-                        <dd id="SpouseFirstName" class="col-md-10">
+                        <dd id="FirstName" class="col-md-10">
                             @Html.DisplayFor(model => model.FirstName)
                         </dd>
 
                         <dt>
                             <label class="col-md-2 control-label">Last Name:</label>
                         </dt>
-                        <dd id="SpouseLastName" class="col-md-10">
+                        <dd id="LastName" class="col-md-10">
                             @Html.DisplayFor(model => model.LastName)
                         </dd>
 
                         <dt>
                             <label class="col-md-2 control-label">Date of Birth:</label>
                         </dt>
-                        <dd id="SpouseDofB" class="col-md-10">
+                        <dd id="DateOfBirth" class="col-md-10">
                             @Html.DisplayFor(model => model.DateOfBirth)
                         </dd>
 
@@ -73,63 +73,63 @@
                         <dt>
                             <label class="col-md-2 control-label">Mailing Address:</label>
                         </dt>
-                        <dd id="SpouseMailingAddress" class="col-md-10">
+                        <dd id="MailingAddress" class="col-md-10">
                             @Html.DisplayFor(model => model.MailingAddress)
                         </dd>
 
                         <dt>
                             <label class="col-md-2 control-label">Physical Address:</label>
                         </dt>
-                        <dd id="SpousePhysicalAddress" class="col-md-10">
+                        <dd id="PhysicalAddress" class="col-md-10">
                             @Html.DisplayFor(model => model.PhysicalAddress)
                         </dd>
 
                         <dt>
                             <label class="col-md-2 control-label">City:</label>
                         </dt>
-                        <dd id="SpouseCity" class="col-md-10">
+                        <dd id="City" class="col-md-10">
                             @Html.DisplayFor(model => model.City)
                         </dd>
 
                         <dt>
                             <label class="col-md-2 control-label">State:</label>
                         </dt>
-                        <dd id="SpouseState" class="col-md-10">
+                        <dd id="State" class="col-md-10">
                             @Html.DisplayFor(model => model.State)
                         </dd>
 
                         <dt>
                             <label class="col-md-2 control-label">Zip Code:</label>
                         </dt>
-                        <dd id="SpouseZipCode" class="col-md-10">
+                        <dd id="ZipCode" class="col-md-10">
                             @Html.DisplayFor(model => model.ZipCode)
                         </dd>
 
                         <dt>
                             <label class="col-md-2 control-label">County:</label>
                         </dt>
-                        <dd id="SpouseCounty" class="col-md-10">
+                        <dd id="County" class="col-md-10">
                             @Html.DisplayFor(model => model.County)
                         </dd>
 
                         <dt>
                             <label class="col-md-2 control-label">Email:</label>
                         </dt>
-                        <dd id="SpouseEmailAddress" class="col-md-10">
+                        <dd id="EmailAddress" class="col-md-10">
                             @Html.DisplayFor(model => model.EmailAddress)
                         </dd>
 
                         <dt>
                             <label class="col-md-2 control-label">Phone Number:</label>
                         </dt>
-                        <dd id="SpousePhoneNumber" class="col-md-10">
+                        <dd id="PhoneNumber" class="col-md-10">
                             @Html.DisplayFor(model => model.PhoneNumber)
                         </dd>
 
                         <dt>
                             <label class="col-md-2 control-label">Cell Phone:</label>
                         </dt>
-                        <dd id="SpouseCellPhone" class="col-md-10">
+                        <dd id="CellPhone" class="col-md-10">
                             @Html.DisplayFor(model => model.CellPhone)
                         </dd>
 
@@ -234,24 +234,24 @@
 <script>
     function GetSpouseDetail() {
 
-        EmployeeNumber = document.getElementById("EmpNumber").value
-        EmployeeFirstName = document.getElementById("EmpFirstName").value
-        EmployeeLastName = document.getElementById("EmpLastName").value
+        EmployeeNumber = document.getElementById("EmployeeNumber").value
+        EmployeeFirstName = document.getElementById("EmployeeFirstName").value
+        EmployeeLastName = document.getElementById("EmployeeLastName").value
 
-        FirstName = document.getElementById("SpouseFirstName").value
-        LastName = document.getElementById("SpouseLastName").value
-        DateOfBirth = document.getElementById("SpouseDofB").value
-        Gender = document.getElementById("Gender").value
+        FirstName = document.getElementById("FirstName").value
+        LastName = document.getElementById("LastName").value
+        DateOfBirth = document.getElementById("DateOfBirth").value
+        Gender = document.getElementsByName("Gender").value
 
-        MailingAddress = document.getElementById("SpouseMailingAddress").value;
-        PhyscialAddress = document.getElementById("SpousePhyscialAddress").value;
-        City = document.getElementById("SpouseCity").value;
-        State = document.getElementById("SpouseState").value;
-        ZipCode = document.getElementById("SpouseZipCode").value;
-        County = document.getElementById("SpouseCounty").value;
-        EmailAddress = document.getElementById("SpouseEmailAddress").value;
-        PhoneNumber = document.getElementById("SpousePhoneNumber").value;
-        CellPhone = document.getElementById("SpouseCellPhone").value;
+        MailingAddress = document.getElementById("MailingAddress").value;
+        PhyscialAddress = document.getElementById("PhyscialAddress").value;
+        City = document.getElementById("City").value;
+        State = document.getElementById("State").value;
+        ZipCode = document.getElementById("ZipCode").value;
+        County = document.getElementById("County").value;
+        EmailAddress = document.getElementById("EmailAddress").value;
+        PhoneNumber = document.getElementById("PhoneNumber").value;
+        CellPhone = document.getElementById("CellPhone").value;
 
         Employer = document.getElementById("Employer").value
         EmployerMailingAddress = document.getElementById("EmployerMailingAddress").value
@@ -260,13 +260,58 @@
         EmployerZipCode = document.getElementById("EmployerZipCode").value
         EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value
 
-        var s = '{"EmpNumber" : "EmployeeNumber", "EmpFirstName" : "EmployeeFirstName", "EmpLastName" : "EmployeeLastName, "SpouseFirstName" : "FirstName"}';
+
+        var s =
+        {
+            "EmpNumber": "EmployeeNumber",
+            "EmpFirstName": "EmployeeFirstName",
+            "EmpLastName": "EmployeeLastName",
+            "SpouseFirstName": "FirstName",
+            "SpouseLastName": "LastName",
+            "SpouseDofB": "DateOfBirth",
+            "Gender": "Gender",
+            "SpouseMailingAddress": "MailingAddress",
+            "SpousePhysicalAddress": "PhysicalAddress",
+            "SpouseCity": "City",
+            "SpouseState": "State",
+            "SpouseZipCode": "ZipCode",
+            "SpouseCounty": "County",
+            "SpouseEmailAddress": "EmailAddress",
+            "SpousePhoneNumber": "PhoneNumber",
+            "SpouseCellPhone": "CellPhone",
+            "Employer": "Employer",
+            "EmployerMailingAddress": "EmployerMailingAddress",
+            "EmployerCity": "EmployerCity",
+            "EmployerState": "EmployerState",
+            "EmployerZipCode": "EmployerZipCode",
+            "EmployerPhoneNumber": "EmployerPhoneNumber"
+        }
+
         var obj = JSON.parse(s);
 
         document.getElementById("SpouseDetail").value =
-            "Employee Number: " + obj.EmployeeNumber + "<br>" +
-            "Employee First Name: " + obj.EmployeeFirstName + "<br>" +
-
+            obj.EmployeeNumber + "<br>" +
+            obj.EmployeeFirstName + "<br>" +
+            obj.EmployeeLastName + "<br>" +
+            obj.FirstName + "<br>" +
+            obj.LastName + "<br>" +
+            obj.DateOfBirth + "<br>" +
+            obj.Gender + "<br>" +
+            obj.MailingAddress + "<br>" +
+            obj.PhyscialAddress + "<br>" +
+            obj.City + "<br>" +
+            obj.State + "<br>" +
+            obj.ZipCode + "<br>" +
+            obj.County + "<br>" +
+            obj.EmailAddress + "<br>" +
+            obj.PhoneNumber + "<br>" +
+            obj.CellPhone + "<br>" +
+            obj.Employer + "<br>" +
+            obj.EmployerMailingAddress + "<br>" +
+            obj.EmployerCity + "<br>" +
+            obj.EmployerState + "<br>" +
+            obj.EmployerZipCode + "<br>" +
+            obj.EmployerPhoneNumber;
 
         //postData('/Family_Info/SpouseDetail', {
         //    RelationshipToInsured: RelationshipToInsured, EmployeeNumber: EmployeeNumber, EmployeeFName: EmployeeFName, EmployeeLName: EmployeeLName,
