@@ -266,7 +266,8 @@
 
         var data =
         {
-
+            "fm_id": fm_id,
+            "e_id": e_id,
             "EmployeeNumber": EmployeeNumber,
             "EmployeeFirstName": EmployeeFirstName,
             "EmployeeLastName": EmployeeLastName,
@@ -292,7 +293,7 @@
         }
 
         var ret = postData('/Family_Info/SpouseDetail', data)
-            .then(data => EditSpouseUpdate(data))
+            .then(data => SpouseDetailUpdate(data))
             .catch(error => console.error(error))
      }
 
