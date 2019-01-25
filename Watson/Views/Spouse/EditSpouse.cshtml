@@ -42,17 +42,17 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group" id="empNumber">
+                    <div class="form-group" id="EmployeeNumber">
                         <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
                         <div class="col-md-10">
                             <text type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.Employee.SSN)" disabled />
                         </div>
                     </div>
-                    <div class="form-group" id="empName">
-                        <label for="" class="col-md-2 control-label">Employee Name:</label>
+                    <div class="form-group" id="EmployeeName">
+                        <label class="col-md-2 control-label">Employee Name:</label>
                         <div class="col-md-10">
-                            <text type="text" id="EmployeeFName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.FirstName)" disabled />
-                            <text type="text" id="EmployeeLName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.LastName)" disabled />
+                            <text type="text" id="EmployeeFirstName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.FirstName)" disabled />
+                            <text type="text" id="EmployeeLastName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.LastName)" disabled />
                         </div>
                     </div>
                     <div id="divSpouseInfo">
@@ -263,10 +263,14 @@
 
 <script>
     function GetEditSpouse() {
+
+        fm_id = document.getElementById("fm_id").value;
+        e_id = document.getElementById("e_id").value;
+
         RelationshipToInsured = document.getElementsByName("RelationshipToInsured").value;
         EmployeeNumber = document.getElementById("SSN").value;
-        EmployeeFName = document.getElementById("EmployeeFName").value;
-        EmployeeLName = document.getElementById("EmployeeLName").value;
+        EmployeeFirstName = document.getElementById("EmployeeFirstName").value;
+        EmployeeLastName = document.getElementById("EmployeeLastName").value;
 
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
@@ -290,13 +294,7 @@
         EmployerZipCode = document.getElementById("EmployerZipCode").value;
         EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber");
 
-        postData('/Family_Info/EditSpouse', {
-            RelationshipToInsured: RelationshipToInsured, SSN: EmployeeNumber, EmployeeFName: EmployeeFName, EmployeeLName: EmployeeLName,
-            FirstName: FirstName, LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MailingAddress: MailingAddress,
-            PhyscialAddress: PhyscialAddress, City: City, State: State, ZipCode: ZipCode, County: County, EmailAddress: EmailAddress,
-            PhoneNumber: PhoneNumber, CellPhone: CellPhone, Employer: Employer, EmployerMailingAddress: EmployerMailingAddress,
-            EmployerCity: EmployerCity, EmployerState: EmployerState, EmployerZipCode: EmployerZipCode, EmployerPhoneNumber: EmployerPhoneNumber
-        })
+        var ret= postData('/Family_Info/EditSpouse', data)
             .then(data => EditSpouseUpdate(data))
             .catch(error => console.error(error))
     }
