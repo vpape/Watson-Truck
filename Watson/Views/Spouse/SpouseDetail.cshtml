@@ -234,6 +234,9 @@
 <script>
     function GetSpouseDetail() {
 
+        fm_id = document.getElementById("fm_id").value
+        e_id = document.getElementById("e_id").value
+
         EmployeeNumber = document.getElementById("EmployeeNumber").value
         EmployeeFirstName = document.getElementById("EmployeeFirstName").value
         EmployeeLastName = document.getElementById("EmployeeLastName").value
@@ -263,66 +266,35 @@
 
         var data =
         {
-            "EmployeeNumber": "EmployeeNumber",
-            "EmployeeFirstName": "EmployeeFirstName",
-            "EmployeeLastName": "EmployeeLastName",
-            "FirstName": "FirstName",
-            "LastName": "LastName",
-            "DateOfBirth": "DateOfBirth",
-            "Gender": "Gender",
-            "MailingAddress": "MailingAddress",
-            "PhysicalAddress": "PhysicalAddress",
-            "City": "City",
-            "State": "State",
-            "ZipCode": "ZipCode",
-            "County": "County",
-            "EmailAddress": "EmailAddress",
-            "PhoneNumber": "PhoneNumber",
-            "CellPhone": "CellPhone",
-            "Employer": "Employer",
-            "EmployerMailingAddress": "EmployerMailingAddress",
-            "EmployerCity": "EmployerCity",
-            "EmployerState": "EmployerState",
-            "EmployerZipCode": "EmployerZipCode",
-            "EmployerPhoneNumber": "EmployerPhoneNumber"
+
+            "EmployeeNumber": EmployeeNumber,
+            "EmployeeFirstName": EmployeeFirstName,
+            "EmployeeLastName": EmployeeLastName,
+            "FirstName": FirstName,
+            "LastName": LastName,
+            "DateOfBirth": DateOfBirth,
+            "Gender": Gender,
+            "MailingAddress": MailingAddress,
+            "PhysicalAddress": PhysicalAddress,
+            "City": City,
+            "State": State,
+            "ZipCode": ZipCode,
+            "County": County,
+            "EmailAddress": EmailAddress,
+            "PhoneNumber": PhoneNumber,
+            "CellPhone": CellPhone,
+            "Employer": Employer,
+            "EmployerMailingAddress": EmployerMailingAddress,
+            "EmployerCity": EmployerCity,
+            "EmployerState": EmployerState,
+            "EmployerZipCode": EmployerZipCode,
+            "EmployerPhoneNumber": EmployerPhoneNumber
         }
 
-        var obj = JSON.parse(data);
-
-        document.getElementById("SpouseDetail").value =
-            obj.EmployeeNumber + "<br>" +
-            obj.EmployeeFirstName + "<br>" +
-            obj.EmployeeLastName + "<br>" +
-            obj.FirstName + "<br>" +
-            obj.LastName + "<br>" +
-            obj.DateOfBirth + "<br>" +
-            obj.Gender + "<br>" +
-            obj.MailingAddress + "<br>" +
-            obj.PhyscialAddress + "<br>" +
-            obj.City + "<br>" +
-            obj.State + "<br>" +
-            obj.ZipCode + "<br>" +
-            obj.County + "<br>" +
-            obj.EmailAddress + "<br>" +
-            obj.PhoneNumber + "<br>" +
-            obj.CellPhone + "<br>" +
-            obj.Employer + "<br>" +
-            obj.EmployerMailingAddress + "<br>" +
-            obj.EmployerCity + "<br>" +
-            obj.EmployerState + "<br>" +
-            obj.EmployerZipCode + "<br>" +
-            obj.EmployerPhoneNumber;
-
-        //postData('/Family_Info/SpouseDetail', {
-        //    RelationshipToInsured: RelationshipToInsured, EmployeeNumber: EmployeeNumber, EmployeeFName: EmployeeFName, EmployeeLName: EmployeeLName,
-        //    FirstName: FirstName, LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MailingAddress: MailingAddress,
-        //    PhyscialAddress: PhyscialAddress, City: City, State: State, ZipCode: ZipCode, County: County, EmailAddress: EmailAddress,
-        //    PhoneNumber: PhoneNumber, CellPhone: CellPhone, Employer: Employer, EmployerMailingAddress: EmployerMailingAddress,
-        //    EmployerCity: EmployerCity, EmployerState: EmployerState, EmployerZipCode: EmployerZipCode, EmployerPhoneNumber: EmployerPhoneNumber
-        //})
-        //    .then(data => EditSpouseUpdate(data))
-        //    .catch(error => console.error(error))
-    }
+        var ret = postData('/Family_Info/SpouseDetail', data)
+            .then(data => EditSpouseUpdate(data))
+            .catch(error => console.error(error))
+     }
 
     function postData(url, data) {
         //Default options are marked with *
