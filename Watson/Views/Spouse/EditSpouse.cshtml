@@ -294,6 +294,35 @@
         EmployerZipCode = document.getElementById("EmployerZipCode").value;
         EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber");
 
+        var data =
+        {
+            "fm_id": fm_id,
+            "e_id": e_id,
+            "RelationshipToInsured": RelationshipToInsured,
+            "EmployeeNumber": EmployeeNumber,
+            "EmployeeFirstName": EmployeeFirstName,
+            "EmployeeLastName": EmployeeLastName,
+            "FirstName": FirstName,
+            "LastName": LastName,
+            "DateOfBirth": DateOfBirth,
+            "Gender": Gender,
+            "MailingAddress": MailingAddress,
+            "PhysicalAddress": PhyscialAddress,
+            "City": City,
+            "State": State,
+            "ZipCode": ZipCode,
+            "County": County,
+            "EmailAddress": EmailAddress,
+            "PhoneNumber": PhoneNumber,
+            "CellPhone": CellPhone,
+            "Employer": Employer,
+            "EmployerMailingAddress": EmployerMailingAddress,
+            "EmployerCity": EmployerCity,
+            "EmployerState": EmployerState,
+            "EmployerZipCode": EmployerZipCode,
+            "EmployerPhoneNumber": EmployerPhoneNumber,
+        }
+
         var ret= postData('/Family_Info/EditSpouse', data)
             .then(data => EditSpouseUpdate(data))
             .catch(error => console.error(error))
