@@ -16,7 +16,8 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id})
+        @Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id })
+        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
@@ -91,13 +92,24 @@
         EmployerZipCode = document.getElementById("EmployerZipCode").value;
         EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
 
-        postData('/Family_Info/SpouseEmployment', {
-            Employer: Employer, EmployerAddress: EmployerAddress, EmployerCity: EmployerCity,
-            EmployerState: EmployerState, EmployerZipCode: EmployerZipCode, EmployerPhoneNumber: EmployerPhoneNumber
+        var data = {
 
-        })
+            "fm_id": fm_id,
+            "e_id": e_id,
+            "Employer": Employer,
+            "EmployerAddress": EmployerAddress,
+            "EmployerCity": EmployerCity,
+            "EmployerState": EmployerState,
+            "EmployerZipCode": EmployerZipCode,
+            "EmployerPhoneNumber": EmployerPhoneNumber,
+
+        }
+
+        var ret = postData('/Family_Info/SpouseEmployment', data)
             .then(data => SpouseEmploymentUpdate(data))
             .catch(error => error.console(error))
+
+        ret();
 
     }
 

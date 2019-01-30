@@ -289,12 +289,14 @@
             "EmployerCity": EmployerCity,
             "EmployerState": EmployerState,
             "EmployerZipCode": EmployerZipCode,
-            "EmployerPhoneNumber": EmployerPhoneNumber
+            "EmployerPhoneNumber": EmployerPhoneNumber,
         }
 
         var ret = postData('/Family_Info/SpouseDetail', data)
             .then(data => SpouseDetailUpdate(data))
             .catch(error => console.error(error))
+
+        ret();
      }
 
     function postData(url, data) {

@@ -42,17 +42,17 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group" id="empNumber">
+                    <div class="form-group" id="EmployeeNumber">
                         <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
                         <div class="col-md-10">
                             <text type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(m => Model.Employee.SSN)" />
                         </div>
                     </div>
-                    <div class="form-group" id="empName">
+                    <div class="form-group" id="EmployeeName">
                         <label for="" class="col-md-2 control-label">Employee Name:</label>
                         <div class="col-md-10">
-                            <text type="text" id="EmployeeFName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.FirstName)" />
-                            <text type="text" id="EmployeeLName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.LastName)" />
+                            <text type="text" id="EmployeeFirstName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.FirstName)" />
+                            <text type="text" id="EmployeeLastName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.LastName)" />
                         </div>
                     </div>
                     <div class="form-group" div="divSpouseInfo">
@@ -125,20 +125,34 @@
     function GetSpouseEnrollment() {
         RelationshipToInsured = document.getElementsByName("RelationshipToInsured").value;
         EmployeeNumber = document.getElementById("SSN").value;
-        EmpFName = document.getElementById("EmployeeFName").value;
-        EmpLName = document.getElementById("EmployeeLName").value;
+        EmployeeFirstName = document.getElementById("EmployeeFirstName").value;
+        EmployeeLastName = document.getElementById("EmployeeLastName").value;
 
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
         Gender = document.getElementsByName("Gender").value;
 
-        postData('/Family_Info/SpouseEnrollment', {
-            RelationshipToInsured: RelationshipToInsured, EmployeeNumber: EmployeeNumber, EmpFName: EmpFName, EmpLName: EmpLName,
-            FirstName: FirstName, LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender,
-        })
+        var data = {
+
+            "fm_id": fm_id,
+            "e_id": e_id,
+            "RelationshipToInsured": RelationshipToInsured,
+            "EmployeeNumber": EmployeeNumber,
+            "EmployeeFirstName": EmployeeFirstName,
+            "EmployeeLastName": EmployeeLastName,
+            "FirstName": FirstName,
+            "LastName": LastName,
+            "DateOfBirth": DateOfBirth,
+            "Gender": Gender,
+
+        }
+
+        var ret = postData('/Family_Info/SpouseEnrollment', data)
             .then(data => SpouseEnrollmentUpdate(data))
             .catch(error => console.error(error))
+
+        ret();
     }
 
     function postData(url, data) {
