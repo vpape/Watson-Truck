@@ -217,7 +217,7 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GetContact(int e_id)
+        public JsonResult GetEmployeeContact(int e_id)
         {
             var output = (from e in db.Employees
                           where e.Employee_id == e_id

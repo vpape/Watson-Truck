@@ -17,15 +17,15 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.FamilyMember_id)
+        @Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id })
+        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         @*Dependent Enrollment*@
         <div class="form-horizontal">
             <hr />
             <button class="collapsible"><h4>Dependent Enrollment</h4></button>
             <div class="content" id="dependentSelectForm">
-                @*<form id="dependentSelectForm" action="/api/Family_Info/DependentEnrollment" method="post">*@
+                <form id="dependentSelectForm" action= DependentEnrollment() method="post">
                     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
                     <div class="form-group">
                         <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
@@ -33,7 +33,7 @@
                             <select id="RelationToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control">
                                 @if (ViewBag.spouseExist == false)
                                 {
-                                    <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "spouse") ? "selected" : "")>Spouse</option>
+                                    <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
                                 }
                                 else
                                 {
@@ -42,14 +42,15 @@
                             </select>
                         </div>
                     </div>@*Use foreach to get Employee name and Employee Number from Employee model*@
-                    <div class="form-group" id="empName">
-                        <label for="EmployeeName" class="col-md-2 control-label">Employee Name:</label>
+                    <div class="form-group" id="EmployeeName" disable>
+                        <label class="col-md-2 control-label">Employee Name:</label>
                         <div class="col-md-10">
-                            <input type="text" id="EmployeeName" class="form-control" value="@Html.DisplayFor(model => model.Employee.FirstName) @Html.DisplayFor(model => model.Employee.LastName)" />
+                            <input type="text" id="EmployeeFirstName" class="form-control" value="@Html.DisplayFor(model => model.Employee.FirstName)"/>
+                            <input type="text" id="EmployeeLastName" value="@Html.DisplayFor(model => model.Employee.LastName)" />
                         </div>
                     </div>
-                    <div class="form-group" id="empNumber">
-                        <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
+                    <div class="form-group" id="EmployeeNumber" disable>
+                        <label class="col-md-2 control-label">Employee Number:</label>
                         <div class="col-md-10">
                             <input type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.Employee.SSN)" />
                         </div>
@@ -75,8 +76,8 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label">Gender:</label>
                         <div class="col-md-10">
-                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Sex" value="true" checked />Male</label>
-                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Sex" value="false" />Female</label>
+                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="Male" checked />Male</label>
+                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="Female" />Female</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -85,7 +86,7 @@
                             <input type="submit" onclick="addInputSelection();" id="addDep" value="Add Dependent" class="btn btn-outline-primary">
                         </div>
                     </div>
-                @*</form>*@
+                </form>
             </div>
         </div>
 
@@ -118,33 +119,6 @@
         });
     }
 </script>
-
-
-<style>
-    .collapsible {
-        background-color: #333333;
-        color: white;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 15px;
-    }
-
-        .active, .collapsible:hover {
-            background-color: #555;
-        }
-
-    .content {
-        padding: 0 18px;
-        display: none;
-        overflow: hidden;
-        background-color: #f1f1f1;
-    }
-</style>
-
 
 <html>
 <head>
@@ -244,13 +218,39 @@
 
 <script>
     function DependentEnrollment() {
-       
 
-        postData('/postUser', {
-            
-        })
+        fm_id = document.getElementById("fm_id").value
+        e_id = document.getElementById("e_id").value
+
+        RelationshipToInsured = document.getElementByName("RelationshipToInsured").value
+        EmployeeNumber = document.getElementById("SSN").value
+        EmployeeFirstName = document.getElementById("EmployeeFirstName").value
+        EmployeeLastName = document.getElementById("EmployeeLastName").value
+
+        FirstName = document.getElementById("FirstName").value
+        LastName = document.getElementById("LastName").value
+        DateOfBirth = document.getElementById("DateOfBirth").value
+        Gender = document.getElementsByName("Gender").value
+
+        var data = {
+
+            "fm_id": fm_id,
+            "e_id": e_id,
+            "RelationshipToInsured": RelationshipToInsured,
+            "EmployeeNumber": EmployeeNumber,
+            "EmployeeFirstName": EmployeeFirstName,
+            "EmployeeLastName": EmployeeLastName,
+            "FirstName": FirstName,
+            "LastName": LastName,
+            "DateOfBirth": DateOfBirth,
+            "Gender": Gender,
+        }       
+
+        var ret = postData('/Family_Info/DependentEnrollment', data)
             .then(data => DependentEnrollment(data))
             .catch(error => console.error(error))
+
+        ret();
     }
 
 
@@ -272,3 +272,28 @@
             .then(Response => Response.json()) //parses response to JSON
     }
 </script>
+
+<style>
+    .collapsible {
+        background-color: #333333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+</style>
