@@ -30,7 +30,7 @@
                     <div class="form-group" id="divRelationshipToInsured">
                         <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
                         <div class="col-md-10">
-                            <select id="RelationToInsured" name="RelationShipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control">
+                            <select id="RelationToInsured" name="RelationShipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control" disabled>
                                 @if (ViewBag.spouseExist == false)
                                 {
                                     <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
@@ -42,13 +42,13 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group" id="EmployeeNumber">
+                    <div class="form-group" id="EmployeeNumber" disabled>
                         <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
                         <div class="col-md-10">
                             <text type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(m => Model.Employee.SSN)" />
                         </div>
                     </div>
-                    <div class="form-group" id="EmployeeName">
+                    <div class="form-group" id="EmployeeName" disabled>
                         <label for="" class="col-md-2 control-label">Employee Name:</label>
                         <div class="col-md-10">
                             <text type="text" id="EmployeeFirstName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.FirstName)" />

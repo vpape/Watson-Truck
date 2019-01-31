@@ -81,6 +81,7 @@ namespace Watson.Controllers
             return View();
         }
 
+        //missing employee first name, last name, and employee number
         public JsonResult GetSpouseEnrollment(int fm_id, int e_id, string MaritalStatus)
         {
             var output = (from f in db.Family_Info
@@ -128,12 +129,12 @@ namespace Watson.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult SpouseEnrollmentUpdate(int fm_id, int e_id)
         {
-            Family_Info family = db.Family_Info
+            Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == fm_id)
                 .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
-                db.Family_Info.Add(family);
+                db.Family_Info.Add(f);
                 db.SaveChanges();
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
@@ -294,7 +295,7 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        public ActionResult EditSpouse(int? fm_id)
+        public ActionResult EditSpouse(int? fm_id, int e_id)
         {
             if (fm_id == null)
             {
@@ -307,11 +308,12 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.Employee_id = fm_id;
+            ViewBag.Employee_id = e_id;
      
             return View(family);
         }
-         
+
+        //missing employee first name, last name, and employee number
         public JsonResult GetEditSpouse(int fm_id, int e_id, string MaritalStatus)
         {
             var output = (from f in db.Family_Info
@@ -415,6 +417,7 @@ namespace Watson.Controllers
             return View(family);
         }
 
+        //missing employee first name, last name, and employee number
         public JsonResult GetSpouseDetail(int fm_id, int e_id)
         {
             var output = (from f in db.Family_Info
@@ -486,6 +489,7 @@ namespace Watson.Controllers
             return View(family);
         }
 
+        //missing employee first name, last name, and employee number
         public JsonResult GetSpouse(int fm_id, int e_id)
         {
             var output = (from f in db.Family_Info
@@ -573,6 +577,45 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
+
+        public ActionResult DependentEnrollment()
+        {
+            return View();
+        }
+
+        //missing employee first name, last name, and employee number
+        public JsonResult GetDependentEnrollment(int fm_id, int e_id)
+        {
+            var output = (from f in db.Family_Info
+                          where f.FamilyMember_id == fm_id
+                          where f.Employee_id == e_id
+                          select new
+                          {
+                              f.FamilyMember_id,
+                              f.Employee_id,
+                              f.RelationshipToInsured,
+                              f.SSN,
+                              f.FirstName,
+                              f.LastName,
+                              f.DateOfBirth,
+                              f.Gender,
+                          });
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DependentEnrollmentUpdate(int fm_id, int e_id)
+        {
+            Family_Info f = db.Family_Info
+                .Where(i => i.FamilyMember_id == fm_id)
+                .Where(i => i.Employee_id == e_id)
+                .SingleOrDefault();
+
+            db.Family_Info.Add(f);
+            db.SaveChanges();
+
+            return Json(new { output = "success" }, JsonRequestBehavior.AllowGet);
+        }
 
 
 
