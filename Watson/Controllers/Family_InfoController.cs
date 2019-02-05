@@ -14,7 +14,7 @@ namespace Watson.Controllers
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        static List<Family_Info> familyMember = new List<Family_Info>();
+        private static List<Family_Info> familyMember = new List<Family_Info>();
 
         public Family_InfoController()
         {

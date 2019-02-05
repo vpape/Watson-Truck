@@ -4,11 +4,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
+using Watson.Models;
 
 namespace Watson.Controllers
 {
-    public class Other_InsuranceController : ApiController
+    public class Other_InsuranceController : System.Web.Mvc.Controller
     {
+        private WatsonTruckEntities db = new WatsonTruckEntities();
+
+        private static Other_Insurance otherInsurance = new Other_Insurance();
+
+        public Other_InsuranceController()
+        {
+
+        }
+
+
+
         // GET: api/Other_Insurance
         public IEnumerable<string> Get()
         {
