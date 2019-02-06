@@ -84,16 +84,16 @@
                     <div class="form-group" id="depOtherIns">
                         <label>Is your dependent covered by other insurance, including Medicare/Medicaid? If so, we need the following information:</label>
                         <div class="form-group">
-                            <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" onclick="CoveredByOtherIns" name="CoveredByOtherInsurance" value="Yes" checked />Yes</label>
-                            <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline"  onclick="CoveredByOtherIns" name="CoveredByOtherInsurance" value="No" />No</label>
+                            <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" checked />Yes</label>
+                            <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline"  onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" />No</label>
                         </div>
                     </div>
                     <div class="form-group" id="divCoveredByOtherIns">
                         <div class="form-group">
-                            <label for="InsCarrier">Insurance Carrier:</label>
+                            <label for="InsCarrier">Insurance Company:</label>
                             <div class="col-md-10">
                                 @*@foreach(Other_Insurance OInsurance in Model.Other_Insurance)*@
-                                <input type="text" id="InsCarrier" class="form-control" name="InsuranceCompany" value="" />
+                                <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="" />
                             </div>
                             <label for="PolicyNumber" id="divPolicyNumber">Policy Number:</label>
                             <div class="col-md-10">
@@ -303,6 +303,17 @@
         DateOfBirth = document.getElementById("DateOfBirth").value
         Gender = document.getElementsByName("Gender").value
 
+        CoveredByOtherIns = document.getElementByName("CoveredByOtherIns").value
+        InsCompany = document.getElementById("InsCompany").value
+        PolicyNumber = document.getElementById("PolicyNumber").value
+        InsPhoneNumber = document.getElementById("InsPhoneNumber").value
+        InsMailingAddress = document.getElementById("InsMailingAddress").value
+        InsCity = document.getElementById("InsCity").value
+        InsState = document.getElementById("InsState").value
+        InsZipCode = document.getElementById("InsZipCode").value
+
+
+
         var data = {
 
             "fm_id": fm_id,
@@ -315,6 +326,13 @@
             "LastName": LastName,
             "DateOfBirth": DateOfBirth,
             "Gender": Gender,
+            "CoveredByOtherIns": CoveredByOtherIns,
+            "InsCompany": InsCompany,
+            "PolicyNumber": PolicyNumber,
+            "InsMailingAddress": InsMailingAddress,
+            "InsCity": InsCity,
+            "InsState": InsState,
+            "InsZipCode": InsZipCode,
         }       
 
         var ret = postData('/Family_Info/DependentEnrollment', data)

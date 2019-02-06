@@ -30,14 +30,14 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GetGroupHealthInsurance()
+        public JsonResult GetGroupHealthInsurance(int groupHealth_id, int e_id)
         {
             var output = (from g in db.Group_Health
                           select new
                           {
-                              g.Employee,
                               g.GroupHealthInsurance_id,
                               g.Employee_id,
+                              g.Employee,
                               g.InsuranceCarrier,
                               g.PolicyNumber,
                               g.GroupName,
@@ -66,11 +66,11 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GroupHealthEnrollmentUpdate(int? id)
+        public JsonResult GroupHealthEnrollmentUpdate(int groupHealth_id, int e_id)
         {
             Group_Health g = db.Group_Health
-                .Where(i => i.Employee_id == id)
-                .Where(i => i.GroupHealthInsurance_id == id)
+                .Where(i => i.Employee_id == e_id)
+                .Where(i => i.GroupHealthInsurance_id == groupHealth_id)
                 .SingleOrDefault();
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
