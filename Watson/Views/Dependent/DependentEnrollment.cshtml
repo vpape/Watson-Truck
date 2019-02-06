@@ -288,7 +288,7 @@
 </script>
 
 <script>
-    function DependentEnrollment() {
+    function GetDependentEnrollment() {
 
         fm_id = document.getElementById("fm_id").value
         e_id = document.getElementById("e_id").value
@@ -336,7 +336,7 @@
         }       
 
         var ret = postData('/Family_Info/DependentEnrollment', data)
-            .then(data => DependentEnrollment(data))
+            .then(data => DependentEnrollmentUpdate(data))
             .catch(error => console.error(error))
 
         ret();

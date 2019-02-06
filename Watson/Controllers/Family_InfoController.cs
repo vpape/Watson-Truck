@@ -617,8 +617,6 @@ namespace Watson.Controllers
             return Json(new { output = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-
-
         //----------------------------------------------------------------------------------------
         //GET: api/Family_Info/5
         //public Family_Info DependentEnrollment(int id)
@@ -638,11 +636,46 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
+        public ActionResult EditDependent()
+        {
+            return View();
+        }
+
+        public JsonResult GetDependent(int fm_id, int e_id)
+        {
+            var output = from f in db.Family_Info
+                         where f => f.FamilyMember_id == fm_id
+                         where f => f.Employee_id == e_id
+                         select new
+                         {
+                             f.FamilyMember_id,
+                             f.Employee_id,
+                             f.FirstName,
+                             f.LastName,
+                          
+                         };
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DependentUpdate(int fm_id, int e_id)
+        {
+            Family_Info f = db.Family_Info
+                .Where(i => i.FamilyMember_id == fm_id)
+                .Where(i => i.Employee_id == e_id)
+                .SingleOrDefault();
+
+            db.Family_Info.Add(f);
+            db.SaveChanges();
+
+            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
+                
+
+                     
+        }
 
 
-
-
-
+        
 
 
 
