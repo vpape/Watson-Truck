@@ -652,7 +652,7 @@ namespace Watson.Controllers
                              f.Employee_id,
                              f.FirstName,
                              f.LastName,
-                          
+                             f.DateOfBirth,                          
                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
