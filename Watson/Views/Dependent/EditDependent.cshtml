@@ -22,7 +22,7 @@
             <hr />
             <button class="collapsible"><h4>Edit Dependent</h4></button>
             <div class="content" id="dependentSelectForm">
-                <form id="dependentSelectForm" action=EditDependent() method="post">
+                <form id="dependentSelectForm" action= "EditDependent()" method="post">
                     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
                     <div class="form-group">
                         <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
@@ -81,8 +81,8 @@
                     <div class="form-group" id="depOtherIns">
                         <label>Is your dependent covered by other insurance, including Medicare/Medicaid? If so, we need the following information:</label>
                         <div class="form-group">
-                            <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" @((Model.CoveredByOtherInsurance == "Yes") ? "checked" : "") />Yes</label>
-                            <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" @((Model.CoveredByOtherInsurance == "No") ? "checked")
+                            <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" @*((Model.CoveredByOtherInsurance == "Yes") ? "checked" : "")*@ />Yes</label>
+                            <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" @*((Model.CoveredByOtherInsurance == "No") ? "checked")*@/>No</label>
                         </div>
                         <div class="form-group" id="divCoveredByOtherIns">
                             <div class="form-group">
@@ -113,10 +113,11 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" onclick="DependentUpdate();" value="Save" id="submit" class="btn btn-outline-primary" />
-                                <input type="submit" onclick="addInputSelection();" id="addDep" value="Add Dependent" class="btn btn-outline-primary">
+                                <input type="submit" onclick="DependentUpdate()" value="Save" id="submit" class="btn btn-outline-primary" />
+                                <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn btn-outline-primary">
                             </div>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>

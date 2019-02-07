@@ -644,8 +644,8 @@ namespace Watson.Controllers
         public JsonResult GetDependent(int fm_id, int e_id)
         {
             var output = from f in db.Family_Info
-                         where f => f.FamilyMember_id == fm_id
-                         where f => f.Employee_id == e_id
+                         where f.FamilyMember_id == fm_id
+                         where f.Employee_id == e_id
                          select new
                          {
                              f.FamilyMember_id,
