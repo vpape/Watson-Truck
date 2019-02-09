@@ -18,7 +18,7 @@ namespace Watson.Controllers
 
         public Family_InfoController()
         {
-           
+
         }
 
         public ActionResult FamilyMemberOverview(int fm_id)
@@ -77,7 +77,7 @@ namespace Watson.Controllers
         public ActionResult SpouseEnrollment(int e_id)
         {
             ViewBag.Employee_id = e_id;
-            
+
             return View();
         }
 
@@ -90,7 +90,7 @@ namespace Watson.Controllers
                           select new
                           {
                               f.FamilyMember_id,
-                              f.Employee_id,                                                          
+                              f.Employee_id,
                               f.RelationshipToInsured,
                               f.SSN,
                               f.FirstName,
@@ -134,8 +134,8 @@ namespace Watson.Controllers
                 .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
-                db.Family_Info.Add(f);
-                db.SaveChanges();
+            db.Family_Info.Add(f);
+            db.SaveChanges();
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
@@ -188,7 +188,7 @@ namespace Watson.Controllers
                           select new
                           {
                               f.FamilyMember_id,
-                              f.Employee_id,                              
+                              f.Employee_id,
                               f.MailingAddress,
                               f.PhysicalAddress,
                               f.City,
@@ -251,7 +251,7 @@ namespace Watson.Controllers
                           select new
                           {
                               f.FamilyMember_id,
-                              f.Employee_id,                             
+                              f.Employee_id,
                               f.Employer,
                               f.EmployerMailingAddress,
                               f.EmployerCity,
@@ -309,7 +309,7 @@ namespace Watson.Controllers
             }
 
             ViewBag.Employee_id = e_id;
-     
+
             return View(family);
         }
 
@@ -322,7 +322,7 @@ namespace Watson.Controllers
                           select new
                           {
                               f.FamilyMember_id,
-                              f.Employee_id,                              
+                              f.Employee_id,
                               f.RelationshipToInsured,
                               f.SSN,
                               f.FirstName,
@@ -426,7 +426,7 @@ namespace Watson.Controllers
                           select new
                           {
                               f.FamilyMember_id,
-                              f.Employee_id,                              
+                              f.Employee_id,
                               f.RelationshipToInsured,
                               f.SSN,
                               f.FirstName,
@@ -453,6 +453,8 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
+        [System.Web.Mvc.HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult SpouseDetailUpdate(int fm_id, int e_id)
         {
             Family_Info f = db.Family_Info
@@ -489,7 +491,6 @@ namespace Watson.Controllers
             return View(family);
         }
 
-        //missing employee first name, last name, and employee number
         public JsonResult GetSpouse(int fm_id, int e_id)
         {
             var output = (from f in db.Family_Info
@@ -584,15 +585,17 @@ namespace Watson.Controllers
         }
 
         //missing employee first name, last name, and employee number
-        public JsonResult GetDependentEnrollment(int fm_id, int e_id)
+        public JsonResult GetDependentEnrollment(int fm_id, int e_id, int oi_id)
         {
             var output = (from f in db.Family_Info
                           where f.FamilyMember_id == fm_id
                           where f.Employee_id == e_id
+                          where f.OtherInsurance_id == oi_id
                           select new
                           {
                               f.FamilyMember_id,
                               f.Employee_id,
+                              f.OtherInsurance_id,
                               f.RelationshipToInsured,
                               f.SSN,
                               f.FirstName,
@@ -604,11 +607,12 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult DependentEnrollmentUpdate(int fm_id, int e_id)
+        public JsonResult DependentEnrollmentUpdate(int fm_id, int e_id, int oi_id)
         {
             Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == fm_id)
                 .Where(i => i.Employee_id == e_id)
+                .Where(i => i.OtherInsurance_id == oi_id)
                 .SingleOrDefault();
 
             db.Family_Info.Add(f);
@@ -641,42 +645,55 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GetDependent(int fm_id, int e_id)
+        public JsonResult GetDependent(int fm_id, int e_id, int oi_id)
         {
             var output = from f in db.Family_Info
                          where f.FamilyMember_id == fm_id
                          where f.Employee_id == e_id
+                         where f.OtherInsurance_id == oi_id
                          select new
                          {
                              f.FamilyMember_id,
                              f.Employee_id,
+                             f.OtherInsurance_id,
+                             f.RelationshipToInsured,
                              f.FirstName,
                              f.LastName,
-                             f.DateOfBirth,                          
+                             f.DateOfBirth,
+                             f.Gender,
+                             //f.CoveredByOtherInsurance
                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult DependentUpdate(int fm_id, int e_id)
+        public JsonResult DependentUpdate(int fm_id, int e_id, int oi_id)
         {
             Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == fm_id)
                 .Where(i => i.Employee_id == e_id)
+                .Where(i => i.OtherInsurance_id == oi_id)
                 .SingleOrDefault();
 
             db.Family_Info.Add(f);
             db.SaveChanges();
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-                
 
-                     
+
+
         }
 
-
+        public ActionResult DependentDetail()
+        {
+            return View();
+        }
         
 
+        public JsonResult GetDependentDetail()
+        {
+            
+        }
 
 
 

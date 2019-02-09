@@ -1,12 +1,7 @@
 ﻿@model Watson.Models.Family_Info
 
 
-
-
-
-
 <!DOCTYPE html>
-
 
 <html>
 <head>
@@ -45,14 +40,14 @@
                     <div class="form-group" id="EmployeeNumber">
                         <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
                         <div class="col-md-10">
-                            <text type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.Employee.SSN)" disabled />
+                            <text type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.Employee.SSN)" />
                         </div>
                     </div>
                     <div class="form-group" id="EmployeeName">
                         <label class="col-md-2 control-label">Employee Name:</label>
                         <div class="col-md-10">
-                            <text type="text" id="EmployeeFirstName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.FirstName)" disabled />
-                            <text type="text" id="EmployeeLastName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.LastName)" disabled />
+                            <text type="text" id="EmployeeFirstName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.FirstName)" />
+                            <text type="text" id="EmployeeLastName" class="form-control" name="" value="@Html.DisplayFor(model => model.Employee.LastName)"  />
                         </div>
                     </div>
                     <div id="divSpouseInfo">
@@ -186,8 +181,6 @@
                 </form>
             </div>
         </div>
-
-
     }
     <p>
         @Html.ActionLink("Edit", "EditSpouse", new { fm_id = Model.FamilyMember_id }) |

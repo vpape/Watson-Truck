@@ -1,10 +1,6 @@
 ﻿@model Watson.Models.Family_Info
 
 
-
-
-
-
 <!DOCTYPE html>
 
 
@@ -19,13 +15,13 @@
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id })
         @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
+        @Html.HiddenFor(model => model.OtherInsurance_id, new { oi_id = Model.OtherInsurance_id })
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @*Dependent Enrollment*@
         <div class="form-horizontal">
             <hr />
             <button class="collapsible"><h4>Dependent Enrollment</h4></button>
             <div class="content" id="dependentSelectForm">
-                <form id="dependentSelectForm" action= "DependentEnrollment()" method="post">
+                <form id="dependentSelectForm" action="DependentEnrollment()" method="post">
                     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
                     <div class="form-group">
                         <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
@@ -41,11 +37,11 @@
                                 }
                             </select>
                         </div>
-                    </div>@*Use foreach to get Employee name and Employee Number from Employee model*@
+                    </div>
                     <div class="form-group" id="EmployeeName" disable>
                         <label class="col-md-2 control-label">Employee Name:</label>
                         <div class="col-md-10">
-                            <input type="text" id="EmployeeFirstName" class="form-control" value="@Html.DisplayFor(model => model.Employee.FirstName)"/>
+                            <input type="text" id="EmployeeFirstName" class="form-control" value="@Html.DisplayFor(model => model.Employee.FirstName)" />
                             <input type="text" id="EmployeeLastName" value="@Html.DisplayFor(model => model.Employee.LastName)" />
                         </div>
                     </div>
@@ -119,7 +115,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" onclick="DependentEnrollment();" value="Save" id="submit" class="btn btn-outline-primary"/>
+                            <input type="submit" onclick="DependentEnrollment();" value="Save" id="submit" class="btn btn-outline-primary" />
                             <input type="submit" onclick="addInputSelection();" id="addDep" value="Add Dependent" class="btn btn-outline-primary">
                         </div>
                     </div>
