@@ -30,7 +30,7 @@ namespace Watson.Controllers
 
         public JsonResult GetFamilyMember(int fm_id, int e_id)
         {
-            var output = (from f in db.Family_Info
+            var output = from f in db.Family_Info
                           where f.FamilyMember_id == fm_id
                           where f.Employee_id == e_id
                           select new
@@ -64,7 +64,7 @@ namespace Watson.Controllers
                               f.Dental,
                               f.Vision,
                               f.Indemnity,
-                          });
+                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
@@ -84,7 +84,7 @@ namespace Watson.Controllers
         //missing employee first name, last name, and employee number
         public JsonResult GetSpouseEnrollment(int fm_id, int e_id, string MaritalStatus)
         {
-            var output = (from f in db.Family_Info
+            var output = from f in db.Family_Info
                           where f.FamilyMember_id == fm_id
                           where f.Employee_id == e_id
                           select new
@@ -97,7 +97,7 @@ namespace Watson.Controllers
                               f.LastName,
                               f.DateOfBirth,
                               f.Gender,
-                          });
+                          };
 
             ViewBag.Employee_id = e_id;
             ViewBag.spouseExist = true;
@@ -182,7 +182,7 @@ namespace Watson.Controllers
 
         public JsonResult GetSpouseContact(int fm_id, int e_id)
         {
-            var output = (from f in db.Family_Info
+            var output = from f in db.Family_Info
                           where f.FamilyMember_id == fm_id
                           where f.Employee_id == e_id
                           select new
@@ -198,7 +198,7 @@ namespace Watson.Controllers
                               f.EmailAddress,
                               f.PhoneNumber,
                               f.CellPhone,
-                          });
+                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
@@ -245,7 +245,7 @@ namespace Watson.Controllers
 
         public JsonResult GetSpouseEmployment(int fm_id, int e_id)
         {
-            var output = (from f in db.Family_Info
+            var output = from f in db.Family_Info
                           where f.FamilyMember_id == fm_id
                           where f.Employee_id == e_id
                           select new
@@ -258,7 +258,7 @@ namespace Watson.Controllers
                               f.EmployerState,
                               f.EmployerZipCode,
                               f.EmployerPhoneNumber,
-                          });
+                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
@@ -316,7 +316,7 @@ namespace Watson.Controllers
         //missing employee first name, last name, and employee number
         public JsonResult GetEditSpouse(int fm_id, int e_id, string MaritalStatus)
         {
-            var output = (from f in db.Family_Info
+            var output = from f in db.Family_Info
                           where f.FamilyMember_id == fm_id
                           where f.Employee_id == e_id
                           select new
@@ -344,7 +344,7 @@ namespace Watson.Controllers
                               f.EmployerState,
                               f.EmployerZipCode,
                               f.EmployerPhoneNumber,
-                          });
+                          };
 
             ViewBag.Employee_id = e_id;
             ViewBag.MaritalStatus = MaritalStatus;
@@ -420,7 +420,7 @@ namespace Watson.Controllers
         //missing employee first name, last name, and employee number
         public JsonResult GetSpouseDetail(int fm_id, int e_id)
         {
-            var output = (from f in db.Family_Info
+            var output = from f in db.Family_Info
                           where f.FamilyMember_id == fm_id
                           where f.Employee_id == e_id
                           select new
@@ -448,7 +448,7 @@ namespace Watson.Controllers
                               f.EmployerState,
                               f.EmployerZipCode,
                               f.EmployerPhoneNumber,
-                          });
+                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
@@ -477,13 +477,13 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
 
-        public ActionResult DeleteSpouse(int? id)
+        public ActionResult DeleteSpouse(int? fm_id)
         {
-            if (id == null)
+            if (fm_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Family_Info family = db.Family_Info.Find(id);
+            Family_Info family = db.Family_Info.Find(fm_id);
             if (family == null)
             {
                 return HttpNotFound();
@@ -493,7 +493,7 @@ namespace Watson.Controllers
 
         public JsonResult GetSpouse(int fm_id, int e_id)
         {
-            var output = (from f in db.Family_Info
+            var output = from f in db.Family_Info
                           where f.FamilyMember_id == fm_id
                           where f.Employee_id == e_id
                           select new
@@ -520,7 +520,7 @@ namespace Watson.Controllers
                               f.EmployerState,
                               f.EmployerZipCode,
                               f.EmployerPhoneNumber,
-                          });
+                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
@@ -587,7 +587,7 @@ namespace Watson.Controllers
         //missing employee first name, last name, and employee number
         public JsonResult GetDependentEnrollment(int fm_id, int e_id, int oi_id)
         {
-            var output = (from f in db.Family_Info
+            var output = from f in db.Family_Info
                           where f.FamilyMember_id == fm_id
                           where f.Employee_id == e_id
                           where f.OtherInsurance_id == oi_id
@@ -602,7 +602,7 @@ namespace Watson.Controllers
                               f.LastName,
                               f.DateOfBirth,
                               f.Gender,
-                          });
+                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
@@ -684,18 +684,35 @@ namespace Watson.Controllers
 
         }
 
-        public ActionResult DependentDetail()
+        public ActionResult DependentDetail(int? fm_id)
         {
-            return View();
-        }
-        
+            if (fm_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-        public JsonResult GetDependentDetail()
+            Family_Info family = db.Family_Info.Find(fm_id);
+            if (family == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(family);
+        }
+
+        public ActionResult DeleteDependent(int? id)
         {
-            
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Family_Info family = db.Family_Info.Find(id);
+            if (family == null)
+            {
+                return HttpNotFound();
+            }
+            return View(family);
         }
-
-
 
     }
 
