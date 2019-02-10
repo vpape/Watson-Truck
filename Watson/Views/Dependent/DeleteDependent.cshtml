@@ -1,17 +1,158 @@
-﻿@{
-    Layout = null;
+﻿@model Watson.Models.Family_Info
+
+@{
+    ViewBag.Title = "DeleteDependent";
 }
 
-<!DOCTYPE html>
+<h2>Delete</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
+<h3>Are you sure you want to delete this?</h3>
+<div class="form-horizontal">
+    <hr />
+    <button class="collapsible"><h4>Dependent Detail</h4></button>
+    <div class="content">
+        <form action="DeleteDependent()" method="post">
+            <div id="divDependentInfo">
+                <h4>Dependent Info:</h4>
+                <dl class="dl-horizontal">
+                    <dt>
+                        <label class="col-md-offset-2 control-label">First Name:</label>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.FirstName)
+                    </dd>
+                    <dt>
+                        <label class="col-md-offset-2 control-label">Last Name:</label>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.LastName)
+                    </dd>
+                    <dt>
+                        <label class="col-md-offset-2 control-label">Date of Birth:</label>
+                    </dt>
+                    <dd>
+                        @Convert.ToDateTime(Model.DateOfBirth).ToString("MM/dd/yyyy")
+                    </dd>
+                    <dt>
+                        <label class="col-md-offset-2 control-label">Gender:</label>
+                    </dt>
+                    <dd>
+                        <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((Model.Gender == "Male") ? "checked" : "") />Male</label>
+                        <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((Model.Gender == "Female") ? "checked" : "") />Female</label>
+                    </dd>                    
+                </dl>
+
+                <h4>Insurance Info:</h4>
+                <dl class="dl-horizontal">
+                    @foreach (var item in Model.Other_Insurance)
+                    {
+                        <dt>
+                            <label class="col-md-offset-2 control-label">Insurance Company:</label>
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.InsuranceCompany)
+                        </dd>
+                        <dt>
+                            <label class="col-md-offset-2 control-label">Policy Number:</label>
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.PolicyNumber)
+                        </dd>
+                        <dt>
+                            <label class="col-md-offset-2 control-label">Phone Number:</label>
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </dd>
+                        <dt>
+                            <label class="col-md-offset-2 control-label">Mailing Address:</label>
+                        </dt>
+                        <dd>
+                           @* @foreach (var item in Model.Other_Insurance)
+                            {
+                                <input type="text" id="InsMailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(model => model.MailingAddress)" disabled />
+                                <input type="text" id="InsCity" class="form-control" name="City" value="@Html.DisplayFor(model => model.City)" disabled />
+                                <input type="text" id="InsState" class="form-control" name="State" value="@Html.DisplayFor(model => model.State)" disabled />
+                                <input type="text" id="InsZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(model => model.ZipCode)" disabled />
+                            }*@
+                        </dd>
+                    }
+                </dl>
+            </div>
+        </form>
     </div>
-</body>
-</html>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
+        </div>
+    }
+</div>
+
+
+<script>
+    //Do i need this function
+    //function SpouseOrDependent() {
+    //    var choice = document.getElementById("RelationToInsured")
+    //    var dependent = document.getElementById("divDependentInfo")
+    //    var spouse = document.getElementById("divSpouseInfo")
+    //    if (choice.value == "Spouse") {
+    //        spouse.style.display = 'block';
+    //        dependent.style.display = 'none';
+    //    }
+    //    else {
+    //        spouse.style.display = 'none';
+    //        dependent.style.display = 'block';
+
+    //    }
+    //}
+
+
+    var col = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+
+        });
+    }
+
+</script>
+
+<style>
+    .collapsible {
+        background-color: #333333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+</style>

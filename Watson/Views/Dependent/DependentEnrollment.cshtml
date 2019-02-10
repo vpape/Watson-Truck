@@ -1,5 +1,8 @@
 ﻿@model Watson.Models.Family_Info
 
+@{
+    Layout = null;
+}
 
 <!DOCTYPE html>
 
@@ -38,17 +41,17 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group" id="EmployeeName" disable>
+                    <div class="form-group" id="EmployeeName" >
                         <label class="col-md-2 control-label">Employee Name:</label>
                         <div class="col-md-10">
-                            <input type="text" id="EmployeeFirstName" class="form-control" value="@Html.DisplayFor(model => model.Employee.FirstName)" />
-                            <input type="text" id="EmployeeLastName" value="@Html.DisplayFor(model => model.Employee.LastName)" />
+                            <input type="text" disabled id="EmployeeFirstName" class="form-control" value="@Html.DisplayFor(model => model.Employee.FirstName)" />
+                            <input type="text" disabled id="EmployeeLastName" value="@Html.DisplayFor(model => model.Employee.LastName)" />
                         </div>
                     </div>
-                    <div class="form-group" id="EmployeeNumber" disable>
+                    <div class="form-group" id="EmployeeNumber" >
                         <label class="col-md-2 control-label">Employee Number:</label>
                         <div class="col-md-10">
-                            <input type="text" id="EmployeeNumber" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.Employee.SSN)" />
+                            <input type="text" disabled id="EmployeeNumber" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.Employee.SSN)" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -91,7 +94,7 @@
                         @foreach (var item in Model.Other_Insurance)
                         {
                             <div class="form-group">
-                                <label for="InsCarrier">Insurance Company:</label>
+                                <label for="InsCompany">Insurance Company:</label>
                                 <div class="col-md-10">
                                     <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="" />
                                 </div>
@@ -129,7 +132,7 @@
         <button onclick="EmployeeOverview();" class="btn btn-outline-secondary">Return to Employee Overview</button>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditDependent", "Family_Info", new { id = Model.FamilyMember_id }) |
+        @*@Html.ActionLink("Edit", "EditDependent", "Family_Info", new { id = Model.FamilyMember_id }) |*@
         @Html.ActionLink("Back to Family Enrollment", "FamilyMemberEnrollment")
     </p>
 </body>
@@ -272,15 +275,14 @@
         var otherIns = document.getElementById('divCoveredByOtherIns')
 
         //div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
-        if (div.value == "Yes")
-        {
+        if (div.value == "Yes") {
             otherIns.style.display = 'block';
         }
         else (div.value == "No")
         {
             div.style.display = 'none';
         }
-       
+
 
     }
 </script>
@@ -331,7 +333,7 @@
             "InsCity": InsCity,
             "InsState": InsState,
             "InsZipCode": InsZipCode,
-        }       
+        }
 
         var ret = postData('/Family_Info/DependentEnrollment', data)
             .then(data => DependentEnrollmentUpdate(data))

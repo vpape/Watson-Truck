@@ -31,7 +31,7 @@ namespace Watson.Controllers
 
         public JsonResult GetEmployee(int e_id)
         {
-            var output = (from e in db.Employees
+            var output = from e in db.Employees
                           where e.Employee_id == e_id
                           select new
                           {
@@ -45,7 +45,7 @@ namespace Watson.Controllers
                              e.State,
                              e.ZipCode,
 
-                          });
+                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
 
@@ -111,7 +111,7 @@ namespace Watson.Controllers
 
         public JsonResult GetEmployeeEnrollment(int e_id)
         {
-            var output = (from e in db.Employees
+            var output = from e in db.Employees
                           where e.Employee_id == e_id
                           select new
                           {
@@ -124,7 +124,7 @@ namespace Watson.Controllers
                               e.DateOfBirth,
                               e.Gender,
                               e.MaritalStatus,
-                          });
+                          };
 
       
 
@@ -219,7 +219,7 @@ namespace Watson.Controllers
 
         public JsonResult GetEmployeeContact(int e_id)
         {
-            var output = (from e in db.Employees
+            var output = from e in db.Employees
                           where e.Employee_id == e_id
                           select new
                           {
@@ -234,7 +234,7 @@ namespace Watson.Controllers
                               e.EmailAddress,
                               e.PhoneNumber,
                               e.CellPhone,
-                          });
+                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
                           
@@ -272,7 +272,7 @@ namespace Watson.Controllers
 
         public JsonResult GetEmployeeEdit(int e_id)
         {
-            var output = (from e in db.Employees
+            var output = from e in db.Employees
                           where e.Employee_id == e_id
                           select new
                           {
@@ -295,7 +295,7 @@ namespace Watson.Controllers
                               e.EmailAddress,
                               e.PhoneNumber,
                               e.CellPhone,
-                          });
+                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
@@ -363,7 +363,7 @@ namespace Watson.Controllers
 
         public JsonResult GetDetail(int e_id)
         {
-            var output = (from e in db.Employees
+            var output = from e in db.Employees
                           where e.Employee_id == e_id
                           select new
                           {
@@ -386,7 +386,7 @@ namespace Watson.Controllers
                               e.EmailAddress,
                               e.PhoneNumber,
                               e.CellPhone,
-                          });
+                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);    
         }
@@ -428,35 +428,35 @@ namespace Watson.Controllers
 
 
         //Need to finish Group and Life Insurance 
-        public ActionResult LifeInsurance(int id)
+        public ActionResult LifeInsurance(int e_id)
         {
-           Life_Insurance lifeIns = db.Life_Insurance.Find(id);
+           Life_Insurance lifeIns = db.Life_Insurance.Find(e_id);
             return View(lifeIns); 
         }
 
-        public JsonResult LifeInsuranceEnrollemnt()
+        public JsonResult LifeInsuranceEnrollemnt(int e_id)
         {
-            var output = (from e in db.Employees
+            var output = from e in db.Employees
                           select new
                           {
                               e.Employee_id
-                          });
+                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult LifeInsuranceEnrollment(int? id)
+        public JsonResult LifeInsuranceEnrollment(int e_id)
         {
             Employee e = db.Employees
-                .Where(i => i.Employee_id == id)
+                .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult EditLifeInsurance()
+        public JsonResult EditLifeInsurance(int e_id)
         {
-            var output = (from e in db.Employees
+            var output = from e in db.Employees
                           select new
                           {
                               e.Employee_id,
@@ -467,15 +467,15 @@ namespace Watson.Controllers
                               e.DateOfBirth,
                               e.Gender,
                               e.MaritalStatus,
-                          });
+                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult EditLifeInsurance(int? id)
+        public JsonResult EditLifeInsurance(int? e_id)
         {
             Employee e = db.Employees
-                .Where(i => i.Employee_id == id)
+                .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
             db.Employees.Add(e);
@@ -513,21 +513,15 @@ namespace Watson.Controllers
         //     return View(employee);
         // }
         //----------------------------------------------------------------------------------------
-
-
-
-
-
-
-        //----------------------------------------------------------------------------------------        
-        public ActionResult Delete(int? id)
+       
+        public ActionResult Delete(int? e_id)
         {
-            if (id == null)
+            if (e_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.Employees.Find(e_id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -538,13 +532,13 @@ namespace Watson.Controllers
 
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int e_id)
         {
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.Employees.Find(e_id);
             db.Employees.Remove(employee);
             db.SaveChanges();
 
-            //db.DeleteEmployeeAndDependents(id);
+            db.DeleteEmployeeAndDependents(e_id);
 
             return RedirectToAction("EmployeeOverview");
         }

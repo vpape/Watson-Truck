@@ -11,10 +11,9 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.FamilyMember_id, new { fm_id= Model.FamilyMember_id })
-        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})
+        @Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id })
+        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         <div class="form-horizontal">
             <h2></h2>
             <hr />
@@ -214,24 +213,16 @@
                 </form>
             </div>
         </div>
-
-        }
-</body>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "FamilyMemberOverview")
+            @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
         </div>
     }
 
-
+</body>
 
 <script>
-    function GetSpouse() {
+    @*function GetSpouse() {
 
         fm_id = document.getElementById("fm_id").value
         e_id = document.getElementById("e_id").value
@@ -290,7 +281,7 @@
             referrer: 'no-referrer', //*client, no-referrer
         })
             .then(response => response.JSON()) //parses response to JSON
-    }
+    }*@
 
 </script>
 

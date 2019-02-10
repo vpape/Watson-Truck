@@ -1,5 +1,8 @@
 ﻿@model Watson.Models.Family_Info
 
+@{
+    Layout = null;
+}
 
 <!DOCTYPE html>
 
@@ -294,7 +297,7 @@
             .catch(error => console.error(error))
 
         ret();
-     }
+    }
 
     function postData(url, data) {
         //Default options are marked with *

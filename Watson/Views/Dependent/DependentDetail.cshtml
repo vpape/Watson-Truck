@@ -1,5 +1,9 @@
 ﻿@model Watson.Models.Family_Info
 
+@{
+    Layout = null;
+}
+
 
 <!DOCTYPE html>
 
@@ -89,7 +93,6 @@
                 </form>
             </div>
         </div>
-
     }
     <p>
         @Html.ActionLink("Detail", "DependentDetail", new { fm_id = Model.FamilyMember_id }) |
@@ -203,7 +206,6 @@
 
         ret();
     }
-
 
     function postData(url, data) {
         //Default options are marked with *
