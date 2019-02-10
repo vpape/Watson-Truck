@@ -45,59 +45,75 @@
                                     <td>(MEC Plan) Monthly Cost <br /> per Employee</td>
                                     <td>
                                         <div class="col-md-10">
-                                            <input type="text" id="empOnly1" value="" /><p>Cost for Employee Only</p>
+                                            <input type="text" id="MECmonthlyCostEmpOnly" value="" /><p>Cost for Employee Only</p>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="col-md-10">
-                                            <input type="text" id="empAndSpouse1" value="" /><p>Cost for Employee/Spouse</p>
+                                            <input type="text" id="MECmonthlyCostEmpSp" value="" /><p>Cost for Employee/Spouse</p>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="col-md-10">
-                                            <input type="text" id="empAndChildren1" value="" /><p>Cost for Employee/Children</p>
+                                            <input type="text" id="MECmonthlyCostEmpDep" value="" /><p>Cost for Employee/Children</p>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="col-md-10">
-                                            <input type="text" id="empAndFamily1" value="" /><p>Cost for Employee/Family</p>
+                                            <input type="text" id="MECmonthlyCostEmpFam" value="" /><p>Cost for Employee/Family</p>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>(MEC Plan) Employee Cost <br /> per Payday</td>
-                                    <td id="empOnly2" value="">Cost for Employee Only</td>
-                                    <td id="empAndSpouse2" value="">Cost for Employee/Spouse</td>
-                                    <td id="empAndChildren2" value="">Cost for Employee/Children</td>
-                                    <td id="empAndFamily2" value="">Cost for Employee/Family</td>
+                                    <td>
+                                        <div class="col-md-10">
+                                            <input type="text" id="MECbiweeklyCostEmpOnly" value="" /><p>Cost for Employee Only</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-10">
+                                            <input type="text" id="MECbiweeklyCostEmpSp" value="" /><p>Cost for Employee/Spouse</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-10">
+                                            <input type="text" id="MECbiweeklyCostEmpDep" value="" /><p>Cost for Employee/Children</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-10">
+                                            <input type="text" id="MECbiweeklyCostEmpFam" value="" /><p>Cost for Employee/Family</p>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>(Standard Plan) Monthly Cost <br /> per Employee</td>
-                                    <td id="empOnly3" value="">Cost for Employee Only</td>
-                                    <td id="empAndSpouse3" value="">Cost for Employee/Spouse</td>
-                                    <td id="empAndChildren3" value="">Cost for Employee/Children</td>
-                                    <td id="empAndFamily3" value="">Cost for Employee/Family</td>
+                                    <td id="StndnmonthlyCostEmpOnly" value="">Cost for Employee Only</td>
+                                    <td id="StndmonthlyCostEmpSp" value="">Cost for Employee/Spouse</td>
+                                    <td id="StndmonthlyCostEmpDep" value="">Cost for Employee/Children</td>
+                                    <td id="StndmonthlyCostEmpFam" value="">Cost for Employee/Family</td>
                                 </tr>
                                 <tr>
                                     <td>(Standard Plan) Employee Cost <br /> per Payday</td>
-                                    <td id="empOnly4" value="">Cost for Employee Only</td>
-                                    <td id="empAndSpouse4" value="">Cost for Employee/Spouse</td>
-                                    <td id="empAndChildren4" value="">Cost for Employee/Children</td>
-                                    <td id="empAndFamily4" value="">Cost for Employee/Family</td>
+                                    <td id="StndbiweeklyCostEmpOnly" value="">Cost for Employee Only</td>
+                                    <td id="StndbiweeklyCostEmpSp" value="">Cost for Employee/Spouse</td>
+                                    <td id="StndbiweeklyCostEmpDep" value="">Cost for Employee/Children</td>
+                                    <td id="StndbiweeklyCostEmpFam" value="">Cost for Employee/Family</td>
                                 </tr>
                                 <tr>
                                     <td>(Buy Up Plan) Monthly Cost <br /> per Employee</td>
-                                    <td id="empOnly5" value="">Cost for Employee Only</td>
-                                    <td id="empAndSpouse5" value="">Cost for Employee/Spouse</td>
-                                    <td id="empAndChildren5" value="">Cost for Employee/Children</td>
-                                    <td id="empAndFamily5" value="">Cost for Employee/Family</td>
+                                    <td id="BuyUpmonthlyCostEmpOnly" value="">Cost for Employee Only</td>
+                                    <td id="BuyUpmonthlyCostEmpSp" value="">Cost for Employee/Spouse</td>
+                                    <td id="BuyUpmonthlyCostEmpDep" value="">Cost for Employee/Children</td>
+                                    <td id="BuyUpmonthlyCostEmpFam" value="">Cost for Employee/Family</td>
                                 </tr>
                                 <tr>
                                     <td>(Buy Up Plan) Employee Cost <br /> per Payday</td>
-                                    <td id="empOnly6" value="">Cost for Employee Only</td>
-                                    <td id="empAndSpouse6" value="">Cost for Employee/Spouse</td>
-                                    <td id="empAndChildren6" value="">Cost for Employee/Children</td>
-                                    <td id="empAndFamily6" value="">Cost for Employee/Family</td>
+                                    <td id="BuyUpbiweeklyCostEmpOnly" value="">Cost for Employee Only</td>
+                                    <td id="BuyUpbiweeklyCostEmpSp" value="">Cost for Employee/Spouse</td>
+                                    <td id="BuyUpbiweeklyCostEmpDep" value="">Cost for Employee/Children</td>
+                                    <td id="BuyUpbiweeklyCostEmpFam" value="">Cost for Employee/Family</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -138,68 +154,68 @@
 <script>
     function GetInsurancePremium() {
 
-        empOnly1 = document.getElementById('empOnly1').value
-        empAndSpouse1 = document.getElementById('empAndSpouse1').value
-        empAndChildren1 = document.getElementById('empAndChildren1').value
-        empAndFamily1 = document.getElementById('empAndFamily1').value
+        MECmonthlyEO = document.getElementById('MECmonthlyCostEmpOnly').value
+        MECmonthlyEmpSp = document.getElementById('MECmonthlyCostEmpSp').value
+        MECmonthlyEmpDep = document.getElementById('MECmonthlyCostEmpDep').value
+        MECmonthlyEmpFam = document.getElementById('MECmonthlyCostEmpFam').value
 
-        empOnly2 = document.getElementById('empOnly2').value
-        empAndSpouse2 = document.getElementById('empAndSpouse2').value
-        empAndChildren2 = document.getElementById('empAndChildren2').value
-        empAndFamily2 = document.getElementById('empAndFamily2').value
+        MECbiweeklyEO = document.getElementById('MECbiweeklyCostEmpOnly').value
+        MECbiweeklyEmpSp = document.getElementById('MECbiweeklyCostEmpSp').value
+        MECbiweeklyEmpDep = document.getElementById('MECbiweeklyCostEmpDep').value
+        MECbiweeklyEmpFam = document.getElementById('MECbiweeklyCostEmpFam').value
 
-        empOnly3 = document.getElementById('empOnly3').value
-        empAndSpouse3 = document.getElementById('empAndSpouse3').value
-        empAndChildren3 = document.getElementById('empAndChildren3').value
-        empAndFamily3 = document.getElementById('empAndFamily3').value
+        StndmonthlyEO = document.getElementById('StndmonthlyCostEmpOnly').value
+        StndmonthlyEmpSp = document.getElementById('StndmonthlyCostEmpSp').value
+        StndmonthlyEmpDep = document.getElementById('StndmonthlyCostEmpDep').value
+        StndmonthlyEmpFam = document.getElementById('StndmonthlyCostEmpFam').value
 
-        empOnly4 = document.getElementById('empOnly4').value
-        empAndSpouse4 = document.getElementById('empAndSpouse4').value
-        empAndChildren4 = document.getElementById('empAndChildren4').value
-        empAndFamily4 = document.getElementById('empAndFamily4').value
+        StndbiweeklyEO = document.getElementById('StndbiweeklyCostEmpOnly').value
+        StndbiweeklyEmpSp = document.getElementById('StndbiweeklyCostEmpSp').value
+        StndbiweeklyEmpDep = document.getElementById('StndbiweeklyCostEmpDep').value
+        StndbiweeklyEmpFam = document.getElementById('StndbiweeklyCostEmpFam').value
 
-        empOnly5 = document.getElementById('empOnly5').value
-        empAndSpouse5 = document.getElementById('empAndSpouse5').value
-        empAndChildren5 = document.getElementById('empAndChildren5').value
-        empAndFamily5 = document.getElementById('empAndFamily5').value
+        BuyUpmonthlyEO = document.getElementById('BuyUpmonthlyCostEmpOnly').value
+        BuyUpmonthlyEmpSp = document.getElementById('BuyUpmonthlyCostEmpSp').value
+        BuyUpmonthlyEmpDep = document.getElementById('BuyUpmonthlyCostEmpDep').value
+        BuyUpmonthlyEmpFam = document.getElementById('BuyUpmonthlyCostEmpFam').value
 
-        empOnly6 = document.getElementById('empOnly6').value
-        empAndSpouse6 = document.getElementById('empAndSpouse6').value
-        empAndChildren6 = document.getElementById('empAndChildren6').value
-        empAndFamily6 = document.getElementById('empAndFamily6').value
+        BuyUpbiweeklyEO = document.getElementById('BuyUpbiweeklyCostEmpOnly').value
+        BuyUpbiweeklyEmpSp = document.getElementById('BuyUpbiweeklyCostEmpSp').value
+        BuyUpbiweeklyEmpDep = document.getElementById('BuyUpbiweeklyCostEmpDep').value
+        BuyUpbiweeklyEmpFam = document.getElementById('BuyUpbiweeklyCostEmpAndFam').value
     }
 
     var data = {
 
-        "empOnly1": empOnly1,
-        "empAndSpouse1": empAndSpouse1,
-        "empAndChildren1": empAndSpouse1,
-        "empAndFamily1": empAndFamily1,
+        "MECmonthlyEO": MECmonthlyEO,
+        "MECmonthlyEmpSp": MECmonthlyEmpSp,
+        "MECmonthlyEmpDep": MECmonthlyEmpDep,
+        "MECmonthlyEmpFam": MECmonthlyEmpFam,
 
-        "empOnly2": empOnly2,
-        "empAndSpouse2": empAndSpouse2,
-        "empAndChildren2": empAndSpouse2,
-        "empAndFamily2": empAndFamily2,
+        "MECbiweeklyEO": MECbiweeklyEO,
+        "MECbiweeklyEmpSp": MECbiweeklyEmpSp,
+        "MECbiweeklyEmpDep": MECbiweeklyEmpDep,
+        "MECbiweeklyEmpFam": MECbiweeklyEmpFam,
 
-        "empOnly3": empOnly3,
-        "empAndSpouse3": empAndSpouse3,
-        "empAndChildren3": empAndSpouse3,
-        "empAndFamily3": empAndFamily3,
+        "StndmonthlyEO": StndmonthlyEO,
+        "StndmonthlyEmpSp": StndmonthlyEmpSp,
+        "StndmonthlyEmpDep": StndmonthlyEmpDep,
+        "StndmonthlyEmpFam": StndmonthlyEmpFam,
 
-        "empOnly4": empOnly4,
-        "empAndSpouse4": empAndSpouse4,
-        "empAndChildren4": empAndSpouse4,
-        "empAndFamily4": empAndFamily4,
+        "StndbiweeklyEO": StndbiweeklyEO,
+        "StndbiweeklyEmpSp": StndbiweeklyEmpSp,
+        "StndbiweeklyEmpDep": StndbiweeklyEmpDep,
+        "StndbiweeklyEmpFam": StndbiweeklyEmpFam,
 
-        "empOnly5": empOnly5,
-        "empAndSpouse5": empAndSpouse5,
-        "empAndChildren5": empAndSpouse5,
-        "empAndFamily5": empAndFamily5,
+        "BuyUpmonthlyEO": BuyUpmonthlyEO,
+        "BuyUpmonthlyEmpSp": BuyUpmonthlyEmpSp,
+        "BuyUpmonthlyEmpDep": BuyUpmonthlyEmpDep,
+        "BuyUpmonthlyEmpFam": BuyUpmonthlyEmpFam,
 
-        "empOnly6": empOnly6,
-        "empAndSpouse6": empAndSpouse6,
-        "empAndChildren6": empAndSpouse6,
-        "empAndFamily6": empAndFamily6,
+        "BuyUpbiweeklyEO": BuyUpbiweeklyEO,
+        "BuyUpbiweeklyEmpSp": BuyUpbiweeklyEmpSp,
+        "BuyUpbiweeklyEmpDep": BuyUpbiweeklyEmpDep,
+        "BuyUpbiweeklyEmpFam": BuyUpbiweeklyEmpFam,
     }
 
 
