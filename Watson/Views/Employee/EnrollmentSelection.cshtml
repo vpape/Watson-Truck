@@ -29,29 +29,23 @@
                 <tbody>
                     <tr>
                         <td>
-                            <form id="empEnrollment" action="/Employee/EmployeeEnrollment" method="get">
-                                <div id="EmployeeEnrollment">
-                                    <button type="button" class="collapsible" onclick="EmployeeEnrollment(this.form)" >Employee Enrollment</button>
-                                </div>
-                            </form>
+                            <div id="EmployeeEnrollment">
+                                <button type="button" class="collapsible" onclick="return EmployeeEnrollment()" >Employee Enrollment</button>
+                            </div>   
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <form action="/Group_Health/GroupHealthEnrollment" method="get">
-                                <div id="GroupHealthEnrollment">
-                                    <button type="button" class="collapsible" onclick="GroupHealthEnrollment()" >Group Health Enrollment</button>
-                                </div>
-                            </form>
+                            <div id="GroupHealthEnrollment">
+                                <button type="button" class="collapsible" onclick="return GroupHealthEnrollment()">Group Health Enrollment</button>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <form action="/Life_Insurance/LifeInsuranceEnrollment" method="get">
-                                <div id="LifeInsuranceEnrollment">
-                                    <button type="button" class="collapsible" onclick="LifeInsuranceEnrollment()" >Life Insurance Enrollment</button>
-                                </div>
-                            </form>
+                            <div id="LifeInsuranceEnrollment">
+                                <button type="button" class="collapsible" onclick="return LifeInsuranceEnrollment()">Life Insurance Enrollment</button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -61,7 +55,7 @@
     </body>
 </html>
 <p>
-    @*@Html.ActionLink("Back to HomePage", "EmployeeOverview", new { id = Model.Employee_id })*@
+    @Html.ActionLink("Back to Home Page", "EmployeeOverview")
 </p>
 
 <script>
@@ -86,16 +80,16 @@
 <script type="text/javascript">
 
     function EmployeeEnrollment() {
-        document.getElementById("empEnrollment").submit;
+        window.location.replace('/Employee/EmployeeEnrollment')
      
     }
 
     function GroupHealthEnrollment() {
-        document.getElementById("GroupHealthEnrollment")
+        window.location.replace('/Group_Health/GroupHealthEnrollment')
     }
 
     function LifeInsuranceEnrollment() {
-        document.getElementById("LifeInsuranceEnrollment")
+        window.location.replace('/Life_Insurance/LifeInsuranceEnrollment')
     }
 
 </script>
@@ -123,7 +117,7 @@
         overflow: hidden;
         background-color: #f1f1f1;
     }
-
+   
     a {
         text-decoration: none;
         display: inline-block;

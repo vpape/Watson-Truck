@@ -20,13 +20,13 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})
+        @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
-            <button class="collapsible"><h4>Employee Enrollment</h4></button>
+            <button class="collapsible">Employee Enrollment</button>
             <div id="divEmpEnrollment" class="content">
-                <form id="empEnrollment" action="EmployeeEnrollment();" method="post">
+                <form id="empEnrollment" action="EmployeeEnrollment()" method="post">
                     <div class="form-group">
                         <label for="Employee_id" class="col-md-2 control-label">Employee_id:</label>
                         <div class="col-md-10">
@@ -98,13 +98,14 @@
         </div>
 
     }
-    <div>
-        <button onclick="EnrollmentSelection()" value="Previous" class="previous" /> |
-        <button onclick="Contact()" value="Continue" class="btn" />
-    </div>
+    <p></p>
+        <div class="button">
+            <button type="button" class="btn" onclick="return EnrollmentSelection()" value="Previous">Previous</button> |
+            <button type="button" class="btn" onclick="return Contact()" value="Continue">Continue</button>
+        </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Employee_id }) |
-        @Html.ActionLink("Back to Overview", "EmployeeOverview")
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.Employee_id }) |*@
+        @*@Html.ActionLink("Back to Overview", "EmployeeOverview")*@
     </p>
 </body>
 </html>
@@ -130,12 +131,12 @@
 <script>
     function EnrollmentSelection() {
 
-        location.href = "location.href='Employee/EnrollmentSelection";
+        windows.location.replace('/Employee/EnrollmentSelection');
     }
 
     function Contact() {
 
-        location.href = "location.href='Employee/Contact";
+        windows.location.replace('/Employee/Contact');
     }
 </script>
 
@@ -181,26 +182,40 @@
 
 <style>
     .collapsible {
-        background-color: #333333;
+        background-color: #333;
         color: white;
         cursor: pointer;
         padding: 18px;
         width: 100%;
         border: none;
-        text-align: left;
+        text-align: center;
         outline: none;
         font-size: 15px;
     }
 
-    .active, .collapsible:hover {
-        background-color: #555;
-    }
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
 
     .content {
         padding: 0 18px;
         display: none;
         overflow: hidden;
         background-color: #f1f1f1;
+    }
+
+    .previous {
+        background-color: #333;
+        color: white;
+    }
+
+    .btn {
+        background-color: #333;
+        color: white;
+    }
+
+    .button {
+        text-align: right;
     }
 
     a {
@@ -214,15 +229,7 @@
         color: black;
     }
 
-    .previous {
-        background-color: #2e4593;
-        color: black;
-    }
 
-    .btn {
-        background-color: #2e4593;
-        color: white;
-    }
 </style>
 
 @*<body> EXAMPLE
