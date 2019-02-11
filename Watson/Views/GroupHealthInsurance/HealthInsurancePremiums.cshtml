@@ -1,4 +1,4 @@
-﻿@model Watson.Models.Group_Health
+﻿@model Watson.Models.InsurancePremium
 
 
 @{
@@ -23,8 +23,9 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.GroupHealthInsurance_id, new { grpH_id = Model.GroupHealthInsurance_id })
-        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
+        @Html.HiddenFor(model => model.InsurancePremium_id, new { insPrm = Model.InsurancePremium_id })
+        @Html.HiddenFor(model => model.InsurancePlan_id, new { insPlan_id = Model.InsurancePlan_id })
+        @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <table class="table" cellpadding="20" cellspacing="20">
             <tr>
@@ -38,87 +39,80 @@
                                     <th>Employee/Spouse</th>
                                     <th>Employee/Child(ren)</th>
                                     <th>Employee/Family</th>
+                                    <th>Yearly Cost</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>(MEC Plan) Monthly Cost <br /> per Employee</td>
                                     <td>
-                                        <div class="col-md-10">
-                                            <input type="text" id="MECmonthlyCostEmpOnly" value="" /><p>Cost for Employee Only</p>
+                                        <label>(MEC Plan) Monthly Cost per Employee</label>
+                                        <div class="col-md-5">
+                                            @*<input type="text" name="MECPlan" size="10" id="MECplan" value="" />*@
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="col-md-10">
-                                            <input type="text" id="MECmonthlyCostEmpSp" value="" /><p>Cost for Employee/Spouse</p>
+                                        <div class="col-md-5">
+                                            <input type="text" name="EmployeeOnly" size="10" id="MECmonthlyCostEmpOnly" value="" />
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="col-md-10">
-                                            <input type="text" id="MECmonthlyCostEmpDep" value="" /><p>Cost for Employee/Children</p>
+                                        <div class="col-md-5">
+                                            <input type="text" name="EmployeeAndSpouse" size="10" id="MECmonthlyCostEmpSp" value="" />
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="col-md-10">
-                                            <input type="text" id="MECmonthlyCostEmpFam" value="" /><p>Cost for Employee/Family</p>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>(MEC Plan) Employee Cost <br /> per Payday</td>
-                                    <td>
-                                        <div class="col-md-10">
-                                            <input type="text" id="MECbiweeklyCostEmpOnly" value="" /><p>Cost for Employee Only</p>
+                                        <div class="col-md-5">
+                                            <input type="text" name="EmployeeAndDependent" size="10" id="MECmonthlyCostEmpDep" value="" />
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="col-md-10">
-                                            <input type="text" id="MECbiweeklyCostEmpSp" value="" /><p>Cost for Employee/Spouse</p>
+                                        <div class="col-md-5">
+                                            <input type="text" name="EmployeeAndFamily" size="10" id="MECmonthlyCostEmpFam" value="" />
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="col-md-10">
-                                            <input type="text" id="MECbiweeklyCostEmpDep" value="" /><p>Cost for Employee/Children</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-md-10">
-                                            <input type="text" id="MECbiweeklyCostEmpFam" value="" /><p>Cost for Employee/Family</p>
+                                        <div class="col-md-5">
+                                            <input type="text" name="YearlyPremiumCost" size="10" id="yearlyPremiumCost" value="" />
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>(Standard Plan) Monthly Cost <br /> per Employee</td>
-                                    <td id="StndnmonthlyCostEmpOnly" value="">Cost for Employee Only</td>
-                                    <td id="StndmonthlyCostEmpSp" value="">Cost for Employee/Spouse</td>
-                                    <td id="StndmonthlyCostEmpDep" value="">Cost for Employee/Children</td>
-                                    <td id="StndmonthlyCostEmpFam" value="">Cost for Employee/Family</td>
-                                </tr>
-                                <tr>
-                                    <td>(Standard Plan) Employee Cost <br /> per Payday</td>
-                                    <td id="StndbiweeklyCostEmpOnly" value="">Cost for Employee Only</td>
-                                    <td id="StndbiweeklyCostEmpSp" value="">Cost for Employee/Spouse</td>
-                                    <td id="StndbiweeklyCostEmpDep" value="">Cost for Employee/Children</td>
-                                    <td id="StndbiweeklyCostEmpFam" value="">Cost for Employee/Family</td>
-                                </tr>
-                                <tr>
-                                    <td>(Buy Up Plan) Monthly Cost <br /> per Employee</td>
-                                    <td id="BuyUpmonthlyCostEmpOnly" value="">Cost for Employee Only</td>
-                                    <td id="BuyUpmonthlyCostEmpSp" value="">Cost for Employee/Spouse</td>
-                                    <td id="BuyUpmonthlyCostEmpDep" value="">Cost for Employee/Children</td>
-                                    <td id="BuyUpmonthlyCostEmpFam" value="">Cost for Employee/Family</td>
-                                </tr>
-                                <tr>
-                                    <td>(Buy Up Plan) Employee Cost <br /> per Payday</td>
-                                    <td id="BuyUpbiweeklyCostEmpOnly" value="">Cost for Employee Only</td>
-                                    <td id="BuyUpbiweeklyCostEmpSp" value="">Cost for Employee/Spouse</td>
-                                    <td id="BuyUpbiweeklyCostEmpDep" value="">Cost for Employee/Children</td>
-                                    <td id="BuyUpbiweeklyCostEmpFam" value="">Cost for Employee/Family</td>
+                                    <td>
+                                        <label>Bi-weekly Cost per Employee</label>
+                                        <div class="col-md-5">
+                                            @*<input type="text" name="MECPlan" size="10" id="MECplan" value="" />*@
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-5">
+                                            <input type="text" name="EmployeeOnly" size="10" id="MECbiweeklyCostEmpOnly" value="" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-5">
+                                            <input type="text" name="EmployeeAndSpouse" size="10" id="MECbiweeklyCostEmpSp" value="" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-5">
+                                            <input type="text" name="EmployeeAndDependent" size="10" id="MECbiweeklyCostEmpDep" value="" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-5">
+                                            <input type="text" name="EmployeeAndFamily" size="10" id="MECbiweeklyCostEmpFam" value="" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-5">
+                                            <input type="text" name="YearlyPremiumCost" size="10" id="yearlyPremiumCost" value="" />
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                         <p>
-                            <button type="submit" onclick="InsurancePremiumUpdate()" value="Save" class="next"></button>
+                            <button type="submit" class="btn btn-default" onclick="InsurancePremiumUpdate()" value="Submit">Save</button>
                         </p>
                     </form>
                 </td>
@@ -144,10 +138,10 @@
         <button onclick="GroupHealthEnrollment()" class="btn btn-outline-secondary">Previous</button> |
         <button onclick="HealthInsuranceSupplement()" class="btn btn-outline-secondary">Health Insurance Supplement</button>
     </div>
-    <p>
-        @Html.ActionLink("Insurance Supplement", "HealthInsuranceSupplement", new { grpH_id = Model.GroupHealthInsurance_id }) |
-        @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview", new { e_id = Model.Employee_id })
-    </p>
+    @*<p>
+            @Html.ActionLink("Insurance Supplement", "HealthInsuranceSupplement", new { insPrm = Model.InsurancePremium_id }) |
+            @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
+        </p>*@
 </body>
 </html>
 
@@ -277,11 +271,6 @@
     a:hover {
         background-color: #ddd;
         color: black;
-    }
-
-    .next {
-        background-color: #2d499c;
-        color: white;
     }
 </style>
 

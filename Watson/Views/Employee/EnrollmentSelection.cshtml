@@ -1,74 +1,74 @@
 ﻿@model Watson.Models.Employee
 
 
-@{
-    @ViewBag.Title = "EnrollmentSelection";
-}
+@*@{
+        @ViewBag.Title = "EnrollmentSelection";
+    }*@
 
 <!DOCTYPE html>
 
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Enrollment Selection Page</title>
 </head>
 <body>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.Employee_id)
+        @*@Html.HiddenFor(model => model.Employee_id)*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <form action="EnrollmentSelection()" method="get">
-            <div class="form-horizontal">
-                <hr />
-                <button class="collaspible"><h4>Employee Enrollment</h4></button>
-                <div class="content">
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <button onclick="EmployeeEnrollment()" id="EmployeeEnrollment" class="btn" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-horizontal">
-                <hr />
-                <button class="collaspible"><h4>Group Health Enrollment</h4></button>
-                <div class="content">
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <button onclick="GroupHealthEnrollment()" id="GroupHealthEnrollment" class="btn" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-horizontal">
-                <hr />
-                <button class="collaspible"><h4>Life Insurance Enrollment</h4></button>
-                <div class="content">
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <button onclick="LifeInsuranceEnrollment()" id="LifeInsuranceEnrollment" class="btn" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    }
-</body>
+        <div class="container">
+            <h3>Enrollment Selection</h3>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <form id="empEnrollment" action="/Employee/EmployeeEnrollment" method="get">
+                                <div id="EmployeeEnrollment">
+                                    <button type="button" class="collapsible" onclick="EmployeeEnrollment(this.form)" >Employee Enrollment</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form action="/Group_Health/GroupHealthEnrollment" method="get">
+                                <div id="GroupHealthEnrollment">
+                                    <button type="button" class="collapsible" onclick="GroupHealthEnrollment()" >Group Health Enrollment</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form action="/Life_Insurance/LifeInsuranceEnrollment" method="get">
+                                <div id="LifeInsuranceEnrollment">
+                                    <button type="button" class="collapsible" onclick="LifeInsuranceEnrollment()" >Life Insurance Enrollment</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+            }
+    </body>
 </html>
 <p>
-    @Html.ActionLink("Back to HomePage", "EmployeeOverview", new { id = Model.Employee_id })
-</p>
-<p>
-    <a href="location.href='Employee/EmployeeOverview'">Employee Overview Page</a>"'
+    @*@Html.ActionLink("Back to HomePage", "EmployeeOverview", new { id = Model.Employee_id })*@
 </p>
 
 <script>
     var col = document.getElementByClassName("collapsible");
     var i;
 
-    for (var i = 0; i < col.length; i++) {
+    for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
             this.classList.toggle("active");
 
@@ -76,26 +76,43 @@
             if (content.style.display === "block") {
                 content.style.display = "none";
             }
-            else
+            else {
                 content.style.display = "block"
+            }
         });
     }
+</script>
+
+<script type="text/javascript">
+
+    function EmployeeEnrollment() {
+        document.getElementById("empEnrollment").submit;
+     
+    }
+
+    function GroupHealthEnrollment() {
+        document.getElementById("GroupHealthEnrollment")
+    }
+
+    function LifeInsuranceEnrollment() {
+        document.getElementById("LifeInsuranceEnrollment")
+    }
+
 </script>
 
 
 <style>
     .collapsible {
-        background-color: #333333;
+        background-color: #333;
         color: white;
         cursor: pointer;
         padding: 18px;
-        width: 100%;
+        width: 50%;
         border: none;
-        text-align: left;
+        text-align: center;
         outline: none;
         font-size: 15px;
     }
-
     .active, .collapsible:hover {
         background-color: #555;
     }
@@ -118,13 +135,13 @@
         color: black;
     }
 
-    .previous {
-        background-color: #2e4593;
-        color: black;
+    table {
+        border-collapse: collapse;
+        width: 100%;
     }
 
-    .btn {
-        background-color: #2e4593;
-        color: white;
+    div {
+        text-align: center;
     }
+
 </style>
