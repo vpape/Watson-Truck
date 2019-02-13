@@ -27,6 +27,7 @@ namespace Watson.Controllers
             Employee employee = db.Employees.Find(e_id);
 
             return View(employee);
+
         }
 
         public JsonResult GetEmployee(int e_id)

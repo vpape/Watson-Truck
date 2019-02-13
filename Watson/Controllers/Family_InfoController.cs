@@ -540,7 +540,6 @@ namespace Watson.Controllers
             return View();
         }
 
-        //missing employee first name, last name, and employee number
         public JsonResult GetDependentEnrollment(int fm_id, int e_id, int oi_id)
         {
             var output = from f in db.Family_Info

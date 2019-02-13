@@ -14,13 +14,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Create Employee</title>
+    <title>Employee Enrollment</title>
 </head>
 <body>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})*@
+        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
@@ -90,7 +90,7 @@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             @*<input type="submit" value="Save" onclick=" return EmployeeEnrollment()" class="btn btn-default" />*@
-                            <button type="submit" onclick="EmployeeEnrollmentUpdate()" id="EmployeeEnrollmentUpdate" class="btn">Save</button>
+                            <button type="submit" onclick="return EmployeeEnrollmentUpdate()" id="EmployeeEnrollmentUpdate" class="btn">Save</button>
                         </div>
                     </div>
                 </form>
@@ -131,18 +131,21 @@
 <script>
     function EnrollmentSelection() {
 
-        windows.location.replace('/Employee/EnrollmentSelection');
+        window.history.back();
     }
 
     function Contact() {
 
-        windows.location.replace('/Employee/Contact');
+        window.history.forward();
     }
+
 </script>
 
 
 <script>
     function GetEmployeeEnrollment() {
+
+        e_id = document.getElementById("e_id").value
         Employee_id = document.getElementById("Employee_id").value;
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;
@@ -153,12 +156,25 @@
         Gender = document.getElementsByName("Gender").value;
         MaritalStatus = document.getElementsByName("MaritalStatus").value;
 
-        postData('/Employee/EmployeeEnrollment', {
-            Employee_id: Employee_id, CurrentEmployer: CurrentEmployer, JobTitle: JobTitle, EmployeeNumber: EmployeeNumber, FirstName: FirstName,
-            LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MaritalStatus: MaritalStatus
-        })
+        var data = {
+
+            "e_id": e_id,
+            "Employee_id": Employee_id,
+            "CurrentEmployer": CurrentEmployer,
+            "JobTitle": JobTitle,
+            "EmployeeNumber": EmployeeNumber,
+            "FirstName": FirstName,
+            "LastName": LastName,
+            "DateOfBirth": DateOfBirth,
+            "Gender": Gender,
+            "MaritalStatus": MaritalStatus,
+        }
+
+        var ret = postData('/Employee/EmployeeEnrollment', data)
             .then(data => EmployeeEnrollmentUpdate(data))
             .catch(error => console.error(error))
+
+        ret();
     }
 
     function postData(url, data) {

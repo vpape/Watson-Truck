@@ -1,16 +1,20 @@
 ﻿@model List<Watson.Models.Employee>
 
 
-@{
+@*@{
     ViewBag.Title = "EmployeeOverview";
-}
+}*@
 
 <h2>Employee Overview</h2>
 <!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Employee Overview</title>
 </head>
 <body>
@@ -34,34 +38,34 @@
         {
             <tr>
                 <td>
-                    <a href="#" onclick="FamilyMemberOverview()" class="next round"></a>   @* Dynamic button (image mapping??) to redirect to spouse and dependent overview *@
+                    <a href="#" onclick="return FamilyMemberOverview()" class="next round"></a>   @* Dynamic button (image mapping??) to redirect to spouse and dependent overview *@
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Employee_id)
+                    @Html.DisplayForModel(item.Employee_id)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SSN)
+                    @Html.DisplayForModel(item.SSN)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
+                    @Html.DisplayForModel(item.FirstName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
+                    @Html.DisplayForModel(item.LastName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.JobTitle)
+                    @Html.DisplayForModel(item.JobTitle)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MailingAddress)
+                    @Html.DisplayForModel(item.MailingAddress)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.City)
+                    @Html.DisplayForModel(item.City)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.State)
+                    @Html.DisplayForModel(item.State)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ZipCode)
+                    @Html.DisplayForModel(item.ZipCode)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", "Employee", new { id = item.Employee_id }) |
@@ -74,15 +78,15 @@
     </table>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="button" onclick= "EnrollmentSelection()" value="Enrollment Selection" class="btn btn-primary" />
+            <input type="button" onclick= "return EnrollmentSelection()" value="Enrollment Selection" class="btn" />
         </div>
     </div>
 </body>
 </html>
 
-<div>
+@*<div>
     <a href="/Employee">Enrollment Selection</a> | @Html.ActionLink("Enrollment Selection", "EnrollmentSelection", new { id = ViewBag.Employee_id })
-</div>
+</div>*@
 
 
 <style>
@@ -107,12 +111,12 @@
     }
 
     btn, a:hover {
-        background-color: #ddd;
+        background-color: #555;
         color: black;
     }
 
     .next {
-        background-color: #2d499c;
+        background-color: #333;
         color: white;
     }
 </style>

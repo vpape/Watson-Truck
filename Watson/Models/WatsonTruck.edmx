@@ -119,32 +119,32 @@
             <PropertyRef Name="Employee_id" />
           </Key>
           <Property Name="Employee_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeRole" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="CurrentEmployer" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="PreviousEmployer" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="EmployeeRole" Type="varchar" MaxLength="15" />
+          <Property Name="CurrentEmployer" Type="varchar" MaxLength="30" />
+          <Property Name="PreviousEmployer" Type="varchar" MaxLength="30" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" />
           <Property Name="MiddleName" Type="varchar" MaxLength="30" />
-          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" />
+          <Property Name="DateOfBirth" Type="date" />
           <Property Name="SSN" Type="varchar" MaxLength="15" />
-          <Property Name="MaritalStatus" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MaritalStatus" Type="varchar" MaxLength="30" />
           <Property Name="Gender" Type="varchar" MaxLength="6" />
-          <Property Name="MailingAddress" Type="varchar" MaxLength="150" />
-          <Property Name="PhysicalAddress" Type="varchar" MaxLength="150" />
-          <Property Name="City" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="State" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="ZipCode" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="EmailAddress" Type="varchar" MaxLength="150" />
+          <Property Name="MailingAddress" Type="varchar" MaxLength="200" />
+          <Property Name="PhysicalAddress" Type="varchar" MaxLength="200" />
+          <Property Name="City" Type="varchar" MaxLength="30" />
+          <Property Name="State" Type="varchar" MaxLength="30" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="15" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="200" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
           <Property Name="CellPhone" Type="varchar" MaxLength="30" />
           <Property Name="County" Type="varchar" MaxLength="30" />
           <Property Name="CityLimits" Type="bit" />
-          <Property Name="HireDate" Type="date" Nullable="false" />
-          <Property Name="EffectiveDate" Type="date" Nullable="false" />
-          <Property Name="isActive" Type="bit" Nullable="false" />
-          <Property Name="EligibilityDate" Type="date" Nullable="false" />
-          <Property Name="WorkStatus" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="HoursWorkedPerWeek" Type="int" Nullable="false" />
+          <Property Name="HireDate" Type="date" />
+          <Property Name="EffectiveDate" Type="date" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="EligibilityDate" Type="date" />
+          <Property Name="WorkStatus" Type="varchar" MaxLength="25" />
+          <Property Name="HoursWorkedPerWeek" Type="int" />
           <Property Name="JobTitle" Type="varchar" MaxLength="25" />
           <Property Name="AnnualSalary" Type="decimal" Precision="13" Scale="4" />
           <Property Name="Department" Type="varchar" MaxLength="25" />
@@ -159,28 +159,28 @@
           <Property Name="FamilyMember_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OtherInsurance_id" Type="int" />
           <Property Name="Employee_id" Type="int" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" />
           <Property Name="MiddleName" Type="varchar" MaxLength="30" />
-          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="SSN" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="DateOfBirth" Type="date" Nullable="false" />
-          <Property Name="MailingAddress" Type="varchar" MaxLength="150" />
-          <Property Name="PhysicalAddress" Type="varchar" MaxLength="150" />
-          <Property Name="City" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="State" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="ZipCode" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" />
+          <Property Name="SSN" Type="varchar" MaxLength="15" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="MailingAddress" Type="varchar" MaxLength="200" />
+          <Property Name="PhysicalAddress" Type="varchar" MaxLength="200" />
+          <Property Name="City" Type="varchar" MaxLength="30" />
+          <Property Name="State" Type="varchar" MaxLength="30" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="15" />
           <Property Name="EmailAddress" Type="varchar" MaxLength="150" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
           <Property Name="CellPhone" Type="varchar" MaxLength="30" />
-          <Property Name="County" Type="varchar" MaxLength="40" />
+          <Property Name="County" Type="varchar" MaxLength="30" />
           <Property Name="Gender" Type="varchar" MaxLength="6" />
-          <Property Name="Employer" Type="varchar" MaxLength="30" />
+          <Property Name="Employer" Type="varchar" MaxLength="50" />
           <Property Name="RelationshipToInsured" Type="varchar" MaxLength="15" />
-          <Property Name="EmployerMailingAddress" Type="varchar" MaxLength="150" />
-          <Property Name="EmployerCity" Type="varchar" MaxLength="40" />
-          <Property Name="EmployerState" Type="varchar" MaxLength="40" />
-          <Property Name="EmployerZipCode" Type="varchar" MaxLength="13" />
-          <Property Name="EmployerPhoneNumber" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="EmployerMailingAddress" Type="varchar" MaxLength="200" />
+          <Property Name="EmployerCity" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerState" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerZipCode" Type="varchar" MaxLength="15" />
+          <Property Name="EmployerPhoneNumber" Type="varchar" MaxLength="30" />
           <Property Name="Medical" Type="bit" />
           <Property Name="Dental" Type="bit" />
           <Property Name="Vision" Type="bit" />
@@ -839,32 +839,32 @@
             <PropertyRef Name="Employee_id" />
           </Key>
           <Property Name="Employee_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeRole" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="CurrentEmployer" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="PreviousEmployer" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeRole" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentEmployer" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PreviousEmployer" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="MiddleName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
           <Property Name="SSN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="MaritalStatus" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="MailingAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="PhysicalAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="State" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="EmailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="MailingAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PhysicalAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="CellPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="County" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="CityLimits" Type="Boolean" />
-          <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EffectiveDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <Property Name="EligibilityDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="WorkStatus" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="HoursWorkedPerWeek" Type="Int32" Nullable="false" />
+          <Property Name="HireDate" Type="DateTime" Precision="0" />
+          <Property Name="EffectiveDate" Type="DateTime" Precision="0" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="EligibilityDate" Type="DateTime" Precision="0" />
+          <Property Name="WorkStatus" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="HoursWorkedPerWeek" Type="Int32" />
           <Property Name="JobTitle" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="AnnualSalary" Type="Decimal" Precision="13" Scale="4" />
           <Property Name="Department" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
@@ -887,28 +887,28 @@
           <Property Name="FamilyMember_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OtherInsurance_id" Type="Int32" />
           <Property Name="Employee_id" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="MiddleName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="SSN" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="MailingAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="PhysicalAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="State" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SSN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="MailingAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PhysicalAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="EmailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="CellPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="County" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="County" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="Employer" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Employer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RelationshipToInsured" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="EmployerMailingAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="EmployerCity" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="EmployerState" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="EmployerZipCode" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
-          <Property Name="EmployerPhoneNumber" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerMailingAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerCity" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerState" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerZipCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerPhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Medical" Type="Boolean" />
           <Property Name="Dental" Type="Boolean" />
           <Property Name="Vision" Type="Boolean" />

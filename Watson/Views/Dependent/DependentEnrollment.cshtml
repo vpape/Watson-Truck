@@ -16,9 +16,9 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id })
+        @*@Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id })
         @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
-        @Html.HiddenFor(model => model.OtherInsurance_id, new { oi_id = Model.OtherInsurance_id })
+        @Html.HiddenFor(model => model.OtherInsurance_id, new { oi_id = Model.OtherInsurance_id })*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
@@ -85,8 +85,8 @@
                         <div class="form-group">
                             @foreach (var item in Model.Other_Insurance)
                             {
-                                <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" checked />Yes</label>
-                                <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" />No</label>
+                                <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" />Yes</label>
+                                <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" checked />No</label>
                             }
                         </div>
                     </div>
@@ -118,8 +118,8 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" onclick="DependentEnrollment();" value="Save" id="submit" class="btn btn-outline-primary" />
-                            <input type="submit" onclick="addInputSelection();" id="addDep" value="Add Dependent" class="btn btn-outline-primary">
+                            <input type="submit" onclick=" return DependentEnrollment()" value="Save" id="submit" class="btn" />
+                            <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
                         </div>
                     </div>
                 </form>
@@ -128,13 +128,13 @@
 
     }
     <div>
-        <button onclick="SpouseContact();" class="btn btn-outline-secondary">Previous</button> |
-        <button onclick="EmployeeOverview();" class="btn btn-outline-secondary">Return to Employee Overview</button>
+        <button onclick="return SpouseContact()" class="btn">Previous</button> |
+        <button onclick="return EmployeeOverview()" class="btn">Return to Employee Overview</button>
     </div>
-    <p>
-        @*@Html.ActionLink("Edit", "EditDependent", "Family_Info", new { id = Model.FamilyMember_id }) |*@
+    @*<p>
+        @Html.ActionLink("Edit", "EditDependent", "Family_Info", new { id = Model.FamilyMember_id }) |
         @Html.ActionLink("Back to Family Enrollment", "FamilyMemberEnrollment")
-    </p>
+    </p>*@
 </body>
 </html>
 
@@ -292,6 +292,7 @@
 
         fm_id = document.getElementById("fm_id").value
         e_id = document.getElementById("e_id").value
+        o_id = document.getElementById("o_id")
 
         RelationshipToInsured = document.getElementByName("RelationshipToInsured").value
         EmployeeNumber = document.getElementById("EmployeeNumber").value
@@ -318,6 +319,7 @@
 
             "fm_id": fm_id,
             "e_id": e_id,
+            "o_id": o_id,
             "RelationshipToInsured": RelationshipToInsured,
             "EmployeeNumber": EmployeeNumber,
             "EmployeeFirstName": EmployeeFirstName,
@@ -376,7 +378,7 @@
     }
 
         .active, .collapsible:hover {
-            background-color: #555;
+            background-color: #333;
         }
 
     .content {

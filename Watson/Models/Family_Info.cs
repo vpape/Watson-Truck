@@ -27,7 +27,7 @@ namespace Watson.Models
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string SSN { get; set; }
-        public System.DateTime DateOfBirth { get; set; }
+        public Nullable<System.DateTime> DateOfBirth { get; set; }
         public string MailingAddress { get; set; }
         public string PhysicalAddress { get; set; }
         public string City { get; set; }

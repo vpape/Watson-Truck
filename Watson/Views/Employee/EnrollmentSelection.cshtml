@@ -30,39 +30,39 @@
                     <tr>
                         <td>
                             <div id="EmployeeEnrollment">
-                                <button type="button" class="collapsible" onclick="return EmployeeEnrollment()" >Employee Enrollment</button>
-                            </div>   
+                                <button type="button" class="button" onclick="return EmployeeEnrollment()">Employee Enrollment</button>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div id="GroupHealthEnrollment">
-                                <button type="button" class="collapsible" onclick="return GroupHealthEnrollment()">Group Health Enrollment</button>
+                                <button type="button" class="button" onclick="return GroupHealthEnrollment()">Group Health Enrollment</button>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div id="LifeInsuranceEnrollment">
-                                <button type="button" class="collapsible" onclick="return LifeInsuranceEnrollment()">Life Insurance Enrollment</button>
+                                <button type="button" class="button" onclick="return LifeInsuranceEnrollment()">Life Insurance Enrollment</button>
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-            }
-    </body>
+    }
+</body>
 </html>
-<p>
+@*<p>
     @Html.ActionLink("Back to Home Page", "EmployeeOverview")
-</p>
+</p>*@
 
 <script>
-    var col = document.getElementByClassName("collapsible");
+    var col = document.getElementByClassName("button");
     var i;
 
-    for (i = 0; i < col.length; i++) {
+    for (var i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
             this.classList.toggle("active");
 
@@ -70,9 +70,8 @@
             if (content.style.display === "block") {
                 content.style.display = "none";
             }
-            else {
+            else
                 content.style.display = "block"
-            }
         });
     }
 </script>
@@ -80,34 +79,38 @@
 <script type="text/javascript">
 
     function EmployeeEnrollment() {
-        window.location.replace('/Employee/EmployeeEnrollment')
-     
+        window.location.href = "/Employee/EmployeeEnrollment";
+
     }
 
     function GroupHealthEnrollment() {
-        window.location.replace('/Group_Health/GroupHealthEnrollment')
+        window.location.href = "/Group_Health/GroupHealthEnrollment";
     }
 
     function LifeInsuranceEnrollment() {
-        window.location.replace('/Life_Insurance/LifeInsuranceEnrollment')
+        window.location.href = "/Life_Insurance/LifeInsuranceEnrollment";
     }
 
+    function goBack() {
+        window.history.go(-1);
+    }
 </script>
 
 
 <style>
-    .collapsible {
+    .button {
         background-color: #333;
         color: white;
         cursor: pointer;
         padding: 18px;
-        width: 50%;
+        width: 100%;
         border: none;
         text-align: center;
         outline: none;
         font-size: 15px;
     }
-    .active, .collapsible:hover {
+
+    .active, .button:hover {
         background-color: #555;
     }
 
@@ -117,17 +120,17 @@
         overflow: hidden;
         background-color: #f1f1f1;
     }
-   
+
     a {
         text-decoration: none;
         display: inline-block;
         padding: 8px 16px;
     }
 
-    a:hover {
-        background-color: #ddd;
-        color: black;
-    }
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
 
     table {
         border-collapse: collapse;
@@ -137,5 +140,4 @@
     div {
         text-align: center;
     }
-
 </style>

@@ -15,9 +15,9 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id })
+        @*@Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id })
         @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
-        @Html.HiddenFor(model => model.OtherInsurance_id, new { oi_id = Model.OtherInsurance_id })
+        @Html.HiddenFor(model => model.OtherInsurance_id, new { oi_id = Model.OtherInsurance_id })*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
                         <div class="col-md-10">
-                            <select id="RelationToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                            <select id="RelationToInsured" name="RelationshipToInsured" onchange=" return SpouseOrDependent()" class="form-control" disabled>
                                 @if (ViewBag.spouseExist == false)
                                 {
                                     <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
@@ -82,11 +82,11 @@
                     <div class="form-group" id="depOtherIns">
                         <label>Is your dependent covered by other insurance, including Medicare/Medicaid? If so, we need the following information:</label>
                         <div class="form-group">
-                            @*@foreach (var item in Model.Other_Insurance)
+                            @foreach (var item in Model.Other_Insurance)
                                 {
-                                    <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" @((Model.CoveredByOtherInsurance == "Yes") ? "checked" : "") />Yes</label>
-                                    <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" @((Model.CoveredByOtherInsurance == "No") ? "checked" : "") />No</label>
-                                }*@
+                                    <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" @((item.CoveredByOtherInsurance == "Yes") ? "checked" : "") />Yes</label>
+                                    <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" @((item.CoveredByOtherInsurance == "No") ? "checked" : "") />No</label>
+                                }
                         </div>
                         <div class="form-group" id="divCoveredByOtherIns">
                             @foreach (var item in Model.Other_Insurance)
@@ -94,30 +94,30 @@
                                 <div class="form-group">
                                     <label for="InsCarrier">Insurance Carrier:</label>
                                     <div class="col-md-10">
-                                        <input type="text" id="InsCarrier" class="form-control" name="InsuranceCompany" value="" />
+                                        <input type="text" id="InsCarrier" class="form-control" name="InsuranceCompany" value="@Html.Display(item.InsuranceCompany)" />
                                     </div>
                                     <label for="PolicyNumber" id="divPolicyNumber">Policy Number:</label>
                                     <div class="col-md-10">
-                                        <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="" />
+                                        <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="@Html.Display(item.PolicyNumber)" />
                                     </div>
                                     <label for="InsPhoneNumber" id="divPhoneNumber">Phone Number:</label>
                                     <div class="col-md-10">
-                                        <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="" />
+                                        <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="@Html.Display(item.PhoneNumber)" />
                                     </div>
                                     <label for="InsMailingAddress" id="divInsMailingAddress">Mailing Address:</label>
                                     <div class="col-md-10">
-                                        <input type="text" id="InsMailingAddress" class="form-control" name="MailingAddress" value="" />
-                                        <input type="text" id="InsCity" class="form-control" name="City" value="" />
-                                        <input type="text" id="InsState" class="form-control" name="State" value="" />
-                                        <input type="text" id="InsZipCode" class="form-control" name="ZipCode" value="" />
+                                        <input type="text" id="InsMailingAddress" class="form-control" name="MailingAddress" value="@Html.Display(item.MailingAddress)" />
+                                        <input type="text" id="InsCity" class="form-control" name="City" value="@Html.Display(item.City)" />
+                                        <input type="text" id="InsState" class="form-control" name="State" value="@Html.Display(item.State)" />
+                                        <input type="text" id="InsZipCode" class="form-control" name="ZipCode" value="@Html.Display(item.ZipCode)" />
                                     </div>
                                 </div>
                             }
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" onclick="DependentEditUpdate()" value="Save" id="submit" class="btn btn-outline-primary" />
-                                <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn btn-outline-primary">
+                                <input type="submit" onclick="return DependentEditUpdate()" value="Save" id="submit" class="btn" />
+                                <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
                             </div>
                         </div>
                     </div>
@@ -126,10 +126,10 @@
         </div>
 
     }
-    <p>
+    @*<p>
         @Html.ActionLink("Edit", "EditDependent", new { fm_id = Model.FamilyMember_id }) |
         @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
-    </p>
+    </p>*@
 </body>
 </html>
 
@@ -355,7 +355,7 @@
 
 <style>
     .collapsible {
-        background-color: #333333;
+        background-color: #333;
         color: white;
         cursor: pointer;
         padding: 18px;

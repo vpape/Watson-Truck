@@ -34,7 +34,7 @@ namespace Watson.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public System.DateTime DateOfBirth { get; set; }
+        public Nullable<System.DateTime> DateOfBirth { get; set; }
         public string SSN { get; set; }
         public string MaritalStatus { get; set; }
         public string Gender { get; set; }
@@ -48,12 +48,12 @@ namespace Watson.Models
         public string CellPhone { get; set; }
         public string County { get; set; }
         public Nullable<bool> CityLimits { get; set; }
-        public System.DateTime HireDate { get; set; }
-        public System.DateTime EffectiveDate { get; set; }
-        public bool isActive { get; set; }
-        public System.DateTime EligibilityDate { get; set; }
+        public Nullable<System.DateTime> HireDate { get; set; }
+        public Nullable<System.DateTime> EffectiveDate { get; set; }
+        public Nullable<bool> isActive { get; set; }
+        public Nullable<System.DateTime> EligibilityDate { get; set; }
         public string WorkStatus { get; set; }
-        public int HoursWorkedPerWeek { get; set; }
+        public Nullable<int> HoursWorkedPerWeek { get; set; }
         public string JobTitle { get; set; }
         public Nullable<decimal> AnnualSalary { get; set; }
         public string Department { get; set; }

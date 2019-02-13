@@ -23,8 +23,8 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.InsurancePremium_id, new { insPrm = Model.InsurancePremium_id })
-        @Html.HiddenFor(model => model.InsurancePlan_id, new { insPlan_id = Model.InsurancePlan_id })
+        @*@Html.HiddenFor(model => model.InsurancePremium_id, new { insPrm = Model.InsurancePremium_id })
+        @Html.HiddenFor(model => model.InsurancePlan_id, new { insPlan_id = Model.InsurancePlan_id })*@
         @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <table class="table" cellpadding="20" cellspacing="20">
