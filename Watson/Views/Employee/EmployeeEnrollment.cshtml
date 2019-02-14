@@ -20,11 +20,11 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})
+        @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
-            <button class="collapsible">Employee Enrollment</button>
+            <div class="collapsible">Employee Enrollment</div>
             <div id="divEmpEnrollment" class="content">
                 <form id="empEnrollment" action="EmployeeEnrollment()" method="post">
                     <div class="form-group">
@@ -111,21 +111,26 @@
 </html>
 
 <script>
-    var col = document.getElementByClassName("collapsible");
-    var i;
+    document.addEventListener("DOMContentLoaded", function () {
 
-    for (var i = 0; i < col.length; i++) {
-        col[i].addEventListener("click", function () {
-            this.classList.toggle("active");
+        var col = document.querySelectorAll(".collapsible");
 
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            }
-            else
-                content.style.display = "block"
-        });
-    }
+        for (var i = 0; i < col.length; i++) {
+
+            col[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                }
+                else {
+                    content.style.display = "block";
+                }
+            });
+         }
+
+    })
+    
 </script>
 
 <script>

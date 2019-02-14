@@ -1,8 +1,8 @@
 ﻿@model Watson.Models.Family_Info
 
-@{
+@*@{
     Layout = null;
-}
+}*@
 
 <!DOCTYPE html>
 
@@ -118,7 +118,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" onclick=" return DependentEnrollment()" value="Save" id="submit" class="btn" />
+                            <input type="submit" onclick=" return DependentEnrollmentUpdate()" value="Save" id="submit" class="btn" />
                             <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
                         </div>
                     </div>
@@ -282,8 +282,6 @@
         {
             div.style.display = 'none';
         }
-
-
     }
 </script>
 
@@ -292,7 +290,7 @@
 
         fm_id = document.getElementById("fm_id").value
         e_id = document.getElementById("e_id").value
-        o_id = document.getElementById("o_id")
+        o_id = document.getElementById("o_id").value
 
         RelationshipToInsured = document.getElementByName("RelationshipToInsured").value
         EmployeeNumber = document.getElementById("EmployeeNumber").value
@@ -312,8 +310,6 @@
         InsCity = document.getElementById("InsCity").value
         InsState = document.getElementById("InsState").value
         InsZipCode = document.getElementById("InsZipCode").value
-
-
 
         var data = {
 

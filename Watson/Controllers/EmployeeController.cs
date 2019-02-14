@@ -24,10 +24,9 @@ namespace Watson.Controllers
 
         public ActionResult EmployeeOverview(int e_id)
         {
-            Employee employee = db.Employees.Find(e_id);
+            Employee emp = db.Employees.Find(e_id);
 
-            return View(employee);
-
+            return View(emp);
         }
 
         public JsonResult GetEmployee(int e_id)
