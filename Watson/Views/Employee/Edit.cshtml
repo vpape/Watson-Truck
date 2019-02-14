@@ -1,9 +1,9 @@
 ﻿@model Watson.Models.Employee
 
 
-@{
+@*@{
     @ViewBag.Title = "Edit";
-}
+}*@
 
 <!DOCTYPE html>
 
@@ -16,7 +16,7 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})
+        @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
@@ -62,8 +62,8 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label">Gender:</label>
                         <div class="col-md-10">
-                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="true" @((Model.Sex == true) ? "checked" : "") />Male</label>
-                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="false" @((Model.Sex == false) ? "checked" : "") />Female</label>
+                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="true" @((Model.Gender == "Male") ? "checked" : "") />Male</label>
+                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="false" @((Model.Gender == "Female") ? "checked" : "") />Female</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -157,21 +157,26 @@
 </html>
 
 <script>
-    var col = document.getElementByClassName("collapsible");
-    var i;
+    document.addEventListener("DOMContentloaded", function () {
 
-    for (var i = 0; i < col.length; i++) {
-        col[i].addEventListener("click", function () {
-            this.classList.toggle("active");
+        var col = document.querySelectorAll(".collapsible");
 
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            }
-            else
-                content.style.display = "block"
-        });
-    }
+        for (var i = 0; i < col.length; i++) {
+            col[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                }
+                else {
+                    content.style.display = "block";
+                }
+
+            });
+        }
+    })
+
 </script>
 
 <style>

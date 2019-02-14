@@ -29,8 +29,8 @@
                 <form id="empEnrollment" action="EmployeeEnrollment()" method="post">
                     <div class="form-group">
                         <label for="Employee_id" class="col-md-2 control-label">Employee_id:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="Employee_id" class="form-control" name="Employee_id" value=@Html.DisplayFor(Model => Model.Employee_id) />
+                        <div class="col-md-10" >
+                            <input type="text" id="Employee_id" class="form-control" name="Employee_id" value= "@Html.DisplayFor(Model => Model.Employee_id)" disabled>
                         </div>
                     </div>
                     <div class="form-group">
@@ -49,6 +49,17 @@
                         <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
                         <div class="col-md-10">
                             <input type="number" id="SSN" class="form-control" name="SSN" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="MaritalStatus" class="col-md-2 control-label">Marital Status:</label>
+                        <div class="col-md-10">
+                            <select name="MartialStatus" class="form-control">
+                                <option id="MarriedwDep" name="MaritalStatus" value="MarriedwDep">Married with Dependents</option>
+                                <option id="Married" name="MaritalStatus" value="Married">Married</option>
+                                <option id="SinglewDep" name="MaritalStatus" value="SinglewDep">Single with Dependents</option>
+                                <option id="Single" name="MaritalStatus" value="Single">Single</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -77,20 +88,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="MaritalStatus" class="col-md-2 control-label">Marital Status:</label>
-                        <div class="col-md-10">
-                            <select name="MartialStatus" class="form-control">
-                                <option id="MarriedwDep" name="MaritalStatus" value="MarriedwDep">Married with Dependents</option>
-                                <option id="Married" name="MaritalStatus" value="Married">Married</option>
-                                <option id="SinglewDep" name="MaritalStatus" value="SinglewDep">Single with Dependents</option>
-                                <option id="Single" name="MaritalStatus" value="Single">Single</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             @*<input type="submit" value="Save" onclick=" return EmployeeEnrollment()" class="btn btn-default" />*@
-                            <button type="submit" onclick="return EmployeeEnrollmentUpdate()" id="EmployeeEnrollmentUpdate" class="btn">Save</button>
+                            <button type="submit" onclick="return EmployeeEnrollmentUpdate()" id="EmployeeEnrollmentUpdate" value="submit" class="btn">Save</button>
                         </div>
                     </div>
                 </form>
@@ -105,7 +105,7 @@
         </div>
     <p>
         @*@Html.ActionLink("Edit", "Edit", new { id = Model.Employee_id }) |*@
-        @*@Html.ActionLink("Back to Overview", "EmployeeOverview")*@
+        @Html.ActionLink("Back to Overview", "EmployeeOverview")
     </p>
 </body>
 </html>
@@ -136,12 +136,12 @@
 <script>
     function EnrollmentSelection() {
 
-        window.history.back();
+        window.history.back(-1);
     }
 
     function Contact() {
 
-        window.history.forward();
+        window.history.forward(1);
     }
 
 </script>
@@ -155,12 +155,12 @@
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;
         EmployeeNumber = document.getElementById("SSN").value;
+        MaritalStatus = document.getElementsByName("MaritalStatus").value;
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
         Gender = document.getElementsByName("Gender").value;
-        MaritalStatus = document.getElementsByName("MaritalStatus").value;
-
+        
         var data = {
 
             "e_id": e_id,
@@ -168,11 +168,11 @@
             "CurrentEmployer": CurrentEmployer,
             "JobTitle": JobTitle,
             "EmployeeNumber": EmployeeNumber,
+            "MaritalStatus": MaritalStatus,
             "FirstName": FirstName,
             "LastName": LastName,
             "DateOfBirth": DateOfBirth,
             "Gender": Gender,
-            "MaritalStatus": MaritalStatus,
         }
 
         var ret = postData('/Employee/EmployeeEnrollment', data)
