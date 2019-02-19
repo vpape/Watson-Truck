@@ -54,48 +54,10 @@
     }
 </body>
 </html>
-@*<p>
+<hr />
+<p>
     @Html.ActionLink("Back to Home Page", "EmployeeOverview")
-</p>*@
-
-<script>
-    var col = document.getElementByClassName("button");
-    var i;
-
-    for (var i = 0; i < col.length; i++) {
-        col[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            }
-            else
-                content.style.display = "block"
-        });
-    }
-</script>
-
-<script type="text/javascript">
-
-    function EmployeeEnrollment() {
-        window.location.href = "/Employee/EmployeeEnrollment";
-
-    }
-
-    function GroupHealthEnrollment() {
-        window.location.href = "/Group_Health/GroupHealthEnrollment";
-    }
-
-    function LifeInsuranceEnrollment() {
-        window.location.href = "/Life_Insurance/LifeInsuranceEnrollment";
-    }
-
-    function goBack() {
-        window.history.go(-1);
-    }
-</script>
-
+</p>
 
 <style>
     .button {
@@ -110,9 +72,9 @@
         font-size: 15px;
     }
 
-    .active, .button:hover {
-        background-color: #555;
-    }
+        .active, .button:hover {
+            background-color: #555;
+        }
 
     .content {
         padding: 0 18px;
@@ -141,3 +103,25 @@
         text-align: center;
     }
 </style>
+
+<script type="text/javascript">
+
+    function EmployeeEnrollment() {
+        window.location.href = "/Employee/EmployeeEnrollment";
+
+    }
+
+    function GroupHealthEnrollment() {
+        window.location.href = "/Group_Health/GroupHealthEnrollment";
+    }
+
+    function LifeInsuranceEnrollment() {
+        window.location.href = "/Life_Insurance/LifeInsuranceEnrollment";
+    }
+
+    function goBack() {
+        window.history.go(-1);
+    }
+</script>
+
+

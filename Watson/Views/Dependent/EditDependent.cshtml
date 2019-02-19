@@ -21,8 +21,9 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
-            <button class="collapsible"><h4>Edit Dependent</h4></button>
+            <div class="collapsible">Edit Dependent</div>
             <div class="content" id="dependentSelectForm">
+                <p></p>
                 <form id="dependentSelectForm" action="EditDependent()" method="post">
                     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
                     <div class="form-group">
@@ -134,10 +135,11 @@
 </html>
 
 <script>
-    var col = document.getElementByClassName("collapsible");
+    //document.addEventListener("DOMContentloaded", function () { }
+    var col = document.querySelectorAll(".collapsible");
     var i;
 
-    for (var i = 0; i < col.length; i++) {
+    for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
             this.classList.toggle("active");
 
@@ -145,11 +147,13 @@
             if (content.style.display === "block") {
                 content.style.display = "none";
             }
-            else
-                content.style.display = "block"
+            else {
+                content.style.display = "block";
+            }
+
         });
     }
-</script>
+</script >
 
 <html>
 <head>
@@ -230,7 +234,7 @@
                 top = (cnt * 25) + 80 + "px";
             }
         }
-    </script>
+</script>
 </head>
 <body>
     <form id="dependantSelectForm" action="\Home\DependantPoster" method="post">

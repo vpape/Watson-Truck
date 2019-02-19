@@ -26,11 +26,13 @@
             <hr />
             <div class="collapsible">Employee Enrollment</div>
             <div id="divEmpEnrollment" class="content">
+                <p></p>
                 <form id="empEnrollment" action="EmployeeEnrollment()" method="post">
+                    <p></p>
                     <div class="form-group">
                         <label for="Employee_id" class="col-md-2 control-label">Employee_id:</label>
-                        <div class="col-md-10" >
-                            <input type="text" id="Employee_id" class="form-control" name="Employee_id" value= "@Html.DisplayFor(Model => Model.Employee_id)" disabled>
+                        <div class="col-md-10">
+                            <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="@Html.DisplayFor(Model => Model.Employee_id)" disabled>
                         </div>
                     </div>
                     <div class="form-group">
@@ -48,13 +50,14 @@
                     <div class="form-group">
                         <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
                         <div class="col-md-10">
-                            <input type="number" id="SSN" class="form-control" name="SSN" value="" />
+                            <input type="text" id="SSN" class="form-control" name="SSN" value="" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="MaritalStatus" class="col-md-2 control-label">Marital Status:</label>
                         <div class="col-md-10">
                             <select name="MartialStatus" class="form-control">
+                                <option></option>
                                 <option id="MarriedwDep" name="MaritalStatus" value="MarriedwDep">Married with Dependents</option>
                                 <option id="Married" name="MaritalStatus" value="Married">Married</option>
                                 <option id="SinglewDep" name="MaritalStatus" value="SinglewDep">Single with Dependents</option>
@@ -81,15 +84,68 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-2 control-label">Gender:</label>
+                        <label for="Gender" class="col-md-2 control-label">Gender:</label>
                         <div class="col-md-10">
                             <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="Male" checked />Male</label>
                             <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="Female" />Female</label>
                         </div>
                     </div>
+                    @*Move the items below to the Admin page*@
+                    @*<div class="form-group">
+                        <label class="col-md-2 control-label">Hire Date:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="HireDate" class="form-control" name="HireDate" value="@Convert.ToDateTime(Model.HireDate).ToString("MM/dd/yyyy")" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Effective Date:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="EffectiveDate" class="form-control" name="EffectiveDate" value="@Convert.ToDateTime(Model.EffectiveDate).ToString("MM/dd/yyyy")" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Active at Watson:</label>
+                        <div class="col-md-10">
+                            <label class="radio-inline"><input type="radio" id="Active" class="radio-inline" name="isActive" value="true" @((Model.isActive) ? "checked" : "") />Yes</label>
+                            <label class="radio-inline"><input type="radio" id="NotActive" class="radio-inline" name="isActive" value="false" @((!Model.isActive) ? "checked" : "") />No</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Eligibility Date:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="EligibilityDate" class="form-control" name="EligibilityDate" value="@Convert.ToDateTime(Model.EligibilityDate).ToString("MM/dd/yyyy")" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Work Status:</label>
+                        <div class="col-md-10">
+                            <label class="radio-inline"><input type="radio" id="Employed" class="radio-inline" name="WorkStatus" value="Employed" @((Model.WorkStatus == "Employed") ? "checked" : "") />Employed</label>
+                            <label class="radio-inline"><input type="radio" id="Quit" class="radio-inline" name="WorkStatus" value="Quit" @((Model.WorkStatus == "Quit") ? "checked" : "") />Quit</label>
+                            <label class="radio-inline"><input type="radio" id="Terminated" class="radio-inline" name="WorkStatus" value="Terminated" @((Model.WorkStatus == "Terminated") ? "checked" : "") />Terminated</label>
+                            <label class="radio-inline"><input type="radio" id="Retired" class="radio-inline" name="WorkStatus" value="Retired" @((Model.WorkStatus == "Retired") ? "checked" : "") />Retired</label>
+                            <label class="radio-inline"><input type="radio" id="Deceased" class="radio-inline" name="WorkStatus" value="Deceased" @((Model.WorkStatus == "Deceased") ? "checked" : "") />Deceased </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Job Title:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@Html.DisplayFor(model => model.JobTitle)" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Annual Salary:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="AnnualSalary" class="form-control" name="AnnualSalary" value="@Html.DisplayFor(model => model.AnnualSalary)" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Hrs. Worked/Wk:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="HrsWorkedPerWk" class="form-control" name="HoursWorkedPerWeek" value="@Html.DisplayFor(model => model.HoursWorkedPerWeek)" />
+                        </div>
+                    </div>*@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            @*<input type="submit" value="Save" onclick=" return EmployeeEnrollment()" class="btn btn-default" />*@
                             <button type="submit" onclick="return EmployeeEnrollmentUpdate()" id="EmployeeEnrollmentUpdate" value="submit" class="btn">Save</button>
                         </div>
                     </div>
@@ -98,7 +154,7 @@
         </div>
 
     }
-    <p></p>
+    <hr />
         <div class="button">
             <button type="button" class="btn" onclick="return EnrollmentSelection()" value="Previous">Previous</button> |
             <button type="button" class="btn" onclick="return Contact()" value="Continue">Continue</button>
@@ -110,42 +166,74 @@
 </body>
 </html>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-
-        var col = document.querySelectorAll(".collapsible");
-
-        for (var i = 0; i < col.length; i++) {
-
-            col[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                }
-                else {
-                    content.style.display = "block";
-                }
-            });
-         }
-
-    })
-    
-</script>
-
-<script>
-    function EnrollmentSelection() {
-
-        window.history.back(-1);
+<style>
+    .collapsible {
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
     }
 
-    function Contact() {
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
 
-        window.history.forward(1);
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
     }
 
-</script>
+    .previous {
+        background-color: #333;
+        color: white;
+    }
 
+    .btn {
+        background-color: #333;
+        color: white;
+    }
+
+    .button {
+        text-align: right;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+</style>
+
+<script>
+    //document.addEventListener("DOMContentloaded", function () {}
+    var col = document.querySelectorAll(".collapsible");
+    var i;
+
+    for (i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+
+        });
+    }
+</script>
 
 <script>
     function GetEmployeeEnrollment() {
@@ -201,57 +289,18 @@
     }
 </script>
 
-<style>
-    .collapsible {
-        background-color: #333;
-        color: white;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: center;
-        outline: none;
-        font-size: 15px;
+<script>
+    function EnrollmentSelection() {
+
+        window.history.back(-1);
     }
 
-        .active, .collapsible:hover {
-            background-color: #555;
-        }
+    function Contact() {
 
-    .content {
-        padding: 0 18px;
-        display: none;
-        overflow: hidden;
-        background-color: #f1f1f1;
+        window.history.forward(1);
     }
 
-    .previous {
-        background-color: #333;
-        color: white;
-    }
-
-    .btn {
-        background-color: #333;
-        color: white;
-    }
-
-    .button {
-        text-align: right;
-    }
-
-    a {
-        text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
-    }
-
-    a:hover {
-        background-color: #ddd;
-        color: black;
-    }
-
-
-</style>
+</script>
 
 @*<body> EXAMPLE
         This is a post.  It will actually take you to another page<br />

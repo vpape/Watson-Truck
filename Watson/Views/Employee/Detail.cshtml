@@ -1,130 +1,135 @@
 ﻿@model Watson.Models.Employee
 
 
-@{
+@*@{
     @ViewBag.Title = "Detail";
-}
+}*@
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Employee Detail</title>
 </head>
 <body>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.Employee_id)
+        @*@Html.HiddenFor(model => model.Employee_id)*@
         <div class="form-horizontal">
             <hr />
-            <button class="collapsible"><h4>Employee Detail</h4></button>
+            <div class="collapsible">Employee Detail</div>
             <div class="content">
+                <p></p>
                 <form class="disabled" action="Detail()" method="post">
                     <dl class="dl-horizontal">
                         <dt>
-                            <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
+                            <label class="col-md-2 control-label">Current Employer:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.CurrentEmployer)
                         </dd>
 
                         <dt>
-                            <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
+                            <label class="col-md-2 control-label">Employee Number:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.SSN)
                         </dd>
 
                         <dt>
-                            <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
+                            <label class="col-md-2 control-label">Job Title:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.JobTitle)
                         </dd>
 
                         <dt>
-                            <label for="FirstName" class="col-md-2 control-label">First Name:</label>
+                            <label class="col-md-2 control-label">First Name:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.FirstName)
                         </dd>
 
                         <dt>
-                            <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                            <label class="col-md-2 control-label">Last Name:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.LastName)
                         </dd>
 
                         <dt>
-                            <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
+                            <label class="col-md-2 control-label">Date of Birth:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.DateOfBirth)
+                            @*@Convert.ToDateTime(Model.DateOfBirth).ToString("MM/dd/yyyy")*@
                         </dd>
 
                         <dt>
-                            <label for="Gender" class="col-md-2 control-label">Gender:</label>
+                            <label class="col-md-2 control-label">Gender:</label>
                         </dt>
                         <dd class="col-md-10">
                             <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((Model.Gender == "Male") ? "checked" : "") />Male</label>
                             <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((Model.Gender == "Female") ? "checked" : "") />Female</label>
-                            @Html.DisplayFor(model => model.Gender)
                         </dd>
 
                         <dt>
-                            <label for="MaritalStatus" class="col-md-2 control-label">Marital Status:</label>
+                            <label class="col-md-2 control-label">Marital Status:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.MaritalStatus)
                         </dd>
 
                         <dt>
-                            <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
+                            <label class="col-md-2 control-label">Mailing Address:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.MailingAddress)
                         </dd>
 
                         <dt>
-                            <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
+                            <label class="col-md-2 control-label">Physical Address:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.PhysicalAddress)
                         </dd>
 
                         <dt>
-                            <label for="City" class="col-md-2 control-label">City:</label>
+                            <label class="col-md-2 control-label">City:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.City)
                         </dd>
 
                         <dt>
-                            <label for="State" class="col-md-2 control-label">State:</label>
+                            <label class="col-md-2 control-label">State:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.State)
                         </dd>
 
                         <dt>
-                            <label for="ZipCode" class="col-md-2 control-label">Zip Code:</label>
+                            <label class="col-md-2 control-label">Zip Code:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.ZipCode)
                         </dd>
 
                         <dt>
-                            <label for="County" class="col-md-2 control-label">County:</label>
+                            <label class="col-md-2 control-label">County:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.County)
                         </dd>
 
                         <dt>
-                            <label for="CityLimits" class="col-md-2 control-label">Within City Limits?</label>
+                            <label class="col-md-2 control-label">Within City Limits?</label>
                         </dt>
                         <dd class="col-md-10">
                             <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" @((Model.CityLimits == true) ? "checked" : "") />Yes</label>
@@ -132,21 +137,21 @@
                         </dd>
 
                         <dt>
-                            <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
+                            <label class="col-md-2 control-label">Email:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.EmailAddress)
                         </dd>
 
                         <dt>
-                            <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                            <label class="col-md-2 control-label">Phone Number:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.PhoneNumber)
                         </dd>
 
                         <dt>
-                            <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
+                            <label class="col-md-2 control-label">Cell Phone:</label>
                         </dt>
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.CellPhone)
@@ -155,42 +160,25 @@
                 </form>
             </div>
         </div>
-        
+
     }
+   <hr />
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Employee_id }) |
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.Employee_id }) |*@
         @Html.ActionLink("Back to HomePage", "EmployeeOverview")
     </p>
 </body>
 </html>
 
-<script>
-    var col = document.getElementByClassName("collapsible");
-    var i;
-
-    for (var i = 0; i < col.length; i++) {
-        col[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            }
-            else
-                content.style.display = "block"
-        });
-    }
-</script>
-
 <style>
     .collapsible {
-        background-color: #333333;
+        background-color: #333;
         color: white;
         cursor: pointer;
         padding: 18px;
         width: 100%;
         border: none;
-        text-align: left;
+        text-align: center;
         outline: none;
         font-size: 15px;
     }
@@ -208,8 +196,28 @@
 </style>
 
 <script>
+    //document.addEventListener("DOMContentloaded", function () {}
+    var col = document.querySelectorAll(".collapsible");
+    var i;
+
+    for (i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+
+        });
+    }
+</script>
+
+<script>
     function GetDetail() {
 
+        e_id = document.getElementById("e_id").value;
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;
         EmployeeNumber = document.getElementById("SSN").value;
@@ -218,7 +226,6 @@
         DateOfBirth = document.getElementById("DateOfBirth").value;
         Gender = document.getElementsByName("Gender").value;
         MaritalStatus = document.getElementsByName("MaritalStatus").value;
-
         MailingAddress = document.getElementsByName("MailingAddress").value;
         PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
         City = document.getElementById("City").value;
@@ -230,14 +237,34 @@
         PhoneNumber = document.getElementById("PhoneNumber").value;
         CellPhone = document.getElementById("CellPhone").value;
 
-        postData('/Employee/Detail', {
-            CurrentEmployer: CurrentEmployer, JobTitle: JobTitle, EmployeeNumber: EmployeeNumber, FirstName: FirstName,
-            LastName: LastName, DateOfBirth: DateOfBirth, Gender: Gender, MaritalStatus: MaritalStatus,
-            MailingAddress: MailingAddress, PhyscialAddress: PhyscialAddress, City: City, State: State,
-            ZipCode: ZipCode, CityLimits: CityLimits, EmailAddress: EmailAddress, PhoneNumber: PhoneNumber, CellPhone: CellPhone
-        })
-            .then(data => DetailUpdate(data))
-            .catch(error => console.error(error))
+        var data = {
+
+            "e_id": e_id,
+            "CurrentEmployer": CurrentEmployer,
+            "JobTitle": JobTitle,
+            "EmployeeNumber": EmployeeNumber,
+            "FirstName": FirstName,
+            "LastName": LastName,
+            "DateOfBirth": DateOfBirth,
+            "Gender": Gender,
+            "MaritalStatus": MaritalStatus,
+            "MailingAddress": MailingAddress,
+            "PhysicalAddress": PhyscialAddress,
+            "City": City,
+            "State": State,
+            "ZipCode": ZipCode,
+            "County": County,
+            "CityLimits": CityLimits,
+            "EmailAddress": EmailAddress,
+            "PhoneNumber": PhoneNumber,
+            "CellPhone": CellPhone,
+        }
+
+        var ret = postData('/Employee/Detail', data)
+             .then(data => DetailUpdate(data))
+            .catch(error => console.error(error)) 
+
+        ret();
     }
 
     function postData(url, data) {

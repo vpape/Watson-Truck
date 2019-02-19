@@ -95,40 +95,44 @@
 
 
 <script>
-    //Do i need this function
-    //function SpouseOrDependent() {
-    //    var choice = document.getElementById("RelationToInsured")
-    //    var dependent = document.getElementById("divDependentInfo")
-    //    var spouse = document.getElementById("divSpouseInfo")
-    //    if (choice.value == "Spouse") {
-    //        spouse.style.display = 'block';
-    //        dependent.style.display = 'none';
-    //    }
-    //    else {
-    //        spouse.style.display = 'none';
-    //        dependent.style.display = 'block';
+        //Do i need this function
+        //function SpouseOrDependent() {
+        //    var choice = document.getElementById("RelationToInsured")
+        //    var dependent = document.getElementById("divDependentInfo")
+        //    var spouse = document.getElementById("divSpouseInfo")
+        //    if (choice.value == "Spouse") {
+        //        spouse.style.display = 'block';
+        //        dependent.style.display = 'none';
+        //    }
+        //    else {
+        //        spouse.style.display = 'none';
+        //        dependent.style.display = 'block';
 
-    //    }
-    //}
+        //    }
+        //}
 
+</script>
 
-    var col = document.getElementsByClassName("collapsible");
-    var i;
+<script>
+    document.addEventListener("DOMContentloaded", function () {
 
-    for (i = 0; i < col.length; i++) {
-        col[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
+        var col = document.querySelectorAll(".collapsible");
 
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            } else {
-                content.style.display = "block";
-            }
+        for (var i = 0; i < col.length; i++) {
+            col[i].addEventListener("click", function () {
+                this.classList.toggle("active");
 
-        });
-    }
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                }
+                else {
+                    content.style.display = "block";
+                }
 
+            });
+        }
+    })
 </script>
 
 <style>

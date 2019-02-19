@@ -9,7 +9,11 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Family Member Overview</title>
 </head>
 <body>
@@ -24,12 +28,11 @@
             <th>Employee Last Name</th>
         </tr>
 
-
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    <a href="#" onclick="EmployeeInsurance()" class="next round"></a>   @* Character map for Insurance(create a collaspible button for Life and Group Health to view onclick) *@
+                    <a href="#" onclick="return EmployeeInsurance()" class="next round"></a>   @* Character map for Insurance(create a collaspible button for Life and Group Health to view onclick) *@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FamilyMember_id)
@@ -61,7 +64,7 @@
     </table>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="button" onclick="FamilyMemberEnrollment()" value="Family Member Enrollment" class="btn btn-primary" />
+            <input type="button" onclick="return FamilyMemberEnrollment()" value="Family Member Enrollment" class="btn btn-primary" />
         </div>
     </div>
     @*<div>
@@ -76,24 +79,6 @@
 </body>
 </html>
 
-
-<script>
-        function FamilyMemberEnrollment() {
-
-            location.href = "location.href='Family_Info/FamilyMemberEnrollment";
-        }
-
-        function SpouseEnrollment() {
-
-            location.href = "location.href='Family_Info/SpouseEnrollment";
-        }
-
-        function DependentEnrollment() {
-
-            location.href = "location.href='Family_Info/DependentEnrollment";
-        }
-
-    </script>
 
 <style>
     table {
@@ -130,4 +115,23 @@
         border-radius: 50%;
     }
 </style>
+
+<script>
+    function FamilyMemberEnrollment() {
+
+        location.href = "/Family_Info/FamilyMemberEnrollment";
+    }
+
+    function SpouseEnrollment() {
+
+        location.href = "/Family_Info/SpouseEnrollment";
+    }
+
+    function DependentEnrollment() {
+
+        location.href = "/Family_Info/DependentEnrollment";
+    }
+
+</script>
+
 

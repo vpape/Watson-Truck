@@ -57,7 +57,7 @@ namespace Watson.Controllers
         {
             Employee e = db.Employees
                 .Where(i => i.Employee_id == e_id)
-                .SingleOrDefault();
+                .FirstOrDefault();
 
             db.Employees.Add(e);
             db.SaveChanges();
@@ -256,18 +256,19 @@ namespace Watson.Controllers
 
         public ActionResult Edit(int? e_id)
         {
-            if (e_id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            return View();
+            //if (e_id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
 
-            Employee employee = db.Employees.Find(e_id);
-            if (employee == null)
-            {
-                return HttpNotFound();
-            }
+            //Employee employee = db.Employees.Find(e_id);
+            //if (employee == null)
+            //{
+            //    return HttpNotFound();
+            //}
 
-            return View(employee);
+            //return View(employee);
         }
 
         public JsonResult GetEmployeeEdit(int e_id)
@@ -347,18 +348,18 @@ namespace Watson.Controllers
             
         public ActionResult Detail(int? e_id)
         {
-            if (e_id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            //if (e_id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
 
-            Employee employee = db.Employees.Find(e_id);
-            if (employee == null)
-            {
-                return HttpNotFound();
-            }
+            //Employee employee = db.Employees.Find(e_id);
+            //if (employee == null)
+            //{
+            //    return HttpNotFound();
+            //}
 
-            return View(employee);
+            return View();
         }
 
         public JsonResult GetDetail(int e_id)

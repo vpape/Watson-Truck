@@ -1,27 +1,32 @@
 ﻿@model Watson.Models.Employee
 
 
-@{
-    @ViewBag.Title = "Contact";
-}
+@*@{
+        @ViewBag.Title = "Contact";
+    }*@
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Employee Contact</title>
 </head>
 <body>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})
+        @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
-            <h4>Employee Contact</h4>
+            <div class="collapsible">Employee Contact</div>
             <div class="content">
+                <p></p>
                 <form id="employeeContact" action="Contact()" method="post">
                     <div id="divEmpContact">
                         <div class="form-group">
@@ -95,36 +100,91 @@
             </div>
         </div>
     }
-
-    <div>
-        <button onclick="EmployeeEnrollment()" value="Previous" class="previous" /> |
-        <button onclick="FamilyMemberEnrollment()" value="Continue" class="btn" />
+   <hr />
+    <div class="button">
+        <button type="button" class="btn" onclick="return EmployeeEnrollment()" value="Previous">Previous</button> |
+        <button type="button" class="btn" onclick="return FamilyMemberEnrollment()" value="Continue">Continue</button>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { e_id = Model.Employee_id }) |
-        @Html.ActionLink("Back to Overview", "EmployeeOverview")
+        @Html.ActionLink("Edit", "Edit"@*, new { e_id = Model.Employee_id }*@) |
+        @Html.ActionLink("Back to Employee Overview", "EmployeeOverview")
     </p>
 </body>
 </html>
 
-<script>
-    function EmployeeEnrollment(){
-
-        location.href = "Employee/EmployeeEnrollment";
+<style>
+    .collapsible {
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
     }
 
-    function FamilyMemberEnrollment() {
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
 
-        location.href = "Employee/FamilyMemberEnrollment";
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    .previous {
+        background-color: #333;
+        color: white;
+    }
+
+    .btn {
+        background-color: #333;
+        color: white;
+    }
+
+    .button {
+        text-align: right;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+</style>
+
+<script>
+    //document.addEventListener("DOMContentloaded", function () {}
+    var col = document.querySelectorAll(".collapsible");
+    var i;
+
+    for (i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+
+        });
     }
 </script>
 
 <script>
     function GetEmployeeContact() {
 
-        fm_id = document.getElementById("fm_id").value
         e_id = document.getElementById("e_id").value
-
         MailingAddress = document.getElementsByName("MailingAddress").value;
         PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
         City = document.getElementById("City").value;
@@ -138,7 +198,6 @@
 
         var data = {
 
-            "fm_id": fm_id,
             "e_id": e_id,
             "MailingAddress": MailingAddress,
             "PhysicalAddress": PhysicalAddress,
@@ -152,14 +211,13 @@
             "CellPhone": CellPhone,
         }
 
-
         var ret = postData('/Employee/Contact', data)
             .then(data => ContactUpdate(data))
             .catch(error => console.error(error))
 
         ret();
     }
-    
+
     function postData(url, data) {
         //Default options are marked with *
         return fetch(url, {
@@ -198,32 +256,14 @@
         </div>
     </body>*@
 
-<style>
-    .content {
-        padding: 0 18px;
-        display: none;
-        overflow: hidden;
-        background-color: #f1f1f1;
+<script>
+    function EmployeeEnrollment() {
+
+        location.href = "/Employee/EmployeeEnrollment";
     }
 
-    a {
-        text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
-    }
+    function FamilyMemberEnrollment() {
 
-    a:hover {
-        background-color: #ddd;
-        color: black;
+        location.href = "/Employee/FamilyMemberEnrollment";
     }
-
-    .previous {
-        background-color: #2e4593;
-        color: black;
-    }
-
-    .btn {
-        background-color: #2e4593;
-        color: white;
-    }
-</style>
+</script>
