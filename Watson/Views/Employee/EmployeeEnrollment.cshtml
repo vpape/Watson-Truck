@@ -17,7 +17,7 @@
     <title>Employee Enrollment</title>
 </head>
 <body>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("EmployeeEnrollment", "Employee", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})*@
@@ -30,7 +30,7 @@
                 <form id="empEnrollment" action="EmployeeEnrollment()" method="post">
                     <p></p>
                     <div class="form-group">
-                        <label for="Employee_id" class="col-md-2 control-label">Employee_id:</label>
+                        <label for="Employee_id" class="col-md-2 control-label">Employee ID:</label>
                         <div class="col-md-10">
                             <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="@Html.DisplayFor(Model => Model.Employee_id)" disabled>
                         </div>

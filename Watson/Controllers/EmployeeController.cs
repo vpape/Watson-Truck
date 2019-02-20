@@ -26,7 +26,7 @@ namespace Watson.Controllers
         {
             Employee emp = db.Employees.Find(e_id);
 
-            return View(emp);
+            return View(db.Employees.ToList());
         }
 
         public JsonResult GetEmployee(int e_id)
@@ -256,19 +256,19 @@ namespace Watson.Controllers
 
         public ActionResult Edit(int? e_id)
         {
-            return View();
-            //if (e_id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
+            //return View();
+            if (e_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-            //Employee employee = db.Employees.Find(e_id);
-            //if (employee == null)
-            //{
-            //    return HttpNotFound();
-            //}
+            Employee employee = db.Employees.Find(e_id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
 
-            //return View(employee);
+            return View(employee);
         }
 
         public JsonResult GetEmployeeEdit(int e_id)

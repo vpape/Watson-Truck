@@ -17,7 +17,7 @@
     <title>Employee Detail</title>
 </head>
 <body>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Detail", "Employee", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         @*@Html.HiddenFor(model => model.Employee_id)*@
@@ -146,8 +146,8 @@
     }
    <hr />
     <p>
-        @*@Html.ActionLink("Edit", "Edit", new { id = Model.Employee_id }) |*@
-        @Html.ActionLink("Back to HomePage", "EmployeeOverview")
+        @Html.ActionLink("Edit", "Edit"@*, new { id = Model.Employee_id })*@ |
+        @Html.ActionLink("Back to Employee Overview", "EmployeeOverview")
     </p>
 </body>
 </html>
