@@ -348,18 +348,18 @@ namespace Watson.Controllers
             
         public ActionResult Detail(int? e_id)
         {
-            //if (e_id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
+            if (e_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-            //Employee employee = db.Employees.Find(e_id);
-            //if (employee == null)
-            //{
-            //    return HttpNotFound();
-            //}
+            Employee employee = db.Employees.Find(e_id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
 
-            return View();
+            return View(employee);
         }
 
         public JsonResult GetDetail(int e_id)

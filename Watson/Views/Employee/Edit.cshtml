@@ -67,8 +67,8 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label">Gender:</label>
                         <div class="col-md-10">
-                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((Model.Gender == "Male") ? "checked" : "") />Male</label>
-                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((Model.Gender == "Female") ? "checked" : "") />Female</label>
+                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="M" @((Model.Gender == "M") ? "checked" : "") />Male</label>
+                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="F" @((Model.Gender == "F") ? "checked" : "") />Female</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -76,9 +76,9 @@
                         <div class="col-md-10">
                             <select name="MaritalStatus" class="form-control">
                                 <option id="MarriedwDep" value="@(Model.MaritalStatus == "MarriedwDep" ? "selected" : "")">Married with Dependents</option>
-                                <option id="Married" value="@(Model.MaritalStatus == "Married" ? "selected" : "")">Married</option>
-                                <option id="SinglewDep" value="@(Model.MaritalStatus == "SinglewDep" ? "selected" : "")">Single with Dependents</option>
-                                <option id="Single" value="@(Model.MaritalStatus == "Single" ? "selected" : "")">Single</option>
+                                <option id="Married"     value="@(Model.MaritalStatus == "Married" ? "selected" : "")">    Married</option>
+                                <option id="SinglewDep"  value="@(Model.MaritalStatus == "SinglewDep" ? "selected" : "")"> Single with Dependents</option>
+                                <option id="Single"      value="@(Model.MaritalStatus == "Single" ? "selected" : "")">     Single</option>
                             </select>
                         </div>
                     </div>
