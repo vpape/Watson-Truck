@@ -17,7 +17,7 @@
     <title>Employee Enrollment</title>
 </head>
 <body>
-    @using (Html.BeginForm("EmployeeEnrollment", "Employee", FormMethod.Post))
+    @using (Html.BeginForm("EmployeeEnrollment", "Employee", new { e_id = "1" }, FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})*@
@@ -160,7 +160,7 @@
             <button type="button" class="btn" onclick="return Contact()" value="Continue">Continue</button>
         </div>
     <p>
-        @*@Html.ActionLink("Edit", "Edit", new { id = Model.Employee_id }) |*@
+        @*@Html.ActionLink("Edit", "Edit", new { e_id = Model.Employee_id }) |*@
         @Html.ActionLink("Back to Overview", "EmployeeOverview")
     </p>
 </body>
@@ -236,6 +236,47 @@
 </script>
 
 <script>
+    function EnrollmentSelection() {
+
+        window.history.back(-1);
+    }
+
+    function Contact() {
+
+        window.history.forward(1);
+    }
+
+    
+
+    function EmployeeEnrollmentUpdate() {
+
+        redirectTime = "3000";
+        redirectURL = window.location('/Employee/Contact');
+
+        var message;
+        var alert = confirm("Would you like to proceed? If yes, click the OK button to continue");
+
+        if (alert == true) {
+
+            message = "Please proceed to the next segment, Thank you!!";
+
+            window.setTimeout(function () {
+
+                window.location = "redirectURL", redirectTime
+            });
+        }
+        else {
+
+            message = "Please review your page and submit when complete";
+        }
+        document.getElementById("EmployeeEnrollmentUpdate").value = message;
+
+        return confirm('EmployeeEnrollmentUpdate')
+    }
+
+</script>
+
+<script>
     function GetEmployeeEnrollment() {
 
         e_id = document.getElementById("e_id").value
@@ -247,7 +288,13 @@
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
-        Gender = document.getElementsByName("Gender").value;
+        //Gender = document.getElementsByName("Gender").value;
+
+        Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
+            if (e.checked) {
+                Gender = e.value;
+            }
+        });
         
         var data = {
 
@@ -287,19 +334,6 @@
         })
             .then(Response => Response.json()) //parses response to JSON
     }
-</script>
-
-<script>
-    function EnrollmentSelection() {
-
-        window.history.back(-1);
-    }
-
-    function Contact() {
-
-        window.history.forward(1);
-    }
-
 </script>
 
 @*<body> EXAMPLE

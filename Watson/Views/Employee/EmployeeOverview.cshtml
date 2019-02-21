@@ -1,10 +1,10 @@
 ﻿@using Watson.Models
-@model List<Watson.Models.Employee>
-
+@*@model List<Watson.Models.Employee>*@
+@model Watson.Models.Employee
 
 @*@{
-    ViewBag.Title = "EmployeeOverview";
-}*@
+        ViewBag.Title = "EmployeeOverview";
+    }*@
 
 
 
@@ -24,8 +24,8 @@
     @*Create a column for a dynmaic button using image mapping?? to call SpouseAndDependentOverview)*@
     <table class="table">
         <tr>
-            <th>Family Member Overview</th>
-            <th>Employee_id</th>
+            <th>Family Overview</th>
+            <th>Employee ID</th>
             <th>Employee Number</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -37,59 +37,58 @@
         </tr>
 
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <a href="#" onclick="return FamilyMemberOverview()" class="next round"></a>   @* Dynamic button (image mapping??) to redirect to spouse and dependent overview *@
-                </td>
-                <td>
-                    @Html.DisplayForModel(item.Employee_id)
-                </td>
-                <td>
-                    @Html.DisplayForModel(item.SSN)
-                </td>
-                <td>
-                    @Html.DisplayForModel(item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayForModel(item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayForModel(item.JobTitle)
-                </td>
-                <td>
-                    @Html.DisplayForModel(item.MailingAddress)
-                </td>
-                <td>
-                    @Html.DisplayForModel(item.City)
-                </td>
-                <td>
-                    @Html.DisplayForModel(item.State)
-                </td>
-                <td>
-                    @Html.DisplayForModel(item.ZipCode)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Employee", new { id = item.Employee_id }) |
-                    @Html.ActionLink("Detail", "Detail", "Employee", new { id = item.Employee_id }) |
-                    @Html.ActionLink("Insurance", "EmployeeInsurance", "Employee", new { id = item.Employee_id }) |
-                </td>
-            </tr>
-        }
+        @*@foreach (var item in Model)
+            {*@
+        <tr>
+            <td>
+                <a href="#" onclick="return FamilyMemberOverview()" class="next round"></a>   @* Dynamic button (image mapping??) to redirect to spouse and dependent overview *@
+            </td>
+            <td>
+                @Html.Raw(Model.Employee_id)
+            <td>
+                @Html.Raw(Model.SSN)
+            </td>
+            <td>
+                @Html.Raw(Model.FirstName)
+            </td>
+            <td>
+                @Html.Raw(Model.LastName)
+            </td>
+            <td>
+                @Html.Raw(Model.JobTitle)
+            </td>
+            <td>
+                @Html.Raw(Model.MailingAddress)
+            </td>
+            <td>
+                @Html.Raw(Model.City)
+            </td>
+            <td>
+                @Html.Raw(Model.State)
+            </td>
+            <td>
+                @Html.Raw(Model.ZipCode)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Home", null, new { e_id = Model.Employee_id }) |
+                @Html.ActionLink("Detail", "Detail", new { controller = "Employee" }, new { e_id = Model.Employee_id }) |
+                @Html.ActionLink("Insurance", "EmployeeInsurance", new { controller = "Employee" }, new { e_id = Model.Employee_id }) |
+            </td>
+        </tr>
+        @*  }*@
 
     </table>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="button" onclick= "return EnrollmentSelection()" value="Enrollment Selection" class="btn" />
+            <input type="button" onclick="return EnrollmentSelection()" value="Enrollment Selection" class="btn" />
         </div>
     </div>
 </body>
 </html>
 
 @*<div>
-    <a href="/Employee">Enrollment Selection</a> | @Html.ActionLink("Enrollment Selection", "EnrollmentSelection", new { id = ViewBag.Employee_id })
-</div>*@
+        <a href="/Employee">Enrollment Selection</a> | @Html.ActionLink("Enrollment Selection", "EnrollmentSelection", new { id = ViewBag.Employee_id })
+    </div>*@
 
 <style>
     table {
@@ -112,10 +111,10 @@
         padding: 8px 16px;
     }
 
-    btn, a:hover {
-        background-color: #555;
-        color: black;
-    }
+        btn, a:hover {
+            background-color: #555;
+            color: black;
+        }
 
     .next {
         background-color: #f2f2f2;

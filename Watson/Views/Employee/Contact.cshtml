@@ -17,7 +17,7 @@
     <title>Employee Contact</title>
 </head>
 <body>
-    @using (Html.BeginForm("Contact", "Employee", FormMethod.Post))
+    @using (Html.BeginForm("Contact", "Employee", @*new { e_id = "1" }*@ FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })*@
@@ -93,20 +93,20 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <button id="Submit" type="submit" class="btn" onclick="ContactUpdate()">Save</button>
+                            <button type="submit" class="btn" onclick="return ContactUpdate()">Save</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     }
-   <hr />
+    <hr />
     <div class="button">
         <button type="button" class="btn" onclick="return EmployeeEnrollment()" value="Previous">Previous</button> |
         <button type="button" class="btn" onclick="return FamilyMemberEnrollment()" value="Continue">Continue</button>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { e_id = Model.Employee_id }) |
+        @Html.ActionLink("Edit", "Edit"@*, new { e_id = Model.Employee_id }*@) |
         @Html.ActionLink("Back to Employee Overview", "EmployeeOverview")
     </p>
 </body>
@@ -181,6 +181,32 @@
     }
 </script>
 
+    function ContactUpdate() {
+
+        redirectTime = "3000";
+        redirectURL = window.location('/Employee/Contact');
+
+        var message;
+        var alert = confirm("Would you like to proceed? If yes, click the OK button to continue");
+
+        if (alert == true) {
+
+            message = "Please proceed to the next segment, Thank you!!";
+
+            window.setTimeout(function () {
+
+                window.location = "redirectURL", redirectTime
+            });
+        }
+        else {
+
+            message = "Please review your page and submit when complete";
+        }
+        document.getElementById("EmployeeEnrollmentUpdate").value = message;
+
+        return confirm('EmployeeEnrollmentUpdate')
+    }
+
 <script>
     function GetEmployeeContact() {
 
@@ -191,10 +217,16 @@
         State = document.getElementById("State").value;
         ZipCode = document.getElementById("ZipCode").value;
         County = document.getElementById("County").value;
-        CityLimits = document.getElementsByName("CityLimits").value;
+        //CityLimits = document.getElementsByName("CityLimits").value;
         EmailAddress = document.getElementById("EmailAddress").value;
         PhoneNumber = document.getElementById("PhoneNumber").value;
         CellPhone = document.getElementById("CellPhone").value;
+
+        CityLimits = document.querySelectorAll('input ["CityLimits"]').forEach(function (e, i) {
+            if (e.checked) {
+                CityLimits = e.value;
+            }
+        });
 
         var data = {
 
