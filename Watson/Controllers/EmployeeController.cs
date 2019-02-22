@@ -449,8 +449,9 @@ namespace Watson.Controllers
             var output = from e in db.Life_Insurance
                           select new
                           {
-                              e.Employee_id,
                               e.LifeInsurance_id,
+                              e.Employee_id,
+                              
                              
                               
                           };
@@ -462,31 +463,40 @@ namespace Watson.Controllers
         {
             Life_Insurance lifeIns = db.Life_Insurance
                 .Where(i => i.LifeInsurance_id == lifeIns_id)
+                .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
-            //Employee e = db.Employees
-            //    .Where(i => i.Employee_id == e_id)
-            //    .SingleOrDefault();
-
             db.Life_Insurance.Add(lifeIns);
-            //db.Employees.Add(e);
             db.SaveChanges();
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult EditLifeInsurance()
+        public ActionResult EditLifeInsurance(int? lifeIns_id)
         {
-            return View();
-        }
+            if (lifeIns_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
+            Life_Insurance lifeIns = db.Life_Insurance.Find(lifeIns_id);
+
+            if (lifeIns_id == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(lifeIns_id);
+        }
+    
         public JsonResult GetEditLifeInsurance(int lifeIns_id, int e_id)
         {
             var output = from e in db.Life_Insurance
                          select new
                           {
-                              e.Employee_id,
-                              e.LifeInsurance_id,
+                             e.LifeInsurance_id,
+                             e.Employee_id,
+                              
                           };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
@@ -496,6 +506,7 @@ namespace Watson.Controllers
         {
             Life_Insurance lifeIns = db.Life_Insurance
                 .Where(i => i.LifeInsurance_id == lifeIns_id)
+                .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
 
             //Employee e = db.Employees
