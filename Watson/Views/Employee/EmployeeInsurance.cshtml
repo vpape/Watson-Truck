@@ -1,9 +1,9 @@
 ﻿@model Watson.Models.Employee
 
 
-@{
+@*@{
     @ViewBag.Title = "Insurance";
-}
+}*@
 
 <!DOCTYPE html>
 
@@ -33,7 +33,7 @@
             </div>
         </div>
         <p>
-            @Html.ActionLink("EditGroupHealth", "", new { id = Model.Employee_id }) |
+            @Html.ActionLink("Edit Group Health", "", new { id = Model.Employee_id }) |
             @Html.ActionLink("Back to HomePage", "EmployeeOverview", new { id = Model.Employee_id })
         </p>
 
@@ -52,7 +52,7 @@
             </div>
         </div>
         <p>
-            @Html.ActionLink("EditLifeInsurance", "", new { id = Model.Employee_id }) |
+            @Html.ActionLink("Edit Life Insurance", "", new { id = Model.Employee_id }) |
             @Html.ActionLink("Back to HomePage", "EmployeeOverview", new { id = Model.Employee_id })
         </p>
 

@@ -17,7 +17,7 @@
     <title>Employee Enrollment</title>
 </head>
 <body>
-    @using (Html.BeginForm("EmployeeEnrollment", "Employee", new { e_id = "1" }, FormMethod.Post))
+    @using (Html.BeginForm("EmployeeEnrollment", "Employee", @*new { e_id = Model.Employee_id },*@ FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})*@
@@ -246,8 +246,9 @@
         window.history.forward(1);
     }
 
-    
+</script>  
 
+<script>
     function EmployeeEnrollmentUpdate() {
 
         redirectTime = "3000";
@@ -267,7 +268,7 @@
         }
         else {
 
-            message = "Please review your page and submit when complete";
+            message = "Please review your information and submit when complete";
         }
         document.getElementById("EmployeeEnrollmentUpdate").value = message;
 

@@ -70,7 +70,7 @@
                 @Html.Raw(Model.ZipCode)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", "Home", null, new { e_id = Model.Employee_id }) |
+                @Html.ActionLink("Edit", "Edit", "Home"@*,null, new { e_id = Model.Employee_id }*@) |
                 @Html.ActionLink("Detail", "Detail", new { controller = "Employee" }, new { e_id = Model.Employee_id }) |
                 @Html.ActionLink("Insurance", "EmployeeInsurance", new { controller = "Employee" }, new { e_id = Model.Employee_id }) |
             </td>
@@ -87,7 +87,7 @@
 </html>
 
 @*<div>
-        <a href="/Employee">Enrollment Selection</a> | @Html.ActionLink("Enrollment Selection", "EnrollmentSelection", new { id = ViewBag.Employee_id })
+        <a href="/Employee">Enrollment Selection</a> | @Html.ActionLink("Enrollment Selection", "EnrollmentSelection", new { e_id = ViewBag.Employee_id })
     </div>*@
 
 <style>

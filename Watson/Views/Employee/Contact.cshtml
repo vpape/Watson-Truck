@@ -17,7 +17,7 @@
     <title>Employee Contact</title>
 </head>
 <body>
-    @using (Html.BeginForm("Contact", "Employee", @*new { e_id = "1" }*@ FormMethod.Post))
+    @using (Html.BeginForm("Contact", "Employee", @*new { e_id = Model.Employee_id },*@ FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })*@
@@ -107,7 +107,7 @@
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit"@*, new { e_id = Model.Employee_id }*@) |
-        @Html.ActionLink("Back to Employee Overview", "EmployeeOverview")
+        @Html.ActionLink("Back to Overview", "EmployeeOverview")
     </p>
 </body>
 </html>
@@ -181,10 +181,11 @@
     }
 </script>
 
+<script>
     function ContactUpdate() {
 
         redirectTime = "3000";
-        redirectURL = window.location('/Employee/Contact');
+        redirectURL = window.location('/Employee/Detail');
 
         var message;
         var alert = confirm("Would you like to proceed? If yes, click the OK button to continue");
@@ -200,12 +201,13 @@
         }
         else {
 
-            message = "Please review your page and submit when complete";
+            message = "Please review your information and submit when complete";
         }
         document.getElementById("EmployeeEnrollmentUpdate").value = message;
 
         return confirm('EmployeeEnrollmentUpdate')
     }
+</script>
 
 <script>
     function GetEmployeeContact() {

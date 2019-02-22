@@ -26,6 +26,8 @@ namespace Watson.Controllers
         {
             Employee emp = db.Employees.Find(e_id);
 
+            emp.Employee_id = e_id;
+
             //return View(db.Employees.ToList());
             return View(emp);
         }
@@ -428,61 +430,84 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-
-        //Need to finish Group and Life Insurance 
-        public ActionResult LifeInsurance(int e_id)
+        public ActionResult EmployeeInsurance()
         {
-           Life_Insurance lifeIns = db.Life_Insurance.Find(e_id);
-            return View(lifeIns); 
+            return View();
         }
 
-        public JsonResult LifeInsuranceEnrollemnt(int e_id)
+        //Need to finish Group and Life Insurance 
+        public ActionResult LifeInsurance(int lifeIns_id, int e_id)
         {
-            var output = from e in db.Employees
+           Employee emp = db.Employees.Find(e_id);
+           Life_Insurance lifeIns = db.Life_Insurance.Find(lifeIns_id);
+
+           return View(lifeIns); 
+        }
+
+        public JsonResult GetLifeInsurance(int lifeIns_id, int e_id)
+        {
+            var output = from e in db.Life_Insurance
                           select new
                           {
-                              e.Employee_id
+                              e.Employee_id,
+                              e.LifeInsurance_id,
+                             
+                              
                           };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult LifeInsuranceEnrollment(int e_id)
+        public JsonResult LifeInsuranceUpdate(int lifeIns_id, int e_id)
         {
-            Employee e = db.Employees
-                .Where(i => i.Employee_id == e_id)
+            Life_Insurance lifeIns = db.Life_Insurance
+                .Where(i => i.LifeInsurance_id == lifeIns_id)
                 .SingleOrDefault();
+
+            //Employee e = db.Employees
+            //    .Where(i => i.Employee_id == e_id)
+            //    .SingleOrDefault();
+
+            db.Life_Insurance.Add(lifeIns);
+            //db.Employees.Add(e);
+            db.SaveChanges();
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult EditLifeInsurance(int e_id)
+        public ActionResult EditLifeInsurance()
         {
-            var output = from e in db.Employees
-                          select new
+            return View();
+        }
+
+        public JsonResult GetEditLifeInsurance(int lifeIns_id, int e_id)
+        {
+            var output = from e in db.Life_Insurance
+                         select new
                           {
                               e.Employee_id,
-                              e.CurrentEmployer,
-                              e.SSN,
-                              e.FirstName,
-                              e.LastName,
-                              e.DateOfBirth,
-                              e.Gender,
-                              e.MaritalStatus,
+                              e.LifeInsurance_id,
                           };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult EditLifeInsurance(int? e_id)
+        public JsonResult LifeInsuranceEditUpdate(int lifeIns_id, int e_id)
         {
-            Employee e = db.Employees
-                .Where(i => i.Employee_id == e_id)
+            Life_Insurance lifeIns = db.Life_Insurance
+                .Where(i => i.LifeInsurance_id == lifeIns_id)
                 .SingleOrDefault();
 
-            db.Employees.Add(e);
-            db.SaveChanges();
+            //Employee e = db.Employees
+            //    .Where(i => i.Employee_id == e_id)
+            //    .SingleOrDefault();
 
+            if (ModelState.IsValid)
+            {
+                db.Entry(lifeIns).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+            
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 

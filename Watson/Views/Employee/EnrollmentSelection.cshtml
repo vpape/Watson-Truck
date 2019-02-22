@@ -18,7 +18,7 @@
     <title>Enrollment Selection Page</title>
 </head>
 <body>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("EnrollmentSelection", "Employee"@*, new { e_id = Model.Employee_id}*@))
     {
         @Html.AntiForgeryToken()
         @*@Html.HiddenFor(model => model.Employee_id)*@
@@ -56,7 +56,7 @@
 </html>
 <hr />
 <p>
-    @Html.ActionLink("Back to Home Page", "EmployeeOverview")
+    @Html.ActionLink("Back to Overview", "EmployeeOverview")
 </p>
 
 <style>
