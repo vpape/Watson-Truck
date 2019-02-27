@@ -26,10 +26,11 @@ namespace Watson.Controllers
         {
             Employee emp = db.Employees.Find(e_id);
 
-            ViewBag.Employee_id = e_id;
+            //ViewBag.Employee_id = e_id;
             emp.Employee_id = e_id;
 
             //return View(db.Employees.ToList());
+
             return View(emp);
         }
 
@@ -105,12 +106,20 @@ namespace Watson.Controllers
 
         public ActionResult EnrollmentSelection()
         {
+            //ViewBag.Title = "Enrollment Selection";
+
             return View();
         }
 
-        public ActionResult EmployeeEnrollment()
+        public ActionResult EmployeeEnrollment(int e_id)
         {
-            return View();
+            Employee enrollment = new Employee();
+
+            enrollment.Employee_id = e_id;
+
+            //ViewBag.Title = "Employee Enrollment";
+
+            return View(enrollment);
         }
 
         public JsonResult GetEmployeeEnrollment(int e_id)
@@ -216,9 +225,13 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        public ActionResult Contact()
+        public ActionResult Contact(int e_id)
         {
-            return View();
+            Employee contact = new Employee();
+
+            contact.Employee_id = e_id;
+
+            return View(contact);
         }
 
         public JsonResult GetEmployeeContact(int e_id)
@@ -260,7 +273,6 @@ namespace Watson.Controllers
 
         public ActionResult Edit(int? e_id)
         {
-            //return View();
             if (e_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -271,6 +283,8 @@ namespace Watson.Controllers
             {
                 return HttpNotFound();
             }
+
+            //ViewBag.Title = "Edit";
 
             return View(employee);
         }
@@ -363,6 +377,8 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
 
+            //ViewBag.Title = "Detail";
+
             return View(employee);
         }
 
@@ -431,21 +447,32 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        public ActionResult EmployeeInsurance()
+        public ActionResult EmployeeInsurance(int e_id)
         {
-            return View();
+            Employee insurance = new Employee();
+
+            insurance.Employee_id = e_id;
+            //ViewBag.Title = "Employee Insurance";
+
+            return View(insurance);
         }
 
         //Need to finish Group and Life Insurance 
-        public ActionResult LifeInsurance(int lifeIns_id, int e_id)
+        public ActionResult LifeInsurance(int lifeIns_id /*, int e_id*/)
         {
-           Employee emp = db.Employees.Find(e_id);
-           Life_Insurance lifeIns = db.Life_Insurance.Find(lifeIns_id);
+            //Employee emp = db.Employees.Find(e_id);
+            //Life_Insurance lifeIns = db.Life_Insurance.Find(lifeIns_id);
 
-           return View(lifeIns); 
+            Life_Insurance lifeIns = new Life_Insurance();
+
+            lifeIns.LifeInsurance_id = lifeIns_id;
+
+            //ViewBag.Title = "Life Insurance";
+
+            return View(lifeIns); 
         }
 
-        public JsonResult GetLifeInsurance(int lifeIns_id, int e_id)
+        public JsonResult GetLifeInsurance(int lifeIns_id/*, int e_id*/)
         {
             var output = from e in db.Life_Insurance
                           select new
@@ -487,10 +514,12 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
 
+            //ViewBag.Title = "Edit Life Insurance";
+
             return View(lifeIns_id);
         }
     
-        public JsonResult GetEditLifeInsurance(int lifeIns_id, int e_id)
+        public JsonResult GetEditLifeInsurance(int lifeIns_id/*, int e_id*/)
         {
             var output = from e in db.Life_Insurance
                          select new

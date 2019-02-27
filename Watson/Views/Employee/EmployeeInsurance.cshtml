@@ -61,25 +61,24 @@
 </html>
 
 <script>
-    document.addEventListener("DOMContentloaded", function () {
+    //document.addEventListener("DOMContentloaded", function () { }
+    var col = document.querySelectorAll(".collapsible");
+    var i;
 
-        var col = document.querySelectorAll(".collapsible");
+    for ( i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
 
-        for (var i = 0; i < col.length; i++) {
-            col[i].addEventListener("click", function () {
-                this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            }
+            else {
+                content.style.display = "block";
+            }
 
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                }
-                else {
-                    content.style.display = "block";
-                }
-
-            });
-        }
-    })
+        });
+    }
 </script>
 
 <script>
