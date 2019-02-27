@@ -2,8 +2,8 @@
 
 
 @*@{
-    @ViewBag.Title = "Insurance";
-}*@
+        @ViewBag.Title = "Insurance";
+    }*@
 
 <!DOCTYPE html>
 
@@ -21,74 +21,65 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
-            <button class="collapsible"><h4>Group Health Insurance</h4></button>
+            <button class="button"><h4>Group Health Insurance</h4></button>
             <div class="content">
                 <form action="GroupHealthInsurance()" method="post">
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input id="Submit" type="button" value="GroupHealthInsurance" onclick="GroupHealthInsurance()" class="btn" />
+                            <input id="Submit" type="button" value="GroupHealthInsurance" onclick="return GroupHealthInsurance()" class="btn" />
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <p>
-            @Html.ActionLink("Edit Group Health", "", new { id = Model.Employee_id }) |
-            @Html.ActionLink("Back to HomePage", "EmployeeOverview", new { id = Model.Employee_id })
-        </p>
-
-
         <div class="form-horizontal">
             <hr />
-            <button class="collapsible"><h4>Life Insurance</h4></button>
+            <button class="button"><h4>Life Insurance</h4></button>
             <div class="content">
                 <form action="LifeInsurance()" method="post">
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input id="Submit" type="button" value="LifeInsurance" onclick="LifeInsurance()" class="btn" />
+                            <input id="Submit" type="button" value="LifeInsurance" onclick="return LifeInsurance()" class="btn" />
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <p>
-            @Html.ActionLink("Edit Life Insurance", ""@*, new { id = Model.Employee_id }*@) |
-            @Html.ActionLink("Back to HomePage", "EmployeeOverview"@*, new { id = Model.Employee_id }*@)
-        </p>
-
     }
 </body>
 </html>
+<p>
+    @Html.ActionLink("Back to Overview", "EmployeeOverview", new { e_id = Model.Employee_id })
+</p>
 
-<script>
-    //document.addEventListener("DOMContentloaded", function () { }
-    var col = document.querySelectorAll(".collapsible");
-    var i;
-
-    for ( i = 0; i < col.length; i++) {
-        col[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            }
-            else {
-                content.style.display = "block";
-            }
-
-        });
+<style>
+    .btn {
+        background-color: #333;
+        color: white;
     }
-</script>
+
+    .button {
+        text-align: right;
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px
+    }
+</style>
 
 <script>
     function GroupHealthInsurance() {
 
-        location.href = "location.href='Group_Health/GroupHealthInsurance";
+        location.href = "location.href='Group_Health/GroupHealthInsuranceEnrollment";
     }
 
     function LifeInsurance() {
 
-        location.href = "location.href='Life_Insurance/LifeInsurance";
+        location.href = "location.href='Life_Insurance/LifeInsuranceEnrollment";
     }
 </script>
