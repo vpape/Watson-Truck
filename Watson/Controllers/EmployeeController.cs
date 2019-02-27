@@ -26,6 +26,7 @@ namespace Watson.Controllers
         {
             Employee emp = db.Employees.Find(e_id);
 
+            ViewBag.Employee_id = e_id;
             emp.Employee_id = e_id;
 
             //return View(db.Employees.ToList());
@@ -508,10 +509,6 @@ namespace Watson.Controllers
                 .Where(i => i.LifeInsurance_id == lifeIns_id)
                 .Where(i => i.Employee_id == e_id)
                 .SingleOrDefault();
-
-            //Employee e = db.Employees
-            //    .Where(i => i.Employee_id == e_id)
-            //    .SingleOrDefault();
 
             if (ModelState.IsValid)
             {

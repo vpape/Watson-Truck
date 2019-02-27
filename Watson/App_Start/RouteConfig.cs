@@ -16,7 +16,7 @@ namespace Watson
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Employee", action = "EmployeeOverview", id = UrlParameter.Optional }
+                defaults: new { controller = "Index", action = "Home", id = UrlParameter.Optional }
             );
         }
     }
