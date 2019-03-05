@@ -106,20 +106,17 @@ namespace Watson.Controllers
 
         public ActionResult EnrollmentSelection()
         {
-            //ViewBag.Title = "Enrollment Selection";
-
             return View();
         }
 
-        public ActionResult EmployeeEnrollment(int e_id)
+        [System.Web.Mvc.HttpGet]
+        public ActionResult EmployeeEnrollment()
         {
-            Employee enrollment = new Employee();
+            Employee emp = new Employee();
 
-            enrollment.Employee_id = e_id;
-
-            //ViewBag.Title = "Employee Enrollment";
-
-            return View(enrollment);
+            emp.Employee_id = 1;
+         
+            return View(emp);
         }
 
         public JsonResult GetEmployeeEnrollment(int e_id)
@@ -138,8 +135,6 @@ namespace Watson.Controllers
                               e.Gender,
                               e.MaritalStatus,
                           };
-
-      
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
 
@@ -225,12 +220,12 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        public ActionResult Contact(int e_id)
+        public ActionResult Contact()
         {
             Employee contact = new Employee();
 
-            contact.Employee_id = e_id;
-
+            contact.Employee_id = 1111;        
+           
             return View(contact);
         }
 
@@ -283,8 +278,6 @@ namespace Watson.Controllers
             {
                 return HttpNotFound();
             }
-
-            //ViewBag.Title = "Edit";
 
             return View(employee);
         }
@@ -377,8 +370,6 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
 
-            //ViewBag.Title = "Detail";
-
             return View(employee);
         }
 
@@ -447,15 +438,22 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        public ActionResult EmployeeInsurance()
+        public ActionResult EmployeeInsurance(int e_id)
         {
-            //ViewBag.Title = "Employee Insurance";
-
+            Employee emp = new Employee();
+            Life_Insurance lifeIns = new Life_Insurance();
+            Group_Health grpHealthIns = new Group_Health();
+            
+            emp.Employee_id = e_id;
+            lifeIns.Employee_id = e_id;
+            grpHealthIns.Employee_id = e_id;
+            
             return View();
         }
 
         public ActionResult GroupHealthEnrollment(int grpH_id)
         {
+            //Employee emp = db.Employees.Find(e_id);
             Group_Health enrollment = new Group_Health();
 
             enrollment.GroupHealthInsurance_id = grpH_id;
@@ -494,12 +492,9 @@ namespace Watson.Controllers
         {
             //Employee emp = db.Employees.Find(e_id);
             //Life_Insurance lifeIns = db.Life_Insurance.Find(lifeIns_id);
-
             Life_Insurance lifeIns = new Life_Insurance();
 
             lifeIns.LifeInsurance_id = lifeIns_id;
-
-            //ViewBag.Title = "Life Insurance";
 
             return View(lifeIns); 
         }
@@ -511,9 +506,7 @@ namespace Watson.Controllers
                           {
                               e.LifeInsurance_id,
                               e.Employee_id,
-                              
-                             
-                              
+   
                           };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
@@ -540,7 +533,6 @@ namespace Watson.Controllers
             }
 
             Life_Insurance lifeIns = db.Life_Insurance.Find(lifeIns_id);
-
             if (lifeIns_id == null)
             {
                 return HttpNotFound();

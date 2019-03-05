@@ -18,7 +18,7 @@
     <title>Enrollment Selection Page</title>
 </head>
 <body>
-    @using (Html.BeginForm("EnrollmentSelection", "Employee"@*, new { e_id = Model.Employee_id}*@))
+    @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         @*@Html.HiddenFor(model => model.Employee_id)*@

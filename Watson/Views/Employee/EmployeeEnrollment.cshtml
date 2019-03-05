@@ -2,7 +2,7 @@
 
 
 @*@{
-    @ViewBag.Title = "Employee Enrollment";
+    @ViewBag.Title ="Employee Enrollment";
 }*@
 
 <!DOCTYPE html>
@@ -17,10 +17,10 @@
     <title>Employee Enrollment</title>
 </head>
 <body>
-    @using (Html.BeginForm("EmployeeEnrollment", "Employee", @*new { e_id = Model.Employee_id },*@ FormMethod.Post))
+    @using (Html.BeginForm("EmployeeEnrollment","Employee", new { e_id = Model.Employee_id }, FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})*@
+        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
@@ -146,21 +146,19 @@
                     </div>*@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <button type="submit" onclick="return EmployeeEnrollmentUpdate()" id="EmployeeEnrollmentUpdate" value="submit" class="btn">Save</button>
+                            <button type="submit" onclick="return EmployeeEnrollmentUpdate()" @*return message()*@ id="EmployeeEnrollmentUpdate" value="submit" class="btn">Save</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-
     }
     <hr />
         <div class="button">
-            <button type="button" class="btn" onclick="return EnrollmentSelection()" value="Previous">Previous</button> |
+            <button type="button" class="btn" onclick="return EnrollmentSelection()"  value="Previous">Previous</button> |
             <button type="button" class="btn" onclick="return Contact()" value="Continue">Continue</button>
         </div>
     <p>
-        @*@Html.ActionLink("Edit", "Edit", new { e_id = Model.Employee_id }) |*@
         @Html.ActionLink("Back to Overview", "EmployeeOverview")
     </p>
 </body>
@@ -239,20 +237,22 @@
     function EnrollmentSelection() {
 
         window.history.back(-1);
+
     }
 
     function Contact() {
 
-        window.history.forward(1);
+        window.history.go(1);
+
     }
 
 </script>  
 
-<script>
+@*<script>
     function EmployeeEnrollmentUpdate() {
 
         redirectTime = "3000";
-        redirectURL = window.location('/Employee/Contact');
+        redirectURL = window.location.href('/Employee/Contact');
 
         var message;
         var alert = confirm("Would you like to proceed? If yes, click the OK button to continue");
@@ -263,19 +263,23 @@
 
             window.setTimeout(function () {
 
-                window.location = "redirectURL", redirectTime
+                window.location.href = "redirectURL", redirectTime
             });
         }
         else {
 
-            message = "Please review your information and submit when complete";
+            message = "Please save your information when complete";
         }
         document.getElementById("EmployeeEnrollmentUpdate").value = message;
 
         return confirm('EmployeeEnrollmentUpdate')
     }
 
-</script>
+    function message() {
+        alert("Successfully Added!!")
+    }
+
+</script>*@
 
 <script>
     function GetEmployeeEnrollment() {
@@ -311,7 +315,7 @@
             "Gender": Gender,
         }
 
-        var ret = postData('/Employee/EmployeeEnrollment', data)
+        var ret = postData('Employee/EmployeeEnrollment', data)
             .then(data => EmployeeEnrollmentUpdate(data))
             .catch(error => console.error(error))
 
