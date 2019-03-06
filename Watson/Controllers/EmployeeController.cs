@@ -109,14 +109,25 @@ namespace Watson.Controllers
             return View();
         }
 
-        [System.Web.Mvc.HttpGet]
         public ActionResult EmployeeEnrollment()
         {
             Employee emp = new Employee();
 
             emp.Employee_id = 1;
-         
+
             return View(emp);
+        }
+
+        [System.Web.Mvc.HttpPost]
+        public ActionResult EmployeeEnrollment(Employee emp)
+        {
+            Employee newEmp = new Employee();
+
+            newEmp = emp;
+
+            //emp.Employee_id = Employee_id;
+         
+            return View(newEmp.Employee_id);
         }
 
         public JsonResult GetEmployeeEnrollment(int e_id)
