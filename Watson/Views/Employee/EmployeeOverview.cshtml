@@ -72,7 +72,8 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", "Home"@*,null, new { e_id = Model.Employee_id }*@) |
                 @Html.ActionLink("Detail", "Detail", new { controller = "Employee" }, new { e_id = Model.Employee_id }) |
-                @Html.ActionLink("Insurance", "EmployeeInsurance", new { controller = "Employee" }, new { e_id = Model.Employee_id }) |
+                @Html.ActionLink("Insurance Overview", "EmployeeInsurance", new { controller = "Employee" }, new { e_id = Model.Employee_id }) |
+                @* create a link to show employee insurance overview for group health and life insurance *@
             </td>
         </tr>
         @*  }*@
