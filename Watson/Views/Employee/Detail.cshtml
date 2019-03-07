@@ -20,7 +20,7 @@
     @using (Html.BeginForm("Detail", "Employee", new { e_id = Model.Employee_id }, FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })*@
+        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
         <div class="form-horizontal">
             <hr />
             <div class="collapsible">Employee Detail</div>

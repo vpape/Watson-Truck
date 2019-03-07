@@ -17,7 +17,7 @@
     <title>Employee Enrollment</title>
 </head>
 <body>
-    @using (Html.BeginForm("EmployeeEnrollment","Employee", @*new { e_id = Model.Employee_id },*@ FormMethod.Post))
+    @using (Html.BeginForm("EmployeeEnrollment","Employee", new { e_id = Model.Employee_id }, FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})
@@ -31,9 +31,9 @@
                     <p></p>
                     <div class="form-group">
                         <label for="Employee_id" class="col-md-2 control-label">Employee ID:</label>
-                        @*<div class="col-md-10">
+                        <div class="col-md-10">
                             <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="@Html.DisplayFor(Model => Model.Employee_id)" disabled>
-                        </div>*@
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
@@ -251,11 +251,11 @@
 <script>
     function EmployeeEnrollmentUpdate() {
 
-        redirectTime = "3000";
-        redirectURL = window.location.href('/Employee/Contact');
-
         var message;
         var alert = confirm("Would you like to proceed? If yes, click the OK button to continue");
+
+        redirectTime = "3000";
+        redirectURL = window.location.href('/Employee/Contact');
 
         if (alert == true) {
 
@@ -275,9 +275,9 @@
         return confirm('EmployeeEnrollmentUpdate')
     }
 
-    function message() {
-        alert("Successfully Added!!")
-    }
+    //function message() {
+    //    alert("Successfully Added!!")
+    //}
 
 </script>
 

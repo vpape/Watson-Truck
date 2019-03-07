@@ -22,35 +22,39 @@ namespace Watson.Controllers
      
         }
 
-        public ActionResult EmployeeOverview(int e_id)
+        //changed from int e_id
+        public ActionResult EmployeeOverview(Employee emp)
         {
-            Employee emp = db.Employees.Find(e_id);
+            Employee employee = db.Employees.Find(emp);
 
-            //ViewBag.Employee_id = e_id;
-            emp.Employee_id = e_id;
-
-            //return View(db.Employees.ToList());
+            employee = emp;
 
             return View(emp);
+
+            //Employee emp = db.Employees.Find(e_id);
+            //emp.Employee_id = e_id;
+            //return View(db.Employees.ToList());
+
         }
+
 
         public JsonResult GetEmployee(int e_id)
         {
             var output = from e in db.Employees
-                          where e.Employee_id == e_id
-                          select new
-                          {
-                             e.Employee_id,
-                             e.SSN,
-                             e.FirstName,
-                             e.LastName,
-                             e.JobTitle,
-                             e.MailingAddress,
-                             e.City,
-                             e.State,
-                             e.ZipCode,
+                        where e.Employee_id == e_id
+                        select new
+                        {
+                            e.Employee_id,
+                            e.SSN,
+                            e.FirstName,
+                            e.LastName,
+                            e.JobTitle,
+                            e.MailingAddress,
+                            e.City,
+                            e.State,
+                            e.ZipCode,
 
-                          };
+                        };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
 
@@ -231,13 +235,15 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        public ActionResult Contact()
+        public ActionResult Contact(Employee emp)
         {
             Employee contact = new Employee();
 
-            contact.Employee_id = 1111;        
-           
-            return View(contact);
+            contact = emp;
+
+            //contact.Employee_id = 1;
+
+            return View(contact.Employee_id);
         }
 
         public JsonResult GetEmployeeContact(int e_id)
@@ -479,7 +485,29 @@ namespace Watson.Controllers
                          {
                              g.GroupHealthInsurance_id,
                              g.Employee_id,
-
+                             g.InsuranceCarrier,
+                             g.PolicyNumber,
+                             g.GroupName,
+                             g.IMSGroupNumber,
+                             g.PhoneNumber,
+                             g.ReasonForGrpCoverageRefusal,
+                             g.OtherCoverage,
+                             g.OtherReason,
+                             g.Myself,
+                             g.Spouse,
+                             g.Dependent,
+                             g.OtherInsuranceCoverage,
+                             g.CafeteriaPlanYear,
+                             g.NoMedicalPlan,
+                             g.EmployeeOnly,
+                             g.EmployeeAndSpouse,
+                             g.EmployeeAndDependent,
+                             g.EmployeeAndFamily,
+                             g.EmployeeSignature,
+                             g.EmployeeSignatureDate,
+                             g.EmployeeInitials,
+                             g.OtherSignature,
+                             g.OtherSignatureDate,
                          };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
@@ -498,7 +526,6 @@ namespace Watson.Controllers
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-        //Need to finish Group and Life Insurance 
         public ActionResult LifeInsuranceEnrollment(int lifeIns_id)
         {
             //Employee emp = db.Employees.Find(e_id);
@@ -517,7 +544,73 @@ namespace Watson.Controllers
                           {
                               e.LifeInsurance_id,
                               e.Employee_id,
-   
+                              e.GroupPlanNumber,
+                              e.BenefitsEffectiveDate,
+                              e.InitialEnrollment,
+                              e.ReEnrollment,
+                              e.AddEmployeeAndDependents,
+                              e.DropRefuseCoverage,
+                              e.InformationChange,
+                              e.IncreaseAmount,
+                              e.FamilyStatusChange,
+                              e.MarriedOrHaveSpouse,
+                              e.HaveChildrenOrHaveDependents,
+                              e.DateOfMarriage,
+                              e.PlacementDateOfAdoptedChild,
+                              e.AddDependent,
+                              e.DropDependent,
+                              e.Student,
+                              e.Disabled,
+                              e.NonStandardDependent,
+                              e.DropEmployee,
+                              e.DropSpouse,
+                              e.DropDependents,
+                              e.LastDayOfCoverage,
+                              e.TerminationOfEmployment,
+                              e.Retirement,
+                              e.LastDayWorked,
+                              e.OtherEvent,
+                              e.OtherEventDate,
+                              e.EmployeeDentalDrop,
+                              e.SpouseDentalDrop,
+                              e.DependentDentalDrop,
+                              e.EmployeeVisionDrop,
+                              e.SpouseVisionDrop,
+                              e.DependentVisionDrop,
+                              e.DropBasicLife,
+                              e.DropDental,
+                              e.DropVision,
+                              e.TerminationOfEmploymentDate,
+                              e.Divorce,
+                              e.DivorceDate,
+                              e.DeathOfSpouse,
+                              e.DeathOfSpouseDate,
+                              e.TerminationOrExpirationOfCoverage,
+                              e.TerminationOrExpirationOfCoverageDate,
+                              e.DentalCoverageLost,
+                              e.VisionCoverageLost,
+                              e.CoveredUnderOtherInsurance,
+                              e.CoveredUnderOtherInsReason,
+                              e.EmployeeOnly,
+                              e.EmployeeAndSpouse,
+                              e.EmployeeAndDependent,
+                              e.EmployeeAndFamily,
+                              e.DoNotWantDentalCoverage,
+                              e.EmployeeCoveredUnderOtherDentalPlan,
+                              e.SpouseCoveredUnderOtherDentalPlan,
+                              e.DependentsCoveredUnderOtherDentalPlan,
+                              e.DoNotWantVisionCoverage,
+                              e.EmployeeCoveredUnderOtherVisionPlan,
+                              e.SpouseCoveredUnderOtherVisionPlan,
+                              e.DependentsCoveredUnderOtherVisionPlan,
+                              e.OwnerBasicLifeWithADandDPolicyAmount,
+                              e.ManagerBasicLifeWithADandDPolicyAmount,
+                              e.EmployeeBasicLifeWithADandDPolicyAmount,
+                              e.SpouseBasicLifeWithADandDPolicyAmount,
+                              e.DoNotWantBasicLifeCoverageWithADandD,
+                              e.AmountOfPreviousPolicy,
+                              e.EmployeeSignature,
+                              e.EmployeeSignatureDate
                           };
 
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
@@ -549,12 +642,10 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
 
-            //ViewBag.Title = "Edit Life Insurance";
-
             return View(lifeIns_id);
         }
     
-        public JsonResult GetEditLifeInsurance(int lifeIns_id/*, int e_id*/)
+        public JsonResult GetEditLifeInsurance(int lifeIns_id)
         {
             var output = from e in db.Life_Insurance
                          select new
