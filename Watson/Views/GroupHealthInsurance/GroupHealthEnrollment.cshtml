@@ -24,50 +24,128 @@
             <div id="divGrpHEnrollment" class="content">
                 <p></p>
                 @*<form id="empEnrollment" action="EmployeeEnrollment" method="post">*@
-                <p>Employee Information:</p>
-                <form class="needs-validation" novalidate>
+                <h2>Employee Information:</h2>
+                <form @*class="needs-validation" novalidate*@>
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
-                            <label for="Employee_id" class="col-md-2 control-label">Employee ID</label>
-                            <input type="number" id="Employee_id" class="form-control" name="Employee_id" value=@Html.DisplayFor(Model => Model.Employee_id) disabled />
-                            <div class="valid-feedback">
-                                Looks Good!
-                            </div>
+                            <label>Employee ID</label>
+                            <input type="number" id="Employee_id" class="form-control" name="Employee_id" value=@Html.DisplayFor(m => m.Employee_id) disabled />
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label for="FirstName" class="col-md-2 control-label">First Name</label>
-                            <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="" required />
-                            <div class="valid-feedback">
-                            Looks good!
-                            </div>
+                            <label>First Name</label>
+                            <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(m => m.Employee.FirstName)" readonly />
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label for="LastName" class="col-md-2 control-label">Last Name</label>
-                            <input type="text" id="LastName" class="form-control" placeholder="Last Name" name="FirstName" value="" required />
-                            <div class="valid-feedback">
-                            Looks good!
-                            </div>
+                            <label>Last Name</label>
+                            <input type="text" id="LastName" class="form-control" name="Last Name" value="@Html.DisplayFor(m => m.Employee.LastName)" readonly />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label>Mailing Address</label>
+                            <input type="text" id="MailingAddress" class="form-control" name="" value="@Html.DisplayFor(m => m.Employee.MailingAddress)" readonly />
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
-                            <label for="MailingAddress">Mailing Address</label>
-                            <input type="text" id="MailingAddress" class="form-control" placeholder="Mailing Address" value="" required />
-                            <div class="valid-feedback">
-                                Looks Good!
+                            <label>City</label>
+                            <input type="text" id="City" class="form-control" name="" value="@Html.DisplayFor(m => m.Employee.City)" readonly />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>State</label>
+                            <input type="text" id="State" class="form-control" name="" value="@Html.DisplayFor(m => m.Employee.State)" readonly />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Zip Code</label>
+                            <input type="text" id="ZipCode" class="form-control" name="" value="@Html.DisplayFor(m => m.Employee.ZipCode)" readonly />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label>Birth Date</label>
+                            <input type="text" id="DateOfBirth" class="form-control" name="" value="@Html.DisplayFor(m => m.Employee.DateOfBirth)" readonly />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Marital Status</label>
+                            <input type="text" id="MaritalStatus" class="form-control" name="" value="@Html.DisplayFor(m => m.Employee.MaritalStatus)" readonly />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Gender</label>
+                            <input type="text" id="Gender" class="form-control" name="Gender" value="@Html.DisplayFor(m => m.Employee.Gender)" readonly />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label>Email Address</label>
+                            <input type="text" id="EmailAddress" class="form-control" name="" value="@Html.DisplayFor(m => m.Employee.EmailAddress)" readonly />
+                        </div>
+                        <div>
+                            <label>Phone Number</label>
+                            <input type="text" id="PhoneNumber" class="form-control" name="" value="@Html.DisplayFor(m => m.Employee.PhoneNumber)" readonly />
+                        </div>
+                    </div>
+                    <h2>Insurance Company Info</h2>
+                    <div id="depOtherIns">
+                        <label class="col-md-2 control-label">Are you covered by any other insurance, including Medicare?</label>
+                        <div class="form-group">
+                            <label class="radio-inline" enable><input type="radio" id="InsQuestionYes" class="radio-inline" onclick='CoveredByOtherIns()' name="CoveredByOtherInsurance" value="Yes" checked />Yes</label>
+                            <label class="radio-inline" disable><input type="radio" id="InsQuestionNo" class="radio-inline" onclick='CoveredByOtherIns()' name="CoveredByOtherInsurance" value="No" />No</label>
+                        </div>
+                        <div class="form-group" id="divCoverByOtherIns">
+                            <h2>Please fill out the following information:</h2>
+                            <div class="form-group">
+                                <label for="InsCompany" class="col-md-2 control-label">Insurance Carrier:</label>
+                                <div class="col-md-10">
+                                    @*@foreach (Other_Insurance OInsurance in Model.Other_Insurance)*@
+                                    <input type="text" id="InsCompany" class="form-control" placeholder="Insurance Carrier" value="" />
+                                </div>
+                            </div>
+                            <div class="form-group" id="divPolicyNumber">
+                                <label for="PolicyNumber" class="col-md-2 control-label">Policy Number:</label>
+                                <div class="col-md-10">
+                                    @*@foreach (Other_Insurance OInsurance in Model.Other_Insurance)*@
+                                    <input type="text" id="PolicyNumber" class="form-control" placeholder="Policy Number" value="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="InsPhoneNumber" class="col-md-2 control-label">Insurance Phone Number:</label>
+                                <div class="col-md-10">
+                                    @*@foreach (Other_Insurance OInsurance in Model.Other_Insurance)*@
+                                    <input type="text" id="InsPhoneNumber" class="form-control" placeholder="Phone Number" value="" />
+                                </div>
                             </div>
                         </div>
-
-
-
-
+                    </div>
+                    <h2>Group Health Coverage Options:</h2>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label class="col-md-2 control-label">Medical Plan:</label>
                         </div>
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="none" name="None" value="None" />
+                            <label class="custom-control-label" for="none">None</label>
+                        </div>
+                        <div class="cutsom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="EO" name="EmployeeOnly" value="EO" />
+                            <label class="col-md-2 control-label" for="EO">Employee Only</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="E&D" name="EmployeeAndDependent" value="E&D" />
+                            <label class="col-md-2 control-label" for="E&D">Employee & Dependent</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="E&S" name="EmployeeAndSpouse" value="E&S" />
+                            <label class="col-md-2 control-label" for="E&s">Employee & Spouse</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="E&F" name="EmployeeAndFamily" value="E&F" />
+                            <label class="col-md-2 control-label" for="E&F">Employee & Family</label>
+                        </div>
+                    </div>
 
-                    
-                    
-                    
-                    
-                    
+
+
+
 
 
 
@@ -80,7 +158,7 @@
 
                 </form>
 
-      
+
                 <div class="form-group">
                     <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
                     <div class="col-md-10">
@@ -90,6 +168,18 @@
             </div>
         </div>
 
-            }
+    }
 </body>
 </html>
+
+
+
+
+
+<script>
+    function CoveredByOtherIns() {
+        var div = document.getElementById("divCoverByOtherIns")
+        div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
+
+    }
+</script>
