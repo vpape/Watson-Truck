@@ -1,29 +1,25 @@
 ﻿@model Watson.Models.Group_Health
 
-@{
-    Layout = null;
-}
 
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <title>Group Health Enrollment</title>
 </head>
 <body>
-    @using (Html.BeginForm("GroupHealthEnrollment", "Employee", FormMethod.Post))
+    @using (Html.BeginForm())
     {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+        @Html.AntiForgeryToken()
+        @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
             <div class="collapsible">Group Health Enrollment</div>
             <div id="divGrpHEnrollment" class="content">
                 <p></p>
-                @*<form id="empEnrollment" action="EmployeeEnrollment" method="post">*@
                 <h2>Employee Information:</h2>
                 <form @*class="needs-validation" novalidate*@>
                     <div class="form-row">
@@ -142,33 +138,120 @@
                             <label class="col-md-2 control-label" for="E&F">Employee & Family</label>
                         </div>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                </form>
-
-
-                <div class="form-group">
-                    <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="" />
+                    <hr />
+                    <div>
+                        <table class="table" style="display: inline-block">
+                            <tr>
+                                <th>Spouse Information</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Name:</label>
+                                    <input type="text" />
+                                </td>
+                                <td>
+                                    <div class="col-md-3 mb-3">
+                                        <input type="text" placeholder="Street" />
+                                        <input type="text" placeholder="City" />
+                                        <input type="text" placeholder="State" />
+                                        <input type="text" placeholder="Zip Code" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <label>Phone Number:</label>
+                                    <input type="number" />
+                                </td>
+                                <td>
+                                    <label>Birth Date:</label>
+                                    <input type="date" />
+                                </td>
+                                <td>
+                                    <label>SSN:</label>
+                                    <input disabled type="number" />
+                                </td>
+                                <td>
+                                    <label>Gender:</label>
+                                    <input type="text" />
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table" style="display: inline-block">
+                            <tr>
+                                <th>Spouse's Employer</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Employer:</label>
+                                    <input type="text" />
+                                </td>
+                                <td>
+                                    <div class="col-md-3 mb-3">
+                                        <input type="text" placeholder="Street" />
+                                        <input type="text" placeholder="City" />
+                                        <input type="text" placeholder="State" />
+                                        <input type="text" placeholder="Zip Code" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <label>Phone Number:</label>
+                                    <input type="number" />
+                                </td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn dropdown-toggle" type="button" id="OtherInsCoverage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Other Insurance Coverage:
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <select>
+                                                <option class="dropdown-item" value="Medical">Medical</option>
+                                                <option class="dropdown-item" value="Dental">Dental</option>
+                                                <option class="dropdown-item" value="Vision">Vision</option>
+                                                <option class="dropdown-item" value="Indemnity">Indemnity</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table" style="display: inline-block">
+                            <tr>
+                                <th>Spouse's Insurance</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Insurance Company:</label>
+                                    <input type="text" />
+                                </td>
+                                <td>
+                                    <div class="col-md-3 mb-3">
+                                        <input type="text" placeholder="Street" />
+                                        <input type="text" placeholder="City" />
+                                        <input type="text" placeholder="State" />
+                                        <input type="text" placeholder="Zip Code" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <label>Phone Number:</label>
+                                    <input type="number" />
+                                </td>
+                                <td>
+                                    <label>Policy Number:</label>
+                                    <input type="number" />
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-
     }
+    @*<div class="form-group">
+                <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
+                <div class="col-md-10">
+                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="" />
+                </div>
+            </div>
+        </div>*@
 </body>
 </html>
 

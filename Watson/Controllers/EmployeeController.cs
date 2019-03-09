@@ -117,8 +117,6 @@ namespace Watson.Controllers
         {
             Employee emp = new Employee();
 
-            emp.Employee_id = 1;
-
             return View(emp);
         }
 
@@ -235,15 +233,18 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        public ActionResult Contact(Employee emp)
+        //public ActionResult Contact(Employee emp)
+        //{
+        //    Employee contact = new Employee();
+
+        //    contact = emp;
+
+        //    return View(contact.Employee_id);
+        //}
+        
+        public ActionResult Contact()
         {
-            Employee contact = new Employee();
-
-            contact = emp;
-
-            //contact.Employee_id = 1;
-
-            return View(contact.Employee_id);
+            return View();
         }
 
         public JsonResult GetEmployeeContact(int e_id)
@@ -455,27 +456,21 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        public ActionResult EmployeeInsurance(int e_id)
-        {
-            Employee emp = new Employee();
-            Life_Insurance lifeIns = new Life_Insurance();
-            Group_Health grpHealthIns = new Group_Health();
-            
-            emp.Employee_id = e_id;
-            lifeIns.Employee_id = e_id;
-            grpHealthIns.Employee_id = e_id;
-            
+        public ActionResult EmployeeInsurance()
+        {         
             return View();
         }
 
-        public ActionResult GroupHealthEnrollment(int grpH_id)
+        //int grpH_id
+        public ActionResult GroupHealthEnrollment()
         {
             //Employee emp = db.Employees.Find(e_id);
-            Group_Health enrollment = new Group_Health();
+            //Group_Health enrollment = new Group_Health();
 
-            enrollment.GroupHealthInsurance_id = grpH_id;
+            //enrollment.GroupHealthInsurance_id = grpH_id;
 
-            return View(enrollment);
+            //return View(enrollment);
+            return View();
         }
 
         public JsonResult GetGroupHealth(int grpH_id)
