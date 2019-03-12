@@ -49,6 +49,7 @@ namespace Watson.Models
         public Nullable<bool> Dental { get; set; }
         public Nullable<bool> Vision { get; set; }
         public Nullable<bool> Indemnity { get; set; }
+        public string PObox { get; set; }
     
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

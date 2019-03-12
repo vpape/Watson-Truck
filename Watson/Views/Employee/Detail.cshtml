@@ -75,38 +75,28 @@
                             @Html.DisplayFor(model => model.MaritalStatus)
                         </dd>
                         <dt>
-                            <label class="col-md-2 control-label">Mailing Address:</label>
+                            <label class="col-md-2 control-label">Mailing Address:</label>   
                         </dt>
                         <dd class="col-md-10">
-                            @Html.DisplayFor(model => model.MailingAddress)
+                            <text type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(model => model.MailingAddress)" />
+                            <text type="text" id="PObox" class="form-control" name="PObox" value="@Html.DisplayFor(model => model.PObox)" />
+                            <text type="text" id="City" class="form-control" name="City" value="@Html.DisplayFor(model => model.City)" />
+                            <text type="text" id="State" class="form-control" name="State" value="@Html.DisplayFor(model => model.State)" />
+                            <text type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(model => model.ZipCode)" />
+                            <text type="text" id="ZipCode" class="form-control" name="County" value="@Html.DisplayFor(model => model.County)" />
                         </dd>
                         <dt>
                             <label class="col-md-2 control-label">Physical Address:</label>
                         </dt>
                         <dd class="col-md-10">
-                            @Html.DisplayFor(model => model.PhysicalAddress)
+                            <text type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@Html.DisplayFor(model => model.PhysicalAddress)" />
+                            <text type="text" id="PObox2" class="form-control" name="PObox" value="@Html.DisplayFor(model => model.PObox)" />
+                            <text type="text" id="City2" class="form-control" name="City" value="@Html.DisplayFor(model => model.City)" />
+                            <text type="text" id="State2" class="form-control" name="State" value="@Html.DisplayFor(model => model.State)" />
+                            <text type="text" id="ZipCode2" class="form-control" name="ZipCode" value="@Html.DisplayFor(model => model.ZipCode)" />
+                            <text type="text" id="County2" class="form-control" name="County" value="@Html.DisplayFor(model => model.County)" />
                         </dd>
-                        <dt>
-                            <label class="col-md-2 control-label">City:</label>
-                        </dt>
-                        <dd class="col-md-10">
-                            @Html.DisplayFor(model => model.City)
-                        </dd>
-                        <dt>
-                            <label class="col-md-2 control-label">State:</label>
-                        </dt>
-                        <dd class="col-md-10">
-                            @Html.DisplayFor(model => model.State)
-                        </dd>
-                        <dt>
-                            <label class="col-md-2 control-label">Zip Code:</label>
-                        </dt>
-                        <dd class="col-md-10">
-                            @Html.DisplayFor(model => model.ZipCode)
-                        </dd>
-                        <dt>
-                            <label class="col-md-2 control-label">County:</label>
-                        </dt>
+                     
                         <dd class="col-md-10">
                             @Html.DisplayFor(model => model.County)
                         </dd>
@@ -204,12 +194,18 @@
         DateOfBirth = document.getElementById("DateOfBirth").value;
         Gender = document.getElementsByName("Gender").value;
         MaritalStatus = document.getElementsByName("MaritalStatus").value;
-        MailingAddress = document.getElementsByName("MailingAddress").value;
-        PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
+        MailingAddress = document.getElementsById("MailingAddress").value;
+        PObox = document.getElementById("PObox").value
         City = document.getElementById("City").value;
         State = document.getElementById("State").value;
         ZipCode = document.getElementById("ZipCode").value;
         County = document.getElementById("County").value;
+        PhyscialAddress = document.getElementsById("PhyscialAddress").value;
+        PObox2 = document.getElementById("PObox2").value
+        City2 = document.getElementById("City2").value;
+        State2 = document.getElementById("State2").value;
+        ZipCode2 = document.getElementById("ZipCode2").value;
+        County2 = document.getElementById("County2").value;
         CityLimits = document.getElementsByName("CityLimits").value;
         EmailAddress = document.getElementById("EmailAddress").value;
         PhoneNumber = document.getElementById("PhoneNumber").value;
@@ -227,11 +223,17 @@
             "Gender": Gender,
             "MaritalStatus": MaritalStatus,
             "MailingAddress": MailingAddress,
-            "PhysicalAddress": PhyscialAddress,
+            "PObox": PObox,
             "City": City,
             "State": State,
             "ZipCode": ZipCode,
             "County": County,
+            "PhysicalAddress": PhyscialAddress,
+            "PObox2": PObox2,
+            "City2": City2,
+            "State2": State2,
+            "ZipCode2": ZipCode2,
+            "County2": County2,
             "CityLimits": CityLimits,
             "EmailAddress": EmailAddress,
             "PhoneNumber": PhoneNumber,

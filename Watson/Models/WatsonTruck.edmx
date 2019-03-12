@@ -151,6 +151,7 @@
           <Property Name="EnrollmentType" Type="varchar" MaxLength="25" />
           <Property Name="Payroll_id" Type="int" />
           <Property Name="Class" Type="varchar" MaxLength="20" />
+          <Property Name="PObox" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Family_Info">
           <Key>
@@ -185,6 +186,7 @@
           <Property Name="Dental" Type="bit" />
           <Property Name="Vision" Type="bit" />
           <Property Name="Indemnity" Type="bit" />
+          <Property Name="PObox" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Group_Health">
           <Key>
@@ -879,6 +881,7 @@
           <NavigationProperty Name="Life_Insurance" Relationship="WatsonTruckModel.FK_Life_Insurance_Employee" FromRole="Employee" ToRole="Life_Insurance" />
           <NavigationProperty Name="Other_Insurance" Relationship="WatsonTruckModel.FK_Other_Insurance_Employee" FromRole="Employee" ToRole="Other_Insurance" />
           <NavigationProperty Name="Vacations" Relationship="WatsonTruckModel.FK_Vacation_Employee" FromRole="Employee" ToRole="Vacation" />
+          <Property Name="PObox" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Family_Info">
           <Key>
@@ -915,6 +918,7 @@
           <Property Name="Indemnity" Type="Boolean" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Family_Info_Employee" FromRole="Family_Info" ToRole="Employee" />
           <NavigationProperty Name="Other_Insurance" Relationship="WatsonTruckModel.FK_Other_Insurance_Family_Info" FromRole="Family_Info" ToRole="Other_Insurance" />
+          <Property Name="PObox" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Group_Health">
           <Key>
@@ -1385,6 +1389,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="WatsonTruckModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="PObox" ColumnName="PObox" />
                 <ScalarProperty Name="Class" ColumnName="Class" />
                 <ScalarProperty Name="Payroll_id" ColumnName="Payroll_id" />
                 <ScalarProperty Name="EnrollmentType" ColumnName="EnrollmentType" />
@@ -1424,6 +1429,7 @@
           <EntitySetMapping Name="Family_Info">
             <EntityTypeMapping TypeName="WatsonTruckModel.Family_Info">
               <MappingFragment StoreEntitySet="Family_Info">
+                <ScalarProperty Name="PObox" ColumnName="PObox" />
                 <ScalarProperty Name="Indemnity" ColumnName="Indemnity" />
                 <ScalarProperty Name="Vision" ColumnName="Vision" />
                 <ScalarProperty Name="Dental" ColumnName="Dental" />

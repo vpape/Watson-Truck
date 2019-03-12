@@ -72,83 +72,84 @@
                         <div class="col-md-10">
                             <select name="MaritalStatus" class="form-control">
                                 <option id="MarriedwDep" value="@(Model.MaritalStatus == "MarriedwDep" ? "selected" : "")">Married with Dependents</option>
-                                <option id="Married"     value="@(Model.MaritalStatus == "Married" ? "selected" : "")">    Married</option>
-                                <option id="SinglewDep"  value="@(Model.MaritalStatus == "SinglewDep" ? "selected" : "")"> Single with Dependents</option>
-                                <option id="Single"      value="@(Model.MaritalStatus == "Single" ? "selected" : "")">     Single</option>
+                                <option id="Married" value="@(Model.MaritalStatus == "Married" ? "selected" : "")">    Married</option>
+                                <option id="SinglewDep" value="@(Model.MaritalStatus == "SinglewDep" ? "selected" : "")"> Single with Dependents</option>
+                                <option id="Single" value="@(Model.MaritalStatus == "Single" ? "selected" : "")">     Single</option>
                             </select>
                         </div>
                     </div>
-                    <div id="divEmpContact">
+                    <div id="divMailingAddress">
                         <div class="form-group">
                             <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
                             <div class="col-md-10">
-                                <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(model => model.MailingAddress)" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@Html.DisplayFor(model => model.PhysicalAddress)" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="City" class="col-md-2 control-label">City:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="City" class="form-control" name="City" value="@Html.DisplayFor(model => model.City)" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="State" class="col-md-2 control-label">State:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="State" class="form-control" name="State" value="@Html.DisplayFor(model => model.State)" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="ZipCode" class="col-md-2 control-label">Zip Code:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(model => model.ZipCode)" />
+                                <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(model => model.MailingAddress)" />
+                                <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="MailingAddress" value="@Html.DisplayFor(model => model.PObox)" />
+                                <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@Html.DisplayFor(model => model.City)" />
+                                <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@Html.DisplayFor(model => model.State)" />
+                                <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.DisplayFor(model => model.ZipCode)" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="County" class="col-md-2 control-label">County:</label>
                             <div class="col-md-10">
-                                <input type="text" id="County" class="form-control" name="County" value="@Html.DisplayFor(model => model.County)" />
+                                <input type="text" id="County" class="form-control" placeholder="County" name="County" value="@Html.DisplayFor(model => model.County)" />
                             </div>
                         </div>
+                    </div>
+                    <div id="divPhysicalAddress">
                         <div class="form-group">
-                            <label for="CityLimits" class="col-md-2 control-label">Within City Limits?</label>
+                            <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                             <div class="col-md-10">
-                                <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" @((Model.CityLimits == true) ? "checked" : "") />Yes</label>
-                                <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" @((Model.CityLimits == false) ? "checked" : "") />No</label>
+                                <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="@Html.DisplayFor(model => model.PhysicalAddress)" />
+                                <input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PhysicalAddress" value="@Html.DisplayFor(model => model.PObox)" />
+                                <input type="text" id="City2" class="form-control" placeholder="City" name="City"  value="@Html.DisplayFor(model => model.City)" />
+                                <input type="text" id="State2" class="form-control" placeholder="State" name="State"  value="@Html.DisplayFor(model => model.State)" />
+                                <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode"  value="@Html.DisplayFor(model => model.ZipCode)" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
+                            <label for="County" class="col-md-2 control-label">County:</label>
                             <div class="col-md-10">
-                                <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(model => model.EmailAddress)" />
+                                <input type="text" id="County2" class="form-control" placeholder="County" name="County" value="@Html.DisplayFor(model => model.County)" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(model => model.PhoneNumber)" />
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="CityLimits" class="col-md-2 control-label">Within City Limits?</label>
+                        <div class="col-md-10">
+                            <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" @((Model.CityLimits == true) ? "checked" : "") />Yes</label>
+                            <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" @((Model.CityLimits == false) ? "checked" : "") />No</label>
                         </div>
-                        <div class="form-group">
-                            <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="@Html.DisplayFor(model => model.CellPhone)" />
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(model => model.EmailAddress)" />
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input id="Submit" type="submit" onclick="return EmployeeEditUpdate()" value="Save" class="btn" />
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(model => model.PhoneNumber)" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="@Html.DisplayFor(model => model.CellPhone)" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input id="Submit" type="submit" onclick="return EmployeeEditUpdate()" value="Save" class="btn" />
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+                
+           
+        
 
     }
         <p>
@@ -238,12 +239,17 @@
         DateOfBirth = document.getElementById("DateOfBirth").value;
         Gender = document.getElementsByName("Gender").value;
         MaritalStatus = document.getElementsByName("MaritalStatus").value;
-        MailingAddress = document.getElementsByName("MailingAddress").value;
-        PhyscialAddress = document.getElementsByName("PhyscialAddress").value;
+        MailingAddress = document.getElementsById("MailingAddress").value;
         City = document.getElementById("City").value;
         State = document.getElementById("State").value;
         ZipCode = document.getElementById("ZipCode").value;
         County = document.getElementById("County").value;
+        PhyscialAddress = document.getElementsById("PhyscialAddress").value;
+        PObox2 = document.getElementById("PObox2").value
+        City2 = document.getElementById("City2").value;
+        State2 = document.getElementById("State2").value;
+        ZipCode2 = document.getElementById("ZipCode2").value;
+        County2 = document.getElementById("County2").value;
         CityLimits = document.getElementsByName("CityLimits").value;
         Email = document.getElementById("EmailAddress").value;
         PhoneNumber = document.getElementById("PhoneNumber").value;
@@ -261,11 +267,16 @@
             "Gender": Gender,
             "MaritalStatus": MaritalStatus,
             "MailingAddress": MailingAddress,
-            "PhysicalAddress": PhyscialAddress,
             "City": City,
             "State": State,
             "ZipCode": ZipCode,
             "County": County,
+            "PhysicalAddress": PhyscialAddress,
+            "PObox2": PObox2,
+            "City2": City2,
+            "State2": State2,
+            "ZipCode2": ZipCode2,
+            "County2": County2,
             "Email": Email,
             "PhoneNumber": PhoneNumber,
             "CellPhone": CellPhone,
