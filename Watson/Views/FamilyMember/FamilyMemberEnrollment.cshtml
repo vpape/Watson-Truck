@@ -1,10 +1,6 @@
 ﻿@model Watson.Models.Family_Info
 
 
-@*@{
-    @ViewBag.Title = "FamilyMemberEnrollment";
-}*@
-
 <!DOCTYPE html>
 
 
@@ -22,39 +18,37 @@
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <form class="FamilyMemberEnrollment()">
-            <div class="form-horizontal">
-                <hr />
-                <div class="collaspsible">Spouse Enrollment</div>
-                <div class="content">
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="button" onclick="return SpouseEnrollment()" id="SpouseEnrollment" class="btn" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-horizontal">
-                <hr />
-                <div class="collapsible">Dependent Enrollment</div>
-                <div class="content">
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="button" onclick="return DependentEnrollment()" id="DependentEnrollment" class="btn btn-primary" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
+        <div class="container">
+            <h3>Family Member Enrollment</h3>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div id="SpouseEnrollment">
+                                <button type="button" class="button" onclick="return SpouseEnrollment()">Spouse Enrollment</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="DependentEnrollment">
+                                <button type="button" class="button" onclick="return DependentEnrollment()">Dependent Enrollment</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     }
     <p>
         @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
     </p>
 </body>
+
 </html>
 
 <style>
-    .collapsible {
+    .button {
         background-color: #333333;
         color: white;
         cursor: pointer;
@@ -115,3 +109,17 @@
     }
 </script>
 
+<script type="text/javascript">
+
+    function SpouseEnrollment() {
+        window.location.href = "/Spouse/SpouseEnrollment";
+    }
+
+    function DependentEnrollment() {
+        window.location.href = "/Dependent/DependentEnrollment";
+    }
+
+    function goBack() {
+        window.history.go(-1);
+    }
+</script>

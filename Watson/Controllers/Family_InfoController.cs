@@ -74,10 +74,8 @@ namespace Watson.Controllers
             return View();
         }
 
-        public ActionResult SpouseEnrollment(int e_id)
+        public ActionResult SpouseEnrollment()
         {
-            ViewBag.Employee_id = e_id;
-
             return View();
         }
 
@@ -191,6 +189,7 @@ namespace Watson.Controllers
                              f.Employee_id,
                              f.MailingAddress,
                              f.PhysicalAddress,
+                             f.PObox,
                              f.City,
                              f.State,
                              f.ZipCode,
@@ -253,7 +252,9 @@ namespace Watson.Controllers
                              f.FamilyMember_id,
                              f.Employee_id,
                              f.Employer,
-                             f.EmployerMailingAddress,
+                             f.MailingAddress,
+                             f.PhysicalAddress,
+                             f.PObox,
                              f.EmployerCity,
                              f.EmployerState,
                              f.EmployerZipCode,
@@ -331,6 +332,7 @@ namespace Watson.Controllers
                              f.Gender,
                              f.MailingAddress,
                              f.PhysicalAddress,
+                             f.PObox,
                              f.City,
                              f.State,
                              f.ZipCode,
@@ -434,6 +436,7 @@ namespace Watson.Controllers
                              f.Gender,
                              f.MailingAddress,
                              f.PhysicalAddress,
+                             f.PObox,
                              f.City,
                              f.State,
                              f.ZipCode,
@@ -474,7 +477,6 @@ namespace Watson.Controllers
         //    return family_info.Where(f => f.FamilyMember_id == id).FirstOrDefault();
         //}
         //----------------------------------------------------------------------------------------
-
 
         public ActionResult DeleteSpouse(int? fm_id)
         {
@@ -533,7 +535,6 @@ namespace Watson.Controllers
         //    return RedirectToAction("FamilyMemberOverview");
         //}
         //----------------------------------------------------------------------------------------
-
 
         public ActionResult DependentEnrollment()
         {
