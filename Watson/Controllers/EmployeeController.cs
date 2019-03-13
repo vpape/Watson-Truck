@@ -176,45 +176,31 @@ namespace Watson.Controllers
             return View();
         }
 
-        //use code below for EmployeeEnrollmentContact
-        //public JsonResult EmployeeEnrollmentAddress(int Employee_id, string MailingAddress, string City)
-        //{
-        //    var e = db.Employees
-        //            .Where(i => i.Employee_id == Employee_id)
-        //            .Single();
-
-        //    e.MailingAddress = MailingAddress;
-        //    e.City = City;
-
-        //    db.SaveChanges();
-
-
-        //    int result = e.Employee_id;
-
-        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-        //}
-
-        public JsonResult EmployeeEnrollmentContact(int e_id)
+        // changed method public JsonResult EmployeeEnrollmentAddress(int Employee_id, string MailingAddress, string City) to:
+        public JsonResult EmployeeEnrollmentContact(int Employee_id, string MailingAddress, string PhysicalAddress, string PObox, string City, string State, string ZipCode,
+            string County, bool CityLimits, string EmailAddress, string PhoneNumber, string CellPhone)
         {
-            var output = from e in db.Employees
-                          where e.Employee_id == e_id
-                          select new
-                          {
-                              e.Employee_id,
-                              e.MailingAddress,
-                              e.PhysicalAddress,
-                              e.PObox,
-                              e.City,
-                              e.State,
-                              e.ZipCode,
-                              e.County,
-                              e.CityLimits,
-                              e.EmailAddress,
-                              e.PhoneNumber,
-                              e.CellPhone,
-                          };
+            var e = db.Employees
+                    .Where(i => i.Employee_id == Employee_id)
+                    .Single();
+                                
+            e.MailingAddress = MailingAddress;
+            e.PhysicalAddress = PhysicalAddress;
+            e.PObox = PObox;
+            e.City = City;
+            e.State = State;
+            e.ZipCode = ZipCode;
+            e.County = County;
+            e.CityLimits = CityLimits;
+            e.EmailAddress = EmailAddress;
+            e.PhoneNumber = PhoneNumber;
+            e.CellPhone = CellPhone;
 
-            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+            db.SaveChanges();
+
+            int result = e.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
                           
         }
 
