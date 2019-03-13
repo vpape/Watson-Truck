@@ -74,38 +74,6 @@ namespace Watson.Controllers
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-
-        //----------------------------------------------------------------------------------------
-        // GET: api/Employee
-        //I changed List<Employee> to List<string>
-        //[System.Web.Http.Route("api/Employee/EmployeeOverview/{User_id:int}/{SSN:string}")]
-        //[System.Web.Http.Route("api/Employee/EmployeeOverview")]
-        //[System.Web.Http.HttpGet]
-        //public List<Employee> EmployeeOverview()
-        //{
-        //    List<string> output = new List<string>();
-
-        //    foreach (var e in employee)
-        //    {
-        //        output.Add(e.SSN);
-        //        output.Add(e.FirstName);
-        //        output.Add(e.LastName);
-        //        output.Add(e.JobTitle);
-        //        output.Add(e.MailingAddress);
-        //        output.Add(e.City);
-        //        output.Add(e.State);
-        //    }
-
-        //    return employee;
-        //}
-
-        // GET: api/Employee/5
-        //[System.Web.Http.Route("api/Employee/EmployeeOverview/{User_id:int}")]
-        //[System.Web.Http.HttpGet]
-        //public Employee EmployeeOverview(int id)
-        //{
-        //    return employee.Where(e => e.User_id == id).FirstOrDefault();
-        //}
         //----------------------------------------------------------------------------------------
 
         public ActionResult EnrollmentSelection()
@@ -113,44 +81,49 @@ namespace Watson.Controllers
             return View();
         }
 
-        public ActionResult EmployeeEnrollment()
+        public ActionResult NewEmployeeEnrollment()
         {
-            Employee emp = new Employee();
-
-            return View(emp);
+            return View();
         }
 
-        [System.Web.Mvc.HttpPost]
-        public ActionResult EmployeeEnrollment(Employee emp)
+        //public ActionResult EmployeeEnrollment()
+        //{
+        //    Employee emp = new Employee();
+
+        //    return View(emp);
+        //}
+
+        //[System.Web.Mvc.HttpPost]
+        //public ActionResult EmployeeEnrollment(Employee emp)
+        //{
+        //    Employee newEmp = new Employee();
+
+        //    newEmp = emp;
+
+        //    //emp.Employee_id = Employee_id;
+
+        //    return View(newEmp.Employee_id);
+        //}
+
+        public JsonResult EmployeeEnrollmentNew(string CurrentEmployer, string JobTitle, string EmployeeNumber, string MaritalStatus, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
         {
-            Employee newEmp = new Employee();
+            Employee e = new Employee();
 
-            newEmp = emp;
+            e.CurrentEmployer = CurrentEmployer;
+            e.JobTitle = JobTitle;
+            e.SSN = EmployeeNumber;
+            e.MaritalStatus = MaritalStatus;
+            e.FirstName = FirstName;
+            e.LastName = LastName;
+            e.DateOfBirth = DateOfBirth;
+            e.Gender = Gender;
 
-            //emp.Employee_id = Employee_id;
-         
-            return View(newEmp.Employee_id);
-        }
+            db.Employees.Add(e);
+            db.SaveChanges();
 
-        public JsonResult GetEmployeeEnrollment(int e_id)
-        {
-            var output = from e in db.Employees
-                          where e.Employee_id == e_id
-                          select new
-                          {
-                              e.Employee_id,
-                              e.CurrentEmployer,
-                              e.JobTitle,
-                              e.SSN,
-                              e.FirstName,
-                              e.LastName,
-                              e.DateOfBirth,
-                              e.Gender,
-                              e.MaritalStatus,
-                          };
+            int result = e.Employee_id;
 
-            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
-
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
         
         [System.Web.Mvc.HttpPost]
@@ -197,57 +170,31 @@ namespace Watson.Controllers
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-
-        //----------------------------------------------------------------------------------------
-        // GET: api/Employee
-        //[System.Web.Http.Route("api/Employee/EmployeeEnrollment")]
-        //[System.Web.Http.HttpGet]
-        //public List<Employee> EmployeeEnrollment()
-        //{
-        //    return employee;
-        //}
-
-        //GET: api/Employee/5
-        //[System.Web.Http.Route("api/Employee/EmployeeEnrollment/{User_id:int}")]
-        //[System.Web.Http.HttpGet]
-        //public Employee EmployeeEnrollment(int id)
-        //{
-        //    return employee.Where(e => e.User_id == id).FirstOrDefault();
-        //}
-
-
-        // POST: api/Employee
-        //[System.Web.Http.Route("api/Employee/EmployeeEnrollment")]
-        //[System.Web.Http.HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult EmployeeEnrollment([Bind(Include = "User_id,CurrentEmployer,JobTitle,SSN,FirstName,LastName,DateOfBirth," +
-        //    "Sex,MartialStatus")] Employee employee)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Employees.Add(employee);
-        //        db.SaveChanges();
-        //    }
-
-        //    return View(employee);
-        //}
-        //----------------------------------------------------------------------------------------
-
-        //public ActionResult Contact(Employee emp)
-        //{
-        //    Employee contact = new Employee();
-
-        //    contact = emp;
-
-        //    return View(contact.Employee_id);
-        //}
-        
+        //---------------------------------------------------------------------------------------- 
         public ActionResult Contact()
         {
             return View();
         }
 
-        public JsonResult GetEmployeeContact(int e_id)
+        //use code below for EmployeeEnrollmentContact
+        //public JsonResult EmployeeEnrollmentAddress(int Employee_id, string MailingAddress, string City)
+        //{
+        //    var e = db.Employees
+        //            .Where(i => i.Employee_id == Employee_id)
+        //            .Single();
+
+        //    e.MailingAddress = MailingAddress;
+        //    e.City = City;
+
+        //    db.SaveChanges();
+
+
+        //    int result = e.Employee_id;
+
+        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        //}
+
+        public JsonResult EmployeeEnrollmentContact(int e_id)
         {
             var output = from e in db.Employees
                           where e.Employee_id == e_id
@@ -273,7 +220,7 @@ namespace Watson.Controllers
 
         [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult ContactUpdate(int e_id)
+        public JsonResult EmployeeEnrollmentContactUpdate(int e_id)
         {
             Employee e = db.Employees
                 .Where(i => i.Employee_id == e_id)
@@ -284,6 +231,8 @@ namespace Watson.Controllers
             
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
+
+        //----------------------------------------------------------------------------------------
 
         public ActionResult Edit(int? e_id)
         {
@@ -350,33 +299,7 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-        // GET: api/Employee/5
-        //[System.Web.Http.Route("api/Employee/Edit/{User_id:int}")]
-        //[System.Web.Http.HttpGet]
-        //public ActionResult Edit(int? id)
-        //{        
-        //    Employee employee = db.Employees.Find(id);
 
-        //    return View(employee);
-        //}
-
-        // POST: api/Employee
-        //[System.Web.Http.Route("api/Employee/Edit")]
-        //[System.Web.Http.HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "User_id,CurrentEmployer,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
-        //    "Sex,MartialStatus")] Employee employee)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
-        //        db.SaveChanges();
-        //    }
-
-        //    return View(employee);
-        //}
-        //----------------------------------------------------------------------------------------
-            
         public ActionResult Detail(int? e_id)
         {
             if (e_id == null)
@@ -523,7 +446,7 @@ namespace Watson.Controllers
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
-
+        //----------------------------------------------------------------------------------------
         public ActionResult LifeInsuranceEnrollment(int lifeIns_id)
         {
             //Employee emp = db.Employees.Find(e_id);
@@ -672,34 +595,6 @@ namespace Watson.Controllers
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-        //----------------------------------------------------------------------------------------
-        //GET: api/Employee/5
-        // [System.Web.Http.Route("api/Employee/EditLifeInsurance/{User_id:int}")]
-        // [System.Web.Http.HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public ActionResult EditLifeInsurance(int? id)
-        // {
-        //     Employee employee = db.Employees.Find(id);
-
-        //     return View(employee);
-
-        // }
-
-        // //POST: api/Employee
-        //[System.Web.Http.Route("api/Employee/EditLifeInsurance")]
-        //[System.Web.Http.HttpPost]
-        //[ValidateAntiForgeryToken]
-        // public ActionResult EditLifeInsurance([Bind(Include = " " +
-        //     " ")] Employee employee)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
-        //         db.SaveChanges();
-        //     }
-
-        //     return View(employee);
-        // }
         //----------------------------------------------------------------------------------------
        
         public ActionResult Delete(int? e_id)
