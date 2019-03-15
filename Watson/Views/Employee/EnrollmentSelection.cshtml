@@ -14,12 +14,9 @@
     <title>Enrollment Selection</title>
 </head>
 <body>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="container">
-            <h3>Enrollment Selection</h3>
+    <div class="container">
+        <h3>Enrollment Selection</h3>
+        <div id="EnrollmentSelection">
             <table class="table">
                 <tbody>
                     <tr>
@@ -46,7 +43,7 @@
                 </tbody>
             </table>
         </div>
-    }
+    </div>   
 </body>
 </html>
 <hr />
@@ -101,7 +98,7 @@
 
 <script type="text/javascript">
 
-    function EmployeeEnrollment() {
+    function NewEmployeeEnrollment() {
         window.location.href = "/Employee/NewEmployeeEnrollment";
 
     }

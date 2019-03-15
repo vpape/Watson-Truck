@@ -1,0 +1,143 @@
+﻿@model Watson.Models.Employee
+
+@{
+    ViewBag.Title = "EmployeeOverview2";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Employee Overview</title>
+</head>
+<body>
+    <div class="container">
+        <h3>Enrollment Overview</h3>
+        <div id="divEmployeeOverview">
+            <table class="table">
+                <tr>
+                    @*Create a column for a dynmaic button using image mapping?? to call SpouseAndDependentOverview)*@
+                    <th>Family Overview</th>
+                    <th>Employee ID</th>
+                    <th>Employee Number</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Job Title</th>
+                    <th>Mailing Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>ZipCode</th>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#" onclick="return FamilyMemberOverview()" class="next round"></a>   @* Dynamic button (image mapping??) to redirect to spouse and dependent overview *@
+                    </td>
+                    <td>
+                        <div>  
+                            @Html.Raw(Model.Employee_id)
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            @Html.Raw(Model.SSN)
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            @Html.Raw(Model.FirstName)
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            @Html.Raw(Model.LastName)
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            @Html.Raw(Model.JobTitle)
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            @Html.Raw(Model.MailingAddress)
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            @Html.Raw(Model.City)
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            @Html.Raw(Model.State)
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            @Html.Raw(Model.ZipCode)
+                        </div>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Home"@*,null, new { e_id = Model.Employee_id }*@) |
+                        @Html.ActionLink("Detail", "Detail", new { controller = "Employee" }, new { e_id = Model.Employee_id }) |
+                        @Html.ActionLink("Insurance Overview", "EmployeeInsurance", new { controller = "Employee" }, new { e_id = Model.Employee_id }) |
+                        @* create a link to show employee insurance overview for group health and life insurance *@
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" id="EnrollmentSelection" @*onclick="return EnrollmentSelection()"*@ value="Enrollment Selection" class="btn" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+
+    btn, a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+        btn, a:hover {
+            background-color: #555;
+            color: black;
+        }
+
+    .next {
+        background-color: #f2f2f2;
+        color: white;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#EnrollmentSelection").addEventListener("click", function () {
+
+            window.location.href = "/Employee/EnrollmentSelection";
+        })
+
+    })
+
+</script>
+

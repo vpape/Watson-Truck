@@ -193,36 +193,36 @@
         });
     }
 
-    //document.addEventListener("DOMContentLoaded", function () {
-    //    document.querySelector("#EmployeeEnrollmentUpdate").addEventListener("click", function () {
-    //        CurrentEmployer = document.getElementById("CurrentEmployer").value;
-    //        JobTitle = document.getElementById("JobTitle").value;
-    //        EmployeeNumber = document.getElementById("SSN").value;
-    //        MaritalStatus = document.getElementsByName("MaritalStatus").value;
-    //        FirstName = document.getElementById("FirstName").value;
-    //        LastName = document.getElementById("LastName").value;
-    //        DateOfBirth = document.getElementById("DateOfBirth").value;
-    //        Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
-    //            if (e.checked) {
-    //                Gender = e.value;
-    //            }
-    //        });
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#EmployeeEnrollmentUpdate").addEventListener("click", function () {
+            CurrentEmployer = document.getElementById("CurrentEmployer").value;
+            JobTitle = document.getElementById("JobTitle").value;
+            EmployeeNumber = document.getElementById("SSN").value;
+            MaritalStatus = document.getElementsByName("MaritalStatus").value;
+            FirstName = document.getElementById("FirstName").value;
+            LastName = document.getElementById("LastName").value;
+            DateOfBirth = document.getElementById("DateOfBirth").value;
+            Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
+                if (e.checked) {
+                    Gender = e.value;
+                }
+            });
 
-    //        var data = {
-    //            "CurrentEmployer": CurrentEmployer,
-    //            "JobTitle": JobTitle,
-    //            "EmployeeNumber": EmployeeNumber,
-    //            "MaritalStatus": MaritalStatus,
-    //            "FirstName": FirstName,
-    //            "LastName": LastName,
-    //            "DateOfBirth": DateOfBirth,
-    //            "Gender": Gender
-    //        }
+            var data = {
+                "CurrentEmployer": CurrentEmployer,
+                "JobTitle": JobTitle,
+                "EmployeeNumber": EmployeeNumber,
+                "MaritalStatus": MaritalStatus,
+                "FirstName": FirstName,
+                "LastName": LastName,
+                "DateOfBirth": DateOfBirth,
+                "Gender": Gender
+            }
 
-    //        var ret = postData('EmployeeEnrollmentNew', data)
-    //            .then(data => SecondStep(data.data))
-    //            .catch(error => console.error(error))
-    //    })
+            var ret = postData('EmployeeEnrollmentNew', data)
+                .then(data => SecondStep(data.data))
+                .catch(error => console.error(error))
+        })
 
         document.querySelector("#EmployeeEnrollmentUpdateStepTwo").addEventListener("click", function () {
             ID = document.getElementById("Employee_id").value;
@@ -270,7 +270,6 @@
                 .then(data => ThirdStep(data.data))  // have to create this
                 .catch(error => console.error(error))
         })
-    })
 
     function SecondStep(id) {
         document.querySelector("#Employee_id").value = id;

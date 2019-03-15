@@ -13,16 +13,16 @@
     <title>Employee Detail</title>
 </head>
 <body>
-    @using (Html.BeginForm("Detail", "Employee", new { e_id = Model.Employee_id }, FormMethod.Post))
+    @*@using (Html.BeginForm("Detail", "Employee", new { e_id = Model.Employee_id }, FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
+        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })*@
         <div class="form-horizontal">
             <hr />
             <div class="collapsible">Employee Detail</div>
             <div class="content">
                 <p></p>
-                <form class="disabled" action="Detail()" method="post">
+                @*<form class="disabled" action="Detail()" method="post">*@
                     <dl class="dl-horizontal">
                         <dt>
                             <label class="col-md-2 control-label">Current Employer:</label>
@@ -126,10 +126,10 @@
                             @Html.DisplayFor(model => model.CellPhone)
                         </dd>
                     </dl>
-                </form>
+                @*</form>*@
             </div>
         </div>
-    }
+    @*}*@
     <hr />
     <p>
         @Html.ActionLink("Edit", "Edit", new { controller = "Emplyoee" }, new { e_id = Model.Employee_id }) |

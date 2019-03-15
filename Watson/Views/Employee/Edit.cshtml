@@ -13,17 +13,17 @@
     <title>Edit Employee</title>
 </head>
 <body>
-    @using (Html.BeginForm("Edit", "Employee", @*new { e_id = Model.Employee_id },*@ FormMethod.Post))
+    @*@using (Html.BeginForm("Edit", "Employee", new { e_id = Model.Employee_id }, FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})*@
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id})
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
         <div class="form-horizontal">
             <hr />
             <div class="collapsible">Edit Employee</div>
             <div class="content">
                 <p></p>
-                <form action="Edit()" method="post">
+                @*<form action="Edit()" method="post">*@
                     <div class="form-group">
                         <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
                         <div class="col-md-10">
@@ -144,11 +144,11 @@
                             <input id="Submit" type="submit" onclick="return EmployeeEditUpdate()" value="Save" class="btn" />
                         </div>
                     </div>
-                </form>
+                @*</form>*@
             </div>
         </div>
                 
-    }
+    @*}*@
         <p>
             @Html.ActionLink("Back to Overview", "EmployeeOverview"@*, new { id = Model.Employee_id }*@)
         </p>
@@ -279,7 +279,7 @@
             "CellPhone": CellPhone,
         }
 
-        var ret = postData('/Employee/Edit', data)
+        var ret = postData('Edit', data)
             .then(data => EmployeeEditUpdate(data))
             .catch(error => console.error(error))
 

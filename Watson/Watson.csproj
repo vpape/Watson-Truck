@@ -434,6 +434,8 @@
     <Content Include="Views\FamilySelection\FamilyMemberEnrollment.cshtml" />
     <Content Include="Views\Employee\NewEmployeeEnrollment.cshtml" />
     <Content Include="Views\Employee\EmployeeContact.cshtml" />
+    <Content Include="Views\Employee\EmployeeOverview2.cshtml" />
+    <Content Include="Views\Employee\EditEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

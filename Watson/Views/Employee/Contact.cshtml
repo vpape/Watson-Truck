@@ -1,7 +1,9 @@
 ﻿@model Watson.Models.Employee
 
-
 <!DOCTYPE html>
+
+
+@* Disregard Page- Using EmployeeContact *@
 
 <html>
 <head>
@@ -45,8 +47,8 @@
             <div class="form-group" id="divMailingAddress">
                 <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
                 <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" onclick="HidePhysicalAddress()" name="Address" value="true"  />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="addressNotSame" class="radio-inline" onclick="ShowPhysicalAddress()" name="Address" value="false" checked/>No</label>
+                    <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" onclick="HidePhysicalAddress()" name="Address" value="true" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="addressNotSame" class="radio-inline" onclick="ShowPhysicalAddress()" name="Address" value="false" checked />No</label>
                 </div>
             </div>
             <div id="divPhysicalAddress">
@@ -235,11 +237,11 @@
     function ShowPhysicalAddress() {
         document.getElementById("divPhysicalAddress").style.display = "block";
     }
-            
-        //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
+
+    //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
 
 </script>
- 
+
 <script>
     function ContactUpdate() {
 
