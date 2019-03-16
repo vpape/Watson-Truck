@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "EmployeeContact";
+    ViewBag.Title = "EmpContact";
 }
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,7 @@
             <p></p>
             <p></p>
             <div class="form-group">
-                <label for="Employee_id" class="col-md-2 control-label">Employee ID:</label>
+                <label class="col-md-2 control-label">Employee ID:</label>
                 <div class="col-md-10">
                     <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="" disabled>
                 </div>
@@ -193,12 +193,46 @@
         });
     }
 
+    //function HidePhysicalAddress() {
+    //    document.getElementById("divPhysicalAddress").style.display = "none";
+    //}
+
+    //function ShowPhysicalAddress() {
+    //    document.getElementById("divPhysicalAddress").style.display = "block";
+    //}
+
+    function ContactUpdate() {
+
+        redirectTime = "3000";
+        redirectURL = window.location('/Employee/EmpDetail');
+
+        var message;
+        var alert = confirm("Would you like to proceed? If yes, click the OK button to continue");
+
+        if (alert == true) {
+
+            message = "Please proceed to the next segment, Thank you!!";
+
+            window.setTimeout(function () {
+
+                window.location = "redirectURL", redirectTime
+            });
+        }
+        else {
+
+            message = "Please review your information and submit when complete";
+        }
+        document.getElementById("EmployeeEnrollmentUpdateStepTwo").value = message;
+
+        return confirm('EmployeeEnrollmentUpdateStepTwo')
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmployeeEnrollmentUpdateStepTwo").addEventListener("click", function () {
             ID = document.getElementById("Employee_id").value;
             MailingAddress = document.getElementById("MailingAddress").value;
             PObox = document.getElementById("PObox").value,
-             City = document.getElementById("City").value
+            City = document.getElementById("City").value
             State = document.getElementById("State").value
             ZipCode = document.getElementById("ZipCode").value
             County = document.getElementById("County").value
@@ -236,7 +270,7 @@
                 "CellPhone": CellPhone,
             }
 
-            var ret = postData('EmployeeEnrollmentContact', data)
+            var ret = postData('EmpEnrollmentContact', data)
                 .then(data => SecondStep(data.data))  // have to create this
                 .catch(error => console.error(error))
         })
@@ -247,7 +281,7 @@
 
         if (document.querySelector("#addressNotSame") = false) {
 
-            document.querySelector("#divPhysicalAddress").content.style.display = "block";            
+            document.querySelector("#divPhysicalAddress").content.style.display = "block";
         }
         else {
             document.querySelctor("#divPhysicalAddress").content.style.display = "none";
@@ -256,16 +290,8 @@
 
     //function ThirdStep(id) {
     //    document.querySelector("#Employee_id").value = id;
-        
+
     //    }
-
-    //function HidePhysicalAddress() {
-    //    document.getElementById("divPhysicalAddress").style.display = "none";
-    //}
-
-    //function ShowPhysicalAddress() {
-    //    document.getElementById("divPhysicalAddress").style.display = "block";
-    //}
 
     function postData(url, data) {
         //Default options are marked with *
@@ -285,3 +311,5 @@
             .then(Response => Response.json()) //parses response to JSON
     }
 </script>
+
+

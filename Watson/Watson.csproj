@@ -430,12 +430,26 @@
     <Content Include="Views\GroupHealthInsurance\SalarayRedirectionAgreement.cshtml" />
     <Content Include="Views\Admin\Employees.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\FamilySelection\FamilyMemberOverview.cshtml" />
-    <Content Include="Views\FamilySelection\FamilyMemberEnrollment.cshtml" />
+    <Content Include="Views\FamilyMemberEnrollment\FamilyMemberOverview.cshtml" />
+    <Content Include="Views\FamilyMemberEnrollment\FamilyMemberEnrollment.cshtml" />
     <Content Include="Views\Employee\NewEmployeeEnrollment.cshtml" />
-    <Content Include="Views\Employee\EmployeeContact.cshtml" />
-    <Content Include="Views\Employee\EmployeeOverview2.cshtml" />
-    <Content Include="Views\Employee\EditEmployee.cshtml" />
+    <Content Include="Views\FamilyMemberEnrollment\FamilyMemberSelection.cshtml" />
+    <Content Include="Views\Dependent\DepEnrollment.cshtml" />
+    <Content Include="Views\Dependent\EditDep.cshtml" />
+    <Content Include="Views\Dependent\DepDetail.cshtml" />
+    <Content Include="Views\Dependent\DeleteDep.cshtml" />
+    <Content Include="Views\Spouse\SpEmployment.cshtml" />
+    <Content Include="Views\Spouse\SpEnrollment.cshtml" />
+    <Content Include="Views\Spouse\SpContact.cshtml" />
+    <Content Include="Views\Spouse\DeleteSp.cshtml" />
+    <Content Include="Views\Spouse\EditSp.cshtml" />
+    <Content Include="Views\Spouse\SpDetail.cshtml" />
+    <Content Include="Views\Employee\EmpOverview.cshtml" />
+    <Content Include="Views\Employee\EmpInsurance.cshtml" />
+    <Content Include="Views\Employee\EditEmp.cshtml" />
+    <Content Include="Views\Employee\EmpContact.cshtml" />
+    <Content Include="Views\Employee\DeleteEmp.cshtml" />
+    <Content Include="Views\Employee\EmpDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

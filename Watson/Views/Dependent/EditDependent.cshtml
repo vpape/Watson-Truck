@@ -4,6 +4,7 @@
     Layout = null;
 }
 
+@* DO NOT USE - REFER TO EDIT *@
 <!DOCTYPE html>
 
 <html>
@@ -16,8 +17,8 @@
     {
         @Html.AntiForgeryToken()
         @*@Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id })
-        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
-        @Html.HiddenFor(model => model.OtherInsurance_id, new { oi_id = Model.OtherInsurance_id })*@
+            @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
+            @Html.HiddenFor(model => model.OtherInsurance_id, new { oi_id = Model.OtherInsurance_id })*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
@@ -84,10 +85,10 @@
                         <label>Is your dependent covered by other insurance, including Medicare/Medicaid? If so, we need the following information:</label>
                         <div class="form-group">
                             @foreach (var item in Model.Other_Insurance)
-                                {
-                                    <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" @((item.CoveredByOtherInsurance == "Yes") ? "checked" : "") />Yes</label>
-                                    <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" @((item.CoveredByOtherInsurance == "No") ? "checked" : "") />No</label>
-                                }
+                            {
+                                <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" @((item.CoveredByOtherInsurance == "Yes") ? "checked" : "") />Yes</label>
+                                <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" onclick="CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" @((item.CoveredByOtherInsurance == "No") ? "checked" : "") />No</label>
+                            }
                         </div>
                         <div class="form-group" id="divCoveredByOtherIns">
                             @foreach (var item in Model.Other_Insurance)
@@ -128,9 +129,9 @@
 
     }
     @*<p>
-        @Html.ActionLink("Edit", "EditDependent", new { fm_id = Model.FamilyMember_id }) |
-        @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
-    </p>*@
+            @Html.ActionLink("Edit", "EditDependent", new { fm_id = Model.FamilyMember_id }) |
+            @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
+        </p>*@
 </body>
 </html>
 
@@ -153,7 +154,7 @@
 
         });
     }
-</script >
+</script>
 
 <html>
 <head>
@@ -234,7 +235,7 @@
                 top = (cnt * 25) + 80 + "px";
             }
         }
-</script>
+    </script>
 </head>
 <body>
     <form id="dependantSelectForm" action="\Home\DependantPoster" method="post">

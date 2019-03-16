@@ -22,21 +22,23 @@ namespace Watson.Controllers
      
         }
 
-        //changed from int e_id
-        public ActionResult EmployeeOverview2(Employee emp)
+        public ActionResult EmpOverview(Employee employee)
         {
-            Employee employee = db.Employees.Find(emp);
+            Employee e = db.Employees.Find(employee);
 
-            employee = emp;
+            e = employee;
 
-            return View(emp);
+            return View(employee);
 
         }
 
-        public JsonResult GetEmployee(int Employee_id, string EmployeeNumber, string FirstName, string LastName, string JobTitle, string MailingAddress,
-            string City, string State, string ZipCode)
+        public JsonResult GetEmployee(int Employee_id, string EmployeeNumber, string FirstName, string LastName, 
+            string JobTitle, string MailingAddress, string City, string State, string ZipCode)
         {
-            Employee e = new Employee();
+            //Employee e = new Employee();
+            var e = db.Employees
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
 
             e.SSN = EmployeeNumber;
             e.FirstName = FirstName;
@@ -65,8 +67,9 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult EmployeeEnrollmentNew(string EmployeeRole, string CurrentEmployer, string JobTitle, string EmployeeNumber, 
-            string MaritalStatus, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
+        public JsonResult EmployeeEnrollmentNew(int Employee_id, string EmployeeRole, string CurrentEmployer, 
+            string JobTitle, string EmployeeNumber, string MaritalStatus, string FirstName, string LastName,
+            DateTime DateOfBirth, string Gender)
         {
             Employee e = new Employee();
 
@@ -125,14 +128,15 @@ namespace Watson.Controllers
         //---------------------------------------------------------------------------------------- 
 
         //changed Contact() to:
-        public ActionResult EmployeeContact()
+        public ActionResult EmpContact()
         {
             return View();
         }
 
         // changed EmployeeEnrollmentAddress(int Employee_id, string MailingAddress, string City) to:
-        public JsonResult EmployeeEnrollmentContact(int Employee_id, string MailingAddress, string PhysicalAddress, string PObox, string City, string State, string ZipCode,
-            string County, bool CityLimits, string EmailAddress, string PhoneNumber, string CellPhone)
+        public JsonResult EmpEnrollmentContact(int Employee_id, string MailingAddress, string PhysicalAddress, 
+            string PObox, string City, string State, string ZipCode, string County, bool CityLimits, string EmailAddress,
+            string PhoneNumber, string CellPhone)
         {
             var e = db.Employees
                     .Where(i => i.Employee_id == Employee_id)
@@ -150,6 +154,7 @@ namespace Watson.Controllers
             e.PhoneNumber = PhoneNumber;
             e.CellPhone = CellPhone;
 
+            db.Employees.Add(e);
             db.SaveChanges();
 
             int result = e.Employee_id;
@@ -174,93 +179,86 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult Edit(int? e_id)
+        public ActionResult EditEmp(int? Employee_id)
         {
-            if (e_id == null)
+            if (Employee_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Employee employee = db.Employees.Find(e_id);
-            if (employee == null)
+            Employee e = db.Employees.Find(Employee_id);
+            if (e == null)
             {
                 return HttpNotFound();
             }
 
-            return View(employee);
+            return View(e);
         }
 
-        public JsonResult EmployeeEdit(int e_id)
+        public JsonResult EmployeeEditUpdate(int Employee_id, string CurrentEmployer, string JobTitle, string EmployeeNumber,
+            string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MaritalStatus, 
+            string MailingAddress, string PhysicalAddress, string PObox, string City, string State, string ZipCode, 
+            string County, bool CityLimits, string EmailAddress, string PhoneNumber, string CellPhone)
         {
-            var output = from e in db.Employees
-                          where e.Employee_id == e_id
-                          select new
-                          {
-                              e.Employee_id,
-                              e.CurrentEmployer,
-                              e.JobTitle,
-                              e.SSN,
-                              e.FirstName,
-                              e.LastName,
-                              e.DateOfBirth,
-                              e.Gender,
-                              e.MaritalStatus,
-                              e.MailingAddress,
-                              e.PhysicalAddress,
-                              e.PObox,
-                              e.City,
-                              e.State,
-                              e.ZipCode,
-                              e.County,
-                              e.CityLimits,
-                              e.EmailAddress,
-                              e.PhoneNumber,
-                              e.CellPhone,
-                          };
+            var e = db.Employees
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
+                //.SingleOrDefault()
 
-            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
-        }
+            e.CurrentEmployer = CurrentEmployer;
+            e.JobTitle = JobTitle;
+            e.SSN = EmployeeNumber;
+            e.FirstName = FirstName;
+            e.LastName = LastName;
+            e.DateOfBirth = DateOfBirth;
+            e.Gender = Gender;
+            e.MaritalStatus = MaritalStatus;
+            e.MailingAddress = MailingAddress;
+            e.PhysicalAddress = PhysicalAddress;
+            e.PObox = PObox;
+            e.City = City;
+            e.State = State;
+            e.ZipCode = ZipCode;
+            e.County = County;
+            e.CityLimits = CityLimits;
+            e.EmailAddress = EmailAddress;
+            e.PhoneNumber = PhoneNumber;
+            e.CellPhone = CellPhone;
 
-        [System.Web.Mvc.HttpPost]
-        [ValidateAntiForgeryToken]
-        public JsonResult EmployeeEditUpdate(int e_id)
-        {
-            Employee e = db.Employees
-                .Where(i => i.Employee_id == e_id)
-                .SingleOrDefault();
+            int result = Employee_id;
 
             if (ModelState.IsValid)
             {
-                db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(e).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-            }            
+            }
 
-            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult Detail(int? e_id)
+        public ActionResult EmpDetail(int? Employee_id)
         {
-            if (e_id == null)
+            if (Employee_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Employee employee = db.Employees.Find(e_id);
-            if (employee == null)
+            Employee e = db.Employees.Find(Employee_id);
+            if (e == null)
             {
                 return HttpNotFound();
             }
 
-            return View(employee);
+            return View(e);
         }
 
-        public JsonResult GetDetail(int e_id)
+        public JsonResult GetDetail(int Employee_id)
         {
             var output = from e in db.Employees
-                          where e.Employee_id == e_id
-                          select new
+                          where e.Employee_id == Employee_id
+                         select new
                           {
                               e.Employee_id,
                               e.CurrentEmployer,
@@ -287,14 +285,14 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);    
         }
 
-        public JsonResult DetailUpdate(int e_id)
-        {
-            Employee e = db.Employees
-                .Where(i => i.Employee_id == e_id)
-                .FirstOrDefault();
+        //public JsonResult DetailUpdate(int e_id)
+        //{
+        //    Employee e = db.Employees
+        //        .Where(i => i.Employee_id == e_id)
+        //        .FirstOrDefault();
 
-            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
+        //}
 
         //----------------------------------------------------------------------------------------
         //GET: api/Employee/5
@@ -322,13 +320,13 @@ namespace Watson.Controllers
         //}
         //----------------------------------------------------------------------------------------
 
-        public ActionResult EmployeeInsurance()
+        public ActionResult EmpInsurance()
         {         
             return View();
         }
 
         //int grpH_id
-        public ActionResult GroupHealthEnrollment()
+        public ActionResult GrpHealthEnrollment()
         {
             //Employee emp = db.Employees.Find(e_id);
             //Group_Health enrollment = new Group_Health();
@@ -339,7 +337,7 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GetGroupHealth(int grpH_id)
+        public JsonResult GetGrpHealth(int grpH_id)
         {
             var output = from g in db.Group_Health
                          select new
@@ -374,20 +372,20 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GroupHealthUpdate(int grpH_id, int e_id)
-        {
-            Group_Health grpH = db.Group_Health
-                .Where(i => i.GroupHealthInsurance_id == grpH_id)
-                .Where(i => i.Employee_id == e_id)
-                .SingleOrDefault();
+        //public JsonResult GrpHealthUpdate(int grpH_id, int e_id)
+        //{
+        //    Group_Health grpH = db.Group_Health
+        //        .Where(i => i.GroupHealthInsurance_id == grpH_id)
+        //        .Where(i => i.Employee_id == e_id)
+        //        .SingleOrDefault();
 
-            db.Group_Health.Add(grpH);
-            db.SaveChanges();
+        //    db.Group_Health.Add(grpH);
+        //    db.SaveChanges();
 
-            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
+        //}
         //----------------------------------------------------------------------------------------
-        public ActionResult LifeInsuranceEnrollment(int lifeIns_id)
+        public ActionResult LifeInsEnrollment(int lifeIns_id)
         {
             //Employee emp = db.Employees.Find(e_id);
             //Life_Insurance lifeIns = db.Life_Insurance.Find(lifeIns_id);
@@ -398,7 +396,7 @@ namespace Watson.Controllers
             return View(lifeIns); 
         }
 
-        public JsonResult GetLifeInsurance(int lifeIns_id)
+        public JsonResult GetLifeIns(int lifeIns_id)
         {
             var output = from e in db.Life_Insurance
                           select new
@@ -477,20 +475,20 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult LifeInsuranceUpdate(int lifeIns_id, int e_id)
-        {
-            Life_Insurance lifeIns = db.Life_Insurance
-                .Where(i => i.LifeInsurance_id == lifeIns_id)
-                .Where(i => i.Employee_id == e_id)
-                .SingleOrDefault();
+        //public JsonResult LifeInsUpdate(int lifeIns_id, int e_id)
+        //{
+        //    Life_Insurance lifeIns = db.Life_Insurance
+        //        .Where(i => i.LifeInsurance_id == lifeIns_id)
+        //        .Where(i => i.Employee_id == e_id)
+        //        .SingleOrDefault();
 
-            db.Life_Insurance.Add(lifeIns);
-            db.SaveChanges();
+        //    db.Life_Insurance.Add(lifeIns);
+        //    db.SaveChanges();
 
-            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
+        //}
 
-        public ActionResult EditLifeInsurance(int? lifeIns_id)
+        public ActionResult EditLifeIns(int? lifeIns_id)
         {
             if (lifeIns_id == null)
             {
@@ -506,7 +504,7 @@ namespace Watson.Controllers
             return View(lifeIns_id);
         }
     
-        public JsonResult GetEditLifeInsurance(int lifeIns_id)
+        public JsonResult EditLifeInsurance(int lifeIns_id)
         {
             var output = from e in db.Life_Insurance
                          select new
@@ -519,7 +517,7 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult LifeInsuranceEditUpdate(int lifeIns_id, int e_id)
+        public JsonResult LifeInsEditUpdate(int lifeIns_id, int e_id)
         {
             Life_Insurance lifeIns = db.Life_Insurance
                 .Where(i => i.LifeInsurance_id == lifeIns_id)
@@ -537,14 +535,14 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
        
-        public ActionResult Delete(int? e_id)
+        public ActionResult DeleteEmp(int? Employee_id)
         {
-            if (e_id == null)
+            if (Employee_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Employee employee = db.Employees.Find(e_id);
+            Employee employee = db.Employees.Find(Employee_id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -553,17 +551,17 @@ namespace Watson.Controllers
             return View(employee);           
         }
 
-        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("Delete")]
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteEmp")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int e_id)
+        public ActionResult DeleteEmp(int Employee_id)
         {
-            Employee employee = db.Employees.Find(e_id);
+            Employee employee = db.Employees.Find(Employee_id);
             db.Employees.Remove(employee);
             db.SaveChanges();
 
-            db.DeleteEmployeeAndDependents(e_id);
+            db.DeleteEmployeeAndDependents(Employee_id);
 
-            return RedirectToAction("EmployeeOverview");
+            return RedirectToAction("EmpOverview");
         }
 
         protected override void Dispose(bool disposing)

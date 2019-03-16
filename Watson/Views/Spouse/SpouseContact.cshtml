@@ -1,12 +1,10 @@
 ﻿@model Watson.Models.Family_Info
 
 
-
-
-
-
 <!DOCTYPE html>
 
+
+@* DO NOT USE- Refer to SpContact *@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -155,8 +153,8 @@
 
     }
     <div>
-        <input type="submit" onclick= "SpouseEnrollment()" value="Previous" class="btn btn-secondary" /> |
-        <input type="submit" onclick= "SpouseEmployment()" value="Continue" class="btn btn-secondary" />
+        <input type="submit" onclick="SpouseEnrollment()" value="Previous" class="btn btn-secondary" /> |
+        <input type="submit" onclick="SpouseEmployment()" value="Continue" class="btn btn-secondary" />
     </div>
     <p>
         @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
@@ -265,7 +263,7 @@
             "CellPhone": CellPhone,
         }
 
-        
+
         var ret = postData('/Family_Info/SpouseContact', data)
             .then(data => SpouseContactUpdate(data))
             .catch(error => console.error(error))

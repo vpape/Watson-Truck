@@ -1,7 +1,5 @@
-﻿@model Watson.Models.Employee
-
-@{
-    ViewBag.Title = "EmployeeOverview2";
+﻿@{
+    ViewBag.Title = "EmpOverview";
 }
 <!DOCTYPE html>
 <html>
@@ -37,7 +35,7 @@
                     </td>
                     <td>
                         <div>
-                            <input id="Employee_id"  />
+                            <input id="Employee_id" />
                             @Html.Raw(Model.Employee_id)
                         </div>
                     </td>
@@ -151,7 +149,7 @@
             City = document.getElementById("City").value;
             State = document.getElementById("State").value;
             ZipCode = document.getElementById("ZipCode").value;
-     
+
             });
 
             var data = {
@@ -167,9 +165,9 @@
                 "ZipCode": ZipCode,
             }
 
-            //var ret = postData('GetEmployee', data)
-            //    .then(data => SecondStep(data.data))
-            //    .catch(error => console.error(error))
+            var ret = postData('GetEmployee', data)
+                .then(data => SecondStep(data.data))
+                .catch(error => console.error(error))
     })
 
     function SecondStep(id) {
@@ -201,6 +199,7 @@
 
         window.local.href = "/Employee/EnrollmentSelection";
     }
-    
+
 </script>
+
 

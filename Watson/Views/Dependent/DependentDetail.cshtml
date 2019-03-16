@@ -3,7 +3,7 @@
 @{
     Layout = null;
 }
-
+@* DO NOT USE - REFER TO DETAIL *@
 
 <!DOCTYPE html>
 
@@ -21,8 +21,8 @@
     {
         @Html.AntiForgeryToken()
         @*@Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id })
-        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
-        @Html.HiddenFor(model => model.OtherInsurance_id, new { oi_id = Model.OtherInsurance_id})*@
+            @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
+            @Html.HiddenFor(model => model.OtherInsurance_id, new { oi_id = Model.OtherInsurance_id})*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />

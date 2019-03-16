@@ -1,14 +1,7 @@
-﻿@model Watson.Models.Family_Info
-
-@*@{
-        Layout = null;
-    }*@
-
-@* DO NOT USE - REFER TO DepENROLLMENT *@
-
+﻿@{
+    ViewBag.Title = "DepEnrollment";
+}
 <!DOCTYPE html>
-
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -19,129 +12,115 @@
     <title>Dependent Enrollment</title>
 </head>
 <body>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @*@Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id })
-            @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })
-            @Html.HiddenFor(model => model.OtherInsurance_id, new { oi_id = Model.OtherInsurance_id })*@
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-horizontal">
-            <hr />
-            <div class="collapsible">Dependent Enrollment</div>
-            <div class="content" id="dependentSelectForm">
-                <p></p>
-                <form id="dependentSelectForm" action="DependentEnrollment()" method="post">
-                    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
-                    <div class="form-group">
-                        <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
-                        <div class="col-md-10">
-                            <select id="RelationToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                                @if (ViewBag.spouseExist == false)
-                                {
-                                    <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                                }
-                                else
-                                {
-                                    <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group" id="EmployeeName">
-                        <label class="col-md-2 control-label">Employee Name:</label>
-                        <div class="col-md-10">
-                            <input type="text" disabled id="EmployeeFirstName" class="form-control" value="@Html.DisplayFor(model => model.Employee.FirstName)" />
-                            <input type="text" disabled id="EmployeeLastName" value="@Html.DisplayFor(model => model.Employee.LastName)" />
-                        </div>
-                    </div>
-                    <div class="form-group" id="EmployeeNumber">
-                        <label class="col-md-2 control-label">Employee Number:</label>
-                        <div class="col-md-10">
-                            <input type="text" disabled id="EmployeeNumber" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.Employee.SSN)" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="FirstName" class="col-md-2 control-label">First Name:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="LastName" class="col-md-2 control-label">Last Name:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="LastName" class="form-control" name="LastName" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">Gender:</label>
-                        <div class="col-md-10">
-                            <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="Male" checked />Male</label>
-                            <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="Female" />Female</label>
-                        </div>
-                    </div>
-                    <h2>Insurance Information</h2>
-                    <div class="form-group" id="depOtherIns">
-                        <label>Is your dependent covered by other insurance, including Medicare/Medicaid? If so, we need the following information:</label>
-                        <div class="form-group">
-                            @foreach (var item in Model.Other_Insurance)
-                            {
-                                <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" />Yes</label>
-                                <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" checked />No</label>
-                            }
-                        </div>
-                    </div>
-                    <div class="form-group" id="divCoveredByOtherIns">
-                        @foreach (var item in Model.Other_Insurance)
+    <div class="form-horizontal">
+        <hr />
+        <div class="collapsible">Dependent Enrollment</div>
+        <div class="content" id="dependentSelectForm">
+            <p></p>
+            <p></p>
+            <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+            <div class="form-group">
+                <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
+                <div class="col-md-10">
+                    <select id="RelationToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                        @if (ViewBag.spouseExist == false)
                         {
-                            <div class="form-group">
-                                <label for="InsCompany">Insurance Company:</label>
-                                <div class="col-md-10">
-                                    <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="" />
-                                </div>
-                                <label for="PolicyNumber" id="divPolicyNumber">Policy Number:</label>
-                                <div class="col-md-10">
-                                    <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="" />
-                                </div>
-                                <label for="InsPhoneNumber" id="divPhoneNumber">Phone Number:</label>
-                                <div class="col-md-10">
-                                    <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="" />
-                                </div>
-                                <label for="InsMailingAddress" id="divInsMailingAddress">Mailing Address:</label>
-                                <div class="col-md-10">
-                                    <input type="text" id="InsMailingAddress" class="form-control" name="MailingAddress" value="" />
-                                    <input type="text" id="InsCity" class="form-control" name="City" value="" />
-                                    <input type="text" id="InsState" class="form-control" name="State" value="" />
-                                    <input type="text" id="InsZipCode" class="form-control" name="ZipCode" value="" />
-                                </div>
-                            </div>
+                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
                         }
-                    </div>
+                        else
+                        {
+                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Employee ID:</label>
+                <div class="col-md-10">
+                    <input type="text"  id="Employee_id" class="form-control" name="Employee_id" value="" disabled/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Employee Number:</label>
+                <div class="col-md-10">
+                    <input type="text" id="EmployeeNumber" class="form-control" name="SSN" value="" disabled />
+                </div>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label for="FirstName" class="col-md-2 control-label">First Name:</label>
+                <div class="col-md-10">
+                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                <div class="col-md-10">
+                    <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
+                <div class="col-md-10">
+                    <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Gender:</label>
+                <div class="col-md-10">
+                    <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="Male" checked />Male</label>
+                    <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="Female" />Female</label>
+                </div>
+            </div>
+            <h2>Insurance Information</h2>
+            <div class="form-group" id="depOtherIns">
+                <label>Is your dependent covered by other insurance, including Medicare/Medicaid? If so, we need the following information:</label>
+                <div class="form-group">
+                    @foreach (var item in Model.Other_Insurance)
+                    {
+                        <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" />Yes</label>
+                        <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" checked />No</label>
+                    }
+                </div>
+            </div>
+            <div class="form-group" id="divCoveredByOtherIns">
+                @foreach (var item in Model.Other_Insurance)
+                {
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" onclick=" return DependentEnrollmentUpdate()" value="Save" id="submit" class="btn" />
-                            <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
+                        <label for="InsCompany">Insurance Company:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="" />
+                        </div>
+                        <label for="PolicyNumber">Policy Number:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="" />
+                        </div>
+                        <label for="InsPhoneNumber">Phone Number:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="" />
+                        </div>
+                        <label for="InsMailingAddress">Mailing Address:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="InsMailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
+                            <input type="text" id="InsCity" class="form-control" name="City" placeholder="City" value="" />
+                            <input type="text" id="InsState" class="form-control" name="State" placeholder="State" value="" />
+                            <input type="text" id="InsZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="" />
                         </div>
                     </div>
-                </form>
+                }
             </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" onclick="DependentEnrollmentUpdate()" id="submit" value="Save" class="btn" />
+                    <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
+                </div>
+            </div>     
         </div>
-
-    }
-    <div>
-        <button onclick="return SpouseContact()" class="btn">Previous</button> |
-        <button onclick="return EmployeeOverview()" class="btn">Return to Employee Overview</button>
     </div>
-    @*<p>
-            @Html.ActionLink("Edit", "EditDependent", "Family_Info", new { id = Model.FamilyMember_id }) |
-            @Html.ActionLink("Back to Family Enrollment", "FamilyMemberEnrollment")
-        </p>*@
+    <div>
+        <button id="SpouseContact" @*onclick="return SpouseContact()"*@ class="btn">Previous</button> |
+        <button id="EmployeeOverview2" @*onclick="return EmployeeOverview()"*@ class="btn">Return to Employee Overview</button>
+    </div>
 </body>
 </html>
 
@@ -169,6 +148,10 @@
         background-color: #f1f1f1;
     }
 
+    .hide {
+        display: none;
+    }
+
     .previous {
         background-color: #333;
         color: white;
@@ -193,23 +176,42 @@
             background-color: #ddd;
             color: black;
         }
+
+    .phone-number .col-xs-3::after {
+        content: "-";
+        position: absolute;
+        right: 5px;
+        color: black;
+        border: 0px solid;
+        top: 8px;
+    }
+
+    .phone-number .col-xs-4 {
+        width: 25%;
+    }
+
+    .phone-number .col-xs-3, .phone-number .col-xs-4 {
+        padding-left: 0;
+    }
 </style>
 
 
 <script>
-    //document.addEventListener("DOMContentloaded", function () { }
-    var col = document.querySelectorAll(".collaspible");
+    function CoveredByOtherIns() {
+        var div = document.getElementById("divCoveredByOther")
+        div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
+    }
+
+    var col = document.querySelectorAll(".collapsible");
     var i;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
             this.classList.toggle("active");
-
             var content = this.nextElementSibling;
             if (content.style.display === "block") {
                 content.style.display = "none";
-            }
-            else {
+            } else {
                 content.style.display = "block";
             }
 
@@ -419,4 +421,5 @@
             .then(Response => Response.json()) //parses response to JSON
     }
 </script>
+
 

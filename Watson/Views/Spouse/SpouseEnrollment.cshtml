@@ -2,9 +2,11 @@
 
 
 @*@{
-    @ViewBag.Title = "SpouseEnrollment";
-}*@
+        @ViewBag.Title = "SpouseEnrollment";
+    }*@
 
+
+@* DO NOT USE- Refer to SpEnrollment *@
 <!DOCTYPE html>
 
 
@@ -18,7 +20,7 @@
     {
         @Html.AntiForgeryToken()
         @*@Html.HiddenFor(model => model.FamilyMember_id, new { fm_id = Model.FamilyMember_id })
-        @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })*@
+            @Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
             <hr />
@@ -95,31 +97,31 @@
         <button onclick="SpouseContact()" class="btn">Continue</button>
     </div>
     @*<p>
-        @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
-    </p>*@
+            @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
+        </p>*@
 </body>
 </html>
 
 
 @*<script>
-    function SpouseOrDependent()
-    {
-        var choice = document.getElementById("RelationToInsured").value;
-        var spouse = document.getElementById("divSpouseInfo").value;
-        var dependent = document.getElementById("divDependentInfo").value;
-
-        if (choice == "Spouse")
+        function SpouseOrDependent()
         {
-            spouse.style.display = 'block';
-            dependent.style.display = 'none';
+            var choice = document.getElementById("RelationToInsured").value;
+            var spouse = document.getElementById("divSpouseInfo").value;
+            var dependent = document.getElementById("divDependentInfo").value;
 
+            if (choice == "Spouse")
+            {
+                spouse.style.display = 'block';
+                dependent.style.display = 'none';
+
+            }
+            else {
+                spouse.style.display = 'none';
+                dependent.style.display = 'block';
+            }
         }
-        else {
-            spouse.style.display = 'none';
-            dependent.style.display = 'block';
-        }
-    }
-</script>*@
+    </script>*@
 
 <script>
     function GetSpouseEnrollment() {
@@ -214,9 +216,9 @@
         font-size: 15px;
     }
 
-    .active, .collapsible:hover {
-        background-color: #555;
-    }
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
 
     .content {
         padding: 0 18px;
