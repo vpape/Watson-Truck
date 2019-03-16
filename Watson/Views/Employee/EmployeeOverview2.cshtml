@@ -36,47 +36,56 @@
                         <a href="#" onclick="return FamilyMemberOverview()" class="next round"></a>   @* Dynamic button (image mapping??) to redirect to spouse and dependent overview *@
                     </td>
                     <td>
-                        <div>  
+                        <div>
+                            <input id="Employee_id"  />
                             @Html.Raw(Model.Employee_id)
                         </div>
                     </td>
                     <td>
                         <div>
+                            <input id="SSN" />
                             @Html.Raw(Model.SSN)
                         </div>
                     </td>
                     <td>
                         <div>
+                            <input id="FirstName" />
                             @Html.Raw(Model.FirstName)
                         </div>
                     </td>
                     <td>
                         <div>
+                            <input id="LastName" />
                             @Html.Raw(Model.LastName)
                         </div>
                     </td>
                     <td>
                         <div>
+                            <input id="JobTitle" />
                             @Html.Raw(Model.JobTitle)
                         </div>
                     </td>
                     <td>
                         <div>
+                            <input id="MailingAddress" />
                             @Html.Raw(Model.MailingAddress)
                         </div>
                     </td>
                     <td>
                         <div>
+                            <input id="City" />
                             @Html.Raw(Model.City)
                         </div>
                     </td>
                     <td>
                         <div>
+                            <input id="State" />
                             @Html.Raw(Model.State)
                         </div>
                     </td>
                     <td>
                         <div>
+                            <input id="ZipCode" />
                             @Html.Raw(Model.ZipCode)
                         </div>
                     </td>
@@ -91,7 +100,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="button" id="EnrollmentSelection" @*onclick="return EnrollmentSelection()"*@ value="Enrollment Selection" class="btn" />
+                <button type="button" id="EnrollmentSelection" onclick="return EnrollmentSelection()" value="Enrollment Selection" class="btn" />
             </div>
         </div>
     </div>
@@ -133,11 +142,65 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EnrollmentSelection").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
+            EmployeeNumber = document.getElementById("SSN").value;
+            FirstName = document.getElementById("FirstName").value;
+            LastName = document.getElementById("LastName").value;
+            JobtTitle = document.getElementById("JobTitle").value;
+            MailingAddress = document.getElementById("MailingAddress").value;
+            City = document.getElementById("City").value;
+            State = document.getElementById("State").value;
+            ZipCode = document.getElementById("ZipCode").value;
+     
+            });
 
-            window.location.href = "/Employee/EnrollmentSelection";
-        })
+            var data = {
 
+                "Employee_id": Employee_id,
+                "EmployeeNumber": EmployeeNumber,
+                "FirstName": FirstName,
+                "LastName": LastName,
+                "JobTitle": JobTitle,
+                "MailingAddress": MailingAddress,
+                "City": City,
+                "State": State,
+                "ZipCode": ZipCode,
+            }
+
+            //var ret = postData('GetEmployee', data)
+            //    .then(data => SecondStep(data.data))
+            //    .catch(error => console.error(error))
     })
 
+    function SecondStep(id) {
+        document.querySelector("#Employee_id").value = id;
+        document.querySelector("#divEmployeeOverview").content.style.display;
+        document.querySelector("#SecondStep").content.style.display;
+        document.querySelector("#EnrollmentSelection").content.style.display;
+    }
+
+    function postData(url, data) {
+        //Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        })
+            .then(Response => Response.json()) //parses response to JSON
+    }
+
+    function EnrollmentSelection() {
+
+        window.local.href = "/Employee/EnrollmentSelection";
+    }
+    
 </script>
 

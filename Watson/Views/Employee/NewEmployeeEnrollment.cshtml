@@ -19,9 +19,18 @@
             <p></p>
             <p></p>
             <div class="form-group">
-                <label for="Employee_id" class="col-md-2 control-label">Employee ID:</label>
+                <label class="col-md-2 control-label">Employee ID:</label>
                 <div class="col-md-10">
                     <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Employee Role:</label>
+                <div class="col-md-10">
+                    <select name="EmployeeRole" class="form-control">
+                        <option id="ManagerRole" name="EmployeeRole" value="Manager">Manger</option>
+                        <option id="EmployeeRole" name="EmployeeRole" value="Employee">Employee</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
@@ -128,17 +137,17 @@
                 <div class="form-group">
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="" />
-                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" />
-                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="" />
-                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="" />
-                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street2" name="PhysicalAddress" value="" />
+                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box2" name="PObox" />
+                        <input type="text" id="City2" class="form-control" placeholder="City2" name="City" value="" />
+                        <input type="text" id="State2" class="form-control" placeholder="State2" name="State" value="" />
+                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code2" name="ZipCode" value="" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
-                        <input type="text" id="County2" class="form-control" placeholder="County" name="County" value="" />
+                        <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="" />
                     </div>
                 </div>
             </div>
@@ -225,6 +234,10 @@
         background-color: #f1f1f1;
     }
 
+    .hide {
+        display: none;
+    }
+
     .previous {
         background-color: #333;
         color: white;
@@ -249,6 +262,23 @@
             background-color: #ddd;
             color: black;
         }
+
+    .phone-number .col-xs-3::after {
+        content: "-";
+        position: absolute;
+        right: 5px;
+        color: black;
+        border: 0px solid;
+        top: 8px;
+    }
+
+    .phone-number .col-xs-4 {
+        width: 25%;
+    }
+
+    .phone-number .col-xs-3, .phone-number .col-xs-4 {
+        padding-left: 0;
+    }
 </style>
 
 <script>
@@ -287,13 +317,22 @@
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
+
             Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
                 if (e.checked) {
                     Gender = e.value;
                 }
             });
 
+            EmployeeRole = document.querySelectorAll('input [name = "EmployeeRole"]').forEach(function (e, i) {
+                if (e.checked) {
+                    EmployeeRole = e.value;
+                }
+            });
+
             var data = {
+                "ManagerRole": ManagerRole,
+                "EmployeeRole": EmployeeRole,
                 "CurrentEmployer": CurrentEmployer,
                 "JobTitle": JobTitle,
                 "EmployeeNumber": EmployeeNumber,
@@ -352,7 +391,7 @@
             }
 
             var ret = postData('EmployeeEnrollmentContact', data)
-                .then(data => ThirdStep(data.data))  // have to create this
+                .then(data => ThirdStep(data.data))
                 .catch(error => console.error(error))
         })
     })
@@ -364,7 +403,7 @@
     }
 
     function ThirdStep(id) {
-        alert(id);
+        document.querySelector("#Employee_id").value = id;
     }
 
     function postData(url, data) {

@@ -51,38 +51,7 @@ namespace Watson.Controllers
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
 
-            //var output = from emp in db.Employees
-            //            where emp.Employee_id == Employee_id
-            //            select new
-            //            {
-            //                emp.SSN = EmployeeNumber,
-            //                emp.FirstName,
-            //                emp.LastName,
-            //                emp.JobTitle,
-            //                emp.MailingAddress,
-            //                emp.City,
-            //                emp.State,
-            //                emp.ZipCode,
-
-            //            };
-
-            //return Json(new { data = output }, JsonRequestBehavior.AllowGet);
-
         }
-
-        //[System.Web.Mvc.HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public JsonResult EmployeeUpdate(int e_id)
-        //{
-        //    Employee e = db.Employees
-        //        .Where(i => i.Employee_id == e_id)
-        //        .FirstOrDefault();
-
-        //    db.Employees.Add(e);
-        //    db.SaveChanges();
-
-        //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-        //}
 
         //----------------------------------------------------------------------------------------
 
@@ -96,10 +65,12 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult EmployeeEnrollmentNew(string CurrentEmployer, string JobTitle, string EmployeeNumber, string MaritalStatus, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
+        public JsonResult EmployeeEnrollmentNew(string EmployeeRole, string CurrentEmployer, string JobTitle, string EmployeeNumber, 
+            string MaritalStatus, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
         {
             Employee e = new Employee();
 
+            e.EmployeeRole = EmployeeRole;
             e.CurrentEmployer = CurrentEmployer;
             e.JobTitle = JobTitle;
             e.SSN = EmployeeNumber;
@@ -219,7 +190,7 @@ namespace Watson.Controllers
             return View(employee);
         }
 
-        public JsonResult GetEmployeeEdit(int e_id)
+        public JsonResult EmployeeEdit(int e_id)
         {
             var output = from e in db.Employees
                           where e.Employee_id == e_id

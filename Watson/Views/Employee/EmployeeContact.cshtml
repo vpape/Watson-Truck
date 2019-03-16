@@ -14,7 +14,7 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible" id="FirstStep">Employee Contact</div>
+        <div class="collapsible" id="SecondStep">Employee Contact</div>
         <div id="divEmpEnrollment" class="content">
             <p></p>
             <p></p>
@@ -42,28 +42,28 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group" id="divMailingAddress">
+            <div class="form-group" id="divPhysicalSameAsMailing">
                 <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
                 <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" onclick="HidePhysicalAddress()" name="Address" value="true" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="addressNotSame" class="radio-inline" onclick="ShowPhysicalAddress()" name="Address" value="false" checked />No</label>
+                    <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" @*onclick="return HidePhysicalAddress()"*@ name="Address" value="true" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="addressNotSame" class="radio-inline" @*onclick="return ShowPhysicalAddress()"*@ name="Address" value="false" checked />No</label>
                 </div>
             </div>
             <div id="divPhysicalAddress">
                 <div class="form-group">
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="" />
-                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" />
-                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="" />
-                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="" />
-                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street2" name="PhysicalAddress" value="" />
+                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box2" name="PObox" />
+                        <input type="text" id="City2" class="form-control" placeholder="City2" name="City" value="" />
+                        <input type="text" id="State2" class="form-control" placeholder="State2" name="State" value="" />
+                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code2" name="ZipCode" value="" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
-                        <input type="text" id="County2" class="form-control" placeholder="County" name="County" value="" />
+                        <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="" />
                     </div>
                 </div>
             </div>
@@ -194,41 +194,11 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#EmployeeEnrollmentUpdate").addEventListener("click", function () {
-            CurrentEmployer = document.getElementById("CurrentEmployer").value;
-            JobTitle = document.getElementById("JobTitle").value;
-            EmployeeNumber = document.getElementById("SSN").value;
-            MaritalStatus = document.getElementsByName("MaritalStatus").value;
-            FirstName = document.getElementById("FirstName").value;
-            LastName = document.getElementById("LastName").value;
-            DateOfBirth = document.getElementById("DateOfBirth").value;
-            Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
-                if (e.checked) {
-                    Gender = e.value;
-                }
-            });
-
-            var data = {
-                "CurrentEmployer": CurrentEmployer,
-                "JobTitle": JobTitle,
-                "EmployeeNumber": EmployeeNumber,
-                "MaritalStatus": MaritalStatus,
-                "FirstName": FirstName,
-                "LastName": LastName,
-                "DateOfBirth": DateOfBirth,
-                "Gender": Gender
-            }
-
-            var ret = postData('EmployeeEnrollmentNew', data)
-                .then(data => SecondStep(data.data))
-                .catch(error => console.error(error))
-        })
-
         document.querySelector("#EmployeeEnrollmentUpdateStepTwo").addEventListener("click", function () {
             ID = document.getElementById("Employee_id").value;
             MailingAddress = document.getElementById("MailingAddress").value;
             PObox = document.getElementById("PObox").value,
-            City = document.getElementById("City").value
+             City = document.getElementById("City").value
             State = document.getElementById("State").value
             ZipCode = document.getElementById("ZipCode").value
             County = document.getElementById("County").value
@@ -241,7 +211,7 @@
             EmailAddress = document.getElementById("EmailAddress").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             CellPhone = document.getElementById("CellPhone").value;
-            CityLimits = document.querySelectorAll('input ["CityLimits"]').forEach(function (e, i) {
+            CityLimits = document.querySelectorAll('input [name = "CityLimits"]').forEach(function (e, i) {
                 if (e.checked) {
                     CityLimits = e.value;
                 }
@@ -267,19 +237,35 @@
             }
 
             var ret = postData('EmployeeEnrollmentContact', data)
-                .then(data => ThirdStep(data.data))  // have to create this
+                .then(data => SecondStep(data.data))  // have to create this
                 .catch(error => console.error(error))
         })
 
     function SecondStep(id) {
         document.querySelector("#Employee_id").value = id;
-        document.querySelector("#FirstStep").nextElementSibling.content.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.content.style.display = "block";
+
+        if (document.querySelector("#addressNotSame") = false) {
+
+            document.querySelector("#divPhysicalAddress").content.style.display = "block";            
+        }
+        else {
+            document.querySelctor("#divPhysicalAddress").content.style.display = "none";
+        }
     }
 
-    function ThirdStep(id) {
-        alert(id);
-    }
+    //function ThirdStep(id) {
+    //    document.querySelector("#Employee_id").value = id;
+        
+    //    }
+
+    //function HidePhysicalAddress() {
+    //    document.getElementById("divPhysicalAddress").style.display = "none";
+    //}
+
+    //function ShowPhysicalAddress() {
+    //    document.getElementById("divPhysicalAddress").style.display = "block";
+    //}
 
     function postData(url, data) {
         //Default options are marked with *
