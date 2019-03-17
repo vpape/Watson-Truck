@@ -79,7 +79,6 @@ namespace Watson.Controllers
             return View();
         }
 
-        //missing employee first name, last name, and employee number
         public JsonResult GetSpouseEnrollment(int fm_id, int e_id, string MaritalStatus)
         {
             var output = from f in db.Family_Info
@@ -123,54 +122,21 @@ namespace Watson.Controllers
         }
 
 
-        [System.Web.Mvc.HttpPost]
-        [ValidateAntiForgeryToken]
-        public JsonResult SpouseEnrollmentUpdate(int fm_id, int e_id)
-        {
-            Family_Info f = db.Family_Info
-                .Where(i => i.FamilyMember_id == fm_id)
-                .Where(i => i.Employee_id == e_id)
-                .SingleOrDefault();
-
-            db.Family_Info.Add(f);
-            db.SaveChanges();
-
-            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-        }
-
-
-        //----------------------------------------------------------------------------------------
-        //[Route("api/Family_Info/GetFamilyMember/{FamilyMember_id:int}/{SSN:string}")]
-        //[HttpGet]
-        //public List<string> GetFamilyMembers(int FamilyMember_id)
+        //[System.Web.Mvc.HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public JsonResult SpouseEnrollmentUpdate(int fm_id, int e_id)
         //{
-        //    List<string> output = new List<string>();
+        //    Family_Info f = db.Family_Info
+        //        .Where(i => i.FamilyMember_id == fm_id)
+        //        .Where(i => i.Employee_id == e_id)
+        //        .SingleOrDefault();
 
-        //    foreach (var f in familyMember)
-        //    {
-        //        output.Add(f.FirstName);
-        //    }
+        //    db.Family_Info.Add(f);
+        //    db.SaveChanges();
 
-        //    return output;
+        //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         //}
 
-        //// GET: api/Family_Info
-        //public List<Family_Info> FamilyMemberOverview()
-        //{
-        //    return familyMember;
-        //}
-
-        //// GET: api/Family_Info/5
-        //public Family_Info FamilyMemberOverview(int? id)
-        //{
-        //    return familyMember.Where(f => f.FamilyMember_id == id).FirstOrDefault();
-        //}
-
-        // GET: api/Family_Info/5
-        //public void Index(int? id)
-        //{
-        //    Family_Info fMember = db.Family_Infoes.Find(id);
-        //}
         //----------------------------------------------------------------------------------------
 
         public ActionResult SpouseContact()
@@ -277,24 +243,6 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-        //GET: api/Family_Info/5
-        //public Family_Info SpouseEmployment(int id)
-        //{
-        //    return familyMember.Where(i => i.FamilyMember_id == id).FirstOrDefault();
-        //}
-
-        //POST: api/Family_Info
-        //[System.Web.Http.HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public void SpouseEmployment([Bind(Include = "")]Family_Info spouseEmployment)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Family_Infoes.Add(spouseEmployment);
-        //        db.SaveChanges();
-        //    }
-        //}
-        //----------------------------------------------------------------------------------------
 
         public ActionResult EditSpouse(int? fm_id, int e_id)
         {
@@ -314,7 +262,6 @@ namespace Watson.Controllers
             return View(family);
         }
 
-        //missing employee first name, last name, and employee number
         public JsonResult GetEditSpouse(int fm_id, int e_id, string MaritalStatus)
         {
             var output = from f in db.Family_Info
@@ -354,53 +301,21 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        [System.Web.Mvc.HttpPost]
-        [ValidateAntiForgeryToken]
-        public JsonResult EditSpouseUpdate(int fm_id, int e_id)
-        {
-            Family_Info f = db.Family_Info
-                .Where(i => i.FamilyMember_id == fm_id)
-                .Where(i => i.Employee_id == e_id)
-                .SingleOrDefault();
-
-            db.Family_Info.Add(f);
-            db.SaveChanges();
-
-            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-        }
-
-        //----------------------------------------------------------------------------------------
-        // GET: api/Family_Info/5
-        //[System.Web.Http.Route("api/Family_Info/EditSpouse/{FamilyMember_id:int}")]
-        //[System.Web.Http.HttpGet]
-        //public ActionResult Edit(int? id)
-        //{        
-        //    Family_Info familyMember = db.Family_Infoes.Find(id);
-
-        //    return View(familyMember);
-        //}
-
-        // POST: api/Family_Info
-        //[System.Web.Http.Route("api/Family_Info/EditSpouse")]
-        //[System.Web.Http.HttpPost]
+        //[System.Web.Mvc.HttpPost]
         //[ValidateAntiForgeryToken]
-        //public ActionResult EditSpouse([Bind(Include = "User_id,CurrentEmployer,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
-        //    "Sex,MartialStatus")] Family_Info editSpouse)
+        //public JsonResult EditSpouseUpdate(int fm_id, int e_id)
         //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(editSpouse).State = System.Data.Entity.EntityState.Modified;
-        //        db.SaveChanges();
-        //    }
+        //    Family_Info f = db.Family_Info
+        //        .Where(i => i.FamilyMember_id == fm_id)
+        //        .Where(i => i.Employee_id == e_id)
+        //        .SingleOrDefault();
 
-        //    return View(editSpouse);
+        //    db.Family_Info.Add(f);
+        //    db.SaveChanges();
+
+        //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         //}
 
-        // GET: api/Family_Info
-        //public void Edit(int? id)
-        //{
-        //    Family_Info fMember = db.Family_Infoes.Find(id);
-        //}
         //----------------------------------------------------------------------------------------
 
         public ActionResult SpouseDetail(int? fm_id)
@@ -455,30 +370,22 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        [System.Web.Mvc.HttpPost]
-        [ValidateAntiForgeryToken]
-        public JsonResult SpouseDetailUpdate(int fm_id, int e_id)
-        {
-            Family_Info f = db.Family_Info
-                .Where(i => i.FamilyMember_id == fm_id)
-                .Where(i => i.Employee_id == e_id)
-                .SingleOrDefault();
-
-            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-
-        }
-
-        //----------------------------------------------------------------------------------------
-        //GET: api/Family_Info/5
-        //[System.Web.Http.Route("api/Family_Info/Detail/{FamilyMember_id:int}")]
-        //[System.Web.Http.HttpGet]
-        //public Family_Info Detail(int? id)
+        //[System.Web.Mvc.HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public JsonResult SpouseDetailUpdate(int fm_id, int e_id)
         //{
-        //    return family_info.Where(f => f.FamilyMember_id == id).FirstOrDefault();
+        //    Family_Info f = db.Family_Info
+        //        .Where(i => i.FamilyMember_id == fm_id)
+        //        .Where(i => i.Employee_id == e_id)
+        //        .SingleOrDefault();
+
+        //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
+
         //}
+
         //----------------------------------------------------------------------------------------
 
-        public ActionResult DeleteSpouse(int? fm_id)
+        public ActionResult DeleteSp(int? fm_id)
         {
             if (fm_id == null)
             {
@@ -492,9 +399,9 @@ namespace Watson.Controllers
             return View(family);
         }
 
-        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteSpouse")]
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteSp")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteSpouse(int fm_id, int e_id)
+        public ActionResult DeleteConfirmed(int fm_id, int e_id)
         {
             Family_Info f = db.Family_Info
                 .Where(i => i.FamilyMember_id == fm_id)
@@ -509,22 +416,6 @@ namespace Watson.Controllers
             return RedirectToAction("FamilyMemberOverview", new { f.Employee_id });
         }
 
-        //----------------------------------------------------------------------------------------        
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Family_Info family = db.Family_Info.Find(id);
-        //    if (family == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(family);
-        //}
-
-        //// POST: Family_Info/Delete/5
         //[System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("Delete")]
         //[ValidateAntiForgeryToken]
         //public ActionResult DeleteConfirmed(int id)
@@ -534,6 +425,7 @@ namespace Watson.Controllers
         //    db.SaveChanges();
         //    return RedirectToAction("FamilyMemberOverview");
         //}
+
         //----------------------------------------------------------------------------------------
 
         public ActionResult DependentEnrollment()
@@ -578,30 +470,13 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-        //GET: api/Family_Info/5
-        //public Family_Info DependentEnrollment(int id)
-        //{
-        //    return familyMember.Where(i => i.FamilyMember_id == id).FirstOrDefault();
-        //}
 
-        ////POST: api/Family_Info
-        //public void DependentEnrollment([Bind(Include = "")] Family_Info createDependent)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Family_Infoes.Add(createDependent);
-        //        db.SaveChanges();
-        //    }
-
-        //}
-        //----------------------------------------------------------------------------------------
-
-        public ActionResult EditDependent()
+        public ActionResult EditDep()
         {
             return View();
         }
 
-        public JsonResult GetDependent(int fm_id, int e_id, int oi_id)
+        public JsonResult DepEditUpdate(int fm_id, int e_id, int oi_id)
         {
             var output = from f in db.Family_Info
                          where f.FamilyMember_id == fm_id
@@ -623,22 +498,22 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult DependentEditUpdate(int fm_id, int e_id, int oi_id)
-        {
-            Family_Info f = db.Family_Info
-                .Where(i => i.FamilyMember_id == fm_id)
-                .Where(i => i.Employee_id == e_id)
-                .Where(i => i.OtherInsurance_id == oi_id)
-                .SingleOrDefault();
+        //public JsonResult DependentEditUpdate(int fm_id, int e_id, int oi_id)
+        //{
+        //    Family_Info f = db.Family_Info
+        //        .Where(i => i.FamilyMember_id == fm_id)
+        //        .Where(i => i.Employee_id == e_id)
+        //        .Where(i => i.OtherInsurance_id == oi_id)
+        //        .SingleOrDefault();
 
-            db.Family_Info.Add(f);
-            db.SaveChanges();
+        //    db.Family_Info.Add(f);
+        //    db.SaveChanges();
 
-            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
+        //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
 
-        }
+        //}
 
-        public ActionResult DependentDetail(int? fm_id)
+        public ActionResult DepDetail(int? fm_id)
         {
             if (fm_id == null)
             {
@@ -654,7 +529,7 @@ namespace Watson.Controllers
             return View(family);
         }
 
-        public JsonResult GetDependentDetail(int fm_id, int e_id, int oi_id)
+        public JsonResult GetDepDetail(int fm_id, int e_id, int oi_id)
         {
             var output = from f in db.Family_Info
                          where f.FamilyMember_id == fm_id
@@ -674,19 +549,19 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult DependentDetailUpdate(int fm_id, int e_id, int oi_id)
-        {
-            Family_Info f = db.Family_Info
-                .Where(i => i.FamilyMember_id == fm_id)
-                .Where(i => i.Employee_id == e_id)
-                .Where(i => i.OtherInsurance_id == oi_id)
-                .SingleOrDefault();
+        //public JsonResult DependentDetailUpdate(int fm_id, int e_id, int oi_id)
+        //{
+        //    Family_Info f = db.Family_Info
+        //        .Where(i => i.FamilyMember_id == fm_id)
+        //        .Where(i => i.Employee_id == e_id)
+        //        .Where(i => i.OtherInsurance_id == oi_id)
+        //        .SingleOrDefault();
 
-            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
+        //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
             
-        }
+        //}
 
-        public ActionResult DeleteDependent(int? fm_id)
+        public ActionResult DeleteDep(int? fm_id)
         {
             if (fm_id == null)
             {
@@ -700,7 +575,7 @@ namespace Watson.Controllers
             return View(family);
         }
 
-        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteDependent")]
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteDep")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int fm_id, int e_id)
         {

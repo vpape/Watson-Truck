@@ -18,12 +18,13 @@
         <div id="divEditEmp" class="content">
             <p></p>
             <p></p>
-            <div class="form-group" readonly>
+            <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
                 <div class="col-md-10">
                     <select name="EmployeeRole" class="form-control">
-                        <option id="ManagerRole" name="EmployeeRole" value="Manager">Manger</option>
-                        <option id="EmployeeRole" name="EmployeeRole" value="Employee">Employee</option>
+                        @*<option id="AdminRole" name="EmployeeRole" value="Admin" @((Model.EmployeeRole.ToLower() == "admin") ? "selected" : "")>Admin</option>*@
+                        <option id="ManagerRole" name="EmployeeRole" value="Manager" @((Model.EmployeeRole.ToLower() == "manager") ? "selected" : "")>Manger</option>
+                        <option id="EmployeeRole" name="EmployeeRole" value="Employee" @((Model.EmployeeRole.ToLower() == "employee") ? "selected" : "")>Employee</option>
                     </select>
                 </div>
             </div>
@@ -81,9 +82,9 @@
                 <div class="col-md-10">
                     <select name="MaritalStatus" class="form-control">
                         <option id="MarriedwDep" value="@(Model.MaritalStatus == "MarriedwDep" ? "selected" : "")">Married with Dependents</option>
-                        <option id="Married" value="@(Model.MaritalStatus == "Married" ? "selected" : "")">    Married</option>
-                        <option id="SinglewDep" value="@(Model.MaritalStatus == "SinglewDep" ? "selected" : "")"> Single with Dependents</option>
-                        <option id="Single" value="@(Model.MaritalStatus == "Single" ? "selected" : "")">     Single</option>
+                        <option id="Married"     value="@(Model.MaritalStatus == "Married"     ? "selected" : "")">Married</option>
+                        <option id="SinglewDep"  value="@(Model.MaritalStatus == "SinglewDep"  ? "selected" : "")">Single with Dependents</option>
+                        <option id="Single"      value="@(Model.MaritalStatus == "Single"      ? "selected" : "")">Single</option>
                     </select>
                 </div>
             </div>
@@ -164,7 +165,7 @@
         </div>
     </div>
     <p>
-        @Html.ActionLink("Back to Overview", "EmployeeOverview")
+        @Html.ActionLink("Back to List", "EmpOverview")
     </p>
 </body>
 </html>

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Employee Enrollment</title>
+    <title>Employee Detail</title>
 </head>
 <body>
     <div class="form-horizontal">
@@ -24,6 +24,12 @@
                 </dt>
                 <dd>
                     <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="">
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Employee Role:</label>
+                </dt>
+                <dd>
+                    <input type="text" id="EmployeeRole" class="form-control" name="EmployeeRole" value="">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Current Employer:</label>
@@ -125,7 +131,10 @@
             </dl>
         </div>
     </div>
-
+    <p>
+        @Html.ActionLink("Edit", "EditEmp", new { id = Model.User_id }) |
+        @Html.ActionLink("Back to List", "EmpOverview")
+    </p>
 </body>
 </html>
 
@@ -218,7 +227,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#EmployeeEnrollmentUpdate").addEventListener("click", function () {
+        //document.querySelector("#EmployeeEnrollmentUpdate").addEventListener("click", function () {
             CurrentEmployer = document.getElementById("CurrentEmployer").value;
             JobTitle = document.getElementById("JobTitle").value;
             EmployeeNumber = document.getElementById("SSN").value;
@@ -294,7 +303,7 @@
             var ret = postData('GetDetail', data)
                 .then(data => SecondStep(data.data))
                 .catch(error => console.error(error))
-        })
+        //})
     })
 
     function SecondStep(id) {

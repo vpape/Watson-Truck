@@ -254,70 +254,40 @@ namespace Watson.Controllers
             return View(e);
         }
 
-        public JsonResult GetDetail(int Employee_id)
+        public JsonResult GetDetail(int Employee_id, string CurrentEmployer, string JobTitle, string EmployeeNumber,
+            string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MaritalStatus,
+            string MailingAddress, string PhysicalAddress, string PObox, string City, string State,
+            string ZipCode, string County, bool CityLimits, string EmailAddress, string PhoneNumber, string CellPhone)
         {
-            var output = from e in db.Employees
-                          where e.Employee_id == Employee_id
-                         select new
-                          {
-                              e.Employee_id,
-                              e.CurrentEmployer,
-                              e.JobTitle,
-                              e.SSN,
-                              e.FirstName,
-                              e.LastName,
-                              e.DateOfBirth,
-                              e.Gender,
-                              e.MaritalStatus,
-                              e.MailingAddress,
-                              e.PhysicalAddress,
-                              e.PObox,
-                              e.City,
-                              e.State,
-                              e.ZipCode,
-                              e.County,
-                              e.CityLimits,
-                              e.EmailAddress,
-                              e.PhoneNumber,
-                              e.CellPhone,
-                          };
+            var e = db.Employees
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
 
-            return Json(new { data = output }, JsonRequestBehavior.AllowGet);    
+            e.CurrentEmployer = CurrentEmployer;
+            e.JobTitle = JobTitle;
+            e.SSN = EmployeeNumber;
+            e.FirstName = FirstName;
+            e.LastName = LastName;
+            e.DateOfBirth = DateOfBirth;
+            e.Gender = Gender;
+            e.MaritalStatus = MaritalStatus;
+            e.MailingAddress = MailingAddress;
+            e.PhysicalAddress = PhysicalAddress;
+            e.PObox = PObox;
+            e.City = City;
+            e.State = State;
+            e.ZipCode = ZipCode;
+            e.County = County;
+            e.CityLimits = CityLimits;
+            e.EmailAddress = EmailAddress;
+            e.PhoneNumber = PhoneNumber;
+            e.CellPhone = CellPhone;
+
+            int result = Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);    
         }
 
-        //public JsonResult DetailUpdate(int e_id)
-        //{
-        //    Employee e = db.Employees
-        //        .Where(i => i.Employee_id == e_id)
-        //        .FirstOrDefault();
-
-        //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-        //}
-
-        //----------------------------------------------------------------------------------------
-        //GET: api/Employee/5
-        //[System.Web.Http.Route("api/Employee/Insurance/{User_id:int}")]
-        //[System.Web.Http.HttpGet]
-        //public Employee Insurance(int? id)
-        //{
-        //    return employee.Where(e => e.User_id == id).FirstOrDefault();
-        //}
-
-        // POST: api/Employee
-        //[System.Web.Http.Route("api/Employee/Insurance")]
-        //[System.Web.Http.HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Insurance([Bind(Include = "User_id,CurrentEmployer,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
-        //    "Sex,MartialStatus")] Employee employee)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
-        //        db.SaveChanges();
-        //    }
-
-        //    return View(employee);
-        //}
         //----------------------------------------------------------------------------------------
 
         public ActionResult EmpInsurance()
@@ -325,7 +295,6 @@ namespace Watson.Controllers
             return View();
         }
 
-        //int grpH_id
         public ActionResult GrpHealthEnrollment()
         {
             //Employee emp = db.Employees.Find(e_id);
@@ -385,6 +354,7 @@ namespace Watson.Controllers
         //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         //}
         //----------------------------------------------------------------------------------------
+
         public ActionResult LifeInsEnrollment(int lifeIns_id)
         {
             //Employee emp = db.Employees.Find(e_id);
@@ -553,7 +523,7 @@ namespace Watson.Controllers
 
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteEmp")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteEmp(int Employee_id)
+        public ActionResult DeleteConfirmed(int Employee_id)
         {
             Employee employee = db.Employees.Find(Employee_id);
             db.Employees.Remove(employee);
