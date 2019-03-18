@@ -14,7 +14,7 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible">Dependent Enrollment</div>
+        <div class="collapsible" id="FirstStep">Dependent Enrollment</div>
         <div class="content" id="dependentSelectForm">
             <p></p>
             <p></p>
@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
                 <div class="col-md-10">
-                    <select id="RelationToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                    <select id="RelationToInsured" name="RelationshipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control" disabled>
                         @if (ViewBag.spouseExist == false)
                         {
                             <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
@@ -111,15 +111,11 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" onclick="DependentEnrollmentUpdate()" id="submit" value="Save" class="btn" />
+                    <button type="submit" id="DepEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
                     <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
                 </div>
             </div>     
         </div>
-    </div>
-    <div>
-        <button id="SpouseContact" @*onclick="return SpouseContact()"*@ class="btn">Previous</button> |
-        <button id="EmployeeOverview" @*onclick="return EmployeeOverview()"*@ class="btn">Return to Employee Overview</button>
     </div>
 </body>
 </html>
@@ -209,7 +205,6 @@
             } else {
                 content.style.display = "block";
             }
-
         });
     }
 </script>
@@ -265,7 +260,7 @@
                 //create the break tag to make a new line.  have to add an id so we know which one to remove when they click the X
                 var newBR = document.createElement("br");
                 newBR.id = "br" + newID;
-                with (document.getElementById('submit').style) {
+                with (document.getElementById('DepEnrollmentUpdate').style) {
                     top = (cnt * 25) + 80 + "px";
                 }
                 with (document.getElementById('adddep').style) {
@@ -286,7 +281,7 @@
             removeElement("dob" + elementIdNumber);
             removeElement("x" + elementIdNumber);
             removeElement("br" + elementIdNumber);
-            with (document.getElementById('submit').style) {
+            with (document.getElementById('DepEnrollmentUpdate').style) {
                 top = (cnt * 25) + 80 + "px";
             }
             with (document.getElementById('adddep').style) {
@@ -304,7 +299,7 @@
         <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
         <br id="br1" />
 
-        <input type="submit" value="Submit" id="submit" style="position:absolute;top:80px;" />
+        <input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
         <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">
     </form>
 </body>
@@ -338,10 +333,10 @@
     //    }
     //}
 
-    function CoveredByOtherIns() {
-        var div = document.getElementById("divCoveredByOther")
-        div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
-    }
+    //function CoveredByOtherIns() {
+    //    var div = document.getElementById("divCoveredByOther").checked
+    //    div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
+    //}
 
     function CoveredByOtherIns() {
         var div = document.getElementById("depOtherIns")
@@ -358,59 +353,87 @@
 </script>
 
 <script>
-    function GetDependentEnrollment() {
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#DepEnrollmentUpdate").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
+            FamilyMember_id = document.getElementById("FamilyMember_id").value;
+            OtherInsurance_id = document.getElementById("OtherInsurance_id").value;
+            RelationshipToInsured = document.getElementByName("RelationshipToInsured").value
+            EmpNumber = document.getElementById("EmpNumber").value
+            EmpFirstName = document.getElementById("EmpFirstName").value
+            EmpLastName = document.getElementById("EmpLastName").value
+            DepFirstName = document.getElementById("DepFirstName").value
+            DepLastName = document.getElementById("DepLastName").value
+            DateOfBirth = document.getElementById("DateOfBirth").value
 
-        fm_id = document.getElementById("fm_id").value
-        e_id = document.getElementById("e_id").value
-        o_id = document.getElementById("o_id").value
-        RelationshipToInsured = document.getElementByName("RelationshipToInsured").value
-        EmpNumber = document.getElementById("EmpNumber").value
-        //EmpFirstName = document.getElementById("EmpFirstName").value
-        //EmpLastName = document.getElementById("EmpLastName").value
+            Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
+                if (e.checked) {
+                    Gender = e.value;
+                }
+            });
+        
+            CoveredByOtherIns = document.querySelectorAll('input [name = "CoveredByOtherIns"]').forEach(function (e, i) {
+                if (e.checked) {
+                    CoveredByOtherIns = e.value;
+                }
+            });
 
-        DepFirstName = document.getElementById("DepFirstName").value
-        DepLastName = document.getElementById("DepLastName").value
-        DateOfBirth = document.getElementById("DateOfBirth").value
-        Gender = document.getElementsByName("Gender").value
+            InsCompany = document.getElementById("InsCompany").value
+            PolicyNumber = document.getElementById("PolicyNumber").value
+            InsPhoneNumber = document.getElementById("InsPhoneNumber").value
+            InsMailingAddress = document.getElementById("InsMailingAddress").value
+            InsCity = document.getElementById("InsCity").value
+            InsState = document.getElementById("InsState").value
+            InsZipCode = document.getElementById("InsZipCode").value
 
-        CoveredByOtherIns = document.getElementByName("CoveredByOtherIns").value
-        InsCompany = document.getElementById("InsCompany").value
-        PolicyNumber = document.getElementById("PolicyNumber").value
-        InsPhoneNumber = document.getElementById("InsPhoneNumber").value
-        InsMailingAddress = document.getElementById("InsMailingAddress").value
-        InsCity = document.getElementById("InsCity").value
-        InsState = document.getElementById("InsState").value
-        InsZipCode = document.getElementById("InsZipCode").value
+            var data = {
+                "Employee_id": Employee_id,
+                "FamilyMember_id": FamilyMember_id,
+                "OtherInsurance_id": OtherInsurance_id,
+                "RelationshipToInsured": RelationshipToInsured,
+                "EmpNumber": EmployeeNumber,
+                "EmpFirstName": EmployeeFirstName,
+                "EmpLastName": EmployeeLastName,
+                "DepFirstName": DepFirstName,
+                "DepLastName": DepLastName,
+                "DateOfBirth": DateOfBirth,
+                "Gender": Gender,
 
-        var data = {
-
-            "fm_id": fm_id,
-            "e_id": e_id,
-            "o_id": o_id,
-            "RelationshipToInsured": RelationshipToInsured,
-            "EmpNumber": EmployeeNumber,
-            "EmpFirstName": EmployeeFirstName,
-            "EmpLastName": EmployeeLastName,
-            "DepFirstName": DepFirstName,
-            "DepLastName": DepLastName,
-            "DateOfBirth": DateOfBirth,
-            "Gender": Gender,
-            "CoveredByOtherIns": CoveredByOtherIns,
-            "InsCompany": InsCompany,
-            "PolicyNumber": PolicyNumber,
-            "InsMailingAddress": InsMailingAddress,
-            "InsCity": InsCity,
-            "InsState": InsState,
-            "InsZipCode": InsZipCode,
-        }
+                "CoveredByOtherIns": CoveredByOtherIns,
+                "InsCompany": InsCompany,
+                "PolicyNumber": PolicyNumber,
+                "InsMailingAddress": InsMailingAddress,
+                "InsCity": InsCity,
+                "InsState": InsState,
+                "InsZipCode": InsZipCode,
+            }
+        })
 
         var ret = postData('Family_Info/DependentEnrollment', data)
-            .then(data => DependentEnrollmentUpdate(data))
+            .then(data => SecondStep(data.data))
             .catch(error => console.error(error))
+    })
 
-        ret();
+    function SecondStep(id) {
+        document.querySelector("#Employee_id").value = id;
+        document.querySelector("#FirstStep").nextElementSibling.content.style.display = "none";
+        document.querySelector("#MailingAddress").value = id;
+        document.querySelector("#PObox").value = id;
+        document.querySelector("#City").value = id;
+        document.querySelector("#State").value = id;
+        document.querySelector("#ZipCode").value = id;
+        document.querySelector("#County").value = id;
+        document.querySelector("#PhysicalAddress").value = id;
+        document.querySelector("#PObox2").value = id;
+        document.querySelector("#City2").value = id;
+        document.querySelector("#State2").value = id;
+        document.querySelector("#ZipCode2").value = id;
+        document.querySelector("#County2").value = id;
     }
 
+    function ThirdStep(id) {
+
+    }
 
     function postData(url, data) {
         //Default options are marked with *
