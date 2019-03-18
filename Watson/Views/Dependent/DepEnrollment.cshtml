@@ -43,20 +43,20 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmployeeNumber" class="form-control" name="SSN" value="" disabled />
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="" disabled />
                 </div>
             </div>
             <br/>
             <div class="form-group">
-                <label for="FirstName" class="col-md-2 control-label">First Name:</label>
+                <label for="DepFirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                    <input type="text" id="DepFirstName" class="form-control" name="FirstName" value="" />
                 </div>
             </div>
             <div class="form-group">
-                <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                <label for="DepLastName" class="col-md-2 control-label">Last Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                    <input type="text" id="DepLastName" class="form-control" name="LastName" value="" />
                 </div>
             </div>
             <div class="form-group">
@@ -364,12 +364,12 @@
         e_id = document.getElementById("e_id").value
         o_id = document.getElementById("o_id").value
         RelationshipToInsured = document.getElementByName("RelationshipToInsured").value
-        EmployeeNumber = document.getElementById("EmployeeNumber").value
-        EmployeeFirstName = document.getElementById("EmployeeFirstName").value
-        EmployeeLastName = document.getElementById("EmployeeLastName").value
+        EmpNumber = document.getElementById("EmpNumber").value
+        //EmpFirstName = document.getElementById("EmpFirstName").value
+        //EmpLastName = document.getElementById("EmpLastName").value
 
-        FirstName = document.getElementById("FirstName").value
-        LastName = document.getElementById("LastName").value
+        DepFirstName = document.getElementById("DepFirstName").value
+        DepLastName = document.getElementById("DepLastName").value
         DateOfBirth = document.getElementById("DateOfBirth").value
         Gender = document.getElementsByName("Gender").value
 
@@ -388,11 +388,11 @@
             "e_id": e_id,
             "o_id": o_id,
             "RelationshipToInsured": RelationshipToInsured,
-            "EmployeeNumber": EmployeeNumber,
-            "EmployeeFirstName": EmployeeFirstName,
-            "EmployeeLastName": EmployeeLastName,
-            "FirstName": FirstName,
-            "LastName": LastName,
+            "EmpNumber": EmployeeNumber,
+            "EmpFirstName": EmployeeFirstName,
+            "EmpLastName": EmployeeLastName,
+            "DepFirstName": DepFirstName,
+            "DepLastName": DepLastName,
             "DateOfBirth": DateOfBirth,
             "Gender": Gender,
             "CoveredByOtherIns": CoveredByOtherIns,
@@ -404,7 +404,7 @@
             "InsZipCode": InsZipCode,
         }
 
-        var ret = postData('/Family_Info/DependentEnrollment', data)
+        var ret = postData('Family_Info/DependentEnrollment', data)
             .then(data => DependentEnrollmentUpdate(data))
             .catch(error => console.error(error))
 

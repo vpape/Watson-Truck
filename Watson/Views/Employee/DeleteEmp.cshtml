@@ -211,6 +211,11 @@
 </style>
 
 <script>
+
+    //add confirmDelte function and a prompt to asking
+    //if you are sure you want to delete this
+
+
     var col = document.querySelectorAll(".collapsible");
     var i;
 
@@ -301,7 +306,9 @@
                 "CellPhone": CellPhone,
             }
 
-            //Look up delete confirm 
+            
+
+
             var ret = postData('DeleteConfirmed', data)
                 .then(data => DeleteConfirmed(data.data))
                 .catch(error => console.error(error))
