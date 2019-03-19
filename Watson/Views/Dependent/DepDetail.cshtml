@@ -254,7 +254,13 @@
                 }
             })
 
-            CoveredByOtherIns = document.getElementByName("CoveredByOtherIns").value;
+            CoveredByOtherIns = document.querySelectorAll('input [name = "CoveredByOtherInsurance"]').forEach(function (e, i) {
+                if (e.checked) {
+                    CoveredByOtherIns = e.value;
+                }
+            })
+
+            //CoveredByOtherIns = document.getElementByName("CoveredByOtherIns").value;
             InsCompany = document.getElementById("InsCompany").value;
             PolicyNumber = document.getElementById("PolicyNumber").value;
             InsPhoneNumber = document.getElementById("InsPhoneNumber").value;
@@ -276,9 +282,11 @@
             "DepLastName": DepLastName,
             "DateOfBirth": DateOfBirth,
             "Gender": Gender,
-            "CoveredByOtherIns": CoveredByOtherIns,
+
+            "CoveredByOtherInsurance": CoveredByOtherIns,
             "InsCompany": InsCompany,
             "PolicyNumber": PolicyNumber,
+            "InsPhoneNumber": InsPhoneNumber
             "InsMailingAddress": InsMailingAddress,
             "InsCity": InsCity,
             "InsState": InsState,
@@ -296,7 +304,22 @@
         document.querySelector("#FamilyMember_id").value = id;
         document.querySelector("#OtherInsurance_id").value = id;
         document.querySelector("#dependentSelectForm").nextElementSibling.content.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.content.style.display = "block";
+        //document.querySelector("#SecondStep").nextElementSibling.content.style.display = "block";
+        document.querySelector("#EmpNumber").value = id;
+        document.querySelector("#EmpFirstName").value = id;
+        document.querySelector("#EmpLastName").value = id;
+        document.querySelector("#DepLastName").value = id;
+        document.querySelector("#DateOfBirth").value = id;
+        document.querySelector("#Gender").value = id;
+
+        document.querySelector("#CoveredByOtherIns").value = id;
+        document.querySelector("#InsCompany").value = id;
+        document.querySelector("#PolicyNumber").value = id;
+        document.querySelector("InsPhoneNumber").value = id;
+        document.querySelector("#InsMailingAddress").value = id;
+        document.querySelector("#InsCity").value = id;
+        document.querySelector("#InsState").value = id;
+        document.querySelector("#InsZipCode").value = id;
     }
 
     function ThirdStep(id) {

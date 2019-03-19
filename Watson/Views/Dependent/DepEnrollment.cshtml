@@ -75,38 +75,51 @@
             <h2>Insurance Information</h2>
             <div class="form-group" id="depOtherIns">
                 <label>Is your dependent covered by other insurance, including Medicare/Medicaid? If so, we need the following information:</label>
-                <div class="form-group">
+                <div class="form-group" id="CoveredByOtherIns">
                     @foreach (var item in Model.Other_Insurance)
                     {
-                        <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" />Yes</label>
-                        <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" checked />No</label>
+                        <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" @*onclick="return CoveredByOtherIns()"*@ name="CoveredByOtherInsurance" value="Yes" />Yes</label>
+                        <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" @*onclick="return CoveredByOtherIns()"*@ name="CoveredByOtherInsurance" value="No" checked />No</label>
                     }
                 </div>
             </div>
             <div class="form-group" id="divCoveredByOtherIns">
                 @foreach (var item in Model.Other_Insurance)
                 {
-                    <div class="form-group">
-                        <label for="InsCompany">Insurance Company:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="" />
-                        </div>
-                        <label for="PolicyNumber">Policy Number:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="" />
-                        </div>
-                        <label for="InsPhoneNumber">Phone Number:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="" />
-                        </div>
-                        <label for="InsMailingAddress">Mailing Address:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="InsMailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
-                            <input type="text" id="InsCity" class="form-control" name="City" placeholder="City" value="" />
-                            <input type="text" id="InsState" class="form-control" name="State" placeholder="State" value="" />
-                            <input type="text" id="InsZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="" />
+                <div class="form-group">
+                    <label for="InsCompany">Insurance Company:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="" />
+                    </div>
+                    <label for="PolicyNumber">Policy Number:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="" />
+                    </div>
+                    <label for="InsPhoneNumber">Phone Number:</label>
+                    <div class="col-xs-4">
+                        <div class="form-group phone-number">
+                            <div class="col-xs-3">
+                                <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4" value="" />
+                            </div>
                         </div>
                     </div>
+                    @*<div class="col-md-10">
+                        <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="" />
+                    </div>*@
+                    <label for="InsMailingAddress">Mailing Address:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="InsMailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
+                        <input type="text" id="InsCity" class="form-control" name="City" placeholder="City" value="" />
+                        <input type="text" id="InsState" class="form-control" name="State" placeholder="State" value="" />
+                        <input type="text" id="InsZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="" />
+                    </div>
+                </div>
                 }
             </div>
             <div class="form-group">
@@ -360,8 +373,8 @@
             OtherInsurance_id = document.getElementById("OtherInsurance_id").value;
             RelationshipToInsured = document.getElementByName("RelationshipToInsured").value
             EmpNumber = document.getElementById("EmpNumber").value
-            EmpFirstName = document.getElementById("EmpFirstName").value
-            EmpLastName = document.getElementById("EmpLastName").value
+            //EmpFirstName = document.getElementById("EmpFirstName").value
+            //EmpLastName = document.getElementById("EmpLastName").value
             DepFirstName = document.getElementById("DepFirstName").value
             DepLastName = document.getElementById("DepLastName").value
             DateOfBirth = document.getElementById("DateOfBirth").value
@@ -392,8 +405,8 @@
                 "OtherInsurance_id": OtherInsurance_id,
                 "RelationshipToInsured": RelationshipToInsured,
                 "EmpNumber": EmployeeNumber,
-                "EmpFirstName": EmployeeFirstName,
-                "EmpLastName": EmployeeLastName,
+                //"EmpFirstName": EmployeeFirstName,
+                //"EmpLastName": EmployeeLastName,
                 "DepFirstName": DepFirstName,
                 "DepLastName": DepLastName,
                 "DateOfBirth": DateOfBirth,
@@ -409,26 +422,29 @@
             }
         })
 
-        var ret = postData('Family_Info/DependentEnrollment', data)
+        var ret = postData('Family_Info/DepEnrollment', data)
             .then(data => SecondStep(data.data))
             .catch(error => console.error(error))
     })
 
     function SecondStep(id) {
         document.querySelector("#Employee_id").value = id;
+        document.querySelector("#FamilyMember_id").value = id;
+        document.querySelector("#OtherInsurance_id").value = id;
         document.querySelector("#FirstStep").nextElementSibling.content.style.display = "none";
-        document.querySelector("#MailingAddress").value = id;
-        document.querySelector("#PObox").value = id;
-        document.querySelector("#City").value = id;
-        document.querySelector("#State").value = id;
-        document.querySelector("#ZipCode").value = id;
-        document.querySelector("#County").value = id;
-        document.querySelector("#PhysicalAddress").value = id;
-        document.querySelector("#PObox2").value = id;
-        document.querySelector("#City2").value = id;
-        document.querySelector("#State2").value = id;
-        document.querySelector("#ZipCode2").value = id;
-        document.querySelector("#County2").value = id;
+        document.querySelector("#EmpNumber").value = id;
+        document.querySelector("#DepFirstName").value = id;
+        document.querySelector("#DepLastName").value = id;
+        document.querySelector("#DateOfBirth").value = id;
+        document.querySelector("#Gender").value = id;
+
+        document.querySelector("#CoveredByOtherIns").value = id;
+        document.querySelector("#InsCompany").value = id;
+        document.querySelector("#PolicyNumber").value = id;
+        document.querySelector("#InsMailingAddress").value = id;
+        document.querySelector("#InsCity").value = id;
+        document.querySelector("#InsState").value = id;
+        document.querySelector("#InsZipCode").value = id;
     }
 
     function ThirdStep(id) {
