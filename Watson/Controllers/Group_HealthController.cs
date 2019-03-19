@@ -96,40 +96,6 @@ namespace Watson.Controllers
 
         //}
         //----------------------------------------------------------------------------------------
-        // GET: api/Employee
-        //[System.Web.Http.Route("api/Group_Health/GroupHealthEnrollment")]
-        //[System.Web.Http.HttpGet]
-        //public List<Group_Health> GroupHealthEnrollment()
-        //{
-        //    return groupHealth;
-        //}
-
-        //GET: api/Employee/5
-        //[System.Web.Http.Route("api/Group_Health/GroupHealthEnrollment/{User_id:int}")]
-        //[System.Web.Http.HttpGet]
-        //public Group_Health GroupHealthEnrollment(int id)
-        //{
-        //    return groupHealth.Where(i => i.User_id == id).FirstOrDefault();
-        //}
-
-
-        // POST: api/Employee
-        //[System.Web.Http.Route("api/Group_Health/GroupHealthEnrollment")]
-        //[System.Web.Http.HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult GroupHealthEnrollment([Bind(Include = "User_id,CurrentEmployer,JobTitle,SSN,FirstName,LastName,DateOfBirth," +
-        //    "Sex,MartialStatus")] Group_Health groupHealth)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Group_Health.Add(groupHealth);
-        //        db.SaveChanges();
-        //    }
-
-        //    return View(groupHealth);
-        //}
-        //----------------------------------------------------------------------------------------
-
 
         public ActionResult EditGroupHealth(int? id)
         {
@@ -199,32 +165,6 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-        // GET: api/Employee/5
-        //[System.Web.Http.Route("api/Employee/EditGroupHealth/{User_id:int}")]
-        //[System.Web.Http.HttpGet]
-        //public ActionResult EditGroupHealth(int? id)
-        //{        
-        //    Employee employee = db.Employees.Find(id);
-
-        //    return View(employee);
-        //}
-
-        // POST: api/Employee
-        //[System.Web.Http.Route("api/Employee/EditGroupHealth")]
-        //[System.Web.Http.HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult EditGroupHealth([Bind(Include = "User_id,CurrentEmployer,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
-        //    "Sex,MartialStatus")] Employee employee)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
-        //        db.SaveChanges();
-        //    }
-
-        //    return View(employee);
-        //}
-        //----------------------------------------------------------------------------------------
 
         public ActionResult GroupHealthDetail(int? id)
         {
@@ -239,12 +179,6 @@ namespace Watson.Controllers
             }
             return View(groupHealth);
         }
-
-
-
-
-
-
 
         public ActionResult HealthInsurancePremiums(int id)
         {
@@ -278,8 +212,6 @@ namespace Watson.Controllers
 
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
-
-
 
         //Not sure whether i use db.InsPremium, db.InsPlan, db.InsPlanDetails or all three??
         public ActionResult HealthInsuranceSupplement(int id)

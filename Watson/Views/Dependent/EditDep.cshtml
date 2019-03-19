@@ -405,7 +405,7 @@
                 "Employee_id": Employee_id,
                 "FamilyMember_id": FamilyMember_id,
                 "OtherInsurance_id": OtherInsurance_id,
-                "EmpNumber": EmployeeNumber,
+                "EmpNumber": EmpNumber,
                 //"EmpFirstName": EmployeeFirstName,
                 //"EmpLastName": EmployeeLastName,
                 "RelationshipToInsured": RelationshipToInsured,
@@ -422,11 +422,11 @@
                 "InsState": InsState,
                 "InsZipCode": InsZipCode,
             }
-        })
 
-        var ret = postData('Family_Info/DepEditUpdate', data)
-            .then(data => SecondStep(data.data))
-            .catch(error => console.error(error))
+            var ret = postData('Family_Info/DepEditUpdate', data)
+                .then(data => SecondStep(data.data))
+                .catch(error => console.error(error))
+        })
     })
 
     function SecondStep(id) {
@@ -440,7 +440,7 @@
         document.querySelector("#DepLastName").value = id;
         document.querySelector("#DateOfBirth").value = id;
         document.querySelector("#Gender").value = id;
-        
+
         document.querySelector("#CoveredByOtherIns").value = id;
         document.querySelector("#InsCompany").value = id;
         document.querySelector("#PolicyNumber").value = id;

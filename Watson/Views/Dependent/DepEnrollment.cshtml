@@ -420,11 +420,11 @@
                 "InsState": InsState,
                 "InsZipCode": InsZipCode,
             }
-        })
 
-        var ret = postData('Family_Info/DepEnrollment', data)
-            .then(data => SecondStep(data.data))
-            .catch(error => console.error(error))
+            var ret = postData('Family_Info/DepEnrollmentNew', data)
+                .then(data => SecondStep(data.data))
+                .catch(error => console.error(error))
+        })
     })
 
     function SecondStep(id) {
