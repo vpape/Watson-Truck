@@ -330,7 +330,6 @@
             });
 
             var data = {
-                "ManagerRole": ManagerRole,
                 "EmployeeRole": EmployeeRole,
                 "CurrentEmployer": CurrentEmployer,
                 "JobTitle": JobTitle,
@@ -390,7 +389,7 @@
                 "CellPhone": CellPhone,
             }
 
-            var ret = postData('EmployeeEnrollmentContact', data)
+            var ret = postData('EmpEnrollmentContact', data)
                 .then(data => SecondStep(data.data))
                 .catch(error => console.error(error))
         })
@@ -400,7 +399,6 @@
         document.querySelector("#Employee_id").value = id;
         document.querySelector("#FirstStep").nextElementSibling.content.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.content.style.display = "block";
-
         document.querySelector("#MailingAddress").value = id;
         document.querySelector("#PObox").value = id;
         document.querySelector("#City").value = id;

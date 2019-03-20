@@ -37,7 +37,19 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee ID:</label>
                 <div class="col-md-10">
-                    <input type="text"  id="Employee_id" class="form-control" name="Employee_id" value="" disabled/>
+                    <input type="text" id="Employee_id" class="form-control" name="Employee_id" value="" disabled />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Family ID:</label>
+                <div class="col-md-10">
+                    <input type="text" id="Family_id" class="form-control" name="Family_id" value="" disabled />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Other Ins ID:</label>
+                <div class="col-md-10">
+                    <input type="text" id="Other_Insurance_id" class="form-control" name="Other_Insurance_id" value="" disabled />
                 </div>
             </div>
             <div class="form-group">
@@ -46,7 +58,7 @@
                     <input type="text" id="EmpNumber" class="form-control" name="SSN" value="" disabled />
                 </div>
             </div>
-            <br/>
+            <br />
             <div class="form-group">
                 <label for="DepFirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
@@ -86,40 +98,40 @@
             <div class="form-group" id="divCoveredByOtherIns">
                 @foreach (var item in Model.Other_Insurance)
                 {
-                <div class="form-group">
-                    <label for="InsCompany">Insurance Company:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="" />
-                    </div>
-                    <label for="PolicyNumber">Policy Number:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="" />
-                    </div>
-                    <label for="InsPhoneNumber">Phone Number:</label>
-                    <div class="col-xs-4">
-                        <div class="form-group phone-number">
-                            <div class="col-xs-3">
-                                <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
-                            </div>
-                            <div class="col-xs-3">
-                                <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
-                            </div>
-                            <div class="col-xs-4">
-                                <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4" value="" />
+                    <div class="form-group">
+                        <label for="InsCompany">Insurance Company:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="" />
+                        </div>
+                        <label for="PolicyNumber">Policy Number:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="" />
+                        </div>
+                        <label for="InsPhoneNumber">Phone Number:</label>
+                        <div class="col-xs-4">
+                            <div class="form-group phone-number">
+                                <div class="col-xs-3">
+                                    <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
+                                </div>
+                                <div class="col-xs-3">
+                                    <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4" value="" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @*<div class="col-md-10">
+                        @*<div class="col-md-10">
                         <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="" />
                     </div>*@
-                    <label for="InsMailingAddress">Mailing Address:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="InsMailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
-                        <input type="text" id="InsCity" class="form-control" name="City" placeholder="City" value="" />
-                        <input type="text" id="InsState" class="form-control" name="State" placeholder="State" value="" />
-                        <input type="text" id="InsZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="" />
+                        <label for="InsMailingAddress">Mailing Address:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="InsMailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
+                            <input type="text" id="InsCity" class="form-control" name="City" placeholder="City" value="" />
+                            <input type="text" id="InsState" class="form-control" name="State" placeholder="State" value="" />
+                            <input type="text" id="InsZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="" />
+                        </div>
                     </div>
-                </div>
                 }
             </div>
             <div class="form-group">
@@ -127,7 +139,7 @@
                     <button type="submit" id="DepEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
                     <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
                 </div>
-            </div>     
+            </div>
         </div>
     </div>
 </body>
@@ -411,7 +423,6 @@
                 "DepLastName": DepLastName,
                 "DateOfBirth": DateOfBirth,
                 "Gender": Gender,
-
                 "CoveredByOtherIns": CoveredByOtherIns,
                 "InsCompany": InsCompany,
                 "PolicyNumber": PolicyNumber,
@@ -437,7 +448,6 @@
         document.querySelector("#DepLastName").value = id;
         document.querySelector("#DateOfBirth").value = id;
         document.querySelector("#Gender").value = id;
-
         document.querySelector("#CoveredByOtherIns").value = id;
         document.querySelector("#InsCompany").value = id;
         document.querySelector("#PolicyNumber").value = id;

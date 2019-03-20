@@ -299,7 +299,7 @@
                 "CellPhone": CellPhone,
             }
 
-            var ret = postData('GetDetail', data)
+            var ret = postData('GetEmpDetail', data)
                 .then(data => SecondStep(data.data))
                 .catch(error => console.error(error))
         //})

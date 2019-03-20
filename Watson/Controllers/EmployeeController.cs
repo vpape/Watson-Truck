@@ -134,21 +134,27 @@ namespace Watson.Controllers
         }
 
         // changed EmployeeEnrollmentAddress(int Employee_id, string MailingAddress, string City) to:
-        public JsonResult EmpEnrollmentContact(int Employee_id, string MailingAddress, string PhysicalAddress, 
-            string PObox, string City, string State, string ZipCode, string County, bool CityLimits, string EmailAddress,
-            string PhoneNumber, string CellPhone)
+        public JsonResult EmpEnrollmentContact(int Employee_id, string MailingAddress, string PObox, string City,
+            string State, string ZipCode, string County, string PhysicalAddress, string PObox2, string City2,
+            string State2, string ZipCode2, string County2, bool CityLimits, string EmailAddress, string PhoneNumber,
+            string CellPhone)
         {
             var e = db.Employees
                     .Where(i => i.Employee_id == Employee_id)
                     .Single();
                                 
             e.MailingAddress = MailingAddress;
-            e.PhysicalAddress = PhysicalAddress;
             e.PObox = PObox;
             e.City = City;
             e.State = State;
             e.ZipCode = ZipCode;
             e.County = County;
+            e.PhysicalAddress = PhysicalAddress;
+            e.PObox = PObox2;
+            e.City = City2;
+            e.State = State2;
+            e.ZipCode = ZipCode2;
+            e.County = County2;
             e.CityLimits = CityLimits;
             e.EmailAddress = EmailAddress;
             e.PhoneNumber = PhoneNumber;
@@ -197,8 +203,9 @@ namespace Watson.Controllers
 
         public JsonResult EmployeeEditUpdate(int Employee_id, string CurrentEmployer, string JobTitle, string EmployeeNumber,
             string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MaritalStatus, 
-            string MailingAddress, string PhysicalAddress, string PObox, string City, string State, string ZipCode, 
-            string County, bool CityLimits, string EmailAddress, string PhoneNumber, string CellPhone)
+            string MailingAddress, string PObox, string City, string State, string ZipCode, string County,
+            string PhysicalAddress, string PObox2, string City2, string State2, string ZipCode2, 
+            string County2, bool CityLimits, string EmailAddress, string PhoneNumber, string CellPhone)
         {
             var e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)
@@ -214,12 +221,17 @@ namespace Watson.Controllers
             e.Gender = Gender;
             e.MaritalStatus = MaritalStatus;
             e.MailingAddress = MailingAddress;
-            e.PhysicalAddress = PhysicalAddress;
             e.PObox = PObox;
             e.City = City;
             e.State = State;
             e.ZipCode = ZipCode;
             e.County = County;
+            e.PhysicalAddress = PhysicalAddress;
+            e.PObox = PObox2;
+            e.City = City2;
+            e.State = State2;
+            e.ZipCode = ZipCode2;
+            e.County = County2;
             e.CityLimits = CityLimits;
             e.EmailAddress = EmailAddress;
             e.PhoneNumber = PhoneNumber;
@@ -254,10 +266,11 @@ namespace Watson.Controllers
             return View(e);
         }
 
-        public JsonResult GetDetail(int Employee_id, string CurrentEmployer, string JobTitle, string EmployeeNumber,
+        public JsonResult GetEmpDetail(int Employee_id, string CurrentEmployer, string JobTitle, string EmployeeNumber,
             string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MaritalStatus,
-            string MailingAddress, string PhysicalAddress, string PObox, string City, string State,
-            string ZipCode, string County, bool CityLimits, string EmailAddress, string PhoneNumber, string CellPhone)
+            string MailingAddress, string PObox, string City, string State, string ZipCode, string County,
+            string PhysicalAddress, string PObox2, string City2, string State2, string ZipCode2, 
+            string County2, bool CityLimits, string EmailAddress, string PhoneNumber, string CellPhone)
         {
             var e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)
@@ -272,12 +285,17 @@ namespace Watson.Controllers
             e.Gender = Gender;
             e.MaritalStatus = MaritalStatus;
             e.MailingAddress = MailingAddress;
-            e.PhysicalAddress = PhysicalAddress;
             e.PObox = PObox;
             e.City = City;
             e.State = State;
             e.ZipCode = ZipCode;
             e.County = County;
+            e.PhysicalAddress = PhysicalAddress;
+            e.PObox = PObox2;
+            e.City = City2;
+            e.State = State2;
+            e.ZipCode = ZipCode2;
+            e.County = County2;
             e.CityLimits = CityLimits;
             e.EmailAddress = EmailAddress;
             e.PhoneNumber = PhoneNumber;
