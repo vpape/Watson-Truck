@@ -1,7 +1,227 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "SpEmployment";
 }
+<!DOCTYPE html>
 
-<h2>SpEmployment</h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Spouse Employment</title>
+</head>
+<body>
+    <div class="form-horizontal">
+        <hr />
+        <div class="collapsible" id="ThirdStep">Spouse Employment</div>
+        <div class="content" id="divSpouseEmployment">
+            <p></p>
+            <p></p>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Employee ID:</label>
+                <div class="col-md-10">
+                    <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">FamilyMember ID:</label>
+                <div class="col-md-10">
+                    <input type="number" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
+                <div class="col-md-10">
+                    <input type="text" id="CurrentEmployer" class="form-control" name="Employer" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="EmployerAddress" class="col-md-2 control-label">Employer Address:</label>
+                <div class="col-md-10">
+                    <input type="text" id="EmployerAddress" class="form-control" name="EmployerMailingAddress" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="EmployerCity" class="col-md-2 control-label">City:</label>
+                <div class="col-md-10">
+                    <input type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="EmployerState" class="col-md-2 control-label">State:</label>
+                <div class="col-md-10">
+                    <input type="text" id="EmployerState" class="form-control" name="EmployerState" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="EmployerZipCode" class="col-md-2 control-label">Zip Code:</label>
+                <div class="col-md-10">
+                    <input type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="EmployerPhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                <div class="col-md-10">
+                    <input type="text" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" value="" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="SpEmploymentUpdateStepThree" type="submit" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
+    </p>
+</body>
+</html>
+
+<style>
+    .collapsible {
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .previous {
+        background-color: #333;
+        color: white;
+    }
+
+    .btn {
+        background-color: #333;
+        color: white;
+    }
+
+    .button {
+        text-align: right;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+    .phone-number .col-xs-3::after {
+        content: "-";
+        position: absolute;
+        right: 5px;
+        color: black;
+        border: 0px solid;
+        top: 8px;
+    }
+
+    .phone-number .col-xs-4 {
+        width: 25%;
+    }
+
+    .phone-number .col-xs-3, .phone-number .col-xs-4 {
+        padding-left: 0;
+    }
+</style>
+
+<script>
+    var col = document.querySelectorAll(".collapsible");
+    var i;
+
+    for (i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#SpEmploymentUpdateStepThree").addEventListener("click", function () {
+            CurrentEmployer = document.getElementById("Employer").value;
+            EmployerAddress = document.getElementById("EmployerAddress").value;
+            EmployerCity = document.getElementById("EmployerCity").value;
+            EmployerState = document.getElementById("EmployerState").value;
+            EmployerZipCode = document.getElementById("EmployerZipCode").value;
+            EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
+
+            var data = {
+                "Employee_id": Employee_id,
+                "FamilyMember_id": FamilyMember_id,
+                "Employer": CurrentEmployer,
+                "EmployerAddress": EmployerAddress,
+                "EmployerCity": EmployerCity,
+                "EmployerState": EmployerState,
+                "EmployerZipCode": EmployerZipCode,
+                "EmployerPhoneNumber": EmployerPhoneNumber,
+
+            }
+
+            var ret = postData('Family_Info/SpEmploymentUpdate', data)
+                .then(data => SecondStep(data))
+                .catch(error => console.error(error))
+        })
+    })
+            
+    function SecondStep(id) {
+        document.querySelector("#Employee_id").value = id;
+        document.querySelector("#FamilyMember_id").value = id;
+        document.querySelector("#EmployerAddress").value = id;
+        document.querySelector("#EmployerCity").value = id;
+        document.querySelector("#EmployerState").value = id;
+        document.querySelector("#EmployerZipCode").value = id;
+        document.querySelector("#EmployerPhoneNumber").value = id;
+        document.querySelector("#ThirdStep").nextElementSibling.content.style.display = "none";
+        //document.querySelector("#SecondStep").nextElementSibling.content.style.display = "block";
+  
+    }
+ 
+    function postData(url, data) {
+        //Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        })
+            .then(Response => Response.json()) //parses response to JSON
+    }
+
+</script>
 

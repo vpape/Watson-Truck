@@ -11,7 +11,7 @@
     <div class="form-horizontal">
         <hr />
         <button class="collapsible" id="FirstStep"><h4>Spouse Enrollment</h4></button>
-        <div class="content">
+        <div class="content" id="divSpEnrollment">
             <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
             <input type="hidden" id="FamilyMember_id" class="form-control" name="Employee_id" value=@ViewBag.FamilyMember_id />
             <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value=@ViewBag.MaritalStatus />
@@ -98,10 +98,11 @@
     @*<p>
             @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
         </p>*@
+
     <div class="form-horizontal">
         <hr />
         <div class="collapsible" id="SecondStep">Contact Information</div>
-        <div id="divEmpEnrollment" class="content">
+        <div id="divSpEnrollment" class="content">
             <p></p>
             <p></p>
             <div class="form-group">
@@ -215,6 +216,82 @@
             </div>
         </div>
     </div>
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="collapsible" id="ThirdStep">Spouse Employment</div>
+        <div class="content">
+            <p></p>
+            <p></p>
+            <div id="divSpEmployment">
+                <div class="form-group">
+                    <label for="Employee_id" class="col-md-2 control-label">Employee ID:</label>
+                    <div class="col-md-10">
+                        <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Employee_id" class="col-md-2 control-label">FamilyMember ID:</label>
+                    <div class="col-md-10">
+                        <input type="number" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Employer" class="col-md-2 control-label">Current Employer:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="Employer" class="form-control" name="Employer" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="EmployerAddress" class="col-md-2 control-label">Employer Address:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="EmployerAddress" class="form-control" name="EmployerAddress" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="EmployerCity" class="col-md-2 control-label">City:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="EmployerState" class="col-md-2 control-label">State:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="EmployerState" class="form-control" name="EmployerState" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="EmployerZipCode" class="col-md-2 control-label">Zip Code:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="container">
+                        <label class="col-md-2 control-label">Phone Number:</label>
+                        <div class="col-xs-4">
+                            <div class="form-group phone-number">
+                                <div class="col-xs-3">
+                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="3" maxlength="3" value="" />
+                                </div>
+                                <div class="col-xs-3">
+                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="3" maxlength="3" value="" />
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="4" maxlength="4" value="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="SpouseEnrollmentUpdateStepThree" type="submit" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
+                </div>
+            </div>
+        </div>
+    </div>    
 </body>
 </html>
 
@@ -358,7 +435,7 @@
 
             }
 
-            var ret = postData('/Family_Info/SpEnrollmentUpdate', data)
+            var ret = postData('Family_Info/SpEnrollmentNew', data)
                 .then(data => SecondStep(data))
                 .catch(error => console.error(error))
         })
@@ -408,18 +485,55 @@
                 "CellPhone": CellPhone,
             }
 
-            var ret = postData('Family_Infor/SpEnrollmentNew', data)
+            var ret = postData('Family_Info/SpEnrollmentContact', data)
                 .then(data => SecondStep(data.data))
                 .error(error => console.error(error))
         })
+
+        document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener(function () {
+            Employee_id = document.getElementById("Employee_id").value;
+            FamilyMember_id = document.getElementById("FamilyMember_id").value;
+            CurrentEmployer = document.getElementsById("Employer").value;
+            EmployerAddress = document.getElementById("EmployerAddress").value;
+            EmployerCity = document.getElementById("EmployerCity").value;
+            EmployerState = document.getElementById("EmployerState").value;
+            EmployerZipCode = document.getElementById("EmployerZipCode").value;
+            EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
+        })
+
+        var data = {
+            "Employee_id": Employee_id,
+            "FamilyMember_id": FamilyMember_id,
+            "CurrentEmployer": CurrentEmployer,
+            "EmployerAddress": EmployerAddress,
+            "EmployerCity": EmployerCity,
+            "EmployerState": EmployerState,
+            "EmployerZipCode": EmployerZipCode,
+            "EmployerPhoneNumber": EmployerPhoneNumber,
+        }
+
+        var ret = postData('Family_Info/SpEmploymentUpdate', data)
+            .then(data => ThirdStep(data.data))
+            .catch(error => console.error(error))
+     
+
     })
+    //add eventlistner that disables first step and closes the block of code when saved. Then automatically 
+    //opens the next step...etc
 
     function SecondStep(id) {
         document.querySelector("#Employee_id").value = id;
         document.querySelector("#FamilyMember_id").value = id;
-        document.querySelector("#RelationshipToInsured").value = id;
         document.querySelector("#FirstStep").nextElementSibling.content.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.content.style.display = "block";
+        document.querySelector("#RelationshipToInsured").value = id;
+        document.querySelector("#EmpNumber").value = id;
+        document.querySelector("#EmpFirstName").value = id;
+        document.querySelector("#EmpLastName").value = id;
+        document.querySelector("#FirstName").value = id;
+        document.querySelector("#LastName").value = id;
+        document.querySelector("#DateOfBirth").value = id;
+        document.querySelector("#Gender").value = id;
         document.querySelector("#MailingAddress").value = id;
         document.querySelector("#PObox").value = id;
         document.querySelector("#City").value = id;
@@ -434,6 +548,20 @@
         document.querySelector("#County2").value = id;
     }
 
+    function ThirdStep(id) {
+        document.querySelector("#Employee_id").value = id;
+        document.querySelector("#FamilyMember_id").value = id;
+        document.querySelector("#FirstStep").nextElementSibling.content.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.content.style.display = "none";
+        document.querySelector("#Third").nextElementSibling.content.style.display = "block";
+        document.querySelector("#CurrentEmployer").value = id;
+        document.querySelector("#EmployerAddress").value = id;
+        document.querySelector("#EmployerCity").value = id;
+        document.querySelector("#EmployerState").value = id;
+        document.querySelector("#EmployerZipCode").value = id;
+        document.querySelector("#EmployerPhoneNumber").value = id;
+    }
+   
     function postData(url, data) {
         //Default options are marked with *
         return fetch(url, {
@@ -452,51 +580,3 @@
             .then(response => response.JSON()) //parses response to JSON
     }
 </script>
-
-<script>
-    document.addEventListener("DOMContentloaded", function () {
-
-        var col = document.querySelectorAll(".collapsible");
-
-        for (var i = 0; i < col.length; i++) {
-            col[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                }
-                else {
-                    content.style.display = "block";
-                }
-
-            });
-        }
-    })
-</script>
-
-
-<style>
-    .collapsible {
-        background-color: #333333;
-        color: white;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 15px;
-    }
-
-        .active, .collapsible:hover {
-            background-color: #555;
-        }
-
-    .content {
-        padding: 0 18px;
-        display: none;
-        overflow: hidden;
-        background-color: #f1f1f1;
-    }
-</style>
