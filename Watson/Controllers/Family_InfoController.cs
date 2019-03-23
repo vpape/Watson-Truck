@@ -276,7 +276,17 @@ namespace Watson.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(sp).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+                RedirectToAction("FamilyMemberOverview");
             }
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
@@ -348,13 +358,13 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult DeleteSp(int? fm_id)
+        public ActionResult DeleteSp(int? FamilyMember_id)
         {
-            if (fm_id == null)
+            if (FamilyMember_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Family_Info family = db.Family_Info.Find(fm_id);
+            Family_Info family = db.Family_Info.Find(FamilyMember_id);
             if (family == null)
             {
                 return HttpNotFound();
@@ -364,30 +374,20 @@ namespace Watson.Controllers
 
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteSp")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int fm_id, int e_id)
+        public ActionResult DeleteConfirmed(int FamilyMember_id)
         {
-            Family_Info f = db.Family_Info
-                .Where(i => i.FamilyMember_id == fm_id)
-                .Where(i => i.Employee_id == e_id)
-                .SingleOrDefault();
+            Family_Info family = db.Family_Info.Find(FamilyMember_id);
+                //.Where(i => i.FamilyMember_id == FamilyMember_id)
+                //.Where(i => i.Employee_id == Employee_id)
+                //.SingleOrDefault();
 
-            db.DeleteEmployeeAndDependents(fm_id);
-            db.DeleteEmployeeAndDependents(e_id);
-            db.Family_Info.Remove(f);
+            db.DeleteEmployeeAndDependents(FamilyMember_id);
+            
+            db.Family_Info.Remove(family);
             db.SaveChanges();
 
-            return RedirectToAction("FamilyMemberOverview", new { f.Employee_id });
+            return RedirectToAction("FamilyMemberOverview");
         }
-
-        //[System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Family_Info family = db.Family_Info.Find(id);
-        //    db.Family_Info.Remove(family);
-        //    db.SaveChanges();
-        //    return RedirectToAction("FamilyMemberOverview");
-        //}
 
         //----------------------------------------------------------------------------------------
         //check DepEnrollment Methods
@@ -486,7 +486,17 @@ namespace Watson.Controllers
             {
                 db.Entry(f).State = System.Data.Entity.EntityState.Modified;
                 db.Entry(o).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+                RedirectToAction("FamilyMemberOverview");
             }
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
@@ -575,18 +585,15 @@ namespace Watson.Controllers
 
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteDep")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int FamilyMember_id, int e_id)
+        public ActionResult DeleteConfirm(int FamilyMember_id)
         {
-            Family_Info f = db.Family_Info.Find(FamilyMember_id);
-            //Employee employee = db.Employees.Find(e_id);
-            db.Family_Info.Remove(f);
-            //db.Employees.Remove(employee);
-            db.SaveChanges();
+            Family_Info family = db.Family_Info.Find(FamilyMember_id);
 
             db.DeleteEmployeeAndDependents(FamilyMember_id);
-            //db.DeleteEmployeeAndDependents(e_id);
+            db.Family_Info.Remove(family);
+            db.SaveChanges();
 
-            return RedirectToAction("FamilyMemberOverview", new { f.Employee_id });
+            return RedirectToAction("FamilyMemberOverview");
         }
 
         protected override void Dispose(bool disposing)
