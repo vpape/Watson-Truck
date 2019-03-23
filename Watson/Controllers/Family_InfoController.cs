@@ -184,97 +184,114 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult SpEmploymentUpdate(int fm_id, int e_id)
+        public JsonResult SpEmploymentUpdate(int Employee_id, int FamilyMember_id, string CurrentEmployer, 
+            string EmployerAddress, string EmployerCity, string EmployerState, string EmployerZipCode, 
+            string EmployerPhoneNumber)
         {
-            var output = from f in db.Family_Info
-                         where f.FamilyMember_id == fm_id
-                         where f.Employee_id == e_id
-                         select new
-                         {
-                             f.FamilyMember_id,
-                             f.Employee_id,
-                             f.Employer,
-                             f.MailingAddress,
-                             f.PhysicalAddress,
-                             f.PObox,
-                             f.EmployerCity,
-                             f.EmployerState,
-                             f.EmployerZipCode,
-                             f.EmployerPhoneNumber,
-                         };
+            var sp = db.Family_Info
+                .Where(i => i.Employee_id == Employee_id)
+                .Where(i => i.FamilyMember_id == FamilyMember_id)
+                .Single();
 
-            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+            sp.Employer = CurrentEmployer;
+            sp.EmployerMailingAddress = EmployerAddress;
+            sp.EmployerCity = EmployerCity;
+            sp.EmployerState = EmployerState;
+            sp.EmployerZipCode = EmployerZipCode;
+            sp.EmployerPhoneNumber = EmployerPhoneNumber;
+
+            int result = Employee_id;
+                       
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult EditSp(int? fm_id, int e_id)
+        public ActionResult EditSp(int Employee_id, int? FamilyMember_id)
         {
-            if (fm_id == null)
+            if (FamilyMember_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Family_Info family = db.Family_Info.Find(fm_id);
+            Family_Info family = db.Family_Info.Find(FamilyMember_id);
             if (family == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.Employee_id = e_id;
+            ViewBag.Employee_id = Employee_id;
 
             return View(family);
         }
 
-        public JsonResult SpEditUpdate(int fm_id, int e_id, string MaritalStatus)
+        public JsonResult SpEditUpdate(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured,
+            string EmpNumber, string EmpFirstName, string EmpLastName, string FirstName, string LastName, DateTime DateOfBirth,
+            string Gender, string MailingAddress, string PObox, string City, string State, string ZipCode, string County,
+            string PhysicalAddress, string PObox2, string City2, string State2, string ZipCode2, string County2,
+            string EmailAddress, string PhoneNumber, string CellPhone, string CurrentEmployer, string EmployerAddress,
+            string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
-            var output = from f in db.Family_Info
-                         where f.FamilyMember_id == fm_id
-                         where f.Employee_id == e_id
-                         select new
-                         {
-                             f.FamilyMember_id,
-                             f.Employee_id,
-                             f.RelationshipToInsured,
-                             f.SSN,
-                             f.FirstName,
-                             f.LastName,
-                             f.DateOfBirth,
-                             f.Gender,
-                             f.MailingAddress,
-                             f.PhysicalAddress,
-                             f.PObox,
-                             f.City,
-                             f.State,
-                             f.ZipCode,
-                             f.County,
-                             f.EmailAddress,
-                             f.PhoneNumber,
-                             f.CellPhone,
-                             f.Employer,
-                             f.EmployerMailingAddress,
-                             f.EmployerCity,
-                             f.EmployerState,
-                             f.EmployerZipCode,
-                             f.EmployerPhoneNumber,
-                         };
+            var sp = db.Family_Info
+                .Where(i => i.Employee_id == Employee_id)
+                .Where(i => i.FamilyMember_id == FamilyMember_id)
+                .Single();
 
-            ViewBag.Employee_id = e_id;
+            sp.RelationshipToInsured = RelationshipToInsured;
+            sp.SSN = EmpNumber;
+            sp.FirstName = EmpFirstName;
+            sp.LastName = EmpLastName;
+            sp.FirstName = FirstName;
+            sp.LastName = LastName;
+            sp.DateOfBirth = DateOfBirth;
+            sp.Gender = Gender;
+            sp.MailingAddress = MailingAddress;
+            sp.PObox = PObox;
+            sp.City = City;
+            sp.State = State;
+            sp.ZipCode = ZipCode;
+            sp.County = County;
+            sp.PhysicalAddress = PhysicalAddress;
+            sp.PObox = PObox2;
+            sp.City = City2;
+            sp.State = State2;
+            sp.ZipCode = ZipCode2;
+            sp.County = County2;
+            sp.EmailAddress = EmailAddress;
+            sp.PhoneNumber = PhoneNumber;
+            sp.CellPhone = CellPhone;
+            sp.Employer = CurrentEmployer;
+            sp.EmployerMailingAddress = EmployerAddress;
+            sp.EmployerCity = EmployerCity;
+            sp.EmployerState = EmployerState;
+            sp.EmployerZipCode = EmployerZipCode;
+            sp.EmployerPhoneNumber = EmployerPhoneNumber;
+
+            int result = Employee_id;
+
+            ViewBag.Employee_id = Employee_id;
             ViewBag.MaritalStatus = MaritalStatus;
 
-            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+            if (ModelState.IsValid)
+            {
+                db.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult SpDetail(int? fm_id)
+        public ActionResult SpDetail(int? FamilyMember_id)
         {
-            if (fm_id == null)
+            if (FamilyMember_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Family_Info family = db.Family_Info.Find(fm_id);
+            Family_Info family = db.Family_Info.Find(FamilyMember_id);
             if (family == null)
             {
                 return HttpNotFound();
@@ -283,40 +300,50 @@ namespace Watson.Controllers
             return View(family);
         }
 
-        public JsonResult GetSpDetail(int fm_id, int e_id)
+        public JsonResult GetSpDetail(int Employee_id, int FamilyMember_id, string RelationshipToInsured, string EmpNumber, string EmpFirstName,
+            string EmpLastName, string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress, string PObox,
+            string City, string State, string ZipCode, string County, string PhysicalAddress, string PObox2, string City2, string State2,
+            string ZipCode2, string County2, string EmailAddress, string PhoneNumber, string CellPhone, string CurrentEmployer,
+            string EmployerMailingAddress, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
-            var output = from f in db.Family_Info
-                         where f.FamilyMember_id == fm_id
-                         where f.Employee_id == e_id
-                         select new
-                         {
-                             f.FamilyMember_id,
-                             f.Employee_id,
-                             f.RelationshipToInsured,
-                             f.SSN,
-                             f.FirstName,
-                             f.LastName,
-                             f.DateOfBirth,
-                             f.Gender,
-                             f.MailingAddress,
-                             f.PhysicalAddress,
-                             f.PObox,
-                             f.City,
-                             f.State,
-                             f.ZipCode,
-                             f.County,
-                             f.EmailAddress,
-                             f.PhoneNumber,
-                             f.CellPhone,
-                             f.Employer,
-                             f.EmployerMailingAddress,
-                             f.EmployerCity,
-                             f.EmployerState,
-                             f.EmployerZipCode,
-                             f.EmployerPhoneNumber,
-                         };
+            var sp = db.Family_Info
+                 .Where(i => i.Employee_id == Employee_id)
+                 .Where(i => i.FamilyMember_id == FamilyMember_id)
+                 .Single();
 
-            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+            sp.RelationshipToInsured = RelationshipToInsured;
+            sp.SSN = EmpNumber;
+            sp.FirstName = EmpFirstName;
+            sp.LastName = EmpLastName;
+            sp.FirstName = FirstName;
+            sp.LastName = LastName;
+            sp.DateOfBirth = DateOfBirth;
+            sp.Gender = Gender;
+            sp.MailingAddress = MailingAddress;
+            sp.PObox = PObox;
+            sp.City = City;
+            sp.State = State;
+            sp.ZipCode = ZipCode;
+            sp.County = County;
+            sp.PhysicalAddress = PhysicalAddress;
+            sp.PObox = PObox2;
+            sp.City = City2;
+            sp.State = State2;
+            sp.ZipCode = ZipCode2;
+            sp.County = County2;
+            sp.EmailAddress = EmailAddress;
+            sp.PhoneNumber = PhoneNumber;
+            sp.CellPhone = CellPhone;
+            sp.Employer = CurrentEmployer;
+            sp.EmployerMailingAddress = EmployerMailingAddress;
+            sp.EmployerCity = EmployerCity;
+            sp.EmployerState = EmployerState;
+            sp.EmployerZipCode = EmployerZipCode;
+            sp.EmployerPhoneNumber = EmployerPhoneNumber;
+
+            int result = Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------

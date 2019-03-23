@@ -66,7 +66,6 @@
                 <div class="col-md-10">
                     <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
                 </div>
-
                 <div class="form-group">
                     <label for="LastName" class="col-md-2 control-label">Last Name:</label>
                     <div class="col-md-10">
@@ -245,7 +244,7 @@
                 <div class="form-group">
                     <label for="EmployerAddress" class="col-md-2 control-label">Employer Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="EmployerAddress" class="form-control" name="EmployerAddress" value="" />
+                        <input type="text" id="EmployerAddress" class="form-control" name="EmployerMailingAddress" value="" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -551,9 +550,9 @@
     function ThirdStep(id) {
         document.querySelector("#Employee_id").value = id;
         document.querySelector("#FamilyMember_id").value = id;
-        document.querySelector("#FirstStep").nextElementSibling.content.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.content.style.display = "none";
-        document.querySelector("#Third").nextElementSibling.content.style.display = "block";
+        //document.querySelector("#FirstStep").nextElementSibling.content.style.display = "none";
+        //document.querySelector("#SecondStep").nextElementSibling.content.style.display = "none";
+        document.querySelector("#ThirdStep").nextElementSibling.content.style.display = "block";
         document.querySelector("#CurrentEmployer").value = id;
         document.querySelector("#EmployerAddress").value = id;
         document.querySelector("#EmployerCity").value = id;
