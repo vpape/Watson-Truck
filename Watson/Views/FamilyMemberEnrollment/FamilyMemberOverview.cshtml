@@ -3,10 +3,8 @@
 @{
     ViewBag.Title = "FamilyMemberOverview";
 }
-
 <h2>Family Member Overview</h2>
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -32,7 +30,7 @@
         {
             <tr>
                 <td>
-                    <a href="#" onclick="return EmployeeInsurance()" class="next round"></a>   @* Character map for Insurance(create a collaspible button for Life and Group Health to view onclick) *@
+                    <a href="#" onclick="return EmpInsurance()" class="next round"></a>   @* Character map for Insurance(create a collaspible button for Life and Group Health to view onclick) *@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FamilyMember_id)
@@ -53,10 +51,10 @@
                     @Html.DisplayFor(modelItem => item.Employee.LastName)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit Spouse", "EditSpouse", "Family_Info", new { id = item.FamilyMember_id }) |
-                    @Html.ActionLink("Edit Dependent", "EditDependent", "Family_Info", new { id = item.FamilyMember_id }) |
-                    @Html.ActionLink("Detail Spouse", "SpouseDetail", "Family_Info", new { id = item.FamilyMember_id }) |
-                    @Html.ActionLink("Detail Dependent", "DependentDetail", "Family_Info", new { id = item.FamilyMember_id }) |
+                    @Html.ActionLink("Edit Spouse", "EditSp", "Family_Info", new { id = item.FamilyMember_id }) |
+                    @Html.ActionLink("Edit Dependent", "EditDep", "Family_Info", new { id = item.FamilyMember_id }) |
+                    @Html.ActionLink("Spouse Detail", "SpDetail", "Family_Info", new { id = item.FamilyMember_id }) |
+                    @Html.ActionLink("Dependent Detail", "DepDetail", "Family_Info", new { id = item.FamilyMember_id }) |
                 </td>
             </tr>
         }
@@ -64,17 +62,11 @@
     </table>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="button" onclick="return FamilyMemberEnrollment()" value="Family Member Enrollment" class="btn btn-primary" />
+            <input type="button" onclick="return FamilyMemberEnrollment()" value="Family Enrollment" class="btn" />
         </div>
     </div>
-    @*<div>
-            button needs to display based on martial status (ie....if employee is single during employment and gets married at a later date, then they will need to be able to add spouse to insurance plan)
-                (or if they need to add dependent because they just had a baby
-            <input type="button" onclick="SpouseEnrollment()" value="Add Spouse" class="btn" />
-            <input type="button" onclick="DependentEnrollemnt()" value="Add Dependent" class="btn" />
-        </div>*@
     <p>
-        @Html.ActionLink("Back to HomePage", "EmployeeOverview")
+        @Html.ActionLink("Back to Employee Overview", "EmpOverview")
     </p>
 </body>
 </html>
@@ -117,19 +109,14 @@
 </style>
 
 <script>
+    function EmpInsurance() {
+
+        location.href = "/Employee/EmpInsurance";
+    }
+
     function FamilyMemberEnrollment() {
 
         location.href = "/Family_Info/FamilyMemberEnrollment";
-    }
-
-    function SpouseEnrollment() {
-
-        location.href = "/Family_Info/SpouseEnrollment";
-    }
-
-    function DependentEnrollment() {
-
-        location.href = "/Family_Info/DependentEnrollment";
     }
 
 </script>

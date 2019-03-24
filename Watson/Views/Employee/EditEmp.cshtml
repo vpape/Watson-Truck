@@ -18,10 +18,11 @@
         <div id="divEditEmp" class="content">
             <p></p>
             <p></p>
+            @* move employee role to the admin view *@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
                 <div class="col-md-10">
-                    <select name="EmployeeRole" class="form-control">
+                    <select name="EmployeeRole" class="form-control" disabled>
                         @*<option id="AdminRole" name="EmployeeRole" value="Admin" @((Model.EmployeeRole.ToLower() == "admin") ? "selected" : "")>Admin</option>*@
                         <option id="ManagerRole" name="EmployeeRole" value="Manager" @((Model.EmployeeRole.ToLower() == "manager") ? "selected" : "")>Manger</option>
                         <option id="EmployeeRole" name="EmployeeRole" value="Employee" @((Model.EmployeeRole.ToLower() == "employee") ? "selected" : "")>Employee</option>
@@ -78,9 +79,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="MaritalStatus" class="col-md-2 control-label">Marital Status</label>
+                <label class="col-md-2 control-label">Marital Status</label>
                 <div class="col-md-10">
-                    <select name="MaritalStatus" class="form-control">
+                    <select name="MaritalStatus" class="form-control" disabled>
                         <option id="MarriedwDep" value="@(Model.MaritalStatus == "MarriedwDep" ? "selected" : "")">Married with Dependents</option>
                         <option id="Married"     value="@(Model.MaritalStatus == "Married"     ? "selected" : "")">Married</option>
                         <option id="SinglewDep"  value="@(Model.MaritalStatus == "SinglewDep"  ? "selected" : "")">Single with Dependents</option>
@@ -164,6 +165,13 @@
             </div>
         </div>
     </div>
+    @*<div>
+            button needs to display based on martial status (ie....if employee is single during employment
+        and gets married or have a baby at a later date, they will need to be added to plan)
+                (or if they need to add dependent because they just had a baby
+            <input type="button" onclick="SpouseEnrollment()" value="Add Spouse" class="btn" />
+            <input type="button" onclick="DependentEnrollemnt()" value="Add Dependent" class="btn" />
+        </div>*@
     <p>
         @Html.ActionLink("Back to List", "EmpOverview")
     </p>

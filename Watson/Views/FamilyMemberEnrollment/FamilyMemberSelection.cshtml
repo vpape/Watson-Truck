@@ -1,7 +1,114 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "FamilyMemberSelection";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Family Member Selection</title>
+</head>
+<body>
+    <div class="container">
+        <h3>Family Member Selection</h3>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>
+                        <div id="SpouseEnrollment">
+                            <button type="button" class="button" onclick="return SpouseEnrollment()">Spouse Enrollment</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="DependentEnrollment">
+                            <button type="button" class="button" onclick="return DependentEnrollment()">Dependent Enrollment</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>
+        @Html.ActionLink("Back to Family Overview", "FamilyMemberOverview")
+    </p>
+</body>
 
-<h2>FamilyMemberSelection</h2>
+</html>
 
+<style>
+    .button {
+        background-color: #333333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+    .active, .collapsible:hover {
+        background-color: #555;
+    }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+    .btn {
+        background-color: #2e4593;
+        color: white;
+    }
+</style>
+
+<script>
+    //var col = document.querySelectorAll(".collapsible");
+    //var i;
+
+    //for (i = 0; i < col.length; i++) {
+    //    col[i].addEventListener("click", function () {
+    //        this.classList.toggle("active");
+
+    //        var content = this.nextElementSibling;
+    //        if (content.style.display === "block") {
+    //            content.style.display = "none";
+    //        }
+    //        else {
+    //            content.style.display = "block";
+    //        }
+
+    //    });
+    //}
+</script>
+
+<script type="text/javascript">
+
+    function SpouseEnrollment() {
+        window.location.href = "/Spouse/SpEnrollment";
+    }
+
+    function DependentEnrollment() {
+        window.location.href = "/Dependent/DepEnrollment";
+    }
+
+</script>

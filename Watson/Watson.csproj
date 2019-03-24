@@ -430,7 +430,6 @@
     <Content Include="Views\Admin\Employees.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\FamilyMemberEnrollment\FamilyMemberOverview.cshtml" />
-    <Content Include="Views\FamilyMemberEnrollment\FamilyMemberEnrollment.cshtml" />
     <Content Include="Views\Employee\NewEmployeeEnrollment.cshtml" />
     <Content Include="Views\FamilyMemberEnrollment\FamilyMemberSelection.cshtml" />
     <Content Include="Views\Dependent\DepEnrollment.cshtml" />

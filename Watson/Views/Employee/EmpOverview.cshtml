@@ -14,7 +14,7 @@
 <body>
     <div class="container">
         <h3>Enrollment Overview</h3>
-        <div id="divEmployeeOverview">
+        <div id="divEmpOverview">
             <table class="table">
                 <tr>
                     @*Create a column for a dynmaic button using image mapping?? to call SpouseAndDependentOverview)*@
@@ -41,19 +41,19 @@
                     </td>
                     <td>
                         <div>
-                            <input id="SSN" />
+                            <input id="EmpNumber" />
                             @Html.Raw(Model.SSN)
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input id="FirstName" />
+                            <input id="EmpFirstName" />
                             @Html.Raw(Model.FirstName)
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input id="LastName" />
+                            <input id="EmpLastName" />
                             @Html.Raw(Model.LastName)
                         </div>
                     </td>
@@ -88,9 +88,9 @@
                         </div>
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", "Home"@*,null, new { e_id = Model.Employee_id }*@) |
-                        @Html.ActionLink("Detail", "Detail", new { controller = "Employee" }, new { e_id = Model.Employee_id }) |
-                        @Html.ActionLink("Insurance Overview", "EmployeeInsurance", new { controller = "Employee" }, new { e_id = Model.Employee_id }) |
+                        @Html.ActionLink("Edit", "EditEmp", "Home"@*,null, new { e_id = Model.Employee_id }*@) |
+                        @Html.ActionLink("Detail", "EmpDetail", new { controller = "Employee" }, new { e_id = Model.Employee_id }) |
+                        @Html.ActionLink("Insurance", "EmpInsurance", new { controller = "Employee" }, new { e_id = Model.Employee_id }) |
                         @* create a link to show employee insurance overview for group health and life insurance *@
                     </td>
                 </tr>
@@ -138,12 +138,17 @@
 </style>
 
 <script>
+    function EnrollmentSelection() {
+
+        window.local.href = "/Employee/EnrollmentSelection";
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EnrollmentSelection").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            EmployeeNumber = document.getElementById("SSN").value;
-            FirstName = document.getElementById("FirstName").value;
-            LastName = document.getElementById("LastName").value;
+            EmpNumber = document.getElementById("EmpNumber").value;
+            EmpFirstName = document.getElementById("EmpFirstName").value;
+            EmpLastName = document.getElementById("EmpLastName").value;
             JobtTitle = document.getElementById("JobTitle").value;
             MailingAddress = document.getElementById("MailingAddress").value;
             City = document.getElementById("City").value;
@@ -155,9 +160,9 @@
             var data = {
 
                 "Employee_id": Employee_id,
-                "EmployeeNumber": EmployeeNumber,
-                "FirstName": FirstName,
-                "LastName": LastName,
+                "EmpNumber": EmpNumber,
+                "EmpFirstName": EmpFirstName,
+                "EmpLastName": EmpLastName,
                 "JobTitle": JobTitle,
                 "MailingAddress": MailingAddress,
                 "City": City,
@@ -172,33 +177,35 @@
 
     function SecondStep(id) {
         document.querySelector("#Employee_id").value = id;
-        document.querySelector("#divEmployeeOverview").content.style.display;
-        document.querySelector("#SecondStep").content.style.display;
+        document.querySelector("#divEmpOverview").content.style.display;
         document.querySelector("#EnrollmentSelection").content.style.display;
+        document.querySelector("#EmpNumber").value = id;
+        document.querySelector("#EmpFirstName").value = id;
+        document.querySelector("#EmpLastName").value = id;
+        document.querySelector("#JobTitle").value = id;
+        document.querySelector("#MailingAddress").value = id;
+        document.querySelector("#City").value = id;
+        document.querySelector("#State").value = id;
+        document.querySelector("#ZipCode").value = id;
     }
 
-    function postData(url, data) {
-        //Default options are marked with *
-        return fetch(url, {
-            body: JSON.stringify(data), //must match 'Content-Type' header
-            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', //include, same-origin, *omit
-            headers: {
-                'user-agent': 'Mozilla/4.0 MDN Example',
-                'content-type': 'application/json'
-            },
-            method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            mode: 'cors', //no-cors, cors, *same-origin
-            redirect: 'follow', //manual, *follow, error
-            referrer: 'no-referrer', //*client, no-referrer
-        })
-            .then(Response => Response.json()) //parses response to JSON
-    }
-
-    function EnrollmentSelection() {
-
-        window.local.href = "/Employee/EnrollmentSelection";
-    }
+    //function postData(url, data) {
+    //    //Default options are marked with *
+    //    return fetch(url, {
+    //        body: JSON.stringify(data), //must match 'Content-Type' header
+    //        cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+    //        credentials: 'same-origin', //include, same-origin, *omit
+    //        headers: {
+    //            'user-agent': 'Mozilla/4.0 MDN Example',
+    //            'content-type': 'application/json'
+    //        },
+    //        method: 'Post', //*GET, POST, PUT, DELETE, etc...
+    //        mode: 'cors', //no-cors, cors, *same-origin
+    //        redirect: 'follow', //manual, *follow, error
+    //        referrer: 'no-referrer', //*client, no-referrer
+    //    })
+    //        .then(Response => Response.json()) //parses response to JSON
+    //}
 
 </script>
 

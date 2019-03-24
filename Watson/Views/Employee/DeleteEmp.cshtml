@@ -26,12 +26,12 @@
                 <dd>
                     <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="">
                 </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Employee Roler:</label>
+                </dt>
                 <dd>
                     <input type="text" id="EmployeeRole" class="form-control" name="EmployeeRole" value="">
                 </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Current Employer:</label>
-                </dt>
                 <dt>
                     <label class="col-md-2 control-label">Current Employer:</label>
                 </dt>
@@ -48,7 +48,7 @@
                     <label class="col-md-2 control-label">Employee Number:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <input type="number" id="SSN" class="form-control" name="SSN" value="">
+                    <input type="number" id="EmpNumber" class="form-control" name="SSN" value="">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">First Name:</label>
@@ -236,7 +236,7 @@
         document.querySelector("#confirmDelete").addEventListener("click", function () {
             CurrentEmployer = document.getElementById("CurrentEmployer").value;
             JobTitle = document.getElementById("JobTitle").value;
-            EmployeeNumber = document.getElementById("SSN").value;
+            EmpNumber = document.getElementById("SSN").value;
             MaritalStatus = document.getElementsByName("MaritalStatus").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
@@ -278,11 +278,10 @@
 
             var data = {
                 "Employee_id": ID,
-                "ManagerRole": ManagerRole,
                 "EmployeeRole": EmployeeRole,
                 "CurrentEmployer": CurrentEmployer,
                 "JobTitle": JobTitle,
-                "EmployeeNumber": EmployeeNumber,
+                "EmpNumber": EmpNumber,
                 "MaritalStatus": MaritalStatus,
                 "FirstName": FirstName,
                 "LastName": LastName,
@@ -306,13 +305,38 @@
                 "CellPhone": CellPhone,
             }
 
-            
-
-
             var ret = postData('DeleteConfirmed', data)
-                .then(data => DeleteConfirmed(data.data))
+                .then(data => DeleteConfirm(data.data))
                 .catch(error => console.error(error))
         })
+
+        function DeleteConfirm() {
+            document.querySelector("Employee_id").value = id;
+            document.querySelector("EmployeeRole").value = id;
+            document.querySelector("CurrentEmployer").value = id;
+            document.querySelector("JobTitle").value = id;
+            document.querySelector("EmpNumber").value = id;
+            document.querySelector("MaritalStatus").value = id;
+            document.querySelector("FirstName").value = id;
+            document.querySelector("LastName").value = id;
+            document.querySelector("DateOfBirth").value = id;
+            document.querySelector("Gender").value = id;
+            document.querySelector("MailingAddress").value = id;
+            document.querySelector("City").value = id;
+            document.querySelector("State").value = id;
+            document.querySelector("ZipCode").value = id;
+            document.querySelector("County").value = id;
+            document.querySelector("PhysicalAddress").value = id;
+            document.querySelector("PObox2").value = id;
+            document.querySelector("City2").value = id;
+            document.querySelector("State2").value = id;
+            document.querySelector("ZipCode2").value = id;
+            document.querySelector("County2").value = id;
+            document.querySelector("CityLimits").value = id;
+            document.querySelector("EmailAddress").value = id;
+            document.querySelector("PhoneNumber").value = id;
+            document.querySelector("CellPhone").value = id;
+        }
 
         function postData(url, data) {
             //Default options are marked with *

@@ -30,48 +30,46 @@ namespace Watson.Controllers
             return View(family);
         }
 
-        public JsonResult GetFamilyMember(int fm_id, int e_id)
+        public JsonResult GetFamilyMember(int Employee_id, int FamilyMember_id, string FirstName, string LastName,
+            string RelationshipToInsured, DateTime DateOfBirth, string MailingAddress, string PObox, string City,
+            string State, string County, string ZipCode, string EmailAddress, string PhoneNumber, string CellPhone)
         {
-            var output = from f in db.Family_Info
-                         where f.FamilyMember_id == fm_id
-                         where f.Employee_id == e_id
-                         select new
-                         {
-                             f.FamilyMember_id,
-                             f.Employee_id,
-                             f.OtherInsurance_id,
-                             f.FirstName,
-                             f.MiddleName,
-                             f.LastName,
-                             f.SSN,
-                             f.DateOfBirth,
-                             f.MailingAddress,
-                             f.PhysicalAddress,
-                             f.City,
-                             f.State,
-                             f.ZipCode,
-                             f.EmailAddress,
-                             f.PhoneNumber,
-                             f.CellPhone,
-                             f.County,
-                             f.Gender,
-                             f.Employer,
-                             f.RelationshipToInsured,
-                             f.EmployerMailingAddress,
-                             f.EmployerCity,
-                             f.EmployerState,
-                             f.EmployerZipCode,
-                             f.EmployerPhoneNumber,
-                             f.Medical,
-                             f.Dental,
-                             f.Vision,
-                             f.Indemnity,
-                         };
+            var f = db.Family_Info
+                .Where(i => i.Employee_id == Employee_id)
+                .Where(i => i.FamilyMember_id == FamilyMember_id)
+                .Single();
 
-            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+            f.FirstName = FirstName;
+            f.LastName = LastName;
+            f.RelationshipToInsured = RelationshipToInsured;
+            f.DateOfBirth = DateOfBirth;
+            f.MailingAddress = MailingAddress;
+            f.PObox = PObox;
+            f.City = City;
+            f.State = State;
+            f.ZipCode = ZipCode;
+            f.EmailAddress = EmailAddress;
+            f.PhoneNumber = PhoneNumber;
+            f.CellPhone = CellPhone;
+            //f.Gender,
+            //f.SSN,
+            //f.Employer,
+            //f.EmployerMailingAddress,
+            //f.EmployerCity,
+            //f.EmployerState,
+            //f.EmployerZipCode,
+            //f.EmployerPhoneNumber,
+            //f.Medical,
+            //f.Dental,
+            //f.Vision,
+            //f.Indemnity,
+
+            int result = Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult FamilyMemberEnrollment()
+        public ActionResult FamilyMemberSelection()
         {
             return View();
         }
@@ -85,11 +83,13 @@ namespace Watson.Controllers
             string RelationshipToInsured, string EmpNumber, string EmpFirstName, string EmpLastName, string FirstName,
             string LastName, DateTime DateOfBirth, string Gender)
         {
-            var sp = db.Family_Info
-                .Where(i => i.Employee_id == Employee_id)
-                .Where(i => i.FamilyMember_id == FamilyMember_id)
-                .Where(i => i.OtherInsurance_id == OtherInsurance_id)
-                .Single();
+            //var sp = db.Family_Info
+            //    .Where(i => i.Employee_id == Employee_id)
+            //    .Where(i => i.FamilyMember_id == FamilyMember_id)
+            //    .Where(i => i.OtherInsurance_id == OtherInsurance_id)
+            //    .Single();
+
+            Family_Info sp = new Family_Info();
 
             sp.RelationshipToInsured = RelationshipToInsured;
             sp.SSN = EmpNumber;
@@ -390,7 +390,7 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-        //check DepEnrollment Methods
+        //check where statements for DepEnrollment Methods
         public ActionResult DepEnrollment()
         {
             return View();
@@ -440,7 +440,7 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-        //check Edit Methods
+        //check where statement for Edit Methods
         public ActionResult EditDep()
         {
             return View();
@@ -504,6 +504,7 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
+        //check where statements for Detail methods
         public ActionResult DepDetail(int? FamilyMember_id)
         {
             if (FamilyMember_id == null)
@@ -532,9 +533,9 @@ namespace Watson.Controllers
                 .Where(i => i.OtherInsurance_id == Other_Insurance_id)
                 .Single();
 
-            f.Employee_id = Employee_id;
-            f.FamilyMember_id = FamilyMember_id;
-            f.OtherInsurance_id = Other_Insurance_id;
+            //f.Employee_id = Employee_id;
+            //f.FamilyMember_id = FamilyMember_id;
+            //f.OtherInsurance_id = Other_Insurance_id;
             f.SSN = EmpNumber;
             f.FirstName = EmpFirstName;
             f.LastName = EmpLastName;
@@ -550,9 +551,9 @@ namespace Watson.Controllers
                 .Where(i => i.OtherInsurance_id == Other_Insurance_id)
                 .Single();
 
-            o.Employee_id = Employee_id;
-            o.FamilyMember_id = FamilyMember_id;
-            o.OtherInsurance_id = Other_Insurance_id;
+            //o.Employee_id = Employee_id;
+            //o.FamilyMember_id = FamilyMember_id;
+            //o.OtherInsurance_id = Other_Insurance_id;
             o.CoveredByOtherInsurance = CoveredByOtherIns;
             o.InsuranceCompany = InsCompany;
             o.PolicyNumber = PolicyNumber;
