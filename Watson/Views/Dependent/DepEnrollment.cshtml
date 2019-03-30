@@ -37,19 +37,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee ID:</label>
                 <div class="col-md-10">
-                    <input type="text" id="Employee_id" class="form-control" name="Employee_id" value="" disabled />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-2 control-label">Family ID:</label>
-                <div class="col-md-10">
-                    <input type="text" id="Family_id" class="form-control" name="Family_id" value="" disabled />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-2 control-label">Other Ins ID:</label>
-                <div class="col-md-10">
-                    <input type="text" id="Other_Insurance_id" class="form-control" name="Other_Insurance_id" value="" disabled />
+                    <input type="text" id="Employee_id" class="form-control" name="Employee_id" value="dep.Employee_id" disabled />
                 </div>
             </div>
             <div class="form-group">
@@ -121,9 +109,6 @@
                                 </div>
                             </div>
                         </div>
-                        @*<div class="col-md-10">
-                        <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="" />
-                    </div>*@
                         <label for="InsMailingAddress">Mailing Address:</label>
                         <div class="col-md-10">
                             <input type="text" id="InsMailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
@@ -215,24 +200,6 @@
         padding-left: 0;
     }
 </style>
-
-
-<script>
-    var col = document.querySelectorAll(".collapsible");
-    var i;
-
-    for (i = 0; i < col.length; i++) {
-        col[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            } else {
-                content.style.display = "block";
-            }
-        });
-    }
-</script>
 
 <html>
 <head>
@@ -331,6 +298,21 @@
 </html>
 
 <script>
+    var col = document.querySelectorAll(".collapsible");
+    var i;
+
+    for (i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+
     //function SpouseOrDependent() {
     //    var choice = document.getElementById("RelationToInsured")
     //    var dependent = document.getElementById("divDependentInfo")
@@ -381,8 +363,6 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#DepEnrollmentUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            FamilyMember_id = document.getElementById("FamilyMember_id").value;
-            OtherInsurance_id = document.getElementById("OtherInsurance_id").value;
             RelationshipToInsured = document.getElementByName("RelationshipToInsured").value
             EmpNumber = document.getElementById("EmpNumber").value
             //EmpFirstName = document.getElementById("EmpFirstName").value
@@ -413,8 +393,6 @@
 
             var data = {
                 "Employee_id": Employee_id,
-                "FamilyMember_id": FamilyMember_id,
-                "OtherInsurance_id": OtherInsurance_id,
                 "RelationshipToInsured": RelationshipToInsured,
                 "EmpNumber": EmployeeNumber,
                 //"EmpFirstName": EmployeeFirstName,
@@ -433,32 +411,26 @@
             }
 
             var ret = postData('Family_Info/DepEnrollmentNew', data)
-                .then(data => SecondStep(data.data))
+                .then(data => SecondStep(data))
                 .catch(error => console.error(error))
         })
     })
 
-    function SecondStep(id) {
-        document.querySelector("#Employee_id").value = id;
-        document.querySelector("#FamilyMember_id").value = id;
-        document.querySelector("#OtherInsurance_id").value = id;
-        document.querySelector("#FirstStep").nextElementSibling.content.style.display = "none";
-        document.querySelector("#EmpNumber").value = id;
-        document.querySelector("#DepFirstName").value = id;
-        document.querySelector("#DepLastName").value = id;
-        document.querySelector("#DateOfBirth").value = id;
-        document.querySelector("#Gender").value = id;
-        document.querySelector("#CoveredByOtherIns").value = id;
-        document.querySelector("#InsCompany").value = id;
-        document.querySelector("#PolicyNumber").value = id;
-        document.querySelector("#InsMailingAddress").value = id;
-        document.querySelector("#InsCity").value = id;
-        document.querySelector("#InsState").value = id;
-        document.querySelector("#InsZipCode").value = id;
-    }
-
-    function ThirdStep(id) {
-
+    function SecondStep(dep) {
+        document.querySelector("#Employee_id").value = dep.Employee_id;
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "block";
+        document.querySelector("#EmpNumber").value = dep;
+        document.querySelector("#DepFirstName").value = dep;
+        document.querySelector("#DepLastName").value = dep;
+        document.querySelector("#DateOfBirth").value = dep;
+        document.querySelector("#Gender").value = dep;
+        document.querySelector("#CoveredByOtherIns").value = dep;
+        document.querySelector("#InsCompany").value = dep;
+        document.querySelector("#PolicyNumber").value = dep;
+        document.querySelector("#InsMailingAddress").value = dep;
+        document.querySelector("#InsCity").value = dep;
+        document.querySelector("#InsState").value = dep;
+        document.querySelector("#InsZipCode").value = dep;
     }
 
     function postData(url, data) {
