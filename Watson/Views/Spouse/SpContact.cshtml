@@ -127,51 +127,51 @@
             <div class="form-group" id="EmpMailingAddress">
                 <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
                 <div class="col-md-10">
-                    <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(m => Model.Employee.EmailAddress)" />
-                    <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="@Html.DisplayFor(m => Model.Employee.EmailAddress)" />
-                    <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@Html.DisplayFor(m => Model.Employee.EmailAddress)" />
-                    <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@Html.DisplayFor(m => Model.Employee.EmailAddress)" />
-                    <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.DisplayFor(m => Model.Employee.EmailAddress)" />
+                    <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="emp.MailingAddress" />
+                    <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="emp.PObox" />
+                    <input type="text" id="City" class="form-control" placeholder="City" name="City" value="emp.City" />
+                    <input type="text" id="State" class="form-control" placeholder="State" name="State" value="emp.State" />
+                    <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="emp.ZipCode" />
                 </div>
                 <div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
-                        <input type="text" id="County" class="form-control" placeholder="County" name="County" value="@Html.DisplayFor(m => Model.Employee.EmailAddress)" />
+                        <input type="text" id="County" class="form-control" placeholder="County" name="County" value="emp.County" />
                     </div>
                 </div>
             </div>
             <div class="form-group" id="EmpPhysicalAddress">
                 <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                 <div class="col-md-10">
-                    <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street2" name="PhysicalAddress" value="@Html.DisplayFor(m => Model.Employee.EmailAddress)" />
-                    <input type="text" id="PObox2" class="form-control" placeholder="PO Box2" name="PObox" value="@Html.DisplayFor(m => Model.Employee.EmailAddress)" />
-                    <input type="text" id="City2" class="form-control" placeholder="City2" name="City" value="@Html.DisplayFor(m => Model.Employee.EmailAddress)" />
-                    <input type="text" id="State2" class="form-control" placeholder="State2" name="State" value="@Html.DisplayFor(m => Model.Employee.EmailAddress)" />
-                    <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code2" name="ZipCode" value="@Html.DisplayFor(m => Model.Employee.EmailAddress)" />
+                    <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street2" name="PhysicalAddress" value="emp.PhysicalAddress" />
+                    <input type="text" id="PObox2" class="form-control" placeholder="PO Box2" name="PObox" value="emp.PObox2" />
+                    <input type="text" id="City2" class="form-control" placeholder="City2" name="City" value="emp.City2" />
+                    <input type="text" id="State2" class="form-control" placeholder="State2" name="State" value="emp.State2" />
+                    <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code2" name="ZipCode" value="emp.ZipCode2" />
                 </div>
                 <div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
-                        <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="@Html.DisplayFor(m => Model.Employee.EmailAddress)" />
+                        <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="emp.County2" />
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(m => Model.Employee.EmailAddress)" />
+                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="emp.EmailAddress" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
                 <div class="col-md-10">
-                    <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(m => Model.Employee.PhoneNumber)" />
+                    <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="emp.PhoneNumber" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
                 <div class="col-md-10">
-                    <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="@Html.DisplayFor(m => Model.Employee.CellPhone)" />
+                    <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="emp.CellPhone" />
                 </div>
             </div>
         </div>
@@ -342,10 +342,68 @@
                 .catch(error => console.error(error))
 
         })
+    })
+
+    function SecondStep(sp) {
+        document.querySelector("#Employee_id").value = sp;
+        document.querySelector("#FamilyMember_id").value = sp;
+        document.querySelector("#SpouseContact").nextElementSibling.style.display = "block";
+        document.querySelector("#MailingAddress").value = sp;
+        document.querySelector("#PObox").value = sp;
+        document.querySelector("#City").value = sp;
+        document.querySelector("#State").value = sp;
+        document.querySelector("#ZipCode").value = sp;
+        document.querySelector("#County").value = sp;
+        document.querySelector("#PhysicalAddress").value = sp;
+        document.querySelector("#PObox2").value = sp;
+        document.querySelector("#City2").value = sp;
+        document.querySelector("#State2").value = sp;
+        document.querySelector("#ZipCode2").value = sp;
+        document.querySelector("#County2").value = sp;
+        document.querySelector("#Email").value = sp;
+        document.querySelector("#PhoneNumber").value = sp;
+        document.querySelector("#CellPhone").value = sp;
     }
-    
 
+    //need to get data from employee if spouse is using same contact information to submit 
+    //EmpMailingAddress
+    //EmpPhysicalAddress
+    //divEmpContact
+    function ThirdStep(emp) {
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+        document.querySelector("#").value = emp;
+    }
 
-
-
+    function postData(url, data) {
+        //Default options are marked with *
+        console.log(data);
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        })
+            .then(Response => Response.json()) //parses response to JSON
+    }
 </script>

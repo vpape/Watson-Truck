@@ -14,43 +14,47 @@
         <div class="content">
             <dl class="dl-horizontal">
                 <dt>
+                    <label class="col-md-2 control-label">Employee ID:</label>
+                </dt>
+                <dd class="col-md-10">
+                    <input type="text" id="Employee_id" class="form-control" name="Employee_id" value="emp.Employee_id">
+                </dd>
+                <dt>
                     <label class="col-md-2 control-label">Employee Number:</label>
                 </dt>
-                <dd id="EmpNumber" value="SSN" class="col-md-10">
-                    @Html.DisplayFor(model => model.Employee.SSN)
+                <dd class="col-md-10">
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="sp.EmpNumber">
                 </dd>
-
                 <dt>
-                    <label class="col-md-2 control-label">Employee Name:</label>
+                    <label class="col-md-2 control-label">Employee First Name:</label>
                 </dt>
-                <dd id="EmpFirstName" value="EmployeeFirstName" class="col-md-10">
-                    @Html.DisplayFor(model => model.Employee.FirstName)
+                <dd class="col-md-10">
+                    <input type="text" id="EmpFirstName" class="form-control" name="FirstName" value="sp.EmpFirstName">
                 </dd>
-                <dd id="EmpLastName" value="EmployeeLastName" class="col-md-10">
-                    @Html.DisplayFor(model => model.Employee.LastName)
-                </dd>
-
                 <dt>
-                    <label class="col-md-2 control-label">Spouse First Name:</label>
+                    <label class="col-md-2 control-label">Employee Last name:</label>
                 </dt>
-                <dd id="FirstName" value="FirstName" class="col-md-10">
-                    @Html.DisplayFor(model => model.FirstName)
+                <dd class="col-md-10">
+                    <input type="text" id="EmpLastName" class="form-control" name="LastName" value="sp.EmpLastName">
                 </dd>
-
+                <dt>
+                    <label class="col-md-2 control-label">First Name:</label>
+                </dt>
+                <dd class="col-md-10">
+                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="sp.FirstName">
+                </dd>
                 <dt>
                     <label class="col-md-2 control-label">Last Name:</label>
                 </dt>
-                <dd id="LastName" value="LastName" class="col-md-10">
-                    @Html.DisplayFor(model => model.LastName)
+                <dd class="col-md-10">
+                    <input type="text" id="LastName" class="form-control" name="LastName" value="sp.LastName">
                 </dd>
-
                 <dt>
                     <label class="col-md-2 control-label">Date of Birth:</label>
                 </dt>
-                <dd id="DateOfBirth" value="DateOfBirth" class="col-md-10">
-                    @Html.DisplayFor(model => model.DateOfBirth)
+                <dd class="col-md-10">
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="sp.DateOfBirth">
                 </dd>
-
                 <dt>
                     <label class="col-md-2 control-label">Gender:</label>
                 </dt>
@@ -58,151 +62,81 @@
                     <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((Model.Gender == "Male") ? "checked" : "") />Male</label>
                     <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((Model.Gender == "Female") ? "checked" : "") />Female</label>
                 </dd>
-
                 <dt>
                     <label class="col-md-2 control-label">Mailing Address:</label>
                 </dt>
-                <dd id="MailingAddress" value="MailingAddress" class="col-md-10">
-                    @Html.DisplayFor(model => model.MailingAddress)
+                <dd class="col-md-10">
+                    <text type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="sp.MailingAddress" />
+                    <text type="text" id="PObox" class="form-control" name="PObox" value="sp.PObox" />
+                    <text type="text" id="City" class="form-control" name="City" value="sp.City" />
+                    <text type="text" id="State" class="form-control" name="State" value="sp.State" />
+                    <text type="text" id="ZipCode" class="form-control" name="ZipCode" value="sp.ZipCode" />
+                    <text type="text" id="County" class="form-control" name="County" value="sp.County" />
                 </dd>
-                <dt>
-                    <label class="col-md-2 control-label">PO Box:</label>
-                </dt>
-                <dd id="PObox" value="PObox" class="col-md-10">
-                    @Html.DisplayFor(model => model.MailingAddress)
-                </dd>
-
-                <dt>
-                    <label class="col-md-2 control-label">City:</label>
-                </dt>
-                <dd id="City" value="City" class="col-md-10">
-                    @Html.DisplayFor(model => model.City)
-                </dd>
-
-                <dt>
-                    <label class="col-md-2 control-label">State:</label>
-                </dt>
-                <dd id="State" value="State" class="col-md-10">
-                    @Html.DisplayFor(model => model.State)
-                </dd>
-
-                <dt>
-                    <label class="col-md-2 control-label">Zip Code:</label>
-                </dt>
-                <dd id="ZipCode" value="ZipCode" class="col-md-10">
-                    @Html.DisplayFor(model => model.ZipCode)
-                </dd>
-
-                <dt>
-                    <label class="col-md-2 control-label">County:</label>
-                </dt>
-                <dd id="County" value="County" class="col-md-10">
-                    @Html.DisplayFor(model => model.County)
-                </dd>
-
                 <dt>
                     <label class="col-md-2 control-label">Physical Address:</label>
                 </dt>
-                <dd id="PhysicalAddress" value="PhysicalAddress" class="col-md-10">
-                    @Html.DisplayFor(model => model.PhysicalAddress)
+                <dd class="col-md-10">
+                    <text type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="sp.PhysicalAddress" />
+                    <text type="text" id="PObox2" class="form-control" name="PObox" value="sp.PObox2" />
+                    <text type="text" id="City2" class="form-control" name="City" value="sp.City2" />
+                    <text type="text" id="State2" class="form-control" name="State" value="sp.State2" />
+                    <text type="text" id="ZipCode2" class="form-control" name="ZipCode" value="sp.ZipCode2" />
+                    <text type="text" id="County2" class="form-control" name="County" value="sp.County2" />
                 </dd>
-                <dt>
-                    <label class="col-md-2 control-label">PO Box2:</label>
-                </dt>
-                <dd id="PObox2" value="PObox2" class="col-md-10">
-                    @Html.DisplayFor(model => model.PObox)
-                </dd>
-
-                <dt>
-                    <label class="col-md-2 control-label">City2:</label>
-                </dt>
-                <dd id="City2" value="City" class="col-md-10">
-                    @Html.DisplayFor(model => model.City)
-                </dd>
-
-                <dt>
-                    <label class="col-md-2 control-label">State2:</label>
-                </dt>
-                <dd id="State2" value="State" class="col-md-10">
-                    @Html.DisplayFor(model => model.State)
-                </dd>
-
-                <dt>
-                    <label class="col-md-2 control-label">Zip Code2:</label>
-                </dt>
-                <dd id="ZipCode2" value="ZipCode" class="col-md-10">
-                    @Html.DisplayFor(model => model.ZipCode)
-                </dd>
-
-                <dt>
-                    <label class="col-md-2 control-label">County2:</label>
-                </dt>
-                <dd id="County2" value="County" class="col-md-10">
-                    @Html.DisplayFor(model => model.County)
-                </dd>
-
                 <dt>
                     <label class="col-md-2 control-label">Email:</label>
                 </dt>
-                <dd id="EmailAddress" value="EmailAddress" class="col-md-10">
-                    @Html.DisplayFor(model => model.EmailAddress)
+                <dd class="col-md-10">
+                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="sp.EmailAddress">
                 </dd>
-
                 <dt>
                     <label class="col-md-2 control-label">Phone Number:</label>
                 </dt>
-                <dd id="PhoneNumber" value="PhoneNumber" class="col-md-10">
-                    @Html.DisplayFor(model => model.PhoneNumber)
+                <dd class="col-md-10">
+                    <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="sp.PhoneNumber">
                 </dd>
-
                 <dt>
                     <label class="col-md-2 control-label">Cell Phone:</label>
                 </dt>
-                <dd id="CellPhone" value="CellPhone" class="col-md-10">
-                    @Html.DisplayFor(model => model.CellPhone)
+                <dd class="col-md-10">
+                    <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="sp.CellPhone">
                 </dd>
-
                 <dt>
                     <label class="col-md-2 control-label">Current Employer:</label>
                 </dt>
-                <dd id="Employer" value="Employer" class="col-md-10">
-                    @Html.DisplayFor(model => model.Employer)
+                <dd class="col-md-10">
+                    <input type="text" id="Employer" class="form-control" name="Employer" value="sp.Employer">
                 </dd>
-
                 <dt>
                     <label class="col-md-2 control-label">Employer Address:</label>
                 </dt>
-                <dd id="EmployerMailingAddress" value="EmployerMailingAddress" class="col-md-10">
-                    @Html.DisplayFor(model => model.EmployerMailingAddress)
+                <dd class="col-md-10">
+                    <input type="text" id="EmployerMailingAddress" class="form-control" name="EmployerMailingAddress" value="sp.EmployerMailingAddress">
                 </dd>
-
                 <dt>
                     <label class="col-md-2 control-label">City:</label>
                 </dt>
-
-                <dd id="EmployerCity" value="EmployerCity" class="col-md-10">
-                    @Html.DisplayFor(model => model.EmployerCity)
+                <dd class="col-md-10">
+                    <input type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="sp.EmployerCity">
                 </dd>
-
                 <dt>
                     <label class="col-md-2 control-label">State:</label>
                 </dt>
-                <dd id="EmployerState" value="EmployerState" class="col-md-10">
-                    @Html.DisplayFor(model => model.EmployerState)
+                <dd class="col-md-10">
+                    <input type="text" id="EmployerState" class="form-control" name="EmployerState" value="sp.EmployerState">
                 </dd>
-
                 <dt>
                     <label class="col-md-2 control-label">Zip Code:</label>
                 </dt>
-                <dd id="EmployerZipCode" value="EmployerZipCode" class="col-md-10">
-                    @Html.DisplayFor(model => model.EmployerZipCode)
+                <dd class="col-md-10">
+                    <input type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="sp.EmployerZipCode">
                 </dd>
-
                 <dt>
                     <label class="col-md-2 control-label">Phone Number:</label>
                 </dt>
-                <dd id="EmployerPhoneNumber" value="EmployerPhoneNumber" class="col-md-10">
-                    @Html.DisplayFor(model => model.EmployerPhoneNumber)
+                <dd class="col-md-10">
+                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" value="sp.EmployerPhoneNumber">
                 </dd>
             </dl>
         </div>
@@ -256,6 +190,118 @@
         });
     }
 
+    document.addEventListener("DOMContentLoaded", function () {
+        ID = document.getElementById("Employee_id").value;
+        EmpNumber = document.getElementById("SSN").value;
+        EmpFirstName = document.getElementById("EmpFirstName").value;
+        EmpLastName = document.getElementById("EmpLastName").value;
+        FirstName = document.getElementById("FirstName").value;
+        LastName = document.getElementById("LastName").value;
+        DateOfBirth = document.getElementById("DateOfBirth").value;
 
+        Gender = document.querySelectorAll('input [name = "Gender"]').forEach("click", function (e, i) {
+            if (e.checked) {
+                Gender = e.value;
+            }
+        })
+
+        MailingAddress = document.getElementById("MailingAddress").value;
+        PObox = document.getElementById("PObox").value;
+        City = document.getElementById("City").value;
+        State = document.getElementById("State").value;
+        ZipCode = document.getElementById("ZipCode").value;
+        County = document.getElementById("County").value;
+        PhysicalAddress = document.getElementById("PhysicalAddress").value
+        PObox2 = document.getElementById("PObox2").value,
+        City2 = document.getElementById("City2").value
+        State2 = document.getElementById("State2").value
+        ZipCode2 = document.getElementById("ZipCode2").value
+        County2 = document.getElementById("County2").value
+        EmailAddress = document.getElementById("EmailAddress").value;
+        PhoneNumber = document.getElementById("PhoneNumber").value;
+        CellPhone = document.getElementById("CellPhone").value;
+
+        CityLimits = document.querySelectorAll('input [name = "CityLimits"]').forEach(function (e, i) {
+            if (e.checked) {
+                CityLimits = e.value;
+            }
+        });
+
+        var data = {
+            "Employee_id": ID,
+            "EmpNumber": EmpNumber,
+            "EmpFirstName": EmpFirstName,
+            "EmpLastName": EmpLastName,
+            "FirstName": FirstName,
+            "DateOfBirth": DateOfBirth,
+            "Gender": Gender,
+            "MailingAddress": MailingAddress,
+            "PObox": PObox,
+            "City": City,
+            "State": State,
+            "ZipCode": ZipCode,
+            "County": County,
+            "PhysicalAddress": PhysicalAddress,
+            "PObox2": PObox2,
+            "City2": City2,
+            "State2": State2,
+            "ZipCode2": ZipCode2,
+            "County2": County2,
+            "EmailAddress": EmailAddress,
+            "PhoneNumber": PhoneNumber,
+            "CellPhone": CellPhone,
+            "CityLimits": CityLimits,
+
+        }
+
+        var ret = postData('GetSpDetail', data)
+            .then(data => SecondStep(data))
+            .error(error => console.error(error))
+
+    })
+
+    function SecondStep(sp) {
+        document.querySelector("#Employee_id").value = sp.Employee_id;
+        document.querySelector("#EmpNumber").value = sp.EmpNumber;
+        document.querySelector("#EmpFirstName").value = sp.EmpFirstName;
+        document.querySelector("#EmpLastName").value = sp.EmpLastName;
+        document.querySelector("#FirstName").value = sp.FirstName;
+        document.querySelector("#DateOfBirth").value = sp.DateOfBirth;
+        document.querySelector("#Gender").value = sp.Gender;
+        document.querySelector("#MailingAddress").value = sp.MailingAddress;
+        document.querySelector("#PObox").value = sp.PObox;
+        document.querySelector("#City").value = sp.City;
+        document.querySelector("#State").value = sp.State;
+        document.querySelector("#ZipCode").value = sp.ZipCode;
+        document.querySelector("#County").value = sp.County;
+        document.querySelector("#PhysicalAddress").value = sp.PhysicalAddress;
+        document.querySelector("#PObox2").value = sp.PObox2;
+        document.querySelector("#City2").value = sp.City2;
+        document.querySelector("#State2").value = sp.State2;
+        document.querySelector("#ZipCode2").value = sp.ZipCode2;
+        document.querySelector("#County2").value = sp.County2;
+        document.querySelector("#EmailAddress").value = sp.EmailAddress;
+        document.querySelector("#PhoneNumber").value = sp.PhoneNumber;
+        document.querySelector("#CellPhone").value = sp.CellPhone;
+        document.querySelector("#CityLimits").value = sp.CityLimits;
+    }
+
+    function postData(url, data) {
+        //Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        })
+            .then(Response => Response.json()) //parses response to JSON
+    }
 
 </script>

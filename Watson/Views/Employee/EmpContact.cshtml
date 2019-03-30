@@ -21,7 +21,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee ID:</label>
                 <div class="col-md-10">
-                    <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="" disabled>
+                    <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="emp.Employee_id" disabled>
                 </div>
             </div>
             <div id="divMailingAddress">
@@ -271,13 +271,13 @@
             }
 
             var ret = postData('EmpEnrollmentContact', data)
-                .then(data => SecondStep(data.data))  // have to create this
+                .then(data => SecondStep(data)) 
                 .catch(error => console.error(error))
         })
 
-    function SecondStep(id) {
-        document.querySelector("#Employee_id").value = id;
-        document.querySelector("#SecondStep").nextElementSibling.content.style.display = "block";
+    function SecondStep(emp) {
+        document.querySelector("#Employee_id").value = emp.Employee_id;
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
 
         if (document.querySelector("#addressNotSame") = false) {
 
@@ -286,12 +286,24 @@
         else {
             document.querySelctor("#divPhysicalAddress").content.style.display = "none";
         }
+
+        document.querySelector("#MailingAddress").value = emp.Employee_id;
+        document.querySelector("#City").value = emp;
+        document.querySelector("#State").value = emp;
+        document.querySelector("#ZipCode").value = emp;
+        document.querySelector("#County").value = emp;
+        document.querySelector("#PhysicalAddress").value = emp;
+        document.querySelector("#PObox2").value = emp;
+        document.querySelector("#City2").value = emp;
+        document.querySelector("#State2").value = emp;
+        document.querySelector("#ZipCode2").value = emp;
+        document.querySelector("#County2").value = emp;
+        document.querySelector("#CityLimits").value = emp;
+        document.querySelector("#EmailAddress").value = emp;
+        document.querySelector("#PhoneNumber").value = emp;
+        document.querySelector("#CellPhone").value = emp;
+
     }
-
-    //function ThirdStep(id) {
-    //    document.querySelector("#Employee_id").value = id;
-
-    //    }
 
     function postData(url, data) {
         //Default options are marked with *
