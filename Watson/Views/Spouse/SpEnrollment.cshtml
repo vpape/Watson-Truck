@@ -14,7 +14,7 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <button class="collapsible" id="FirstStep"><h4>Spouse Enrollment</h4></button>
+        <div class="collapsible" id="FirstStep"><h4>Spouse Enrollment</h4></div>
         <div class="content" id="divSpEnrollment">
             <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
             <input type="hidden" id="FamilyMember_id" class="form-control" name="Employee_id" value=@ViewBag.FamilyMember_id />
@@ -92,6 +92,7 @@
             </div>
         </div>
     </div>
+    @* Spouse Contact *@
     <div class="form-horizontal">
         <hr />
         <div class="collapsible" id="SecondStep">Spouse Contact</div>
@@ -262,7 +263,7 @@
             </div>
         </div>
     </div>
-
+    @* Spouse Employment *@
     <div class="form-horizontal">
         <hr />
         <div class="collapsible" id="ThirdStep">Spouse Employment</div>
@@ -449,6 +450,8 @@
         });
     }
 
+    //if onclick= SpouseContact() is 'yes', then employee contact info will populate....otherwise spouse will 
+    //need to fill out information. How to submit employee contact info to family member db
     function SpouseAddress() {
 
         var spouse = document.getElementById('divSpContact')
@@ -508,7 +511,7 @@
 
             }
 
-            var ret = postData('Family_Info/SpEnrollmentNew', data)
+            var ret = postData('SpEnrollmentNew', data)
                 .then(data => SecondStep(data))
                 .catch(error => console.error(error))
         })
@@ -556,7 +559,7 @@
                 "CellPhone": CellPhone,
             }
 
-            var ret = postData('Family_Info/SpEnrollmentContact', data)
+            var ret = postData('SpEnrollmentContact', data)
                 .then(data => SecondStep(data.data))
                 .error(error => console.error(error))
         })
@@ -583,19 +586,17 @@
             "EmployerPhoneNumber": EmployerPhoneNumber,
         }
 
-        var ret = postData('Family_Info/SpEmploymentUpdate', data)
+        var ret = postData('SpEmploymentUpdate', data)
             .then(data => ThirdStep(data))
             .catch(error => console.error(error))
      
 
     })
-    //add eventlistner that disables first step and closes the block of code when saved. Then automatically 
-    //opens the next step...etc
-
+  
     function SecondStep(sp) {
         document.querySelector("#Employee_id").value = sp.Employee_id;
-        document.querySelector("#FirstStep").nextElementSibling.content.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.content.style.display = "block";
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
         document.querySelector("#RelationshipToInsured").value = sp;
         document.querySelector("#EmpNumber").value = sp;
         document.querySelector("#EmpFirstName").value = sp;

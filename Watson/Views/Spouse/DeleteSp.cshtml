@@ -124,7 +124,7 @@
     </div>
     <div class="form-actions no-color">
         <button type="submit" id="confirmDelete" value="Delete" class="btn" data-toggle="confirmation">Delete</button> |
-        @Html.ActionLink("Back to Employee Overview", "EmpOverview")
+        @Html.ActionLink("Back to List", "FamilyMemberOverview")
     </div>
 </body>
 </html>
@@ -293,12 +293,12 @@
             }
 
             var ret = postData('DeleteConfirmed', data)
-                .then(data => DeleteConfirm(data.data))
+                .then(data => DeleteConfirm(data))
                 .catch(error => console.error(error))
         })
 
-        function DeleteConfirm() {
-            document.querySelector("FirstName").value = id;
+        function DeleteConfirm(sp) {
+            document.querySelector("FirstName").value = sp.FirstName;
             document.querySelector("LastName").value = id;
             document.querySelector("DateOfBirth").value = id;
             document.querySelector("Gender").value = id;

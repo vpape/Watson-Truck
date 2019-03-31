@@ -22,60 +22,60 @@
                 <dt>
                     <label class="col-md-2 control-label">Employee ID:</label>
                 </dt>
-                <dd id="Employee_id" value="Employee_id" class="col-md-10">
-                    @Html.DisplayFor(model => model.Employee.Employee_id)
+                <dd>
+                    <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="dep.Employee_id">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">FamilyMember ID:</label>
                 </dt>
-                <dd id="FamilyMember_id" value="FamilyMember_id" class="col-md-10">
-                    @Html.DisplayFor(model => model.Family_Info.FamilyMember_id)
+                <dd>
+                    <input type="number" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="dep.FamilyMember_id">
                 </dd>
                 <dt>
-                <dt>
-                    <label class="col-md-2 control-label">OtherInsurance ID:</label>
-                </dt>
-                <dd id="OtherInsurance_id" value="OtherInsurance_id" class="col-md-10">
-                    @Html.DisplayFor(model => model.Other_Insurance.OtherInsurance_id)
-                </dd>
                 <dt>
                     <label class="col-md-2 control-label">Employee Number:</label>
                 </dt>
-                <dd id="EmpNumber" value="SSN" class="col-md-10">
-                    @Html.DisplayFor(model => model.Employee.SSN)
+                <dd>
+                    <input type="number" id="EmpNumber" class="form-control" name="SSN" value="dep.EmpNumber">
+                </dd>
+                <dd>
+                    <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="dep.Employee_id">
                 </dd>
                 <dt>
-                    <label class="col-md-2 control-label">Employee Name:</label>
+                    <label class="col-md-2 control-label">Employee First Name:</label>
                 </dt>
-                <dd id="EmpFirstName" value="FirstName" class="col-md-10">
-                    @Html.DisplayFor(model => model.Employee.FirstName)
+                <dd>
+                    <input type="number" id="EmpFirstName" class="form-control" name="FirstName" value="dep.EmpFirstName" disabled>
                 </dd>
-                <dd id="EmpLastName" value="LastName" class="col-md-10">
-                    @Html.DisplayFor(model => model.Employee.LastName)
+                <dt>
+                    <label class="col-md-2 control-label">Employee Last Name:</label>
+                </dt>
+                <dd>
+                    <input type="number" id="EmpLastName" class="form-control" name="LastName" value="dep.EmpLastName" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-offset-2 control-label">Relationship to Employee:</label>
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => model.RelationshipToInsured)
+                    <input type="number" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="dep.RelationshipToInsured">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">First Name:</label>
                 </dt>
-                <dd id="DepFirstName" value="FirstName" class="col-md-10">
-                    @Html.DisplayFor(model => model.FirstName)
+                <dd>
+                    <input type="number" id="DepFirstName" class="form-control" name="FirstName" value="dep.FirstName">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Last Name:</label>
                 </dt>
-                <dd id="DepLastName" value="LastName" class="col-md-10">
-                    @Html.DisplayFor(model => model.LastName)
+                <dd>
+                    <input type="number" id="DepLastName" class="form-control" name="LastName" value="dep.LastName">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Birth Date:</label>
                 </dt>
-                <dd id="DateOfBirth" value="DateOfBirth" class="col-md-10">
-                    @Html.DisplayFor(model => model.DateOfBirth)
+                <dd>
+                    <input type="number" id="DateOfBirth" class="form-control" name="DateOfBirth" value="dep.DateOfBirth">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Gender:</label>
@@ -87,10 +87,10 @@
                 <dd class="form-group" id="depOtherIns">
                     <label class="col-md-4 control-label">Is your dependent covered by other insurance, including Medicare/Medicaid? If so, we need the following information:</label>
                     <div class="form-group">
-                        @foreach (var item in Model.Other_Insurance)
+                        @foreach (var dep in Model.Other_Insurance)
                         {
-                            <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" @((Model.CoverByOtherInsurance == "Yes") ? "checked" : "") disabled onload="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" />Yes</label>
-                            <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" @((Model.CoverByOtherInsurance == "No") ? "checked" : "") disabled onload="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" />No</label>
+                            <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" @((Model.CoverByOtherInsurance == "Yes") ? "checked" : "") onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" disabled/>Yes</label>
+                            <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" @((Model.CoverByOtherInsurance == "No") ? "checked" : "") onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" disabled/>No</label>
                         }
                     </div>
                 </dd>
@@ -98,30 +98,30 @@
                     <label class="col-md-2 control-label">Insurance Information:</label>
                 </dt>
                 <dd id="divCoveredByOtherIns">
-                    @foreach (var item in Model.Other_Insurance)
+                    @foreach (var dep in Model.Other_Insurance)
                     {
                         <label class="col-md-2 control-label">Insurance Company:</label>
-                        <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="@Html.DisplayFor(model => item.InsuranceCompany)" />
+                        <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="dep.InsCompany" />
                         <label class="col-md-2 control-label">Policy Number:</label>
-                        <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="@Html.DisplayFor(model => item.PolicyNumber)" />
+                        <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="dep.PolicyNumber" />
                         <label class="col-md-2 control-label">Phone Number:</label>
-                        <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(model => item.PhoneNumber)" />
+                        <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="dep.InsPhoneNumber" />
                     }
 
                     <label class="col-md-2 control-label">Mailing Address:</label>
-                    @foreach (var item in Model.Other_Insurance)
+                    @foreach (var dep in Model.Other_Insurance)
                     {
-                        <input type="text" id="InsMailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(model => item.MailingAddress)" disabled />
-                        <input type="text" id="InsCity" class="form-control" name="City" value="@Html.DisplayFor(model => item.City)" disabled />
-                        <input type="text" id="InsState" class="form-control" name="State" value="@Html.DisplayFor(model => item.State)" disabled />
-                        <input type="text" id="InsZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(model => item.ZipCode)" disabled />
+                        <input type="text" id="InsMailingAddress" class="form-control" name="MailingAddress" value="dep.InsMailingAddress" disabled />
+                        <input type="text" id="InsCity" class="form-control" name="City" value="dep.InsCity" disabled />
+                        <input type="text" id="InsState" class="form-control" name="State" value="dep.InsState" disabled />
+                        <input type="text" id="InsZipCode" class="form-control" name="ZipCode" value="dep.InsZipCode" disabled />
                     }
                 </dd>
             </dl>
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditDep", new { id = Model.Employee_id }) |
+        @Html.ActionLink("Edit", "EditDep", new { dep = Model.Employee_id }) |
         @Html.ActionLink("Back to List", "EmpOverview")
     </p>
 </body>
@@ -231,49 +231,44 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#").addEventListener("click", function () {
-            EmployeeID = document.getElementById("Employee_id").value;
-            DependentID = document.getElementById("FamilyMember_id").value;
-            OtherInsID = document.getElementById("OtherInsurance_id").value;
-            EmpNumber = document.getElementById("SSN").value;
-            EmpFirstName = document.getElementById("EmpFirstName").value;
-            EmpLastName = document.getElementById("EmpLastName").value;
-            DepFirstName = document.getElementById("DepFirstName").value;
-            DepLastName = document.getElementById("DepLastName").value;
-            DateOfBirth = document.getElementById("DateOfBirth").value;
+        EmployeeID = document.getElementById("Employee_id").value;
+        DependentID = document.getElementById("FamilyMember_id").value;
+        EmpNumber = document.getElementById("SSN").value;
+        EmpFirstName = document.getElementById("EmpFirstName").value;
+        EmpLastName = document.getElementById("EmpLastName").value;
+        DepFirstName = document.getElementById("DepFirstName").value;
+        DepLastName = document.getElementById("DepLastName").value;
+        DateOfBirth = document.getElementById("DateOfBirth").value;
 
-            Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
-                if (e.checked) {
-                    Gender = e.value;
-                }
-            })
+        Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
+            if (e.checked) {
+                Gender = e.value;
+            }
+        });
 
-            RelationshipToInsured = document.querySelectorAll('input [name = "RelationshipToInsured"]').forEach(function (e, i) {
-                if (e.checked) {
-                    RelationshipToInsured = e.value;
-                }
-            })
+        RelationshipToInsured = document.querySelectorAll('input [name = "RelationshipToInsured"]').forEach(function (e, i) {
+            if (e.checked) {
+                RelationshipToInsured = e.value;
+            }
+        });
 
-            CoveredByOtherIns = document.querySelectorAll('input [name = "CoveredByOtherInsurance"]').forEach(function (e, i) {
-                if (e.checked) {
-                    CoveredByOtherIns = e.value;
-                }
-            })
+        CoveredByOtherIns = document.querySelectorAll('input [name = "CoveredByOtherInsurance"]').forEach(function (e, i) {
+            if (e.checked) {
+                CoveredByOtherIns = e.value;
+            }
+        });
 
-            //CoveredByOtherIns = document.getElementByName("CoveredByOtherIns").value;
-            InsCompany = document.getElementById("InsCompany").value;
-            PolicyNumber = document.getElementById("PolicyNumber").value;
-            InsPhoneNumber = document.getElementById("InsPhoneNumber").value;
-            InsMailingAddress = document.getElementById("InsMailingAddress").value;
-            InsCity = document.getElementById("InsCity").value;
-            InsState = document.getElementById("InsState").value;
-            InsZipCode = document.getElementById("InsZipCode").value;
-        })
+        InsCompany = document.getElementById("InsCompany").value;
+        PolicyNumber = document.getElementById("PolicyNumber").value;
+        InsPhoneNumber = document.getElementById("InsPhoneNumber").value;
+        InsMailingAddress = document.getElementById("InsMailingAddress").value;
+        InsCity = document.getElementById("InsCity").value;
+        InsState = document.getElementById("InsState").value;
+        InsZipCode = document.getElementById("InsZipCode").value;
 
         var data = {
             "Employee_id": EmployeeID,
             "FamilyMember_id": DependentID,
-            "OtherInsurance_id": OtherInsID,
             "RelationshipToInsured": RelationshipToInsured,
             "EmpNumber": EmpNumber,
             "EmpFirstName": EmpFirstName,
@@ -282,8 +277,7 @@
             "DepLastName": DepLastName,
             "DateOfBirth": DateOfBirth,
             "Gender": Gender,
-
-            "CoveredByOtherInsurance": CoveredByOtherIns,
+            "CoveredByOtherIns": CoveredByOtherIns,
             "InsCompany": InsCompany,
             "PolicyNumber": PolicyNumber,
             "InsPhoneNumber": InsPhoneNumber,
@@ -291,6 +285,7 @@
             "InsCity": InsCity,
             "InsState": InsState,
             "InsZipCode": InsZipCode,
+
         }
 
         var ret = postData('GetDepDetail', data)
@@ -299,32 +294,30 @@
 
     })
 
-    function SecondStep(id) {
-        document.querySelector("#Employee_id").value = id;
-        document.querySelector("#FamilyMember_id").value = id;
-        document.querySelector("#OtherInsurance_id").value = id;
-        document.querySelector("#dependentSelectForm").nextElementSibling.content.style.display = "none";
-        //document.querySelector("#SecondStep").nextElementSibling.content.style.display = "block";
-        document.querySelector("#EmpNumber").value = id;
-        document.querySelector("#EmpFirstName").value = id;
-        document.querySelector("#EmpLastName").value = id;
-        document.querySelector("#DepLastName").value = id;
-        document.querySelector("#DateOfBirth").value = id;
-        document.querySelector("#Gender").value = id;
-
-        document.querySelector("#CoveredByOtherIns").value = id;
-        document.querySelector("#InsCompany").value = id;
-        document.querySelector("#PolicyNumber").value = id;
-        document.querySelector("InsPhoneNumber").value = id;
-        document.querySelector("#InsMailingAddress").value = id;
-        document.querySelector("#InsCity").value = id;
-        document.querySelector("#InsState").value = id;
-        document.querySelector("#InsZipCode").value = id;
+    function SecondStep(dep) {
+        document.querySelector("#Employee_id").value = dep.Employee_id;
+        document.querySelector("#FamilyMember_id").value = dep.FamilyMember_id;
+        document.querySelector("#dependentSelectForm").nextElementSibling.style.display = "block";
+        document.querySelector("#EmpNumber").value = dep.EmpNumber;
+        document.querySelector("#EmpFirstName").value = dep.EmpFirstName;
+        document.querySelector("#EmpLastName").value = dep.EmpLastName;
+        document.querySelector("#DepFirstName").value = dep.DepFirstName;
+        document.querySelector("#DepLastName").value = dep.DepLastName;
+        document.querySelector("#DateOfBirth").value = dep.DateOfBirth;
+        document.querySelector("#Gender").value = dep.Gender;
+        document.querySelector("#CoveredByOtherIns").value = dep.CoveredByOtherIns;
+        document.querySelector("#InsCompany").value = dep.InsCompany;
+        document.querySelector("#PolicyNumber").value = dep.PolicyNumber;
+        document.querySelector("InsPhoneNumber").value = dep.InsPhoneNumber;
+        document.querySelector("#InsMailingAddress").value = dep.InsMailingAddress;
+        document.querySelector("#InsCity").value = dep.InsCity;
+        document.querySelector("#InsState").value = dep.InsState;
+        document.querySelector("#InsZipCode").value = dep.InsZipCode;
     }
 
-    function ThirdStep(id) {
+    //function ThirdStep(id) {
 
-    }
+    //}
 
     function postData(url, data) {
         //Default options are marked with *

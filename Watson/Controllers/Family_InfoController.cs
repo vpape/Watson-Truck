@@ -163,18 +163,17 @@ namespace Watson.Controllers
                 db.SaveChanges();
             }
 
-            return Json(new { data = sp }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = sp, Employee_id }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
 
-        //----------------------------------------------------------------------------------------
         public ActionResult SpEmployment()
         {
             return View();
         }
 
-        public JsonResult SpEmploymentUpdate(int Employee_id, int FamilyMember_id, string CurrentEmployer, 
+        public JsonResult SpEmploymentUpdate(int Employee_id, int FamilyMember_id, string CurrentEmployer,
             string EmployerAddress, string EmployerCity, string EmployerState, string EmployerZipCode, 
             string EmployerPhoneNumber)
         {
@@ -189,7 +188,6 @@ namespace Watson.Controllers
 
             int result = Employee_id;
                        
-
             return Json(new { data = sp }, JsonRequestBehavior.AllowGet);
         }
 
@@ -355,6 +353,10 @@ namespace Watson.Controllers
             dep.DateOfBirth = DateOfBirth;
             dep.Gender = Gender;
 
+            Employee emp = new Employee();
+
+            emp.SSN = EmpNumber;
+
             Other_Insurance o = new Other_Insurance();
 
             o.CoveredByOtherInsurance = CoveredByOtherIns;
@@ -372,7 +374,7 @@ namespace Watson.Controllers
             db.Other_Insurance.Add(o);
             db.SaveChanges();
 
-            return Json(new { data = dep, o }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = dep, emp, o }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
@@ -382,16 +384,14 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult DepEditUpdate(int Employee_id, int FamilyMember_id, int Other_Insurance_id,
-            string EmpNumber, string RelationshipToInsured, string DepFirstName, string DepLastName,
-             DateTime DateOfBirth, string Gender, string CoveredByOtherIns, string InsCompany, 
-             string PolicyNumber, string InsPhoneNumber, string InsMailingAddress,
-            string InsCity, string InsState, string InsZipCode)
+        public JsonResult DepEditUpdate(int Employee_id, int FamilyMember_id, int OtherInsurance_id, string EmpNumber,
+            string RelationshipToInsured, string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender,
+            string CoveredByOtherIns, string InsCompany, string PolicyNumber, string InsPhoneNumber, 
+            string InsMailingAddress, string InsCity, string InsState, string InsZipCode)
         {
             var dep = db.Family_Info
                 .Where(i => i.Employee_id == Employee_id)
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
-                .Where(i => i.OtherInsurance_id == Other_Insurance_id)
                 .Single();
 
             dep.SSN = EmpNumber;
@@ -402,9 +402,7 @@ namespace Watson.Controllers
             dep.Gender = Gender;
             
             var o = db.Other_Insurance
-                .Where(i => i.Employee_id == Employee_id)
-                .Where(i => i.FamilyMember_id == FamilyMember_id)
-                .Where(i => i.OtherInsurance_id == Other_Insurance_id)
+                .Where(i => i.OtherInsurance_id == OtherInsurance_id)
                 .Single();
 
             o.CoveredByOtherInsurance = CoveredByOtherIns;
@@ -456,13 +454,17 @@ namespace Watson.Controllers
             return View(f);
         }
 
-        public JsonResult GetDepDetail(int FamilyMember_id)
+        public JsonResult GetDepDetail(int FamilyMember_id, int OtherInsurance_id)
         {
             var dep = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
                 .Single();
 
-            return Json(new { data = dep }, JsonRequestBehavior.AllowGet);
+            var o = db.Other_Insurance
+            .Where(i => i.OtherInsurance_id == OtherInsurance_id)
+            .Single();
+
+            return Json(new { data = dep, o }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------

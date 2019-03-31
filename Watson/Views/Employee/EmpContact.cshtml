@@ -201,32 +201,6 @@
     //    document.getElementById("divPhysicalAddress").style.display = "block";
     //}
 
-    function ContactUpdate() {
-
-        redirectTime = "3000";
-        redirectURL = window.location('/Employee/EmpDetail');
-
-        var message;
-        var alert = confirm("Would you like to proceed? If yes, click the OK button to continue");
-
-        if (alert == true) {
-
-            message = "Please proceed to the next segment, Thank you!!";
-
-            window.setTimeout(function () {
-
-                window.location = "redirectURL", redirectTime
-            });
-        }
-        else {
-
-            message = "Please review your information and submit when complete";
-        }
-        document.getElementById("EmployeeEnrollmentUpdateStepTwo").value = message;
-
-        return confirm('EmployeeEnrollmentUpdateStepTwo')
-    }
-
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmployeeEnrollmentUpdateStepTwo").addEventListener("click", function () {
             ID = document.getElementById("Employee_id").value;

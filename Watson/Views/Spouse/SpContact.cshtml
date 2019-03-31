@@ -14,7 +14,7 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <button class="collapsible" id="SpouseContact"><h4>Spouse Contact</h4></button>
+        <div class="collapsible" id="SpouseContact"><h4>Spouse Contact</h4></div>
         <div class="content">
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee ID:</label>
@@ -337,8 +337,8 @@
                 "CellPhone": CellPhone,
             }
 
-            var ret = postData("Family_Info/SpContactUpdate", data)
-                .then(data => SecondStep(data.data))
+            var ret = postData("SpContactUpdate", data)
+                .then(data => SecondStep(data))
                 .catch(error => console.error(error))
 
         })
@@ -365,7 +365,7 @@
         document.querySelector("#CellPhone").value = sp;
     }
 
-    //need to get data from employee if spouse is using same contact information to submit 
+    //need to get data from employee if spouse is using same address information to submit 
     //EmpMailingAddress
     //EmpPhysicalAddress
     //divEmpContact

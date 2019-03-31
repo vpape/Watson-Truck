@@ -10,8 +10,10 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <button class="collapsible" id="SpDetail"><h4>Spouse Detail</h4></button>
+        <div class="collapsible" id="SpDetail"><h4>Spouse Detail</h4></div>
         <div class="content">
+            <p></p>
+            <p></p>
             <dl class="dl-horizontal">
                 <dt>
                     <label class="col-md-2 control-label">Employee ID:</label>
@@ -142,7 +144,7 @@
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditSp", new { id = Model.Employee_id }) |
+        @Html.ActionLink("Edit", "EditSp", new { sp = Model.Employee_id }) |
         @Html.ActionLink("Back to List", "FamilyMemberOverview") 
     </p>
 </body>

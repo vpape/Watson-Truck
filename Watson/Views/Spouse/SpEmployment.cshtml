@@ -186,23 +186,22 @@
 
             }
 
-            var ret = postData('Family_Info/SpEmploymentUpdate', data)
+            var ret = postData('SpEmploymentUpdate', data)
                 .then(data => SecondStep(data))
                 .catch(error => console.error(error))
         })
     })
             
-    function SecondStep(id) {
-        document.querySelector("#Employee_id").value = id;
-        document.querySelector("#FamilyMember_id").value = id;
-        document.querySelector("#EmployerAddress").value = id;
-        document.querySelector("#EmployerCity").value = id;
-        document.querySelector("#EmployerState").value = id;
-        document.querySelector("#EmployerZipCode").value = id;
-        document.querySelector("#EmployerPhoneNumber").value = id;
-        document.querySelector("#ThirdStep").nextElementSibling.content.style.display = "none";
-        //document.querySelector("#SecondStep").nextElementSibling.content.style.display = "block";
-  
+    function SecondStep(sp) {
+        document.querySelector("#Employee_id").value = sp;
+        document.querySelector("#FamilyMember_id").value = sp;
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "block"; 
+        document.querySelector("#EmployerAddress").value = sp;
+        document.querySelector("#EmployerCity").value = sp;
+        document.querySelector("#EmployerState").value = sp;
+        document.querySelector("#EmployerZipCode").value = sp;
+        document.querySelector("#EmployerPhoneNumber").value = sp;
+ 
     }
  
     function postData(url, data) {

@@ -46,9 +46,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
+                <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
-                    <input type="text" id="SSN" class="form-control" name="SSN" value="" />
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="" />
                 </div>
             </div>
             <div class="form-group">
@@ -201,7 +201,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <button id="EmployeeEnrollmentUpdateStepTwo" class="btn">Save</button>
+                    <button id="EmployeeEnrollmentUpdateStepTwo" onclick="return ContactUpdate()" class="btn">Save</button>
                 </div>
             </div>
         </div>
@@ -303,9 +303,34 @@
 
     function ShowPhysicalAddress() {
         document.getElementById("divPhysicalAddress").style.display = "block";
+         //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
     }
-        //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
+       
+    function ContactUpdate() {
 
+        redirectTime = "3000";
+        redirectURL = window.location('/Employee/EmpDetail');
+
+        var message;
+        var alert = confirm("Would you like to proceed? If yes, click the OK button to continue");
+
+        if (alert == true) {
+
+            message = "Please proceed to the next segment, Thank you!!";
+
+            window.setTimeout(function () {
+
+                window.location = "redirectURL", redirectTime
+            });
+        }
+        else {
+
+            message = "Please review your information and submit when complete";
+        }
+        document.getElementById("EmployeeEnrollmentUpdateStepTwo").value = message;
+
+        return confirm('EmployeeEnrollmentUpdateStepTwo')
+    }
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmployeeEnrollmentUpdate").addEventListener("click", function () {
@@ -333,7 +358,7 @@
                 "EmployeeRole": EmployeeRole,
                 "CurrentEmployer": CurrentEmployer,
                 "JobTitle": JobTitle,
-                "EmployeeNumber": EmployeeNumber,
+                "EmpNumber": EmpNumber,
                 "MaritalStatus": MaritalStatus,
                 "FirstName": FirstName,
                 "LastName": LastName,
@@ -402,7 +427,7 @@
         document.querySelector("#EmployeeRole").value = emp;
         document.querySelector("#CurrentEmployer").value = emp;
         document.querySelector("#JobTitle").value = emp;
-        document.querySelector("#EmployeeNumber").value = emp;
+        document.querySelector("#EmpNumber").value = emp;
         document.querySelector("#MaritalStatus").value = emp;
         document.querySelector("#FirstName").value = emp;
         document.querySelector("#LastName").value = emp;
