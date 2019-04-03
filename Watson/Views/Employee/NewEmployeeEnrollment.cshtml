@@ -19,12 +19,6 @@
             <p></p>
             <p></p>
             <div class="form-group">
-                <label class="col-md-2 control-label">Employee ID:</label>
-                <div class="col-md-10">
-                    <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="" disabled>
-                </div>
-            </div>
-            <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
                 <div class="col-md-10">
                     <select name="EmployeeRole" class="form-control">
@@ -101,12 +95,6 @@
         <div id="divEmpEnrollment" class="content">
             <p></p>
             <p></p>
-            <div class="form-group">
-                <label for="Employee_id" class="col-md-2 control-label">Employee ID:</label>
-                <div class="col-md-10">
-                    <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="" disabled>
-                </div>
-            </div>
             <div id="divMailingAddress">
                 <div class="form-group">
                     <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
@@ -306,37 +294,37 @@
          //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
     }
        
-    function ContactUpdate() {
+    //function ContactUpdate() {
 
-        redirectTime = "3000";
-        redirectURL = window.location('/Employee/EmpDetail');
+    //    redirectTime = "3000";
+    //    redirectURL = window.location('/Employee/EmpDetail');
 
-        var message;
-        var alert = confirm("Would you like to proceed? If yes, click the OK button to continue");
+    //    var message;
+    //    var alert = confirm("Would you like to proceed? If yes, click the OK button to continue");
 
-        if (alert == true) {
+    //    if (alert == true) {
 
-            message = "Please proceed to the next segment, Thank you!!";
+    //        message = "Please proceed to the next segment, Thank you!!";
 
-            window.setTimeout(function () {
+    //        window.setTimeout(function () {
 
-                window.location = "redirectURL", redirectTime
-            });
-        }
-        else {
+    //            window.location = "redirectURL", redirectTime
+    //        });
+    //    }
+    //    else {
 
-            message = "Please review your information and submit when complete";
-        }
-        document.getElementById("EmployeeEnrollmentUpdateStepTwo").value = message;
+    //        message = "Please review your information and submit when complete";
+    //    }
+    //    document.getElementById("EmployeeEnrollmentUpdateStepTwo").value = message;
 
-        return confirm('EmployeeEnrollmentUpdateStepTwo')
-    }
+    //    return confirm('EmployeeEnrollmentUpdateStepTwo')
+    //}
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmployeeEnrollmentUpdate").addEventListener("click", function () {
             CurrentEmployer = document.getElementById("CurrentEmployer").value;
             JobTitle = document.getElementById("JobTitle").value;
-            EmployeeNumber = document.getElementById("SSN").value;
+            EmpNumber = document.getElementById("EmpNumber").value;
             MaritalStatus = document.getElementsByName("MaritalStatus").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
@@ -379,7 +367,7 @@
             State = document.getElementById("State").value;
             ZipCode = document.getElementById("ZipCode").value;
             County = document.getElementById("County").value;
-            PhyscialAddress = document.getElementsById("PhyscialAddress").value;
+            PhysicalAddress = document.getElementsById("PhysicalAddress").value;
             PObox2 = document.getElementById("PObox2").value;
             City2 = document.getElementById("City2").value;
             State2 = document.getElementById("State2").value;
@@ -402,7 +390,7 @@
                 "State": State,
                 "ZipCode": ZipCode,
                 "County": County,
-                "PhysicalAddress": PhyscialAddress,
+                "PhysicalAddress": PhysicalAddress,
                 "PObox2": PObox2,
                 "City2": City2,
                 "State2": State2,
@@ -421,30 +409,30 @@
     })
 
     function SecondStep(emp) {
-        document.querySelector("#Employee_id").value = emp;
+        //document.querySelector("#Employee_id").value = emp;
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        document.querySelector("#EmployeeRole").value = emp;
-        document.querySelector("#CurrentEmployer").value = emp;
-        document.querySelector("#JobTitle").value = emp;
-        document.querySelector("#EmpNumber").value = emp;
-        document.querySelector("#MaritalStatus").value = emp;
-        document.querySelector("#FirstName").value = emp;
-        document.querySelector("#LastName").value = emp;
-        document.querySelector("#DateOfBirth").value = emp;
-        document.querySelector("#Gender").value = emp;
-        document.querySelector("#MailingAddress").value = emp;
-        document.querySelector("#PObox").value = emp;
-        document.querySelector("#City").value = emp;
-        document.querySelector("#State").value = emp;
-        document.querySelector("#ZipCode").value = emp;
-        document.querySelector("#County").value = emp;
-        document.querySelector("#PhysicalAddress").value = emp;
-        document.querySelector("#PObox2").value = emp;
-        document.querySelector("#City2").value = emp;
-        document.querySelector("#State2").value = emp;
-        document.querySelector("#ZipCode2").value = emp;
-        document.querySelector("#County2").value = emp;
+        document.querySelector("#EmployeeRole").value = emp.EmployeeRole;
+        document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
+        document.querySelector("#JobTitle").value = emp.JobTitle;
+        document.querySelector("#EmpNumber").value = emp.EmpNumber;
+        document.querySelector("#MaritalStatus").value = emp.MaritalStatus;
+        document.querySelector("#FirstName").value = emp.FirstName;
+        document.querySelector("#LastName").value = emp.LastName;
+        document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
+        document.querySelector("#Gender").value = emp.Gender;
+        document.querySelector("#MailingAddress").value = emp.MailingAddress;
+        document.querySelector("#PObox").value = emp.PObox;
+        document.querySelector("#City").value = emp.City;
+        document.querySelector("#State").value = emp.State;
+        document.querySelector("#ZipCode").value = emp.ZipCode;
+        document.querySelector("#County").value = emp.County;
+        document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
+        document.querySelector("#PObox2").value = emp.PObox2;
+        document.querySelector("#City2").value = emp.City2;
+        document.querySelector("#State2").value = emp.State2;
+        document.querySelector("#ZipCode2").value = emp.ZipCode2;
+        document.querySelector("#County2").value = emp.County2;
     }
 
     //function ThirdStep(id) {

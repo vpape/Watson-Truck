@@ -266,6 +266,45 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
+        public ActionResult DeleteEmp(int? Employee_id)
+        {
+            if (Employee_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Employee employee = db.Employees.Find(Employee_id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(employee);
+        }
+
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteEmp")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int Employee_id)
+        {
+            Employee employee = db.Employees.Find(Employee_id);
+            db.Employees.Remove(employee);
+            db.SaveChanges();
+
+            db.DeleteEmployeeAndDependents(Employee_id);
+
+            return RedirectToAction("EmpOverview");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+        //----------------------------------------------------------------------------------------
+
         public ActionResult EmpInsurance()
         {         
             return View();
@@ -273,7 +312,6 @@ namespace Watson.Controllers
 
         public ActionResult GrpHealthEnrollment()
         {
-            //Employee emp = db.Employees.Find(e_id);
             //Group_Health enrollment = new Group_Health();
 
             //enrollment.GroupHealthInsurance_id = grpH_id;
@@ -333,8 +371,6 @@ namespace Watson.Controllers
 
         public ActionResult LifeInsEnrollment(int lifeIns_id)
         {
-            //Employee emp = db.Employees.Find(e_id);
-            //Life_Insurance lifeIns = db.Life_Insurance.Find(lifeIns_id);
             Life_Insurance lifeIns = new Life_Insurance();
 
             lifeIns.LifeInsurance_id = lifeIns_id;
@@ -481,42 +517,6 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
        
-        public ActionResult DeleteEmp(int? Employee_id)
-        {
-            if (Employee_id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Employee employee = db.Employees.Find(Employee_id);
-            if (employee == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(employee);           
-        }
-
-        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteEmp")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int Employee_id)
-        {
-            Employee employee = db.Employees.Find(Employee_id);
-            db.Employees.Remove(employee);
-            db.SaveChanges();
-
-            db.DeleteEmployeeAndDependents(Employee_id);
-
-            return RedirectToAction("EmpOverview");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }

@@ -21,12 +21,6 @@
             <p></p>
             <dl class="dl-horizontal">
                 <dt>
-                    <label class="col-md-2 control-label">Employee ID:</label>
-                </dt>
-                <dd>
-                    <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="">
-                </dd>
-                <dt>
                     <label class="col-md-2 control-label">Employee Role:</label>
                 </dt>
                 <dd>
@@ -261,7 +255,7 @@
             State = document.getElementById("State").value;
             ZipCode = document.getElementById("ZipCode").value;
             County = document.getElementById("County").value;
-            PhyscialAddress = document.getElementsById("PhyscialAddress").value;
+            PhysicalAddress = document.getElementsById("PhysicalAddress").value;
             PObox2 = document.getElementById("PObox2").value;
             City2 = document.getElementById("City2").value;
             State2 = document.getElementById("State2").value;
@@ -287,13 +281,12 @@
                 "LastName": LastName,
                 "DateOfBirth": DateOfBirth,
                 "Gender": Gender,
-
                 "MailingAddress": MailingAddress,
                 "City": City,
                 "State": State,
                 "ZipCode": ZipCode,
                 "County": County,
-                "PhysicalAddress": PhyscialAddress,
+                "PhysicalAddress": PhysicalAddress,
                 "PObox2": PObox2,
                 "City2": City2,
                 "State2": State2,
@@ -306,54 +299,55 @@
             }
 
             var ret = postData('DeleteConfirmed', data)
-                .then(data => DeleteConfirm(data.data))
+                .then(data => DeleteConfirm(data))
                 .catch(error => console.error(error))
         })
-
-        function DeleteConfirm() {
-            document.querySelector("Employee_id").value = id;
-            document.querySelector("EmployeeRole").value = id;
-            document.querySelector("CurrentEmployer").value = id;
-            document.querySelector("JobTitle").value = id;
-            document.querySelector("EmpNumber").value = id;
-            document.querySelector("MaritalStatus").value = id;
-            document.querySelector("FirstName").value = id;
-            document.querySelector("LastName").value = id;
-            document.querySelector("DateOfBirth").value = id;
-            document.querySelector("Gender").value = id;
-            document.querySelector("MailingAddress").value = id;
-            document.querySelector("City").value = id;
-            document.querySelector("State").value = id;
-            document.querySelector("ZipCode").value = id;
-            document.querySelector("County").value = id;
-            document.querySelector("PhysicalAddress").value = id;
-            document.querySelector("PObox2").value = id;
-            document.querySelector("City2").value = id;
-            document.querySelector("State2").value = id;
-            document.querySelector("ZipCode2").value = id;
-            document.querySelector("County2").value = id;
-            document.querySelector("CityLimits").value = id;
-            document.querySelector("EmailAddress").value = id;
-            document.querySelector("PhoneNumber").value = id;
-            document.querySelector("CellPhone").value = id;
-        }
-
-        function postData(url, data) {
-            //Default options are marked with *
-            return fetch(url, {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'cors', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            })
-                .then(Response => Response.json()) //parses response to JSON
-        }
     })
+
+    function DeleteConfirm(emp) {
+        document.querySelector("Employee_id").value = emp.Employee_id;
+        document.querySelector("EmployeeRole").value = emp.EmployeeRole;
+        document.querySelector("CurrentEmployer").value = emp.CurrentEmployer;
+        document.querySelector("JobTitle").value = emp.JobTitle;
+        document.querySelector("EmpNumber").value = emp.EmpNumber;
+        document.querySelector("MaritalStatus").value = emp.MaritalStatus;
+        document.querySelector("FirstName").value = emp.FirstName;
+        document.querySelector("LastName").value = emp.LastName;
+        document.querySelector("DateOfBirth").value = emp.DateOfBirth;
+        document.querySelector("Gender").value = emp.Gender;
+        document.querySelector("MailingAddress").value = emp.MailingAddress;
+        document.querySelector("City").value = emp.City;
+        document.querySelector("State").value = emp.State;
+        document.querySelector("ZipCode").value = emp.ZipCode;
+        document.querySelector("County").value = emp.County;
+        document.querySelector("PhysicalAddress").value = emp.PhysicalAddress;
+        document.querySelector("PObox2").value = emp.PObox2;
+        document.querySelector("City2").value = emp.City2;
+        document.querySelector("State2").value = emp.State2;
+        document.querySelector("ZipCode2").value = emp.ZipCode2;
+        document.querySelector("County2").value = emp.County2;
+        document.querySelector("CityLimits").value = emp.CityLimits;
+        document.querySelector("EmailAddress").value = emp.EmailAddress;
+        document.querySelector("PhoneNumber").value = emp.PhoneNumber;
+        document.querySelector("CellPhone").value = emp.CellPhone;
+    }
+
+    function postData(url, data) {
+        //Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        })
+            .then(Response => Response.json()) //parses response to JSON
+    }
+    
 </script>

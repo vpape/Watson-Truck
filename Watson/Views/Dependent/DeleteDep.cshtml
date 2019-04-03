@@ -214,37 +214,38 @@
                 .then(data => DeleteConfirm(data))
                 .catch(error => console.error(error))
         })
-
-        function DeleteConfirm(dep) {
-            document.querySelector("FirstName").value = dep.FirstName;
-            document.querySelector("LastName").value = dep.LastName;
-            document.querySelector("DateOfBirth").value = dep.DateOfBirth;
-            document.querySelector("Gender").value = dep.Gender;
-            document.querySelector("InsCompany").value = dep.InsCompany;
-            document.querySelector("PolicyNumber").value = dep.PolicyNumber;
-            document.querySelector("InsPhoneNumber").value = dep.InsPhoneNumber;
-            document.querySelector("InsMailingAddress").value = dep.InsMailingAddress;
-            document.querySelector("InsCity").value = dep.InsCity;
-            document.querySelector("InsState").value = dep.InsState;
-            document.querySelector("InsZipCode").value = dep.InsZipCode;
-        }
-
-        function postData(url, data) {
-            //Default options are marked with *
-            return fetch(url, {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'cors', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            })
-                .then(Response => Response.json()) //parses response to JSON
-        }
     })
+
+    function DeleteConfirm(dep) {
+        document.querySelector("FirstName").value = dep.FirstName;
+        document.querySelector("LastName").value = dep.LastName;
+        document.querySelector("DateOfBirth").value = dep.DateOfBirth;
+        document.querySelector("Gender").value = dep.Gender;
+        document.querySelector("InsCompany").value = dep.InsCompany;
+        document.querySelector("PolicyNumber").value = dep.PolicyNumber;
+        document.querySelector("InsPhoneNumber").value = dep.InsPhoneNumber;
+        document.querySelector("InsMailingAddress").value = dep.InsMailingAddress;
+        document.querySelector("InsCity").value = dep.InsCity;
+        document.querySelector("InsState").value = dep.InsState;
+        document.querySelector("InsZipCode").value = dep.InsZipCode;
+    }
+
+    function postData(url, data) {
+        //Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        })
+            .then(Response => Response.json()) //parses response to JSON
+    }
+    
 </script>

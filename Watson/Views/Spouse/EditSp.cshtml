@@ -30,18 +30,6 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-md-2 control-label">Employee ID:</label>
-                <div class="col-md-10">
-                    <input type="text" id="Employee_id" class="form-control" name="Employee_id" value="" disabled />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-2 control-label">Family ID:</label>
-                <div class="col-md-10">
-                    <input type="text" id="Family_id" class="form-control" name="Family_id" value="" disabled />
-                </div>
-            </div>
             <div class="form-group" id="EmpNumber" disabled>
                 <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
@@ -213,18 +201,6 @@
             <p></p>
             <p></p>
             <div id="divSpEmployment">
-                <div class="form-group">
-                    <label for="Employee_id" class="col-md-2 control-label">Employee ID:</label>
-                    <div class="col-md-10">
-                        <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="" disabled>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="Employee_id" class="col-md-2 control-label">FamilyMember ID:</label>
-                    <div class="col-md-10">
-                        <input type="number" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="" disabled>
-                    </div>
-                </div>
                 <div class="form-group">
                     <label for="Employer" class="col-md-2 control-label">Current Employer:</label>
                     <div class="col-md-10">
@@ -490,23 +466,23 @@
             EmployerState = document.getElementById("EmployerState").value;
             EmployerZipCode = document.getElementById("EmployerZipCode").value;
             EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
+        
+
+            var data = {
+                "Employee_id": Employee_id,
+                "FamilyMember_id": FamilyMember_id,
+                "CurrentEmployer": CurrentEmployer,
+                "EmployerAddress": EmployerAddress,
+                "EmployerCity": EmployerCity,
+                "EmployerState": EmployerState,
+                "EmployerZipCode": EmployerZipCode,
+                "EmployerPhoneNumber": EmployerPhoneNumber,
+            }
+
+            var ret = postData('SpEditUpdate', data)
+                .then(data => ThirdStep(data))
+                .catch(error => console.error(error))
         })
-
-        var data = {
-            "Employee_id": Employee_id,
-            "FamilyMember_id": FamilyMember_id,
-            "CurrentEmployer": CurrentEmployer,
-            "EmployerAddress": EmployerAddress,
-            "EmployerCity": EmployerCity,
-            "EmployerState": EmployerState,
-            "EmployerZipCode": EmployerZipCode,
-            "EmployerPhoneNumber": EmployerPhoneNumber,
-        }
-
-        var ret = postData('SpEditUpdate', data)
-            .then(data => ThirdStep(data))
-            .catch(error => console.error(error))
-
 
     })
 
