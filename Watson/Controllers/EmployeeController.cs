@@ -67,7 +67,7 @@ namespace Watson.Controllers
         }
         
         public JsonResult EmployeeEnrollmentNew(string EmployeeRole, string CurrentEmployer, 
-            string JobTitle, string EmployeeNumber, string MaritalStatus, string FirstName, string LastName,
+            string JobTitle, string EmpNumber, string MaritalStatus, string FirstName, string LastName,
             DateTime DateOfBirth, string Gender)
         {
             Employee e = new Employee();
@@ -75,7 +75,7 @@ namespace Watson.Controllers
             e.EmployeeRole = EmployeeRole;
             e.CurrentEmployer = CurrentEmployer;
             e.JobTitle = JobTitle;
-            e.SSN = EmployeeNumber;
+            e.SSN = EmpNumber;
             e.MaritalStatus = MaritalStatus;
             e.FirstName = FirstName;
             e.LastName = LastName;
