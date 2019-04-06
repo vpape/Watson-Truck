@@ -21,9 +21,9 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
                 <div class="col-md-10">
-                    <select name="EmployeeRole" class="form-control">
-                        <option id="ManagerRole" name="EmployeeRole" value="Manager">Manger</option>
-                        <option id="EmployeeRole" name="EmployeeRole" value="Employee">Employee</option>
+                    <select id="EmployeeRole" class="form-control">
+                        <option id="ManagerRole"  value="Manager">Manger</option>
+                        <option id="EmployeeRole" value="Employee">Employee</option>
                     </select>
                 </div>
             </div>
@@ -46,13 +46,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="MaritalStatus" class="col-md-2 control-label">Marital Status:</label>
+                <label class="col-md-2 control-label">Marital Status:</label>
                 <div class="col-md-10">
-                    <select name="MartialStatus" id="divMaritalStatus" class="form-control">
-                        <option id="MarriedwDep" name="MaritalStatus" value="MarriedwDep">Married with Dependents</option>
-                        <option id="Married" name="MaritalStatus" value="Married">Married</option>
-                        <option id="SinglewDep" name="MaritalStatus" value="SinglewDep">Single with Dependents</option>
-                        <option id="Single" name="MaritalStatus" value="Single">Single</option>
+                    <select id="MaritalStatus" class="form-control">
+                        <option value="MarriedwDep">Married with Dependents</option>
+                        <option value="Married">Married</option>
+                        <option value="SinglewDep">Single with Dependents</option>
+                        <option value="Single">Single</option>
                     </select>
                 </div>
             </div>
@@ -69,16 +69,16 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
+                <label class="col-md-2 control-label">Date of Birth:</label>
                 <div class="col-md-10">
                     <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
                 </div>
             </div>
             <div class="form-group">
-                <label for="Gender" class="col-md-2 control-label">Gender:</label>
-                <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="Male" checked />Male</label>
-                    <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="Female" />Female</label>
+                <label class="col-md-2 control-label">Gender:</label>
+                <div class="col-md-10" id="Gender">
+                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline"  checked />Male</label>
+                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline"  />Female</label>
                 </div>
             </div>
             <div class="form-group">
@@ -140,7 +140,7 @@
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Within City Limits?</label>
-                <div class="col-md-10">
+                <div class="col-md-10" id="CityLimits">
                     <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" checked />Yes</label>
                     <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" />No</label>
                 </div>
@@ -322,25 +322,15 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmployeeEnrollmentUpdate").addEventListener("click", function () {
+            EmployeeRole = document.getElementById("EmployeeRole").value;
             CurrentEmployer = document.getElementById("CurrentEmployer").value;
             JobTitle = document.getElementById("JobTitle").value;
             EmpNumber = document.getElementById("EmpNumber").value;
-            MaritalStatus = document.getElementsByName("MaritalStatus").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
-
-            Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
-                if (e.checked) {
-                    Gender = e.value;
-                }
-            });
-
-            EmployeeRole = document.querySelectorAll('input [name = "EmployeeRole"]').forEach(function (e, i) {
-                if (e.checked) {
-                    EmployeeRole = e.value;
-                }
-            });
+            MaritalStatus = document.getElementById("MaritalStatus").value;
+            Gender = document.getElementById("Gender").value;        
 
             var data = {
                 "EmployeeRole": EmployeeRole,
@@ -360,7 +350,6 @@
         })
 
         document.querySelector("#EmployeeEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            ID = document.getElementById("Employee_id").value;
             MailingAddress = document.getElementsById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
@@ -376,14 +365,9 @@
             EmailAddress = document.getElementById("EmailAddress").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             CellPhone = document.getElementById("CellPhone").value;
-            CityLimits = document.querySelectorAll('input [name = "CityLimits"]').forEach(function (e, i) {
-                if (e.checked) {
-                    CityLimits = e.value;
-                }
-            });
+            CityLimits = document.getElementId("CityLimits").value;
 
             var data = {
-                "Employee_id": ID,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
@@ -409,14 +393,13 @@
     })
 
     function SecondStep(emp) {
-        document.querySelector("#Employee_id").value = emp.Employee_id;
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        document.querySelector("#EmployeeRole").value = emp.EmployeeRole;
+        document.querySelector("#EmployeeRole").innerHTML = emp.EmployeeRole;
         document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
         document.querySelector("#JobTitle").value = emp.JobTitle;
         document.querySelector("#EmpNumber").value = emp.EmpNumber;
-        document.querySelector("#MaritalStatus").value = emp.MaritalStatus;
+        document.querySelector("#MaritalStatus").innerHTML = emp.MaritalStatus;
         document.querySelector("#FirstName").value = emp.FirstName;
         document.querySelector("#LastName").value = emp.LastName;
         document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
@@ -427,6 +410,7 @@
         document.querySelector("#State").value = emp.State;
         document.querySelector("#ZipCode").value = emp.ZipCode;
         document.querySelector("#County").value = emp.County;
+        document.querySelector("#CityLimits").innerHTML = emp.CityLimits;
         document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
         document.querySelector("#PObox2").value = emp.PObox2;
         document.querySelector("#City2").value = emp.City2;

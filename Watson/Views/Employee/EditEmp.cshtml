@@ -21,11 +21,10 @@
             @* move employee role to the admin view *@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
-                <div class="col-md-10">
-                    <select name="EmployeeRole" class="form-control" disabled>
-                        @*<option id="AdminRole" name="EmployeeRole" value="Admin" @((Model.EmployeeRole.ToLower() == "admin") ? "selected" : "")>Admin</option>*@
-                        <option id="ManagerRole" name="EmployeeRole" value="Manager" @((Model.EmployeeRole.ToLower() == "manager") ? "selected" : "")>Manger</option>
-                        <option id="EmployeeRole" name="EmployeeRole" value="Employee" @((Model.EmployeeRole.ToLower() == "employee") ? "selected" : "")>Employee</option>
+                <div class="col-md-10" id="EmployeeRole">
+                    <select id="EmployeeRole" class="form-control" disabled>
+                        <option id="ManagerRole" value="Manager"  @((Model.EmployeeRole.ToLower() == "manager") ? "selected" : "")>Manger</option>
+                        <option id="EmployeeRole" value="Employee" @((Model.EmployeeRole.ToLower() == "employee") ? "selected" : "")>Employee</option>        
                     </select>
                 </div>
             </div>
@@ -42,9 +41,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="SSN" class="col-md-2 control-label">Employee Number:</label>
+                <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
-                    <input type="number" id="SSN" class="form-control" name="SSN" value="" />
+                    <input type="number" id="EmpNumber" class="form-control" name="SSN" value="" />
                 </div>
             </div>
             <div class="form-group">
@@ -75,11 +74,11 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Marital Status</label>
                 <div class="col-md-10">
-                    <select name="MaritalStatus" class="form-control" disabled>
-                        <option id="MarriedwDep" value="@(Model.MaritalStatus == "MarriedwDep" ? "selected" : "")">Married with Dependents</option>
-                        <option id="Married"     value="@(Model.MaritalStatus == "Married"     ? "selected" : "")">Married</option>
-                        <option id="SinglewDep"  value="@(Model.MaritalStatus == "SinglewDep"  ? "selected" : "")">Single with Dependents</option>
-                        <option id="Single"      value="@(Model.MaritalStatus == "Single"      ? "selected" : "")">Single</option>
+                    <select id="MaritalStatus" class="form-control" disabled>
+                        <option value="@(Model.MaritalStatus == "MarriedwDep" ? "selected" : "")">Married with Dependents</option>
+                        <option value="@(Model.MaritalStatus == "Married"     ? "selected" : "")">Married</option>
+                        <option value="@(Model.MaritalStatus == "SinglewDep"  ? "selected" : "")">Single with Dependents</option>
+                        <option value="@(Model.MaritalStatus == "Single"      ? "selected" : "")">Single</option>
                     </select>
                 </div>
             </div>
@@ -128,7 +127,7 @@
             </div>
             <div class="form-group">
                 <label for="CityLimits" class="col-md-2 control-label">Within City Limits?</label>
-                <div class="col-md-10">
+                <div class="col-md-10" id="CityLimits">
                     <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" @((Model.CityLimits == true) ? "checked" : "") />Yes</label>
                     <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" @((Model.CityLimits == false) ? "checked" : "") />No</label>
                 </div>
@@ -270,15 +269,15 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmpEditUpdate").addEventListener("click", function () {
-            ManagerRole = document.getElementById("ManagerRole").value;
             EmployeeRole = document.getElementById("EmployeeRole").value;
             CurrentEmployer = document.getElementById("CurrentEmployer").value;
             JobTitle = document.getElementById("JobTitle").value;
-            EmployeeNumber = document.getElementById("SSN").value;
+            EmpNumber = document.getElementById("EmpNumber").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
             MaritalStatus = document.getElementById("MaritalStatus").value;
+
             Gender = document.querySelector('input [name = "Gender"]').foreach(function (e, i) {
                 if (e.checked) {
                     Gender = e.value;
@@ -300,6 +299,7 @@
             EmailAddress = document.getElementById("EmailAddress").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             CellPhone = document.getElementById("CellPhone").value;
+
             CityLimits = document.querySelector('input [name = "CityLimits"]').foreach(function (e, i) {
                 if (e.checked) {
                     CityLimits = e.value;
@@ -310,17 +310,14 @@
         })
 
         var data = {
-            "ID": Employee_id,
-            "ManagerRole": ManagerRole,
             "EmployeeRole": EmployeeRole,
             "CurrentEmployer": CurrentEmployer,
             "JobTitle": JobTitle,
-            "EmployeeNumber": EmployeeNumber,
+            "EmpNumber": EmpNumber,
             "FirstName": FirstName,
             "LastName": LastName,
             "DateOfBirth": DateOfBirth,
             "MaritalStatus": MaritalStatus,
-
             "MailingAddress": MailingAddress,
             "City": City,
             "State": State,
@@ -340,12 +337,33 @@
         }
 
         var ret = postData('EmployeeEditUpdate', data)
-            .then(data => SecondStep(data.data))
+            .then(data => SecondStep(data))
             .error(error => console.error(error))
 
         function SecondStep(id) {
-            document.querySelector("#Employee_id").value = id;
             document.querySelector("#EditEmp").nextElementSibling.content.style.display = "block";
+            document.querySelector("#EmployeeRole").innerHTML = emp.EmployeeRole;
+            document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
+            document.querySelector("#JobTitle").value = emp.JobTitle;
+            document.querySelector("#EmpNumber").value = emp.EmpNumber;
+            document.querySelector("#MaritalStatus").innerHTML = emp.MaritalStatus;
+            document.querySelector("#FirstName").value = emp.FirstName;
+            document.querySelector("#LastName").value = emp.LastName;
+            document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
+            document.querySelector("#Gender").value = emp.Gender;
+            document.querySelector("#MailingAddress").value = emp.MailingAddress;
+            document.querySelector("#PObox").value = emp.PObox;
+            document.querySelector("#City").value = emp.City;
+            document.querySelector("#State").value = emp.State;
+            document.querySelector("#ZipCode").value = emp.ZipCode;
+            document.querySelector("#County").value = emp.County;
+            document.querySelector("#CityLimits").innerHTML = emp.CityLimits;
+            document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
+            document.querySelector("#PObox2").value = emp.PObox2;
+            document.querySelector("#City2").value = emp.City2;
+            document.querySelector("#State2").value = emp.State2;
+            document.querySelector("#ZipCode2").value = emp.ZipCode2;
+            document.querySelector("#County2").value = emp.County2;
         }
     })
 

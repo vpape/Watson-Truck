@@ -197,42 +197,36 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmployeeEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            ID = document.getElementById("Employee_id").value;
             MailingAddress = document.getElementById("MailingAddress").value;
-            PObox = document.getElementById("PObox").value,
-            City = document.getElementById("City").value
-            State = document.getElementById("State").value
-            ZipCode = document.getElementById("ZipCode").value
-            County = document.getElementById("County").value
-            PhysicalAddress = document.getElementById("PhysicalAddress").value
-            PObox2 = document.getElementById("PObox2").value,
-            City2 = document.getElementById("City2").value
-            State2 = document.getElementById("State2").value
-            ZipCode2 = document.getElementById("ZipCode2").value
-            County2 = document.getElementById("County2").value
+            PObox = document.getElementById("PObox").value;
+            City = document.getElementById("City").value;
+            State = document.getElementById("State").value;
+            ZipCode = document.getElementById("ZipCode").value;
+            County = document.getElementById("County").value;
+            CityLimits = document.getElementById("CityLimits").value;
+            PhysicalAddress = document.getElementById("PhysicalAddress").value;
+            PObox2 = document.getElementById("PObox2").value;
+            City2 = document.getElementById("City2").value;
+            State2 = document.getElementById("State2").value;
+            ZipCode2 = document.getElementById("ZipCode2").value;
+            County2 = document.getElementById("County2").value;
             EmailAddress = document.getElementById("EmailAddress").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             CellPhone = document.getElementById("CellPhone").value;
-            CityLimits = document.querySelectorAll('input [name = "CityLimits"]').forEach(function (e, i) {
-                if (e.checked) {
-                    CityLimits = e.value;
-                }
-            });
 
             var data = {
-                "Employee_id": ID,
                 "MailingAddress": MailingAddress,
                 "City": City,
                 "State": State,
                 "ZipCode": ZipCode,
                 "County": County,
-                "PhysicalAddress": PhyscialAddress,
+                "CityLimits": CityLimits,
+                "PhysicalAddress": PhysicalAddress,
                 "PObox2": PObox2,
                 "City2": City2,
                 "State2": State2,
                 "ZipCode2": ZipCode2,
                 "County2": County2,
-                "CityLimits": CityLimits,
                 "EmailAddress": EmailAddress,
                 "PhoneNumber": PhoneNumber,
                 "CellPhone": CellPhone,
@@ -244,7 +238,6 @@
         })
 
     function SecondStep(emp) {
-        document.querySelector("#Employee_id").value = emp.Employee_id;
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
 
         if (document.querySelector("#addressNotSame") = false) {
@@ -256,20 +249,20 @@
         }
 
         document.querySelector("#MailingAddress").value = emp.Employee_id;
-        document.querySelector("#City").value = emp;
-        document.querySelector("#State").value = emp;
-        document.querySelector("#ZipCode").value = emp;
-        document.querySelector("#County").value = emp;
-        document.querySelector("#PhysicalAddress").value = emp;
-        document.querySelector("#PObox2").value = emp;
-        document.querySelector("#City2").value = emp;
-        document.querySelector("#State2").value = emp;
-        document.querySelector("#ZipCode2").value = emp;
-        document.querySelector("#County2").value = emp;
-        document.querySelector("#CityLimits").value = emp;
-        document.querySelector("#EmailAddress").value = emp;
-        document.querySelector("#PhoneNumber").value = emp;
-        document.querySelector("#CellPhone").value = emp;
+        document.querySelector("#City").value = emp.City;
+        document.querySelector("#State").value = emp.State;
+        document.querySelector("#ZipCode").value = emp.ZipCode;
+        document.querySelector("#County").value = emp.County;
+        document.querySelector("#CityLimits").value = emp.CityLimits;
+        document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
+        document.querySelector("#PObox2").value = emp.PObox2;
+        document.querySelector("#City2").value = emp.City2;
+        document.querySelector("#State2").value = emp.State2;
+        document.querySelector("#ZipCode2").value = emp.ZipCode2;
+        document.querySelector("#County2").value = emp.County2;
+        document.querySelector("#EmailAddress").value = emp.EmailAddress;
+        document.querySelector("#PhoneNumber").value = emp.PhoneNumber;
+        document.querySelector("#CellPhone").value = emp.CellPhone;
 
     }
 

@@ -17,7 +17,7 @@
         <div class="collapsible" id="SpouseContact"><h4>Spouse Contact</h4></div>
         <div class="content">
             <div class="form-group">
-                <label class="col-md-2 control-label">Is Mailing Address same as Spouse?</label>
+                <label class="col-md-2 control-label">Is Mailing Address same as Employee's Address?</label>
                 <div class="col-md-10">
                     <label class="radio-inline"><input type="radio" id="AddrSame" class="radio-inline" name="MailingAddress" value="true" onclick="SpouseContact()" />Yes</label>
                     <label class="radio-inline"><input type="radio" id="AddrNotSame" class="radio-inline" name="MailingAddress" value="false" onclick="SpouseContact()" checked />No</label>
@@ -108,9 +108,18 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button id="SpContactUpdate" class="btn">Save</button>
+                    @*<input id="Submit" type="submit" value="Save" onclick="SpouseContactUpdate()" class="btn btn-primary" />*@
+                </div>
+            </div>
         </div>
+    </div>
 
-        @* Employee Contact *@
+    @* Employee Contact *@
+    @*@foreach (Employee emp in Model.Employee)*@
+    <div class="form-horizontal">
         <div id="divEmpContact" disabled>
             <div class="form-group" id="EmpMailingAddress">
                 <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
@@ -165,7 +174,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button id="SpContactUpdate" class="btn">Save</button>
+                <button id="EmpContactSp" class="btn">Save</button>
                 @*<input id="Submit" type="submit" value="Save" onclick="SpouseContactUpdate()" class="btn btn-primary" />*@
             </div>
         </div>
@@ -306,8 +315,6 @@
         
 
             var data = {
-                "Employee_id": Employee_id,
-                "FamilyMember_id": FamilyMember_id,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
@@ -320,7 +327,7 @@
                 "State2": State2,
                 "ZipCode2": ZipCode2,
                 "County2": County2,
-                "Email": Email,
+                "EmailAddress": EmailAddress,
                 "PhoneNumber": PhoneNumber,
                 "CellPhone": CellPhone,
             }
@@ -330,27 +337,67 @@
                 .catch(error => console.error(error))
 
         })
+
+        document.querySelector("#EmpContactSp").addEventListener("click", function () {
+            MailingAddress = document.getElementsById("MailingAddress").value;
+            PObox = document.getElementById("PObox").value;
+            City = document.getElementById("City").value;
+            State = document.getElementById("State").value;
+            ZipCode = document.getElementById("ZipCode").value;
+            County = document.getElementById("County").value;
+            PhysicalAddress = document.getElementsById("PhysicalAddress").value;
+            PObox2 = document.getElementById("PObox2").value;
+            City2 = document.getElementById("City2").value;
+            State2 = document.getElementById("State2").value;
+            ZipCode2 = document.getElementById("ZipCode2").value;
+            County2 = document.getElementById("County2").value;
+            EmailAddress = document.getElementById("EmailAddress").value;
+            PhoneNumber = document.getElementById("PhoneNumber").value;
+            CellPhone = document.getElementById("CellPhone").value;
+        
+            var data = {
+                "MailingAddress": MailingAddress,
+                "PObox": PObox,
+                "City": City,
+                "State": State,
+                "ZipCode": ZipCode,
+                "County": County,
+                "PhysicalAddress": PhysicalAddress,
+                "PObox2": PObox2,
+                "City2": City2,
+                "State2": State2,
+                "ZipCode2": ZipCode2,
+                "County2": County2,
+                "CityLimits": CityLimits,
+                "EmailAddress": EmailAddress,
+                "PhoneNumber": PhoneNumber,
+                "CellPhone": CellPhone,
+            }
+
+            var ret = postData('SpContactUpdate', data)
+                .then(data => ThirdStep(data))
+                .catch(error => console.error(error))
+        })
+         
     })
 
     function SecondStep(sp) {
-        document.querySelector("#Employee_id").value = sp;
-        document.querySelector("#FamilyMember_id").value = sp;
         document.querySelector("#SpouseContact").nextElementSibling.style.display = "block";
-        document.querySelector("#MailingAddress").value = sp;
-        document.querySelector("#PObox").value = sp;
-        document.querySelector("#City").value = sp;
-        document.querySelector("#State").value = sp;
-        document.querySelector("#ZipCode").value = sp;
-        document.querySelector("#County").value = sp;
-        document.querySelector("#PhysicalAddress").value = sp;
-        document.querySelector("#PObox2").value = sp;
-        document.querySelector("#City2").value = sp;
-        document.querySelector("#State2").value = sp;
-        document.querySelector("#ZipCode2").value = sp;
-        document.querySelector("#County2").value = sp;
-        document.querySelector("#Email").value = sp;
-        document.querySelector("#PhoneNumber").value = sp;
-        document.querySelector("#CellPhone").value = sp;
+        document.querySelector("#MailingAddress").value = sp.MailingAddress;
+        document.querySelector("#PObox").value = sp.PObox;
+        document.querySelector("#City").value = sp.City;
+        document.querySelector("#State").value = sp.State;
+        document.querySelector("#ZipCode").value = sp.ZipCode;
+        document.querySelector("#County").value = sp.County;
+        document.querySelector("#PhysicalAddress").value = sp.PhysicalAddress;
+        document.querySelector("#PObox2").value = sp.PObox2;
+        document.querySelector("#City2").value = sp.City2;
+        document.querySelector("#State2").value = sp.State2;
+        document.querySelector("#ZipCode2").value = sp.ZipCode2;
+        document.querySelector("#County2").value = sp.County2;
+        document.querySelector("#EmailAddress").value = sp.EmailAddress;
+        document.querySelector("#PhoneNumber").value = sp.PhoneNumber;
+        document.querySelector("#CellPhone").value = sp.CellPhone;
     }
 
     //need to get data from employee if spouse is using same address information to submit 
@@ -358,22 +405,23 @@
     //EmpPhysicalAddress
     //divEmpContact
     function ThirdStep(emp) {
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
-        document.querySelector("#").value = emp;
+        document.querySelector("#SpouseContact").nextElementSibling.style.display = "none";
+        document.querySelector("#divEmpContact").nextElementSibling.style.display = "block";
+        document.querySelector("#MailingAddress").value = emp.MailingAddress;
+        document.querySelector("#PObox").value = emp.PObox;
+        document.querySelector("#City").value = emp.City;
+        document.querySelector("#State").value = emp.State;
+        document.querySelector("#ZipCode").value = emp.ZipCode;
+        document.querySelector("#County").value = emp.County;
+        document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
+        document.querySelector("#PObox2").value = emp.PObox2;
+        document.querySelector("#City2").value = emp.City2;
+        document.querySelector("#State2").value = emp.State2;
+        document.querySelector("#ZipCode2").value = emp.ZipCode2;
+        document.querySelector("#County2").value = emp.County2;
+        document.querySelector("#EmailAddress").value = emp.EmailAddress;
+        document.querySelector("#PhoneNumber").value = emp.PhoneNumber;
+        document.querySelector("#CellPhone").value = emp.CellPhone;
     }
 
     function postData(url, data) {

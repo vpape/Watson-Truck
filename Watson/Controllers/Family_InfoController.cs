@@ -155,7 +155,25 @@ namespace Watson.Controllers
             sp.PhoneNumber = PhoneNumber;
             sp.CellPhone = CellPhone;
 
-            int result = Employee_id;   
+            int result = Employee_id;
+
+            Employee emp = db.Employees.Find();
+
+            emp.MailingAddress = MailingAddress;
+            emp.PObox = PObox;
+            emp.City = City;
+            emp.State = State;
+            emp.ZipCode = ZipCode;
+            emp.County = County;
+            emp.PhysicalAddress = PhysicalAddress;
+            emp.PObox = PObox2;
+            emp.City = City2;
+            emp.State = State2;
+            emp.ZipCode = ZipCode2;
+            emp.County = County2;
+            emp.EmailAddress = EmailAddress;
+            emp.PhoneNumber = PhoneNumber;
+            emp.CellPhone = CellPhone;
 
             if (ModelState.IsValid)
             {
@@ -163,7 +181,7 @@ namespace Watson.Controllers
                 db.SaveChanges();
             }
 
-            return Json(new { data = sp, Employee_id }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = sp, emp }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------

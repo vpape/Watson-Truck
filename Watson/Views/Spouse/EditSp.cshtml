@@ -82,18 +82,6 @@
         <div id="divSpEnrollment" class="content">
             <p></p>
             <p></p>
-            <div class="form-group">
-                <label for="Employee_id" class="col-md-2 control-label">Employee ID:</label>
-                <div class="col-md-10">
-                    <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="" disabled>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="Employee_id" class="col-md-2 control-label">FamilyMember ID:</label>
-                <div class="col-md-10">
-                    <input type="number" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="" disabled>
-                </div>
-            </div>
             <div id="divMailingAddress">
                 <div class="form-group">
                     <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
@@ -373,24 +361,21 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
             RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
-            Employee_id = document.getElementById("Employee_id").value;
-            FamilyMember_id = document.getElementById("FamilyMember_id").value;
-            EmpNumber = document.getElementById("SSN").value;
+            EmpNumber = document.getElementById("EmpNumber").value;
             EmpFirstName = document.getElementById("EmpFirstName").value;
             EmpLastName = document.getElementById("EmpLastName").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
+            Gender = document.getElementById("Gender").value;
 
-            Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
-                if (e.checked) {
-                    Gender = e.value;
-                }
-            });
+            //Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
+            //    if (e.checked) {
+            //        Gender = e.value;
+            //    }
+            //});
 
             var data = {
-                "Employee_id": Employee_id,
-                "FamilyMember_id": FamilyMember_id,
                 "RelationshipToInsured": RelationshipToInsured,
                 "EmpNumber": EmpNumber,
                 "EmpFirstName": EmpFirstName,
@@ -408,14 +393,13 @@
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            Employee_id = document.getElementById("Employee_id").value;
-            FamilyMember_id = document.getElementById("FamilyMember_id").value;
             MailingAddress = document.getElementsById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
             State = document.getElementById("State").value;
             ZipCode = document.getElementById("ZipCode").value;
             County = document.getElementById("County").value;
+            CityLimits = document.getElementById("CityLimits").value;
             PhysicalAddress = document.getElementsById("PhysicalAddress").value;
             PObox2 = document.getElementById("PObox2").value;
             City2 = document.getElementById("City2").value;
@@ -426,21 +410,20 @@
             PhoneNumber = document.getElementById("PhoneNumber").value;
             CellPhone = document.getElementById("CellPhone").value;
 
-            CityLimits = document.querySelectorAll('input [name = "CityLimts"]').forEach(function (e, i) {
-                if (e.checked) {
-                    CityLimits = e.value;
-                }
-            });
+            //CityLimits = document.querySelectorAll('input [name = "CityLimts"]').forEach(function (e, i) {
+            //    if (e.checked) {
+            //        CityLimits = e.value;
+            //    }
+            //});
 
             var data = {
-                "Employee_id": Employee_id,
-                "FamilyMember_id": FamilyMember_id,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
                 "State": State,
                 "ZipCode": ZipCode,
                 "County": County,
+                "CityLimits": CityLimits,
                 "PhysicalAddress": PhysicalAddress,
                 "PObox2": PObox2,
                 "City2": City2,
@@ -458,8 +441,6 @@
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener(function () {
-            Employee_id = document.getElementById("Employee_id").value;
-            FamilyMember_id = document.getElementById("FamilyMember_id").value;
             CurrentEmployer = document.getElementsById("Employer").value;
             EmployerAddress = document.getElementById("EmployerAddress").value;
             EmployerCity = document.getElementById("EmployerCity").value;
@@ -469,8 +450,6 @@
         
 
             var data = {
-                "Employee_id": Employee_id,
-                "FamilyMember_id": FamilyMember_id,
                 "CurrentEmployer": CurrentEmployer,
                 "EmployerAddress": EmployerAddress,
                 "EmployerCity": EmployerCity,
@@ -487,8 +466,6 @@
     })
 
     function SecondStep(sp) {
-        document.querySelector("#Employee_id").value = sp.Employee_id;
-        document.querySelector("#FamilyMember_id").value = sp.FamilyMember_id;
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
         document.querySelector("#RelationshipToInsured").value = sp.RelationshipToInsured;
@@ -505,6 +482,7 @@
         document.querySelector("#State").value = sp.State;
         document.querySelector("#ZipCode").value = sp.ZipCode;
         document.querySelector("#County").value = sp.County;
+        document.querySelector("#CityLimits").value = sp.CityLimits;
         document.querySelector("#PhysicalAddress").value = sp.PhysicalAddress;
         document.querySelector("#PObox2").value = sp.PObox2;
         document.querySelector("#City2").value = sp.City2;
@@ -513,9 +491,7 @@
         document.querySelector("#County2").value = sp.County2;
     }
 
-    function ThirdStep(id) {
-        document.querySelector("#Employee_id").value = sp.Employee_id;
-        document.querySelector("#FamilyMember_id").value = sp.FamilyMember_id;
+    function ThirdStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         document.querySelector("#ThirdStep").nextElementSibling.content.style.display = "block";

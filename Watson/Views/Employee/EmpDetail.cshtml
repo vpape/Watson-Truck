@@ -65,9 +65,9 @@
                 <dt>
                     <label class="col-md-2 control-label">Gender:</label>
                 </dt>
-                <dd class="col-md-10">
-                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="M" @((Model.Gender == "M") ? "checked" : "") />Male</label>
-                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="F" @((Model.Gender == "F") ? "checked" : "") />Female</label>
+                <dd class="col-md-10"id="Gender">
+                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((Model.Gender == "Male") ? "checked" : "") />Male</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((Model.Gender == "Female") ? "checked" : "") />Female</label>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Marital Status:</label>
@@ -100,7 +100,7 @@
                 <dt>
                     <label class="col-md-2 control-label">Within City Limits?</label>
                 </dt>
-                <dd class="col-md-10">
+                <dd class="col-md-10" id="CityLimits">
                     <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" @((Model.CityLimits == true) ? "checked" : "") />Yes</label>
                     <label class="radio-inline"><input disabled type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" @((Model.CityLimits == false) ? "checked" : "") />No</label>
                 </dd>
@@ -126,7 +126,7 @@
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditEmp", new { id = Model.User_id }) |
+        @Html.ActionLink("Edit", "EditEmp") |
         @Html.ActionLink("Back to List", "EmpOverview")
     </p>
 </body>
@@ -221,32 +221,22 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
+        EmployeeRole = document.getElementById("EmployeeRole").value;
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;
         EmpNumber = document.getElementById("EmpNumber").value;
-        MaritalStatus = document.getElementsByName("MaritalStatus").value;
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
-
-        Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
-            if (e.checked) {
-                Gender = e.value;
-            }
-        });
-
-        EmployeeRole = document.querySelectorAll('input [name = "EmployeeRole"]').forEach(function (e, i) {
-            if (e.checked) {
-                EmployeeRole = e.value;
-            }
-        });
-
+        MaritalStatus = document.getElementById("MaritalStatus").value;
+        Gender = document.getElementById("Gender").value; 
         MailingAddress = document.getElementById("MailingAddress").value;
         PObox = document.getElementById("PObox").value,
         City = document.getElementById("City").value
         State = document.getElementById("State").value
         ZipCode = document.getElementById("ZipCode").value
         County = document.getElementById("County").value
+        CityLimits = document.getElementId("CityLimits").value;
         PhysicalAddress = document.getElementById("PhysicalAddress").value
         PObox2 = document.getElementById("PObox2").value,
         City2 = document.getElementById("City2").value
@@ -256,12 +246,6 @@
         EmailAddress = document.getElementById("EmailAddress").value;
         PhoneNumber = document.getElementById("PhoneNumber").value;
         CellPhone = document.getElementById("CellPhone").value;
-
-        CityLimits = document.querySelectorAll('input [name = "CityLimits"]').forEach(function (e, i) {
-            if (e.checked) {
-                CityLimits = e.value;
-            }
-        });
 
         var data = {
             "Employee_id": ID,
@@ -298,7 +282,6 @@
     })
 
     function SecondStep(emp) {
-        document.querySelector("#Employee_id").value = emp.Employee_id;
         document.querySelector("#EmpDetail").nextElementSibling.style.display = "block";
         document.querySelector("#EmployeeRole").value = emp.EmployeeRole;
         document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
@@ -314,13 +297,13 @@
         document.querySelector("#State").value = emp.State;
         document.querySelector("#ZipCode").value = emp.ZipCode;
         document.querySelector("#County").value = emp.County;
+        document.querySelector("#CityLimits").value = emp.CityLimits;
         document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
         document.querySelector("#PObox2").value = emp.PObox2;
         document.querySelector("#City2").value = emp.City2;
         document.querySelector("#State2").value = emp.State2;
         document.querySelector("#ZipCode2").value = emp.ZipCode2;
-        document.querySelector("#County2").value = emp.County2;
-        document.querySelector("#CityLimits").value = emp.CityLimits;
+        document.querySelector("#County2").value = emp.County2;  
         document.querySelector("#EmailAddress").value = emp.EmailAddress;
         document.querySelector("#PhoneNumber").value = emp.PhoneNumber;
         document.querySelector("#CellPhone").value = emp.CellPhone;
