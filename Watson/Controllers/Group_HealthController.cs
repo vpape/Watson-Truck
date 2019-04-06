@@ -13,91 +13,75 @@ namespace Watson.Controllers
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        private static Group_Health groupHealth = new Group_Health();
+        //private static Group_Health groupHealth = new Group_Health();
+        private static List<Group_Health> groupHealth = new List<Group_Health>();
 
         public Group_HealthController()
         {
 
         }
 
-        public ActionResult GroupHealthInsurance()
+        public ActionResult GrpHealthInsurance(Group_Health groupHealth)
         {
-            return View(db.Group_Health.ToList());
+            Group_Health grp = db.Group_Health.Find(groupHealth);
+
+            grp = groupHealth;
+
+            return View(groupHealth);
         }
 
-        public ActionResult GroupHealthEnrollment()
+        public ActionResult EnrollmentSelection()
         {
             return View();
         }
 
-        public JsonResult GetGroupHealthInsurance(int groupHealth_id, int e_id)
+        public ActionResult NewGrpHealthEnrollment()
         {
-            var output = (from g in db.Group_Health
-                          select new
-                          {
-                              g.GroupHealthInsurance_id,
-                              g.Employee_id,
-                              g.Employee,
-                              g.InsuranceCarrier,
-                              g.PolicyNumber,
-                              g.GroupName,
-                              g.IMSGroupNumber,
-                              g.PhoneNumber,
-                              g.ReasonForGrpCoverageRefusal,
-                              g.OtherCoverage,
-                              g.OtherReason,
-                              g.Myself,
-                              g.Spouse,
-                              g.Dependent,
-                              g.OtherInsuranceCoverage,
-                              g.CafeteriaPlanYear,
-                              g.NoMedicalPlan,
-                              g.EmployeeOnly,
-                              g.EmployeeAndSpouse,
-                              g.EmployeeAndDependent,
-                              g.EmployeeAndFamily,
-                              g.EmployeeSignature,
-                              g.EmployeeSignatureDate,
-                              g.EmployeeInitials,
-                              g.OtherSignature,
-                              g.OtherSignatureDate,
-                          });
-
-            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+            return View();
         }
 
-        public JsonResult GroupHealthEnrollmentUpdate(int groupHealth_id, int e_id)
+        public JsonResult GrpHealthEnrollmentNew(string InsuranceCarrier, string PolicyNumber, string GroupName,
+            string IMSGroupNumber, string PhoneNumber, string ReasonForGrpCoverageRefusal, bool OtherCoverage, 
+            bool OtherReason, bool Myself, bool Spouse, bool Dependent, string OtherInsuranceCoverage,
+            DateTime CafeteriaPlanYear, bool NoMedicalPlan, bool EmployeeOnly, bool EmployeeAndSpouse,
+            bool EmployeeAndDependent, bool EmployeeAndFamily, string EmployeeSignature,DateTime EmployeeSignatureDate,
+            string EmployeeInitials, string OtherSignature, DateTime OtherSignatureDate)
         {
-            Group_Health g = db.Group_Health
-                .Where(i => i.Employee_id == e_id)
-                .Where(i => i.GroupHealthInsurance_id == groupHealth_id)
-                .SingleOrDefault();
+            Group_Health g = new Group_Health();
 
-            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
+            g.InsuranceCarrier = InsuranceCarrier;
+            g.PolicyNumber = PolicyNumber;
+            g.GroupName = GroupName;
+            g.IMSGroupNumber = IMSGroupNumber;
+            g.PhoneNumber = PhoneNumber;
+            g.ReasonForGrpCoverageRefusal = ReasonForGrpCoverageRefusal;
+            g.OtherCoverage = OtherCoverage;
+            g.OtherReason = OtherReason;
+            g.Myself = Myself;
+            g.Spouse = Spouse;
+            g.Dependent = Dependent;
+            g.OtherInsuranceCoverage = OtherInsuranceCoverage;
+            g.CafeteriaPlanYear = CafeteriaPlanYear;
+            g.NoMedicalPlan = NoMedicalPlan;
+            g.EmployeeOnly = EmployeeOnly;
+            g.EmployeeAndSpouse = EmployeeAndSpouse;
+            g.EmployeeAndDependent = EmployeeAndDependent;
+            g.EmployeeAndFamily = EmployeeAndFamily;
+            g.EmployeeSignature = EmployeeSignature;
+            g.EmployeeSignatureDate = EmployeeSignatureDate;
+            g.EmployeeInitials = EmployeeInitials;
+            g.OtherSignature = OtherSignature;
+            g.OtherSignatureDate = OtherSignatureDate;
+
+            db.Group_Health.Add(g);
+            db.SaveChanges();
+
+            return Json(new { data = g }, JsonRequestBehavior.AllowGet);
         }
 
-
-        //public ActionResult GroupHealthInsurance(int id)
-        //{
-        //    Group_Health healthIns = db.Group_Health.Find(id);
-        //    return View(healthIns);
-        //}
-
-        //public JsonResult GroupHealthInsuranceUpdate(int? id)
-        //{
-        //    Employee e = db.Employees
-        //        .Where(i => i.Employee_id == id)
-        //        .SingleOrDefault();
-
-        //    db.Employees.Add(e);
-        //    db.SaveChanges();
-
-        //    return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-
-        //}
         //----------------------------------------------------------------------------------------
 
-        public ActionResult EditGroupHealth(int? id)
+        public ActionResult EditGrpHealthIns(int? id)
         {
             if (id == null)
             {
@@ -113,7 +97,7 @@ namespace Watson.Controllers
             return View(groupHealth);
         }
 
-        public JsonResult GetGroupHealthInsuranceEdit()
+        public JsonResult GroupHealthInsEditUpdate()
         {
             var output = (from g in db.Group_Health
                           select new
@@ -148,25 +132,9 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GroupHealthInsuranceUpdate(int? id)
-        {
-            Group_Health g = db.Group_Health
-                .Where(i => i.Employee_id == id)
-                .Where(i => i.GroupHealthInsurance_id == id)
-                .SingleOrDefault();
-
-            if (ModelState.IsValid)
-            {
-                db.Entry(groupHealth).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-            }
-
-            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-        }
-
         //----------------------------------------------------------------------------------------
 
-        public ActionResult GroupHealthDetail(int? id)
+        public ActionResult GrpHealthInsDetail(int? id)
         {
             if (id == null)
             {
@@ -180,13 +148,14 @@ namespace Watson.Controllers
             return View(groupHealth);
         }
 
-        public ActionResult HealthInsurancePremiums(int id)
+        //----------------------------------------------------------------------------------------
+        public ActionResult HealthInsPremiums(int id)
         {
             InsurancePremium insurancePremium = db.InsurancePremiums.Find(id);
             return View(insurancePremium);
         }
 
-        public JsonResult GetHealthInsurancePremium()
+        public JsonResult HealthInsPremiumUpdate()
         {
             var output = (from insurancePremium in db.InsurancePremiums
                           select new
@@ -203,24 +172,15 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult HealthInsurancePremiumUpdate(int? id)
-        {
-            InsurancePremium insurancePremium = db.InsurancePremiums
-                .Where(i => i.InsurancePremium_id == id)
-                .Where(i=> i.InsurancePlan_id == id)
-                .SingleOrDefault();
-
-            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-        }
-
+        //----------------------------------------------------------------------------------------
         //Not sure whether i use db.InsPremium, db.InsPlan, db.InsPlanDetails or all three??
-        public ActionResult HealthInsuranceSupplement(int id)
+        public ActionResult HealthInsSupplement(int id)
         {
             InsurancePlanDetail insSupplement = db.InsurancePlanDetails.Find(id);
             return View(insSupplement);
         }
 
-        public JsonResult GetHealthInsuranceSupplement()
+        public JsonResult HealthInsSupplementUpdate()
         {
             var output = (from insPlandetail in db.InsurancePlanDetails
                           select new
@@ -234,25 +194,16 @@ namespace Watson.Controllers
             return Json(new { data = output }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult HealthInsuranceSupplementUpdate(int? id)
-        {
-            InsurancePlanDetail insPlandetail = db.InsurancePlanDetails
-                .Where(i => i.InsurancePlanDetail_id == id)
-                .Where(i => i.InsurancePlan_id == id)
-                .SingleOrDefault();
-
-            return Json(new { data = "success}" }, JsonRequestBehavior.AllowGet);
-        }
-
+        //----------------------------------------------------------------------------------------
         // not sure whether I use both db.Deductions and db.InsurancePlan or just db.Deductions
         //need to add employee signature and signature date to db.Deductions table and change data types
-        public ActionResult SalaryRedirectionAgreement()
+        public ActionResult SalaryRedirectAgreement()
         {
             return View();
         }
 
         
-        public JsonResult GetSalaryRedirectionAgreement()
+        public JsonResult GetSalaryRedirectAgreement()
         {
             var output = (from d in db.Deductions
                           select new
@@ -272,18 +223,9 @@ namespace Watson.Controllers
             return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SalaryRedirectionAgreementUpdate(int id)
-        {
-            Deduction deduction = db.Deductions
-                .Where(i => i.Deductions_id == id)
-                .Where(i => i.Employee_id == id)
-                .SingleOrDefault();
+        //----------------------------------------------------------------------------------------
 
-            return Json(new { data = "success" }, JsonRequestBehavior.AllowGet);
-        }
-
-
-        public ActionResult DeleteGroupHealth(int? id)
+        public ActionResult DeleteGrpHealthIns(int? id)
         {
             if (id == null)
             {
@@ -299,7 +241,7 @@ namespace Watson.Controllers
             return View(groupHealth);
         }
 
-        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteGroupHealth")]
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteGrpHealthIns")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteGroupHealth(int id)
         {
@@ -309,7 +251,7 @@ namespace Watson.Controllers
 
             //db.DeleteEmployeeAndDependents(id);
 
-            return RedirectToAction("GroupHealthEnrollment");
+            return RedirectToAction("GrpHealthEnrollment");
         }
 
         protected override void Dispose(bool disposing)
@@ -320,5 +262,128 @@ namespace Watson.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //----------------------------------------------------------------------------------------
+
+
+        public ActionResult NewLifeInsEnrollment(int lifeIns_id)
+        {
+            Life_Insurance lifeIns = new Life_Insurance();
+
+            lifeIns.LifeInsurance_id = lifeIns_id;
+
+            return View(lifeIns);
+        }
+
+        public JsonResult LifeInsEnrollmentNew(int lifeIns_id)
+        {
+            var output = from e in db.Life_Insurance
+                         select new
+                         {
+                             e.LifeInsurance_id,
+                             e.Employee_id,
+                             e.GroupPlanNumber,
+                             e.BenefitsEffectiveDate,
+                             e.InitialEnrollment,
+                             e.ReEnrollment,
+                             e.AddEmployeeAndDependents,
+                             e.DropRefuseCoverage,
+                             e.InformationChange,
+                             e.IncreaseAmount,
+                             e.FamilyStatusChange,
+                             e.MarriedOrHaveSpouse,
+                             e.HaveChildrenOrHaveDependents,
+                             e.DateOfMarriage,
+                             e.PlacementDateOfAdoptedChild,
+                             e.AddDependent,
+                             e.DropDependent,
+                             e.Student,
+                             e.Disabled,
+                             e.NonStandardDependent,
+                             e.DropEmployee,
+                             e.DropSpouse,
+                             e.DropDependents,
+                             e.LastDayOfCoverage,
+                             e.TerminationOfEmployment,
+                             e.Retirement,
+                             e.LastDayWorked,
+                             e.OtherEvent,
+                             e.OtherEventDate,
+                             e.EmployeeDentalDrop,
+                             e.SpouseDentalDrop,
+                             e.DependentDentalDrop,
+                             e.EmployeeVisionDrop,
+                             e.SpouseVisionDrop,
+                             e.DependentVisionDrop,
+                             e.DropBasicLife,
+                             e.DropDental,
+                             e.DropVision,
+                             e.TerminationOfEmploymentDate,
+                             e.Divorce,
+                             e.DivorceDate,
+                             e.DeathOfSpouse,
+                             e.DeathOfSpouseDate,
+                             e.TerminationOrExpirationOfCoverage,
+                             e.TerminationOrExpirationOfCoverageDate,
+                             e.DentalCoverageLost,
+                             e.VisionCoverageLost,
+                             e.CoveredUnderOtherInsurance,
+                             e.CoveredUnderOtherInsReason,
+                             e.EmployeeOnly,
+                             e.EmployeeAndSpouse,
+                             e.EmployeeAndDependent,
+                             e.EmployeeAndFamily,
+                             e.DoNotWantDentalCoverage,
+                             e.EmployeeCoveredUnderOtherDentalPlan,
+                             e.SpouseCoveredUnderOtherDentalPlan,
+                             e.DependentsCoveredUnderOtherDentalPlan,
+                             e.DoNotWantVisionCoverage,
+                             e.EmployeeCoveredUnderOtherVisionPlan,
+                             e.SpouseCoveredUnderOtherVisionPlan,
+                             e.DependentsCoveredUnderOtherVisionPlan,
+                             e.OwnerBasicLifeWithADandDPolicyAmount,
+                             e.ManagerBasicLifeWithADandDPolicyAmount,
+                             e.EmployeeBasicLifeWithADandDPolicyAmount,
+                             e.SpouseBasicLifeWithADandDPolicyAmount,
+                             e.DoNotWantBasicLifeCoverageWithADandD,
+                             e.AmountOfPreviousPolicy,
+                             e.EmployeeSignature,
+                             e.EmployeeSignatureDate
+                         };
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
+        public ActionResult EditLifeIns(int? lifeIns_id)
+        {
+            if (lifeIns_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Life_Insurance lifeIns = db.Life_Insurance.Find(lifeIns_id);
+            if (lifeIns_id == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(lifeIns_id);
+        }
+
+        public JsonResult EditLifeInsUpdate(int lifeIns_id)
+        {
+            var output = from e in db.Life_Insurance
+                         select new
+                         {
+                             e.LifeInsurance_id,
+                             e.Employee_id,
+
+                         };
+
+            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
     }
 }

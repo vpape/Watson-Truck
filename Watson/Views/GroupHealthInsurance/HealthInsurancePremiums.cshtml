@@ -15,7 +15,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     <title>Health Insurance Premiums</title>
 </head>
@@ -24,7 +23,7 @@
     {
         @Html.AntiForgeryToken()
         @*@Html.HiddenFor(model => model.InsurancePremium_id, new { insPrm = Model.InsurancePremium_id })
-        @Html.HiddenFor(model => model.InsurancePlan_id, new { insPlan_id = Model.InsurancePlan_id })*@
+            @Html.HiddenFor(model => model.InsurancePlan_id, new { insPlan_id = Model.InsurancePlan_id })*@
         @*@Html.HiddenFor(model => model.Employee_id, new { e_id = Model.Employee_id })*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <table class="table" cellpadding="20" cellspacing="20">
@@ -236,7 +235,7 @@
         })
             .then(Response => Response.json()) //parses response to JSON
     }
-    
+
 </script>
 
 <style>
@@ -245,16 +244,16 @@
         width: 100%;
     }
 
-    table tr {
-        border-bottom: 1px solid black;
-    }
+        table tr {
+            border-bottom: 1px solid black;
+        }
 
     th, td {
         text-align: left;
         padding: 8px;
     }
-    
-    th{
+
+    th {
         border-bottom: 5px solid black;
     }
 
@@ -268,9 +267,9 @@
         padding: 8px 16px;
     }
 
-    a:hover {
-        background-color: #ddd;
-        color: black;
-    }
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
 </style>
 
