@@ -16,28 +16,10 @@
             <p></p>
             <dl class="dl-horizontal">
                 <dt>
-                    <label class="col-md-2 control-label">Employee ID:</label>
-                </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="Employee_id" class="form-control" name="Employee_id" value="emp.Employee_id">
-                </dd>
-                <dt>
                     <label class="col-md-2 control-label">Employee Number:</label>
                 </dt>
                 <dd class="col-md-10">
                     <input type="text" id="EmpNumber" class="form-control" name="SSN" value="sp.EmpNumber">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Employee First Name:</label>
-                </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="EmpFirstName" class="form-control" name="FirstName" value="sp.EmpFirstName">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Employee Last name:</label>
-                </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="EmpLastName" class="form-control" name="LastName" value="sp.EmpLastName">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">First Name:</label>
@@ -193,10 +175,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        ID = document.getElementById("Employee_id").value;
-        EmpNumber = document.getElementById("SSN").value;
-        EmpFirstName = document.getElementById("EmpFirstName").value;
-        EmpLastName = document.getElementById("EmpLastName").value;
+        EmpNumber = document.getElementById("EmpNumber").value;
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
@@ -229,11 +208,15 @@
             }
         });
 
+        Employer = document.getElementsById("Employer").value;
+        EmployerAddress = document.getElementById("EmployerAddress").value;
+        EmployerCity = document.getElementById("EmployerCity").value;
+        EmployerState = document.getElementById("EmployerState").value;
+        EmployerZipCode = document.getElementById("EmployerZipCode").value;
+        EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
+
         var data = {
-            "Employee_id": ID,
             "EmpNumber": EmpNumber,
-            "EmpFirstName": EmpFirstName,
-            "EmpLastName": EmpLastName,
             "FirstName": FirstName,
             "DateOfBirth": DateOfBirth,
             "Gender": Gender,
@@ -253,6 +236,12 @@
             "PhoneNumber": PhoneNumber,
             "CellPhone": CellPhone,
             "CityLimits": CityLimits,
+            "Employer": Employer,
+            "EmployerAddress": EmployerAddress,
+            "EmployerCity": EmployerCity,
+            "EmployerState": EmployerState,
+            "EmployerZipCode": EmployerZipCode,
+            "EmployerPhoneNumber": EmployerPhoneNumber,
 
         }
 
@@ -263,10 +252,7 @@
     })
 
     function SecondStep(sp) {
-        document.querySelector("#Employee_id").value = sp.Employee_id;
         document.querySelector("#EmpNumber").value = sp.EmpNumber;
-        document.querySelector("#EmpFirstName").value = sp.EmpFirstName;
-        document.querySelector("#EmpLastName").value = sp.EmpLastName;
         document.querySelector("#FirstName").value = sp.FirstName;
         document.querySelector("#DateOfBirth").value = sp.DateOfBirth;
         document.querySelector("#Gender").value = sp.Gender;
@@ -286,6 +272,11 @@
         document.querySelector("#PhoneNumber").value = sp.PhoneNumber;
         document.querySelector("#CellPhone").value = sp.CellPhone;
         document.querySelector("#CityLimits").value = sp.CityLimits;
+        document.querySelector("#EmployerAddress").value = sp.EmployerAddress;
+        document.querySelector("#EmployerCity").value = sp.EmployerCity;
+        document.querySelector("#EmployerState").value = sp.EmployerState;
+        document.querySelector("#EmployerZipCode").value = sp.EmployerZipCode;
+        document.querySelector("#EmployerPhoneNumber").value = sp.EmployerPhoneNumber;
     }
 
     function postData(url, data) {

@@ -16,18 +16,6 @@
             <p></p>
             <p></p>
             <div class="form-group">
-                <label class="col-md-2 control-label">Employee ID:</label>
-                <div class="col-md-10">
-                    <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="" disabled>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-2 control-label">FamilyMember ID:</label>
-                <div class="col-md-10">
-                    <input type="number" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="" disabled>
-                </div>
-            </div>
-            <div class="form-group">
                 <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
                 <div class="col-md-10">
                     <input type="text" id="CurrentEmployer" class="form-control" name="Employer" value="" />
@@ -63,7 +51,6 @@
                     <input type="text" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" value="" />
                 </div>
             </div>
-
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input id="SpEmploymentUpdateStepThree" type="submit" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
@@ -167,7 +154,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpEmploymentUpdateStepThree").addEventListener("click", function () {
-            CurrentEmployer = document.getElementById("Employer").value;
+            CurrentEmployer = document.getElementById("CurrentEmployer").value;
             EmployerAddress = document.getElementById("EmployerAddress").value;
             EmployerCity = document.getElementById("EmployerCity").value;
             EmployerState = document.getElementById("EmployerState").value;
@@ -175,9 +162,7 @@
             EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
 
             var data = {
-                "Employee_id": Employee_id,
-                "FamilyMember_id": FamilyMember_id,
-                "Employer": CurrentEmployer,
+                "CurrentEmployer": CurrentEmployer,
                 "EmployerAddress": EmployerAddress,
                 "EmployerCity": EmployerCity,
                 "EmployerState": EmployerState,
@@ -193,14 +178,13 @@
     })
             
     function SecondStep(sp) {
-        document.querySelector("#Employee_id").value = sp;
-        document.querySelector("#FamilyMember_id").value = sp;
-        document.querySelector("#ThirdStep").nextElementSibling.style.display = "block"; 
-        document.querySelector("#EmployerAddress").value = sp;
-        document.querySelector("#EmployerCity").value = sp;
-        document.querySelector("#EmployerState").value = sp;
-        document.querySelector("#EmployerZipCode").value = sp;
-        document.querySelector("#EmployerPhoneNumber").value = sp;
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
+        document.querySelector("#CurrentEmployer").value = sp.CurrentEmployer;
+        document.querySelector("#EmployerAddress").value = sp.EmployerAddress;
+        document.querySelector("#EmployerCity").value = sp.EmployerCity;
+        document.querySelector("#EmployerState").value = sp.EmployerState;
+        document.querySelector("#EmployerZipCode").value = sp.EmployerZipCode;
+        document.querySelector("#EmployerPhoneNumber").value = sp.EmployerPhoneNumber;
  
     }
  

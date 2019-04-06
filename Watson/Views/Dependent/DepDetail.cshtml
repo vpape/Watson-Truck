@@ -20,38 +20,10 @@
             <p></p>
             <dl class="dl-horizontal">
                 <dt>
-                    <label class="col-md-2 control-label">Employee ID:</label>
-                </dt>
-                <dd>
-                    <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="dep.Employee_id">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">FamilyMember ID:</label>
-                </dt>
-                <dd>
-                    <input type="number" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="dep.FamilyMember_id">
-                </dd>
-                <dt>
-                <dt>
                     <label class="col-md-2 control-label">Employee Number:</label>
                 </dt>
                 <dd>
                     <input type="number" id="EmpNumber" class="form-control" name="SSN" value="dep.EmpNumber">
-                </dd>
-                <dd>
-                    <input type="number" id="Employee_id" class="form-control" name="Employee_id" value="dep.Employee_id">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Employee First Name:</label>
-                </dt>
-                <dd>
-                    <input type="number" id="EmpFirstName" class="form-control" name="FirstName" value="dep.EmpFirstName" disabled>
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Employee Last Name:</label>
-                </dt>
-                <dd>
-                    <input type="number" id="EmpLastName" class="form-control" name="LastName" value="dep.EmpLastName" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-offset-2 control-label">Relationship to Employee:</label>
@@ -231,11 +203,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        EmployeeID = document.getElementById("Employee_id").value;
-        DependentID = document.getElementById("FamilyMember_id").value;
-        EmpNumber = document.getElementById("SSN").value;
-        EmpFirstName = document.getElementById("EmpFirstName").value;
-        EmpLastName = document.getElementById("EmpLastName").value;
+        EmpNumber = document.getElementById("EmpNumber").value;
         DepFirstName = document.getElementById("DepFirstName").value;
         DepLastName = document.getElementById("DepLastName").value;
         DateOfBirth = document.getElementById("DateOfBirth").value;
@@ -267,12 +235,8 @@
         InsZipCode = document.getElementById("InsZipCode").value;
 
         var data = {
-            "Employee_id": EmployeeID,
-            "FamilyMember_id": DependentID,
             "RelationshipToInsured": RelationshipToInsured,
             "EmpNumber": EmpNumber,
-            "EmpFirstName": EmpFirstName,
-            "EmpLastName": EmpLastName,
             "DepFirstName": DepFirstName,
             "DepLastName": DepLastName,
             "DateOfBirth": DateOfBirth,
@@ -295,12 +259,8 @@
     })
 
     function SecondStep(dep) {
-        document.querySelector("#Employee_id").value = dep.Employee_id;
-        document.querySelector("#FamilyMember_id").value = dep.FamilyMember_id;
         document.querySelector("#dependentSelectForm").nextElementSibling.style.display = "block";
         document.querySelector("#EmpNumber").value = dep.EmpNumber;
-        document.querySelector("#EmpFirstName").value = dep.EmpFirstName;
-        document.querySelector("#EmpLastName").value = dep.EmpLastName;
         document.querySelector("#DepFirstName").value = dep.DepFirstName;
         document.querySelector("#DepLastName").value = dep.DepLastName;
         document.querySelector("#DateOfBirth").value = dep.DateOfBirth;

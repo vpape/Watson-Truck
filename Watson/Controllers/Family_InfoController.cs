@@ -79,15 +79,13 @@ namespace Watson.Controllers
         }
 
         //ask about Return JSON for EMployee_id and the Marital Status 
-        public JsonResult SpEnrollmentNew(int Employee_id, string MaritalStatus, string RelationshipToInsured, string EmpNumber, 
-            string EmpFirstName, string EmpLastName, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
+        public JsonResult SpEnrollmentNew(int Employee_id, string MaritalStatus, string RelationshipToInsured,
+            string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
         {
             Family_Info sp = new Family_Info();
 
             sp.RelationshipToInsured = RelationshipToInsured;
             sp.SSN = EmpNumber;
-            sp.FirstName = EmpFirstName;
-            sp.LastName = EmpLastName;
             sp.FirstName = FirstName;
             sp.LastName = LastName;
             sp.DateOfBirth = DateOfBirth;
@@ -191,13 +189,13 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult SpEmploymentUpdate(int Employee_id, int FamilyMember_id, string CurrentEmployer,
+        public JsonResult SpEmploymentUpdate(int Employee_id, string Employer,
             string EmployerAddress, string EmployerCity, string EmployerState, string EmployerZipCode, 
             string EmployerPhoneNumber)
         {
             Family_Info sp = new Family_Info();
 
-            sp.Employer = CurrentEmployer;
+            sp.Employer = Employer;
             sp.EmployerMailingAddress = EmployerAddress;
             sp.EmployerCity = EmployerCity;
             sp.EmployerState = EmployerState;
@@ -230,11 +228,11 @@ namespace Watson.Controllers
         }
 
         public JsonResult SpEditUpdate(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured,
-            string EmpNumber, string EmpFirstName, string EmpLastName, string FirstName, string LastName, DateTime DateOfBirth,
-            string Gender, string MailingAddress, string PObox, string City, string State, string ZipCode, string County,
-            string PhysicalAddress, string PObox2, string City2, string State2, string ZipCode2, string County2,
-            string EmailAddress, string PhoneNumber, string CellPhone, string CurrentEmployer, string EmployerAddress,
-            string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
+            string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress,
+            string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, string PObox2, 
+            string City2, string State2, string ZipCode2, string County2, string EmailAddress, string PhoneNumber, 
+            string CellPhone, string Employer, string EmployerAddress, string EmployerCity, string EmployerState,
+            string EmployerZipCode, string EmployerPhoneNumber)
         {
             var sp = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
@@ -242,8 +240,6 @@ namespace Watson.Controllers
 
             sp.RelationshipToInsured = RelationshipToInsured;
             sp.SSN = EmpNumber;
-            sp.FirstName = EmpFirstName;
-            sp.LastName = EmpLastName;
             sp.FirstName = FirstName;
             sp.LastName = LastName;
             sp.DateOfBirth = DateOfBirth;
@@ -263,7 +259,7 @@ namespace Watson.Controllers
             sp.EmailAddress = EmailAddress;
             sp.PhoneNumber = PhoneNumber;
             sp.CellPhone = CellPhone;
-            sp.Employer = CurrentEmployer;
+            sp.Employer = Employer;
             sp.EmployerMailingAddress = EmployerAddress;
             sp.EmployerCity = EmployerCity;
             sp.EmployerState = EmployerState;

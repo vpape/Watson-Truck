@@ -36,13 +36,6 @@
                     <text type="text" id="EmpNumber" class="form-control" name="SSN" value="sp.EmpNumber" />
                 </div>
             </div>
-            <div class="form-group" disabled>
-                <label for="" class="col-md-2 control-label">Employee Name:</label>
-                <div class="col-md-10">
-                    <text type="text" id="EmpFirstName" class="form-control" name="" value="sp.EmpFirstName" />
-                    <text type="text" id="EmpLastName" class="form-control" name="" value="sp.EmpLastName" />
-                </div>
-            </div>
             <div class="form-group" div="divSpouseInfo">
                 <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
@@ -362,8 +355,6 @@
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
             RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
             EmpNumber = document.getElementById("EmpNumber").value;
-            EmpFirstName = document.getElementById("EmpFirstName").value;
-            EmpLastName = document.getElementById("EmpLastName").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
@@ -378,8 +369,6 @@
             var data = {
                 "RelationshipToInsured": RelationshipToInsured,
                 "EmpNumber": EmpNumber,
-                "EmpFirstName": EmpFirstName,
-                "EmpLastName": EmpLastName,
                 "FirstName": FirstName,
                 "LastName": LastName,
                 "DateOfBirth": DateOfBirth,
@@ -441,7 +430,7 @@
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener(function () {
-            CurrentEmployer = document.getElementsById("Employer").value;
+            Employer = document.getElementsById("Employer").value;
             EmployerAddress = document.getElementById("EmployerAddress").value;
             EmployerCity = document.getElementById("EmployerCity").value;
             EmployerState = document.getElementById("EmployerState").value;
@@ -450,7 +439,7 @@
         
 
             var data = {
-                "CurrentEmployer": CurrentEmployer,
+                "Employer": Employer,
                 "EmployerAddress": EmployerAddress,
                 "EmployerCity": EmployerCity,
                 "EmployerState": EmployerState,
@@ -470,8 +459,6 @@
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
         document.querySelector("#RelationshipToInsured").value = sp.RelationshipToInsured;
         document.querySelector("#EmpNumber").value = sp.EmpNumber;
-        document.querySelector("#EmpFirstName").value = sp.EmpFirstName;
-        document.querySelector("#EmpLastName").value = sp.EmpLastName;
         document.querySelector("#FirstName").value = sp.FirstName;
         document.querySelector("#LastName").value = sp.LastName;
         document.querySelector("#DateOfBirth").value = sp.DateOfBirth;
@@ -495,7 +482,7 @@
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         document.querySelector("#ThirdStep").nextElementSibling.content.style.display = "block";
-        document.querySelector("#CurrentEmployer").value = sp.CurrentEmployer;
+        document.querySelector("#Employer").value = sp.Employer;
         document.querySelector("#EmployerAddress").value = sp.EmployerAddress;
         document.querySelector("#EmployerCity").value = sp.EmployerCity;
         document.querySelector("#EmployerState").value = sp.EmployerState;

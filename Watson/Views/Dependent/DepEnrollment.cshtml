@@ -35,12 +35,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-2 control-label">Employee ID:</label>
-                <div class="col-md-10">
-                    <input type="text" id="Employee_id" class="form-control" name="Employee_id" value="dep.Employee_id" disabled />
-                </div>
-            </div>
-            <div class="form-group">
                 <label class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
                     <input type="text" id="EmpNumber" class="form-control" name="SSN" value="dep.EmpNumber" disabled />
@@ -362,11 +356,8 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#DepEnrollmentUpdate").addEventListener("click", function () {
-            Employee_id = document.getElementById("Employee_id").value;
             RelationshipToInsured = document.getElementByName("RelationshipToInsured").value
             EmpNumber = document.getElementById("SSN").value
-            //EmpFirstName = document.getElementById("EmpFirstName").value
-            //EmpLastName = document.getElementById("EmpLastName").value
             DepFirstName = document.getElementById("DepFirstName").value
             DepLastName = document.getElementById("DepLastName").value
             DateOfBirth = document.getElementById("DateOfBirth").value
@@ -392,7 +383,6 @@
             InsZipCode = document.getElementById("InsZipCode").value
 
             var data = {
-                "Employee_id": Employee_id,
                 "RelationshipToInsured": RelationshipToInsured,
                 "EmpNumber": EmpNumber,
                 "DepFirstName": DepFirstName,
@@ -415,7 +405,6 @@
     })
 
     function SecondStep(dep) {
-        document.querySelector("#Employee_id").value = dep.Employee_id;
         document.querySelector("#FirstStep").nextElementSibling.style.display = "block";
         document.querySelector("#EmpNumber").value = dep.EmpNumber;
         document.querySelector("#DepFirstName").value = dep;
