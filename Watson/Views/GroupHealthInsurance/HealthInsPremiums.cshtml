@@ -14,10 +14,11 @@
     <title></title>
 </head>
 <body>
+    @* Health Ins Premium *@
     <div class="dl-horizontal">
         <hr />
-        <div class="collapsible" id="InsPremium">Health Insurance Premiums</div>
-        <table class="table" id="InsPremTable" cellpadding="20" cellspacing="20">
+        <div class="collapsible" id="ThirdStep">Health Insurance Premiums</div>
+        <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">
             <tr>
                 <td>
                     <table class="table table-hover" width="400" cellpadding="10" cellspacing="10" border="1">
@@ -232,7 +233,7 @@
                         </p>*@
                     <div class="form-group">
                         <div class="col-md-offset-11">
-                            <button id="InsPremiumUpdateStepThree" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
+                            <button id="InsPremiumUpdateStepThree" @*onclick="return ContactUpdate()"*@ class="btn">Continue</button>
                         </div>
                     </div>
                 </td>
@@ -348,9 +349,23 @@
                 .then(data => InsPremium(data))
                 .catch(error => console.error(error))
         })
+
+        //document.addEventListener("#InsSupplementUpdateStepFour").addEventListener("click", function () {
+        //    document.getElementById("EmployeeOnly").value;
+
+
+
+        //    var data = {
+        //        "EmpOnly": EmpOnly,
+        //    }
+
+        //    var ret = postData('/Group_Health/HealthInsSupplementUpdate', data)
+        //        .then(data => StepFour(data))
+        //        .catch(error => console.error(error))
+        //})
     })
 
-    function InsPremium(ins) {
+    function InsStepThree(ins) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         document.querySelector("#InsPremium").nextElementSibling.style.display = "block";
@@ -385,6 +400,13 @@
         document.querySelector("#BuyUpMnthyearlyPremiumCost").value = ins.BuyUpMnthyearlyPremiumCost;
         document.querySelector("#BuyUpBiWkyearlyPremiumCost").value = ins.BuyUpBiWkyearlyPremiumCost;
     }
+
+    //function InsStepFour(ins) {
+    //    document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+    //    document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+    //    document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
+    //    document.querySelector("#InsSupplement").nextElementSibling.style.display = "block";
+    //}
 
     function postData(url, data) {
         //Default options are marked with *
