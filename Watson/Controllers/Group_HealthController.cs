@@ -35,7 +35,7 @@ namespace Watson.Controllers
             return View();
         }
 
-        public ActionResult NewGrpHealthEnrollment()
+        public ActionResult GrpHealthEnrollment()
         {
             return View();
         }
