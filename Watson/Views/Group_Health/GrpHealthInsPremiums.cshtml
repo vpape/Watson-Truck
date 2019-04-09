@@ -1,8 +1,8 @@
 ﻿@{
-    ViewBag.Title = "HealthInsPremiums";
+    ViewBag.Title = "GrpHealthInsPremiums";
 }
 <h2>Health Insurance Premiums</h2>
-<h1>Major Medical (includes 15K Life Insurance)</h1>
+<h5>Major Medical (includes 15K Life Insurance)</h5>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,7 @@
 </head>
 <body>
     @* Health Ins Premium *@
-    <div class="dl-horizontal">
+    <div class="form-horizontal">
         <hr />
         <div class="collapsible" id="ThirdStep">Health Insurance Premiums</div>
         <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">
@@ -25,9 +25,9 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>Plan</th>
-                                <th>Employee/Only</th>
+                                <th>Employee Only</th>
                                 <th>Employee/Spouse</th>
-                                <th>Employee/Child(ren)</th>
+                                <th>Employee/Dependent(s)</th>
                                 <th>Employee/Family</th>
                                 <th>Yearly Cost</th>
                             </tr>
@@ -35,187 +35,187 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <label>(MEC Plan) Monthly Cost per Employee</label>
+                                    <label>(MEC Plan) Monthly Cost per Employee:</label>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="MECmonthlyCostEmpOnly" value="" />
+                                        <input type="text" name="EmployeeOnly" size="10" id="MECmonthlyCostEmpOnly" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="MECmonthlyCostEmpSp" value="" />
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="MECmonthlyCostEmpSp" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="MECmonthlyCostEmpDep" value="" />
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="MECmonthlyCostEmpDep" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="MECmonthlyCostEmpFam" value="" />
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="MECmonthlyCostEmpFam" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="MECMnthyearlyPremiumCost" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>(MEC Plan) Bi-weekly Cost per Employee</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="MECbiweeklyCostEmpOnly" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="MECbiweeklyCostEmpSp" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="MECbiweeklyCostEmpDep" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="MECbiweeklyCostEmpFam" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="MECBiWkyearlyPremiumCost" value="" />
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="MECMnthyearlyPremiumCost" value="" readonly />
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>(Standard Plan) Monthly Cost per Employee</label>
+                                    <label>(MEC Plan) Bi-weekly Cost per Employee:</label>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="StndmonthlyCostEmpOnly" value="" />
+                                        <input type="text" name="EmployeeOnly" size="10" id="MECbiweeklyCostEmpOnly" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="StndmonthlyCostEmpSp" value="" />
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="MECbiweeklyCostEmpSp" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="StndmonthlyCostEmpDep" value="" />
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="MECbiweeklyCostEmpDep" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="StndmonthlyCostEmpFam" value="" />
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="MECbiweeklyCostEmpFam" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="StndMnthyearlyPremiumCost" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>(Standard Plan) Bi-weekly Cost per Employee</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="StndbiweeklyCostEmpOnly" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="StndbiweeklyCostEmpSp" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="StndbiweeklyCostEmpDep" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="StndbiweeklyCostEmpFam" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="StndBiWkyearlyPremiumCost" value="" />
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="MECBiWkyearlyPremiumCost" value="" readonly />
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>(Buy Up Plan) Monthly Cost per Employee</label>
+                                    <label>(Standard Plan) Monthly Cost per Employee:</label>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="BuyUpmonthlyCostEmpOnly" value="" />
+                                        <input type="text" name="EmployeeOnly" size="10" id="StndmonthlyCostEmpOnly" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="BuyUpmonthlyCostEmpSp" value="" />
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="StndmonthlyCostEmpSp" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="BuyUpmonthlyCostEmpDep" value="" />
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="StndmonthlyCostEmpDep" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="BuyUpmonthlyCostEmpFam" value="" />
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="StndmonthlyCostEmpFam" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="BuyUpMnthyearlyPremiumCost" value="" />
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="StndMnthyearlyPremiumCost" value="" readonly />
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>(Buy Up Plan) Bi-weekly Cost per Employee</label>
+                                    <label>(Standard Plan) Bi-weekly Cost per Employee:</label>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="BuyUpbiweeklyCostEmpOnly" value="" />
+                                        <input type="text" name="EmployeeOnly" size="10" id="StndbiweeklyCostEmpOnly" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="BuyUpbiweeklyCostEmpSp" value="" />
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="StndbiweeklyCostEmpSp" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="BuyUpbiweeklyCostEmpDep" value="" />
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="StndbiweeklyCostEmpDep" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="BuyUpbiweeklyCostEmpAndFam" value="" />
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="StndbiweeklyCostEmpFam" value="" readonly />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="BuyUpBiWkyearlyPremiumCost" value="" />
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="StndBiWkyearlyPremiumCost" value="" readonly />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>(Buy Up Plan) Monthly Cost per Employee:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeOnly" size="10" id="BuyUpmonthlyCostEmpOnly" value="" readonly />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="BuyUpmonthlyCostEmpSp" value="" readonly />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="BuyUpmonthlyCostEmpDep" value="" readonly />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="BuyUpmonthlyCostEmpFam" value="" readonly />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="BuyUpMnthyearlyPremiumCost" value="" readonly />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>(Buy Up Plan) Bi-weekly Cost per Employee:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeOnly" size="10" id="BuyUpbiweeklyCostEmpOnly" value="" readonly />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="BuyUpbiweeklyCostEmpSp" value="" readonly />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="BuyUpbiweeklyCostEmpDep" value="" readonly />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="BuyUpbiweeklyCostEmpAndFam" value="" readonly />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="BuyUpBiWkyearlyPremiumCost" value="" readonly />
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="col-md-12 table-bordered">
+                    <div class="col-md-12 table-bordered" readonly>
                         These prices are in effect for 01-01-2019 through 12-31-2019<br />
                         <p></p>
                         Estimated costs* for COBRA participants for the 2019 year:<br />
@@ -229,8 +229,8 @@
                         *Note: a 2% Adminstration fee will be added to the COBRA rates listed<br />
                     </div>
                     @*<p>
-                            <button type="submit" class="btn" id="InsPremiumUpdateStepThree" @*onclick="InsPremiumUpdate()" value="Submit">Save</button>
-                        </p>*@
+                        <button type="submit" class="btn" id="InsPremiumUpdateStepThree" @*onclick="InsPremiumUpdate()" value="Submit">Save</button>
+                    </p>*@
                     <div class="form-group">
                         <div class="col-md-offset-11">
                             <button id="InsPremiumUpdateStepThree" @*onclick="return ContactUpdate()"*@ class="btn">Continue</button>
@@ -245,26 +245,36 @@
 
 
 <style>
-    table {
-        border-collapse: collapse;
+    .collapsible {
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
         width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
     }
 
-        table tr {
-            border-bottom: 1px solid black;
+        .active, .collapsible:hover {
+            background-color: #555;
         }
 
-    th, td {
-        text-align: left;
-        padding: 8px;
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
     }
 
-    th {
-        border-bottom: 5px solid black;
+    .btn {
+        background-color: #333;
+        color: white;
     }
 
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
+    .button {
+        text-align: right;
     }
 
     a {
@@ -277,6 +287,49 @@
             background-color: #ddd;
             color: black;
         }
+
+    .phone-number .col-xs-3::after {
+        content: "-";
+        position: absolute;
+        right: 5px;
+        color: black;
+        border: 0px solid;
+        top: 8px;
+    }
+
+    .phone-number .col-xs-4 {
+        width: 25%;
+    }
+
+    .phone-number .col-xs-3, .phone-number .col-xs-4 {
+        padding-left: 0;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    table tr {
+        border-bottom: 1px solid black;
+    }
+
+    td:empty {
+        width: 10px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 0px;
+    }
+
+    th {
+        border-bottom: 5px solid black;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 </style>
 
 
@@ -346,9 +399,10 @@
             }
 
             var ret = postData('/Group_Health/HealthInsPremiumUpdate', data)
-                .then(data => InsPremium(data))
+                .then(data => StepThree(data))
                 .catch(error => console.error(error))
         })
+    })
 
         //document.addEventListener("#InsSupplementUpdateStepFour").addEventListener("click", function () {
         //    document.getElementById("EmployeeOnly").value;
@@ -363,12 +417,11 @@
         //        .then(data => StepFour(data))
         //        .catch(error => console.error(error))
         //})
-    })
-
-    function InsStepThree(ins) {
+  
+    function StepThree(ins) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-        document.querySelector("#InsPremium").nextElementSibling.style.display = "block";
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
         document.querySelector("#MECmonthlyEO").value = ins.MECmonthlyEO;
         document.querySelector("#MECmonthlyEmpSp").value = ins.MECmonthlyEmpSp;
         document.querySelector("#MECmonthlyEmpDep").value = ins.MECmonthlyEmpDep;

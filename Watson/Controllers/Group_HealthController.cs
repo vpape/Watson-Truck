@@ -14,26 +14,21 @@ namespace Watson.Controllers
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
         //private static Group_Health groupHealth = new Group_Health();
-        private static List<Group_Health> groupHealth = new List<Group_Health>();
+        private static List<Group_Health> group = new List<Group_Health>();
 
         public Group_HealthController()
         {
 
         }
 
-        public ActionResult GrpHealthInsurance(Group_Health groupHealth)
-        {
-            Group_Health grp = db.Group_Health.Find(groupHealth);
+        //public ActionResult GroupHealthInsurance(Group_Health group)
+        //{
+        //    Group_Health grp = db.Group_Health.Find(group);
 
-            grp = groupHealth;
+        //    grp = group;
 
-            return View(groupHealth);
-        }
-
-        public ActionResult EnrollmentSelection()
-        {
-            return View();
-        }
+        //    return View(group);
+        //}
 
         public ActionResult GrpHealthEnrollment()
         {
@@ -149,10 +144,9 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-        public ActionResult HealthInsPremiums(int id)
+        public ActionResult GrpHealthInsPremiums()
         {
-            InsurancePremium insurancePremium = db.InsurancePremiums.Find(id);
-            return View(insurancePremium);
+            return View();
         }
 
         public JsonResult HealthInsPremiumUpdate()
@@ -173,11 +167,11 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-        //Not sure whether i use db.InsPremium, db.InsPlan, db.InsPlanDetails or all three??
-        public ActionResult HealthInsSupplement(int id)
+  
+        public ActionResult GrpHealthInsSupplement()
         {
-            InsurancePlanDetail insSupplement = db.InsurancePlanDetails.Find(id);
-            return View(insSupplement);
+            //InsurancePlanDetail insSupplement = db.InsurancePlanDetails.Find(id);
+            return View();
         }
 
         public JsonResult HealthInsSupplementUpdate()
@@ -195,7 +189,7 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-        // not sure whether I use both db.Deductions and db.InsurancePlan or just db.Deductions
+        // use both db.Deductions and db.InsurancePlan or just db.Deductions?
         //need to add employee signature and signature date to db.Deductions table and change data types
         public ActionResult SalaryRedirectAgreement()
         {
@@ -266,13 +260,9 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
 
-        public ActionResult NewLifeInsEnrollment(int lifeIns_id)
+        public ActionResult LifeInsuranceEnrollment()
         {
-            Life_Insurance lifeIns = new Life_Insurance();
-
-            lifeIns.LifeInsurance_id = lifeIns_id;
-
-            return View(lifeIns);
+            return View();
         }
 
         public JsonResult LifeInsEnrollmentNew(int lifeIns_id)
@@ -355,7 +345,7 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-        public ActionResult EditLifeIns(int? lifeIns_id)
+        public ActionResult EditLifeInsurance(int? lifeIns_id)
         {
             if (lifeIns_id == null)
             {

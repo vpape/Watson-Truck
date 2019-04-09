@@ -415,13 +415,13 @@
     <Content Include="Views\Spouse\EditSpouse.cshtml" />
     <Content Include="Views\Spouse\SpouseDetail.cshtml" />
     <Content Include="Views\Employee\EnrollmentSelection.cshtml" />
-    <Content Include="Views\GroupHealthInsurance\GroupHealthEnrollment.cshtml" />
-    <Content Include="Views\LifeInsurance\LifeInsuranceEnrollment.cshtml" />
-    <Content Include="Views\LifeInsurance\EditLifeInsurance.cshtml" />
-    <Content Include="Views\LifeInsurance\LifeInsuranceDetail.cshtml" />
-    <Content Include="Views\LifeInsurance\DeleteLifeInsurance.cshtml" />
+    <Content Include="Views\Group_Health\GroupHealthEnrollment.cshtml" />
+    <Content Include="Views\Life_Insurance\LifeInsuranceEnrollment.cshtml" />
+    <Content Include="Views\Life_Insurance\EditLifeInsurance.cshtml" />
+    <Content Include="Views\Life_Insurance\LifeInsuranceDetail.cshtml" />
+    <Content Include="Views\Life_Insurance\DeleteLifeInsurance.cshtml" />
     <Content Include="Views\Employee\EmployeeInsurance.cshtml" />
-    <Content Include="Views\GroupHealthInsurance\HealthInsurancePremiums.cshtml" />
+    <Content Include="Views\Group_Health\HealthInsurancePremiums.cshtml" />
     <Content Include="Views\Admin\Employees.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\FamilyMemberEnrollment\FamilyMemberOverview.cshtml" />
@@ -443,13 +443,13 @@
     <Content Include="Views\Employee\EmpContact.cshtml" />
     <Content Include="Views\Employee\DeleteEmp.cshtml" />
     <Content Include="Views\Employee\EmpDetail.cshtml" />
-    <Content Include="Views\GroupHealthInsurance\HealthInsPremiums.cshtml" />
-    <Content Include="Views\GroupHealthInsurance\HealthInsSupplement.cshtml" />
-    <Content Include="Views\GroupHealthInsurance\GrpHealthEnrollment.cshtml" />
-    <Content Include="Views\GroupHealthInsurance\SalaryRedirectAgreement.cshtml" />
-    <Content Include="Views\GroupHealthInsurance\EditGrpHealthIns.cshtml" />
-    <Content Include="Views\GroupHealthInsurance\GrpHealthInsDetail.cshtml" />
-    <Content Include="Views\GroupHealthInsurance\DeleteGrpHealthIns.cshtml" />
+    <Content Include="Views\Group_Health\GrpHealthInsPremiums.cshtml" />
+    <Content Include="Views\Group_Health\GrpHealthInsSupplement.cshtml" />
+    <Content Include="Views\Group_Health\GrpHealthEnrollment.cshtml" />
+    <Content Include="Views\Group_Health\SalaryRedirectAgreement.cshtml" />
+    <Content Include="Views\Group_Health\EditGrpHealthIns.cshtml" />
+    <Content Include="Views\Group_Health\GrpHealthInsDetail.cshtml" />
+    <Content Include="Views\Group_Health\DeleteGrpHealthIns.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
