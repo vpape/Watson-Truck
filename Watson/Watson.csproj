@@ -424,9 +424,7 @@
     <Content Include="Views\Group_Health\HealthInsurancePremiums.cshtml" />
     <Content Include="Views\Admin\Employees.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\FamilyMemberEnrollment\FamilyMemberOverview.cshtml" />
     <Content Include="Views\Employee\NewEmployeeEnrollment.cshtml" />
-    <Content Include="Views\FamilyMemberEnrollment\FamilyMemberSelection.cshtml" />
     <Content Include="Views\Dependent\DepEnrollment.cshtml" />
     <Content Include="Views\Dependent\EditDep.cshtml" />
     <Content Include="Views\Dependent\DepDetail.cshtml" />
@@ -450,6 +448,8 @@
     <Content Include="Views\Group_Health\EditGrpHealthIns.cshtml" />
     <Content Include="Views\Group_Health\GrpHealthInsDetail.cshtml" />
     <Content Include="Views\Group_Health\DeleteGrpHealthIns.cshtml" />
+    <Content Include="Views\Employee\FamilyOverview.cshtml" />
+    <Content Include="Views\Employee\FamilyEnrollment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

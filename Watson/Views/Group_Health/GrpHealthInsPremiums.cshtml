@@ -229,11 +229,115 @@
                         *Note: a 2% Adminstration fee will be added to the COBRA rates listed<br />
                     </div>
                     @*<p>
-                        <button type="submit" class="btn" id="InsPremiumUpdateStepThree" @*onclick="InsPremiumUpdate()" value="Submit">Save</button>
-                    </p>*@
+                            <button type="submit" class="btn" id="InsPremiumUpdateStepThree" @*onclick="InsPremiumUpdate()" value="Submit">Save</button>
+                        </p>*@
                     <div class="form-group">
                         <div class="col-md-offset-11">
-                            <button id="InsPremiumUpdateStepThree" @*onclick="return ContactUpdate()"*@ class="btn">Continue</button>
+                            <button id="InsPremiumUpdateStepThree" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-horizontal">
+        <hr />
+        <div class="collapsible" id="FourthStep">Health Insurance Supplement</div>
+        <table class="container-fluid table-bordered" id="InsSupplementTable" cellpadding="20" cellspacing="20">
+            <tr>
+                <td>
+                    <table class="table table-hover" width="400" cellpadding="10" cellspacing="10" border="1">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th><u>Dental Cost Analysis</u></th>
+                                <th><u>Guardian Dental Plan</u></th>
+                                <th></th>
+                                <th><u>Vision Cost Analysis</u></th>
+                                <th><u>Guardian Vision Plan</u></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label>Employee Only:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="EmployeeOnly" size="10" id="DentalCostEmpOnly" value="" readonly />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Employee Only:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="EmployeeOnly" size="10" id="VisionCostEmpOnly" value="" readonly />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Employee + Spouse:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="DentalCostEmpSp" value="" readonly />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Employee + Spouse:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="VisionCostEmpSp" value="" readonly />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Employee + Dependent(s):</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="DentalCostEmpDep" value="" readonly />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Employee + Dependent(s):</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="VisionCostEmpDep" value="" readonly />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Employee + Family:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="DentalCostEmpFam" value="" readonly />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Employee + Family):</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="VisionCostEmpFam" value="" readonly />
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-group">
+                        <div class="col-md-offset-11">
+                            <button id="InsSupplementUpdateStepFour" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
                         </div>
                     </div>
                 </td>
@@ -398,29 +502,42 @@
                 "BuyUpBiWkyearlyPremiumCost": BuyUpBiWkyearlyPremiumCost,
             }
 
-            var ret = postData('/Group_Health/HealthInsPremiumUpdate', data)
+            var ret = postData('/Group_Health/GrpHealthInsPremiumUpdate', data)
                 .then(data => StepThree(data))
                 .catch(error => console.error(error))
         })
     })
 
-        //document.addEventListener("#InsSupplementUpdateStepFour").addEventListener("click", function () {
-        //    document.getElementById("EmployeeOnly").value;
+        document.addEventListener("#InsSupplementUpdateStepFour").addEventListener("click", function () {
+            EmpDentalCost = document.getElementById("DentalCostEmpOnly").value;
+            EmpVisionCost = document.getElementById("VisionCostEmpOnly").value;
+            EmpSpDentalCost = document.getElementById("DentalCostEmpSp").value;
+            EmpSpVisionCost = document.getElementById("VisionCostEmpSp").value;
+            EmpDepDentalCost = document.getElementById("DentalCostEmpDep").value;
+            EmpDepVisionCost = document.getElementById("VisionCostEmpDep").value;
+            EmpFamDentalCost = document.getElementById("DentalCostEmpFam").value;
+            EmpFamVisionCost = document.getElementById("VisionCostEmpFam").value;
 
 
 
-        //    var data = {
-        //        "EmpOnly": EmpOnly,
-        //    }
+            var data = {
+                "EmpDentalCost": EmpDentalCost,
+                "EmpVisionCost": EmpVisionCost,
+                "EmpSpDentalCost": EmpSpDentalCost,
+                "EmpSpVisionCost": EmpSpVisionCost,
+                "EmpDepDentalCost": EmpDepDentalCost,
+                "EmpDepVisionCost": EmpDepVisionCost,
+                "EmpFamDentalCost": EmpFamDentalCost,
+                "EmpFamVisionCost": EmpFamVisionCost,
 
-        //    var ret = postData('/Group_Health/HealthInsSupplementUpdate', data)
-        //        .then(data => StepFour(data))
-        //        .catch(error => console.error(error))
-        //})
+            }
+
+            var ret = postData('/Group_Health/GrpHealthInsSupplementUpdate', data)
+                .then(data => StepFour(data))
+                .catch(error => console.error(error))
+        })
   
     function StepThree(ins) {
-        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
         document.querySelector("#MECmonthlyEO").value = ins.MECmonthlyEO;
         document.querySelector("#MECmonthlyEmpSp").value = ins.MECmonthlyEmpSp;
@@ -454,12 +571,20 @@
         document.querySelector("#BuyUpBiWkyearlyPremiumCost").value = ins.BuyUpBiWkyearlyPremiumCost;
     }
 
-    //function InsStepFour(ins) {
-    //    document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-    //    document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-    //    document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
-    //    document.querySelector("#InsSupplement").nextElementSibling.style.display = "block";
-    //}
+    function InsStepFour(ins) {
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
+        document.querySelector("#FourthStep").nextElementSibling.style.display = "block";
+        document.querySelector("#DentalCostEmpOnly").value = ins.EmpDentalCost;
+        document.querySelector("#VisionCostEmpOnly").value = ins.EmpVisionCost;
+        document.querySelector("#DentalCostEmpSp").value = EmpSpDentalCost;
+        document.querySelector("#VisionCostEmpSp").value = EmpSpVisionCost;
+        document.querySelector("#DentalCostEmpDep").value = EmpDepDentalCost;
+        document.querySelector("#VisionCostEmpDep").value = EmpDepVisionCost;
+        document.querySelector("#DentalCostEmpFam").value = EmpFamDentalCost;
+        document.querySelector("#VisionCostEmpFam").value = EmpFamVisionCost;
+       
+        
+    }
 
     function postData(url, data) {
         //Default options are marked with *

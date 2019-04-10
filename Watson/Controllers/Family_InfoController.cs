@@ -21,7 +21,7 @@ namespace Watson.Controllers
 
         }
 
-        public ActionResult FamilyMemberOverview(Family_Info family)
+        public ActionResult FamilyOverview(Family_Info family)
         {
             Family_Info f = db.Family_Info.Find(family);
 
@@ -68,7 +68,7 @@ namespace Watson.Controllers
             return Json(new { data = f }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult FamilyMemberSelection()
+        public ActionResult FamilyEnrollment()
         {
             return View();
         }
