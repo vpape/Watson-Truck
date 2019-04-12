@@ -6,9 +6,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Dependent Enrollment</title>
 </head>
 <body>
@@ -70,48 +70,42 @@
             <div class="form-group" id="depOtherIns">
                 <label>Is your dependent covered by other insurance, including Medicare/Medicaid? If so, we need the following information:</label>
                 <div class="form-group" id="CoveredByOtherIns">
-                    @foreach (var dep in Model.Other_Insurance)
-                    {
-                        <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" @*onclick="return CoveredByOtherIns()"*@ name="CoveredByOtherInsurance" value="Yes" />Yes</label>
-                        <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" @*onclick="return CoveredByOtherIns()"*@ name="CoveredByOtherInsurance" value="No" checked />No</label>
-                    }
+                    <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" @*onclick="return CoveredByOtherIns()"*@ name="CoveredByOtherInsurance" value="Yes" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" @*onclick="return CoveredByOtherIns()"*@ name="CoveredByOtherInsurance" value="No" checked />No</label>
                 </div>
             </div>
             <div class="form-group" id="divCoveredByOtherIns">
-                @foreach (var dep in Model.Other_Insurance)
-                {
-                    <div class="form-group">
-                        <label for="InsCompany">Insurance Company:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="" />
-                        </div>
-                        <label for="PolicyNumber">Policy Number:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="" />
-                        </div>
-                        <label for="InsPhoneNumber">Phone Number:</label>
-                        <div class="col-xs-4">
-                            <div class="form-group phone-number">
-                                <div class="col-xs-3">
-                                    <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
-                                </div>
-                                <div class="col-xs-3">
-                                    <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4" value="" />
-                                </div>
+                <div class="form-group">
+                    <label for="InsCompany">Insurance Company:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="" />
+                    </div>
+                    <label for="PolicyNumber">Policy Number:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="" />
+                    </div>
+                    <label for="InsPhoneNumber">Phone Number:</label>
+                    <div class="col-xs-4">
+                        <div class="form-group phone-number">
+                            <div class="col-xs-3">
+                                <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4" value="" />
                             </div>
                         </div>
-                        <label for="InsMailingAddress">Mailing Address:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="InsMailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
-                            <input type="text" id="InsCity" class="form-control" name="City" placeholder="City" value="" />
-                            <input type="text" id="InsState" class="form-control" name="State" placeholder="State" value="" />
-                            <input type="text" id="InsZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="" />
-                        </div>
                     </div>
-                }
+                    <label for="InsMailingAddress">Mailing Address:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="InsMailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
+                        <input type="text" id="InsCity" class="form-control" name="City" placeholder="City" value="" />
+                        <input type="text" id="InsState" class="form-control" name="State" placeholder="State" value="" />
+                        <input type="text" id="InsZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="" />
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -392,6 +386,7 @@
                 "CoveredByOtherIns": CoveredByOtherIns,
                 "InsCompany": InsCompany,
                 "PolicyNumber": PolicyNumber,
+                "InsPhoneNumber": InsPhoneNumber,
                 "InsMailingAddress": InsMailingAddress,
                 "InsCity": InsCity,
                 "InsState": InsState,
@@ -407,17 +402,17 @@
     function SecondStep(dep) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "block";
         document.querySelector("#EmpNumber").value = dep.EmpNumber;
-        document.querySelector("#DepFirstName").value = dep;
-        document.querySelector("#DepLastName").value = dep;
-        document.querySelector("#DateOfBirth").value = dep;
-        document.querySelector("#Gender").value = dep;
-        document.querySelector("#CoveredByOtherIns").value = dep;
-        document.querySelector("#InsCompany").value = dep;
-        document.querySelector("#PolicyNumber").value = dep;
-        document.querySelector("#InsMailingAddress").value = dep;
-        document.querySelector("#InsCity").value = dep;
-        document.querySelector("#InsState").value = dep;
-        document.querySelector("#InsZipCode").value = dep;
+        document.querySelector("#DepFirstName").value = dep.DepFirstName;
+        document.querySelector("#DepLastName").value = dep.DepLastName;
+        document.querySelector("#DateOfBirth").value = dep.DateOfBirth;
+        document.querySelector("#Gender").value = dep.Gender;
+        document.querySelector("#CoveredByOtherIns").value = dep.CoveredByOtherIns;
+        document.querySelector("#InsCompany").value = dep.InsCompany;
+        document.querySelector("#PolicyNumber").value = dep.PolicyNumber;
+        document.querySelector("#InsMailingAddress").value = dep.InsMailingAddress;
+        document.querySelector("#InsCity").value = dep.InsCity;
+        document.querySelector("#InsState").value = dep.InsState;
+        document.querySelector("#InsZipCode").value = dep.InsZipCode;
     }
 
     function postData(url, data) {

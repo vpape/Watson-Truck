@@ -80,44 +80,12 @@ namespace Watson.Controllers
             e.FirstName = FirstName;
             e.LastName = LastName;
             e.DateOfBirth = DateOfBirth;
-            e.Gender = Gender;
-
-            //if (ModelState.IsValid)
-            //{
-            //    db.Employees.Add(e);
-
-            //    try
-            //    {
-            //        db.SaveChanges();
-
-            //        if (e.MaritalStatus == "Married")
-            //        {
-            //            RedirectToAction("SpEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
-            //        }
-            //        else if (e.MaritalStatus = "MarriedwDep")
-            //        {
-            //            RedirectToAction("SpEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
-            //        }
-            //        else if (e.MaritalStatus = "SinglewDep")
-            //        {
-            //            RedirectToAction("DepEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
-            //        }
-            //        else
-            //        {
-            //            RedirectToAction("EmpOverview", "Employee");
-            //        }
-            //    }
-
-            //    catch (Exception emp)
-            //    {
-            //        Console.WriteLine(emp);
-            //    }
-            //}
+            e.Gender = Gender;    
 
             db.Employees.Add(e);
             db.SaveChanges();
 
-            int result = e.Employee_id;
+            //int result = e.Employee_id;
 
             return Json(new { data = e }, JsonRequestBehavior.AllowGet);
         }
@@ -128,13 +96,16 @@ namespace Watson.Controllers
         {
             return View();
         }
-
-        public JsonResult EmpEnrollmentContact(int Employee_id, string MailingAddress, string PObox, string City,
-            string State, string ZipCode, string County, string PhysicalAddress, string PObox2, string City2,
-            string State2, string ZipCode2, string County2, bool CityLimits, string EmailAddress, string PhoneNumber,
-            string CellPhone)
+        //Add maritalstatus and employee_id to method and add on the JSON client side as well
+        public JsonResult EmpEnrollmentContact(int Employee_id, string MaritalStatus, string MailingAddress,
+            string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, 
+            string PObox2, string City2, string State2, string ZipCode2, string County2, string CityLimits, 
+            string EmailAddress, string PhoneNumber, string CellPhone)
         {
-            Employee e = new Employee();
+            //Employee e = new Employee();
+            var e = db.Employees
+               .Where(i => i.Employee_id == Employee_id)
+               .Single();
                                 
             e.MailingAddress = MailingAddress;
             e.PObox = PObox;
@@ -148,15 +119,58 @@ namespace Watson.Controllers
             e.State = State2;
             e.ZipCode = ZipCode2;
             e.County = County2;
-            e.CityLimits = CityLimits;
+            if (CityLimits == "True")
+            {
+                e.CityLimits = true;
+            }
+            else
+            {
+                e.CityLimits = false;
+            }
+            
             e.EmailAddress = EmailAddress;
             e.PhoneNumber = PhoneNumber;
             e.CellPhone = CellPhone;
 
+            ViewBag.MaritalStatus = MaritalStatus;
+
+            if (ModelState.IsValid)
+            {
+                db.Employees.Add(e);
+
+                try
+                {
+                    db.SaveChanges();
+
+                    if (e.MaritalStatus == "Married")
+                    {
+                        RedirectToAction("SpEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
+                    }
+                    //else if (e.MaritalStatus == "MarriedwDep")
+                    //{
+                    //    RedirectToAction("SpEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
+                    //}
+                    //else if (e.MaritalStatus == "SinglewDep")
+                    //{
+                    //    RedirectToAction("DepEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
+                    //}
+                    else
+                    {
+                        RedirectToAction("EnrollmentSelection", "Employee");
+                    }
+                }
+
+                catch (Exception emp)
+                {
+                    Console.WriteLine(emp);
+                }
+            }
+
+
             db.Employees.Add(e);
             db.SaveChanges();
 
-            int result = e.Employee_id;
+            
 
             return Json(new { data = e }, JsonRequestBehavior.AllowGet);
                           

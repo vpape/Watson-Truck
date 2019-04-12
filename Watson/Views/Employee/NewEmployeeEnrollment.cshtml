@@ -14,6 +14,7 @@
 <body>
     <div class="form-horizontal">
         <hr />
+        @*<input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />*@
         <div class="collapsible" id="FirstStep">Enrollment</div>
         <div id="divEmpEnrollment" class="content">
             <p></p>
@@ -77,8 +78,8 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Gender:</label>
                 <div class="col-md-10" id="Gender">
-                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" checked />Male</label>
-                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" />Female</label>
+                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="true" checked />Male</label>
+                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="false" />Female</label>
                 </div>
             </div>
             <div class="form-group">
@@ -91,6 +92,7 @@
     @* Contact Info *@
     <div class="form-horizontal">
         <hr />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
         <div class="collapsible" id="SecondStep">Contact Information</div>
         <div id="divEmpEnrollment" class="content">
             <p></p>
@@ -348,7 +350,7 @@
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
             MaritalStatus = document.getElementById("MaritalStatus").value;
-            Gender = document.getElementById("Gender").value;        
+            Gender = document.getElementsByName("Gender").value;        
 
             var data = {
                 "EmployeeRole": EmployeeRole,
@@ -368,13 +370,14 @@
         })
 
         document.querySelector("#EmployeeEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            MailingAddress = document.getElementsById("MailingAddress").value;
+            Employee_id = document.getElementById("Employee_id").value;
+            MailingAddress = document.getElementById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
             State = document.getElementById("State").value;
             ZipCode = document.getElementById("ZipCode").value;
             County = document.getElementById("County").value;
-            PhysicalAddress = document.getElementsById("PhysicalAddress").value;
+            PhysicalAddress = document.getElementById("PhysicalAddress").value;
             PObox2 = document.getElementById("PObox2").value;
             City2 = document.getElementById("City2").value;
             State2 = document.getElementById("State2").value;
@@ -383,9 +386,12 @@
             EmailAddress = document.getElementById("EmailAddress").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             CellPhone = document.getElementById("CellPhone").value;
-            CityLimits = document.getElementId("CityLimits").value;
+            CityLimits = document.getElementsByName("CityLimits").value;
+            MaritalStatus = document.getElementById("MaritalStatus").value;
 
             var data = {
+                "Employee_id": Employee_id,
+                "MaritalStatus": MaritalStatus,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
@@ -405,7 +411,7 @@
             }
 
             var ret = postData('EmpEnrollmentContact', data)
-                .then(data => SecondStep(data))
+                .then(data => ThirdStep(data))
                 .catch(error => console.error(error))
         })
     })
@@ -413,22 +419,33 @@
     function SecondStep(emp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        document.querySelector("#EmployeeRole").innerHTML = emp.EmployeeRole;
+        document.querySelector("#EmployeeRole").value = emp.EmployeeRole;
         document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
         document.querySelector("#JobTitle").value = emp.JobTitle;
         document.querySelector("#EmpNumber").value = emp.EmpNumber;
-        document.querySelector("#MaritalStatus").innerHTML = emp.MaritalStatus;
+        document.querySelector("#MaritalStatus").value = emp.MaritalStatus;
         document.querySelector("#FirstName").value = emp.FirstName;
         document.querySelector("#LastName").value = emp.LastName;
         document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
-        document.querySelector("#Gender").value = emp.Gender;
+        Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
+            if (e.checked) {
+                Gender = e.value;
+            }
+        });
+     
+    }
+
+    function ThirdStep(emp) {
+        document.querySelector("#Employee_id").value = emp.Employee_id;
+        document.querySelector("#MaritalStatus").value = emp.MaritalStatus;
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
         document.querySelector("#MailingAddress").value = emp.MailingAddress;
         document.querySelector("#PObox").value = emp.PObox;
         document.querySelector("#City").value = emp.City;
         document.querySelector("#State").value = emp.State;
         document.querySelector("#ZipCode").value = emp.ZipCode;
         document.querySelector("#County").value = emp.County;
-        document.querySelector("#CityLimits").innerHTML = emp.CityLimits;
+        document.querySelector("#CityLimits").value = emp.CityLimits;
         document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
         document.querySelector("#PObox2").value = emp.PObox2;
         document.querySelector("#City2").value = emp.City2;
@@ -440,6 +457,7 @@
     function postData(url, data) {
         //Default options are marked with *
         console.log(data);
+        console.log(JSON.stringify(data));
         return fetch(url, {
             body: JSON.stringify(data), //must match 'Content-Type' header
             cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
@@ -453,7 +471,10 @@
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer
         })
-            .then(Response => Response.json()) //parses response to JSON
+            .then(Response => {
+                console.log(Response);
+                Response.json();
+            }) //parses response to JSON
     }
 </script>
 

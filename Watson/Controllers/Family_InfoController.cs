@@ -73,12 +73,14 @@ namespace Watson.Controllers
             return View();
         }
 
-        public ActionResult SpEnrollment()
+        public ActionResult SpEnrollment(string Employee_id, string MaritalStatus)
         {
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.MartialStatus = MaritalStatus;
+
             return View();
         }
 
-        //ask about Return JSON for EMployee_id and the Marital Status 
         public JsonResult SpEnrollmentNew(int Employee_id, string MaritalStatus, string RelationshipToInsured,
             string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
         {
@@ -90,6 +92,7 @@ namespace Watson.Controllers
             sp.LastName = LastName;
             sp.DateOfBirth = DateOfBirth;
             sp.Gender = Gender;
+            sp.Employee_id = Employee_id;
 
             int result = Employee_id;
 
@@ -97,27 +100,6 @@ namespace Watson.Controllers
             {
                 db.Family_Info.Add(sp);
                 db.SaveChanges();
-            }
-
-            ViewBag.Employee_id = Employee_id;
-            ViewBag.spouseExist = true;
-            ViewBag.MartialStatus = MaritalStatus;
-
-            Employee employee = db.Employees.Find(Employee_id);
-
-            if (employee.MaritalStatus == "Single")
-            {
-                ViewBag.spouseExist = false;
-                ViewBag.RelationshipToInsured = "Single";
-            }
-            else if (employee.MaritalStatus == "SinglewDep")
-            {
-                ViewBag.spouseExist = false;
-                ViewBag.RelationshipToInsured = "Spouse";
-            }
-            else
-            {
-                ViewBag.RelationshipToInsured = "Dependent";
             }
 
             return Json(new { data = sp, Employee_id }, JsonRequestBehavior.AllowGet);
@@ -189,7 +171,8 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult SpEmploymentUpdate(int Employee_id, string Employer,
+        //add maritalstatus and employee id to client side JSOn
+        public JsonResult SpEmploymentUpdate(int Employee_id, string MaritalStatus, string Employer,
             string EmployerAddress, string EmployerCity, string EmployerState, string EmployerZipCode, 
             string EmployerPhoneNumber)
         {
@@ -202,7 +185,10 @@ namespace Watson.Controllers
             sp.EmployerZipCode = EmployerZipCode;
             sp.EmployerPhoneNumber = EmployerPhoneNumber;
 
-            int result = Employee_id;
+            //if (MaritalStatus == "MarriedwDep")
+            //{
+            //    return RedirectToAction("DepEnrollment", "Family_info", new {sp.Employee_id, sp.MaritalStatus });
+            //}            
                        
             return Json(new { data = sp }, JsonRequestBehavior.AllowGet);
         }
@@ -354,7 +340,7 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult DepEnrollmentNew(int Employee_id, string EmpNumber, string RelationshipToInsured, 
+        public JsonResult DepEnrollmentNew(int Employee_id, string MaritalStatus, string EmpNumber, string RelationshipToInsured, 
             string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender, string CoveredByOtherIns, 
             string InsCompany, string PolicyNumber, string InsPhoneNumber, string InsMailingAddress, string InsCity,
             string InsState, string InsZipCode)
@@ -366,6 +352,27 @@ namespace Watson.Controllers
             dep.LastName = DepLastName;
             dep.DateOfBirth = DateOfBirth;
             dep.Gender = Gender;
+
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.spouseExist = true;
+            ViewBag.MartialStatus = MaritalStatus;
+
+            Employee employee = db.Employees.Find(Employee_id);
+
+            if (employee.MaritalStatus == "Single")
+            {
+                ViewBag.spouseExist = false;
+                ViewBag.RelationshipToInsured = "Single";
+            }
+            else if (employee.MaritalStatus == "SinglewDep")
+            {
+                ViewBag.spouseExist = false;
+                ViewBag.RelationshipToInsured = "Spouse";
+            }
+            else
+            {
+                ViewBag.RelationshipToInsured = "Dependent";
+            }
 
             Employee emp = new Employee();
 
