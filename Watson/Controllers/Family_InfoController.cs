@@ -14,7 +14,7 @@ namespace Watson.Controllers
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        private static List<Family_Info> familyMember = new List<Family_Info>();
+        private static List<Family_Info> family = new List<Family_Info>();
 
         public Family_InfoController()
         {
@@ -31,10 +31,11 @@ namespace Watson.Controllers
         }
 
         public JsonResult GetFamilyMember(int FamilyMember_id, string FirstName, string LastName,
-            string RelationshipToInsured, DateTime DateOfBirth, string MailingAddress, string PObox, string City,
-            string State, string County, string ZipCode, string EmailAddress, string PhoneNumber, string CellPhone,
-            string Gender, string Employer, string EmployerMailingAddress, string EmployerCity, string EmployerState,
-            string EmployerZipCode, string EmployerPhoneNumber, bool Medical, bool Dental, bool Vision, bool Indemnity)
+            string RelationshipToInsured, DateTime DateOfBirth, string MailingAddress, string PObox,
+            string City, string State, string County, string ZipCode, string EmailAddress, string PhoneNumber, 
+            string CellPhone, string Gender, string Employer, string EmployerMailingAddress, string EmployerCity, 
+            string EmployerState, string EmployerZipCode, string EmployerPhoneNumber, bool Medical,
+            bool Dental, bool Vision, bool Indemnity)
         {
             var f = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
@@ -65,46 +66,47 @@ namespace Watson.Controllers
             f.Vision = Vision;
             f.Indemnity = Indemnity;
 
+
             return Json(new { data = f }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult FamilyEnrollment()
-        {
-            return View();
-        }
+        //public ActionResult FamilyEnrollment()
+        //{
+        //    return View();
+        //}
 
-        public ActionResult SpEnrollment(string Employee_id, string MaritalStatus)
-        {
-            ViewBag.Employee_id = Employee_id;
-            ViewBag.MartialStatus = MaritalStatus;
+        //public ActionResult SpEnrollment(string Employee_id, string MaritalStatus)
+        //{
+        //    ViewBag.Employee_id = Employee_id;
+        //    ViewBag.MartialStatus = MaritalStatus;
 
-            return View();
-        }
+        //    return View();
+        //}
 
-        public JsonResult SpEnrollmentNew(int Employee_id, string MaritalStatus, string RelationshipToInsured,
-            string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
-        {
-            Family_Info sp = new Family_Info();
+        //public JsonResult SpEnrollmentNew(int Employee_id, string MaritalStatus, string RelationshipToInsured,
+        //    string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
+        //{
+        //    Family_Info sp = new Family_Info();
 
-            sp.RelationshipToInsured = RelationshipToInsured;
-            sp.SSN = EmpNumber;
-            sp.FirstName = FirstName;
-            sp.LastName = LastName;
-            sp.DateOfBirth = DateOfBirth;
-            sp.Gender = Gender;
-            sp.Employee_id = Employee_id;
+        //    sp.RelationshipToInsured = RelationshipToInsured;
+        //    sp.SSN = EmpNumber;
+        //    sp.FirstName = FirstName;
+        //    sp.LastName = LastName;
+        //    sp.DateOfBirth = DateOfBirth;
+        //    sp.Gender = Gender;
+        //    sp.Employee_id = Employee_id;
 
-            int result = Employee_id;
+        //    int result = Employee_id;
 
-            if (ModelState.IsValid)
-            {
-                db.Family_Info.Add(sp);
-                db.SaveChanges();
-            }
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Family_Info.Add(sp);
+        //        db.SaveChanges();
+        //    }
 
-            return Json(new { data = sp, Employee_id }, JsonRequestBehavior.AllowGet);
+        //    return Json(new { data = sp, Employee_id }, JsonRequestBehavior.AllowGet);
 
-        }
+        //}
 
         //----------------------------------------------------------------------------------------
 
@@ -217,8 +219,8 @@ namespace Watson.Controllers
             string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress,
             string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, string PObox2, 
             string City2, string State2, string ZipCode2, string County2, string EmailAddress, string PhoneNumber, 
-            string CellPhone, string Employer, string EmployerAddress, string EmployerCity, string EmployerState,
-            string EmployerZipCode, string EmployerPhoneNumber)
+            string CellPhone, string Employer, string EmployerAddress, string EmployerPObox, string EmployerCity, 
+            string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
             var sp = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
@@ -247,6 +249,7 @@ namespace Watson.Controllers
             sp.CellPhone = CellPhone;
             sp.Employer = Employer;
             sp.EmployerMailingAddress = EmployerAddress;
+            sp.PObox = EmployerPObox;
             sp.EmployerCity = EmployerCity;
             sp.EmployerState = EmployerState;
             sp.EmployerZipCode = EmployerZipCode;
@@ -270,10 +273,10 @@ namespace Watson.Controllers
                     Console.WriteLine(e);
                 }
 
-                RedirectToAction("FamilyMemberOverview");
+                RedirectToAction("FamilyOverview");
             }
 
-            return Json(new { data = sp, result }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = sp }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------

@@ -16,7 +16,8 @@ namespace Watson.Controllers
         private WatsonTruckEntities db = new WatsonTruckEntities();
         
         private static List<Employee> employee = new List<Employee>();
-        
+        private static List<Family_Info> family = new List<Family_Info>();
+
         public EmployeeController()
         {
      
@@ -42,7 +43,6 @@ namespace Watson.Controllers
             e.SSN = EmpNumber;
             e.FirstName = EmpFirstName;
             e.LastName = EmpLastName;
-            e.JobTitle = JobTitle;
             e.MailingAddress = MailingAddress;
             e.City = City;
             e.State = State;
@@ -65,7 +65,13 @@ namespace Watson.Controllers
         {
             return View();
         }
-        
+
+        public ActionResult FamilyEnrollment()
+        {
+            return View();
+        }
+
+        //Error with EmployeeRole and Gender
         public JsonResult EmployeeEnrollmentNew(string EmployeeRole, string CurrentEmployer, 
             string JobTitle, string EmpNumber, string MaritalStatus, string FirstName, string LastName,
             DateTime DateOfBirth, string Gender)
@@ -96,17 +102,17 @@ namespace Watson.Controllers
         {
             return View();
         }
-        //Add maritalstatus and employee_id to method and add on the JSON client side as well
+        //Error with Employee_id and CityLimits- Undefined
         public JsonResult EmpEnrollmentContact(int Employee_id, string MaritalStatus, string MailingAddress,
             string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, 
             string PObox2, string City2, string State2, string ZipCode2, string County2, string CityLimits, 
             string EmailAddress, string PhoneNumber, string CellPhone)
         {
-            //Employee e = new Employee();
-            var e = db.Employees
-               .Where(i => i.Employee_id == Employee_id)
-               .Single();
-                                
+            Employee e = new Employee();
+            //var e = db.Employees
+            //   .Where(i => i.Employee_id == Employee_id)
+            //   .Single();
+
             e.MailingAddress = MailingAddress;
             e.PObox = PObox;
             e.City = City;
@@ -319,8 +325,38 @@ namespace Watson.Controllers
         }
         //----------------------------------------------------------------------------------------
 
+        public ActionResult SpEnrollment(string Employee_id, string MaritalStatus)
+        {
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.MartialStatus = MaritalStatus;
 
-       
-        
+            return View();
+        }
+
+        public JsonResult SpEnrollmentNew(int Employee_id, string MaritalStatus, string RelationshipToInsured,
+           string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
+        {
+            Family_Info sp = new Family_Info();
+
+            sp.RelationshipToInsured = RelationshipToInsured;
+            sp.SSN = EmpNumber;
+            sp.FirstName = FirstName;
+            sp.LastName = LastName;
+            sp.DateOfBirth = DateOfBirth;
+            sp.Gender = Gender;
+            sp.Employee_id = Employee_id;
+
+            int result = Employee_id;
+
+            if (ModelState.IsValid)
+            {
+                db.Family_Info.Add(sp);
+                db.SaveChanges();
+            }
+
+            return Json(new { data = sp, Employee_id }, JsonRequestBehavior.AllowGet);
+
+        }
+
     }
 }

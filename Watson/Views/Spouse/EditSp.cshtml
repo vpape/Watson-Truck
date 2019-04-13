@@ -6,76 +6,79 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Spouse Edit Page</title>
 </head>
 <body>
     <div class="form-horizontal">
         <hr />
-        <button class="collapsible" id="FirstStep"><h4>Spouse Enrollment</h4></button>
-        <div class="content" id="divSpEnrollment">
+        <div class="collapsible" id="FirstStep">Edit Spouse Enrollment?</div>
+        <div id="divEmpEnrollment" class="content">
             <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
             <input type="hidden" id="FamilyMember_id" class="form-control" name="Employee_id" value=@ViewBag.FamilyMember_id />
             <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value=@ViewBag.MaritalStatus />
+            <p></p>
+            <p></p>
             <div class="form-group" id="divRelationshipToInsured">
                 <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
                 <div class="col-md-10">
                     <select id="RelationToInsured" name="RelationShipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control" disabled>
                         @if (ViewBag.spouseExist == false)
                         {
-                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @*@((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")*@>Spouse</option>
                         }
                         else
                         {
-                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @*@((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")*@>Dependent</option>
                         }
                     </select>
                 </div>
             </div>
-            <div class="form-group" id="EmpNumber" disabled>
+            <div class="form-group">
                 <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
-                    <text type="text" id="EmpNumber" class="form-control" name="SSN" value="sp.EmpNumber" />
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="" disabled />
                 </div>
             </div>
-            <div class="form-group" div="divSpouseInfo">
+            <div class="form-group">
                 <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="sp.FirstName" />
+                    <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="" />
                 </div>
-                <div class="form-group">
-                    <label for="LastName" class="col-md-2 control-label">Last Name:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="LastName" class="form-control" name="LastName" value="sp.LastName" />
-                    </div>
+            </div>
+            <div class="form-group">
+                <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                <div class="col-md-10">
+                    <input type="text" id="LastName" class="form-control" placeholder="Last Name" name="LastName" value="" />
                 </div>
-                <div class="form-group">
-                    <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="sp.DateOfBirth" />
-                    </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Date of Birth:</label>
+                <div class="col-md-10">
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
                 </div>
-                <div class="form-group">
-                    <label class="col-md-2 control-label">Gender:</label>
-                    <div class="col-md-10">
-                        <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="Male" checked />Male</label>
-                        <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="Female" />Female</label>
-                    </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Gender:</label>
+                <div class="col-md-10" id="Gender">
+                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="true" checked />Male</label>
+                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="false" />Female</label>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" id="SpouseEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
-                        @*<input id="Submit" type="submit" onclick="SpouseEnrollmentUpdate();" value="Save" class="btn btn-primary" />*@
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" id="EditSpEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
+                    @*<input id="Submit" type="submit" onclick="SpouseEnrollmentUpdate();" value="Save" class="btn btn-primary" />*@
                 </div>
             </div>
         </div>
     </div>
+    @* Spouse Contact *@
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible" id="SecondStep">Contact Information</div>
+        <div class="collapsible" id="SecondStep">Edit Spouse Contact?</div>
         <div id="divSpEnrollment" class="content">
             <p></p>
             <p></p>
@@ -83,42 +86,42 @@
                 <div class="form-group">
                     <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="sp.MailingAddress" />
-                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="sp.PObox" />
-                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="sp.City" />
-                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="sp.State" />
-                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="sp.ZipCode" />
+                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
+                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" />
+                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
+                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
+                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
-                        <input type="text" id="County" class="form-control" placeholder="County" name="County" value="sp.County" />
+                        <input type="text" id="County" class="form-control" placeholder="County" name="County" value="" />
                     </div>
                 </div>
             </div>
             <div class="form-group" id="divMailingAddress">
                 <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
                 <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" onclick="HidePhysicalAddress()" name="Address" value="true" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="addressNotSame" class="radio-inline" onclick="ShowPhysicalAddress()" name="Address" value="false" checked />No</label>
+                    <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" @*onclick="SpouseAddress()"*@ onclick="HidePhysicalAddress()" name="Address" value="true" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="addressNotSame" class="radio-inline" @*onclick="SpouseAddress()"*@ onclick="ShowPhysicalAddress()" name="Address" value="false" checked />No</label>
                 </div>
             </div>
             <div id="divPhysicalAddress">
                 <div class="form-group">
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street2" name="PhysicalAddress" value="sp.PhysicalAddress" />
-                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box2" name="PObox" value="sp.PObox2" />
-                        <input type="text" id="City2" class="form-control" placeholder="City2" name="City" value="sp.City2" />
-                        <input type="text" id="State2" class="form-control" placeholder="State2" name="State" value="sp.State2" />
-                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code2" name="ZipCode" value="sp.ZipCode2" />
+                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="" />
+                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" />
+                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="" />
+                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="" />
+                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
-                        <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="so.County2" />
+                        <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="" />
                     </div>
                 </div>
             </div>
@@ -132,7 +135,7 @@
             <div class="form-group">
                 <label for="EmailAddress" class="col-md-2 control-label">Email Address:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="sp.EmailAddress" />
+                    <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="" />
                 </div>
             </div>
             <div class="form-group">
@@ -141,13 +144,13 @@
                     <div class="col-xs-4">
                         <div class="form-group phone-number">
                             <div class="col-xs-3">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="sp.PhoneNumber" />
+                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
                             </div>
                             <div class="col-xs-3">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="sp.PhoneNumber" />
+                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
                             </div>
                             <div class="col-xs-4">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4" value="sp.PhoneNumber" />
+                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4" value="" />
                             </div>
                         </div>
                     </div>
@@ -159,13 +162,13 @@
                     <div class="col-xs-4">
                         <div class="form-group phone-number">
                             <div class="col-xs-3">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value="sp.CellPhone" />
+                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value="" />
                             </div>
                             <div class="col-xs-3">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value="sp.CellPhone" />
+                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value="" />
                             </div>
                             <div class="col-xs-4">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="4" maxlength="4" value="sp.CellPhone" />
+                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="4" maxlength="4" value="" />
                             </div>
                         </div>
                     </div>
@@ -173,15 +176,15 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <button id="SpouseEnrollmentUpdateStepTwo" class="btn">Save</button>
+                    <button id="EditSpEnrollmentUpdateStepTwo" class="btn">Save</button>
                 </div>
             </div>
         </div>
     </div>
-
+    @* Spouse Employment *@
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible" id="ThirdStep">Spouse Employment</div>
+        <div class="collapsible" id="ThirdStep">Edit Spouse Employment?</div>
         <div class="content">
             <p></p>
             <p></p>
@@ -189,31 +192,19 @@
                 <div class="form-group">
                     <label for="Employer" class="col-md-2 control-label">Current Employer:</label>
                     <div class="col-md-10">
-                        <input type="text" id="Employer" class="form-control" name="Employer" value="sp.Employer" />
+                        <input type="text" id="Employer" class="form-control" placeholder="Current Employer" name="Employer" value="" />
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="EmployerAddress" class="col-md-2 control-label">Employer Address:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="EmployerAddress" class="form-control" name="EmployerMailingAddress" value="sp.EmployerMailingAddress" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="EmployerCity" class="col-md-2 control-label">City:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="sp.EmployerCity" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="EmployerState" class="col-md-2 control-label">State:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="EmployerState" class="form-control" name="EmployerState" value="sp.EmployerState" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="EmployerZipCode" class="col-md-2 control-label">Zip Code:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="sp.EmployerZipCode" />
+                <div id="divEmployerAddress">
+                    <div class="form-group">
+                        <label for="EmployerMailingAddress" class="col-md-2 control-label">Employer Address:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="EmployerMailingAddress" class="form-control" placeholder="Street" name="EmployerMailingAddress" value="" />
+                            <input type="text" id="EmployerPObox" class="form-control" placeholder="PO Box" name="PObox" />
+                            <input type="text" id="EmployerCity" class="form-control" placeholder="City2" name="City" value="" />
+                            <input type="text" id="EmployerState" class="form-control" placeholder="State2" name="State" value="" />
+                            <input type="text" id="EmployerZipCode" class="form-control" placeholder="Zip Code2" name="ZipCode" value="" />
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -222,13 +213,13 @@
                         <div class="col-xs-4">
                             <div class="form-group phone-number">
                                 <div class="col-xs-3">
-                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="3" maxlength="3" value="sp.EmployerPhoneNumber" />
+                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="3" maxlength="3" value="" />
                                 </div>
                                 <div class="col-xs-3">
-                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="3" maxlength="3" value="sp.EmployerPhoneNumber" />
+                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="3" maxlength="3" value="" />
                                 </div>
                                 <div class="col-xs-4">
-                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="4" maxlength="4" value="sp.EmployerPhoneNumber" />
+                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="4" maxlength="4" value="" />
                                 </div>
                             </div>
                         </div>
@@ -237,7 +228,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input id="SpouseEnrollmentUpdateStepThree" type="submit" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
+                    <input id="EditSpEnrollmentUpdateStepThree" type="submit" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
                 </div>
             </div>
         </div>
@@ -245,7 +236,7 @@
 </body>
 </html>
 
-@Html.ActionLink("Back to List", "FamilyMemberOverview")
+@Html.ActionLink("Back to List", "FamilyOverview")
 
 <style>
     .collapsible {
@@ -269,15 +260,6 @@
         display: none;
         overflow: hidden;
         background-color: #f1f1f1;
-    }
-
-    .hide {
-        display: none;
-    }
-
-    .previous {
-        background-color: #333;
-        color: white;
     }
 
     .btn {
@@ -315,6 +297,32 @@
 
     .phone-number .col-xs-3, .phone-number .col-xs-4 {
         padding-left: 0;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        table tr {
+            border-bottom: 1px solid black;
+        }
+
+    td:empty {
+        width: 10px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 0px;
+    }
+
+    th {
+        border-bottom: 5px solid black;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
     }
 </style>
 
@@ -356,7 +364,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
+        document.querySelector("#EditSpEnrollmentUpdate").addEventListener("click", function () {
             RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
             EmpNumber = document.getElementById("EmpNumber").value;
             FirstName = document.getElementById("FirstName").value;
@@ -381,11 +389,11 @@
             }
 
             var ret = postData('SpEditUpdate', data)
-                .then(data => SecondStep(data))
+                .then(data => FirstStep(data))
                 .catch(error => console.error(error))
         })
 
-        document.querySelector("#SpouseEnrollmentUpdateStepTwo").addEventListener("click", function () {
+        document.querySelector("#EditSpEnrollmentUpdateStepTwo").addEventListener("click", function () {
             MailingAddress = document.getElementsById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
@@ -433,7 +441,7 @@
                 .error(error => console.error(error))
         })
 
-        document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener(function () {
+        document.querySelector("#EditSpEnrollmentUpdateStepThree").addEventListener(function () {
             Employer = document.getElementsById("Employer").value;
             EmployerAddress = document.getElementById("EmployerAddress").value;
             EmployerCity = document.getElementById("EmployerCity").value;
@@ -458,7 +466,7 @@
 
     })
 
-    function SecondStep(sp) {
+    function FirstStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
         document.querySelector("#RelationshipToInsured").value = sp.RelationshipToInsured;
@@ -467,6 +475,12 @@
         document.querySelector("#LastName").value = sp.LastName;
         document.querySelector("#DateOfBirth").value = sp.DateOfBirth;
         document.querySelector("#Gender").value = sp.Gender;
+       
+    }
+
+    function SecondStep(sp) {
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
         document.querySelector("#MailingAddress").value = sp.MailingAddress;
         document.querySelector("#PObox").value = sp.PObox;
         document.querySelector("#City").value = sp.City;

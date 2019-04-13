@@ -6,9 +6,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Family Member Selection</title>
 </head>
 <body>
@@ -42,20 +42,20 @@
 
 <style>
     .button {
-        background-color: #333333;
+        background-color: #333;
         color: white;
         cursor: pointer;
         padding: 18px;
         width: 100%;
         border: none;
-        text-align: left;
+        text-align: center;
         outline: none;
         font-size: 15px;
     }
 
-    .active, .collapsible:hover {
-        background-color: #555;
-    }
+        .active, .button:hover {
+            background-color: #555;
+        }
 
     .content {
         padding: 0 18px;
@@ -75,12 +75,15 @@
             color: black;
         }
 
-    .btn {
-        background-color: #2e4593;
-        color: white;
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    div {
+        text-align: center;
     }
 </style>
-
 <script>
     //var col = document.querySelectorAll(".collapsible");
     //var i;
@@ -104,11 +107,11 @@
 <script type="text/javascript">
 
     function SpouseEnrollment() {
-        window.location.href = "/Spouse/SpEnrollment";
+        window.location.href = "/Employee/SpEnrollment";
     }
 
     function DependentEnrollment() {
-        window.location.href = "/Dependent/DepEnrollment";
+        window.location.href = "/Employee/DepEnrollment";
     }
 
 </script>

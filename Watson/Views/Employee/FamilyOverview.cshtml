@@ -1,97 +1,166 @@
-﻿@{
+﻿@model List<Watson.Models.Family_Info>
+@{
     ViewBag.Title = "FamilyOverview";
 }
-@model List<Watson.Models.Family_Info>
-<h2>Family Member Overview</h2>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-    <title>Family Member Overview</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Family Overview</title>
 </head>
 <body>
-    <table class="table">
-        <tr>
-            <th>Insurance Overview</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Relation To Employee</th>
-            <th>Employee Number</th>
-            <th>Employee Last Name</th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <div class="form-horizontal">
+        <hr />
+        <div class="collapsible" id="FirstStep">Family Overview</div>
+        <table class="container-fluid table-bordered" id="FamilyOverview" cellpadding="20" cellspacing="20">
             <tr>
                 <td>
-                    <a href="#" onclick="return EmpInsurance()" class="next round"></a>   @* Character map for Insurance(create a collaspible button for Life and Group Health to view onclick) *@
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RelationshipToInsured)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Employee.SSN)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Employee.LastName)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit Spouse", "EditSp", "Family_Info", new { id = item.FamilyMember_id }) |
-                    @Html.ActionLink("Edit Dependent", "EditDep", "Family_Info", new { id = item.FamilyMember_id }) |
-                    @Html.ActionLink("Spouse Detail", "SpDetail", "Family_Info", new { id = item.FamilyMember_id }) |
-                    @Html.ActionLink("Dependent Detail", "DepDetail", "Family_Info", new { id = item.FamilyMember_id }) |
+                    <table class="table table-hover" width="400" cellpadding="10" cellspacing="10" border="1">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Insurance Overview</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Relation To Employee</th>
+                                <th>Employee Number</th>
+                                <th>Employee Last Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="col-md-2">
+                                            @* Character map for Insurance(create a collaspible button for Life and Group Health to view onclick) *@
+                                            <a href="#" onclick="return FamilyInsurance()" class="next round"></a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-2">
+                                            <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-2">
+                                            <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-2">
+                                            <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-2">
+                                            <input type="text" id="EmpNumber" class="form-control" name="SSN" value="" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-2">
+                                            <input type="text" id="EmpLastName" class="form-control" name="LastName" value="" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit Spouse", "EditSp", "Family_Info", new { FamilyMember_id = item.FamilyMember_id }) |
+                                        @Html.ActionLink("Edit Dependent", "EditDep", "Family_Info", new { FamilyMember_id = item.FamilyMember_id }) |
+                                        @Html.ActionLink("Spouse Detail", "SpDetail", "Family_Info", new { FamilyMember_id = item.FamilyMember_id }) |
+                                        @Html.ActionLink("Dependent Detail", "DepDetail", "Family_Info", new { FamilyMember_id = item.FamilyMember_id }) |
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="form-group">
+                        <div class="col-md-offset-11">
+                            <button id="FamilyEnrollmentUpdate" @*onclick="return FamilyEnrollment()"*@ class="btn">Family Enrollment</button>
+                        </div>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Back to Employee Overview", "EmpOverview")
+                    </p>
                 </td>
             </tr>
-        }
-
-    </table>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="button" onclick="return FamilyEnrollment()" value="Family Enrollment" class="btn" />
-        </div>
+        </table>
     </div>
-    <p>
-        @Html.ActionLink("Back to Employee Overview", "EmpOverview")
-    </p>
 </body>
 </html>
 
 
 <style>
-    table {
-        border-collapse: collapse;
+    .collapsible {
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
         width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
     }
 
-    th, td {
-        text-align: left;
-        padding: 8px;
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
     }
 
-    tr:nth-child(even) {
-        background-color: #f2f2f2
+    .btn {
+        background-color: #333;
+        color: white;
     }
 
-    .btn, a {
+    .button {
+        text-align: right;
+    }
+
+    a {
         text-decoration: none;
         display: inline-block;
         padding: 8px 16px;
     }
 
-        .btn, a:hover {
+        a:hover {
             background-color: #ddd;
             color: black;
         }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        table tr {
+            border-bottom: 1px solid black;
+        }
+
+    td:empty {
+        width: 10px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 0px;
+    }
+
+    th {
+        border-bottom: 5px solid black;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
 
     .next {
         background-color: #2e4593;
@@ -99,14 +168,30 @@
     }
 
     .round {
-        border-radius: 50%;
+        border-radius: 20%;
     }
 </style>
 
 <script>
-    function EmpInsurance() {
+    var col = document.querySelectorAll(".collapsible");
+    var i;
 
-        location.href = "/Employee/EmpInsurance";
+    for (i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+
+        });
+    }
+
+    function FamilyInsurance() {
+
+        location.href = "/Employee/FamilyInsurance";
     }
 
     function FamilyEnrollment() {
@@ -114,6 +199,59 @@
         location.href = "/Employee/FamilyEnrollment";
     }
 
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#FamilyEnrollmentUpdate").addEventListener("click", function () {
+            EmpNumber = document.getElementById("FirstName").value;
+            EmpFirstName = document.getElementById("LastName").value;
+            EmpLastName = document.getElementById("RelationshipToInsured").value;
+            MailingAddress = document.getElementById("EmpNumber").value;
+            City = document.getElementById("EmpLastName").value;
+        });
+
+        var data = {
+            "FirstName": FirstName,
+            "LastName": LastName,
+            "RelationToEmp": RelationshipToInsured,
+            "EmpNumber": EmpNumber,
+            "EmpLastName": EmpLastName,
+        }
+
+        var ret = postData('GetFamilyMember', data)
+            .then(data => SecondStep(data))
+            .catch(error => console.error(error))
+    })
+
+    function SecondStep(fam) {
+        document.querySelector("#EmpOverview").nextElementSibling.style.display = "block";
+        document.querySelector("#FirstName").value = fam.FirstName;
+        document.querySelector("#LastName").value = fam.LastName;
+        document.querySelector("#RelationshipToInsured").value = fam.RelationshipToInsured;
+        document.querySelector("#EmpNumber").value = fam.EmpNumber;
+        document.querySelector("#EmpLastName").value = fam.EmpLastName;
+    }
+
+    function postData(url, data) {
+        //Default options are marked with *
+        console.log(data);
+        console.log(JSON.stringify(data));
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        })
+            .then(Response => {
+                console.log(Response);
+                Response.json();
+            }) //parses response to JSON
+    }
 </script>
 
 

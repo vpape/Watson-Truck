@@ -14,61 +14,63 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible" id="FirstStep"><h4>Spouse Enrollment</h4></div>
-        <div class="content" id="divSpEnrollment">
+        <div class="collapsible" id="FirstStep">Spouse Enrollment</div>
+        <div id="divEmpEnrollment" class="content">
             <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
             <input type="hidden" id="FamilyMember_id" class="form-control" name="Employee_id" value=@ViewBag.FamilyMember_id />
             <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value=@ViewBag.MaritalStatus />
+            <p></p>
+            <p></p>
             <div class="form-group" id="divRelationshipToInsured">
                 <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
                 <div class="col-md-10">
                     <select id="RelationToInsured" name="RelationShipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control" disabled>
                         @if (ViewBag.spouseExist == false)
                         {
-                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @*@((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")*@>Spouse</option>
                         }
                         else
                         {
-                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @*@((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")*@>Dependent</option>
                         }
                     </select>
                 </div>
             </div>
-            <div class="form-group" id="EmpNumber" disabled>
+            <div class="form-group">
                 <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
-                    <text type="text" id="EmpNumber" class="form-control" name="SSN" value="sp.EmpNumber" />
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="" disabled />
                 </div>
             </div>
-            <div class="form-group" div="divSpouseInfo">
+            <div class="form-group">
                 <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                    <input type="text" id="FirstName" class="form-control"placeholder="First Name" name="FirstName" value="" />
                 </div>
-                <div class="form-group">
-                    <label for="LastName" class="col-md-2 control-label">Last Name:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="LastName" class="form-control" name="LastName" value="" />
-                    </div>
+            </div>
+            <div class="form-group">
+                <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                <div class="col-md-10">
+                    <input type="text" id="LastName" class="form-control" placeholder="Last Name" name="LastName" value="" />
                 </div>
-                <div class="form-group">
-                    <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
-                    </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Date of Birth:</label>
+                <div class="col-md-10">
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
                 </div>
-                <div class="form-group">
-                    <label class="col-md-2 control-label">Gender:</label>
-                    <div class="col-md-10">
-                        <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="Male" checked />Male</label>
-                        <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="Female" />Female</label>
-                    </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Gender:</label>
+                <div class="col-md-10" id="Gender">
+                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="true" checked />Male</label>
+                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="false" />Female</label>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" id="SpouseEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
-                        @*<input id="Submit" type="submit" onclick="SpouseEnrollmentUpdate();" value="Save" class="btn btn-primary" />*@
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-11">
+                    <button type="submit" id="SpouseEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
+                    @*<input id="Submit" type="submit" onclick="SpouseEnrollmentUpdate();" value="Save" class="btn btn-primary" />*@
                 </div>
             </div>
         </div>
@@ -101,19 +103,19 @@
             <div class="form-group" id="divMailingAddress">
                 <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
                 <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" onclick="SpouseAddress()" @*onclick="HidePhysicalAddress()"*@ name="Address" value="true" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="addressNotSame" class="radio-inline" onclick="SpouseAddress()" @*onclick="ShowPhysicalAddress()"*@ name="Address" value="false" checked />No</label>
+                    <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" @*onclick="SpouseAddress()"*@ onclick="HidePhysicalAddress()" name="Address" value="true" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="addressNotSame" class="radio-inline" @*onclick="SpouseAddress()"*@ onclick="ShowPhysicalAddress()" name="Address" value="false" checked />No</label>
                 </div>
             </div>
             <div id="divPhysicalAddress">
                 <div class="form-group">
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street2" name="PhysicalAddress" value="" />
-                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box2" name="PObox" />
-                        <input type="text" id="City2" class="form-control" placeholder="City2" name="City" value="" />
-                        <input type="text" id="State2" class="form-control" placeholder="State2" name="State" value="" />
-                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code2" name="ZipCode" value="" />
+                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="" />
+                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" />
+                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="" />
+                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="" />
+                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -173,62 +175,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
+                <div class="col-md-offset-11">
                     <button id="SpouseEnrollmentUpdateStepTwo" class="btn">Save</button>
                 </div>
-            </div>
-        </div>
-    </div>
-    @* Employee Contact *@
-    <div id="divEmpContact" disabled>
-        <div class="form-group" id="EmpMailingAddress">
-            <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
-            <div class="col-md-10">
-                <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="emp.MailingAddress" />
-                <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="emp.PObox" />
-                <input type="text" id="City" class="form-control" placeholder="City" name="City" value="emp.City" />
-                <input type="text" id="State" class="form-control" placeholder="State" name="State" value="emp.State" />
-                <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="emp.ZipCode" />
-            </div>
-            <div class="form-group">
-                <label for="County" class="col-md-2 control-label">County:</label>
-                <div class="col-md-10">
-                    <input type="text" id="County" class="form-control" placeholder="County" name="County" value="emp.County" />
-                </div>
-            </div>
-        </div>
-        <div class="form-group" id="EmpPhysicalAddress">
-            <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
-            <div class="col-md-10">
-                <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street2" name="PhysicalAddress" value="emp.PhysicalAddress" />
-                <input type="text" id="PObox2" class="form-control" placeholder="PO Box2" name="PObox" value="emp.PObox2" />
-                <input type="text" id="City2" class="form-control" placeholder="City2" name="City" value="emp.City2" />
-                <input type="text" id="State2" class="form-control" placeholder="State2" name="State" value="emp.State2" />
-                <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code2" name="ZipCode" value="emp.ZipCode2" />
-            </div>
-            <div class="form-group">
-                <label for="County" class="col-md-2 control-label">County:</label>
-                <div class="col-md-10">
-                    <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="emp.County2" />
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
-            <div class="col-md-10">
-                <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="emp.EmailAddress" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
-            <div class="col-md-10">
-                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="emp.PhoneNumber" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
-            <div class="col-md-10">
-                <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="emp.CellPhone" />
             </div>
         </div>
     </div>
@@ -243,31 +192,19 @@
                 <div class="form-group">
                     <label for="Employer" class="col-md-2 control-label">Current Employer:</label>
                     <div class="col-md-10">
-                        <input type="text" id="Employer" class="form-control" name="Employer" value="" />
+                        <input type="text" id="Employer" class="form-control" placeholder="Current Employer" name="Employer" value="" />
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="EmployerAddress" class="col-md-2 control-label">Employer Address:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="EmployerAddress" class="form-control" name="EmployerMailingAddress" value="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="EmployerCity" class="col-md-2 control-label">City:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="EmployerState" class="col-md-2 control-label">State:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="EmployerState" class="form-control" name="EmployerState" value="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="EmployerZipCode" class="col-md-2 control-label">Zip Code:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="" />
+                <div id="divEmployerAddress">
+                    <div class="form-group">
+                        <label for="EmployerMailingAddress" class="col-md-2 control-label">Employer Address:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="EmployerMailingAddress" class="form-control" placeholder="Street" name="EmployerMailingAddress" value="" />
+                            <input type="text" id="EmployerPObox" class="form-control" placeholder="PO Box" name="PObox" />
+                            <input type="text" id="EmployerCity" class="form-control" placeholder="City2" name="City" value="" />
+                            <input type="text" id="EmployerState" class="form-control" placeholder="State2" name="State" value="" />
+                            <input type="text" id="EmployerZipCode" class="form-control" placeholder="Zip Code2" name="ZipCode" value="" />
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -290,7 +227,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
+                <div class="col-md-offset-11">
                     <input id="SpouseEnrollmentUpdateStepThree" type="submit" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
                 </div>
             </div>
@@ -321,15 +258,6 @@
         display: none;
         overflow: hidden;
         background-color: #f1f1f1;
-    }
-
-    .hide {
-        display: none;
-    }
-
-    .previous {
-        background-color: #333;
-        color: white;
     }
 
     .btn {
@@ -368,8 +296,33 @@
     .phone-number .col-xs-3, .phone-number .col-xs-4 {
         padding-left: 0;
     }
-</style>
 
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        table tr {
+            border-bottom: 1px solid black;
+        }
+
+    td:empty {
+        width: 10px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 0px;
+    }
+
+    th {
+        border-bottom: 5px solid black;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
 @*<script>
         function SpouseOrDependent()
         {
@@ -407,27 +360,28 @@
         });
     }
 
-    //if onclick= SpouseContact() is 'yes', then employee contact info will populate....otherwise spouse will 
+    //if onclick= SpouseAddress() is 'yes', then employee contact info will populate....otherwise spouse will
     //need to fill out information. How to submit employee contact info to family member db
-    function SpouseAddress() {
 
-        var spouse = document.getElementById('divSpContact')
-        var employee = document.getElementById('divEmpContact')
+    //function SpouseAddress() {
 
-        div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
+    //    var spouse = document.getElementById('divSpContact')
+    //    var employee = document.getElementById('divEmpContact')
 
-        if (spouse.value == "yes") {
+    //    div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
 
-            spouse.style.display = 'none';
-            employee.style.display = 'block';
+    //    if (spouse.value == "yes") {
 
-        }
-        else {
-            spouse.style.display = 'block';
-            employee.style.display = 'none';
+    //        spouse.style.display = 'none';
+    //        employee.style.display = 'block';
 
-        }
-    }
+    //    }
+    //    else {
+    //        spouse.style.display = 'block';
+    //        employee.style.display = 'none';
+
+    //    }
+    //}
 
     function HidePhysicalAddress() {
         document.getElementById("divPhysicalAddress").style.display = "none";
@@ -462,7 +416,7 @@
             }
 
             var ret = postData('SpEnrollmentNew', data)
-                .then(data => SecondStep(data))
+                .then(data => FirstStep(data))
                 .catch(error => console.error(error))
         })
 
@@ -508,22 +462,24 @@
             }
 
             var ret = postData('SpEnrollmentContact', data)
-                .then(data => SecondStep(data.data))
+                .then(data => SecondStep(data))
                 .error(error => console.error(error))
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener(function () {
             CurrentEmployer = document.getElementsById("Employer").value;
             EmployerAddress = document.getElementById("EmployerAddress").value;
+            PEmployerPOboxbox3 = document.getElementById("EmployerPObox").value;
             EmployerCity = document.getElementById("EmployerCity").value;
             EmployerState = document.getElementById("EmployerState").value;
             EmployerZipCode = document.getElementById("EmployerZipCode").value;
             EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
-        
+
 
             var data = {
                 "CurrentEmployer": CurrentEmployer,
                 "EmployerAddress": EmployerAddress,
+                "EmployerPObox": EmployerPObox,
                 "EmployerCity": EmployerCity,
                 "EmployerState": EmployerState,
                 "EmployerZipCode": EmployerZipCode,
@@ -536,42 +492,52 @@
         })
 
     })
-  
-    function SecondStep(sp) {
+
+    function FirstStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        document.querySelector("#RelationshipToInsured").value = sp;
-        document.querySelector("#EmpNumber").value = sp;
-        document.querySelector("#FirstName").value = sp;
-        document.querySelector("#LastName").value = sp;
-        document.querySelector("#DateOfBirth").value = sp;
-        document.querySelector("#Gender").value = sp;
-        document.querySelector("#MailingAddress").value = sp;
-        document.querySelector("#PObox").value = sp;
-        document.querySelector("#City").value = sp;
-        document.querySelector("#State").value = sp;
-        document.querySelector("#ZipCode").value = sp;
-        document.querySelector("#County").value = sp;
-        document.querySelector("#PhysicalAddress").value = sp;
-        document.querySelector("#PObox2").value = sp;
-        document.querySelector("#City2").value = sp;
-        document.querySelector("#State2").value = sp;
-        document.querySelector("#ZipCode2").value = sp;
-        document.querySelector("#County2").value = sp;
+        document.querySelector("#RelationshipToInsured").value = sp.RelationshipToInsured;
+        document.querySelector("#EmpNumber").value = sp.EmpNumber;
+        document.querySelector("#FirstName").value = sp.FirstName;
+        document.querySelector("#LastName").value = sp.LastName;
+        document.querySelector("#DateOfBirth").value = sp.DateOfBirth;
+        document.querySelector("#Gender").value = sp.Gender;
+
+    }
+
+    function SecondStep(sp) {
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+        document.querySelector("#MailingAddress").value = sp.MailingAddress;
+        document.querySelector("#PObox").value = sp.PObox;
+        document.querySelector("#City").value = sp.City;
+        document.querySelector("#State").value = sp.State;
+        document.querySelector("#ZipCode").value = sp.ZipCode;
+        document.querySelector("#County").value = sp.County;
+        document.querySelector("#PhysicalAddress").value = sp.PhysicalAddress;
+        document.querySelector("#PObox2").value = sp.PObox2;
+        document.querySelector("#City2").value = sp.City2;
+        document.querySelector("#State2").value = sp.State2;
+        document.querySelector("#ZipCode2").value = sp.ZipCode2;
+        document.querySelector("#County2").value = sp.County2;
+       
     }
 
     function ThirdStep(sp) {
-        document.querySelector("#FirstStep").nextElementSibling.content.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.content.style.display = "none";
-        document.querySelector("#ThirdStep").nextElementSibling.content.style.display = "block";
-        document.querySelector("#Employer").value = sp;
-        document.querySelector("#EmployerAddress").value = sp;
-        document.querySelector("#EmployerCity").value = sp;
-        document.querySelector("#EmployerState").value = sp;
-        document.querySelector("#EmployerZipCode").value = sp;
-        document.querySelector("#EmployerPhoneNumber").value = sp;
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
+        document.querySelector("#Employer").value = sp.Employer;
+        document.querySelector("#EmployerAddress").value = sp.EmployerAddress;
+        document.querySelector("#EmployerPObox").value = sp.EmployerPObox;
+        document.querySelector("#EmployerCity").value = sp.EmployerCity;
+        document.querySelector("#EmployerState").value = sp.EmployerState;
+        document.querySelector("#EmployerZipCode").value = sp.EmployerZipCode;
+        document.querySelector("#EmployerPhoneNumber").value = sp.EmployerPhoneNumber;
+
+      
     }
-   
+
     function postData(url, data) {
         //Default options are marked with *
         return fetch(url, {
@@ -590,3 +556,5 @@
             .then(response => response.JSON()) //parses response to JSON
     }
 </script>
+
+

@@ -399,21 +399,13 @@
     <Content Include="Views\Admin\EmployeeDetail.cshtml" />
     <Content Include="Views\Admin\EditEmployee.cshtml" />
     <Content Include="Views\Admin\DeleteEmployee.cshtml" />
-    <Content Include="Views\Employee\Edit.cshtml" />
-    <Content Include="Views\Employee\Detail.cshtml" />
-    <Content Include="Views\Employee\EmployeeOverview.cshtml" />
     <Content Include="Views\Admin\EmployeeContact.cshtml" />
-    <Content Include="Views\Spouse\SpouseEnrollment.cshtml" />
-    <Content Include="Views\Spouse\SpouseContact.cshtml" />
-    <Content Include="Views\Spouse\SpouseEmployment.cshtml" />
     <Content Include="Views\Dependent\DependentEnrollment.cshtml" />
-    <Content Include="Views\Employee\Contact.cshtml" />
     <Content Include="Views\Dependent\DeleteDependent.cshtml" />
     <Content Include="Views\Dependent\EditDependent.cshtml" />
     <Content Include="Views\Dependent\DependentDetail.cshtml" />
     <Content Include="Views\Spouse\DeleteSpouse.cshtml" />
     <Content Include="Views\Spouse\EditSpouse.cshtml" />
-    <Content Include="Views\Spouse\SpouseDetail.cshtml" />
     <Content Include="Views\Employee\EnrollmentSelection.cshtml" />
     <Content Include="Views\Group_Health\GroupHealthEnrollment.cshtml" />
     <Content Include="Views\Life_Insurance\LifeInsuranceEnrollment.cshtml" />
@@ -436,7 +428,7 @@
     <Content Include="Views\Spouse\EditSp.cshtml" />
     <Content Include="Views\Spouse\SpDetail.cshtml" />
     <Content Include="Views\Employee\EmpOverview.cshtml" />
-    <Content Include="Views\Employee\EmpInsurance.cshtml" />
+    <Content Include="Views\Employee\FamilyInsurance.cshtml" />
     <Content Include="Views\Employee\EditEmp.cshtml" />
     <Content Include="Views\Employee\EmpContact.cshtml" />
     <Content Include="Views\Employee\DeleteEmp.cshtml" />
@@ -450,6 +442,7 @@
     <Content Include="Views\Group_Health\DeleteGrpHealthIns.cshtml" />
     <Content Include="Views\Employee\FamilyOverview.cshtml" />
     <Content Include="Views\Employee\FamilyEnrollment.cshtml" />
+    <Content Include="Views\Employee\SpEnrollment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

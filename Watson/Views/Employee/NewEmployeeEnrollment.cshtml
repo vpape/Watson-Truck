@@ -126,17 +126,17 @@
                 <div class="form-group">
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street2" name="PhysicalAddress" value="" />
-                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box2" name="PObox" value="" />
-                        <input type="text" id="City2" class="form-control" placeholder="City2" name="City" value="" />
-                        <input type="text" id="State2" class="form-control" placeholder="State2" name="State" value="" />
-                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code2" name="ZipCode" value="" />
+                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="" />
+                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" value="" />
+                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="" />
+                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="" />
+                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
-                        <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="" />
+                        <input type="text" id="County2" class="form-control" placeholder="County" name="County" value="" />
                     </div>
                 </div>
             </div>
@@ -365,7 +365,7 @@
             }
 
             var ret = postData('EmployeeEnrollmentNew', data)
-                .then(data => SecondStep(data))
+                .then(data => FirstStep(data))
                 .catch(error => console.error(error))
         })
 
@@ -411,12 +411,12 @@
             }
 
             var ret = postData('EmpEnrollmentContact', data)
-                .then(data => ThirdStep(data))
+                .then(data => SecondStep(data))
                 .catch(error => console.error(error))
         })
     })
 
-    function SecondStep(emp) {
+    function FirstStep(emp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
         document.querySelector("#EmployeeRole").value = emp.EmployeeRole;
@@ -435,7 +435,7 @@
      
     }
 
-    function ThirdStep(emp) {
+    function SecondStep(emp) {
         document.querySelector("#Employee_id").value = emp.Employee_id;
         document.querySelector("#MaritalStatus").value = emp.MaritalStatus;
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
