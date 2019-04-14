@@ -443,6 +443,7 @@
     <Content Include="Views\Employee\FamilyOverview.cshtml" />
     <Content Include="Views\Employee\FamilyEnrollment.cshtml" />
     <Content Include="Views\Employee\SpEnrollment.cshtml" />
+    <Content Include="Views\Employee\DepEnrollment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

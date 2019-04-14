@@ -1,20 +1,20 @@
 ﻿@{
-    ViewBag.Title = "EditDep";
+    ViewBag.Title = "DepEnrollment";
 }
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-    <title>Dependent Edit</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Dependent Enrollment</title>
 </head>
 <body>
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible" id="DepEdit">Edit Dependent</div>
+        <div class="collapsible" id="FirstStep">Dependent Enrollment</div>
         <div class="content" id="dependentSelectForm">
             <p></p>
             <p></p>
@@ -22,100 +22,123 @@
             <div class="form-group">
                 <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
                 <div class="col-md-10">
-                    <select id="RelationToInsured" name="RelationshipToInsured" @*onchange=" return SpouseOrDependent()"*@ class="form-control" disabled>
+                    <select id="RelationToInsured" name="RelationshipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control" disabled>
                         @if (ViewBag.spouseExist == false)
                         {
-                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @*@((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")*@>Spouse</option>
                         }
                         else
                         {
-                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @*@((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")*@>Dependent</option>
                         }
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
+                <label class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="dep.EmpNumber" />
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="" disabled />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label for="DepFirstName" class="col-md-2 control-label">First Name:</label>
+                <div class="col-md-10">
+                    <input type="text" id="DepFirstName" class="form-control" name="FirstName" value="" />
                 </div>
             </div>
             <div class="form-group">
-                <label for="FirstName" class="col-md-2 control-label">First Name:</label>
+                <label for="DepLastName" class="col-md-2 control-label">Last Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="dep.FirstName" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="LastName" class="col-md-2 control-label">Last Name:</label>
-                <div class="col-md-10">
-                    <input type="text" id="LastName" class="form-control" name="LastName" value="dep.LastName" />
+                    <input type="text" id="DepLastName" class="form-control" name="LastName" value="" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
                 <div class="col-md-10">
-                    <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="dep.DateOfBirth" />
+                    <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Gender:</label>
                 <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((Model.Gender == "Male") ? "checked" : "") />Male</label>
-                    <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((Model.Gender == "Female") ? "checked" : "") />Female</label>
+                    <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="Male" checked />Male</label>
+                    <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="Female" />Female</label>
                 </div>
             </div>
-            <h2>Insurance Information</h2>
-            <div class="form-group" id="depOtherIns">
-                <label>Is your dependent covered by other insurance, including Medicare/Medicaid? If so, we need the following information:</label>
-                <div class="form-group" id="CoveredByOtherIns">
-                    @foreach (var dep in Model.Other_Insurance)
-                    {
-                        <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" @*onclick="CoveredByOtherIns()"*@ name="CoveredByOtherInsurance" value="Yes" @((item.CoveredByOtherInsurance == "Yes") ? "checked" : "") />Yes</label>
-                        <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" @*onclick="CoveredByOtherIns()"*@ name="CoveredByOtherInsurance" value="No" @((item.CoveredByOtherInsurance == "No") ? "checked" : "") />No</label>
-                    }
+            <div class="form-group">
+                <div class="col-md-offset-10">
+                    <button type="submit" id="DepEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
+                    <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
                 </div>
-                <div class="form-group" id="divCoveredByOtherIns">
-                    @foreach (var dep in Model.Other_Insurance)
-                    {
-                        <div class="form-group">
-                            <label for="InsCarrier">Insurance Company:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="dep.InsuranceCompany" />
-                            </div>
-                            <label for="PolicyNumber" id="divPolicyNumber">Policy Number:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="dep.InsPolicyNumber" />
-                            </div>
-                            <label for="InsPhoneNumber" id="divPhoneNumber">Phone Number:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="dep.InsPhoneNumber" />
-                            </div>
-                            <label for="InsMailingAddress" id="divInsMailingAddress">Mailing Address:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="InsMailingAddress" class="form-control" name="MailingAddress" value="dep.InsMailingAddress" />
-                                <input type="text" id="InsCity" class="form-control" name="City" value="dep.InsCity" />
-                                <input type="text" id="InsState" class="form-control" name="State" value="dep.InsState" />
-                                <input type="text" id="InsZipCode" class="form-control" name="ZipCode" value="dep.InsZipCode" />
-                            </div>
-                        </div>
-                    }
+            </div>
+        </div>
+    </div>
+    <div class="form-horizontal">
+        <hr />
+        <div class="collapsible" id="SecondStep">Insurance</div>
+        <div class="content" id="dependentSelectForm">
+            <p></p>
+            <p></p>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
+                <div class="col-md-10" id="CoveredByOtherIns">
+                    <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return ShowCoveredByOtherIns()" name="CoveredByOtherInsurance" value="true" checked />Yes</label>
+                    <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return HideCoveredByOtherIns()" name="CoveredByOtherInsurance" value="false" />No</label>
+                </div>
+            </div>
+            <div class="form-group" id="divCoveredByOtherIns">
+                <div class="form-group">
+                    <label for="InsuranceCompany" class="col-md-2 control-label">Insurance Company:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="InsuranceCompany" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
+                    </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" id="EditDepEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
-                        <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
+                    <label for="PolicyNumber" class="col-md-2 control-label">Policy Number:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="PolicyNumber" class="form-control" placeholder="Policy Number" name="PolicyNumber" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="container">
+                        <label for="InsPhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                        <div class="col-xs-4">
+                            <div class="form-group phone-number">
+                                <div class="col-xs-3">
+                                    <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
+                                </div>
+                                <div class="col-xs-3">
+                                    <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4" value="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divInsMailingAddress">
+                    <div class="form-group">
+                        <label for="InsMailingAddress" class="col-md-2 control-label">Insurance Mailing Address:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="InsMailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
+                            @*<input type="text" id="InsPObox" class="form-control" placeholder="PO Box" name="PObox" value="" />*@
+                            <input type="text" id="InsCity" class="form-control" placeholder="City" name="City" value="" />
+                            <input type="text" id="InsState" class="form-control" placeholder="State" name="State" value="" />
+                            <input type="text" id="InsZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                        </div>
                     </div>
                 </div>
             </div>
-
+            <div class="form-group">
+                <div class="col-md-offset-10">
+                    <button type="submit" id="DepEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
+                    <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
+                </div>
+            </div>
         </div>
     </div>
-
-    }
-    <p>
-        @Html.ActionLink("Back to List", "EmpOverview")
-    </p>
 </body>
 </html>
 
@@ -141,15 +164,6 @@
         display: none;
         overflow: hidden;
         background-color: #f1f1f1;
-    }
-
-    .hide {
-        display: none;
-    }
-
-    .previous {
-        background-color: #333;
-        color: white;
     }
 
     .btn {
@@ -188,27 +202,34 @@
     .phone-number .col-xs-3, .phone-number .col-xs-4 {
         padding-left: 0;
     }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        table tr {
+            border-bottom: 1px solid black;
+        }
+
+    td:empty {
+        width: 10px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 0px;
+    }
+
+    th {
+        border-bottom: 5px solid black;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 </style>
 
-<script>
-    var col = document.querySelectorAll(".collapsible");
-    var i;
-
-    for (i = 0; i < col.length; i++) {
-        col[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            }
-            else {
-                content.style.display = "block";
-            }
-
-        });
-    }
-</script>
 
 <html>
 <head>
@@ -261,7 +282,7 @@
                 //create the break tag to make a new line.  have to add an id so we know which one to remove when they click the X
                 var newBR = document.createElement("br");
                 newBR.id = "br" + newID;
-                with (document.getElementById('EditDepEnrollmentUpdate').style) {
+                with (document.getElementById('DepEnrollmentUpdate').style) {
                     top = (cnt * 25) + 80 + "px";
                 }
                 with (document.getElementById('adddep').style) {
@@ -282,7 +303,7 @@
             removeElement("dob" + elementIdNumber);
             removeElement("x" + elementIdNumber);
             removeElement("br" + elementIdNumber);
-            with (document.getElementById('EditDepEnrollmentUpdate').style) {
+            with (document.getElementById('DepEnrollmentUpdate').style) {
                 top = (cnt * 25) + 80 + "px";
             }
             with (document.getElementById('adddep').style) {
@@ -300,64 +321,48 @@
         <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
         <br id="br1" />
 
-        <input type="submit" value="Submit" id="DepEnrollmentUpdate" @*id="submit"*@ style="position:absolute;top:80px;" />
-        <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">
+        @*<input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
+        <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">*@
     </form>
 </body>
 </html>
 
 <script>
-    //function SpouseOrDependent() {
-    //    var choice = document.getElementById("RelationToInsured")
-    //    var dependent = document.getElementById("divDependentInfo")
-    //    var spouse = document.getElementById("divSpouseInfo")
-    //    if (choice.value == "Spouse")
-    //    {
-    //        spouse.style.display = 'block';
-    //        dependent.style.display = 'none';
-    //    }
-    //    else
-    //    {
-    //        spouse.style.display = 'none';
-    //        dependent.style.display = 'block';
+    var col = document.querySelectorAll(".collapsible");
+    var i;
 
-    //    }
-    //}
+    for (i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
 
     //function CoveredByOtherIns() {
-    //    if (document.getElementById("CoveredByOther").checked) {
-    //        var input = document.createElement("input");
-    //        input.type = "text";
-    //        input.id = "YesCoveredByOtherIns";
-    //        document.getElementById("CoveredByOther")
-
-    //    }
-    //}
-
-    //function CoveredByOtherIns() {
-    //    var div = document.getElementById("divCoveredByOther").checked
+    //    var div = document.getElementById("CoveredByOtherIns").checked
     //    div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
     //}
 
-    function CoveredByOtherIns() {
-        var div = document.getElementById("depOtherIns")
-        var otherIns = document.getElementById('divCoveredByOtherIns')
+    function HideCoveredByOtherIns() {
+        document.getElementById("divCoveredByOtherIns").style.display = "none";
+    }
 
-        if (div.value == "Yes") {
-            otherIns.style.display = 'block';
-        }
-        else (div.value == "No")
-        {
-            div.style.display = 'none';
-        }
+    function ShowCoveredByOtherIns() {
+        document.getElementById("divCoveredByOtherIns").style.display = "block";
+        //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
     }
 </script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#EditDepEnrollmentUpdate").addEventListener("click", function () {
-            EmpNumber = document.getElementById("EmpNumber").value
+        document.querySelector("#DepEnrollmentUpdate").addEventListener("click", function () {
             RelationshipToInsured = document.getElementByName("RelationshipToInsured").value
+            EmpNumber = document.getElementById("SSN").value
             DepFirstName = document.getElementById("DepFirstName").value
             DepLastName = document.getElementById("DepLastName").value
             DateOfBirth = document.getElementById("DateOfBirth").value
@@ -378,13 +383,14 @@
             PolicyNumber = document.getElementById("PolicyNumber").value
             InsPhoneNumber = document.getElementById("InsPhoneNumber").value
             InsMailingAddress = document.getElementById("InsMailingAddress").value
+            //InsPObox = document.getElementById("InsPObox").value
             InsCity = document.getElementById("InsCity").value
             InsState = document.getElementById("InsState").value
             InsZipCode = document.getElementById("InsZipCode").value
 
             var data = {
-                "EmpNumber": EmpNumber,
                 "RelationshipToInsured": RelationshipToInsured,
+                "EmpNumber": EmpNumber,
                 "DepFirstName": DepFirstName,
                 "DepLastName": DepLastName,
                 "DateOfBirth": DateOfBirth,
@@ -392,22 +398,23 @@
                 "CoveredByOtherIns": CoveredByOtherIns,
                 "InsCompany": InsCompany,
                 "PolicyNumber": PolicyNumber,
+                "InsPhoneNumber": InsPhoneNumber,
                 "InsMailingAddress": InsMailingAddress,
+                //"InsPObox": InsPObox,
                 "InsCity": InsCity,
                 "InsState": InsState,
                 "InsZipCode": InsZipCode,
             }
 
-            var ret = postData('DepEditUpdate', data)
+            var ret = postData('DepEnrollmentNew', data)
                 .then(data => FirstStep(data))
                 .catch(error => console.error(error))
         })
     })
 
     function FirstStep(dep) {
-        document.querySelector("#DepEdit").nextElementSibling.style.display = "block";
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "block";
         document.querySelector("#EmpNumber").value = dep.EmpNumber;
-        document.querySelector("#RelationshipToInsured").value = dep.RelationshipToInsured;
         document.querySelector("#DepFirstName").value = dep.DepFirstName;
         document.querySelector("#DepLastName").value = dep.DepLastName;
         document.querySelector("#DateOfBirth").value = dep.DateOfBirth;
@@ -416,6 +423,7 @@
         document.querySelector("#InsCompany").value = dep.InsCompany;
         document.querySelector("#PolicyNumber").value = dep.PolicyNumber;
         document.querySelector("#InsMailingAddress").value = dep.InsMailingAddress;
+        //document.querySelector("#InsPObox").value = dep.InsPObox;
         document.querySelector("#InsCity").value = dep.InsCity;
         document.querySelector("#InsState").value = dep.InsState;
         document.querySelector("#InsZipCode").value = dep.InsZipCode;
@@ -439,3 +447,7 @@
             .then(Response => Response.json()) //parses response to JSON
     }
 </script>
+
+
+
+

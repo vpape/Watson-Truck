@@ -25,11 +25,11 @@
                     <select id="RelationToInsured" name="RelationshipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control" disabled>
                         @if (ViewBag.spouseExist == false)
                         {
-                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @*@((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")*@>Spouse</option>
                         }
                         else
                         {
-                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @*@((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")*@>Dependent</option>
                         }
                     </select>
                 </div>
@@ -394,12 +394,12 @@
             }
 
             var ret = postData('DepEnrollmentNew', data)
-                .then(data => SecondStep(data))
+                .then(data => FirstStep(data))
                 .catch(error => console.error(error))
         })
     })
 
-    function SecondStep(dep) {
+    function FirstStep(dep) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "block";
         document.querySelector("#EmpNumber").value = dep.EmpNumber;
         document.querySelector("#DepFirstName").value = dep.DepFirstName;

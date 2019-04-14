@@ -338,68 +338,68 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult DepEnrollment()
-        {
-            return View();
-        }
+        //public ActionResult DepEnrollment()
+        //{
+        //    return View();
+        //}
 
-        public JsonResult DepEnrollmentNew(int Employee_id, string MaritalStatus, string EmpNumber, string RelationshipToInsured, 
-            string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender, string CoveredByOtherIns, 
-            string InsCompany, string PolicyNumber, string InsPhoneNumber, string InsMailingAddress, string InsCity,
-            string InsState, string InsZipCode)
-        {
-            Family_Info dep = new Family_Info();
+        //public JsonResult DepEnrollmentNew(int Employee_id, string MaritalStatus, string EmpNumber, string RelationshipToInsured, 
+        //    string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender, string CoveredByOtherIns, 
+        //    string InsCompany, string PolicyNumber, string InsPhoneNumber, string InsMailingAddress, string InsCity,
+        //    string InsState, string InsZipCode)
+        //{
+        //    Family_Info dep = new Family_Info();
 
-            dep.RelationshipToInsured = RelationshipToInsured;
-            dep.FirstName = DepFirstName;
-            dep.LastName = DepLastName;
-            dep.DateOfBirth = DateOfBirth;
-            dep.Gender = Gender;
+        //    dep.RelationshipToInsured = RelationshipToInsured;
+        //    dep.FirstName = DepFirstName;
+        //    dep.LastName = DepLastName;
+        //    dep.DateOfBirth = DateOfBirth;
+        //    dep.Gender = Gender;
 
-            ViewBag.Employee_id = Employee_id;
-            ViewBag.spouseExist = true;
-            ViewBag.MartialStatus = MaritalStatus;
+        //    ViewBag.Employee_id = Employee_id;
+        //    ViewBag.spouseExist = true;
+        //    ViewBag.MartialStatus = MaritalStatus;
 
-            Employee employee = db.Employees.Find(Employee_id);
+        //    Employee employee = db.Employees.Find(Employee_id);
 
-            if (employee.MaritalStatus == "Single")
-            {
-                ViewBag.spouseExist = false;
-                ViewBag.RelationshipToInsured = "Single";
-            }
-            else if (employee.MaritalStatus == "SinglewDep")
-            {
-                ViewBag.spouseExist = false;
-                ViewBag.RelationshipToInsured = "Spouse";
-            }
-            else
-            {
-                ViewBag.RelationshipToInsured = "Dependent";
-            }
+        //    if (employee.MaritalStatus == "Single")
+        //    {
+        //        ViewBag.spouseExist = false;
+        //        ViewBag.RelationshipToInsured = "Single";
+        //    }
+        //    else if (employee.MaritalStatus == "SinglewDep")
+        //    {
+        //        ViewBag.spouseExist = false;
+        //        ViewBag.RelationshipToInsured = "Spouse";
+        //    }
+        //    else
+        //    {
+        //        ViewBag.RelationshipToInsured = "Dependent";
+        //    }
 
-            Employee emp = new Employee();
+        //    Employee emp = new Employee();
 
-            emp.SSN = EmpNumber;
+        //    emp.SSN = EmpNumber;
 
-            Other_Insurance o = new Other_Insurance();
+        //    Other_Insurance o = new Other_Insurance();
 
-            o.CoveredByOtherInsurance = CoveredByOtherIns;
-            o.InsuranceCompany = InsCompany;
-            o.PolicyNumber = PolicyNumber;
-            o.PhoneNumber = InsPhoneNumber;
-            o.MailingAddress = InsMailingAddress;
-            o.City = InsCity;
-            o.State = InsState;
-            o.ZipCode = InsZipCode;
+        //    o.CoveredByOtherInsurance = CoveredByOtherIns;
+        //    o.InsuranceCompany = InsCompany;
+        //    o.PolicyNumber = PolicyNumber;
+        //    o.PhoneNumber = InsPhoneNumber;
+        //    o.MailingAddress = InsMailingAddress;
+        //    o.City = InsCity;
+        //    o.State = InsState;
+        //    o.ZipCode = InsZipCode;
 
-            int result = Employee_id;
+        //    int result = Employee_id;
 
-            db.Family_Info.Add(dep);
-            db.Other_Insurance.Add(o);
-            db.SaveChanges();
+        //    db.Family_Info.Add(dep);
+        //    db.Other_Insurance.Add(o);
+        //    db.SaveChanges();
 
-            return Json(new { data = dep, emp, o }, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(new { data = dep, emp, o }, JsonRequestBehavior.AllowGet);
+        //}
 
         //----------------------------------------------------------------------------------------
      

@@ -66,11 +66,7 @@ namespace Watson.Controllers
             return View();
         }
 
-        public ActionResult FamilyEnrollment()
-        {
-            return View();
-        }
-
+  
         //Error with EmployeeRole and Gender
         public JsonResult EmployeeEnrollmentNew(string EmployeeRole, string CurrentEmployer, 
             string JobTitle, string EmpNumber, string MaritalStatus, string FirstName, string LastName,
@@ -325,6 +321,11 @@ namespace Watson.Controllers
         }
         //----------------------------------------------------------------------------------------
 
+        public ActionResult FamilyEnrollment()
+        {
+            return View();
+        }
+
         public ActionResult SpEnrollment(string Employee_id, string MaritalStatus)
         {
             ViewBag.Employee_id = Employee_id;
@@ -357,6 +358,71 @@ namespace Watson.Controllers
             return Json(new { data = sp, Employee_id }, JsonRequestBehavior.AllowGet);
 
         }
+        //----------------------------------------------------------------------------------------
 
+        public ActionResult DepEnrollment()
+        {
+            return View();
+        }
+
+        public JsonResult DepEnrollmentNew(int Employee_id, string MaritalStatus, string EmpNumber, string RelationshipToInsured,
+           string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender, string CoveredByOtherIns,
+           string InsCompany, string PolicyNumber, string InsPhoneNumber, string InsMailingAddress, /*string InsPObox,*/
+           string InsCity, string InsState, string InsZipCode)
+        {
+            Family_Info dep = new Family_Info();
+
+            dep.RelationshipToInsured = RelationshipToInsured;
+            dep.FirstName = DepFirstName;
+            dep.LastName = DepLastName;
+            dep.DateOfBirth = DateOfBirth;
+            dep.Gender = Gender;
+
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.spouseExist = true;
+            ViewBag.MartialStatus = MaritalStatus;
+
+            Employee employee = db.Employees.Find(Employee_id);
+
+            if (employee.MaritalStatus == "Single")
+            {
+                ViewBag.spouseExist = false;
+                ViewBag.RelationshipToInsured = "Single";
+            }
+            else if (employee.MaritalStatus == "SinglewDep")
+            {
+                ViewBag.spouseExist = false;
+                ViewBag.RelationshipToInsured = "Spouse";
+            }
+            else
+            {
+                ViewBag.RelationshipToInsured = "Dependent";
+            }
+
+            Employee emp = new Employee();
+
+            emp.SSN = EmpNumber;
+
+            Other_Insurance o = new Other_Insurance();
+
+            o.CoveredByOtherInsurance = CoveredByOtherIns;
+            o.InsuranceCompany = InsCompany;
+            o.PolicyNumber = PolicyNumber;
+            o.PhoneNumber = InsPhoneNumber;
+            o.MailingAddress = InsMailingAddress;
+            //o.PObox = InsPObox;
+            o.City = InsCity;
+            o.State = InsState;
+            o.ZipCode = InsZipCode;
+
+            int result = Employee_id;
+
+            db.Family_Info.Add(dep);
+            db.Other_Insurance.Add(o);
+            db.SaveChanges();
+
+            return Json(new { data = dep, emp, o }, JsonRequestBehavior.AllowGet);
+        }
+        //----------------------------------------------------------------------------------------
     }
 }

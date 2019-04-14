@@ -126,13 +126,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-2 control-label">Within City Limits?</label>
-                <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" checked />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" />No</label>
-                </div>
-            </div>
-            <div class="form-group">
                 <label for="EmailAddress" class="col-md-2 control-label">Email Address:</label>
                 <div class="col-md-10">
                     <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="" />
@@ -201,9 +194,9 @@
                         <div class="col-md-10">
                             <input type="text" id="EmployerMailingAddress" class="form-control" placeholder="Street" name="EmployerMailingAddress" value="" />
                             <input type="text" id="EmployerPObox" class="form-control" placeholder="PO Box" name="PObox" />
-                            <input type="text" id="EmployerCity" class="form-control" placeholder="City2" name="City" value="" />
-                            <input type="text" id="EmployerState" class="form-control" placeholder="State2" name="State" value="" />
-                            <input type="text" id="EmployerZipCode" class="form-control" placeholder="Zip Code2" name="ZipCode" value="" />
+                            <input type="text" id="EmployerCity" class="form-control" placeholder="City" name="City" value="" />
+                            <input type="text" id="EmployerState" class="form-control" placeholder="State" name="State" value="" />
+                            <input type="text" id="EmployerZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
                         </div>
                     </div>
                 </div>
@@ -436,12 +429,6 @@
             EmailAddress = document.getElementById("EmailAddress").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             CellPhone = document.getElementById("CellPhone").value;
-
-            CityLimits = document.querySelectorAll('input [name = "CityLimts"]').forEach(function (e, i) {
-                if (e.checked) {
-                    CityLimits = e.value;
-                }
-            });
 
             var data = {
                 "MailingAddress": MailingAddress,
