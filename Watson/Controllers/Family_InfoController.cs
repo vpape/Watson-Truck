@@ -21,54 +21,54 @@ namespace Watson.Controllers
 
         }
 
-        public ActionResult FamilyOverview(Family_Info family)
-        {
-            Family_Info f = db.Family_Info.Find(family);
+        //public ActionResult FamilyOverview(Family_Info family)
+        //{
+        //    Family_Info f = db.Family_Info.Find(family);
 
-            f = family;
+        //    f = family;
 
-            return View(family);
-        }
+        //    return View(family);
+        //}
 
-        public JsonResult GetFamilyMember(int FamilyMember_id, string FirstName, string LastName,
-            string RelationshipToInsured, DateTime DateOfBirth, string MailingAddress, string PObox,
-            string City, string State, string County, string ZipCode, string EmailAddress, string PhoneNumber, 
-            string CellPhone, string Gender, string Employer, string EmployerMailingAddress, string EmployerCity, 
-            string EmployerState, string EmployerZipCode, string EmployerPhoneNumber, bool Medical,
-            bool Dental, bool Vision, bool Indemnity)
-        {
-            var f = db.Family_Info
-                .Where(i => i.FamilyMember_id == FamilyMember_id)
-                .Single();
+        //public JsonResult GetFamilyMember(int FamilyMember_id, string FirstName, string LastName,
+        //    string RelationshipToInsured, DateTime DateOfBirth, string MailingAddress, string PObox,
+        //    string City, string State, string County, string ZipCode, string EmailAddress, string PhoneNumber, 
+        //    string CellPhone, string Gender, string Employer, string EmployerMailingAddress, string EmployerCity, 
+        //    string EmployerState, string EmployerZipCode, string EmployerPhoneNumber, bool Medical,
+        //    bool Dental, bool Vision, bool Indemnity)
+        //{
+        //    var f = db.Family_Info
+        //        .Where(i => i.FamilyMember_id == FamilyMember_id)
+        //        .Single();
 
-            f.FirstName = FirstName;
-            f.LastName = LastName;
-            f.RelationshipToInsured = RelationshipToInsured;
-            f.DateOfBirth = DateOfBirth;
-            f.MailingAddress = MailingAddress;
-            f.PObox = PObox;
-            f.City = City;
-            f.State = State;
-            f.ZipCode = ZipCode;
-            f.EmailAddress = EmailAddress;
-            f.PhoneNumber = PhoneNumber;
-            f.CellPhone = CellPhone;
-            f.Gender = Gender;
-            //f.SSN = 
-            f.Employer = Employer;
-            f.EmployerMailingAddress = EmployerMailingAddress;
-            f.EmployerCity = EmployerCity;
-            f.EmployerState = EmployerState;
-            f.EmployerZipCode = EmployerZipCode;
-            f.EmployerPhoneNumber = EmployerPhoneNumber;
-            f.Medical = Medical;
-            f.Dental = Dental;
-            f.Vision = Vision;
-            f.Indemnity = Indemnity;
+        //    f.FirstName = FirstName;
+        //    f.LastName = LastName;
+        //    f.RelationshipToInsured = RelationshipToInsured;
+        //    f.DateOfBirth = DateOfBirth;
+        //    f.MailingAddress = MailingAddress;
+        //    f.PObox = PObox;
+        //    f.City = City;
+        //    f.State = State;
+        //    f.ZipCode = ZipCode;
+        //    f.EmailAddress = EmailAddress;
+        //    f.PhoneNumber = PhoneNumber;
+        //    f.CellPhone = CellPhone;
+        //    f.Gender = Gender;
+        //    //f.SSN = 
+        //    f.Employer = Employer;
+        //    f.EmployerMailingAddress = EmployerMailingAddress;
+        //    f.EmployerCity = EmployerCity;
+        //    f.EmployerState = EmployerState;
+        //    f.EmployerZipCode = EmployerZipCode;
+        //    f.EmployerPhoneNumber = EmployerPhoneNumber;
+        //    f.Medical = Medical;
+        //    f.Dental = Dental;
+        //    f.Vision = Vision;
+        //    f.Indemnity = Indemnity;
 
 
-            return Json(new { data = f }, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(new { data = f }, JsonRequestBehavior.AllowGet);
+        //}
 
         //public ActionResult FamilyEnrollment()
         //{
@@ -174,14 +174,14 @@ namespace Watson.Controllers
         }
 
         //add maritalstatus and employee id to client side JSOn
-        public JsonResult SpEmploymentUpdate(int Employee_id, string MaritalStatus, string Employer,
-            string EmployerAddress, string EmployerCity, string EmployerState, string EmployerZipCode, 
-            string EmployerPhoneNumber)
+        public JsonResult SpEmploymentUpdate(int Employee_id, string MaritalStatus, string Employer, string EmployerAddress,
+            string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
             Family_Info sp = new Family_Info();
 
             sp.Employer = Employer;
             sp.EmployerMailingAddress = EmployerAddress;
+            sp.PObox = EmployerPObox;
             sp.EmployerCity = EmployerCity;
             sp.EmployerState = EmployerState;
             sp.EmployerZipCode = EmployerZipCode;
@@ -254,8 +254,6 @@ namespace Watson.Controllers
             sp.EmployerState = EmployerState;
             sp.EmployerZipCode = EmployerZipCode;
             sp.EmployerPhoneNumber = EmployerPhoneNumber;
-
-            int result = Employee_id;
 
             ViewBag.Employee_id = Employee_id;
             ViewBag.MaritalStatus = MaritalStatus;

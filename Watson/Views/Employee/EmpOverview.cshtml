@@ -12,110 +12,49 @@
     <title>Employee Overview</title>
 </head>
 <body>
-    <div class="form-horizontal">
-        <hr />
-        <div class="collapsible" id="EmpOverview">Employee Overview</div>
-        <table class="container-fluid table-bordered" id="EmployeeOverview" cellpadding="20" cellspacing="20">
+    <h4>Employee Overview</h4>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                @*Create a column for a dynmaic button using image mapping?? to call SpouseAndDependentOverview)*@
+                <th>Family Overview</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email Address</th>
+            </tr>
+        </thead>
+        <tbody>
             <tr>
                 <td>
-                    <table class="table table-hover" width="400" cellpadding="10" cellspacing="10" border="1">
-                        <thead class="thead-dark">
-                            <tr>
-                                @*Create a column for a dynmaic button using image mapping?? to call SpouseAndDependentOverview)*@
-                                <th>Family Overview</th>
-                                <th>Employee Number</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Mailing Address</th>
-                                <th>City</th>
-                                <th>State</th>
-                                <th>ZipCode</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>@* Dynamic button (image mapping??) to redirect to family overview *@
-                                        <div class="col-md-1">
-                                            <a href="#" onclick="return FamilyOverview()" class="next round"></a>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-md-1">
-                                            <input type="text" id="EmpNumber" class="form-control" name="SSN" value="" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-md-2">
-                                            <input type="text" id="EmpFirstName" class="form-control" name="FirstName" value="" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-md-2">
-                                            <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-md-2">
-                                            <input type="text" id="City" class="form-control" name="City" value="" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-md-2">
-                                            <input type="text" id="State" class="form-control" name="State" value="" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-md-2">
-                                            <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Edit", "EditEmp", "Employee"@*,null, new { e_id = Model.Employee_id }*@) |
-                                        @Html.ActionLink("Detail", "EmpDetail", new { controller = "Employee" }, new { Employee_id = Model.Employee_id }) |
-                                        @Html.ActionLink("Insurance", "EmpInsurance", new { controller = "Employee" }, new { Employee_id = Model.Employee_id }) |
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                    <div class="form-group">
-                        <div class="col-md-offset-11">
-                            <button type="button" id="EnrollmentSelectionUpdate" onclick="return EnrollmentSelection()" value="Enrollment Selection" class="btn" />
-                        </div>
-                    </div>
+                    @* Dynamic button (image mapping??) to redirect to family overview *@
+                    <a href="#" onclick="return FamilyOverview()" class="next round"></a>
+                </td>
+                <td>
+                    <input type="text" id="EmpFirstName" class="form-control" name="FirstName" value="" />
+                </td>
+                <td>
+                    <input type="text" id="EmpLastName" class="form-control" name="LastName" value="" />
+                </td>
+                <td>
+                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="" />
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditEmp", "Employee") |
+                    @Html.ActionLink("Detail", "EmpDetail", "Employee") |
+                    @Html.ActionLink("Insurance", "EmpInsurance", "Employee")
                 </td>
             </tr>
-        </table>
+        </tbody>
+    </table>
+    <div class="form-group">
+        <div class="col-md-2">
+            <button @*id="EnrollmentSelectionUpdate"*@ onclick="return EnrollmentSelection()" class="btn">Enrollment Selection</button>
+        </div>
     </div>
 </body>
 </html>
 
 <style>
-    .collapsible {
-        background-color: #333;
-        color: white;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: center;
-        outline: none;
-        font-size: 15px;
-    }
-
-        .active, .collapsible:hover {
-            background-color: #555;
-        }
-
-    .content {
-        padding: 0 18px;
-        display: none;
-        overflow: hidden;
-        background-color: #f1f1f1;
-    }
-
     .btn {
         background-color: #333;
         color: white;
@@ -126,110 +65,57 @@
     }
 
     a {
-        text-decoration: none;
-        display: inline-block;
+        text-decoration: underline;
+        display: inline-flex;
         padding: 8px 16px;
     }
 
-        a:hover {
-            background-color: #ddd;
-            color: black;
-        }
+    a:hover {
+        background-color: #ddd;
+        color: black;
+    }
 
     table {
         border-collapse: collapse;
         width: 100%;
     }
 
-        table tr {
-            border-bottom: 1px solid black;
-        }
-
-    td:empty {
-        width: 10px;
+    table tr {
+        border-bottom: 1px solid black;
     }
-
-    th, td {
-        text-align: left;
-        padding: 0px;
-    }
-
-    th {
-        border-bottom: 5px solid black;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
 
     .next {
-        background-color: #2e4593;
-        color: white;
+        background-color: #333;
+        padding-left: 1px;
     }
 
     .round {
-        border-radius: 20%;
+        border-radius: 50%;  
     }
 </style>
 
 <script>
-    var col = document.querySelectorAll(".collapsible");
-    var i;
-
-    for (i = 0; i < col.length; i++) {
-        col[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            } else {
-                content.style.display = "block";
-            }
-
-        });
-    }
-
-    function EnrollmentSelection() {
-
-        window.local.href = "/Employee/EnrollmentSelection";
-    }
-
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#EnrollmentSelectionUpdate").addEventListener("click", function () {
-            EmpNumber = document.getElementById("EmpNumber").value;
-            EmpFirstName = document.getElementById("EmpFirstName").value;
-            EmpLastName = document.getElementById("EmpLastName").value;
-            MailingAddress = document.getElementById("MailingAddress").value;
-            City = document.getElementById("City").value;
-            State = document.getElementById("State").value;
-            ZipCode = document.getElementById("ZipCode").value;
-            });
+        EmpFirstName = document.getElementById("EmpFirstName").value;
+        EmpLastName = document.getElementById("EmpLastName").value;
+        EmailAddress = document.getElementById("EmailAddress").value;
+        
 
-            var data = {
-                "EmpNumber": EmpNumber,
-                "EmpFirstName": EmpFirstName,
-                "EmpLastName": EmpLastName,
-                "MailingAddress": MailingAddress,
-                "City": City,
-                "State": State,
-                "ZipCode": ZipCode,
-            }
+        var data = {
+            "EmpFirstName": EmpFirstName,
+            "EmpLastName": EmpLastName,
+            "EmailAddress": EmailAddress,
+        }
 
-            var ret = postData('GetEmployee', data)
-                .then(data => SecondStep(data.data))
-                .catch(error => console.error(error))
+        var ret = postData('GetEmployee', data)
+            .then(data => FirstStep(data))
+            .catch(error => console.error(error))
     })
 
-    function SecondStep(emp) {
-        document.querySelector("#EmpOverview").nextElementSibling.style.display = "block";
-        document.querySelector("#EmpNumber").value = emp.EmpNumber;
+    function FirstStep(emp) {
         document.querySelector("#EmpFirstName").value = emp.EmpFirstName;
         document.querySelector("#EmpLastName").value = emp.EmpLastName;
-        document.querySelector("#MailingAddress").value = emp.MailingAddress;
-        document.querySelector("#City").value = emp.City;
-        document.querySelector("#State").value = emp.State;
-        document.querySelector("#ZipCode").value = emp.ZipCode;
+        document.querySelector("#EmailAddress").value = emp.EmailAddress;
     }
 
     function postData(url, data) {
@@ -244,7 +130,7 @@
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
-            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            method: 'GET', //*GET, POST, PUT, DELETE, etc...
             mode: 'cors', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer

@@ -23,32 +23,30 @@ namespace Watson.Controllers
      
         }
 
+        //public ActionResult EmpOverview(Employee employee)
+        //{
+        //    Employee e = db.Employees.Find(employee);
+
+        //    e = employee;
+
+        //    return View(employee);
+
+        //}
+
         public ActionResult EmpOverview(Employee employee)
         {
-            Employee e = db.Employees.Find(employee);
-
-            e = employee;
-
-            return View(employee);
-
+            return View(db.Employees.ToList());
         }
 
-        public JsonResult GetEmployee(int Employee_id, string EmpNumber, string EmpFirstName, string EmpLastName, 
-            string JobTitle, string MailingAddress, string City, string State, string ZipCode)
+        public JsonResult GetEmployee(int Employee_id, string EmpFirstName, string EmpLastName, string EmailAddress)
         {
             var e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)
                 .Single();
 
-            e.SSN = EmpNumber;
             e.FirstName = EmpFirstName;
             e.LastName = EmpLastName;
-            e.MailingAddress = MailingAddress;
-            e.City = City;
-            e.State = State;
-            e.ZipCode = ZipCode;
-
-            int result = e.Employee_id;
+            e.EmailAddress = EmailAddress;
 
             return Json(new { data = e }, JsonRequestBehavior.AllowGet);
 
@@ -321,9 +319,67 @@ namespace Watson.Controllers
         }
         //----------------------------------------------------------------------------------------
 
+        public ActionResult FamilyOverview(Family_Info family)
+        {
+            return View(db.Family_Info.ToList());
+        }
+
+        //public ActionResult FamilyOverview(Family_Info family)
+        //{
+        //    Family_Info f = db.Family_Info.Find(family);
+
+        //    f = family;
+
+        //    return View(family);
+        //}
+
         public ActionResult FamilyEnrollment()
         {
             return View();
+        }
+
+        public JsonResult GetFamilyMember(int FamilyMember_id, int Employee_id, string FirstName, string LastName,
+            string RelationshipToInsured, string EmpLastName, string EmpNumber, DateTime DateOfBirth, string MailingAddress,
+            string PObox, string City, string State, string County, string ZipCode, string EmailAddress, string PhoneNumber,
+            string CellPhone, string Gender, string Employer, string EmployerMailingAddress, string EmployerPObox,
+            string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber, bool Medical,
+            bool Dental, bool Vision, bool Indemnity)
+        {
+            var f = db.Family_Info
+                .Where(i => i.FamilyMember_id == FamilyMember_id)
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
+
+            f.FirstName = FirstName;
+            f.LastName = LastName;
+            f.RelationshipToInsured = RelationshipToInsured;
+            f.LastName = EmpLastName;
+            f.SSN = EmpNumber;
+            f.DateOfBirth = DateOfBirth;
+            f.MailingAddress = MailingAddress;
+            f.PObox = PObox;
+            f.City = City;
+            f.State = State;
+            f.ZipCode = ZipCode;
+            f.EmailAddress = EmailAddress;
+            f.PhoneNumber = PhoneNumber;
+            f.CellPhone = CellPhone;
+            f.Gender = Gender;
+            //f.SSN = 
+            f.Employer = Employer;
+            f.EmployerMailingAddress = EmployerMailingAddress;
+            f.PObox = EmployerPObox;
+            f.EmployerCity = EmployerCity;
+            f.EmployerState = EmployerState;
+            f.EmployerZipCode = EmployerZipCode;
+            f.EmployerPhoneNumber = EmployerPhoneNumber;
+            f.Medical = Medical;
+            f.Dental = Dental;
+            f.Vision = Vision;
+            f.Indemnity = Indemnity;
+
+
+            return Json(new { data = f, Employee_id }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult SpEnrollment(string Employee_id, string MaritalStatus)
@@ -346,8 +402,6 @@ namespace Watson.Controllers
             sp.DateOfBirth = DateOfBirth;
             sp.Gender = Gender;
             sp.Employee_id = Employee_id;
-
-            int result = Employee_id;
 
             if (ModelState.IsValid)
             {
