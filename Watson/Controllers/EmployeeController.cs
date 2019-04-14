@@ -65,6 +65,7 @@ namespace Watson.Controllers
         }
 
   
+        //EmpEnrollment Method
         //Error with EmployeeRole and Gender
         public JsonResult EmployeeEnrollmentNew(string EmployeeRole, string CurrentEmployer, 
             string JobTitle, string EmpNumber, string MaritalStatus, string FirstName, string LastName,
@@ -90,12 +91,12 @@ namespace Watson.Controllers
             return Json(new { data = e }, JsonRequestBehavior.AllowGet);
         }
 
-        //---------------------------------------------------------------------------------------- 
-
+        //EmpContact Method
         public ActionResult EmpContact()
         {
             return View();
         }
+
         //Error with Employee_id and CityLimits- Undefined
         public JsonResult EmpEnrollmentContact(int Employee_id, string MaritalStatus, string MailingAddress,
             string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, 
@@ -176,8 +177,7 @@ namespace Watson.Controllers
                           
         }
 
-        //----------------------------------------------------------------------------------------
-
+        //EditEmp Method
         public ActionResult EditEmp(int? Employee_id)
         {
             if (Employee_id == null)
@@ -194,7 +194,7 @@ namespace Watson.Controllers
             return View(e);
         }
 
-        public JsonResult EmployeeEditUpdate(int Employee_id, string CurrentEmployer, string JobTitle, string EmployeeNumber,
+        public JsonResult EmployeeEditUpdate(int Employee_id, string EmpRole, string CurrentEmployer, string JobTitle, string EmpNumber,
             string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MaritalStatus, 
             string MailingAddress, string PObox, string City, string State, string ZipCode, string County,
             string PhysicalAddress, string PObox2, string City2, string State2, string ZipCode2, 
@@ -203,10 +203,11 @@ namespace Watson.Controllers
             var e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)
                 .Single();
-         
+
+            e.EmployeeRole = EmpRole;
             e.CurrentEmployer = CurrentEmployer;
             e.JobTitle = JobTitle;
-            e.SSN = EmployeeNumber;
+            e.SSN = EmpNumber;
             e.FirstName = FirstName;
             e.LastName = LastName;
             e.DateOfBirth = DateOfBirth;
@@ -229,8 +230,6 @@ namespace Watson.Controllers
             e.PhoneNumber = PhoneNumber;
             e.CellPhone = CellPhone;
 
-            int result = Employee_id;
-
             if (ModelState.IsValid)
             {
                 db.Entry(e).State = System.Data.Entity.EntityState.Modified;
@@ -248,11 +247,10 @@ namespace Watson.Controllers
             }
 
 
-            return Json(new { data = e }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = e, Employee_id }, JsonRequestBehavior.AllowGet);
         }
 
-        //----------------------------------------------------------------------------------------
-
+        //EmpDetail Method
         public ActionResult EmpDetail(int? Employee_id)
         {
             if (Employee_id == null)
@@ -278,8 +276,7 @@ namespace Watson.Controllers
             return Json(new { data = e }, JsonRequestBehavior.AllowGet);    
         }
 
-        //----------------------------------------------------------------------------------------
-
+        //DeleteEmp Method
         public ActionResult DeleteEmp(int? Employee_id)
         {
             if (Employee_id == null)
@@ -319,19 +316,14 @@ namespace Watson.Controllers
         }
         //----------------------------------------------------------------------------------------
 
-        public ActionResult FamilyOverview(Family_Info family)
+        public ActionResult FamilyOverview(/*Family_Info family*/)
         {
+            //Family_Info f = db.Family_Info.Find(family);
+
+            //f = family;
+
             return View(db.Family_Info.ToList());
         }
-
-        //public ActionResult FamilyOverview(Family_Info family)
-        //{
-        //    Family_Info f = db.Family_Info.Find(family);
-
-        //    f = family;
-
-        //    return View(family);
-        //}
 
         public ActionResult FamilyEnrollment()
         {
@@ -382,6 +374,7 @@ namespace Watson.Controllers
             return Json(new { data = f, Employee_id }, JsonRequestBehavior.AllowGet);
         }
 
+        //SpEnrollment Method
         public ActionResult SpEnrollment(string Employee_id, string MaritalStatus)
         {
             ViewBag.Employee_id = Employee_id;
@@ -411,6 +404,142 @@ namespace Watson.Controllers
 
             return Json(new { data = sp, Employee_id }, JsonRequestBehavior.AllowGet);
 
+        }
+
+        //EditSp Method
+        public ActionResult EditSp(int Employee_id, int? FamilyMember_id)
+        {
+            if (FamilyMember_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Family_Info family = db.Family_Info.Find(FamilyMember_id);
+            if (family == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Employee_id = Employee_id;
+
+            return View(family);
+        }
+
+        public JsonResult SpEditUpdate(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured,
+            string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress,
+            string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, string PObox2,
+            string City2, string State2, string ZipCode2, string County2, string EmailAddress, string PhoneNumber,
+            string CellPhone, string Employer, string EmployerAddress, string EmployerPObox, string EmployerCity,
+            string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
+        {
+            var sp = db.Family_Info
+                .Where(i => i.FamilyMember_id == FamilyMember_id)
+                .Single();
+
+            sp.RelationshipToInsured = RelationshipToInsured;
+            sp.SSN = EmpNumber;
+            sp.FirstName = FirstName;
+            sp.LastName = LastName;
+            sp.DateOfBirth = DateOfBirth;
+            sp.Gender = Gender;
+            sp.MailingAddress = MailingAddress;
+            sp.PObox = PObox;
+            sp.City = City;
+            sp.State = State;
+            sp.ZipCode = ZipCode;
+            sp.County = County;
+            sp.PhysicalAddress = PhysicalAddress;
+            sp.PObox = PObox2;
+            sp.City = City2;
+            sp.State = State2;
+            sp.ZipCode = ZipCode2;
+            sp.County = County2;
+            sp.EmailAddress = EmailAddress;
+            sp.PhoneNumber = PhoneNumber;
+            sp.CellPhone = CellPhone;
+            sp.Employer = Employer;
+            sp.EmployerMailingAddress = EmployerAddress;
+            sp.PObox = EmployerPObox;
+            sp.EmployerCity = EmployerCity;
+            sp.EmployerState = EmployerState;
+            sp.EmployerZipCode = EmployerZipCode;
+            sp.EmployerPhoneNumber = EmployerPhoneNumber;
+
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.MaritalStatus = MaritalStatus;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+                RedirectToAction("FamilyOverview");
+            }
+
+            return Json(new { data = sp }, JsonRequestBehavior.AllowGet);
+        }
+
+        //SpDetail Method
+        public ActionResult SpDetail(int? FamilyMember_id)
+        {
+            if (FamilyMember_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Family_Info family = db.Family_Info.Find(FamilyMember_id);
+            if (family == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(family);
+        }
+
+        public JsonResult GetSpDetail(int FamilyMember_id)
+        {
+            var sp = db.Family_Info
+                 .Where(i => i.FamilyMember_id == FamilyMember_id)
+                 .Single();
+
+            return Json(new { data = sp }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteSp(int? FamilyMember_id)
+        {
+            if (FamilyMember_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Family_Info family = db.Family_Info.Find(FamilyMember_id);
+            if (family == null)
+            {
+                return HttpNotFound();
+            }
+            return View(family);
+        }
+        
+        //DeleteSp Method
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteSp")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int? FamilyMember_id)
+        {
+            Family_Info family = db.Family_Info.Find(FamilyMember_id);
+
+            db.DeleteEmployeeAndDependents(FamilyMember_id);
+
+            db.Family_Info.Remove(family);
+            db.SaveChanges();
+
+            return RedirectToAction("FamilyOverview");
         }
         //----------------------------------------------------------------------------------------
 

@@ -7,31 +7,28 @@ using System.Web.Http;
 using System.Web.Mvc;
 using Watson.Models;
 
-
-//ask if i need admin and employee model since i created 
-//two separate controllers or can i just use one model- employee
-
 namespace Watson.Controllers
 {
     /// <summary>
     /// This is where I give you all the information about my employees
     /// </summary>
     //[Authorize]
-    public class AdminController : Controller
+    public class AdminController : System.Web.Mvc.Controller
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        static List<Employee> employees = new List<Employee>();
+        static List<Employee> employee = new List<Employee>();
+        static List<Family_Info> family = new List<Family_Info>();
 
         public AdminController()
         {
            
         }
 
-        public ActionResult Employees()
-        {
-            return View();
-        }
+        //public ActionResult Employees()
+        //{
+        //    return View();
+        //}
 
         //[System.Web.Http.Route("api/Employee/GetEmployees/{Employee_id:int}")]
 
@@ -60,79 +57,66 @@ namespace Watson.Controllers
         //    return db.Employees.ToList();
         //}
 
-        public JsonResult GetEmployees()
-        {
-            var output = (from e in db.Employees
-                          select new
-                          {
-                              e.Employee_id,
-                              e.SSN,
-                              e.FirstName,
-                              e.LastName,
-                              e.EmployeeRole,
-                              e.JobTitle,
-                              e.isActive,
-                              e.HireDate,
-                              e.EmailAddress,
-                              e.MailingAddress,
-                              e.City,
-                              e.State,
-                              e.ZipCode,
-                              e.Department,
-                              e.AnnualSalary,
-                              e.EnrollmentType,
-                              e.Class,
-                              e.Payroll_id,
-                              e.WorkStatus,
-                              e.HoursWorkedPerWeek,
+        //public JsonResult GetEmployees()
+        //{
+        //    var output = (from e in db.Employees
+        //                  select new
+        //                  {
+        //                      e.Employee_id,
+        //                      e.SSN,
+        //                      e.FirstName,
+        //                      e.LastName,
+        //                      e.EmployeeRole,
+        //                      e.JobTitle,
+        //                      e.isActive,
+        //                      e.HireDate,
+        //                      e.EmailAddress,
+        //                      e.MailingAddress,
+        //                      e.City,
+        //                      e.State,
+        //                      e.ZipCode,
+        //                      e.Department,
+        //                      e.AnnualSalary,
+        //                      e.EnrollmentType,
+        //                      e.Class,
+        //                      e.Payroll_id,
+        //                      e.WorkStatus,
+        //                      e.HoursWorkedPerWeek,
 
-                          });
+        //                  });
 
-            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+        //    return Json(new { data = output }, JsonRequestBehavior.AllowGet);
 
-        }
-
-
+        //}
 
         // GET: api/Employee
-        public List<Employee> EmployeeOverview()
+        public List<Employee> EmpOverview()
         {
-            return employees;
+            return employee;
         }
 
         // GET: api/Employee/5
-        public Employee EmployeeOverview(int id)
+        public Employee EmpOverview(int Employee_id)
         {
-            return employees.Where(e => e.Employee_id == id).FirstOrDefault();
-        }
-
-        //public JsonResult EmployeeOverview(int id)
-        //{
-        //    Employee e = db.Employees
-        //        .Where(i => i.User_id == id)
-        //        .SingleOrDefault();
-
-        //    return Json(new { data = "success" }, "application/javascript", JsonRequestBehavior.AllowGet);
-        //}
-
-      
+            return employee.Where(e => e.Employee_id == Employee_id).FirstOrDefault();
+        }     
 
         // GET: api/Employee
-        public List<Employee> CreateEmployee()
+        public List<Employee> NewEmployeeEnrollment()
         {
-            return employees;
+            return employee;
         }
 
         //GET: api/Employee/5
-        public Employee CreateEmployee(int id)
+        public Employee EmployeeEnrollmentNew(int id)
         {
-            return employees.Where(e => e.Employee_id == id).FirstOrDefault();
+            return employee.Where(e => e.Employee_id == id).FirstOrDefault();
         }
 
         // POST: api/Employee
         [System.Web.Http.HttpPost]
         [ValidateAntiForgeryToken]
-        public void CreateEmployee([Bind(Include = "Employee_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
+        public void EmployeeEnrollmentNew([Bind(Include = "Employee_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
             "Sex,MaritalStatus,JobTitle,HireDate,EffectiveDate,ElgibilityDate,AnnualSalary,HoursWorkedPerWeek")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -171,9 +155,9 @@ namespace Watson.Controllers
         }
 
         //GET: api/Employee/5
-        public Employee EmployeeDetail(int id)
+        public Employee EmployeeDetail(int Employee_id)
         {
-            return employees.Where(e => e.Employee_id == id).FirstOrDefault();
+            return employee.Where(e => e.Employee_id == Employee_id).FirstOrDefault();
         }
 
 
@@ -184,9 +168,9 @@ namespace Watson.Controllers
         //}
 
         // GET: api/Employee/5
-        public void EmployeeContact(int? id)
+        public void EmployeeContact(int? Employee_id)
         {
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.Employees.Find(Employee_id);
         }
 
         // POST: api/Employee/5
@@ -205,9 +189,9 @@ namespace Watson.Controllers
         }
 
         // GET: api/Employee/5
-        public void EditEmployee(int? id)
+        public void EditEmployee(int? Employee_id)
         {
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.Employees.Find(Employee_id);
 
         }
 
@@ -226,9 +210,9 @@ namespace Watson.Controllers
         }
 
         // GET: api/FamilyMember/5
-        public void EditSpouse(int? id)
+        public void EditSpouse(int? FamilyMember_id)
         {
-            Family_Info fmember = db.Family_Info.Find(id);
+            Family_Info fmember = db.Family_Info.Find(FamilyMember_id);
 
         }
 
@@ -241,15 +225,15 @@ namespace Watson.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employees).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(fmember).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
         }
 
         // GET: api/FamilyMember/5
-        public void EditDependent(int? id)
+        public void EditDependent(int? FamilyMember_id)
         {
-            Family_Info fmember = db.Family_Info.Find(id);
+            Family_Info fmember = db.Family_Info.Find(FamilyMember_id);
 
         }
 
@@ -261,15 +245,15 @@ namespace Watson.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employees).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(fmember).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
         }
 
         // DELETE: api/Employee/5
-        public void DeleteEmployee(int? id)
+        public void DeleteEmployee(int? Employee_id)
         {
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.Employees.Find(Employee_id);
 
             db.Employees.Remove(employee);
             db.SaveChanges();
@@ -281,9 +265,9 @@ namespace Watson.Controllers
         // POST: api/Employee/5
         [System.Web.Http.HttpPost, System.Web.Http.ActionName("DeleteEmployee")]
         [ValidateAntiForgeryToken]
-        public void DeleteEmployee(int id)
+        public void DeleteEmployee(int Employee_id)
         {
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.Employees.Find(Employee_id);
 
             db.Employees.Remove(employee);
             db.SaveChanges();

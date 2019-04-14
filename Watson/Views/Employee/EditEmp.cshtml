@@ -14,17 +14,17 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible" id="EditEmp">Edit Employee</div>
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+        <div class="collapsible" id="FirstStep">Edit Employee Enrollment?</div>
         <div id="divEditEmp" class="content">
             <p></p>
             <p></p>
-            @* move employee role to the admin view *@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
-                <div class="col-md-10" id="EmployeeRole">
+                <div class="col-md-10">
                     <select id="EmployeeRole" class="form-control" disabled>
-                        <option id="ManagerRole" value="Manager"  @((Model.EmployeeRole.ToLower() == "manager") ? "selected" : "")>Manger</option>
-                        <option id="EmployeeRole" value="Employee" @((Model.EmployeeRole.ToLower() == "employee") ? "selected" : "")>Employee</option>        
+                        <option id="ManagerRole" value="Manager">Manger</option>
+                        <option id="EmployeeRole" value="Employee">Employee</option>
                     </select>
                 </div>
             </div>
@@ -43,7 +43,18 @@
             <div class="form-group">
                 <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
-                    <input type="number" id="EmpNumber" class="form-control" name="SSN" value="" />
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Marital Status:</label>
+                <div class="col-md-10">
+                    <select id="MaritalStatus" onchange="return MaritalStatusChange()" class="form-control">
+                        <option value="MarriedwDep">Married with Dependents</option>
+                        <option value="Married">Married</option>
+                        <option value="SinglewDep">Single with Dependents</option>
+                        <option value="Single">Single</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
@@ -59,35 +70,39 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
+                <label class="col-md-2 control-label">Date of Birth:</label>
                 <div class="col-md-10">
                     <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Gender:</label>
-                <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="M" @((Model.Gender == "M") ? "checked" : "") />Male</label>
-                    <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="F" @((Model.Gender == "F") ? "checked" : "") />Female</label>
+                <div class="col-md-10" id="Gender">
+                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="true" checked />Male</label>
+                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="false" />Female</label>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-2 control-label">Marital Status</label>
-                <div class="col-md-10">
-                    <select id="MaritalStatus" class="form-control" disabled>
-                        <option value="@(Model.MaritalStatus == "MarriedwDep" ? "selected" : "")">Married with Dependents</option>
-                        <option value="@(Model.MaritalStatus == "Married"     ? "selected" : "")">Married</option>
-                        <option value="@(Model.MaritalStatus == "SinglewDep"  ? "selected" : "")">Single with Dependents</option>
-                        <option value="@(Model.MaritalStatus == "Single"      ? "selected" : "")">Single</option>
-                    </select>
+                <div class="col-md-offset-11">
+                    <button id="EmpEditUpdate" class="btn">Save</button>
                 </div>
             </div>
+        </div>
+    </div>
+    @* Contact Info *@
+    <div class="form-horizontal">
+        <hr />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+        <div class="collapsible" id="SecondStep">Edit Contact Information?</div>
+        <div id="divEditEmpStepTwo" class="content">
+            <p></p>
+            <p></p>
             <div id="divMailingAddress">
                 <div class="form-group">
                     <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
                     <div class="col-md-10">
                         <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
-                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="MailingAddress" value="" />
+                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" />
                         <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
                         <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
                         <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
@@ -100,7 +115,14 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group" id="divPhysicalSameAsMailing">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Within City Limits?</label>
+                <div class="col-md-10" id="CityLimits">
+                    <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" checked />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" />No</label>
+                </div>
+            </div>
+            <div class="form-group" id="divMailingAddress">
                 <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
                 <div class="col-md-10">
                     <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" onclick="HidePhysicalAddress()" name="Address" value="true" />Yes</label>
@@ -111,65 +133,87 @@
                 <div class="form-group">
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street2" name="PhysicalAddress" value="" />
-                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box2" name="PObox" />
-                        <input type="text" id="City2" class="form-control" placeholder="City2" name="City" value="" />
-                        <input type="text" id="State2" class="form-control" placeholder="State2" name="State" value="" />
-                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code2" name="ZipCode" value="" />
+                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="" />
+                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" value="" />
+                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="" />
+                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="" />
+                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
-                        <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="" />
+                        <input type="text" id="County2" class="form-control" placeholder="County" name="County" value="" />
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="CityLimits" class="col-md-2 control-label">Within City Limits?</label>
-                <div class="col-md-10" id="CityLimits">
-                    <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" @((Model.CityLimits == true) ? "checked" : "") />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" @((Model.CityLimits == false) ? "checked" : "") />No</label>
+                <label for="EmailAddress" class="col-md-2 control-label">Email Address:</label>
+                <div class="col-md-10">
+                    <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="" />
                 </div>
             </div>
             <div class="form-group">
-                <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
-                <div class="col-md-10">
-                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="" />
+                <div class="container">
+                    <label class="col-md-2 control-label">Phone Number:</label>
+                    <div class="col-xs-4">
+                        <div class="form-group phone-number">
+                            <div class="col-xs-3">
+                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4" value="" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
-                <div class="col-md-10">
-                    <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
-                <div class="col-md-10">
-                    <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="" />
+                <div class="container">
+                    <label class="col-md-2 control-label">Cell Phone:</label>
+                    <div class="col-xs-4">
+                        <div class="form-group phone-number">
+                            <div class="col-xs-3">
+                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value="" />
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value="" />
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="4" maxlength="4" value="" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <button id="EmpEditUpdate" class="btn">Save</button>
+                    <button id="EmpEditUpdateStepTwo" class="btn">Save</button>
                     @*<input id="Submit" type="submit" onclick="return EmployeeEditUpdate()" value="Save" class="btn" />*@
                 </div>
             </div>
         </div>
     </div>
-    @*<div>
-            button needs to display based on martial status (ie....if employee is single during employment
-        and gets married or have a baby at a later date, they will need to be added to plan)
-                (or if they need to add dependent because they just had a baby
-            <input type="button" onclick="SpouseEnrollment()" value="Add Spouse" class="btn" />
-            <input type="button" onclick="DependentEnrollemnt()" value="Add Dependent" class="btn" />
-        </div>*@
     <p>
         @Html.ActionLink("Back to List", "EmpOverview")
     </p>
 </body>
 </html>
+
+
+
+@*<div>
+        button needs to display based on martial status (ie....if employee is single during employment
+    and gets married or have a baby at a later date, they will need to be added to plan)
+            (or if they need to add dependent because they just had a baby
+        <input type="button" onclick="SpouseEnrollment()" value="Add Spouse" class="btn" />
+        <input type="button" onclick="DependentEnrollemnt()" value="Add Dependent" class="btn" />
+    </div>*@
+
+
 
 <style>
     .collapsible {
@@ -193,15 +237,6 @@
         display: none;
         overflow: hidden;
         background-color: #f1f1f1;
-    }
-
-    .hide {
-        display: none;
-    }
-
-    .previous {
-        background-color: #333;
-        color: white;
     }
 
     .btn {
@@ -240,6 +275,32 @@
     .phone-number .col-xs-3, .phone-number .col-xs-4 {
         padding-left: 0;
     }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        table tr {
+            border-bottom: 1px solid black;
+        }
+
+    td:empty {
+        width: 10px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 0px;
+    }
+
+    th {
+        border-bottom: 5px solid black;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 </style>
 
 <script>
@@ -267,6 +328,10 @@
         document.getElementById("divPhysicalAddress").style.display = "block";
     }
 
+    function MaritalStatusChange() {
+
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmpEditUpdate").addEventListener("click", function () {
             EmployeeRole = document.getElementById("EmployeeRole").value;
@@ -284,18 +349,36 @@
                 }
             });
 
+            var data = {
+                "EmployeeRole": EmployeeRole,
+                "CurrentEmployer": CurrentEmployer,
+                "JobTitle": JobTitle,
+                "EmpNumber": EmpNumber,
+                "FirstName": FirstName,
+                "LastName": LastName,
+                "DateOfBirth": DateOfBirth,
+                "MaritalStatus": MaritalStatus,
+                "Gender": Gender,
+            }
+
+            var ret = postData('EmployeeEditUpdate', data)
+                .then(data => FirstStep(data))
+                .error(error => console.error(error))
+        })
+
+        document.querySelector("#EditEmpUpdateStepTwo").addEventListener("click", function () {
             MailingAddress = document.getElementById("MailingAddress").value;
-            PObox = document.getElementById("PObox").value,
-            City = document.getElementById("City").value
-            State = document.getElementById("State").value
-            ZipCode = document.getElementById("ZipCode").value
-            County = document.getElementById("County").value
-            PhysicalAddress = document.getElementById("PhysicalAddress").value
-            PObox2 = document.getElementById("PObox2").value,
-            City2 = document.getElementById("City2").value
-            State2 = document.getElementById("State2").value
-            ZipCode2 = document.getElementById("ZipCode2").value
-            County2 = document.getElementById("County2").value
+            PObox = document.getElementById("PObox").value;
+            City = document.getElementById("City").value;
+            State = document.getElementById("State").value;
+            ZipCode = document.getElementById("ZipCode").value;
+            County = document.getElementById("County").value;
+            PhysicalAddress = document.getElementById("PhysicalAddress").value;
+            PObox2 = document.getElementById("PObox2").value;
+            City2 = document.getElementById("City2").value;
+            State2 = document.getElementById("State2").value;
+            ZipCode2 = document.getElementById("ZipCode2").value;
+            County2 = document.getElementById("County2").value;
             EmailAddress = document.getElementById("EmailAddress").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             CellPhone = document.getElementById("CellPhone").value;
@@ -306,66 +389,62 @@
                 }
             });
 
+            var data = {
+                "MailingAddress": MailingAddress,
+                "PObox": PObox,
+                "City": City,
+                "State": State,
+                "ZipCode": ZipCode,
+                "County": County,
+                "PhysicalAddress": PhyscialAddress,
+                "PObox2": PObox2,
+                "City2": City2,
+                "State2": State2,
+                "ZipCode2": ZipCode2,
+                "County2": County2,
+                "CityLimits": CityLimits,
+                "EmailAddress": EmailAddress,
+                "PhoneNumber": PhoneNumber,
+                "CellPhone": CellPhone,
+            }
 
+            var ret = postData('EmployeeEditUpdate', data)
+                .then(data => SecondStep(data))
+                .catch(error => console.error(error))
         })
-
-        var data = {
-            "EmployeeRole": EmployeeRole,
-            "CurrentEmployer": CurrentEmployer,
-            "JobTitle": JobTitle,
-            "EmpNumber": EmpNumber,
-            "FirstName": FirstName,
-            "LastName": LastName,
-            "DateOfBirth": DateOfBirth,
-            "MaritalStatus": MaritalStatus,
-            "MailingAddress": MailingAddress,
-            "City": City,
-            "State": State,
-            "ZipCode": ZipCode,
-            "County": County,
-            "PhysicalAddress": PhyscialAddress,
-            "PObox2": PObox2,
-            "City2": City2,
-            "State2": State2,
-            "ZipCode2": ZipCode2,
-            "County2": County2,
-            "CityLimits": CityLimits,
-            "EmailAddress": EmailAddress,
-            "PhoneNumber": PhoneNumber,
-            "CellPhone": CellPhone,
-
-        }
-
-        var ret = postData('EmployeeEditUpdate', data)
-            .then(data => SecondStep(data))
-            .error(error => console.error(error))
-
-        function SecondStep(id) {
-            document.querySelector("#EditEmp").nextElementSibling.content.style.display = "block";
-            document.querySelector("#EmployeeRole").innerHTML = emp.EmployeeRole;
-            document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
-            document.querySelector("#JobTitle").value = emp.JobTitle;
-            document.querySelector("#EmpNumber").value = emp.EmpNumber;
-            document.querySelector("#MaritalStatus").innerHTML = emp.MaritalStatus;
-            document.querySelector("#FirstName").value = emp.FirstName;
-            document.querySelector("#LastName").value = emp.LastName;
-            document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
-            document.querySelector("#Gender").value = emp.Gender;
-            document.querySelector("#MailingAddress").value = emp.MailingAddress;
-            document.querySelector("#PObox").value = emp.PObox;
-            document.querySelector("#City").value = emp.City;
-            document.querySelector("#State").value = emp.State;
-            document.querySelector("#ZipCode").value = emp.ZipCode;
-            document.querySelector("#County").value = emp.County;
-            document.querySelector("#CityLimits").innerHTML = emp.CityLimits;
-            document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
-            document.querySelector("#PObox2").value = emp.PObox2;
-            document.querySelector("#City2").value = emp.City2;
-            document.querySelector("#State2").value = emp.State2;
-            document.querySelector("#ZipCode2").value = emp.ZipCode2;
-            document.querySelector("#County2").value = emp.County2;
-        }
     })
+
+    function FirstStep(emp) {
+        document.querySelector("#EditEmp").nextElementSibling.content.style.display = "block";
+        document.querySelector("#EmployeeRole").innerHTML = emp.EmployeeRole;
+        document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
+        document.querySelector("#JobTitle").value = emp.JobTitle;
+        document.querySelector("#EmpNumber").value = emp.EmpNumber;
+        document.querySelector("#MaritalStatus").innerHTML = emp.MaritalStatus;
+        document.querySelector("#FirstName").value = emp.FirstName;
+        document.querySelector("#LastName").value = emp.LastName;
+        document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
+        document.querySelector("#Gender").value = emp.Gender;
+    }
+
+    function SecondStep(emp) {
+        document.querySelector("#EditEmpUpdate").nextElementSibling.style.display = "none";
+        document.querySelector("#EditEmpUpdateStepTwi").nextElementSibling.style.display = "block";
+        document.querySelector("#MailingAddress").value = emp.MailingAddress;
+        document.querySelector("#PObox").value = emp.PObox;
+        document.querySelector("#City").value = emp.City;
+        document.querySelector("#State").value = emp.State;
+        document.querySelector("#ZipCode").value = emp.ZipCode;
+        document.querySelector("#County").value = emp.County;
+        document.querySelector("#CityLimits").innerHTML = emp.CityLimits;
+        document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
+        document.querySelector("#PObox2").value = emp.PObox2;
+        document.querySelector("#City2").value = emp.City2;
+        document.querySelector("#State2").value = emp.State2;
+        document.querySelector("#ZipCode2").value = emp.ZipCode2;
+        document.querySelector("#County2").value = emp.County2;
+    }
+
 
     function postData(url, data) {
         //Default options are marked with *

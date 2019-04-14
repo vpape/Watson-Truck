@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Watson.Models.Employee>
+@{
     ViewBag.Title = "EmpDetail";
 }
 <!DOCTYPE html>
@@ -19,109 +20,106 @@
             <p></p>
             <p></p>
             <dl class="dl-horizontal">
-                <dt>
-                    <label class="col-md-2 control-label">Employee Role:</label>
-                </dt>
-                <dd>
-                    <input type="text" id="EmployeeRole" class="form-control" name="EmployeeRole" value="emp.EmployeeRole">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Current Employer:</label>
-                </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="emp.CurrentEmployer">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Job Title:</label>
-                </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="emp.JobTitle">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Employee Number:</label>
-                </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="emp.EmpNumber">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">First Name:</label>
-                </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="emp.FirstName">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Last Name:</label>
-                </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="LastName" class="form-control" name="LastName" value="emp.LastName">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Date of Birth:</label>
-                </dt>
-                <dd class="col-md-10">
-                    <input type="number" id="DateOfBirth" class="form-control" name="DateOfBirth" value="emp.DateOfBirth">
-                    @*@Convert.ToDateTime(Model.DateOfBirth).ToString("MM/dd/yyyy")*@
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Gender:</label>
-                </dt>
-                <dd class="col-md-10"id="Gender">
-                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((Model.Gender == "Male") ? "checked" : "") />Male</label>
-                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((Model.Gender == "Female") ? "checked" : "") />Female</label>
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Marital Status:</label>
-                </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="MaritalStatus" class="form-control" name="MaritalStatus" value="emp.MaritalStatus">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Mailing Address:</label>
-                </dt>
-                <dd class="col-md-10">
-                    Street:<text type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="emp.MailingAddress" />
-                    PO Box:<text type="text" id="PObox" class="form-control" name="PObox" value="emp.PObox" />
-                    City:<text type="text" id="City" class="form-control" name="City" value="emp.City" />
-                    State:<text type="text" id="State" class="form-control" name="State" value="emp.State" />
-                    ZipCode:<text type="text" id="ZipCode" class="form-control" name="ZipCode" value="emp.ZipCode" />
-                    County:<text type="text" id="County" class="form-control" name="County" value="emp.County" />
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Physical Address:</label>
-                </dt>
-                <dd class="col-md-10">
-                    Street:<text type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="emp.PhysicalAddress" />
-                    PO Box:<text type="text" id="PObox2" class="form-control" name="PObox" value="emp.PObox2" />
-                    City:<text type="text" id="City2" class="form-control" name="City" value="emp.City2" />
-                    State:<text type="text" id="State2" class="form-control" name="State" value="emp.State2" />
-                    ZipCode:<text type="text" id="ZipCode2" class="form-control" name="ZipCode" value="emp.ZipCode2" />
-                    County:<text type="text" id="County2" class="form-control" name="County" value="emp.County2" />
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Within City Limits?</label>
-                </dt>
-                <dd class="col-md-10" id="CityLimits">
-                    <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" @((Model.CityLimits == true) ? "checked" : "") />Yes</label>
-                    <label class="radio-inline"><input disabled type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" @((Model.CityLimits == false) ? "checked" : "") />No</label>
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Email:</label>
-                </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="emp.email">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Phone Number:</label>
-                </dt>
-                <dd class="col-md-10">
-                    <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="emp.PhoneNumber">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Cell Phone:</label>
-                </dt>
-                <dd class="col-md-10">
-                    <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="emp.CellPhone">
-                </dd>
+                @foreach (var item in Model)
+                {
+                    <dt>
+                        <label class="col-md-2 control-label">Current Employer:</label>
+                    </dt>
+                    <dd class="col-md-10">
+                        <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@Html.DisplayFor(model => item.CurrentEmployer)">
+                    </dd>
+                    <dt>
+                        <label class="col-md-2 control-label">Job Title:</label>
+                    </dt>
+                    <dd class="col-md-10">
+                        <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@Html.DisplayFor(model => item.JobTitle)">
+                    </dd>
+                    <dt>
+                        <label class="col-md-2 control-label">Employee Number:</label>
+                    </dt>
+                    <dd class="col-md-10">
+                        <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.DisplayFor(model => item.SSN)">
+                    </dd>
+                    <dt>
+                        <label class="col-md-2 control-label">First Name:</label>
+                    </dt>
+                    <dd class="col-md-10">
+                        <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(model => item.FirstName)">
+                    </dd>
+                    <dt>
+                        <label class="col-md-2 control-label">Last Name:</label>
+                    </dt>
+                    <dd class="col-md-10">
+                        <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(model => item.LastName)">
+                    </dd>
+                    <dt>
+                        <label class="col-md-2 control-label">Date of Birth:</label>
+                    </dt>
+                    <dd class="col-md-10">
+                        <input type="number" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Html.DisplayFor(model => item.DateOfBirth)">
+                        @*@Convert.ToDateTime(Model.DateOfBirth).ToString("MM/dd/yyyy")*@
+                    </dd>
+                    <dt>
+                        <label class="col-md-2 control-label">Gender:</label>
+                    </dt>
+                    <dd class="col-md-10" id="Gender">
+                        <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @*@((Model.Gender == "Male") ? "checked" : "")*@ />Male</label>
+                        <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @*@((Model.Gender == "Female") ? "checked" : "")*@ />Female</label>
+                    </dd>
+                    <dt>
+                        <label class="col-md-2 control-label">Marital Status:</label>
+                    </dt>
+                    <dd class="col-md-10">
+                        <input type="text" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@Html.DisplayFor(model => item.MaritalStatus)">
+                    </dd>
+                    <dt>
+                        <label class="col-md-2 control-label">Mailing Address:</label>
+                    </dt>
+                    <dd class="col-md-10">
+                        Street:<text type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(model => item.MailingAddress)" />
+                        PO Box:<text type="text" id="PObox" class="form-control" name="PObox" value="@Html.DisplayFor(model => item.PObox)" />
+                        City:<text type="text" id="City" class="form-control" name="City" value="@Html.DisplayFor(model => item.City)" />
+                        State:<text type="text" id="State" class="form-control" name="State" value="@Html.DisplayFor(model => item.State)" />
+                        ZipCode:<text type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(model => item.ZipCode)" />
+                        County:<text type="text" id="County" class="form-control" name="County" value="@Html.DisplayFor(model => item.County)" />
+                    </dd>
+                    <dt>
+                        <label class="col-md-2 control-label">Within City Limits?</label>
+                    </dt>
+                    <dd class="col-md-10" id="CityLimits">
+                        <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" @*@((Model.CityLimits == true) ? "checked" : "")*@ />Yes</label>
+                        <label class="radio-inline"><input disabled type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" @*@((Model.CityLimits == false) ? "checked" : "")*@ />No</label>
+                    </dd>
+                    <dt>
+                        <label class="col-md-2 control-label">Physical Address:</label>
+                    </dt>
+                    <dd class="col-md-10">
+                        Street:<text type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@Html.DisplayFor(model => item.PhysicalAddress)" />
+                        PO Box:<text type="text" id="PObox2" class="form-control" name="PObox" value="" />
+                        City:<text type="text" id="City2" class="form-control" name="City" value="" />
+                        State:<text type="text" id="State2" class="form-control" name="State" value="" />
+                        ZipCode:<text type="text" id="ZipCode2" class="form-control" name="ZipCode" value="" />
+                        County:<text type="text" id="County2" class="form-control" name="County" value="" />
+                    </dd>
+                    <dt>
+                        <label class="col-md-2 control-label">Email:</label>
+                    </dt>
+                    <dd class="col-md-10">
+                        <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(model => item.EmailAddress)">
+                    </dd>
+                    <dt>
+                        <label class="col-md-2 control-label">Phone Number:</label>
+                    </dt>
+                    <dd class="col-md-10">
+                        <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(model => item.PhoneNumber)">
+                    </dd>
+                    <dt>
+                        <label class="col-md-2 control-label">Cell Phone:</label>
+                    </dt>
+                    <dd class="col-md-10">
+                        <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="@Html.DisplayFor(model => item.CellPhone)">
+                    </dd>
+                }
             </dl>
         </div>
     </div>
@@ -154,15 +152,6 @@
         display: none;
         overflow: hidden;
         background-color: #f1f1f1;
-    }
-
-    .hide {
-        display: none;
-    }
-
-    .previous {
-        background-color: #333;
-        color: white;
     }
 
     .btn {
@@ -201,6 +190,32 @@
     .phone-number .col-xs-3, .phone-number .col-xs-4 {
         padding-left: 0;
     }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        table tr {
+            border-bottom: 1px solid black;
+        }
+
+    td:empty {
+        width: 10px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 0px;
+    }
+
+    th {
+        border-bottom: 5px solid black;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 </style>
 
 <script>
@@ -221,7 +236,6 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        EmployeeRole = document.getElementById("EmployeeRole").value;
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;
         EmpNumber = document.getElementById("EmpNumber").value;
@@ -246,9 +260,8 @@
         EmailAddress = document.getElementById("EmailAddress").value;
         PhoneNumber = document.getElementById("PhoneNumber").value;
         CellPhone = document.getElementById("CellPhone").value;
-        
+
         var data = {
-            "EmployeeRole": EmployeeRole,
             "CurrentEmployer": CurrentEmployer,
             "JobTitle": JobTitle,
             "EmpNumber": EmpNumber,
@@ -258,6 +271,7 @@
             "DateOfBirth": DateOfBirth,
             "Gender": Gender,
             "MailingAddress": MailingAddress,
+            "PObox": PObox,
             "City": City,
             "State": State,
             "ZipCode": ZipCode,
@@ -275,14 +289,13 @@
         }
 
         var ret = postData('GetEmpDetail', data)
-            .then(data => SecondStep(data))
+            .then(data => FirstStep(data))
             .catch(error => console.error(error))
-        
+
     })
 
-    function SecondStep(emp) {
-        document.querySelector("#EmpDetail").nextElementSibling.style.display = "block";
-        document.querySelector("#EmployeeRole").value = emp.EmployeeRole;
+    function FirstStep(emp) {
+        document.querySelector("#EmpDetail").nextElementSibling.style.display = "none";
         document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
         document.querySelector("#JobTitle").value = emp.JobTitle;
         document.querySelector("#EmpNumber").value = emp.EmpNumber;
@@ -292,6 +305,7 @@
         document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
         document.querySelector("#Gender").value = emp.Gender;
         document.querySelector("#MailingAddress").value = emp.MailingAddress;
+        document.querySelector("#PObox").value = emp.PObox;
         document.querySelector("#City").value = emp.City;
         document.querySelector("#State").value = emp.State;
         document.querySelector("#ZipCode").value = emp.ZipCode;
@@ -302,15 +316,11 @@
         document.querySelector("#City2").value = emp.City2;
         document.querySelector("#State2").value = emp.State2;
         document.querySelector("#ZipCode2").value = emp.ZipCode2;
-        document.querySelector("#County2").value = emp.County2;  
+        document.querySelector("#County2").value = emp.County2;
         document.querySelector("#EmailAddress").value = emp.EmailAddress;
         document.querySelector("#PhoneNumber").value = emp.PhoneNumber;
         document.querySelector("#CellPhone").value = emp.CellPhone;
     }
-
-    //function ThirdStep(id) {
-
-    //}
 
     function postData(url, data) {
         //Default options are marked with *
@@ -322,7 +332,7 @@
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
-            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            method: 'POST', //*GET, POST, PUT, DELETE, etc...
             mode: 'cors', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer

@@ -197,142 +197,142 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult EditSp(int Employee_id, int? FamilyMember_id)
-        {
-            if (FamilyMember_id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+        //public ActionResult EditSp(int Employee_id, int? FamilyMember_id)
+        //{
+        //    if (FamilyMember_id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
 
-            Family_Info family = db.Family_Info.Find(FamilyMember_id);
-            if (family == null)
-            {
-                return HttpNotFound();
-            }
+        //    Family_Info family = db.Family_Info.Find(FamilyMember_id);
+        //    if (family == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
 
-            ViewBag.Employee_id = Employee_id;
+        //    ViewBag.Employee_id = Employee_id;
 
-            return View(family);
-        }
+        //    return View(family);
+        //}
 
-        public JsonResult SpEditUpdate(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured,
-            string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress,
-            string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, string PObox2, 
-            string City2, string State2, string ZipCode2, string County2, string EmailAddress, string PhoneNumber, 
-            string CellPhone, string Employer, string EmployerAddress, string EmployerPObox, string EmployerCity, 
-            string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
-        {
-            var sp = db.Family_Info
-                .Where(i => i.FamilyMember_id == FamilyMember_id)
-                .Single();
+        //public JsonResult SpEditUpdate(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured,
+        //    string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress,
+        //    string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, string PObox2, 
+        //    string City2, string State2, string ZipCode2, string County2, string EmailAddress, string PhoneNumber, 
+        //    string CellPhone, string Employer, string EmployerAddress, string EmployerPObox, string EmployerCity, 
+        //    string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
+        //{
+        //    var sp = db.Family_Info
+        //        .Where(i => i.FamilyMember_id == FamilyMember_id)
+        //        .Single();
 
-            sp.RelationshipToInsured = RelationshipToInsured;
-            sp.SSN = EmpNumber;
-            sp.FirstName = FirstName;
-            sp.LastName = LastName;
-            sp.DateOfBirth = DateOfBirth;
-            sp.Gender = Gender;
-            sp.MailingAddress = MailingAddress;
-            sp.PObox = PObox;
-            sp.City = City;
-            sp.State = State;
-            sp.ZipCode = ZipCode;
-            sp.County = County;
-            sp.PhysicalAddress = PhysicalAddress;
-            sp.PObox = PObox2;
-            sp.City = City2;
-            sp.State = State2;
-            sp.ZipCode = ZipCode2;
-            sp.County = County2;
-            sp.EmailAddress = EmailAddress;
-            sp.PhoneNumber = PhoneNumber;
-            sp.CellPhone = CellPhone;
-            sp.Employer = Employer;
-            sp.EmployerMailingAddress = EmployerAddress;
-            sp.PObox = EmployerPObox;
-            sp.EmployerCity = EmployerCity;
-            sp.EmployerState = EmployerState;
-            sp.EmployerZipCode = EmployerZipCode;
-            sp.EmployerPhoneNumber = EmployerPhoneNumber;
+        //    sp.RelationshipToInsured = RelationshipToInsured;
+        //    sp.SSN = EmpNumber;
+        //    sp.FirstName = FirstName;
+        //    sp.LastName = LastName;
+        //    sp.DateOfBirth = DateOfBirth;
+        //    sp.Gender = Gender;
+        //    sp.MailingAddress = MailingAddress;
+        //    sp.PObox = PObox;
+        //    sp.City = City;
+        //    sp.State = State;
+        //    sp.ZipCode = ZipCode;
+        //    sp.County = County;
+        //    sp.PhysicalAddress = PhysicalAddress;
+        //    sp.PObox = PObox2;
+        //    sp.City = City2;
+        //    sp.State = State2;
+        //    sp.ZipCode = ZipCode2;
+        //    sp.County = County2;
+        //    sp.EmailAddress = EmailAddress;
+        //    sp.PhoneNumber = PhoneNumber;
+        //    sp.CellPhone = CellPhone;
+        //    sp.Employer = Employer;
+        //    sp.EmployerMailingAddress = EmployerAddress;
+        //    sp.PObox = EmployerPObox;
+        //    sp.EmployerCity = EmployerCity;
+        //    sp.EmployerState = EmployerState;
+        //    sp.EmployerZipCode = EmployerZipCode;
+        //    sp.EmployerPhoneNumber = EmployerPhoneNumber;
 
-            ViewBag.Employee_id = Employee_id;
-            ViewBag.MaritalStatus = MaritalStatus;
+        //    ViewBag.Employee_id = Employee_id;
+        //    ViewBag.MaritalStatus = MaritalStatus;
 
-            if (ModelState.IsValid)
-            {
-                db.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(sp).State = System.Data.Entity.EntityState.Modified;
 
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
+        //        try
+        //        {
+        //            db.SaveChanges();
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Console.WriteLine(e);
+        //        }
 
-                RedirectToAction("FamilyOverview");
-            }
+        //        RedirectToAction("FamilyOverview");
+        //    }
 
-            return Json(new { data = sp }, JsonRequestBehavior.AllowGet);
-        }
-
-        //----------------------------------------------------------------------------------------
-
-        public ActionResult SpDetail(int? FamilyMember_id)
-        {
-            if (FamilyMember_id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Family_Info family = db.Family_Info.Find(FamilyMember_id);
-            if (family == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(family);
-        }
-
-        public JsonResult GetSpDetail(int FamilyMember_id)
-        {
-            var sp = db.Family_Info
-                 .Where(i => i.FamilyMember_id == FamilyMember_id)
-                 .Single();
-
-            return Json(new { data = sp }, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(new { data = sp }, JsonRequestBehavior.AllowGet);
+        //}
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult DeleteSp(int? FamilyMember_id)
-        {
-            if (FamilyMember_id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Family_Info family = db.Family_Info.Find(FamilyMember_id);
-            if (family == null)
-            {
-                return HttpNotFound();
-            }
-            return View(family);
-        }
+        //public ActionResult SpDetail(int? FamilyMember_id)
+        //{
+        //    if (FamilyMember_id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
 
-        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteSp")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int FamilyMember_id)
-        {
-            Family_Info family = db.Family_Info.Find(FamilyMember_id);
+        //    Family_Info family = db.Family_Info.Find(FamilyMember_id);
+        //    if (family == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
 
-            db.DeleteEmployeeAndDependents(FamilyMember_id);
+        //    return View(family);
+        //}
+
+        //public JsonResult GetSpDetail(int FamilyMember_id)
+        //{
+        //    var sp = db.Family_Info
+        //         .Where(i => i.FamilyMember_id == FamilyMember_id)
+        //         .Single();
+
+        //    return Json(new { data = sp }, JsonRequestBehavior.AllowGet);
+        //}
+
+        //----------------------------------------------------------------------------------------
+
+        //public ActionResult DeleteSp(int? FamilyMember_id)
+        //{
+        //    if (FamilyMember_id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Family_Info family = db.Family_Info.Find(FamilyMember_id);
+        //    if (family == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(family);
+        //}
+
+        //[System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteSp")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int FamilyMember_id)
+        //{
+        //    Family_Info family = db.Family_Info.Find(FamilyMember_id);
+
+        //    db.DeleteEmployeeAndDependents(FamilyMember_id);
             
-            db.Family_Info.Remove(family);
-            db.SaveChanges();
+        //    db.Family_Info.Remove(family);
+        //    db.SaveChanges();
 
-            return RedirectToAction("FamilyMemberOverview");
-        }
+        //    return RedirectToAction("FamilyMemberOverview");
+        //}
 
         //----------------------------------------------------------------------------------------
 
@@ -452,7 +452,7 @@ namespace Watson.Controllers
                     Console.WriteLine(e);
                 }
 
-                RedirectToAction("FamilyMemberOverview");
+                RedirectToAction("FamilyOverview");
             }
 
             return Json(new { data = dep, o }, JsonRequestBehavior.AllowGet);
