@@ -33,17 +33,15 @@ namespace Watson.Controllers
 
         //}
 
-        public ActionResult EmpOverview(Employee employee)
+        public ActionResult EmpOverview()
         {
             return View(db.Employees.ToList());
         }
 
         public JsonResult GetEmployee(int Employee_id, string EmpFirstName, string EmpLastName, string EmailAddress)
         {
-            var e = db.Employees
-                .Where(i => i.Employee_id == Employee_id)
-                .Single();
-
+            var e = db.Employees.Find();
+                         
             e.FirstName = EmpFirstName;
             e.LastName = EmpLastName;
             e.EmailAddress = EmailAddress;
@@ -247,7 +245,7 @@ namespace Watson.Controllers
             }
 
 
-            return Json(new { data = e, Employee_id }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = employee, Employee_id }, JsonRequestBehavior.AllowGet);
         }
 
         //EmpDetail Method
