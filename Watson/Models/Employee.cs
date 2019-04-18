@@ -47,10 +47,10 @@ namespace Watson.Models
         public string PhoneNumber { get; set; }
         public string CellPhone { get; set; }
         public string County { get; set; }
-        public Nullable<bool> CityLimits { get; set; }
+        public string CityLimits { get; set; }
         public Nullable<System.DateTime> HireDate { get; set; }
         public Nullable<System.DateTime> EffectiveDate { get; set; }
-        public Nullable<bool> isActive { get; set; }
+        public string isActive { get; set; }
         public Nullable<System.DateTime> EligibilityDate { get; set; }
         public string WorkStatus { get; set; }
         public Nullable<int> HoursWorkedPerWeek { get; set; }

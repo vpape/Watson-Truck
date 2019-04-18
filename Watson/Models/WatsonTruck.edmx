@@ -138,10 +138,10 @@
           <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
           <Property Name="CellPhone" Type="varchar" MaxLength="30" />
           <Property Name="County" Type="varchar" MaxLength="30" />
-          <Property Name="CityLimits" Type="bit" />
+          <Property Name="CityLimits" Type="varchar" MaxLength="5" />
           <Property Name="HireDate" Type="date" />
           <Property Name="EffectiveDate" Type="date" />
-          <Property Name="isActive" Type="bit" />
+          <Property Name="isActive" Type="varchar" MaxLength="5" />
           <Property Name="EligibilityDate" Type="date" />
           <Property Name="WorkStatus" Type="varchar" MaxLength="25" />
           <Property Name="HoursWorkedPerWeek" Type="int" />
@@ -860,10 +860,10 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="CellPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="County" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="CityLimits" Type="Boolean" />
+          <Property Name="CityLimits" Type="String" />
           <Property Name="HireDate" Type="DateTime" Precision="0" />
           <Property Name="EffectiveDate" Type="DateTime" Precision="0" />
-          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isActive" Type="String" />
           <Property Name="EligibilityDate" Type="DateTime" Precision="0" />
           <Property Name="WorkStatus" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="HoursWorkedPerWeek" Type="Int32" />

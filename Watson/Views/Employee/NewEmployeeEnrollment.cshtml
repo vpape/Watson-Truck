@@ -1,7 +1,4 @@
-﻿@{
-    ViewBag.Title = "NewEmployeeEnrollment";
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -14,7 +11,7 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        @*<input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />*@
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
         <div class="collapsible" id="FirstStep">Enrollment</div>
         <div id="divEmpEnrollment" class="content">
             <p></p>
@@ -22,7 +19,8 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
                 <div class="col-md-10">
-                    <select id="EmployeeRole" class="form-control">
+                    <select id="Role" class="form-control">
+                        <option value="">Select Option</option>
                         <option id="ManagerRole" value="Manager">Manger</option>
                         <option id="EmployeeRole" value="Employee">Employee</option>
                     </select>
@@ -50,6 +48,7 @@
                 <label class="col-md-2 control-label">Marital Status:</label>
                 <div class="col-md-10">
                     <select id="MaritalStatus" class="form-control">
+                        <option value="">Select Option</option>
                         <option value="MarriedwDep">Married with Dependents</option>
                         <option value="Married">Married</option>
                         <option value="SinglewDep">Single with Dependents</option>
@@ -77,11 +76,21 @@
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Gender:</label>
-                <div class="col-md-10" id="Gender">
-                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="true" checked />Male</label>
-                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="false" />Female</label>
+                <div class="col-md-10">
+                    <select id="Gender" class="form-control">
+                        <option value="">Select Option</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
                 </div>
             </div>
+            @*<div class="form-group">
+                    <label class="col-md-2 control-label">Gender:</label>
+                    <div class="col-md-10" id="Gender">
+                        <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="true" checked />Male</label>
+                        <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="false" />Female</label>
+                    </div>
+                </div>*@
             <div class="form-group">
                 <div class="col-md-offset-11">
                     <button id="EmployeeEnrollmentUpdate" class="btn">Save</button>
@@ -92,7 +101,7 @@
     @* Contact Info *@
     <div class="form-horizontal">
         <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+        @*<input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />*@
         <div class="collapsible" id="SecondStep">Contact Information</div>
         <div id="divEmpEnrollment" class="content">
             <p></p>
@@ -117,11 +126,21 @@
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Within City Limits?</label>
-                <div class="col-md-10" id="CityLimits">
-                    <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" checked />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" />No</label>
+                <div class="col-md-10">
+                    <select id="CityLimits" class="form-control">
+                        <option value="">Select Option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
                 </div>
             </div>
+            @*<div class="form-group">
+                    <label class="col-md-2 control-label">Within City Limits?</label>
+                    <div class="col-md-10" id="CityLimits">
+                        <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" checked />Yes</label>
+                        <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" />No</label>
+                    </div>
+                </div>*@
             <div class="form-group" id="divMailingAddress">
                 <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
                 <div class="col-md-10">
@@ -265,9 +284,9 @@
         width: 100%;
     }
 
-    table tr {
-        border-bottom: 1px solid black;
-    }
+        table tr {
+            border-bottom: 1px solid black;
+        }
 
     td:empty {
         width: 10px;
@@ -312,11 +331,11 @@
         document.getElementById("divPhysicalAddress").style.display = "block";
          //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
     }
-       
+
     //function ContactUpdate() {
 
     //    redirectTime = "3000";
-    //    redirectURL = window.location('/Employee/'); if single, will need to redirect to EnrollmentSelection page, so 
+    //    redirectURL = window.location('/Employee/'); if single, will need to redirect to EnrollmentSelection page, so
     // enroll in group health....based on marital status and dependents, will need to redirect to corresponding page
 
     //    var message;
@@ -342,7 +361,8 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmployeeEnrollmentUpdate").addEventListener("click", function () {
-            EmployeeRole = document.getElementById("EmployeeRole").value;
+            //Employee_id = document.getElementById("Employee_id").value;
+            Role = document.getElementById("Role").value;
             CurrentEmployer = document.getElementById("CurrentEmployer").value;
             JobTitle = document.getElementById("JobTitle").value;
             EmpNumber = document.getElementById("EmpNumber").value;
@@ -350,10 +370,11 @@
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
             MaritalStatus = document.getElementById("MaritalStatus").value;
-            Gender = document.getElementsByName("Gender").value;        
+            Gender = document.getElementById("Gender").value;
 
             var data = {
-                "EmployeeRole": EmployeeRole,
+                //"Employee_id": Employee_id,
+                "Role": Role,
                 "CurrentEmployer": CurrentEmployer,
                 "JobTitle": JobTitle,
                 "EmpNumber": EmpNumber,
@@ -370,7 +391,7 @@
         })
 
         document.querySelector("#EmployeeEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            Employee_id = document.getElementById("Employee_id").value;
+            //Employee_id = document.getElementById("Employee_id").value;
             MailingAddress = document.getElementById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
@@ -390,8 +411,7 @@
             MaritalStatus = document.getElementById("MaritalStatus").value;
 
             var data = {
-                "Employee_id": Employee_id,
-                "MaritalStatus": MaritalStatus,
+                //"Employee_id": Employee_id,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
@@ -419,7 +439,8 @@
     function FirstStep(emp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        document.querySelector("#EmployeeRole").value = emp.EmployeeRole;
+        //document.querySelector("#Employee_id").value = emp.Employee_id;
+        document.querySelector("#Role").value = emp.Role;
         document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
         document.querySelector("#JobTitle").value = emp.JobTitle;
         document.querySelector("#EmpNumber").value = emp.EmpNumber;
@@ -427,18 +448,18 @@
         document.querySelector("#FirstName").value = emp.FirstName;
         document.querySelector("#LastName").value = emp.LastName;
         document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
-        Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
-            if (e.checked) {
-                Gender = e.value;
-            }
-        });
-     
+        document.querySelector("#Gender").value = emp.Gender;
+        //Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
+        //    if (e.checked) {
+        //        Gender = e.value;
+        //    }
+        //});
+
     }
 
     function SecondStep(emp) {
-        document.querySelector("#Employee_id").value = emp.Employee_id;
-        document.querySelector("#MaritalStatus").value = emp.MaritalStatus;
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
+        //document.querySelector("#Employee_id").value = emp.Employee_id;
         document.querySelector("#MailingAddress").value = emp.MailingAddress;
         document.querySelector("#PObox").value = emp.PObox;
         document.querySelector("#City").value = emp.City;
@@ -453,7 +474,7 @@
         document.querySelector("#ZipCode2").value = emp.ZipCode2;
         document.querySelector("#County2").value = emp.County2;
     }
-  
+
     function postData(url, data) {
         //Default options are marked with *
         console.log(data);
@@ -473,8 +494,7 @@
         })
             .then(Response => {
                 console.log(Response);
-                Response.json();
-            }) //parses response to JSON
+                Response.json(); }) //parses response to JSON
     }
 </script>
 

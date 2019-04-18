@@ -14,7 +14,7 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value= @ViewBag.Employee.Employee_id />
         <div class="collapsible" id="FirstStep">Edit Employee Enrollment?</div>
         <div id="divEditEmp" class="content">
             <p></p>
@@ -22,57 +22,57 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
                 <div class="col-md-10">
-                    <select id="EmployeeRole" class="form-control" disabled>
-                        <option id="ManagerRole" value="Manager">Manger</option>
-                        <option id="EmployeeRole" value="Employee">Employee</option>
+                    <select id="Role" class="form-control" disabled>
+                        <option id="ManagerRole" value=@ViewBag.Employee.EmployeeRole>Manager</option>
+                        <option id="EmployeeRole" value=@ViewBag.Employee.EmployeeRole>Employee</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
                 <div class="col-md-10">
-                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="" />
+                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@ViewBag.Employee.EmployeeRole" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
                 <div class="col-md-10">
-                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="" />
+                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@ViewBag.Employee.EmployeeRole" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="" />
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value=@ViewBag.Employee.SSN />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Marital Status:</label>
                 <div class="col-md-10">
                     <select id="MaritalStatus" onchange="return MaritalStatusChange()" class="form-control">
-                        <option value="MarriedwDep">Married with Dependents</option>
-                        <option value="Married">Married</option>
-                        <option value="SinglewDep">Single with Dependents</option>
-                        <option value="Single">Single</option>
+                        <option value="MarriedwDep"  @(ViewBag.Employee.MaritalStatus== "MarriedwDep" ? "selected" : "")>Married with Dependents</option>
+                        <option value="Married"      @(ViewBag.Employee.MaritalStatus== "Married"     ? "selected" : "")>Married</option>
+                        <option value="SinglewDep"   @(ViewBag.Employee.MaritalStatus== "SinglewDep"  ? "selected" : "")>Single with Dependents</option>
+                        <option value="Single"       @(ViewBag.Employee.MaritalStatus== "Single"      ? "selected" : "")>Single</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@ViewBag.Employee.FirstName" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="LastName" class="col-md-2 control-label">Last Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                    <input type="text" id="LastName" class="form-control" name="LastName" value="@ViewBag.Employee.LastName" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Date of Birth:</label>
                 <div class="col-md-10">
-                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@ViewBag.Employee.DateOfBirth" />
                 </div>
             </div>
             <div class="form-group">
@@ -92,7 +92,7 @@
     @* Contact Info *@
     <div class="form-horizontal">
         <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee.Employee_id />
         <div class="collapsible" id="SecondStep">Edit Contact Information?</div>
         <div id="divEditEmpStepTwo" class="content">
             <p></p>

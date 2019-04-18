@@ -33,9 +33,17 @@ namespace Watson.Controllers
 
         //}
 
-        public ActionResult EmpOverview()
+        public ActionResult EmpOverview(int? Employee_id)
         {
-            return View(db.Employees.ToList());
+            if(Employee_id == null)
+            {
+                return View(db.Employees.ToList());
+            }
+            else
+            {
+                return View(db.Employees.Find(Employee_id));
+            }
+            
         }
 
         public JsonResult GetEmployee(int Employee_id, string EmpFirstName, string EmpLastName, string EmailAddress)
@@ -59,19 +67,21 @@ namespace Watson.Controllers
 
         public ActionResult NewEmployeeEnrollment()
         {
+            ViewBag.Title = "NewEmployeeEnrollment";
             return View();
         }
 
   
         //EmpEnrollment Method
         //Error with EmployeeRole and Gender
-        public JsonResult EmployeeEnrollmentNew(string EmployeeRole, string CurrentEmployer, 
+        public JsonResult EmployeeEnrollmentNew(/*int Employee_id,*/ string Role, string CurrentEmployer, 
             string JobTitle, string EmpNumber, string MaritalStatus, string FirstName, string LastName,
             DateTime DateOfBirth, string Gender)
         {
             Employee e = new Employee();
 
-            e.EmployeeRole = EmployeeRole;
+            //e.Employee_id = Employee_id;
+            e.EmployeeRole = Role;
             e.CurrentEmployer = CurrentEmployer;
             e.JobTitle = JobTitle;
             e.SSN = EmpNumber;
@@ -79,14 +89,14 @@ namespace Watson.Controllers
             e.FirstName = FirstName;
             e.LastName = LastName;
             e.DateOfBirth = DateOfBirth;
-            e.Gender = Gender;    
-
+            e.Gender = Gender;
+            
             db.Employees.Add(e);
             db.SaveChanges();
 
             //int result = e.Employee_id;
 
-            return Json(new { data = e }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = e}, JsonRequestBehavior.AllowGet);
         }
 
         //EmpContact Method
@@ -95,11 +105,10 @@ namespace Watson.Controllers
             return View();
         }
 
-        //Error with Employee_id and CityLimits- Undefined
-        public JsonResult EmpEnrollmentContact(int Employee_id, string MaritalStatus, string MailingAddress,
-            string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, 
-            string PObox2, string City2, string State2, string ZipCode2, string County2, string CityLimits, 
-            string EmailAddress, string PhoneNumber, string CellPhone)
+        public JsonResult EmpEnrollmentContact(/*int Employee_id,*/ string MaritalStatus, string MailingAddress,
+            string PObox, string City, string State, string ZipCode, string County, string CityLimits,
+            string PhysicalAddress, string PObox2, string City2, string State2, string ZipCode2,
+            string County2, string EmailAddress, string PhoneNumber, string CellPhone)
         {
             Employee e = new Employee();
             //var e = db.Employees
@@ -112,21 +121,13 @@ namespace Watson.Controllers
             e.State = State;
             e.ZipCode = ZipCode;
             e.County = County;
+            e.CityLimits = CityLimits;
             e.PhysicalAddress = PhysicalAddress;
             e.PObox = PObox2;
             e.City = City2;
             e.State = State2;
             e.ZipCode = ZipCode2;
-            e.County = County2;
-            if (CityLimits == "True")
-            {
-                e.CityLimits = true;
-            }
-            else
-            {
-                e.CityLimits = false;
-            }
-            
+            e.County = County2;   
             e.EmailAddress = EmailAddress;
             e.PhoneNumber = PhoneNumber;
             e.CellPhone = CellPhone;
@@ -188,7 +189,7 @@ namespace Watson.Controllers
             {
                 return HttpNotFound();
             }
-
+            ViewBag.Employee = e;
             return View(e);
         }
 
@@ -196,7 +197,7 @@ namespace Watson.Controllers
             string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MaritalStatus, 
             string MailingAddress, string PObox, string City, string State, string ZipCode, string County,
             string PhysicalAddress, string PObox2, string City2, string State2, string ZipCode2, 
-            string County2, bool CityLimits, string EmailAddress, string PhoneNumber, string CellPhone)
+            string County2, string CityLimits, string EmailAddress, string PhoneNumber, string CellPhone)
         {
             var e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)
@@ -241,11 +242,11 @@ namespace Watson.Controllers
                     Console.WriteLine(err);
                 }
 
-                RedirectToAction("EmpOverview");
+                RedirectToAction("EmpOverview", new { e.Employee_id });
             }
 
 
-            return Json(new { data = employee, Employee_id }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = e }, JsonRequestBehavior.AllowGet);
         }
 
         //EmpDetail Method
@@ -384,7 +385,11 @@ namespace Watson.Controllers
         public JsonResult SpEnrollmentNew(int Employee_id, string MaritalStatus, string RelationshipToInsured,
            string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
         {
-            Family_Info sp = new Family_Info();
+            //Family_Info sp = new Family_Info();
+            Family_Info sp = db.Family_Info
+                .Where(i => i.Employee_id == Employee_id)
+                .Where(i => i.RelationshipToInsured == "Spouse")
+                .Single();
 
             sp.RelationshipToInsured = RelationshipToInsured;
             sp.SSN = EmpNumber;
