@@ -23,37 +23,38 @@
                 <label class="col-md-2 control-label">Employee Role:</label>
                 <div class="col-md-10">
                     <select id="Role" class="form-control" disabled>
-                        <option id="ManagerRole" value=@ViewBag.Employee.EmployeeRole>Manager</option>
-                        <option id="EmployeeRole" value=@ViewBag.Employee.EmployeeRole>Employee</option>
+                        <option id="AdminRole"    value=@(ViewBag.Employee.EmployeeRole == "Admin"    ? "selected" : "")>Administrator</option>
+                        <option id="ManagerRole"  value=@(ViewBag.Employee.EmployeeRole == "Manager"  ? "selected" : "")>Manager</option>
+                        <option id="EmployeeRole" value=@(ViewBag.Employee.EmployeeRole == "Employee" ? "selected" : "")>Employee</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
                 <div class="col-md-10">
-                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@ViewBag.Employee.EmployeeRole" />
+                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@ViewBag.Employee.CurrentEmployer" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
                 <div class="col-md-10">
-                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@ViewBag.Employee.EmployeeRole" />
+                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@ViewBag.Employee.JobTitle" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value=@ViewBag.Employee.SSN />
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@ViewBag.Employee.SSN" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Marital Status:</label>
                 <div class="col-md-10">
                     <select id="MaritalStatus" onchange="return MaritalStatusChange()" class="form-control">
-                        <option value="MarriedwDep"  @(ViewBag.Employee.MaritalStatus== "MarriedwDep" ? "selected" : "")>Married with Dependents</option>
-                        <option value="Married"      @(ViewBag.Employee.MaritalStatus== "Married"     ? "selected" : "")>Married</option>
-                        <option value="SinglewDep"   @(ViewBag.Employee.MaritalStatus== "SinglewDep"  ? "selected" : "")>Single with Dependents</option>
-                        <option value="Single"       @(ViewBag.Employee.MaritalStatus== "Single"      ? "selected" : "")>Single</option>
+                        <option value="MarriedwDep" @(ViewBag.Employee.MaritalStatus == "MarriedwDep" ? "selected" : "")>Married with Dependents</option>
+                        <option value="Married"     @(ViewBag.Employee.MaritalStatus == "Married"     ? "selected" : "")>Married</option>
+                        <option value="SinglewDep"  @(ViewBag.Employee.MaritalStatus == "SinglewDep"  ? "selected" : "")>Single with Dependents</option>
+                        <option value="Single"      @(ViewBag.Employee.MaritalStatus == "Single"      ? "selected" : "")>Single</option>
                     </select>
                 </div>
             </div>
@@ -72,16 +73,25 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Date of Birth:</label>
                 <div class="col-md-10">
-                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@ViewBag.Employee.DateOfBirth" />
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value= @(((DateTime)ViewBag.Employee.DateOfBirth.Date).ToString("yyyy-MM-dd")) />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Gender:</label>
-                <div class="col-md-10" id="Gender">
+                <div class="col-md-10">
+                    <select id="Gender" class="form-control">
+                        <option value="Male"   @(ViewBag.Employee.Gender == "Male" ?   "selected" : "")>Male</option>
+                        <option value="Female" @(ViewBag.Employee.Gender == "Female" ? "selected" : "")>Female</option>
+                    </select>
+                </div>
+            </div>
+            @*<div class="form-group">
+                <label class="col-md-2 control-label">Gender:</label>
+                <div class="col-md-10">
                     <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="true" checked />Male</label>
                     <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="false" />Female</label>
                 </div>
-            </div>
+            </div>*@
             <div class="form-group">
                 <div class="col-md-offset-11">
                     <button id="EmpEditUpdate" class="btn">Save</button>
@@ -92,7 +102,6 @@
     @* Contact Info *@
     <div class="form-horizontal">
         <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee.Employee_id />
         <div class="collapsible" id="SecondStep">Edit Contact Information?</div>
         <div id="divEditEmpStepTwo" class="content">
             <p></p>
@@ -101,29 +110,38 @@
                 <div class="form-group">
                     <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
-                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" />
-                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
-                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
-                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value= "@ViewBag.Employee.MailingAddress" />
+                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value= "@ViewBag.Employee.PObox" />
+                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value= "@ViewBag.Employee.City" />
+                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value= "@ViewBag.Employee.State" />
+                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value= "@ViewBag.Employee.ZipCode" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
-                        <input type="text" id="County" class="form-control" placeholder="County" name="County" value="" />
+                        <input type="text" id="County" class="form-control" placeholder="County" name="County" value= "@ViewBag.Employee.County" />
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Within City Limits?</label>
+                <div class="col-md-10">
+                    <select id="CityLimits" class="form-control">
+                        <option value="Yes" @(ViewBag.Employee.CityLimits == "Yes" ? "selected" : "")>Yes</option>
+                        <option value="No"  @(ViewBag.Employee.CityLimits == "No"  ? "selected" : "")>No</option>
+                    </select>
+                </div>
+            </div>
+            @*<div class="form-group">
+                <label class="col-md-2 control-label">Within City Limits?</label>
                 <div class="col-md-10" id="CityLimits">
                     <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" checked />Yes</label>
                     <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" />No</label>
                 </div>
-            </div>
+            </div>*@
             <div class="form-group" id="divMailingAddress">
-                <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
+                <label class="col-md-2 control-label">Is your Physical Address same as Mailing Address?</label>
                 <div class="col-md-10">
                     <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" onclick="HidePhysicalAddress()" name="Address" value="true" />Yes</label>
                     <label class="radio-inline"><input type="radio" id="addressNotSame" class="radio-inline" onclick="ShowPhysicalAddress()" name="Address" value="false" checked />No</label>
@@ -133,40 +151,40 @@
                 <div class="form-group">
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="" />
-                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" value="" />
-                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="" />
-                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="" />
-                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value= "@ViewBag.Employee.MailingAddress" />
+                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" value= "@ViewBag.Employee.PObox" />
+                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value= "@ViewBag.Employee.City" />
+                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value= "@ViewBag.Employee.State "/>
+                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value= "@ViewBag.Employee.ZipCode" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
-                        <input type="text" id="County2" class="form-control" placeholder="County" name="County" value="" />
+                        <input type="text" id="County2" class="form-control" placeholder="County" name="County" value= "@ViewBag.Employee.County" />
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="EmailAddress" class="col-md-2 control-label">Email Address:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="" />
+                    <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value= "@ViewBag.Employee.EmailAddress" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="container">
                     <label class="col-md-2 control-label">Phone Number:</label>
-                    <div class="col-xs-4">
+                    <div class="col-xs-6">
                         <div class="form-group phone-number">
-                            <div class="col-xs-3">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
+                            <div class="col-xs-4">
+                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="5" value= "@ViewBag.Employee.PhoneNumber" />
                             </div>
-                            <div class="col-xs-3">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
+                            @*<div class="col-xs-3">
+                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" />
                             </div>
                             <div class="col-xs-4">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4" value="" />
-                            </div>
+                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4"  />
+                            </div>*@
                         </div>
                     </div>
                 </div>
@@ -174,23 +192,23 @@
             <div class="form-group">
                 <div class="container">
                     <label class="col-md-2 control-label">Cell Phone:</label>
-                    <div class="col-xs-4">
+                    <div class="col-xs-6">
                         <div class="form-group phone-number">
-                            <div class="col-xs-3">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value="" />
+                            <div class="col-xs-4">
+                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="5" value= "@ViewBag.Employee.CellPhone" />
                             </div>
-                            <div class="col-xs-3">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value="" />
+                            @*<div class="col-xs-3">
+                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value= "@ViewBag.Employee.CellPhone" />
                             </div>
                             <div class="col-xs-4">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="4" maxlength="4" value="" />
-                            </div>
+                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="4" maxlength="4" value= "@ViewBag.Employee.CellPhone" />
+                            </div>*@
                         </div>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
+                <div class="col-md-offset-11">
                     <button id="EmpEditUpdateStepTwo" class="btn">Save</button>
                     @*<input id="Submit" type="submit" onclick="return EmployeeEditUpdate()" value="Save" class="btn" />*@
                 </div>
@@ -316,7 +334,6 @@
             } else {
                 content.style.display = "block";
             }
-
         });
     }
 
@@ -334,7 +351,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmpEditUpdate").addEventListener("click", function () {
-            EmployeeRole = document.getElementById("EmployeeRole").value;
+            Role = document.getElementById("Role").value;
             CurrentEmployer = document.getElementById("CurrentEmployer").value;
             JobTitle = document.getElementById("JobTitle").value;
             EmpNumber = document.getElementById("EmpNumber").value;
@@ -342,15 +359,16 @@
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
             MaritalStatus = document.getElementById("MaritalStatus").value;
+            Gender = document.getElementById("Gender").value;
 
-            Gender = document.querySelector('input [name = "Gender"]').foreach(function (e, i) {
-                if (e.checked) {
-                    Gender = e.value;
-                }
-            });
+            //Gender = document.querySelector('input [name = "Gender"]').foreach(function (e, i) {
+            //    if (e.checked) {
+            //        Gender = e.value;
+            //    }
+            //});
 
             var data = {
-                "EmployeeRole": EmployeeRole,
+                "Role": Role,
                 "CurrentEmployer": CurrentEmployer,
                 "JobTitle": JobTitle,
                 "EmpNumber": EmpNumber,
@@ -367,6 +385,7 @@
         })
 
         document.querySelector("#EditEmpUpdateStepTwo").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
             MailingAddress = document.getElementById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
@@ -382,14 +401,16 @@
             EmailAddress = document.getElementById("EmailAddress").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             CellPhone = document.getElementById("CellPhone").value;
+            CityLimits = document.getElementById("CityLimits").value;
 
-            CityLimits = document.querySelector('input [name = "CityLimits"]').foreach(function (e, i) {
-                if (e.checked) {
-                    CityLimits = e.value;
-                }
-            });
+            //CityLimits = document.querySelector('input [name = "CityLimits"]').foreach(function (e, i) {
+            //    if (e.checked) {
+            //        CityLimits = e.value;
+            //    }
+            //});
 
             var data = {
+                "Employee_id": Employee_id,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
@@ -415,12 +436,13 @@
     })
 
     function FirstStep(emp) {
-        document.querySelector("#EditEmp").nextElementSibling.content.style.display = "block";
-        document.querySelector("#EmployeeRole").innerHTML = emp.EmployeeRole;
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#Employee_id").value = emp.Employee_id;
+        document.querySelector("#Role").value = emp.Role;
         document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
         document.querySelector("#JobTitle").value = emp.JobTitle;
         document.querySelector("#EmpNumber").value = emp.EmpNumber;
-        document.querySelector("#MaritalStatus").innerHTML = emp.MaritalStatus;
+        document.querySelector("#MaritalStatus").value = emp.MaritalStatus;
         document.querySelector("#FirstName").value = emp.FirstName;
         document.querySelector("#LastName").value = emp.LastName;
         document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
@@ -428,8 +450,9 @@
     }
 
     function SecondStep(emp) {
-        document.querySelector("#EditEmpUpdate").nextElementSibling.style.display = "none";
-        document.querySelector("#EditEmpUpdateStepTwi").nextElementSibling.style.display = "block";
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
+        document.querySelector("#Employee_id").value = emp.Employee_id;
         document.querySelector("#MailingAddress").value = emp.MailingAddress;
         document.querySelector("#PObox").value = emp.PObox;
         document.querySelector("#City").value = emp.City;

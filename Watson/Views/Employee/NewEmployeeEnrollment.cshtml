@@ -361,7 +361,6 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmployeeEnrollmentUpdate").addEventListener("click", function () {
-            //Employee_id = document.getElementById("Employee_id").value;
             Role = document.getElementById("Role").value;
             CurrentEmployer = document.getElementById("CurrentEmployer").value;
             JobTitle = document.getElementById("JobTitle").value;
@@ -373,7 +372,6 @@
             Gender = document.getElementById("Gender").value;
 
             var data = {
-                //"Employee_id": Employee_id,
                 "Role": Role,
                 "CurrentEmployer": CurrentEmployer,
                 "JobTitle": JobTitle,
@@ -391,7 +389,7 @@
         })
 
         document.querySelector("#EmployeeEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            //Employee_id = document.getElementById("Employee_id").value;
+            Employee_id = document.getElementById("Employee_id").value;
             MailingAddress = document.getElementById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
@@ -411,7 +409,7 @@
             MaritalStatus = document.getElementById("MaritalStatus").value;
 
             var data = {
-                //"Employee_id": Employee_id,
+                "Employee_id": Employee_id,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
@@ -439,7 +437,7 @@
     function FirstStep(emp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        //document.querySelector("#Employee_id").value = emp.Employee_id;
+        document.querySelector("#Employee_id").value = emp.Employee_id;
         document.querySelector("#Role").value = emp.Role;
         document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
         document.querySelector("#JobTitle").value = emp.JobTitle;
@@ -449,6 +447,7 @@
         document.querySelector("#LastName").value = emp.LastName;
         document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
         document.querySelector("#Gender").value = emp.Gender;
+
         //Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
         //    if (e.checked) {
         //        Gender = e.value;
@@ -458,8 +457,9 @@
     }
 
     function SecondStep(emp) {
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        //document.querySelector("#Employee_id").value = emp.Employee_id;
+        document.querySelector("#Employee_id").value = emp.Employee_id;
         document.querySelector("#MailingAddress").value = emp.MailingAddress;
         document.querySelector("#PObox").value = emp.PObox;
         document.querySelector("#City").value = emp.City;
