@@ -73,8 +73,7 @@ namespace Watson.Controllers
 
   
         //EmpEnrollment Method
-        //Error with EmployeeRole and Gender
-        public JsonResult EmployeeEnrollmentNew(int Employee_id, string Role, string CurrentEmployer, 
+        public JsonResult EmployeeEnrollmentNew(/*int Employee_id,*/ string Role, string CurrentEmployer, 
             string JobTitle, string EmpNumber, string MaritalStatus, string FirstName, string LastName,
             DateTime DateOfBirth, string Gender)
         {
@@ -94,7 +93,7 @@ namespace Watson.Controllers
             db.Employees.Add(e);
             db.SaveChanges();
 
-            ViewBag.Employee = e;
+            //ViewBag.Employee = e;
 
             return Json(new { data = e}, JsonRequestBehavior.AllowGet);
         }
@@ -276,6 +275,7 @@ namespace Watson.Controllers
 
             return Json(new { data = e }, JsonRequestBehavior.AllowGet);    
         }
+        //----------------------------------------------------------------------------------------
 
         //DeleteEmp Method
         public ActionResult DeleteEmp(int? Employee_id)
@@ -294,6 +294,7 @@ namespace Watson.Controllers
             return View(e);
         }
 
+        //DeleteEmp Method
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteEmp")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int Employee_id)
@@ -374,6 +375,7 @@ namespace Watson.Controllers
 
             return Json(new { data = f, Employee_id }, JsonRequestBehavior.AllowGet);
         }
+        //----------------------------------------------------------------------------------------
 
         //SpEnrollment Method
         public ActionResult SpEnrollment()
@@ -429,6 +431,7 @@ namespace Watson.Controllers
             return View(f);
         }
 
+        //SpEditUpdate Method
         public JsonResult SpEditUpdate(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured,
             string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress,
             string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, string PObox2,
@@ -509,6 +512,7 @@ namespace Watson.Controllers
             return View(family);
         }
 
+        //GetSpDetail Method
         public JsonResult GetSpDetail(int FamilyMember_id)
         {
             var sp = db.Family_Info
@@ -517,20 +521,22 @@ namespace Watson.Controllers
 
             return Json(new { data = sp }, JsonRequestBehavior.AllowGet);
         }
+        //----------------------------------------------------------------------------------------
 
+        //DeleteSp Method
         public ActionResult DeleteSp(int? FamilyMember_id)
         {
             if (FamilyMember_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Family_Info f = db.Family_Info.Find(FamilyMember_id);
-            if (f == null)
+            Family_Info sp = db.Family_Info.Find(FamilyMember_id);
+            if (sp == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Family_Info = f;
-            return View(f);
+            ViewBag.Family_Info = sp;
+            return View(sp);
         }
         
         //DeleteSp Method
@@ -538,14 +544,14 @@ namespace Watson.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? FamilyMember_id)
         {
-            Family_Info family = db.Family_Info.Find(FamilyMember_id);
+            Family_Info sp = db.Family_Info.Find(FamilyMember_id);
 
             db.DeleteEmployeeAndDependents(FamilyMember_id);
 
-            db.Family_Info.Remove(family);
+            db.Family_Info.Remove(sp);
             db.SaveChanges();
 
-            return RedirectToAction("FamilyOverview");
+            return RedirectToAction("FamilyOverview", new { sp.Employee_id });
         }
         //----------------------------------------------------------------------------------------
 
@@ -554,6 +560,7 @@ namespace Watson.Controllers
             return View();
         }
 
+        //DepEnrollmentNew Method
         public JsonResult DepEnrollmentNew(int Employee_id, string MaritalStatus, string RelationshipToInsured,
            string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender, string EmpNumber,
            string CoveredByOtherIns, string InsCompany, string PolicyNumber, string InsPhoneNumber, 
@@ -616,6 +623,160 @@ namespace Watson.Controllers
             db.SaveChanges();
 
             return Json(new { data = dep, emp, o }, JsonRequestBehavior.AllowGet);
+        }
+
+        //EditDep Method
+        public ActionResult EditDep(int Employee_id, int? FamilyMember_id)
+        {
+            if (FamilyMember_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Family_Info f = db.Family_Info.Find(FamilyMember_id);
+            if (f == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Family_Info = f;
+
+            return View(f);
+        }
+
+        //DepEditUpdate Method
+        public JsonResult DepEditUpdate(int Employee_id, string MaritalStatus, string RelationshipToInsured,
+           string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender, string EmpNumber,
+           string CoveredByOtherIns, string InsCompany, string PolicyNumber, string InsPhoneNumber,
+           string InsMailingAddress, string InsPObox, string InsCity, string InsState, string InsZipCode)
+        {
+            Family_Info dep = db.Family_Info
+             .Where(i => i.Employee_id == Employee_id)
+             .Where(i => i.RelationshipToInsured == "Dependent")
+             .Single();
+
+            dep.RelationshipToInsured = RelationshipToInsured;
+            dep.FirstName = DepFirstName;
+            dep.LastName = DepLastName;
+            dep.DateOfBirth = DateOfBirth;
+            dep.Gender = Gender;
+
+            ViewBag.spouseExist = true;
+            ViewBag.MartialStatus = MaritalStatus;
+
+            Employee e = db.Employees.Find(Employee_id);
+            if (e.MaritalStatus == "Single")
+            {
+                ViewBag.spouseExist = false;
+                ViewBag.RelationshipToInsured = "Single";
+            }
+            else if (e.MaritalStatus == "SinglewDep")
+            {
+                ViewBag.spouseExist = false;
+                ViewBag.RelationshipToInsured = "Spouse";
+            }
+            else
+            {
+                ViewBag.RelationshipToInsured = "Dependent";
+            }
+
+            Employee emp = new Employee();
+
+            emp.SSN = EmpNumber;
+
+            Other_Insurance o = db.Other_Insurance
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
+
+            o.CoveredByOtherInsurance = CoveredByOtherIns;
+            o.InsuranceCompany = InsCompany;
+            o.PolicyNumber = PolicyNumber;
+            o.PhoneNumber = InsPhoneNumber;
+            o.MailingAddress = InsMailingAddress;
+            o.PObox = InsPObox;
+            o.City = InsCity;
+            o.State = InsState;
+            o.ZipCode = InsZipCode;
+
+            ViewBag.Family_Info = dep;
+            ViewBag.Employee = emp;
+            ViewBag.Other_Insurance = o;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(dep).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(o).State = System.Data.Entity.EntityState.Modified;
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception error)
+                {
+                    Console.WriteLine(error);
+                }
+
+                RedirectToAction("FamilyOverview", new { e.Employee_id });
+            }
+
+            return Json(new { data = dep, o }, JsonRequestBehavior.AllowGet);
+        }
+
+        //DepDetail Method
+        public ActionResult DepDetail(int? FamilyMember_id)
+        {
+            if (FamilyMember_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Family_Info dep = db.Family_Info.Find(FamilyMember_id);
+            if (dep == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(dep);
+        }
+
+        public JsonResult GetDepDetail(int FamilyMember_id)
+        {
+            var dep = db.Family_Info
+                 .Where(i => i.FamilyMember_id == FamilyMember_id)
+                 .Single();
+
+            return Json(new { data = dep }, JsonRequestBehavior.AllowGet);
+        }
+        //----------------------------------------------------------------------------------------
+
+        //DeleteDep Method
+        public ActionResult DeleteDep(int? FamilyMember_id)
+        {
+            if (FamilyMember_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Family_Info dep = db.Family_Info.Find(FamilyMember_id);
+            if (dep == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.Family_Info = dep;
+            return View(dep);
+        }
+
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteDep")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirm(int? FamilyMember_id)
+        {
+            Family_Info dep = db.Family_Info.Find(FamilyMember_id);
+
+            db.DeleteEmployeeAndDependents(FamilyMember_id);
+
+            db.Family_Info.Remove(dep);
+            db.SaveChanges();
+
+            return RedirectToAction("FamilyOverview", new { dep.Employee_id });
         }
         //----------------------------------------------------------------------------------------
     }

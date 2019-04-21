@@ -6,14 +6,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Delete</title>
 </head>
 <body>
     <div class="form-horizontal">
         <hr />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Family_Info.Employee_id />
+        @*<input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.Family_Info.FamilyMember_id />*@
         <div class="collapsible" id="divDepDelete">Delete Dependent Information?</div>
         <div class="content" disabled>
             <p></p>
@@ -24,63 +26,52 @@
                     <label class="col-md-offset-2 control-label">First Name:</label>
                 </dt>
                 <dd>
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="dep.FirstName">
+                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@ViewBag.Family_Info.FirstName">
                 </dd>
                 <dt>
                     <label class="col-md-offset-2 control-label">Last Name:</label>
                 </dt>
                 <dd>
-                    <input type="text" id="LastName" class="form-control" name="LastName" value="dep.LastName">
+                    <input type="text" id="LastName" class="form-control" name="LastName" value="@ViewBag.Family_Info.LastName">
                 </dd>
                 <dt>
                     <label class="col-md-offset-2 control-label">Date of Birth:</label>
                 </dt>
                 <dd>
-                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="dep.DateOfBirth">
-                </dd>
-                <dd>
-                    @Convert.ToDateTime(Model.DateOfBirth).ToString("MM/dd/yyyy")
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@ViewBag.Family_Info.DateOfBirth">
                 </dd>
                 <dt>
                     <label class="col-md-offset-2 control-label">Gender:</label>
                 </dt>
-                <dd>
-                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((Model.Gender == "Male") ? "checked" : "") />Male</label>
-                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((Model.Gender == "Female") ? "checked" : "") />Female</label>
+                <dd class="col-md-10">
+                    <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((ViewBag.Family_Info.Gender == "Male") ? "checked" : "") disabled />Male</label>
+                    <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((ViewBag.Family_Info.Gender == "Female") ? "checked" : "") disabled />Female</label>
                 </dd>
             </dl>
 
             <h4>Insurance Info:</h4>
             <dl class="dl-horizontal">
-                @foreach (var dep in Model.Other_Insurance)
-                {
-                    <dt>
-                        <label class="col-md-offset-2 control-label">Insurance Company:</label>
-                    </dt>
-                    <dd>
-                        <input type="text" id="InsuranceCompany" class="form-control" name="InsuranceCompany" value="dep.InsuranceCompany">
-                    </dd>
-                    <dt>
-                        <label class="col-md-offset-2 control-label">Policy Number:</label>
-                    </dt>
-                    <dd>
-                        <input type="number" id="PolicyNumber" class="form-control" name="PolicyNumber" value="dep.PolicyNumber">
-                    </dd>
-                    <dt>
-                        <label class="col-md-offset-2 control-label">Phone Number:</label>
-                    </dt>
-                    <dd>
-                        <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="dep.PhoneNumber">
-                    </dd>
-                    <dt>
-                        <label class="col-md-offset-2 control-label">Mailing Address:</label>
-                    </dt>
-                    <dd>
-                        <input type="text" id="InsMailingAddress" class="form-control" name="MailingAddress" value="dep.InsMailingAddress"  />
-                        <input type="text" id="InsCity" class="form-control" name="City" value="dep.InsCity"  />
-                        <input type="text" id="InsState" class="form-control" name="State" value="dep.InsState"/>
-                        <input type="text" id="InsZipCode" class="form-control" name="ZipCode" value="dep.InsZipCode"/>
-                    </dd>
+                <dd id="divCoveredByOtherIns">
+                    @*@foreach (var dep in Model.Other_Insurance)
+                    {*@
+                    <label class="col-md-2 control-label">Insurance Company:</label>
+                    <input type="text" id="InsuranceCompany" class="form-control" name="InsuranceCompany" value="@ViewBag.Other_Insurance.InsuranceCompany" />
+                    <label class="col-md-2 control-label">Policy Number:</label>
+                    <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="@ViewBag.Other_Insurance.PolicyNumber" />
+                    <label class="col-md-2 control-label">Phone Number:</label>
+                    <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="@ViewBag.Other_Insurance.PhoneNumber" />
+                    @*}*@
+
+                    <label class="col-md-2 control-label">Mailing Address:</label>
+                    @*@foreach (var dep in Model.Other_Insurance)
+                    {*@
+                    <input type="text" id="InsMailingAddress" class="form-control" name="MailingAddress" value="@ViewBag.Other_Insurance.MailingAddress" disabled />
+                    <input type="text" id="InsPObox" class="form-control" name="PObox" value="@ViewBag.Other_Insurance.PObox" disabled />
+                    <input type="text" id="InsCity" class="form-control" name="City" value="@ViewBag.Other_Insurance.City" disabled />
+                    <input type="text" id="InsState" class="form-control" name="State" value="@ViewBag.Other_Insurance.State" disabled />
+                    <input type="text" id="InsZipCode" class="form-control" name="ZipCode" value="@ViewBag.Other_Insurance.ZipCode" disabled />
+                    @*}*@
+                </dd>
                 }
             </dl>
         </div>
@@ -152,7 +143,34 @@
     .phone-number .col-xs-3, .phone-number .col-xs-4 {
         padding-left: 0;
     }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        table tr {
+            border-bottom: 1px solid black;
+        }
+
+    td:empty {
+        width: 10px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 0px;
+    }
+
+    th {
+        border-bottom: 5px solid black;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 </style>
+
 
 <script>
 
@@ -178,17 +196,13 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#confirmDelete").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
+            Gender = document.getElementById("Gender").value;
 
-            Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
-                if (e.checked) {
-                    Gender = e.value;
-                }
-            });
-
-            InsCompany = document.getElementById("InsCompany").value;
+            InsuranceCompany = document.getElementById("InsuranceCompany").value;
             PolicyNumber = document.getElementById("PolicyNumber").value;
             InsPhoneNumber = document.getElementById("InsPhoneNumber").value;
             InsMailingAddress = document.getElementById("InsMailingAddress").value;
@@ -197,11 +211,12 @@
             InsZipCode = document.getElementById("InsZipCode").value;
 
             var data = {
+                "Employee_id": Employee_id,
                 "FirstName": FirstName,
                 "LastName": LastName,
                 "DateOfBirth": DateOfBirth,
                 "Gender": Gender,
-                "InsCompany": InsCompany,
+                "InsuranceCompany": InsuranceCompany,
                 "PolicyNumber": PolicyNumber,
                 "InsPhoneNumber": InsPhoneNumber,
                 "InsMailingAddress": InsMailingAddress,
@@ -217,11 +232,12 @@
     })
 
     function DeleteConfirm(dep) {
+        document.querySelector("Employee_id").value = dep.Employee_id;
         document.querySelector("FirstName").value = dep.FirstName;
         document.querySelector("LastName").value = dep.LastName;
         document.querySelector("DateOfBirth").value = dep.DateOfBirth;
         document.querySelector("Gender").value = dep.Gender;
-        document.querySelector("InsCompany").value = dep.InsCompany;
+        document.querySelector("InsuranceCompany").value = dep.InsuranceCompany;
         document.querySelector("PolicyNumber").value = dep.PolicyNumber;
         document.querySelector("InsPhoneNumber").value = dep.InsPhoneNumber;
         document.querySelector("InsMailingAddress").value = dep.InsMailingAddress;
@@ -240,12 +256,12 @@
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
-            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            method: 'Delete', //*GET, POST, PUT, DELETE, etc...
             mode: 'cors', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer
         })
             .then(Response => Response.json()) //parses response to JSON
     }
-    
+
 </script>

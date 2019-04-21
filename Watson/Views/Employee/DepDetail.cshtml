@@ -61,36 +61,29 @@
                 <dd class="form-group" id="depOtherIns">
                     <label class="col-md-4 control-label">Is your dependent covered by other insurance, including Medicare/Medicaid? If so, we need the following information:</label>
                     <div class="form-group">
-                        @*@foreach (var dep in Model.Other_Insurance)
-                        {*@
+                        
                         <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" @((ViewBag.Other_Insurance.CoverByOtherInsurance == "Yes") ? "checked" : "") onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" disabled />Yes</label>
-                        <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline" @((ViewBag.Other_Insurance.CoverByOtherInsurance == "No") ? "checked" : "") onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" disabled />No</label>
-                        @*}*@
+                        <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline"  @((ViewBag.Other_Insurance.CoverByOtherInsurance == "No") ? "checked" : "") onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" disabled />No</label>
+                        
                     </div>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Insurance Information:</label>
                 </dt>
                 <dd id="divCoveredByOtherIns">
-                    @*@foreach (var dep in Model.Other_Insurance)
-                    {*@
                     <label class="col-md-2 control-label">Insurance Company:</label>
                     <input type="text" id="InsuranceCompany" class="form-control" name="InsuranceCompany" value="@ViewBag.Other_Insurance.InsuranceCompany" />
                     <label class="col-md-2 control-label">Policy Number:</label>
                     <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="@ViewBag.Other_Insurance.PolicyNumber" />
                     <label class="col-md-2 control-label">Phone Number:</label>
                     <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="@ViewBag.Other_Insurance.PhoneNumber" />
-                    @*}*@
-
+                    <p></p>
                     <label class="col-md-2 control-label">Mailing Address:</label>
-                    @*@foreach (var dep in Model.Other_Insurance)
-                    {*@
                     <input type="text" id="InsMailingAddress" class="form-control" name="MailingAddress" value="@ViewBag.Other_Insurance.MailingAddress" disabled />
                     <input type="text" id="InsPObox" class="form-control" name="PObox" value="@ViewBag.Other_Insurance.PObox" disabled />
                     <input type="text" id="InsCity" class="form-control" name="City" value="@ViewBag.Other_Insurance.City" disabled />
                     <input type="text" id="InsState" class="form-control" name="State" value="@ViewBag.Other_Insurance.State" disabled />
                     <input type="text" id="InsZipCode" class="form-control" name="ZipCode" value="@ViewBag.Other_Insurance.ZipCode" disabled />
-                    @*}*@
                 </dd>
             </dl>
         </div>
