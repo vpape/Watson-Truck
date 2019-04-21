@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "DeleteSp";
+    ViewBag.Title = "SpDetail";
 }
 <!DOCTYPE html>
 <html>
@@ -9,22 +9,23 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Delete</title>
+    <title>Spouse Detail</title>
 </head>
 <body>
     <div class="form-horizontal">
         <hr />
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Family_Info.Employee_id />
-        <div class="collapsible" id="divSpDelete">Delete Spouse Information?</div>
-        <div class="content" disabled>
+        <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.Family_Info.FamilyMember_id />
+        <div class="collapsible" id="FirstStep"><h4>Spouse Detail</h4></div>
+        <div class="content">
             <p></p>
             <p></p>
             <dl class="dl-horizontal">
                 <dt>
-                    <label class="col-md-2 control-label">Relationship to Employee:</label>
+                    <label class="col-md-2 control-label">Employee Number:</label>
                 </dt>
-                <dd>
-                    <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.Family_Info.RelationshipToInsured">
+                <dd class="col-md-10">
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@ViewBag.Family_Info.SSN">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">First Name:</label>
@@ -42,14 +43,14 @@
                     <label class="col-md-2 control-label">Date of Birth:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@(((DateTime)ViewBag.Family_Info.DateOfBirth.Date).ToString("yyyy-MM-dd"))">
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@ViewBag.Family_Info.DateOfBirth">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Gender:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male"     @((ViewBag.Family_Info.Gender == "Male") ? "checked" : "")  />Male</label>
-                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((ViewBag.Family_Info.Gender == "Female") ? "checked" : "")/>Female</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @(ViewBag.Family_Info.Gender == "Male" ? "checked" : "" ) @*@((Model.Gender == "Male") ? "checked" : "")*@ />Male</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @(ViewBag.Family_Info.Gender == "Female" ? "checked" : "" ) @*@((Model.Gender == "Female") ? "checked" : "")*@ />Female</label>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Mailing Address:</label>
@@ -74,13 +75,6 @@
                     <text type="text" id="County2" class="form-control" name="County" value="@ViewBag.Family_Info.County" />
                 </dd>
                 <dt>
-                    <label class="col-md-2 control-label">Within City Limits?</label>
-                </dt>
-                <dd class="col-md-10">
-                    <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.Family_Info.CityLimits == "Yes")  ? "checked" : "") />Yes</label>
-                    <label class="radio-inline"><input disabled type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="No"   @((ViewBag.Family_Info.CityLimits == "No")   ? "checked" : "") />No</label>
-                </dd>
-                <dt>
                     <label class="col-md-2 control-label">Email:</label>
                 </dt>
                 <dd class="col-md-10">
@@ -102,20 +96,20 @@
                     <label class="col-md-2 control-label">Current Employer:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <input type="text" id="CurrentEmployer" class="form-control" name="Employer" value="@ViewBag.Family_Info.Employer">
+                    <input type="text" id="Employer" class="form-control" name="Employer" value="@ViewBag.Family_Info.Employer">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Employer Address:</label>
                 </dt>
                 <dd class="col-md-10">
                     <text type="text" id="EmployerMailingAddress" class="form-control" name="EmployerMailingAddress" value="@ViewBag.Family_Info.EmployerMailingAddress" />
-                    <text type="text" id="EmployerPObox" class="form-control" name="EmployerPObox" value="@ViewBag.Family_Info.EmployerPObox" />
+                    <text type="text" id="EmployerPObox" class="form-control" name="PObox" value="@ViewBag.Family_Info.EmployerPObox" />
                     <text type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="@ViewBag.Family_Info.EmployerCity" />
                     <text type="text" id="EmployerState" class="form-control" name="EmployerState" value="@ViewBag.Family_Info.EmployerState" />
                     <text type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="@ViewBag.Family_Info.EmployerZipCode" />
                 </dd>
                 <dt>
-                    <label class="col-md-2 control-label">Employer Phone Number:</label>
+                    <label class="col-md-2 control-label">Phone Number:</label>
                 </dt>
                 <dd class="col-md-10">
                     <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" value="@ViewBag.Family_Info.EmployerPhoneNumber">
@@ -123,10 +117,10 @@
             </dl>
         </div>
     </div>
-    <div class="form-actions no-color">
-        <button type="submit" id="confirmDelete" value="Delete" class="btn" data-toggle="confirmation">Delete</button> |
+    <p>
+        @Html.ActionLink("Edit", "EditSp", new { sp = Model.Family_Info.Employee_id }) |
         @Html.ActionLink("Back to List", "FamilyOverview")
-    </div>
+    </p>
 </body>
 </html>
 
@@ -153,76 +147,9 @@
         overflow: hidden;
         background-color: #f1f1f1;
     }
-
-    .btn {
-        background-color: #333;
-        color: white;
-    }
-
-    .button {
-        text-align: right;
-    }
-
-    a {
-        text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
-    }
-
-        a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-    .phone-number .col-xs-3::after {
-        content: "-";
-        position: absolute;
-        right: 5px;
-        color: black;
-        border: 0px solid;
-        top: 8px;
-    }
-
-    .phone-number .col-xs-4 {
-        width: 25%;
-    }
-
-    .phone-number .col-xs-3, .phone-number .col-xs-4 {
-        padding-left: 0;
-    }
-
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-        table tr {
-            border-bottom: 1px solid black;
-        }
-
-    td:empty {
-        width: 10px;
-    }
-
-    th, td {
-        text-align: left;
-        padding: 0px;
-    }
-
-    th {
-        border-bottom: 5px solid black;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
 </style>
+
 <script>
-
-    //add confirmDelte function and a prompt to asking
-    //if you are sure you want to delete this
-
-
     var col = document.querySelectorAll(".collapsible");
     var i;
 
@@ -240,83 +167,85 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#confirmDelete").addEventListener("click", function () {
-            Employee_id = document.getElementById("Employee_id").value;
-            RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
-            FirstName = document.getElementById("FirstName").value;
-            LastName = document.getElementById("LastName").value;
-            DateOfBirth = document.getElementById("DateOfBirth").value;
-            Gender = document.getElementById("Gender").value;
-   
-            MailingAddress = document.getElementsById("MailingAddress").value;
-            PObox = document.getElementById("PObox").value;
-            City = document.getElementById("City").value;
-            State = document.getElementById("State").value;
-            ZipCode = document.getElementById("ZipCode").value;
-            County = document.getElementById("County").value;
-            PhysicalAddress = document.getElementsById("PhysicalAddress").value;
-            PObox2 = document.getElementById("PObox2").value;
-            City2 = document.getElementById("City2").value;
-            State2 = document.getElementById("State2").value;
-            ZipCode2 = document.getElementById("ZipCode2").value;
-            County2 = document.getElementById("County2").value;
-            EmailAddress = document.getElementById("EmailAddress").value;
-            PhoneNumber = document.getElementById("PhoneNumber").value;
-            CellPhone = document.getElementById("CellPhone").value;
-            CityLimits = document.getElementById("CityLimits").value;
+        Employee_id = document.getElementById("Employee_id").value;
+        EmpNumber = document.getElementById("EmpNumber").value;
+        FirstName = document.getElementById("FirstName").value;
+        LastName = document.getElementById("LastName").value;
+        DateOfBirth = document.getElementById("DateOfBirth").value;
+        Gender = document.getElementById("Gender").value;
 
-            Employer = document.getElementById("Employer").value;
-            EmployerAddress = document.getElementById("EmployerMailingAddress").value;
-            EmployerPObox = document.getElementById("EmployerPObox").value;
-            EmployerCity = document.getElementById("EmployerCity").value;
-            EmployerState = document.getElementById("EmployerState").value;
-            EmployerZipCode = document.getElementById("EmployerZipCode").value;
-            EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
+        MailingAddress = document.getElementById("MailingAddress").value;
+        PObox = document.getElementById("PObox").value;
+        City = document.getElementById("City").value;
+        State = document.getElementById("State").value;
+        ZipCode = document.getElementById("ZipCode").value;
+        County = document.getElementById("County").value;
+        PhysicalAddress = document.getElementById("PhysicalAddress").value
+        PObox2 = document.getElementById("PObox2").value,
+        City2 = document.getElementById("City2").value
+        State2 = document.getElementById("State2").value
+        ZipCode2 = document.getElementById("ZipCode2").value
+        County2 = document.getElementById("County2").value
+        EmailAddress = document.getElementById("EmailAddress").value;
+        PhoneNumber = document.getElementById("PhoneNumber").value;
+        CellPhone = document.getElementById("CellPhone").value;
+        CityLimits = document.getElementById("CityLimits").value;
 
-            var data = {
-                "Employee_id": Employee_id,
-                "FirstName": FirstName,
-                "LastName": LastName,
-                "DateOfBirth": DateOfBirth,
-                "Gender": Gender,
-                "MailingAddress": MailingAddress,
-                "City": City,
-                "State": State,
-                "ZipCode": ZipCode,
-                "County": County,
-                "PhysicalAddress": PhysicalAddress,
-                "PObox2": PObox2,
-                "City2": City2,
-                "State2": State2,
-                "ZipCode2": ZipCode2,
-                "County2": County2,
-                "CityLimits": CityLimits,
-                "EmailAddress": EmailAddress,
-                "PhoneNumber": PhoneNumber,
-                "CellPhone": CellPhone,
-                "CurrentEmployer": CurrentEmployer,
-                "EmployerAddress": EmployerAddress,
-                "EmployerPObox": EmployerPObox,
-                "EmployerCity": EmployerCity,
-                "EmployerState": EmployerState,
-                "EmployerZipCode": EmployerZipCode,
-                "EmployerPhoneNumber": EmployerPhoneNumber,
-            }
+        Employer = document.getElementsById("Employer").value;
+        EmployerMailingAddress = document.getElementById("EmployerMailingAddress").value;
+        EmployerPObox = document.getElementById("EmployerPObox").value;
+        EmployerCity = document.getElementById("EmployerCity").value;
+        EmployerState = document.getElementById("EmployerState").value;
+        EmployerZipCode = document.getElementById("EmployerZipCode").value;
+        EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
 
-            var ret = postData('DeleteConfirmed', data)
-                .then(data => DeleteConfirm(data))
-                .catch(error => console.error(error))
-        })
+        var data = {
+            "Employee_id": Employee_id,
+            "EmpNumber": EmpNumber,
+            "FirstName": FirstName,
+            "DateOfBirth": DateOfBirth,
+            "Gender": Gender,
+            "MailingAddress": MailingAddress,
+            "PObox": PObox,
+            "City": City,
+            "State": State,
+            "ZipCode": ZipCode,
+            "County": County,
+            "PhysicalAddress": PhysicalAddress,
+            "PObox2": PObox2,
+            "City2": City2,
+            "State2": State2,
+            "ZipCode2": ZipCode2,
+            "County2": County2,
+            "EmailAddress": EmailAddress,
+            "PhoneNumber": PhoneNumber,
+            "CellPhone": CellPhone,
+            "CityLimits": CityLimits,
+            "Employer": Employer,
+            "EmployerMailingAddress": EmployerMailingAddress,
+            "EmployerPObox": EmployerPObox,
+            "EmployerCity": EmployerCity,
+            "EmployerState": EmployerState,
+            "EmployerZipCode": EmployerZipCode,
+            "EmployerPhoneNumber": EmployerPhoneNumber,
+
+        }
+
+        var ret = postData('GetSpDetail', data)
+            .then(data => FirstStep(data))
+            .error(error => console.error(error))
 
     })
 
-    function DeleteConfirm(sp) {
+    function FirstStep(sp) {
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "block";
         document.querySelector("#Employee_id").value = sp.Employee_id;
+        document.querySelector("#EmpNumber").value = sp.EmpNumber;
         document.querySelector("#FirstName").value = sp.FirstName;
-        document.querySelector("#LastName").value = sp.LastName;
         document.querySelector("#DateOfBirth").value = sp.DateOfBirth;
         document.querySelector("#Gender").value = sp.Gender;
         document.querySelector("#MailingAddress").value = sp.MailingAddress;
+        document.querySelector("#PObox").value = sp.PObox;
         document.querySelector("#City").value = sp.City;
         document.querySelector("#State").value = sp.State;
         document.querySelector("#ZipCode").value = sp.ZipCode;
@@ -327,11 +256,10 @@
         document.querySelector("#State2").value = sp.State2;
         document.querySelector("#ZipCode2").value = sp.ZipCode2;
         document.querySelector("#County2").value = sp.County2;
-        document.querySelector("#CityLimits").value = sp.CityLimits;
         document.querySelector("#EmailAddress").value = sp.EmailAddress;
         document.querySelector("#PhoneNumber").value = sp.PhoneNumber;
         document.querySelector("#CellPhone").value = sp.CellPhone;
-        document.querySelector("#CurrentEmployer").value = sp.CurrentEmployer;
+        document.querySelector("#CityLimits").value = sp.CityLimits;
         document.querySelector("#EmployerMailingAddress").value = sp.EmployerAddress;
         document.querySelector("#EmployerPObox").value = sp.EmployerPObox;
         document.querySelector("#EmployerCity").value = sp.EmployerCity;
@@ -350,7 +278,7 @@
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
-            method: 'Delete', //*GET, POST, PUT, DELETE, etc...
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
             mode: 'cors', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer
@@ -358,6 +286,4 @@
             .then(Response => Response.json()) //parses response to JSON
     }
 
-    
 </script>
-

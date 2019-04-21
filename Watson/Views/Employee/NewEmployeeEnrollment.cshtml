@@ -11,7 +11,7 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee.Employee_id />
         <div class="collapsible" id="FirstStep">Enrollment</div>
         <div id="divEmpEnrollment" class="content">
             <p></p>
@@ -135,12 +135,12 @@
                 </div>
             </div>
             @*<div class="form-group">
-                    <label class="col-md-2 control-label">Within City Limits?</label>
-                    <div class="col-md-10" id="CityLimits">
-                        <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" checked />Yes</label>
-                        <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" />No</label>
-                    </div>
-                </div>*@
+            <label class="col-md-2 control-label">Within City Limits?</label>
+            <div class="col-md-10" id="CityLimits">
+                <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" checked />Yes</label>
+                <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" />No</label>
+            </div>
+        </div>*@
             <div class="form-group" id="divMailingAddress">
                 <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
                 <div class="col-md-10">
@@ -175,35 +175,35 @@
             <div class="form-group">
                 <div class="container">
                     <label class="col-md-2 control-label">Phone Number:</label>
-                    <div class="col-xs-4">
+                    <div class="col-xs-6">
                         <div class="form-group phone-number">
-                            <div class="col-xs-3">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
-                            </div>
-                            <div class="col-xs-3">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
-                            </div>
                             <div class="col-xs-4">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4" value="" />
+                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="5" value="@ViewBag.Employee.PhoneNumber" />
                             </div>
+                            @*<div class="col-xs-3">
+                            <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" />
+                        </div>
+                        <div class="col-xs-4">
+                            <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4"  />
+                        </div>*@
                         </div>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="container">
-                    <label class="col-md-2 control-label">Cell Phone:</label>
-                    <div class="col-xs-4">
+                    <label class="col-md-2 control-label">CellPhone:</label>
+                    <div class="col-xs-6">
                         <div class="form-group phone-number">
-                            <div class="col-xs-3">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value="" />
-                            </div>
-                            <div class="col-xs-3">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value="" />
-                            </div>
                             <div class="col-xs-4">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="4" maxlength="4" value="" />
+                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="5" value="@ViewBag.Employee.PhoneNumber" />
                             </div>
+                            @*<div class="col-xs-3">
+                            <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" />
+                        </div>
+                        <div class="col-xs-4">
+                            <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="4" maxlength="4"  />
+                        </div>*@
                         </div>
                     </div>
                 </div>

@@ -15,6 +15,7 @@
     <div class="form-horizontal">
         <hr />
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Family_Info.Employee_id />
+        <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.Family_Info.FamilyMember_id />
         <div class="collapsible" id="divSpDelete">Delete Spouse Information?</div>
         <div class="content" disabled>
             <p></p>
@@ -48,8 +49,8 @@
                     <label class="col-md-2 control-label">Gender:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male"     @((ViewBag.Family_Info.Gender == "Male") ? "checked" : "")  />Male</label>
-                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((ViewBag.Family_Info.Gender == "Female") ? "checked" : "")/>Female</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((ViewBag.Family_Info.Gender == "Male") ? "checked" : "") />Male</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((ViewBag.Family_Info.Gender == "Female") ? "checked" : "") />Female</label>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Mailing Address:</label>
@@ -77,8 +78,8 @@
                     <label class="col-md-2 control-label">Within City Limits?</label>
                 </dt>
                 <dd class="col-md-10">
-                    <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.Family_Info.CityLimits == "Yes")  ? "checked" : "") />Yes</label>
-                    <label class="radio-inline"><input disabled type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="No"   @((ViewBag.Family_Info.CityLimits == "No")   ? "checked" : "") />No</label>
+                    <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.Family_Info.CityLimits == "Yes") ? "checked" : "") />Yes</label>
+                    <label class="radio-inline"><input disabled type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="No" @((ViewBag.Family_Info.CityLimits == "No") ? "checked" : "") />No</label>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Email:</label>
@@ -247,7 +248,7 @@
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
             Gender = document.getElementById("Gender").value;
-   
+
             MailingAddress = document.getElementsById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
@@ -358,6 +359,6 @@
             .then(Response => Response.json()) //parses response to JSON
     }
 
-    
+
 </script>
 

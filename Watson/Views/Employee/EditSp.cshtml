@@ -14,11 +14,11 @@
 <body>
     <div class="form-horizontal">
         <hr />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Family_Info.Employee_id />
+        <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value=@ViewBag.Family_Info.MaritalStatus />
+        <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.Family_Info.FamilyMember_id />
         <div class="collapsible" id="FirstStep">Edit Spouse Enrollment?</div>
         <div id="divEmpEnrollment" class="content">
-            <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
-            <input type="hidden" id="FamilyMember_id" class="form-control" name="Employee_id" value=@ViewBag.FamilyMember_id />
-            <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value=@ViewBag.MaritalStatus />
             <p></p>
             <p></p>
             <div class="form-group" id="divRelationshipToInsured">
@@ -27,11 +27,11 @@
                     <select id="RelationToInsured" name="RelationShipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control" disabled>
                         @if (ViewBag.spouseExist == false)
                         {
-                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @*@((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")*@>Spouse</option>
+                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.Family_Info.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
                         }
                         else
                         {
-                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @*@((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")*@>Dependent</option>
+                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.Family_Info.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
                         }
                     </select>
                 </div>
@@ -39,39 +39,39 @@
             <div class="form-group">
                 <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="" disabled />
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@ViewBag.Employee.SSN" disabled />
                 </div>
             </div>
             <div class="form-group">
                 <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="" />
+                    <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="@ViewBag.Family_Info.FirstName" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="LastName" class="col-md-2 control-label">Last Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="LastName" class="form-control" placeholder="Last Name" name="LastName" value="" />
+                    <input type="text" id="LastName" class="form-control" placeholder="Last Name" name="LastName" value="@ViewBag.Family_Info.LastName" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Date of Birth:</label>
                 <div class="col-md-10">
-                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@(((DateTime)ViewBag.Family_Info.DateOfBirth.Date).ToString("yyyy-MM-dd"))" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Gender:</label>
-                <div class="col-md-10" id="Gender">
-                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="true" checked />Male</label>
-                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="false" />Female</label>
-                </div>
+                <select class="col-md-10" id="Gender">
+                    <option value="Male" @(ViewBag.Family_Info.Gender == "Male" ? "selected" : "")>Male</option>
+                    <option value="Female" @(ViewBag.Family_Info.Gender == "Female" ? "selected" : "")>Female</option>
+                </select>
             </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <button type="submit" id="EditSpEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
-                    @*<input id="Submit" type="submit" onclick="SpouseEnrollmentUpdate();" value="Save" class="btn btn-primary" />*@
-                </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" id="EditSpEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
+                @*<input id="Submit" type="submit" onclick="SpouseEnrollmentUpdate();" value="Save" class="btn btn-primary" />*@
             </div>
         </div>
     </div>
@@ -86,17 +86,17 @@
                 <div class="form-group">
                     <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
-                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" />
-                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
-                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
-                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@ViewBag.Family_Info.MailingAddress" />
+                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="@ViewBag.Family_Info.PObox" />
+                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@ViewBag.Family_Info.City" />
+                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@ViewBag.Family_Info.State" />
+                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@ViewBag.Family_Info.ZipCode" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
-                        <input type="text" id="County" class="form-control" placeholder="County" name="County" value="" />
+                        <input type="text" id="County" class="form-control" placeholder="County" name="County" value="@ViewBag.Family_Info.County" />
                     </div>
                 </div>
             </div>
@@ -111,40 +111,40 @@
                 <div class="form-group">
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="" />
-                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" />
-                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="" />
-                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="" />
-                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="@ViewBag.Family_Info.PhysicalAddress" />
+                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" value="@ViewBag.Family_Info.PObox" />
+                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="@ViewBag.Family_Info.City" />
+                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="@ViewBag.Family_Info.State" />
+                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="@ViewBag.Family_Info.ZipCode" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
-                        <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="" />
+                        <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="@ViewBag.Family_Info.County" />
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="EmailAddress" class="col-md-2 control-label">Email Address:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="" />
+                    <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="@ViewBag.Family_Info.EmailAddress" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="container">
                     <label class="col-md-2 control-label">Phone Number:</label>
-                    <div class="col-xs-4">
+                    <div class="col-xs-6">
                         <div class="form-group phone-number">
-                            <div class="col-xs-3">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
+                            <div class="col-xs-4">
+                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="5" value="@ViewBag.Family_Info.PhoneNumber" />
                             </div>
-                            <div class="col-xs-3">
+                            @*<div class="col-xs-3">
                                 <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
                             </div>
                             <div class="col-xs-4">
                                 <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4" value="" />
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>
@@ -152,17 +152,17 @@
             <div class="form-group">
                 <div class="container">
                     <label class="col-md-2 control-label">Cell Phone:</label>
-                    <div class="col-xs-4">
+                    <div class="col-xs-6">
                         <div class="form-group phone-number">
-                            <div class="col-xs-3">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value="" />
+                            <div class="col-xs-4">
+                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="5" value="@ViewBag.Family_Info.CellPhone" />
                             </div>
-                            <div class="col-xs-3">
+                            @*<div class="col-xs-3">
                                 <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value="" />
                             </div>
                             <div class="col-xs-4">
                                 <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="4" maxlength="4" value="" />
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>
@@ -185,35 +185,35 @@
                 <div class="form-group">
                     <label for="Employer" class="col-md-2 control-label">Current Employer:</label>
                     <div class="col-md-10">
-                        <input type="text" id="Employer" class="form-control" placeholder="Current Employer" name="Employer" value="" />
+                        <input type="text" id="Employer" class="form-control" placeholder="Current Employer" name="Employer" value="@ViewBag.Family_Info.Employer" />
                     </div>
                 </div>
                 <div id="divEmployerAddress">
                     <div class="form-group">
                         <label for="EmployerMailingAddress" class="col-md-2 control-label">Employer Address:</label>
                         <div class="col-md-10">
-                            <input type="text" id="EmployerMailingAddress" class="form-control" placeholder="Street" name="EmployerMailingAddress" value="" />
-                            <input type="text" id="EmployerPObox" class="form-control" placeholder="PO Box" name="PObox" />
-                            <input type="text" id="EmployerCity" class="form-control" placeholder="City" name="City" value="" />
-                            <input type="text" id="EmployerState" class="form-control" placeholder="State" name="State" value="" />
-                            <input type="text" id="EmployerZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                            <input type="text" id="EmployerMailingAddress" class="form-control" placeholder="Street" name="EmployerMailingAddress" value="@ViewBag.Family_Info.EmployerMailingAddress" />
+                            <input type="text" id="EmployerPObox" class="form-control" placeholder="PO Box" name="EmployerPObox" value="@ViewBag.Family_Info.EmployerPObox"  />
+                            <input type="text" id="EmployerCity" class="form-control" placeholder="City" name="EmployerCity" value="@ViewBag.Family_Info.EmployerCity" />
+                            <input type="text" id="EmployerState" class="form-control" placeholder="State" name="EmployerState" value="@ViewBag.Family_Info.EmployerState" />
+                            <input type="text" id="EmployerZipCode" class="form-control" placeholder="Zip Code" name="EmployerZipCode" value="@ViewBag.Family_Info.EmployerZipCode" />
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="container">
                         <label class="col-md-2 control-label">Phone Number:</label>
-                        <div class="col-xs-4">
+                        <div class="col-xs-6">
                             <div class="form-group phone-number">
-                                <div class="col-xs-3">
-                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="3" maxlength="3" value="" />
+                                <div class="col-xs-4">
+                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="3" maxlength="5" value="@ViewBag.Family_Info.EmployerPhoneNumber" />
                                 </div>
-                                <div class="col-xs-3">
+                                @*<div class="col-xs-3">
                                     <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="3" maxlength="3" value="" />
                                 </div>
                                 <div class="col-xs-4">
                                     <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="4" maxlength="4" value="" />
-                                </div>
+                                </div>*@
                             </div>
                         </div>
                     </div>
@@ -358,6 +358,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EditSpEnrollmentUpdate").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
             RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
             EmpNumber = document.getElementById("EmpNumber").value;
             FirstName = document.getElementById("FirstName").value;
@@ -365,13 +366,8 @@
             DateOfBirth = document.getElementById("DateOfBirth").value;
             Gender = document.getElementById("Gender").value;
 
-            //Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
-            //    if (e.checked) {
-            //        Gender = e.value;
-            //    }
-            //});
-
             var data = {
+                "Employee_id": Employee_id,
                 "RelationshipToInsured": RelationshipToInsured,
                 "EmpNumber": EmpNumber,
                 "FirstName": FirstName,
@@ -387,13 +383,14 @@
         })
 
         document.querySelector("#EditSpEnrollmentUpdateStepTwo").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
             MailingAddress = document.getElementsById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
             State = document.getElementById("State").value;
             ZipCode = document.getElementById("ZipCode").value;
             County = document.getElementById("County").value;
-            PhysicalAddress = document.getElementsById("PhysicalAddress").value;
+            PhysicalAddress = document.getElementById("PhysicalAddress").value;
             PObox2 = document.getElementById("PObox2").value;
             City2 = document.getElementById("City2").value;
             State2 = document.getElementById("State2").value;
@@ -404,6 +401,7 @@
             CellPhone = document.getElementById("CellPhone").value;
 
             var data = {
+                "Employee_id": Employee_id,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
@@ -427,6 +425,7 @@
         })
 
         document.querySelector("#EditSpEnrollmentUpdateStepThree").addEventListener(function () {
+            Employee_id = document.getElementById("Employee_id").value;
             Employer = document.getElementsById("Employer").value;
             EmployerAddress = document.getElementById("EmployerAddress").value;
             EmployerPObox = document.getElementById("EmployerPObox").value;
@@ -437,6 +436,7 @@
 
 
             var data = {
+                "Employee_id": Employee_id,
                 "Employer": Employer,
                 "EmployerAddress": EmployerAddress,
                 "EmployerPObox": EmployerPObox,
@@ -450,24 +450,24 @@
                 .then(data => ThirdStep(data))
                 .catch(error => console.error(error))
         })
-
     })
 
     function FirstStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+        document.querySelector("#Employee_id").value = sp.Employee_id;
         document.querySelector("#RelationshipToInsured").value = sp.RelationshipToInsured;
         document.querySelector("#EmpNumber").value = sp.EmpNumber;
         document.querySelector("#FirstName").value = sp.FirstName;
         document.querySelector("#LastName").value = sp.LastName;
         document.querySelector("#DateOfBirth").value = sp.DateOfBirth;
         document.querySelector("#Gender").value = sp.Gender;
-
     }
 
     function SecondStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
+        document.querySelector("#Employee_id").value = sp.Employee_id;
         document.querySelector("#MailingAddress").value = sp.MailingAddress;
         document.querySelector("#PObox").value = sp.PObox;
         document.querySelector("#City").value = sp.City;
@@ -487,6 +487,7 @@
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         document.querySelector("#ThirdStep").nextElementSibling.content.style.display = "block";
+        document.querySelector("#Employee_id").value = sp.Employee_id;
         document.querySelector("#Employer").value = sp.Employer;
         document.querySelector("#EmployerAddress").value = sp.EmployerAddress;
         document.querySelector("#EmployerPObox").value = sp.EmployerPObox;

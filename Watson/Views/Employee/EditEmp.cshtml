@@ -23,7 +23,7 @@
                 <label class="col-md-2 control-label">Employee Role:</label>
                 <div class="col-md-10">
                     <select id="Role" class="form-control" disabled>
-                        <option id="AdminRole"    value=@(ViewBag.Employee.EmployeeRole == "Admin"    ? "selected" : "")>Administrator</option>
+                        <option id="AdminRole"    value=@(ViewBag.Employee.EmployeeRole == "Administrator"    ? "selected" : "")>Administrator</option>
                         <option id="ManagerRole"  value=@(ViewBag.Employee.EmployeeRole == "Manager"  ? "selected" : "")>Manager</option>
                         <option id="EmployeeRole" value=@(ViewBag.Employee.EmployeeRole == "Employee" ? "selected" : "")>Employee</option>
                     </select>
@@ -80,18 +80,11 @@
                 <label class="col-md-2 control-label">Gender:</label>
                 <div class="col-md-10">
                     <select id="Gender" class="form-control">
-                        <option value="Male"   @(ViewBag.Employee.Gender == "Male" ?   "selected" : "")>Male</option>
+                        <option value="Male"   @(ViewBag.Employee.Gender == "Male"   ? "selected" : "")>Male</option>
                         <option value="Female" @(ViewBag.Employee.Gender == "Female" ? "selected" : "")>Female</option>
                     </select>
                 </div>
             </div>
-            @*<div class="form-group">
-                <label class="col-md-2 control-label">Gender:</label>
-                <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="true" checked />Male</label>
-                    <label class="radio-inline"><input type="radio" name="Gender" class="radio-inline" value="false" />Female</label>
-                </div>
-            </div>*@
             <div class="form-group">
                 <div class="col-md-offset-11">
                     <button id="EmpEditUpdate" class="btn">Save</button>
@@ -286,11 +279,11 @@
         top: 8px;
     }
 
-    .phone-number .col-xs-4 {
+    .phone-number .col-xs-6 {
         width: 25%;
     }
 
-    .phone-number .col-xs-3, .phone-number .col-xs-4 {
+    .phone-number .col-xs-4, .phone-number .col-xs-6 {
         padding-left: 0;
     }
 
@@ -459,7 +452,7 @@
         document.querySelector("#State").value = emp.State;
         document.querySelector("#ZipCode").value = emp.ZipCode;
         document.querySelector("#County").value = emp.County;
-        document.querySelector("#CityLimits").innerHTML = emp.CityLimits;
+        document.querySelector("#CityLimits").value = emp.CityLimits;
         document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
         document.querySelector("#PObox2").value = emp.PObox2;
         document.querySelector("#City2").value = emp.City2;

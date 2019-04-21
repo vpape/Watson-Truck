@@ -187,6 +187,7 @@
           <Property Name="Vision" Type="bit" />
           <Property Name="Indemnity" Type="bit" />
           <Property Name="PObox" Type="varchar" MaxLength="10" />
+          <Property Name="EmployerPObox" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Group_Health">
           <Key>
@@ -341,6 +342,7 @@
           <Property Name="ZipCode" Type="varchar" MaxLength="15" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
           <Property Name="CoveredByOtherInsurance" Type="varchar" MaxLength="30" />
+          <Property Name="PObox" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Vacation">
           <Key>
@@ -860,10 +862,10 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="CellPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="County" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="CityLimits" Type="String" />
+          <Property Name="CityLimits" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
           <Property Name="HireDate" Type="DateTime" Precision="0" />
           <Property Name="EffectiveDate" Type="DateTime" Precision="0" />
-          <Property Name="isActive" Type="String" />
+          <Property Name="isActive" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
           <Property Name="EligibilityDate" Type="DateTime" Precision="0" />
           <Property Name="WorkStatus" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="HoursWorkedPerWeek" Type="Int32" />
@@ -919,6 +921,7 @@
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Family_Info_Employee" FromRole="Family_Info" ToRole="Employee" />
           <NavigationProperty Name="Other_Insurance" Relationship="WatsonTruckModel.FK_Other_Insurance_Family_Info" FromRole="Family_Info" ToRole="Other_Insurance" />
           <Property Name="PObox" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerPObox" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Group_Health">
           <Key>
@@ -1082,6 +1085,7 @@
           <Property Name="CoveredByOtherInsurance" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Other_Insurance_Employee" FromRole="Other_Insurance" ToRole="Employee" />
           <NavigationProperty Name="Family_Info" Relationship="WatsonTruckModel.FK_Other_Insurance_Family_Info" FromRole="Other_Insurance" ToRole="Family_Info" />
+          <Property Name="PObox" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Vacation">
           <Key>
@@ -1429,6 +1433,7 @@
           <EntitySetMapping Name="Family_Info">
             <EntityTypeMapping TypeName="WatsonTruckModel.Family_Info">
               <MappingFragment StoreEntitySet="Family_Info">
+                <ScalarProperty Name="EmployerPObox" ColumnName="EmployerPObox" />
                 <ScalarProperty Name="PObox" ColumnName="PObox" />
                 <ScalarProperty Name="Indemnity" ColumnName="Indemnity" />
                 <ScalarProperty Name="Vision" ColumnName="Vision" />
@@ -1608,6 +1613,7 @@
           <EntitySetMapping Name="Other_Insurance">
             <EntityTypeMapping TypeName="WatsonTruckModel.Other_Insurance">
               <MappingFragment StoreEntitySet="Other_Insurance">
+                <ScalarProperty Name="PObox" ColumnName="PObox" />
                 <ScalarProperty Name="CoveredByOtherInsurance" ColumnName="CoveredByOtherInsurance" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />

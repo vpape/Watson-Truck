@@ -15,6 +15,7 @@
 <body>
     <div class="form-horizontal">
         <hr />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee.Employee_id />
         <div class="collapsible" id="EmpDetail">Employee Detail</div>
         <div class="content" disabled>
             <p></p>
@@ -26,98 +27,98 @@
                         <label class="col-md-2 control-label">Current Employer:</label>
                     </dt>
                     <dd class="col-md-10">
-                        <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@Html.DisplayFor(model => item.CurrentEmployer)">
+                        <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@ViewBag.Employee.CurrentEmployer" @*value="@Html.DisplayFor(model => item.CurrentEmployer)"*@>
                     </dd>
                     <dt>
                         <label class="col-md-2 control-label">Job Title:</label>
                     </dt>
                     <dd class="col-md-10">
-                        <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@Html.DisplayFor(model => item.JobTitle)">
+                        <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@ViewBag.Employee.JobTitle">
                     </dd>
                     <dt>
                         <label class="col-md-2 control-label">Employee Number:</label>
                     </dt>
                     <dd class="col-md-10">
-                        <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.DisplayFor(model => item.SSN)">
+                        <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@ViewBag.Employee.SSN">
                     </dd>
                     <dt>
                         <label class="col-md-2 control-label">First Name:</label>
                     </dt>
                     <dd class="col-md-10">
-                        <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(model => item.FirstName)">
+                        <input type="text" id="FirstName" class="form-control" name="FirstName" value="@ViewBag.Employee.FirstName">
                     </dd>
                     <dt>
                         <label class="col-md-2 control-label">Last Name:</label>
                     </dt>
                     <dd class="col-md-10">
-                        <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(model => item.LastName)">
+                        <input type="text" id="LastName" class="form-control" name="LastName" value="@ViewBag.Employee.LastName">
                     </dd>
                     <dt>
                         <label class="col-md-2 control-label">Date of Birth:</label>
                     </dt>
                     <dd class="col-md-10">
-                        <input type="number" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Html.DisplayFor(model => item.DateOfBirth)">
+                        <input type="number" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@ViewBag.Employee.DateOfBirth">
                         @*@Convert.ToDateTime(Model.DateOfBirth).ToString("MM/dd/yyyy")*@
                     </dd>
                     <dt>
                         <label class="col-md-2 control-label">Gender:</label>
                     </dt>
                     <dd class="col-md-10" id="Gender">
-                        <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @*@((Model.Gender == "Male") ? "checked" : "")*@ />Male</label>
-                        <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @*@((Model.Gender == "Female") ? "checked" : "")*@ />Female</label>
+                        <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male"    @((ViewBag.Employee.Gender == true)   ? "checked" : "") @*@((Model.Gender == "Male") ? "checked" : "")*@ />Male</label>
+                        <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female"@((ViewBag.Employee.Gender == false)  ? "checked" : "")  @*@((Model.Gender == "Female") ? "checked" : "")*@ />Female</label>
                     </dd>
                     <dt>
                         <label class="col-md-2 control-label">Marital Status:</label>
                     </dt>
                     <dd class="col-md-10">
-                        <input type="text" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@Html.DisplayFor(model => item.MaritalStatus)">
+                        <input type="text" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.Employee.MaritalStatus">
                     </dd>
                     <dt>
                         <label class="col-md-2 control-label">Mailing Address:</label>
                     </dt>
                     <dd class="col-md-10">
-                        Street:<text type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(model => item.MailingAddress)" />
-                        PO Box:<text type="text" id="PObox" class="form-control" name="PObox" value="@Html.DisplayFor(model => item.PObox)" />
-                        City:<text type="text" id="City" class="form-control" name="City" value="@Html.DisplayFor(model => item.City)" />
-                        State:<text type="text" id="State" class="form-control" name="State" value="@Html.DisplayFor(model => item.State)" />
-                        ZipCode:<text type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(model => item.ZipCode)" />
-                        County:<text type="text" id="County" class="form-control" name="County" value="@Html.DisplayFor(model => item.County)" />
+                        Street:<text type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@ViewBag.Employee.MailingAddress" />
+                        PO Box:<text type="text" id="PObox" class="form-control" name="PObox" value="@ViewBag.Employee.PObox" />
+                        City:<text type="text" id="City" class="form-control" name="City" value="@ViewBag.Employee.City" />
+                        State:<text type="text" id="State" class="form-control" name="State" value="@ViewBag.Employee.State" />
+                        ZipCode:<text type="text" id="ZipCode" class="form-control" name="ZipCode" value="@ViewBag.Employee.ZipCode" />
+                        County:<text type="text" id="County" class="form-control" name="County" value="@ViewBag.Employee.County" />
                     </dd>
                     <dt>
                         <label class="col-md-2 control-label">Within City Limits?</label>
                     </dt>
                     <dd class="col-md-10" id="CityLimits">
-                        <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" @*@((Model.CityLimits == true) ? "checked" : "")*@ />Yes</label>
-                        <label class="radio-inline"><input disabled type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" @*@((Model.CityLimits == false) ? "checked" : "")*@ />No</label>
+                        <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" @((ViewBag.Employee.CityLimits == true)  ? "checked" : "")   @*@((Model.CityLimits == true) ? "checked" : "")*@ />Yes</label>
+                        <label class="radio-inline"><input disabled type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" @((ViewBag.Employee.CityLimits == false) ? "checked" : "")   @*@((Model.CityLimits == false) ? "checked" : "")*@ />No</label>
                     </dd>
                     <dt>
                         <label class="col-md-2 control-label">Physical Address:</label>
                     </dt>
                     <dd class="col-md-10">
-                        Street:<text type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@Html.DisplayFor(model => item.PhysicalAddress)" />
-                        PO Box:<text type="text" id="PObox2" class="form-control" name="PObox" value="" />
-                        City:<text type="text" id="City2" class="form-control" name="City" value="" />
-                        State:<text type="text" id="State2" class="form-control" name="State" value="" />
-                        ZipCode:<text type="text" id="ZipCode2" class="form-control" name="ZipCode" value="" />
-                        County:<text type="text" id="County2" class="form-control" name="County" value="" />
+                        Street:<text type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@ViewBag.Employee.PhysicalAddress" />
+                        PO Box:<text type="text" id="PObox2" class="form-control" name="PObox" value="@ViewBag.Employee.PObox" />
+                        City:<text type="text" id="City2" class="form-control" name="City" value="@ViewBag.Employee.City" />
+                        State:<text type="text" id="State2" class="form-control" name="State" value="@ViewBag.Employee.State" />
+                        ZipCode:<text type="text" id="ZipCode2" class="form-control" name="ZipCode" value="@ViewBag.Employee.ZipCode" />
+                        County:<text type="text" id="County2" class="form-control" name="County" value="@ViewBag.Employee.County" />
                     </dd>
                     <dt>
                         <label class="col-md-2 control-label">Email:</label>
                     </dt>
                     <dd class="col-md-10">
-                        <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(model => item.EmailAddress)">
+                        <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@ViewBag.Employee.EmailAddress">
                     </dd>
                     <dt>
                         <label class="col-md-2 control-label">Phone Number:</label>
                     </dt>
                     <dd class="col-md-10">
-                        <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(model => item.PhoneNumber)">
+                        <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@ViewBag.Employee.PhoneNumber">
                     </dd>
                     <dt>
                         <label class="col-md-2 control-label">Cell Phone:</label>
                     </dt>
                     <dd class="col-md-10">
-                        <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="@Html.DisplayFor(model => item.CellPhone)">
+                        <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="@ViewBag.Employee.CellPhone">
                     </dd>
                 }
             </dl>
@@ -236,6 +237,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
+        Employee_id = document.getElementById("Employee_id").value;
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;
         EmpNumber = document.getElementById("EmpNumber").value;
@@ -262,6 +264,7 @@
         CellPhone = document.getElementById("CellPhone").value;
 
         var data = {
+            "Employee_id": Employee_id,
             "CurrentEmployer": CurrentEmployer,
             "JobTitle": JobTitle,
             "EmpNumber": EmpNumber,
@@ -296,6 +299,7 @@
 
     function FirstStep(emp) {
         document.querySelector("#EmpDetail").nextElementSibling.style.display = "none";
+        document.querySelector("#Employee_id").value = emp.Employee_id;
         document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
         document.querySelector("#JobTitle").value = emp.JobTitle;
         document.querySelector("#EmpNumber").value = emp.EmpNumber;
