@@ -73,13 +73,12 @@ namespace Watson.Controllers
 
   
         //EmpEnrollment Method
-        public JsonResult EmployeeEnrollmentNew(/*int Employee_id,*/ string Role, string CurrentEmployer, 
+        public JsonResult EmployeeEnrollmentNew(string Role, string CurrentEmployer, 
             string JobTitle, string EmpNumber, string MaritalStatus, string FirstName, string LastName,
             DateTime DateOfBirth, string Gender)
         {
             Employee e = new Employee();
 
-            //e.Employee_id = Employee_id;
             e.EmployeeRole = Role;
             e.CurrentEmployer = CurrentEmployer;
             e.JobTitle = JobTitle;
@@ -89,13 +88,13 @@ namespace Watson.Controllers
             e.LastName = LastName;
             e.DateOfBirth = DateOfBirth;
             e.Gender = Gender;
-            
+
             db.Employees.Add(e);
             db.SaveChanges();
 
-            //ViewBag.Employee = e;
+            int result = e.Employee_id;
 
-            return Json(new { data = e}, JsonRequestBehavior.AllowGet);
+            return Json( new { data = result }, JsonRequestBehavior.DenyGet );
         }
 
         //EmpContact Method
@@ -109,10 +108,10 @@ namespace Watson.Controllers
             string PhysicalAddress, string PObox2, string City2, string State2, string ZipCode2,
             string County2, string EmailAddress, string PhoneNumber, string CellPhone)
         {
-            Employee e = new Employee();
-            //var e = db.Employees
-            //   .Where(i => i.Employee_id == Employee_id)
-            //   .Single();
+            //Employee e = new Employee();
+            Employee e = db.Employees
+               .Where(i => i.Employee_id == Employee_id)
+               .Single();
 
             e.MailingAddress = MailingAddress;
             e.PObox = PObox;
@@ -135,7 +134,7 @@ namespace Watson.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Employees.Add(e);
+                //db.Employees.Add(e);
 
                 try
                 {
@@ -145,17 +144,17 @@ namespace Watson.Controllers
                     {
                         RedirectToAction("SpEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
                     }
-                    //else if (e.MaritalStatus == "MarriedwDep")
-                    //{
-                    //    RedirectToAction("SpEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
-                    //}
-                    //else if (e.MaritalStatus == "SinglewDep")
-                    //{
-                    //    RedirectToAction("DepEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
-                    //}
+                    else if (e.MaritalStatus == "MarriedwDep")
+                    {
+                        RedirectToAction("SpEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
+                    }
+                    else if (e.MaritalStatus == "SinglewDep")
+                    {
+                        RedirectToAction("DepEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
+                    }
                     else
                     {
-                        RedirectToAction("EnrollmentSelection", "Employee");
+                        RedirectToAction("EnrollmentSelection", "Employee", new { e.Employee_id, e.MaritalStatus});
                     }
                 }
 
@@ -164,9 +163,6 @@ namespace Watson.Controllers
                     Console.WriteLine(emp);
                 }
             }
-
-            db.Employees.Add(e);
-            db.SaveChanges();
 
             return Json(new { data = e }, JsonRequestBehavior.AllowGet);
                           
