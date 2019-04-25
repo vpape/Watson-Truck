@@ -140,22 +140,25 @@ namespace Watson.Controllers
                 {
                     db.SaveChanges();
 
-                    if (e.MaritalStatus == "Married")
-                    {
-                        RedirectToAction("SpEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
-                    }
-                    else if (e.MaritalStatus == "MarriedwDep")
-                    {
-                        RedirectToAction("SpEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
-                    }
-                    else if (e.MaritalStatus == "SinglewDep")
-                    {
-                        RedirectToAction("DepEnrollment", "Family_Info", new { e.Employee_id, e.MaritalStatus });
-                    }
-                    else
-                    {
-                        RedirectToAction("EnrollmentSelection", "Employee", new { e.Employee_id, e.MaritalStatus});
-                    }
+//                    if (e.MaritalStatus == "Married")
+//                    {
+////                      return RedirectToAction("SpEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
+//                        return RedirectToAction("SpEnrollment");
+//                    }
+//                    else if (e.MaritalStatus == "MarriedwDep")
+//                    {
+//                        return RedirectToAction("SpEnrollment", new { Employee_id = e.Employee_id, MaritalStatus = e.MaritalStatus });
+////                       return RedirectToAction("SpEnrollment", "Employee", new { Employee_id = e.Employee_id, MaritalStatus = e.MaritalStatus });
+//                    }
+//                    else if (e.MaritalStatus == "SinglewDep")
+//                    {
+//                       return RedirectToAction("SpEnrollment", "Employee");
+////                       return RedirectToAction("DepEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
+//                    }
+//                    else
+//                    {
+//                        return RedirectToAction("EnrollmentSelection", "Employee", new { e.Employee_id, e.MaritalStatus});
+//                    }
                 }
 
                 catch (Exception emp)
@@ -374,8 +377,28 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //SpEnrollment Method
+        public ActionResult SpEnrollment(int Employee_id, string MaritalStatus)
+        {
+            ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.MaritalStatus = MaritalStatus;
+            return View();
+        }
+        //SpEnrollment Method
+        public ActionResult SpEnrollment(string Employee_id, string MaritalStatus)
+        {
+            ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.MaritalStatus = MaritalStatus;
+            return View();
+        }
         public ActionResult SpEnrollment()
         {
+            int Employee_id = 99;
+            string MaritalStatus = "ddd";
+            ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.MaritalStatus = MaritalStatus;
             return View();
         }
 

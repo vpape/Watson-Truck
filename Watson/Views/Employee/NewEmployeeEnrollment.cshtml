@@ -363,7 +363,6 @@
         })
 
         document.querySelector("#EmployeeEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            //Employee_id = emp_id;//document.getElementById("Employee_id").value;
             MailingAddress = document.getElementById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
@@ -415,34 +414,12 @@
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
         emp_id = emp.data;
-        //document.querySelector("#Role").value = emp.Role;
-        //document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
-        //document.querySelector("#JobTitle").value = emp.JobTitle;
-        //document.querySelector("#EmpNumber").value = emp.EmpNumber;
-        //document.querySelector("#MaritalStatus").value = emp.MaritalStatus;
-        //document.querySelector("#FirstName").value = emp.FirstName;
-        //document.querySelector("#LastName").value = emp.LastName;
-        //document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
-        //document.querySelector("#Gender").value = emp.Gender;
     }
 
     function SecondStep(emp) {
-        document.querySelector("#Employee_id").value = emp.Employee_id;
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-        document.querySelector("#MailingAddress").value = emp.MailingAddress;
-        document.querySelector("#PObox").value = emp.PObox;
-        document.querySelector("#City").value = emp.City;
-        document.querySelector("#State").value = emp.State;
-        document.querySelector("#ZipCode").value = emp.ZipCode;
-        document.querySelector("#County").value = emp.County;
-        document.querySelector("#CityLimits").value = emp.CityLimits;
-        document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
-        document.querySelector("#PObox2").value = emp.PObox2;
-        document.querySelector("#City2").value = emp.City2;
-        document.querySelector("#State2").value = emp.State2;
-        document.querySelector("#ZipCode2").value = emp.ZipCode2;
-        document.querySelector("#County2").value = emp.County2;
+        document.querySelector("#Employee_id").value = emp.Employee_id;
     }
 
     function postData(url, data) {

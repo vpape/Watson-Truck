@@ -14,8 +14,7 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee.Employee_id />
-        @*<input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.Family_Info.FamilyMember_id />*@
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
         <div class="collapsible" id="FirstStep">Dependent Enrollment</div>
         <div class="content" id="dependentSelectForm">
             <p></p>
@@ -110,14 +109,8 @@
                         <div class="col-xs-6">
                             <div class="form-group phone-number">
                                 <div class="col-xs-4">
-                                    <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="5" value="" />
+                                    <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="14" value="" />
                                 </div>
-                                @*<div class="col-xs-3">
-                                    <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="tel" id="InsPhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4" value="" />
-                                </div>*@
                             </div>
                         </div>
                     </div>
@@ -205,32 +198,6 @@
 
     .phone-number .col-xs-3, .phone-number .col-xs-4 {
         padding-left: 0;
-    }
-
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-        table tr {
-            border-bottom: 1px solid black;
-        }
-
-    td:empty {
-        width: 10px;
-    }
-
-    th, td {
-        text-align: left;
-        padding: 0px;
-    }
-
-    th {
-        border-bottom: 5px solid black;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
     }
 </style>
 
@@ -334,6 +301,7 @@
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
+    var emp_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -365,15 +333,13 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#DepEnrollmentUpdate").addEventListener("click", function () {
-            Employee_id = document.getElementById("Employee_id").value
-            RelationshipToInsured = document.getElementByName("RelationshipToInsured").value
+            RelationshipToInsured = document.getElementById("RelationToInsured").value
             EmpNumber = document.getElementById("SSN").value
             DepFirstName = document.getElementById("DepFirstName").value
             DepLastName = document.getElementById("DepLastName").value
             DateOfBirth = document.getElementById("DateOfBirth").value
             Gender = document.getElementById("Gender").value
             CoveredByOtherIns = document.getElementById("DateOfBirth").value
-
             InsuranceCompany = document.getElementById("InsuranceCompany").value
             PolicyNumber = document.getElementById("PolicyNumber").value
             InsPhoneNumber = document.getElementById("InsPhoneNumber").value
@@ -384,7 +350,7 @@
             InsZipCode = document.getElementById("InsZipCode").value
 
             var data = {
-                "Employee_id": Employee_id,
+                "Employee_id": emp_id,
                 "RelationshipToInsured": RelationshipToInsured,
                 "EmpNumber": EmpNumber,
                 "DepFirstName": DepFirstName,
@@ -403,45 +369,44 @@
             }
 
             var ret = postData('DepEnrollmentNew', data)
-                .then(data => FirstStep(data))
+                .then(data => {
+                    console.log(data);
+                    FirstStep(data);
+                })
                 .catch(error => console.error(error))
+
         })
     })
 
     function FirstStep(dep) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "block";
-        document.querySelector("#Employee_id").value = dep.Employee_id;
-        document.querySelector("#EmpNumber").value = dep.EmpNumber;
-        document.querySelector("#DepFirstName").value = dep.DepFirstName;
-        document.querySelector("#DepLastName").value = dep.DepLastName;
-        document.querySelector("#DateOfBirth").value = dep.DateOfBirth;
-        document.querySelector("#Gender").value = dep.Gender;
-        document.querySelector("#CoveredByOtherIns").value = dep.CoveredByOtherIns;
-        document.querySelector("#InsuranceCompany").value = dep.InsuranceCompany;
-        document.querySelector("#PolicyNumber").value = dep.PolicyNumber;
-        document.querySelector("#InsMailingAddress").value = dep.InsMailingAddress;
-        document.querySelector("#InsPObox").value = dep.InsPObox;
-        document.querySelector("#InsCity").value = dep.InsCity;
-        document.querySelector("#InsState").value = dep.InsState;
-        document.querySelector("#InsZipCode").value = dep.InsZipCode;
+        emp_id = dep.data
     }
 
     function postData(url, data) {
         //Default options are marked with *
+        console.log(data);
+        console.log(JSON.stringify(data));
         return fetch(url, {
             body: JSON.stringify(data), //must match 'Content-Type' header
             cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', //include, same-origin, *omit
             headers: {
+                'Accept': 'application/json',
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
             method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            mode: 'cors', //no-cors, cors, *same-origin
+            mode: 'same-origin', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer
-        })
-            .then(Response => Response.json()) //parses response to JSON
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+            //.then(Response => {
+            //    console.log(Response);
+            //    Response.json();
+            //}) //parses response to JSON
     }
 </script>
 

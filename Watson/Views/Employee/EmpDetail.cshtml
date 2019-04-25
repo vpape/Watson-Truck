@@ -14,7 +14,7 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee.Employee_id />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
         <div class="collapsible" id="EmpDetail">Employee Detail</div>
         <div class="content" disabled>
             <p></p>
@@ -24,153 +24,153 @@
                     <label class="col-md-2 control-label">Current Employer:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@ViewBag.Employee.CurrentEmployer" @*value="@Html.DisplayFor(model => item.CurrentEmployer)"*@>
+                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@ViewBag.CurrentEmployer" @*value="@Html.DisplayFor(model => item.CurrentEmployer)"*@>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Job Title:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@ViewBag.Employee.JobTitle">
+                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@ViewBag.JobTitle">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Employee Number:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@ViewBag.Employee.SSN">
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@ViewBag.SSN">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">First Name:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@ViewBag.Employee.FirstName">
+                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@ViewBag.FirstName">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Last Name:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="LastName" class="form-control" name="LastName" value="@ViewBag.Employee.LastName">
+                    <input type="text" id="LastName" class="form-control" name="LastName" value="@ViewBag.LastName">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Date of Birth:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="number" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@(((DateTime)ViewBag.Employee.DateOfBirth.Date).ToString("yyyy-MM-dd"))">
+                    <input type="number" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@(((DateTime)ViewBag.DateOfBirth.Date).ToString("yyyy-MM-dd"))">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Gender:</label>
                 </dt>
                 <dd class="col-md-10 form-group" id="Gender">
-                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((ViewBag.Employee.Gender == "Male") ? "checked" : "") />Male</label>
-                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((ViewBag.Employee.Gender == "Female") ? "checked" : "") />Female</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((ViewBag.Gender == "Male") ? "checked" : "") />Male</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((ViewBag.Gender == "Female") ? "checked" : "") />Female</label>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Marital Status:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.Employee.MaritalStatus">
+                    <input type="text" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">MailingAddress:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@ViewBag.Employee.MailingAddress">
+                    <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@ViewBag.MailingAddress">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">PObox:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="PObox" class="form-control" name="PObox" value="@ViewBag.Employee.PObox">
+                    <input type="text" id="PObox" class="form-control" name="PObox" value="@ViewBag.PObox">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">City:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="City" class="form-control" name="City" value="@ViewBag.Employee.City">
+                    <input type="text" id="City" class="form-control" name="City" value="@ViewBag.City">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">State:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="State" class="form-control" name="State" value="@ViewBag.Employee.State">
+                    <input type="text" id="State" class="form-control" name="State" value="@ViewBag.State">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">ZipCode:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@ViewBag.Employee.ZipCode">
+                    <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@ViewBag.ZipCode">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">County:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="County" class="form-control" name="County" value="@ViewBag.Employee.County">
+                    <input type="text" id="County" class="form-control" name="County" value="@ViewBag.County">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Within City Limits?</label>
                 </dt>
                 <dd class="col-md-10 form-group" id="CityLimits">
-                    <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.Employee.CityLimits == "Yes") ? "checked" : "") />Yes</label>
-                    <label class="radio-inline"><input disabled type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="No" @((ViewBag.Employee.CityLimits == "No") ? "checked" : "") />No</label>
+                    <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.CityLimits == "Yes") ? "checked" : "") />Yes</label>
+                    <label class="radio-inline"><input disabled type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="No"   @((ViewBag.CityLimits == "No")  ? "checked" : "") />No</label>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Physical Address:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@ViewBag.Employee.PhysicalAddress">
+                    <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@ViewBag.PhysicalAddress">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">PObox:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="PObox2" class="form-control" name="PObox" value="@ViewBag.Employee.PObox">
+                    <input type="text" id="PObox2" class="form-control" name="PObox" value="@ViewBag.PObox">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">City:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="City2" class="form-control" name="City" value="@ViewBag.Employee.City">
+                    <input type="text" id="City2" class="form-control" name="City" value="@ViewBag.City">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">State:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="State2" class="form-control" name="State" value="@ViewBag.Employee.State">
+                    <input type="text" id="State2" class="form-control" name="State" value="@ViewBag.State">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">ZipCode:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="ZipCode2" class="form-control" name="ZipCode" value="@ViewBag.Employee.ZipCode">
+                    <input type="text" id="ZipCode2" class="form-control" name="ZipCode" value="@ViewBag.ZipCode">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">County:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="County2" class="form-control" name="County" value="@ViewBag.Employee.County">
+                    <input type="text" id="County2" class="form-control" name="County" value="@ViewBag.County">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Email:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@ViewBag.Employee.EmailAddress">
+                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@ViewBag.EmailAddress">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Phone Number:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@ViewBag.Employee.PhoneNumber">
+                    <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@ViewBag.PhoneNumber">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Cell Phone:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="@ViewBag.Employee.CellPhone">
+                    <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="@ViewBag.CellPhone">
                 </dd>
             </dl>
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditEmp", new { @ViewBag.Employee.Employee_id }) |
+        @Html.ActionLink("Edit", "EditEmp", new { @ViewBag.Employee_id }) |
         @Html.ActionLink("Back to List", "EmpOverview")
     </p>
 </body>
@@ -224,6 +224,7 @@
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
+    var emp_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -239,7 +240,6 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        Employee_id = document.getElementById("Employee_id").value;
         CurrentEmployer = document.getElementById("CurrentEmployer").value;
         JobTitle = document.getElementById("JobTitle").value;
         EmpNumber = document.getElementById("EmpNumber").value;
@@ -266,7 +266,7 @@
         CellPhone = document.getElementById("CellPhone").value;
 
         var data = {
-            "Employee_id": Employee_id,
+            "Employee_id": emp_id,
             "CurrentEmployer": CurrentEmployer,
             "JobTitle": JobTitle,
             "EmpNumber": EmpNumber,
@@ -301,49 +301,58 @@
 
     function FirstStep(emp) {
         document.querySelector("#EmpDetail").nextElementSibling.style.display = "none";
-        document.querySelector("#Employee_id").value = emp.Employee_id;
-        document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
-        document.querySelector("#JobTitle").value = emp.JobTitle;
-        document.querySelector("#EmpNumber").value = emp.EmpNumber;
-        document.querySelector("#MaritalStatus").value = emp.MaritalStatus;
-        document.querySelector("#FirstName").value = emp.FirstName;
-        document.querySelector("#LastName").value = emp.LastName;
-        document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
-        document.querySelector("#Gender").value = emp.Gender;
-        document.querySelector("#MailingAddress").value = emp.MailingAddress;
-        document.querySelector("#PObox").value = emp.PObox;
-        document.querySelector("#City").value = emp.City;
-        document.querySelector("#State").value = emp.State;
-        document.querySelector("#ZipCode").value = emp.ZipCode;
-        document.querySelector("#County").value = emp.County;
-        document.querySelector("#CityLimits").value = emp.CityLimits;
-        document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
-        document.querySelector("#PObox2").value = emp.PObox2;
-        document.querySelector("#City2").value = emp.City2;
-        document.querySelector("#State2").value = emp.State2;
-        document.querySelector("#ZipCode2").value = emp.ZipCode2;
-        document.querySelector("#County2").value = emp.County2;
-        document.querySelector("#EmailAddress").value = emp.EmailAddress;
-        document.querySelector("#PhoneNumber").value = emp.PhoneNumber;
-        document.querySelector("#CellPhone").value = emp.CellPhone;
+        emp_id = emp.data;
+        //document.querySelector("#Employee_id").value = emp.Employee_id;
+        //document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
+        //document.querySelector("#JobTitle").value = emp.JobTitle;
+        //document.querySelector("#EmpNumber").value = emp.EmpNumber;
+        //document.querySelector("#MaritalStatus").value = emp.MaritalStatus;
+        //document.querySelector("#FirstName").value = emp.FirstName;
+        //document.querySelector("#LastName").value = emp.LastName;
+        //document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
+        //document.querySelector("#Gender").value = emp.Gender;
+        //document.querySelector("#MailingAddress").value = emp.MailingAddress;
+        //document.querySelector("#PObox").value = emp.PObox;
+        //document.querySelector("#City").value = emp.City;
+        //document.querySelector("#State").value = emp.State;
+        //document.querySelector("#ZipCode").value = emp.ZipCode;
+        //document.querySelector("#County").value = emp.County;
+        //document.querySelector("#CityLimits").value = emp.CityLimits;
+        //document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
+        //document.querySelector("#PObox2").value = emp.PObox2;
+        //document.querySelector("#City2").value = emp.City2;
+        //document.querySelector("#State2").value = emp.State2;
+        //document.querySelector("#ZipCode2").value = emp.ZipCode2;
+        //document.querySelector("#County2").value = emp.County2;
+        //document.querySelector("#EmailAddress").value = emp.EmailAddress;
+        //document.querySelector("#PhoneNumber").value = emp.PhoneNumber;
+        //document.querySelector("#CellPhone").value = emp.CellPhone;
     }
 
     function postData(url, data) {
         //Default options are marked with *
+        console.log(data);
+        console.log(JSON.stringify(data));
         return fetch(url, {
             body: JSON.stringify(data), //must match 'Content-Type' header
             cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', //include, same-origin, *omit
             headers: {
+                'Accept': 'application/json',
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
-            method: 'POST', //*GET, POST, PUT, DELETE, etc...
-            mode: 'cors', //no-cors, cors, *same-origin
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'same-origin', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer
-        })
-            .then(Response => Response.json()) //parses response to JSON
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+            //.then(Response => {
+            //    console.log(Response);
+            //    Response.json();
+            //}) //parses response to JSON
     }
 </script>
 
