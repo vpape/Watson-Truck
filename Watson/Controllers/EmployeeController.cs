@@ -103,12 +103,12 @@ namespace Watson.Controllers
             return View();
         }
 
+        
         public JsonResult EmpEnrollmentContact(int Employee_id, string MaritalStatus, string MailingAddress,
             string PObox, string City, string State, string ZipCode, string County, string CityLimits,
             string PhysicalAddress, string PObox2, string City2, string State2, string ZipCode2,
             string County2, string EmailAddress, string PhoneNumber, string CellPhone)
         {
-            //Employee e = new Employee();
             Employee e = db.Employees
                .Where(i => i.Employee_id == Employee_id)
                .Single();
@@ -130,35 +130,35 @@ namespace Watson.Controllers
             e.PhoneNumber = PhoneNumber;
             e.CellPhone = CellPhone;
 
-            ViewBag.MaritalStatus = MaritalStatus;
+            ViewBag.MaritalStatus = e.MaritalStatus;
 
             if (ModelState.IsValid)
             {
-                //db.Employees.Add(e);
-
                 try
                 {
                     db.SaveChanges();
 
-//                    if (e.MaritalStatus == "Married")
-//                    {
-////                      return RedirectToAction("SpEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
-//                        return RedirectToAction("SpEnrollment");
-//                    }
-//                    else if (e.MaritalStatus == "MarriedwDep")
-//                    {
-//                        return RedirectToAction("SpEnrollment", new { Employee_id = e.Employee_id, MaritalStatus = e.MaritalStatus });
-////                       return RedirectToAction("SpEnrollment", "Employee", new { Employee_id = e.Employee_id, MaritalStatus = e.MaritalStatus });
-//                    }
-//                    else if (e.MaritalStatus == "SinglewDep")
-//                    {
-//                       return RedirectToAction("SpEnrollment", "Employee");
-////                       return RedirectToAction("DepEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
-//                    }
-//                    else
-//                    {
-//                        return RedirectToAction("EnrollmentSelection", "Employee", new { e.Employee_id, e.MaritalStatus});
-//                    }
+                    
+
+                    if (e.MaritalStatus == "Married")
+                    {
+                         RedirectToAction("SpEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
+                         RedirectToAction("SpEnrollment");
+                    }
+                    //else if (e.MaritalStatus == "MarriedwDep")
+                    //{
+                    //     RedirectToAction("SpEnrollment", new { Employee_id = e.Employee_id, MaritalStatus = e.MaritalStatus });
+                    //     RedirectToAction("SpEnrollment", "Employee", new { Employee_id = e.Employee_id, MaritalStatus = e.MaritalStatus });
+                    //}
+                    //else if (e.MaritalStatus == "SinglewDep")
+                    //{
+                    //     RedirectToAction("SpEnrollment", "Employee");
+                    //     RedirectToAction("DepEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
+                    //}
+                    else
+                    {
+                         RedirectToAction("EnrollmentSelection", "Employee", new { e.Employee_id, e.MaritalStatus });
+                    }
                 }
 
                 catch (Exception emp)
@@ -167,8 +167,9 @@ namespace Watson.Controllers
                 }
             }
 
-            return Json(new { data = e }, JsonRequestBehavior.AllowGet);
-                          
+            int result = e.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);             
         }
 
         //EditEmp Method
@@ -185,18 +186,19 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.Employee = e;
+            ViewBag.Employee = e.Employee_id;
 
             return View(e);
         }
 
-        public JsonResult EmployeeEditUpdate(int Employee_id, string EmpRole, string CurrentEmployer, 
+        public JsonResult EmployeeEditUpdate(int Employee_id,string EmpRole, string CurrentEmployer, 
             string JobTitle, string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, 
             string Gender, string MaritalStatus, string MailingAddress, string PObox, string City, 
             string State, string ZipCode, string County, string PhysicalAddress, string PObox2, string City2,
             string State2, string ZipCode2, string County2, string CityLimits, string EmailAddress, 
             string PhoneNumber, string CellPhone)
         {
+            //Employee e = db.Employees.Find(Employee_id);
             var e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)
                 .Single();
@@ -243,8 +245,9 @@ namespace Watson.Controllers
                 RedirectToAction("EmpOverview", new { e.Employee_id });
             }
 
+            int result = e.Employee_id;
 
-            return Json(new { data = e }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
         //EmpDetail Method
@@ -271,6 +274,8 @@ namespace Watson.Controllers
             var e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)
                 .Single();
+
+            //int result = e.Employee_id;
 
             return Json(new { data = e }, JsonRequestBehavior.AllowGet);    
         }
@@ -377,30 +382,14 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //SpEnrollment Method
-        public ActionResult SpEnrollment(int Employee_id, string MaritalStatus)
+        public ActionResult SpEnrollment(/*int Employee_id,*/ string MaritalStatus)
         {
             ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
-            ViewBag.Employee_id = Employee_id;
-            ViewBag.MaritalStatus = MaritalStatus;
+            //ViewBag.Employee_id = Employee_id;
+            //ViewBag.MaritalStatus = MaritalStatus;
             return View();
-        }
-        //SpEnrollment Method
-        public ActionResult SpEnrollment(string Employee_id, string MaritalStatus)
-        {
-            ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
-            ViewBag.Employee_id = Employee_id;
-            ViewBag.MaritalStatus = MaritalStatus;
-            return View();
-        }
-        public ActionResult SpEnrollment()
-        {
-            int Employee_id = 99;
-            string MaritalStatus = "ddd";
-            ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
-            ViewBag.Employee_id = Employee_id;
-            ViewBag.MaritalStatus = MaritalStatus;
-            return View();
-        }
+        } 
+        
 
         public JsonResult SpEnrollmentNew(int Employee_id, string MaritalStatus, string RelationshipToInsured,
            string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
@@ -522,13 +511,13 @@ namespace Watson.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Family_Info family = db.Family_Info.Find(FamilyMember_id);
+            Family_Info f = db.Family_Info.Find(FamilyMember_id);
             if (family == null)
             {
                 return HttpNotFound();
             }
 
-            return View(family);
+            return View(f);
         }
 
         //GetSpDetail Method
