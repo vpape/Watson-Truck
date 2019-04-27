@@ -114,7 +114,7 @@
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
                         <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="" />
-                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" />
+                        @*<input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" />*@
                         <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="" />
                         <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="" />
                         <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
@@ -401,7 +401,7 @@
             ZipCode = document.getElementById("ZipCode").value;
             County = document.getElementById("County").value;
             PhysicalAddress = document.getElementsById("PhysicalAddress").value;
-            PObox2 = document.getElementById("PObox2").value;
+            //PObox2 = document.getElementById("PObox2").value;
             City2 = document.getElementById("City2").value;
             State2 = document.getElementById("State2").value;
             ZipCode2 = document.getElementById("ZipCode2").value;
@@ -419,7 +419,7 @@
                 "ZipCode": ZipCode,
                 "County": County,
                 "PhysicalAddress": PhysicalAddress,
-                "PObox2": PObox2,
+                //"PObox2": PObox2,
                 "City2": City2,
                 "State2": State2,
                 "ZipCode2": ZipCode2,

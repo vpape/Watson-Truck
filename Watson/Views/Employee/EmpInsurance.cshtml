@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewBag.Title = "EmpInsurance";
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -6,13 +9,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Employee Enrollment</title>
+    <title>Insurance Information</title>
 </head>
 <body>
+    @* Group Health Info *@
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible" id="FirstStep">Enrollment</div>
-        <div id="divEmpEnrollment" class="content">
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+        <div class="collapsible" id="FirstStep">Group Health Insurance</div>
+        <div id="divGroupHealth" class="content">
             <p></p>
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
@@ -84,17 +89,17 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <button id="EmployeeEnrollmentUpdate" class="btn">Save</button>
+                    <button id="GroupHealthUpdate" class="btn"></button>
                 </div>
             </div>
         </div>
     </div>
-    @* Contact Info *@
+    @* Life Insurance Info *@
     <div class="form-horizontal">
         <p></p>
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
-        <div class="collapsible" id="SecondStep">Contact Information</div>
-        <div id="divEmpEnrollment" class="content">
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+        <div class="collapsible" id="SecondStep">Life Insurance</div>
+        <div id="divLifeInsurance" class="content">
             <p></p>
             <div id="divMailingAddress">
                 <div class="form-group">
@@ -168,13 +173,16 @@
             </div>
             <div class="form-group" id="divRedirect">
                 <div class="col-md-offset-11">
-                    <button id="EmployeeEnrollmentUpdateStepTwo" onclick="return redirect()" class="btn">Save</button>
+                    <button id="GroupHealthUpdateStepTwo" @*onclick="return redirect()"*@ class="btn"></button>
                 </div>
             </div>
         </div>
     </div>
 </body>
 </html>
+<p>
+    @Html.ActionLink("Back to Employee Overview", "EmpOverview")
+</p>
 
 <style>
     .collapsible {
@@ -237,228 +245,3 @@
         padding-left: 0;
     }
 </style>
-
-<script>
-    var col = document.querySelectorAll(".collapsible");
-    var i;
-    var emp_id;
-
-    for (i = 0; i < col.length; i++) {
-        col[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            } else {
-                content.style.display = "block";
-            }
-
-        });
-    }
-
-    function HidePhysicalAddress() {
-        document.getElementById("divPhysicalAddress").style.display = "none";
-    }
-
-    function ShowPhysicalAddress() {
-        document.getElementById("divPhysicalAddress").style.display = "block";
-        //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
-    }
-
-
-    function redirect() {
-        var maritalStatus = document.querySelector("#MaritalStatus").innerHTML;
-        var saveBtn = document.getElementById("divRedirect");
-
-        saveBtn.addEventListener('click', function () {
-
-            var message;
-            var alert = confirm("Would you like to proceed ? If yes, click the OK button to continue")
-
-            if (maritalStatus == "Single")
-            {
-                if (alert == true) {
-
-                    message = "Please proceed to the Group Health Enrollment, Thank you!!";
-
-                    setTimeout(function () {
-
-                        window.location.href = "/Employee/EnrollmentSelection";
-
-                    }, 3000);
-                }
-              
-            }
-            else
-            {
-                var message;
-                message = "Please proceed to the Family Enrollment, Thank you!!";
-
-                setTimeout(function () {
-                    window.location.href = "/Employee/FamilyEnrollment";
-                }, 3000);
-
-                document.getElementById("divRedirect").value = message;
-
-                return confirm('divRedirect')
-
-            }
-        })
-    }
-
-    //function ContactUpdate() {
-
-    //    redirectTime = "3000";
-    //    redirectURL = window.location('/Employee/'); if single, will need to redirect to EnrollmentSelection page, so
-    // enroll in group health....based on marital status and dependents, will need to redirect to corresponding page
-
-    //    var message;
-    //    var alert = confirm("Would you like to proceed? If yes, click the OK button to continue");
-
-    //    if (alert == true) {
-
-    //        message = "Please proceed to the next segment, Thank you!!";
-
-    //        window.setTimeout(function () {
-
-    //            window.location = "redirectURL", redirectTime
-    //        });
-    //    }
-    //    else {
-
-    //        message = "Please review your information and submit when complete";
-    //    }
-    //    document.getElementById("EmployeeEnrollmentUpdateStepTwo").value = message;
-
-    //    return confirm('EmployeeEnrollmentUpdateStepTwo')
-    //}
-
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#EmployeeEnrollmentUpdate").addEventListener("click", function () {
-            Role = document.getElementById("Role").value;
-            CurrentEmployer = document.getElementById("CurrentEmployer").value;
-            JobTitle = document.getElementById("JobTitle").value;
-            EmpNumber = document.getElementById("EmpNumber").value;
-            FirstName = document.getElementById("FirstName").value;
-            LastName = document.getElementById("LastName").value;
-            DateOfBirth = document.getElementById("DateOfBirth").value;
-            MaritalStatus = document.getElementById("MaritalStatus").value;
-            Gender = document.getElementById("Gender").value;
-
-            var data = {
-                "Role": Role,
-                "CurrentEmployer": CurrentEmployer,
-                "JobTitle": JobTitle,
-                "EmpNumber": EmpNumber,
-                "MaritalStatus": MaritalStatus,
-                "FirstName": FirstName,
-                "LastName": LastName,
-                "DateOfBirth": DateOfBirth,
-                "Gender": Gender
-            }
-
-            //var ret = postData('EmployeeEnrollmentNew', data)
-            //    .then(data => {
-            //        console.log(data);
-            //        FirstStep(data); })
-            //    .catch(error => console.error(error))
-
-            fetch('EmployeeEnrollmentNew', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => FirstStep(response))
-                .catch(error => console.error('Error:', error));
-        })
-
-        document.querySelector("#EmployeeEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            MailingAddress = document.getElementById("MailingAddress").value;
-            PObox = document.getElementById("PObox").value;
-            City = document.getElementById("City").value;
-            State = document.getElementById("State").value;
-            ZipCode = document.getElementById("ZipCode").value;
-            PhysicalAddress = document.getElementById("PhysicalAddress").value;
-            City2 = document.getElementById("City2").value;
-            State2 = document.getElementById("State2").value;
-            ZipCode2 = document.getElementById("ZipCode2").value;
-            EmailAddress = document.getElementById("EmailAddress").value;
-            PhoneNumber = document.getElementById("PhoneNumber").value;
-            CellPhone = document.getElementById("CellPhone").value;
-            CityLimits = document.getElementById("CityLimits").value;
-            MaritalStatus = document.getElementById("MaritalStatus").value;
-
-            var data = {
-                "Employee_id": emp_id,
-                "MailingAddress": MailingAddress,
-                "PObox": PObox,
-                "City": City,
-                "State": State,
-                "ZipCode": ZipCode,
-                "PhysicalAddress": PhysicalAddress,
-                "City2": City2,
-                "State2": State2,
-                "ZipCode2": ZipCode2,
-                "CityLimits": CityLimits,
-                "EmailAddress": EmailAddress,
-                "PhoneNumber": PhoneNumber,
-                "CellPhone": CellPhone,
-            }
-
-            var ret = postData('EmpEnrollmentContact', data)
-                .then(data => {
-                    console.log(data);
-                    SecondStep(data);
-                })
-                .catch(error => console.error(error))
-        })
-    })
-
-    function FirstStep(emp) {
-        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        emp_id = emp.data;
-    }
-
-    function SecondStep(emp) {
-        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-       
-    }
-
-    function postData(url, data) {
-        //Default options are marked with *
-        console.log(data);
-        console.log(JSON.stringify(data));
-        return fetch(url, {
-            body: JSON.stringify(data), //must match 'Content-Type' header
-            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', //include, same-origin, *omit
-            headers: {
-                'Accept': 'application/json',
-                'user-agent': 'Mozilla/4.0 MDN Example',
-                'content-type': 'application/json'
-            },
-            method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            mode: 'same-origin', //no-cors, cors, *same-origin
-            redirect: 'follow', //manual, *follow, error
-            referrer: 'no-referrer', //*client, no-referrer
-        }).then(res => res.json())
-            .then(response => console.log('Success:', JSON.stringify(response)))
-            .catch(error => console.error('Error:', error));
-            //.then(Response => {
-            //    console.log(Response);
-            //    Response.json();
-            //}) //parses response to JSON
-    }
-</script>
-

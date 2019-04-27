@@ -61,9 +61,11 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult EnrollmentSelection()
+        public ActionResult EnrollmentSelection(string MaritalStatus)
         {
-            return View();
+            ViewBag.MaritalStatus = MaritalStatus;
+       
+            return View(MaritalStatus);
         }
 
         public ActionResult NewEmployeeEnrollment()
@@ -106,8 +108,8 @@ namespace Watson.Controllers
         
         public JsonResult EmpEnrollmentContact(int Employee_id, string MaritalStatus, string MailingAddress,
             string PObox, string City, string State, string ZipCode, string County, string CityLimits,
-            string PhysicalAddress, string PObox2, string City2, string State2, string ZipCode2,
-            string County2, string EmailAddress, string PhoneNumber, string CellPhone)
+            string PhysicalAddress, string City2, string State2, string ZipCode2,
+            string EmailAddress, string PhoneNumber, string CellPhone)
         {
             Employee e = db.Employees
                .Where(i => i.Employee_id == Employee_id)
@@ -121,11 +123,9 @@ namespace Watson.Controllers
             e.County = County;
             e.CityLimits = CityLimits;
             e.PhysicalAddress = PhysicalAddress;
-            e.PObox = PObox2;
             e.City = City2;
             e.State = State2;
-            e.ZipCode = ZipCode2;
-            e.County = County2;   
+            e.ZipCode = ZipCode2; 
             e.EmailAddress = EmailAddress;
             e.PhoneNumber = PhoneNumber;
             e.CellPhone = CellPhone;
@@ -137,8 +137,6 @@ namespace Watson.Controllers
                 try
                 {
                     db.SaveChanges();
-
-                    
 
                     if (e.MaritalStatus == "Married")
                     {
@@ -194,8 +192,8 @@ namespace Watson.Controllers
         public JsonResult EmployeeEditUpdate(int Employee_id,string EmpRole, string CurrentEmployer, 
             string JobTitle, string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, 
             string Gender, string MaritalStatus, string MailingAddress, string PObox, string City, 
-            string State, string ZipCode, string County, string PhysicalAddress, string PObox2, string City2,
-            string State2, string ZipCode2, string County2, string CityLimits, string EmailAddress, 
+            string State, string ZipCode, string County, string PhysicalAddress, string City2,
+            string State2, string ZipCode2, string CityLimits, string EmailAddress, 
             string PhoneNumber, string CellPhone)
         {
             //Employee e = db.Employees.Find(Employee_id);
@@ -219,11 +217,9 @@ namespace Watson.Controllers
             e.ZipCode = ZipCode;
             e.County = County;
             e.PhysicalAddress = PhysicalAddress;
-            e.PObox = PObox2;
             e.City = City2;
             e.State = State2;
             e.ZipCode = ZipCode2;
-            e.County = County2;
             e.CityLimits = CityLimits;
             e.EmailAddress = EmailAddress;
             e.PhoneNumber = PhoneNumber;
@@ -442,8 +438,8 @@ namespace Watson.Controllers
         //SpEditUpdate Method
         public JsonResult SpEditUpdate(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured,
             string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress,
-            string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, string PObox2,
-            string City2, string State2, string ZipCode2, string County2, string EmailAddress, string PhoneNumber,
+            string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, /*string PObox2,*/
+            string City2, string State2, string ZipCode2, /*string County2,*/ string EmailAddress, string PhoneNumber,
             string CellPhone, string Employer, string EmployerAddress, string EmployerPObox, string EmployerCity,
             string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
@@ -464,11 +460,11 @@ namespace Watson.Controllers
             sp.ZipCode = ZipCode;
             sp.County = County;
             sp.PhysicalAddress = PhysicalAddress;
-            sp.PObox = PObox2;
+            //sp.PObox = PObox2;
             sp.City = City2;
             sp.State = State2;
             sp.ZipCode = ZipCode2;
-            sp.County = County2;
+            //sp.County = County2;
             sp.EmailAddress = EmailAddress;
             sp.PhoneNumber = PhoneNumber;
             sp.CellPhone = CellPhone;

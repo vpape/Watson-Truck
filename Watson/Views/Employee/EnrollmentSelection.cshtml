@@ -10,40 +10,39 @@
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+    <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value=@ViewBag.MaritalStatus />
     <div class="container">
         <h3>Enrollment Selection</h3>
         <div id="EnrollmentSelection">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>
-                            <div id="NewEmployeeEnrollment">
-                                <button type="button" class="button" onclick="return NewEmployeeEnrollment()">Employee Enrollment</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div id="FamilyEnrollment">
-                                <button type="button" class="button" onclick="return FamilyEnrollment()">Family Enrollment</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div id="GroupHealthEnrollment">
-                                <button type="button" class="button" onclick="return GrpHealthEnrollment()">Group Health Enrollment</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div id="LifeInsuranceEnrollment">
-                                <button type="button" class="button" onclick="return LifeInsuranceEnrollment()">Life Insurance Enrollment</button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
+            <table class="table-bordered" align="center">
+                <tr>
+                    <td>
+                        <div id="NewEmployeeEnrollment">
+                            <button type="button" class="button" onclick="return NewEmployeeEnrollment()">Employee Enrollment</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="FamilyEnrollment">
+                            <button type="button" class="hidden" onclick="return FamilyEnrollment()">Family Enrollment</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="GroupHealthEnrollment">
+                            <button type="button" class="button" onclick="return GrpHealthEnrollment()">Group Health Enrollment</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="LifeInsuranceEnrollment">
+                            <button type="button" class="button" onclick="return LifeInsuranceEnrollment()">Life Insurance Enrollment</button>
+                        </div>
+                    </td>
+                </tr>
             </table>
         </div>
     </div>
@@ -90,7 +89,8 @@
 
     table {
         border-collapse: collapse;
-        width: 100%;
+        width: 75%;
+   
     }
 
     div {
@@ -104,6 +104,22 @@
         window.location.href = "/Employee/NewEmployeeEnrollment";
 
     }
+
+    var maritalStatus = document.querySelector("#MaritalStatus");
+    var hideFamilybtn = document.getElementById("FamilyEnrollment")
+    var showFamilybtn = document.getElementById("FamilyEnrollment")
+
+    hideFamilybtn.addEventListener('click', function () {
+
+        if (maritalStatus == "Single") {
+
+            hideFamilybtn.style.visibility = "hidden";
+        }
+        else
+        {
+            showFamilybtn.style.visibility = "visible";
+        }
+    })
 
     function FamilyEnrollment() {
         window.location.href = "/Employee/FamilyEnrollment";
@@ -119,9 +135,6 @@
         window.location.href = "/Life_Insurance/NewLifeInsEnrollment";
     }
 
-    //function goBack() {
-    //    window.history.go(-1);
-    //}
 </script>
 
 

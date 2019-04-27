@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "GrpHealthEnrollment";
+    ViewBag.Title = "GrpHealthInsPremiums";
 }
 <h2>Health Insurance Premiums</h2>
 <h5>Major Medical (includes 15K Life Insurance)</h5>
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Employee Page</title>
+    <title>Admin Page</title>
 </head>
 <body>
     @* Health Ins Premium *@
@@ -20,7 +20,7 @@
         <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">
             <tr>
                 <td>
-                    <table class="table table-condensed" width="400" cellpadding="10" cellspacing="10" border="1">
+                    <table class="table table-hover" width="400" cellpadding="10" cellspacing="10" border="1">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Plan</th>
@@ -38,27 +38,27 @@
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="MECmonthlyCostEmpOnly" value="" readonly />
+                                        <input type="text" name="EmployeeOnly" size="10" id="MECmonthlyCostEmpOnly" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="MECmonthlyCostEmpSp" value="" readonly />
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="MECmonthlyCostEmpSp" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="MECmonthlyCostEmpDep" value="" readonly />
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="MECmonthlyCostEmpDep" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="MECmonthlyCostEmpFam" value="" readonly />
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="MECmonthlyCostEmpFam" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="MECMnthyearlyPremiumCost" value="" readonly />
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="MECMnthyearlyPremiumCost" value="" />
                                     </div>
                                 </td>
                             </tr>
@@ -68,27 +68,27 @@
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="MECbiweeklyCostEmpOnly" value="" readonly />
+                                        <input type="text" name="EmployeeOnly" size="10" id="MECbiweeklyCostEmpOnly" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="MECbiweeklyCostEmpSp" value="" readonly />
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="MECbiweeklyCostEmpSp" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="MECbiweeklyCostEmpDep" value="" readonly />
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="MECbiweeklyCostEmpDep" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="MECbiweeklyCostEmpFam" value="" readonly />
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="MECbiweeklyCostEmpFam" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="MECBiWkyearlyPremiumCost" value="" readonly />
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="MECBiWkyearlyPremiumCost" value="" />
                                     </div>
                                 </td>
                             </tr>
@@ -98,27 +98,27 @@
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="StndmonthlyCostEmpOnly" value="" readonly />
+                                        <input type="text" name="EmployeeOnly" size="10" id="StndmonthlyCostEmpOnly" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="StndmonthlyCostEmpSp" value="" readonly />
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="StndmonthlyCostEmpSp" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="StndmonthlyCostEmpDep" value="" readonly />
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="StndmonthlyCostEmpDep" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="StndmonthlyCostEmpFam" value="" readonly />
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="StndmonthlyCostEmpFam" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="StndMnthyearlyPremiumCost" value="" readonly />
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="StndMnthyearlyPremiumCost" value="" />
                                     </div>
                                 </td>
                             </tr>
@@ -128,27 +128,27 @@
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="StndbiweeklyCostEmpOnly" value="" readonly />
+                                        <input type="text" name="EmployeeOnly" size="10" id="StndbiweeklyCostEmpOnly" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="StndbiweeklyCostEmpSp" value="" readonly />
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="StndbiweeklyCostEmpSp" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="StndbiweeklyCostEmpDep" value="" readonly />
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="StndbiweeklyCostEmpDep" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="StndbiweeklyCostEmpFam" value="" readonly />
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="StndbiweeklyCostEmpFam" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="StndBiWkyearlyPremiumCost" value="" readonly />
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="StndBiWkyearlyPremiumCost" value="" />
                                     </div>
                                 </td>
                             </tr>
@@ -158,27 +158,27 @@
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="BuyUpmonthlyCostEmpOnly" value="" readonly />
+                                        <input type="text" name="EmployeeOnly" size="10" id="BuyUpmonthlyCostEmpOnly" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="BuyUpmonthlyCostEmpSp" value="" readonly />
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="BuyUpmonthlyCostEmpSp" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="BuyUpmonthlyCostEmpDep" value="" readonly />
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="BuyUpmonthlyCostEmpDep" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="BuyUpmonthlyCostEmpFam" value="" readonly />
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="BuyUpmonthlyCostEmpFam" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="BuyUpMnthyearlyPremiumCost" value="" readonly />
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="BuyUpMnthyearlyPremiumCost" value="" />
                                     </div>
                                 </td>
                             </tr>
@@ -188,33 +188,33 @@
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="BuyUpbiweeklyCostEmpOnly" value="" readonly />
+                                        <input type="text" name="EmployeeOnly" size="10" id="BuyUpbiweeklyCostEmpOnly" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="BuyUpbiweeklyCostEmpSp" value="" readonly />
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="BuyUpbiweeklyCostEmpSp" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="BuyUpbiweeklyCostEmpDep" value="" readonly />
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="BuyUpbiweeklyCostEmpDep" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="BuyUpbiweeklyCostEmpAndFam" value="" readonly />
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="BuyUpbiweeklyCostEmpAndFam" value="" />
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="BuyUpBiWkyearlyPremiumCost" value="" readonly />
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="BuyUpBiWkyearlyPremiumCost" value="" />
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="col-md-12 table-bordered" readonly>
+                    <div class="col-md-12 table-bordered">
                         These prices are in effect for 01-01-2019 through 12-31-2019<br />
                         <p></p>
                         Estimated costs* for COBRA participants for the 2019 year:<br />
@@ -232,21 +232,20 @@
                         </p>*@
                     <div class="form-group">
                         <div class="col-md-offset-11">
-                            <button id="InsPremiumUpdateStepOne" @*onclick="return ContactUpdate()"*@ class="hidden"></button>
+                            <button id="InsPremiumUpdateStepThree" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
                         </div>
                     </div>
                 </td>
             </tr>
         </table>
     </div>
-    @* db.InsurancePlanDetail- col- Item, Detail *@
     <div class="form-horizontal">
         <hr />
         <div class="collapsible" id="FourthStep">Health Insurance Supplement</div>
         <table class="container-fluid table-bordered" id="InsSupplementTable" cellpadding="20" cellspacing="20">
             <tr>
                 <td>
-                    <table class="table table-condensed" width="400" cellpadding="10" cellspacing="10" border="1">
+                    <table class="table table-hover" width="400" cellpadding="10" cellspacing="10" border="1">
                         <thead class="thead-dark">
                             <tr>
                                 <th><u>Dental Cost Analysis</u></th>
@@ -263,7 +262,7 @@
                                 </td>
                                 <td>
                                     <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="DentalCostEmpOnly" value="" readonly />
+                                        <input type="text" name="EmployeeOnly" size="10" id="DentalCostEmpOnly" value="" />
                                     </div>
                                 </td>
                                 <td></td>
@@ -272,7 +271,7 @@
                                 </td>
                                 <td>
                                     <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="VisionCostEmpOnly" value="" readonly />
+                                        <input type="text" name="EmployeeOnly" size="10" id="VisionCostEmpOnly" value="" />
                                     </div>
                                 </td>
                             </tr>
@@ -282,7 +281,7 @@
                                 </td>
                                 <td>
                                     <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="DentalCostEmpSp" value="" readonly />
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="DentalCostEmpSp" value="" />
                                     </div>
                                 </td>
                                 <td></td>
@@ -291,7 +290,7 @@
                                 </td>
                                 <td>
                                     <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="VisionCostEmpSp" value="" readonly />
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="VisionCostEmpSp" value="" />
                                     </div>
                                 </td>
                             </tr>
@@ -301,7 +300,7 @@
                                 </td>
                                 <td>
                                     <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="DentalCostEmpDep" value="" readonly />
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="DentalCostEmpDep" value="" />
                                     </div>
                                 </td>
                                 <td></td>
@@ -310,7 +309,7 @@
                                 </td>
                                 <td>
                                     <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="VisionCostEmpDep" value="" readonly />
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="VisionCostEmpDep" value="" />
                                     </div>
                                 </td>
                             </tr>
@@ -320,276 +319,24 @@
                                 </td>
                                 <td>
                                     <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="DentalCostEmpFam" value="" readonly />
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="DentalCostEmpFam" value="" />
                                     </div>
                                 </td>
                                 <td></td>
                                 <td>
-                                    <label>Employee + Family:</label>
+                                    <label>Employee + Family):</label>
                                 </td>
                                 <td>
                                     <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="VisionCostEmpFam" value="" readonly />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Summary of Dental Benefits:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="SummaryOfDentalBenefits" value="" readonly />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Summary of Dental Benefits:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="SummaryOfVisionBenefits" value="" readonly />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Calendar Year Deductible:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Co-pay:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Waived for Preventive:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Exams:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Annual Maximum:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Materials:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Preventive:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Lenses Single Vision:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Basic:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Bifocal:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Major:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Trifocal:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>UCR%:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Lenticular:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Endodontics/Peridontics:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Contact (medically necessary):</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Orthodontics:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Contact (elective):</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Orthodontia Lifetime Maximum:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Frames:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Waiting Period:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Network:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Dental Network:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Rate Guarantee:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="" value="" readonly />
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="VisionCostEmpFam" value="" />
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <p>
-                        **Rates guarantee for 1 year<br />
-                        -Subject to maxiumum rollover (Threshold $500; Rollover amount $250)<br />
-                        -Basic Life/AD&D: Only those on medical are eligible for basic life & AD&D
-                    </p>
                     <div class="form-group">
                         <div class="col-md-offset-11">
-                            <button id="InsSupplementUpdateStepTwo" @*onclick="return ContactUpdate()"*@ class="hidden">Save</button>
+                            <button id="InsSupplementUpdateStepFour" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
                         </div>
                     </div>
                 </td>
@@ -865,4 +612,5 @@
     }
 
 </script>
+
 

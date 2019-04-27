@@ -111,18 +111,18 @@
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
                         <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="@ViewBag.PhysicalAddress" />
-                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" value="@ViewBag.PObox" />
+                        @*<input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" value="@ViewBag.PObox" />*@
                         <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="@ViewBag.City" />
                         <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="@ViewBag.State" />
                         <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="@ViewBag.ZipCode" />
                     </div>
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
                         <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="@ViewBag.County" />
                     </div>
-                </div>
+                </div>*@
             </div>
             <div class="form-group">
                 <label for="EmailAddress" class="col-md-2 control-label">Email Address:</label>
@@ -363,11 +363,11 @@
             ZipCode = document.getElementById("ZipCode").value;
             County = document.getElementById("County").value;
             PhysicalAddress = document.getElementById("PhysicalAddress").value;
-            PObox2 = document.getElementById("PObox2").value;
+            //PObox2 = document.getElementById("PObox2").value;
             City2 = document.getElementById("City2").value;
             State2 = document.getElementById("State2").value;
             ZipCode2 = document.getElementById("ZipCode2").value;
-            County2 = document.getElementById("County2").value;
+            //County2 = document.getElementById("County2").value;
             EmailAddress = document.getElementById("EmailAddress").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             CellPhone = document.getElementById("CellPhone").value;
@@ -381,11 +381,11 @@
                 "ZipCode": ZipCode,
                 "County": County,
                 "PhysicalAddress": PhysicalAddress,
-                "PObox2": PObox2,
+                //"PObox2": PObox2,
                 "City2": City2,
                 "State2": State2,
                 "ZipCode2": ZipCode2,
-                "County2": County2,
+                //"County2": County2,
                 "EmailAddress": EmailAddress,
                 "PhoneNumber": PhoneNumber,
                 "CellPhone": CellPhone,
@@ -480,7 +480,7 @@
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         document.querySelector("#ThirdStep").nextElementSibling.content.style.display = "block";
-        document.querySelector("#Employee_id").value = sp.Employee_id;
+        //document.querySelector("#Employee_id").value = sp.Employee_id;
         //document.querySelector("#Employer").value = sp.Employer;
         //document.querySelector("#EmployerAddress").value = sp.EmployerAddress;
         //document.querySelector("#EmployerPObox").value = sp.EmployerPObox;

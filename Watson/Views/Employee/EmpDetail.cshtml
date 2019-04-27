@@ -101,12 +101,6 @@
                     <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(Model => Model.ZipCode)">
                 </dd>
                 <dt>
-                    <label class="col-md-2 control-label">County: </label>
-                </dt>
-                <dd class="col-md-10 form-group">
-                    <input type="text" id="County" class="form-control" name="County" value="@Html.DisplayFor(Model => Model.County)">
-                </dd>
-                <dt>
                     <label class="col-md-2 control-label">Within City Limits?</label>
                 </dt>
                 <dd class="col-md-10 form-group" id="CityLimits">
@@ -118,12 +112,6 @@
                 </dt>
                 <dd class="col-md-10 form-group">
                     <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@Html.DisplayFor(Model => Model.PhysicalAddress)">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">PObox: Not pulling County2</label>
-                </dt>
-                <dd class="col-md-10 form-group">
-                    <input type="text" id="PObox2" class="form-control" name="PObox" value="@Html.DisplayFor(Model => Model.PObox)">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">City:Not pulling City2</label>
@@ -142,12 +130,6 @@
                 </dt>
                 <dd class="col-md-10 form-group">
                     <input type="text" id="ZipCode2" class="form-control" name="ZipCode" value="@Html.DisplayFor(Model => Model.ZipCode)">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">County:Not pulling County2</label>
-                </dt>
-                <dd class="col-md-10 form-group">
-                    <input type="text" id="County2" class="form-control" name="County" @*value="@Html.DisplayFor(Model => Model.County)"*@>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Email:</label>
@@ -254,14 +236,11 @@
         City = document.getElementById("City").value;
         State = document.getElementById("State").value;
         ZipCode = document.getElementById("ZipCode").value;
-        County = document.getElementById("County").value;
-        //CityLimits = document.getElementId("CityLimits").value;
+        CityLimits = document.getElementId("CityLimits").value;
         PhysicalAddress = document.getElementById("PhysicalAddress").value;
-        PObox2 = document.getElementById("PObox2").value;
         City2 = document.getElementById("City2").value;
         State2 = document.getElementById("State2").value;
         ZipCode2 = document.getElementById("ZipCode2").value;
-        County2 = document.getElementById("County2").value;
         EmailAddress = document.getElementById("EmailAddress").value;
         PhoneNumber = document.getElementById("PhoneNumber").value;
         CellPhone = document.getElementById("CellPhone").value;
@@ -281,13 +260,10 @@
             "City": City,
             "State": State,
             "ZipCode": ZipCode,
-            "County": County,
             "PhysicalAddress": PhysicalAddress,
-            "PObox2": PObox2,
             "City2": City2,
             "State2": State2,
             "ZipCode2": ZipCode2,
-            "County2": County2,
             "CityLimits": CityLimits,
             "EmailAddress": EmailAddress,
             "PhoneNumber": PhoneNumber,

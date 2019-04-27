@@ -451,6 +451,8 @@
     <Content Include="Views\Employee\DepDetail.cshtml" />
     <Content Include="Views\Employee\DeleteSp.cshtml" />
     <Content Include="Views\Employee\DeleteDep.cshtml" />
+    <Content Include="Views\Employee\EmpInsurance.cshtml" />
+    <Content Include="Views\Admin\GrpHealthInsPremiums.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
