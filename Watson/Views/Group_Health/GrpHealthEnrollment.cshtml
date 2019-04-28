@@ -652,7 +652,7 @@
             <form>
                 <label>Employee Information:</label>
                 <p></p>
-                <div>
+                <div class="form-group col-md-6">
                     <input type="text" class="form-control" placeholder="Employee #" name="SSN" value="" />
                 </div>
                 <div class="form-row">
@@ -671,100 +671,92 @@
                             <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
                         </div>
                     </div>
-
+                    <p></p>
                     <div>
-                        <label>Birth Date:</label>
-                        <input type="date" class="form-control" name="DateOfBirth" value="" />
+                        <select id="Gender" class="form-control">
+                            <option value="">Gender Selection:</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
                     </div>
+                    <p></p>
                     <div>
-                        <label>Marital Status:</label>
                         <select id="MaritalStatus" class="form-control">
-                            <option value="">Select Option</option>
+                            <option value="">Marital Status:</option>
                             <option value="MarriedwDep">Married with Dependents</option>
                             <option value="Married">Married</option>
                             <option value="SinglewDep">Single with Dependents</option>
                             <option value="Single">Single</option>
                         </select>
                     </div>
-
-                    <div>
-                        <label>Gender:</label>
-                        <select id="Gender" class="form-control">
-                            <option value="">Select Option</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
+                    <p></p>
                     <div>
                         <input type="text" class="form-control" placeholder="Email Address" name="EmailAddress" value="" />
                     </div>
                     <div>
                         <input type="text" class="form-control" placeholder="Phone Number" name="PhoneNumber" value="" />
                     </div>
-                </div><!-- /.row -->
+                    <p></p>
+                    <div>
+                        <label>Birth Date:</label>
+                        <input type="date" class="form-control" name="DateOfBirth" value="" />
+                    </div>
+                </div>
             </form>
                 <hr />
-            <div class="container-fluid">
+            <div class="form-row">
                 <div class="floatLeft">
                     <table class="table-bordered" border="1">
                         <thead class="thead-dark">
                             <tr>
-                                <th><u>Spouse's Information</u></th>
+                                <th>Spouse's Information</th>
                             </tr>
                         </thead>
                         <tr>
                             <td class="text">
-                                <label>First Name:</label>
-                                <input type="text" value="" />
+                                <input type="text" class="form-control" placeholder="First Name" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <label>Last Name:</label>
-                                <input type="text" value="" />
+                                <input type="text" class="form-control" placeholder="Last Name" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <label>Address:</label>
-                                <input type="text" value="" />
+                                <input type="text" class="form-control" placeholder="Address" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <label>City:</label>
-                                <input type="text" value="" />
+                                <input type="text" class="form-control" placeholder="City" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <label>State:</label>
-                                <input type="text" value="" />
+                                <input type="text" class="form-control" placeholder="State" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <label>Zip Code:</label>
-                                <input type="text" value="" />
+                                <input type="text" class="form-control" placeholder="Zip Code" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <label>Phone:</label>
-                                <input type="tel" value="" />
+                                <input type="tel" class="form-control" placeholder="Phone Number" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
                                 <label>Birth Date:</label>
-                                <input type="date" value="" />
+                                <input type="date" class="form-control" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <label>Gender:</label>
-                                <select id="Gender">
-                                    <option>Select Option</option>
+                                <select id="Gender" class="form-control">
+                                    <option>Gender Selection:</option>
                                     <option>Male</option>
                                     <option>Female</option>
                                 </select>
