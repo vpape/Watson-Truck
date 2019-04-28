@@ -604,49 +604,48 @@
             <form style="border:solid" class="aside">
                 <label>Employment Information: (To be completed by Employer)</label>
                 <p></p>
-                <div class="">
-                    <label>Group Name:</label>
-                    <input type="text" name="GroupName" value="" />
+                <div>
+                    <input type="text" class="form-control" name="GroupName" placeholder="Group Name" value="" />
                 </div>
-                <div class="form-group-sm">
-                    <label>IMS Group Number:</label>
-                    <input type="text" name="IMSGroupNumber" value="" />
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="IMSGroupNumber" placeholder="IMS Group Number" value="" />
                 </div>
-                <div class="">
-                    <label>Department:</label>
-                    <input type="text" name="Department" value="" />
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="Department" placeholder="Department" value="" />
                 </div>
-                <div class="">
-                    <label>Enrollment Type:</label>
-                    <input type="text" name="EnrollmentType" value="" />
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="EnrollmentType" placeholder="Enrollment Type" value="" />
                 </div>
-                <div class="">
-                    <label>Payroll ID:</label>
-                    <input type="text" name="Payroll_id" value="" />
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="Payroll_id" placeholder="Payroll ID" value="" />
                 </div>
-                <div class="">
-                    <label>Class:</label>
-                    <input type="text" name="Class" value="" />
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="Class" placeholder="Class" value="" />
                 </div>
-                <div class="">
-                    <label>Annual Salary:</label>
-                    <input type="text" name="AnnualSalary" value="" />
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="AnnualSalary" placeholder="Annual Salary" value="" />
                 </div>
-                <div class="">
-                    <label>Occupation:</label>
-                    <input type="text" name="JobTitle" value="" />
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="JobTitle" placeholder="Occupation" value="" />
                 </div>
-                <div class="">
-                    <label>Employment Date:</label>
-                    <input type="text" name="HireDate" value="" />
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="HireDate" placeholder="Employment Date" value="" />
                 </div>
-                <div class="">
-                    <label>Effective Date:</label>
-                    <input type="text" name="EffectiveDate" value="" />
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="EffectiveDate" placeholder="Effective Date" value="" />
                 </div>
-                <div class="">
-                    <label>Min. Hrs. Worked/Wk:</label>
-                    <input type="text" name="HoursWorkedPerWeek" value="" />
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="HoursWorkedPerWeek" placeholder="Min. Hrs. Worked/Wk" value="" />
                 </div>
             </form>
             <form>
@@ -682,7 +681,7 @@
                     <p></p>
                     <div>
                         <select id="MaritalStatus" class="form-control">
-                            <option value="">Marital Status:</option>
+                            <option value="">Marital Status Selection:</option>
                             <option value="MarriedwDep">Married with Dependents</option>
                             <option value="Married">Married</option>
                             <option value="SinglewDep">Single with Dependents</option>
@@ -706,20 +705,81 @@
                 <hr />
             <div class="form-row">
                 <div class="floatLeft">
-                    <table class="table-bordered" border="1">
+                    <table class="table-bordered">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Spouse's Information</th>
                             </tr>
                         </thead>
                         <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="First Name" value="" />
+                            <td>
+                                <table class="table-bordered">
+                                    <tr>
+                                        <td class="text">
+                                            <input type="text" class="form-control" placeholder="First Name" value="" />
+                                        </td>
+                                        <td class="text">
+                                            <input type="text" class="form-control" placeholder="Last Name" value="" />
+                                        </td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" placeholder="Last Name" value="" />
+                                <input type="text" class="form-control" placeholder="Address" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table class="table-bordered">
+                                    <tr>
+                                        <td class="text">
+                                            <input type="text" class="form-control" placeholder="City" value="" />
+                                        </td>
+                                        <td class="text">
+                                            <input type="text" class="form-control" placeholder="State" value="" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" placeholder="Zip Code" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text">
+                                <input type="tel" class="form-control" placeholder="Phone Number" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text">
+                                <input type="date" class="form-control" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text">
+                                <select id="Gender" class="form-control">
+                                    <option>Gender Selection:</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="floatCenter">
+                    <table class="table-bordered" border="1">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Spouse's Employer</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" placeholder="Employer" value="" />
                             </td>
                         </tr>
                         <tr>
@@ -744,74 +804,13 @@
                         </tr>
                         <tr>
                             <td class="text">
-                                <input type="tel" class="form-control" placeholder="Phone Number" value="" />
+                                <input type="text" class="form-control" placeholder="Phone Number" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <label>Birth Date:</label>
-                                <input type="date" class="form-control" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <select id="Gender" class="form-control">
-                                    <option>Gender Selection:</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="floatCenter">
-                    <table class="table-bordered" border="1">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th><u>Spouse's Employer</u></th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td class="text">
-                                <label>Employer:</label>
-                                <input type="text" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <label>Address:</label>
-                                <input type="text" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <label>City:</label>
-                                <input type="text" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <label>State:</label>
-                                <input type="text" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <label>Zip Code:</label>
-                                <input type="text" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <label>Phone:</label>
-                                <input type="text" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <label>Coverage:</label>
-                                <select id="OtherCoverageSelectOption">
-                                    <option>Select Option</option>
+                                <select id="OtherCoverageSelectOption" class="form-control">
+                                    <option>Other Ins. Coverage:</option>
                                     <option>Medical</option>
                                     <option>Dental</option>
                                     <option>Vision</option>
@@ -825,49 +824,42 @@
                     <table class="table-bordered" border="1">
                         <thead class="thead-dark">
                             <tr>
-                                <th><u>Spouse's Insurance</u></th>
+                                <th>Spouse's Insurance</th>
                             </tr>
                         </thead>
                         <tr>
                             <td class="text">
-                                <label>Company:</label>
-                                <input type="text" value="" />
+                                <input type="text" class="form-control" placeholder="Insurance Company" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <label>Address:</label>
-                                <input type="text" value="" />
+                                <input type="text" class="form-control" placeholder="Address" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <label>City:</label>
-                                <input type="text" value="" />
+                                <input type="text" class="form-control" placeholder="City" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <label>State:</label>
-                                <input type="text" value="" />
+                                <input type="text" class="form-control" placeholder="State" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <label>Zip Code:</label>
-                                <input type="text" value="" />
+                                <input type="text" class="form-control" placeholder="Zip Code" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <label>Phone:</label>
-                                <input type="text" value="" />
+                                <input type="text" class="form-control" placeholder="Phone Number" value="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <label>Policy #:</label>
-                                <input type="text" value="" />
+                                <input type="text" class="form-control" placeholder="Policy #" value="" />
                             </td>
                         </tr>
                     </table>
@@ -923,9 +915,6 @@
             background-color: #ddd;
             color: black;
         }
-    /*.form-group-sm {
-        text-indent: 20px;
-    }*/
 
     .aside {
         float: right;
