@@ -650,10 +650,9 @@
             </form>
             <form>
                 <label>Employee Information:</label>
-                <p></p>
                 <div>
                     <div class="form-group col-md-2">
-                        <input type="text" class="form-control" placeholder="Leave Blank" name="SSN" value="" />
+                        <input type="text" class="form-control" placeholder="Employee Number" name="SSN" value="" />
                     </div>
                 </div>
                 <div>
@@ -700,9 +699,40 @@
                         <label>Birth Date:</label>
                         <input type="date" class="form-control" name="DateOfBirth" value="" />
                     </div>
+                    <p></p>
+                    <label >Are you covered by any other insurance, including Medicare?</label>
+                    <div class="">
+                        @*<label class="col-md-2 control-label">Is your dependent covered by other insurance, including Medicare/Medicaid?</label>*@
+                        <div class="col-md-10" id="CoveredByOtherIns">
+                            <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return ShowCoveredByOtherIns()" name="CoveredByOtherInsurance" value="true" checked />Yes</label>
+                            <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return HideCoveredByOtherIns()" name="CoveredByOtherInsurance" value="false" />No</label>
+                        </div>
+                    </div>
+             
+                    <div class="" id="divCoveredByOtherIns">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <input type="text" id="InsuranceCompany" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <input type="text" id="PolicyNumber" class="form-control" placeholder="Policy Number" name="PolicyNumber" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="form-group phone-number">
+                                    <div class="col-xs-4">
+                                        <input type="tel" id="InsPhoneNumber" class="form-control" placeholder="Phone Number" name="PhoneNumber" size="3" maxlength="14" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
-                <hr />
+            <hr />
             <div>
                 <div class="floatLeft">
                     <table class="table-bordered">
@@ -866,7 +896,7 @@
                 </div>
             </div>
         </div>
-   
+
     </div>
 </body>
 </html>
@@ -987,6 +1017,15 @@
 
 
 <script>
+    function HideCoveredByOtherIns() {
+        document.getElementById("divCoveredByOtherIns").style.display = "none";
+    }
+
+    function ShowCoveredByOtherIns() {
+        document.getElementById("divCoveredByOtherIns").style.display = "block";
+        //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#InsPremiumUpdateStepThree").addEventListener("click", function () {
             MECmonthlyEO = document.getElementById('MECmonthlyCostEmpOnly').value
