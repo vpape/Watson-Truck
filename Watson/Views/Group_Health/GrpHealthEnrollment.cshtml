@@ -26,7 +26,7 @@
                                 <th>Plan</th>
                                 <th>Employee Only</th>
                                 <th>Employee/Spouse</th>
-                                <th>Employee/Dependent(s)</th>
+                                <th>Employee/Child(ren)</th>
                                 <th>Employee/Family</th>
                                 <th>Yearly Cost</th>
                             </tr>
@@ -651,85 +651,77 @@
             <form>
                 <label>Employee Information:</label>
                 <div>
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-5">
                         <input type="text" class="form-control" placeholder="Employee Number" name="SSN" value="" />
                     </div>
                 </div>
                 <div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-sm-6">
                         <input type="text" class="form-control" placeholder="First Name" name="FirstName" value="" />
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-sm-6">
                         <input type="text" class="form-control" placeholder="Last Name" name="LastName" value="" />
                     </div>
-                    <div>
-                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
-                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" />
-                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
-                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
-                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
+                    <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" />
+                    <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
+                    <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
+                    <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <select id="Gender" class="form-control">
+                        <option value="">Gender Selection:</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <p></p>
+                <div>
+                    <select id="MaritalStatus" class="form-control">
+                        <option value="">Marital Status Selection:</option>
+                        <option value="MarriedwDep">Married with Dependents</option>
+                        <option value="Married">Married</option>
+                        <option value="SinglewDep">Single with Dependents</option>
+                        <option value="Single">Single</option>
+                    </select>
+                </div>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" placeholder="Email Address" name="EmailAddress" value="" />
+                </div>
+                <div>
+                    <input type="text" class="form-control" placeholder="Phone Number" name="PhoneNumber" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <label>Birth Date:</label>
+                    <input type="date" class="form-control" name="DateOfBirth" value="" />
+                </div>
+                <p></p>
+                <label>Are you covered by any other insurance, including Medicare?</label>
+                <div class="">
+                    @*<label class="col-md-2 control-label">Is your dependent covered by other insurance, including Medicare/Medicaid?</label>*@
+                    <div class="col-md-10" id="CoveredByOtherIns">
+                        <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return ShowCoveredByOtherIns()" name="CoveredByOtherInsurance" value="true" checked />Yes</label>
+                        <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return HideCoveredByOtherIns()" name="CoveredByOtherInsurance" value="false" />No</label>
                     </div>
-                    <p></p>
-                    <div>
-                        <select id="Gender" class="form-control">
-                            <option value="">Gender Selection:</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
+                </div>
+                <div class="form-group" id="divEmpCoveredByOtherIns">
+                    <div class="form-group col-md-3">
+                        <input type="text" id="InsuranceCompany" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
                     </div>
-                    <p></p>
-                    <div>
-                        <select id="MaritalStatus" class="form-control">
-                            <option value="">Marital Status Selection:</option>
-                            <option value="MarriedwDep">Married with Dependents</option>
-                            <option value="Married">Married</option>
-                            <option value="SinglewDep">Single with Dependents</option>
-                            <option value="Single">Single</option>
-                        </select>
+                    <div class="form-group col-md-3">
+                        <input type="text" id="PolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
                     </div>
-                    <p></p>
-                    <div>
-                        <input type="text" class="form-control" placeholder="Email Address" name="EmailAddress" value="" />
+                    <div class="form-group col-md-3">
+                        <input type="tel" id="InsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
                     </div>
-                    <div>
-                        <input type="text" class="form-control" placeholder="Phone Number" name="PhoneNumber" value="" />
-                    </div>
-                    <p></p>
-                    <div>
-                        <label>Birth Date:</label>
-                        <input type="date" class="form-control" name="DateOfBirth" value="" />
-                    </div>
-                    <p></p>
-                    <label>Are you covered by any other insurance, including Medicare?</label>
-                    <div class="">
-                        @*<label class="col-md-2 control-label">Is your dependent covered by other insurance, including Medicare/Medicaid?</label>*@
-                        <div class="col-md-10" id="CoveredByOtherIns">
-                            <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return ShowCoveredByOtherIns()" name="CoveredByOtherInsurance" value="true" checked />Yes</label>
-                            <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return HideCoveredByOtherIns()" name="CoveredByOtherInsurance" value="false" />No</label>
-                        </div>
-                    </div>
-                    <div class="" id="divCoveredByOtherIns">
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <input type="text" id="InsuranceCompany" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <input type="text" id="PolicyNumber" class="form-control" placeholder="Policy Number" name="PolicyNumber" value="" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <div class="form-group phone-number">
-                                    <div class="col-xs-4">
-                                        <input type="tel" id="InsPhoneNumber" class="form-control" placeholder="Phone Number" name="PhoneNumber" size="3" maxlength="14" value="" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <label></label>
-                    </div>
+                </div>
+                <div>
+                    <label><u>Group Health Coverage Options:</u></label>
                 </div>
             </form>
             <hr />
@@ -747,7 +739,7 @@
                             </td>
                             <td class="text">
                                 <input type="text" class="form-control" placeholder="Last Name" value="" />
-                            </td>     
+                            </td>
                         </tr>
                         <tr>
                             <td class="text" colspan="2">
@@ -760,7 +752,7 @@
                             </td>
                             <td class="text">
                                 <input type="text" class="form-control" placeholder="State" value="" />
-                            </td>        
+                            </td>
                         </tr>
                         <tr>
                             <td class="text" colspan="2">
@@ -768,17 +760,17 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="text">
+                            <td class="text" colspan="2">
                                 <input type="tel" class="form-control" placeholder="Phone Number" value="" />
                             </td>
                         </tr>
                         <tr>
-                            <td class="text">
+                            <td class="text" colspan="2">
                                 <input type="date" class="form-control" placeholder="Birth Date" value="" />
                             </td>
                         </tr>
                         <tr>
-                            <td class="text">
+                            <td class="text" colspan="2">
                                 <select id="Gender" class="form-control">
                                     <option>Gender Selection:</option>
                                     <option>Male</option>
@@ -802,7 +794,7 @@
                         </tr>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" placeholder="Address" value="" />
+                                <input type="text" class="form-control" placeholder="Street" value="" />
                             </td>
                         </tr>
                         <tr>
@@ -883,8 +875,52 @@
                     </table>
                 </div>
             </div>
+            <p></p>
+            <div>
+                <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
+                <div>
+                    <div class="form-group col-md-3">
+                        <input type="text" id="DepFirstName" class="form-control" placeholder="First Name" name="FirstName" value="" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input type="text" id="DepLastName" class="form-control" placeholder="Last Name" name="LastName" value="" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <input type="text" class="form-control" placeholder="SSN" name="SSN" value="" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <select id="Gender" class="form-control">
+                            <option value="">Gender Selection:</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
+                        <div class="col-md-3" id="CoveredByOtherIns">
+                            <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return ShowCoveredByOtherIns()" name="CoveredByOtherInsurance" value="true" checked />Yes</label>
+                            <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return HideCoveredByOtherIns()" name="CoveredByOtherInsurance" value="false" />No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" id="divDepCoveredByOtherIns">
+                    <div class="form-group col-md-3">
+                        <input type="text" id="InsuranceCompany" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input type="text" id="PolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input type="tel" id="InsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
 </body>
 </html>
@@ -1006,11 +1042,20 @@
 
 <script>
     function HideCoveredByOtherIns() {
-        document.getElementById("divCoveredByOtherIns").style.display = "none";
+        document.getElementById("empCoveredByOtherIns").style.display = "none";
     }
 
     function ShowCoveredByOtherIns() {
-        document.getElementById("divCoveredByOtherIns").style.display = "block";
+        document.getElementById("empCoveredByOtherIns").style.display = "block";
+        //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
+    }
+
+    function HideDepCoveredByOtherIns() {
+        document.getElementById("depCoveredByOtherIns").style.display = "none";
+    }
+
+    function ShowDepCoveredByOtherIns() {
+        document.getElementById("depCoveredByOtherIns").style.display = "block";
         //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
     }
 
