@@ -651,15 +651,15 @@
             <form>
                 <label>Employee Information:</label>
                 <div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-8">
                         <input type="text" class="form-control" placeholder="Employee Number" name="SSN" value="" />
                     </div>
                 </div>
                 <div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <input type="text" class="form-control" placeholder="First Name" name="FirstName" value="" />
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <input type="text" class="form-control" placeholder="Last Name" name="LastName" value="" />
                     </div>
                     <div>
@@ -700,7 +700,7 @@
                         <input type="date" class="form-control" name="DateOfBirth" value="" />
                     </div>
                     <p></p>
-                    <label >Are you covered by any other insurance, including Medicare?</label>
+                    <label>Are you covered by any other insurance, including Medicare?</label>
                     <div class="">
                         @*<label class="col-md-2 control-label">Is your dependent covered by other insurance, including Medicare/Medicaid?</label>*@
                         <div class="col-md-10" id="CoveredByOtherIns">
@@ -708,7 +708,6 @@
                             <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return HideCoveredByOtherIns()" name="CoveredByOtherInsurance" value="false" />No</label>
                         </div>
                     </div>
-             
                     <div class="" id="divCoveredByOtherIns">
                         <div class="form-group">
                             <div class="col-md-10">
@@ -729,6 +728,7 @@
                                 </div>
                             </div>
                         </div>
+                        <label></label>
                     </div>
                 </div>
             </form>
@@ -738,44 +738,32 @@
                     <table class="table-bordered">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Spouse's Information</th>
+                                <th colspan="2">Spouse's Information</th>
                             </tr>
                         </thead>
                         <tr>
-                            <td>
-                                <table class="table-bordered">
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" placeholder="First Name" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" placeholder="Last Name" value="" />
-                                        </td>
-                                    </tr>
-                                </table>
+                            <td class="text">
+                                <input type="text" class="form-control" placeholder="First Name" value="" />
                             </td>
+                            <td class="text">
+                                <input type="text" class="form-control" placeholder="Last Name" value="" />
+                            </td>     
                         </tr>
                         <tr>
-                            <td class="text">
+                            <td class="text" colspan="2">
                                 <input type="text" class="form-control" placeholder="Address" value="" />
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <table class="table-bordered">
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" placeholder="City" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" placeholder="State" value="" />
-                                        </td>
-                                    </tr>
-                                </table>
+                            <td class="text">
+                                <input type="text" class="form-control" placeholder="City" value="" />
                             </td>
+                            <td class="text">
+                                <input type="text" class="form-control" placeholder="State" value="" />
+                            </td>        
                         </tr>
                         <tr>
-                            <td class="text">
+                            <td class="text" colspan="2">
                                 <input type="text" class="form-control" placeholder="Zip Code" value="" />
                             </td>
                         </tr>
@@ -969,7 +957,7 @@
         overflow: hidden;
     }
 
-    td.text label {
+    /*td.text label {
         margin: 0;
         padding: 0;
         display: block;
@@ -987,7 +975,7 @@
         padding: 0;
         display: block;
         font-size: 100%;
-    } 
+    }*/ 
     table {
         border-collapse: collapse;
         width: 100%;
