@@ -601,7 +601,7 @@
         <div class="collapsible" id="ThirdStep">Group Health Insurance Enrollment</div>
         <div>
             <p></p>
-            <form style="border:solid" class="aside">
+            <div style="border:solid" class="aside">
                 <label>Employment Information: (To be completed by Employer)</label>
                 <p></p>
                 <div>
@@ -647,22 +647,18 @@
                 <div>
                     <input type="number" class="form-control" name="HoursWorkedPerWeek" placeholder="Min. Hrs. Worked/Wk" value="" />
                 </div>
-            </form>
-            <form>
-                <label>Employee Information:</label>
-                <div>
-                    <div class="form-group col-md-5">
-                        <input type="text" class="form-control" placeholder="Employee Number" name="SSN" value="" />
-                    </div>
+            </div>
+            <div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="Employee Number" name="SSN" value="" />
                 </div>
-                <div>
-                    <div class="form-group col-sm-6">
-                        <input type="text" class="form-control" placeholder="First Name" name="FirstName" value="" />
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <input type="text" class="form-control" placeholder="Last Name" name="LastName" value="" />
-                    </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="First Name" name="FirstName" value="" />
                 </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="Last Name" name="LastName" value="" />
+                </div>
+                <p></p>
                 <div class="form-group col-md-6">
                     <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
                     <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" />
@@ -670,10 +666,9 @@
                     <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
                     <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
                 </div>
-                <p></p>
                 <div>
                     <select id="Gender" class="form-control">
-                        <option value="">Gender Selection:</option>
+                        <option value="">Gender:</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
@@ -681,7 +676,7 @@
                 <p></p>
                 <div>
                     <select id="MaritalStatus" class="form-control">
-                        <option value="">Marital Status Selection:</option>
+                        <option value="">Marital Status:</option>
                         <option value="MarriedwDep">Married with Dependents</option>
                         <option value="Married">Married</option>
                         <option value="SinglewDep">Single with Dependents</option>
@@ -700,223 +695,278 @@
                     <label>Birth Date:</label>
                     <input type="date" class="form-control" name="DateOfBirth" value="" />
                 </div>
-                <p></p>
-                <label>Are you covered by any other insurance, including Medicare?</label>
-                <div class="">
-                    @*<label class="col-md-2 control-label">Is your dependent covered by other insurance, including Medicare/Medicaid?</label>*@
-                    <div class="col-md-10" id="CoveredByOtherIns">
-                        <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return ShowCoveredByOtherIns()" name="CoveredByOtherInsurance" value="true" checked />Yes</label>
-                        <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return HideCoveredByOtherIns()" name="CoveredByOtherInsurance" value="false" />No</label>
-                    </div>
-                </div>
-                <div class="form-group" id="divEmpCoveredByOtherIns">
-                    <div class="form-group col-md-3">
-                        <input type="text" id="InsuranceCompany" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
-                    </div>
-                    <div class="form-group col-md-3">
-                        <input type="text" id="PolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
-                    </div>
-                    <div class="form-group col-md-3">
-                        <input type="tel" id="InsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
-                    </div>
-                </div>
+                <hr />
                 <div>
-                    <label><u>Group Health Coverage Options:</u></label>
-                </div>
-            </form>
-            <hr />
-            <div>
-                <div class="floatLeft">
-                    <table class="table-bordered">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th colspan="2">Spouse's Information</th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="First Name" value="" />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="Last Name" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text" colspan="2">
-                                <input type="text" class="form-control" placeholder="Address" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="City" value="" />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="State" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text" colspan="2">
-                                <input type="text" class="form-control" placeholder="Zip Code" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text" colspan="2">
-                                <input type="tel" class="form-control" placeholder="Phone Number" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text" colspan="2">
-                                <input type="date" class="form-control" placeholder="Birth Date" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text" colspan="2">
-                                <select id="Gender" class="form-control">
-                                    <option>Gender Selection:</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="floatCenter">
-                    <table class="table-bordered" border="1">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Spouse's Employer</th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="Employer" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="Street" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="City" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="State" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="Zip Code" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="Phone Number" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <select id="OtherCoverageSelectOption" class="form-control">
-                                    <option>Other Ins. Coverage:</option>
-                                    <option>Medical</option>
-                                    <option>Dental</option>
-                                    <option>Vision</option>
-                                    <option>Indemnity</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="floatRight">
-                    <table class="table-bordered" border="1">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Spouse's Insurance</th>
-                            </tr>
-                        </thead>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="Insurance Company" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="Address" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="City" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="State" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="Zip Code" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="Phone Number" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" placeholder="Policy #" value="" />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <p></p>
-            <div>
-                <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
-                <div>
-                    <div class="form-group col-md-3">
-                        <input type="text" id="DepFirstName" class="form-control" placeholder="First Name" name="FirstName" value="" />
+                    <div class="form-control">
+                        <label>Are you covered by any other insurance, including Medicare?</label>
+                        <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return ShowEmpCoveredByOtherIns()" name="CoveredByOtherInsurance" value="true" checked />Yes</label>
+                        <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return HideEmpCoveredByOtherIns()" name="CoveredByOtherInsurance" value="false" />No</label>
                     </div>
-                    <div class="form-group col-md-3">
-                        <input type="text" id="DepLastName" class="form-control" placeholder="Last Name" name="LastName" value="" />
-                    </div>
-                    <div class="form-group col-md-2">
-                        <input type="text" class="form-control" placeholder="SSN" name="SSN" value="" />
-                    </div>
-                    <div class="form-group col-md-3">
-                        <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
-                    </div>
-                    <div class="form-group col-md-2">
-                        <select id="Gender" class="form-control">
-                            <option value="">Gender Selection:</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
-                </div>
-                <div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                        <div class="col-md-3" id="CoveredByOtherIns">
-                            <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return ShowCoveredByOtherIns()" name="CoveredByOtherInsurance" value="true" checked />Yes</label>
-                            <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return HideCoveredByOtherIns()" name="CoveredByOtherInsurance" value="false" />No</label>
+                    <div id="divEmpCoveredByOtherIns">
+                        <div class="form-group col-md-3">
+                            <input type="text" id="InsuranceCompany" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" id="PolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="tel" id="InsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
                         </div>
                     </div>
                 </div>
-                <div class="form-group" id="divDepCoveredByOtherIns">
-                    <div class="form-group col-md-3">
-                        <input type="text" id="InsuranceCompany" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
+                <div class="form-group">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>None</th>
+                                <th>Employee Only</th>
+                                <th>Employee & Spouse</th>
+                                <th>Employee & Dependent</th>
+                                <th>Employee & Family</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>Medical Plan:</td>
+                            <td>
+                                <select id="NoneGroupHealthOption" class="form-control">
+                                    <option value="">Choose Option:</option>
+                                    <option></option>
+                                    <option value="No Medical Plan" name="NoMedicalPlan">None</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="EmpOnlyGroupHealthOption" class="form-control">
+                                    <option value="">Choose Option:</option>
+                                    <option></option>
+                                    <option value="MEC Plan" name="EmployeeOnly">MEC Plan</option>
+                                    <option value="Standard Plan" name="EmployeeOnly">Standard Plan</option>
+                                    <option value="Buy Up Plan" name="EmployeeOnly">Buy Up Plan</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="EmpSpGroupHealthOption" class="form-control">
+                                    <option value="">Choose Option:</option>
+                                    <option></option>
+                                    <option value="MEC Plan" name="EmployeeAndSpouse">MEC Plan</option>
+                                    <option value="Standard Plan" name="EmployeeAndSpouse">Standard Plan</option>
+                                    <option value="Buy Up Plan" name="EmployeeAndSpouse">Buy Up Plan</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="EmpDepGroupHealthOption" class="form-control">
+                                    <option value="">Choose Option:</option>
+                                    <option></option>
+                                    <option value="MEC Plan" name="EmployeeAndDependent">MEC Plan</option>
+                                    <option value="Standard Plan" name="EmployeeAndDependent">Standard Plan</option>
+                                    <option value="Buy Up Plan" name="EmployeeAndDependent">Buy Up Plan</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="EmpFamGroupHealthOption" class="form-control">
+                                    <option value="">Choose Option:</option>
+                                    <option></option>
+                                    <option value="MEC Plan" name="EmployeeAndFamily">MEC Plan</option>
+                                    <option value="Standard Plan" name="EmployeeAndFamily">Standard Plan</option>
+                                    <option value="Buy Up Plan" name="EmployeeAnEmployeeAndFamilydDependent">Buy Up Plan</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="floatLeft">
+                        <table class="table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th colspan="2">Spouse's Information</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="First Name" value="" />
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="Last Name" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text" colspan="2">
+                                    <input type="text" class="form-control" placeholder="Address" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="City" value="" />
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="State" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text" colspan="2">
+                                    <input type="text" class="form-control" placeholder="Zip Code" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text" colspan="2">
+                                    <input type="tel" class="form-control" placeholder="Phone Number" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text" colspan="2">
+                                    <input type="date" class="form-control" placeholder="Birth Date" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text" colspan="2">
+                                    <select id="Gender" class="form-control">
+                                        <option>Gender Selection:</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                    <div class="form-group col-md-3">
-                        <input type="text" id="PolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                    <div class="floatCenter">
+                        <table class="table-bordered" border="1">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Spouse's Employer</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="Employer" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="Street" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="City" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="State" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="Zip Code" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="Phone Number" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <select id="OtherCoverageSelectOption" class="form-control">
+                                        <option>Other Ins. Coverage:</option>
+                                        <option>Medical</option>
+                                        <option>Dental</option>
+                                        <option>Vision</option>
+                                        <option>Indemnity</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                    <div class="form-group col-md-3">
-                        <input type="tel" id="InsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                    <div class="floatRight">
+                        <table class="table-bordered" border="1">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Spouse's Insurance</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="Insurance Company" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="Address" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="City" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="State" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="Zip Code" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="Phone Number" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" placeholder="Policy #" value="" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <p></p>
+                <div >
+                    <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
+                    <div>
+                        <div class="form-group col-md-3">
+                            <input type="text" id="DepFirstName" class="form-control" placeholder="First Name" name="FirstName" value="" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" id="DepLastName" class="form-control" placeholder="Last Name" name="LastName" value="" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="text" class="form-control" placeholder="SSN" name="SSN" value="" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            <select id="Gender" class="form-control">
+                                <option value="">Gender Selection:</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div>
+                                <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
+                                <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return ShowDepCoveredByOtherIns()" name="CoveredByOtherInsurance" value="true" checked />Yes</label>
+                                <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return HideDepCoveredByOtherIns()" name="CoveredByOtherInsurance" value="false" />No</label>
+                            </div>
+                        </div>
+                        <div id="divDepCoveredByOtherIns">
+                            <div class="form-group col-md-3">
+                                <input type="text" id="InsuranceCompany" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input type="text" id="PolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <input type="tel" id="InsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
