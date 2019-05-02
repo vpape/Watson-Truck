@@ -21,6 +21,56 @@ namespace Watson.Controllers
 
         }
 
+        public ActionResult GrpHealthInsPremiums()
+        {
+            return View();
+        }
+
+        public JsonResult GrpHealthInsPremiumUpdate(string EmpOnly, string EmpAndSp, string EmpAndDep, string EmpAndFamily, decimal YearlyPremiumCost,
+            string InsMECPlan, string InsStndPlan, string InsBuyUpPlan, string DentalPlan, string VisionPlan)
+        {
+            InsurancePlan insPlan = new InsurancePlan();
+
+            insPlan.MECPlan = InsMECPlan;
+            insPlan.StandardPlan = InsStndPlan;
+            insPlan.BuyUpPlan = InsBuyUpPlan;
+            insPlan.DentalPlan = DentalPlan;
+            insPlan.VisionPlan = VisionPlan;
+
+            InsurancePremium insPremium = new InsurancePremium();
+
+            insPremium.YearlyPremiumCost = YearlyPremiumCost;
+            insPremium.EmployeeOnly = EmpOnly;
+            insPremium.EmployeeAndSpouse = EmpAndSp;
+            insPremium.EmployeeAndDependent = EmpAndDep;
+            insPremium.EmployeeAndFamily = EmpAndFamily;
+            insPremium.YearlyPremiumCost = YearlyPremiumCost;
+
+            db.InsurancePlans.Add(insPlan);
+            db.InsurancePremiums.Add(insPremium);
+            db.SaveChanges();
+
+            return Json(new { data = insPlan, insPremium }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
+
+        public ActionResult GrpHealthInsSupplement()
+        {
+            return View();
+        }
+
+        public JsonResult GrpHealthInsSupplementUpdate(int InsPlanDetail_id, string Item, string Detail)
+        {
+            InsurancePlanDetail insDetail = new InsurancePlanDetail();
+
+            insDetail.Item = Item;
+            insDetail.Detail = Detail;
+
+            return Json(new { data = insDetail }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
 
         public ActionResult GrpHealthEnrollment()
         {
@@ -153,56 +203,7 @@ namespace Watson.Controllers
             return View(g);
         }
 
-        //----------------------------------------------------------------------------------------
-        public ActionResult GrpHealthInsPremiums()
-        {
-            return View();
-        }
-
-        public JsonResult GrpHealthInsPremiumUpdate(string EmpOnly, string EmpAndSp, string EmpAndDep, string EmpAndFamily, decimal YearlyPremiumCost,
-            string InsMECPlan, string InsStndPlan, string InsBuyUpPlan, string DentalPlan, string VisionPlan)
-        {
-            InsurancePlan insPlan = new InsurancePlan();
-
-            insPlan.MECPlan = InsMECPlan;
-            insPlan.StandardPlan = InsStndPlan;
-            insPlan.BuyUpPlan = InsBuyUpPlan;
-            insPlan.DentalPlan = DentalPlan;
-            insPlan.VisionPlan = VisionPlan;
-           
-            InsurancePremium insPremium = new InsurancePremium();
-
-            insPremium.YearlyPremiumCost = YearlyPremiumCost;
-            insPremium.EmployeeOnly = EmpOnly;
-            insPremium.EmployeeAndSpouse = EmpAndSp;
-            insPremium.EmployeeAndDependent = EmpAndDep;
-            insPremium.EmployeeAndFamily = EmpAndFamily;
-            insPremium.YearlyPremiumCost = YearlyPremiumCost;
-
-            db.InsurancePlans.Add(insPlan);
-            db.InsurancePremiums.Add(insPremium);
-            db.SaveChanges();
-
-            return Json(new { data = insPlan, insPremium }, JsonRequestBehavior.AllowGet);
-        }
-
-        //----------------------------------------------------------------------------------------
-  
-        public ActionResult GrpHealthInsSupplement()
-        {
-            return View();
-        }
-
-        public JsonResult GrpHealthInsSupplementUpdate(int InsPlanDetail_id, string Item, string Detail)
-        {
-            InsurancePlanDetail insDetail = new InsurancePlanDetail();
-
-            insDetail.Item = Item;
-            insDetail.Detail = Detail;
-
-            return Json(new { data = insDetail }, JsonRequestBehavior.AllowGet);
-        }
-
+        
         //----------------------------------------------------------------------------------------
         // use both db.Deductions and db.InsurancePlan or just db.Deductions?
         //need to add employee signature and signature date to db.Deductions table and change data types
