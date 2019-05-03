@@ -26,8 +26,9 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GrpHealthInsPremiumUpdate(string EmpOnly, string EmpAndSp, string EmpAndDep, string EmpAndFamily, decimal YearlyPremiumCost,
-            string InsMECPlan, string InsStndPlan, string InsBuyUpPlan, string DentalPlan, string VisionPlan)
+        public JsonResult GrpHealthInsPremiumUpdate(int InsurancePlan_id, int InsurancePremium_id, string EmpOnly, 
+            string EmpAndSp, string EmpAndDep, string EmpAndFamily, decimal YearlyPremiumCost, string InsMECPlan, 
+            string InsStndPlan, string InsBuyUpPlan, string DentalPlan, string VisionPlan)
         {
             InsurancePlan insPlan = new InsurancePlan();
 
@@ -50,7 +51,10 @@ namespace Watson.Controllers
             db.InsurancePremiums.Add(insPremium);
             db.SaveChanges();
 
-            return Json(new { data = insPlan, insPremium }, JsonRequestBehavior.AllowGet);
+            int insPlanResult = insPlan.InsurancePlan_id;
+            int insPremiumResult = insPremium.InsurancePremium_id;
+            
+            return Json(new { data = insPlanResult, insPremiumResult }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
@@ -60,14 +64,17 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GrpHealthInsSupplementUpdate(int InsPlanDetail_id, string Item, string Detail)
+        public JsonResult GrpHealthInsSupplementUpdate(int InsurancePlanDetail_id, int InsurancePlan_id, string Item,
+            string Detail)
         {
             InsurancePlanDetail insDetail = new InsurancePlanDetail();
 
             insDetail.Item = Item;
             insDetail.Detail = Detail;
 
-            return Json(new { data = insDetail }, JsonRequestBehavior.AllowGet);
+            int result = insDetail.InsurancePlanDetail_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
@@ -184,7 +191,9 @@ namespace Watson.Controllers
                 RedirectToAction("EmpOverview");
             }
 
-            return Json(new { data = g }, JsonRequestBehavior.AllowGet);
+            int result = g.GroupHealthInsurance_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
