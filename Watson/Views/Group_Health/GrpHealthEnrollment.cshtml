@@ -701,10 +701,10 @@
             </div>
             <hr />
             <div>
-                <div class="form-control" id="empCoveredByOtherIns">
+                <div class="form-control">
                     <label>Are you covered by any other insurance, including Medicare?</label>
-                    <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return ShowEmpCoveredByOtherIns()" name="CoveredByOtherInsurance" value="true" checked />Yes</label>
-                    <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return HideEmpCoveredByOtherIns()" name="CoveredByOtherInsurance" value="false" />No</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="return empCoveredByOtherIns()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="return empCoveredByOtherIns()" name="CoveredByOtherInsurance" value="no" checked />No</label>
                 </div>
                 <div id="empInsInfo">
                     <div class="form-group col-md-3">
@@ -718,7 +718,8 @@
                     </div>
                 </div>
             </div>
-            <div id="GrpHealthCoverageOptions" class="form-group">
+            <p></p>
+            <div id="GrpHealthCoverageOptions" class="control-label">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -726,7 +727,7 @@
                             <th>None</th>
                             <th>Employee Only</th>
                             <th>Employee & Spouse</th>
-                            <th>Employee & Dependent</th>
+                            <th>Employee & Child(ren)</th>
                             <th>Employee & Family</th>
                         </tr>
                     </thead>
@@ -836,12 +837,15 @@
                     <table class="table-bordered" border="1">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Spouse's Employer</th>
+                                <th colspan="2">Spouse's Employer</th>
                             </tr>
                         </thead>
                         <tr>
                             <td class="text">
                                 <input type="text" class="form-control" id="spEmployer" placeholder="Employer" value="" />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="" placeholder="" />
                             </td>
                         </tr>
                         <tr>
@@ -852,9 +856,7 @@
                                 <input type="text" class="form-control" id="spEmployerCity" placeholder="City" value="" />
                             </td>
                         </tr>
-                        <tr>
-                           
-                        </tr>
+                        <tr></tr>
                         <tr>
                             <td class="text">
                                 <input type="text" class="form-control" id="spEmployerState" placeholder="State" value="" />
@@ -863,12 +865,13 @@
                                 <input type="text" class="form-control" id="spEmployerZipCode" placeholder="Zip Code" value="" />
                             </td>
                         </tr>
-                        <tr>
-                          
-                        </tr>
+                        <tr></tr>
                         <tr>
                             <td class="text">
                                 <input type="text" class="form-control" id="spEmployerPhoneNumber" placeholder="Phone Number" value="" />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="" placeholder="" />
                             </td>
                         </tr>
                         <tr>
@@ -881,6 +884,9 @@
                                     <option>Indemnity</option>
                                 </select>
                             </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="" placeholder="" />
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -888,12 +894,15 @@
                     <table class="table-bordered" border="1">
                         <thead class="thead-dark">
                             <tr>
-                                <th>Spouse's Insurance</th>
+                                <th colspan="2">Spouse's Insurance</th>
                             </tr>
                         </thead>
                         <tr>
                             <td class="text">
                                 <input type="text" class="form-control" id="spInsCompany" placeholder="Insurance Company" value="" />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="" placeholder="" />
                             </td>
                         </tr>
                         <tr>
@@ -904,9 +913,7 @@
                                 <input type="text" class="form-control" id="spInsCity" placeholder="City" value="" />
                             </td>
                         </tr>
-                        <tr>
-                          
-                        </tr>
+                        <tr></tr>
                         <tr>
                             <td class="text">
                                 <input type="text" class="form-control" id="spInsState" placeholder="State" value="" />
@@ -915,17 +922,21 @@
                                 <input type="text" class="form-control" id="spInsZipCode" placeholder="Zip Code" value="" />
                             </td>
                         </tr>
-                        <tr>
-                           
-                        </tr>
+                        <tr></tr>
                         <tr>
                             <td class="text">
                                 <input type="text" class="form-control" id="spInsPhoneNumber" placeholder="Phone Number" value="" />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="" placeholder="" />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
                                 <input type="text" class="form-control" id="spInsPolicyNumber" placeholder="Policy #" value="" />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="" placeholder="" />
                             </td>
                         </tr>
                     </table>
@@ -936,7 +947,7 @@
                 <div id="depGenInfo&InsInfo1">
                     <div>
                         <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
-                        <div id="depInfo1">
+                        <div id="depInfo">
                             <div class="form-group col-md-2">
                                 <input type="text" class="form-control" placeholder="First Name" id="depFirstName1" name="FirstName" value="" />
                             </div>
@@ -961,10 +972,10 @@
                     <div>
                         <div id="depCoveredByOtherIns1">
                             <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                            <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return ShowDepCoveredByOtherIns1()" name="CoveredByOtherInsurance" value="true" checked />Yes</label>
-                            <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return HideDepCoveredByOtherIns1()" name="CoveredByOtherInsurance" value="false" />No</label>
+                            <label class="radio-inline"><input type="radio" id="depCoveredByOtherIns" class="radio-inline" onclick="return depCoveredByOtherIns()" name="CoveredByOtherInsurance" value="yes"  />Yes</label>
+                            <label class="radio-inline"><input type="radio" id="depCoveredByOtherIns" class="radio-inline" onclick="return depCoveredByOtherIns()" name="CoveredByOtherInsurance" value="no" checked/>No</label>
                         </div>
-                        <div id="depInsInfo1">
+                        <div id="depInsInfo">
                             <div class="form-group col-md-2">
                                 <input type="text" id="depInsCompany1" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
                             </div>
@@ -1122,22 +1133,30 @@
         });
     }
 
-    function HideCoveredByOtherIns() {
-        document.getElementById("empCoveredByOtherIns").style.display = "none";
-    }
+    function empCoveredByOtherIns() {
+        document.addEventListener('click', function () {
+            var div = document.getElementById("empCoveredByOtherIns").checked;
 
-    function ShowCoveredByOtherIns() {
-        document.getElementById("empCoveredByOtherIns").style.display = "block";
-        //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
-    }
+            if (div.checked = "no") {
+                document.getElementById("empInsInfo").style.display = "none";
+            }
+            else {
+                document.getElementById("empInsInfo").style.display = "block";
+            }
+        });
 
-    function HideDepCoveredByOtherIns() {
-        document.getElementById("depCoveredByOtherIns").style.display = "none";
-    }
+    function depCoveredByOtherIns() {
+        document.addEventListener('click', function () {
+            var div = document.getElementById("depCoveredByOtherIns").checked;
 
-    function ShowDepCoveredByOtherIns() {
-        document.getElementById("depCoveredByOtherIns").style.display = "block";
-        //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
+            if (div.checked = "no") {
+                document.getElementById("depInsInfo").style.visibility = "hidden";
+            }
+            else {
+                document.getElementById("depInsInfo").style.visibility = "visible";
+            }
+        });
+         //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
     }
 
     document.addEventListener("DOMContentLoaded", function () {
