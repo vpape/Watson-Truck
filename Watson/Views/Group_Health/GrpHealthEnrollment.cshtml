@@ -24,7 +24,7 @@
         <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">
             <tr>
                 <td>
-                    <table class="table table-condensed" width="400" cellpadding="10" cellspacing="10" border="1">
+                    <table class="table table-condensed table-hover" width="400" cellpadding="10" cellspacing="10" border="1">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Plan</th>
@@ -301,7 +301,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Employee + Dependent(s):</label>
+                                    <label>Employee + Child(ren):</label>
                                 </td>
                                 <td>
                                     <div class="col-md-6">
@@ -310,7 +310,7 @@
                                 </td>
                                 <td></td>
                                 <td>
-                                    <label>Employee + Dependent(s):</label>
+                                    <label>Employee + Child(ren):</label>
                                 </td>
                                 <td>
                                     <div class="col-md-6">
@@ -795,40 +795,39 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="text" colspan="2">
+                            <td class="text">
                                 <input type="text" class="form-control" id="spAddress" placeholder="Street" value="" />
                             </td>
-                        </tr>
-                        <tr>
                             <td class="text">
                                 <input type="text" class="form-control" id="spCity" placeholder="City" value="" />
                             </td>
+                        </tr>
+                        <tr>
                             <td class="text">
                                 <input type="text" class="form-control" id="spState" placeholder="State" value="" />
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="text" colspan="2">
+                            <td class="text">
                                 <input type="text" class="form-control" id="spZipCode" placeholder="Zip Code" value="" />
                             </td>
                         </tr>
                         <tr>
-                            <td class="text" colspan="2">
+                            <td class="text">
                                 <input type="tel" class="form-control" id="spPhoneNumber" placeholder="Phone Number" value="" />
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="text" colspan="2">
+                            <td class="text">
                                 <input type="date" class="form-control" id="spDateOfBirth" placeholder="Birth Date" value="" />
                             </td>
                         </tr>
                         <tr>
-                            <td class="text" colspan="2">
+                            <td class="text" colspan="1">
                                 <select id="spGender" class="form-control">
                                     <option>Gender Selection:</option>
                                     <option>Male</option>
                                     <option>Female</option>
                                 </select>
+                            </td>
+                            <td class="text" colspan="1">
+                                <input type="text" class="form-control" placeholder="SSN" id="spSSN" name="SSN" value="" />
                             </td>
                         </tr>
                     </table>
@@ -849,21 +848,23 @@
                             <td class="text">
                                 <input type="text" class="form-control" id="spEmployerAddress" placeholder="Street" value="" />
                             </td>
-                        </tr>
-                        <tr>
                             <td class="text">
                                 <input type="text" class="form-control" id="spEmployerCity" placeholder="City" value="" />
                             </td>
                         </tr>
                         <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spEmployerState" placeholder="State" value="" />
-                            </td>
+                           
                         </tr>
                         <tr>
                             <td class="text">
+                                <input type="text" class="form-control" id="spEmployerState" placeholder="State" value="" />
+                            </td>
+                            <td class="text">
                                 <input type="text" class="form-control" id="spEmployerZipCode" placeholder="Zip Code" value="" />
                             </td>
+                        </tr>
+                        <tr>
+                          
                         </tr>
                         <tr>
                             <td class="text">
@@ -899,21 +900,23 @@
                             <td class="text">
                                 <input type="text" class="form-control" id="spInsAddress" placeholder="Street" value="" />
                             </td>
-                        </tr>
-                        <tr>
                             <td class="text">
                                 <input type="text" class="form-control" id="spInsCity" placeholder="City" value="" />
                             </td>
                         </tr>
                         <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spInsState" placeholder="State" value="" />
-                            </td>
+                          
                         </tr>
                         <tr>
                             <td class="text">
+                                <input type="text" class="form-control" id="spInsState" placeholder="State" value="" />
+                            </td>
+                            <td class="text">
                                 <input type="text" class="form-control" id="spInsZipCode" placeholder="Zip Code" value="" />
                             </td>
+                        </tr>
+                        <tr>
+                           
                         </tr>
                         <tr>
                             <td class="text">
@@ -928,47 +931,49 @@
                     </table>
                 </div>
             </div>
-            <p></p>
-            <div id="DepInfo">
-                <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
-                <div>
-                    <div class="form-group col-md-3">
-                        <input type="text" class="form-control" placeholder="First Name" id="depFirstName" name="FirstName" value="" />
-                    </div>
-                    <div class="form-group col-md-3">
-                        <input type="text" class="form-control" placeholder="Last Name" id="depLastName" name="LastName" value="" />
-                    </div>
-                    <div class="form-group col-md-2">
-                        <input type="text" class="form-control" placeholder="SSN" id="depSSN" name="SSN" value="" />
-                    </div>
-                    <div class="form-group col-md-3">
-                        <input type="date" class="form-control" id="depDateOfBirth" name="DateOfBirth" value="" />
-                    </div>
-                    <div class="form-group col-md-2">
-                        <select id="depGender" class="form-control">
-                            <option value="">Gender Selection:</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
-                </div>
-                <div>
+            <hr />
+            <div>
+                <div id="depGenInfo&InsInfo1">
                     <div>
-                        <div id="depCoveredByOtherIns">
-                            <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                            <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return ShowDepCoveredByOtherIns()" name="CoveredByOtherInsurance" value="true" checked />Yes</label>
-                            <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return HideDepCoveredByOtherIns()" name="CoveredByOtherInsurance" value="false" />No</label>
+                        <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
+                        <div id="depInfo1">
+                            <div class="form-group col-md-2">
+                                <input type="text" class="form-control" placeholder="First Name" id="depFirstName1" name="FirstName" value="" />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" class="form-control" placeholder="Last Name" id="depLastName1" name="LastName" value="" />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" class="form-control" placeholder="SSN" id="depSSN1" name="SSN" value="" />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="date" class="form-control" id="depDateOfBirth1" name="DateOfBirth" value="" />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <select id="depGender1" class="form-control">
+                                    <option value="">Gender Selection:</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div id="depInsInfo">
-                        <div class="form-group col-md-3">
-                            <input type="text" class="form-control" placeholder="Insurance Company" id="depInsCompany" name="InsuranceCompany" value="" />
+                    <div>
+                        <div id="depCoveredByOtherIns1">
+                            <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
+                            <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return ShowDepCoveredByOtherIns1()" name="CoveredByOtherInsurance" value="true" checked />Yes</label>
+                            <label class="radio-inline"><input type="radio" class="radio-inline" onclick="return HideDepCoveredByOtherIns1()" name="CoveredByOtherInsurance" value="false" />No</label>
                         </div>
-                        <div class="form-group col-md-3">
-                            <input type="text" class="form-control" placeholder="Policy #" id="depInsPolicyNumber" name="PolicyNumber" value="" />
-                        </div>
-                        <div class="form-group col-md-3">
-                            <input type="tel" class="form-control" placeholder="Phone #" id="depInsPhoneNumber" name="PhoneNumber" size="3" maxlength="14" value="" />
+                        <div id="depInsInfo1">
+                            <div class="form-group col-md-2">
+                                <input type="text" id="depInsCompany1" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" id="depInsPolicyNumber1" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="tel" id="depInsPhoneNumber1" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -979,7 +984,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </body>
 </html>
@@ -1076,9 +1080,9 @@
         width: 100%;
     }
 
-        table tr {
+        /*table tr {
             border-bottom: 1px solid black;
-        }
+        }*/
 
     td:empty {
         width: 10px;
