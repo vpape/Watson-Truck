@@ -1146,17 +1146,28 @@
         });
 
     function depCoveredByOtherIns() {
-        document.addEventListener('click', function () {
+       
             var div = document.getElementById("depCoveredByOtherIns").checked;
+            var divHide = document.getElementById("depCoveredByOtherIns")
+            var divShow = document.getElementById("depCoveredByOtherIns")
 
-            if (div.checked = "no") {
-                document.getElementById("depInsInfo").style.visibility = "hidden";
+        divHide.addEventListener('click', function () {
+
+            if (div.checked == "no") {
+
+                div.divHide.style.visibility = "hidden";
             }
             else {
-                document.getElementById("depInsInfo").style.visibility = "visible";
+                divShow.style.visibility = "visible";
             }
         });
-         //div.style.display = (div.style.display == 'none') ? 'block' : 'none';
+            //if (div.checked = "no") {
+            //    document.getElementById("depInsInfo").style.visibility = "hidden";
+            //}
+            //else {
+            //    document.getElementById("depInsInfo").style.visibility = "visible";
+            //}
+        
     }
 
     document.addEventListener("DOMContentLoaded", function () {

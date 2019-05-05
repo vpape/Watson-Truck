@@ -63,9 +63,13 @@ namespace Watson.Controllers
 
         public ActionResult EnrollmentSelection(string MaritalStatus)
         {
-            ViewBag.MaritalStatus = MaritalStatus;
-       
-            return View(MaritalStatus);
+            var empMaritalStatus = new Employee()
+            {
+                MaritalStatus = "Single"
+            };
+            ViewBag.MaritalStatus = empMaritalStatus;
+
+            return View(empMaritalStatus);
         }
 
         public ActionResult NewEmployeeEnrollment()
@@ -378,14 +382,18 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //SpEnrollment Method
-        public ActionResult SpEnrollment(/*int Employee_id,*/ string MaritalStatus)
+        public ActionResult SpEnrollment(string MaritalStatus)
         {
             ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
-            //ViewBag.Employee_id = Employee_id;
-            //ViewBag.MaritalStatus = MaritalStatus;
+ 
             return View();
-        } 
-        
+        }
+        //SpEnrollment2 Method no layout
+        public ActionResult SpEnrollment2()
+        {
+            return View();
+        }
+
 
         public JsonResult SpEnrollmentNew(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured,
            string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender)

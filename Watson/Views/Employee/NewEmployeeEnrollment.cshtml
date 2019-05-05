@@ -287,21 +287,19 @@
 
                     }, 3000);
                 }
-              
-            }
-            else
-            {
-                var message;
-                message = "Please proceed to the Family Enrollment, Thank you!!";
+                else {
+                    var message;
+                    message = "Please proceed to the Family Enrollment, Thank you!!";
 
-                setTimeout(function () {
-                    window.location.href = "/Employee/FamilyEnrollment";
-                }, 3000);
+                    setTimeout(function () {
+                        window.location.href = "/Employee/EnrollmentSelection";
+                    }, 3000);
 
-                document.getElementById("divRedirect").value = message;
+                    document.getElementById("divRedirect").value = message;
 
-                return confirm('divRedirect')
+                    return confirm('divRedirect')
 
+                }
             }
         })
     }
