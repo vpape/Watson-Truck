@@ -134,27 +134,15 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="container">
-                    <label class="col-md-2 control-label">Phone Number:</label>
-                    <div class="col-xs-6">
-                        <div class="form-group phone-number">
-                            <div class="col-xs-4">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="5" value="" />
-                            </div>
-                        </div>
-                    </div>
+                <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                <div class="col-md-10">
+                    <input type="text" id="PhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" maxlength="14" value="" />
                 </div>
             </div>
             <div class="form-group">
-                <div class="container">
-                    <label class="col-md-2 control-label">CellPhone:</label>
-                    <div class="col-xs-6">
-                        <div class="form-group phone-number">
-                            <div class="col-xs-4">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="5" value="@ViewBag.Employee.PhoneNumber" />
-                            </div>
-                        </div>
-                    </div>
+                <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
+                <div class="col-md-10">
+                    <input type="text" id="CellPhone" class="form-control" placeholder="Cell Phone #" name="CellPhone" maxlength="14" value="" />
                 </div>
             </div>
             <div class="form-group">
@@ -191,21 +179,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="container">
-                        <label class="col-md-2 control-label">Phone Number:</label>
-                        <div class="col-xs-6">
-                            <div class="form-group phone-number">
-                                <div class="col-xs-4">
-                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="3" maxlength="5" value="" />
-                                </div>
-                                @*<div class="col-xs-3">
-                                        <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="3" maxlength="3" value="" />
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="4" maxlength="4" value="" />
-                                    </div>*@
-                            </div>
-                        </div>
+                    <label for="EmployerPhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="EmployerPhoneNumber" class="form-control" placeholder="Phone #" name="EmployerPhoneNumber" maxlength="14" value="" />
                     </div>
                 </div>
             </div>
@@ -272,13 +248,13 @@
         top: 8px;
     }
 
-    .phone-number .col-xs-4 {
+    /*.phone-number .col-xs-4 {
         width: 25%;
     }
 
     .phone-number .col-xs-3, .phone-number .col-xs-4 {
         padding-left: 0;
-    }
+    }*/
 </style>
 @*<script>
         function SpouseOrDependent()
