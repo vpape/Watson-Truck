@@ -780,7 +780,7 @@
                 </table>
             </div>
             <div class="form-group col-md-12">
-                <div id="spGeneralInformation" class="floatLeft">
+                <div id="spGenInfo" class="floatLeft">
                     <table class="table-bordered">
                         <thead class="thead-dark">
                             <tr>
@@ -944,8 +944,8 @@
             </div>
             <hr />
             <div>
-                <div id="depGenInfo&InsInfo1">
-                    <div>
+                <div id="depGen&InsInfo">
+                    <div id="depGenInfo">
                         <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
                         <div id="depInfo">
                             <div class="form-group col-md-2">
@@ -970,27 +970,32 @@
                         </div>
                     </div>
                     <div>
-                        <div id="depCoveredByOtherIns1">
+                        <div id="depCoveredByOtherIns">
                             <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                            <label class="radio-inline"><input type="radio" id="depCoveredByOtherIns" class="radio-inline" onclick="return depCoveredByOtherIns()" name="CoveredByOtherInsurance" value="yes"  />Yes</label>
-                            <label class="radio-inline"><input type="radio" id="depCoveredByOtherIns" class="radio-inline" onclick="return depCoveredByOtherIns()" name="CoveredByOtherInsurance" value="no" checked/>No</label>
-                        </div>
-                        <div id="depInsInfo">
-                            <div class="form-group col-md-2">
-                                <input type="text" id="depInsCompany1" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
-                            </div>
-                            <div class="form-group col-md-2">
-                                <input type="text" id="depInsPolicyNumber1" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
-                            </div>
-                            <div class="form-group col-md-2">
-                                <input type="tel" id="depInsPhoneNumber1" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                            <label class="radio-inline"><input type="radio" id="depCoveredByOtherIns" class="radio-inline" onclick="return depCoveredByOtherIns()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
+                            <label class="radio-inline"><input type="radio" id="depCoveredByOtherIns" class="radio-inline" onclick="return depCoveredByOtherIns()" name="CoveredByOtherInsurance" value="no" checked />No</label>
+                            <div id="depInsInfo">
+                                <div class="form-group col-md-2">
+                                    <input type="text" id="depInsCompany1" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input type="text" id="depInsPolicyNumber1" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input type="tel" id="depInsPhoneNumber1" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
+                    <div class="col-md-11">
+                        <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="col-md-offset-11">
-                        <button id="GrpHealthInsUpdateStepThree" @*onclick="return ContactUpdate()"*@>Save</button>
+                        <button id="GrpHealthInsUpdateStepThree" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>
                     </div>
                 </div>
             </div>
