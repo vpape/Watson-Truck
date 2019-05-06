@@ -11,14 +11,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Employee Page</title>
+    <title>Health Insurance Enrollment</title>
 </head>
 <body>
-    @* Health Ins Premium *@
+    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
     <input type="hidden" id="InsurancePremium_id" class="form-control" name="InsurancePremium_id" value=@ViewBag.InsurancePremium_id />
     <input type="hidden" id="InsurancePlanDetail_id" class="form-control" name="InsurancePlanDetail_id" value=@ViewBag.InsurancePlanDetail_id />
     <input type="hidden" id="InsurancePlan_id" class="form-control" name="InsurancePlan_id" value=@ViewBag.InsurancePlan_id />
     <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value=@ViewBag.GroupHealthInsurance_id />
+    @* db.InsurancePremium- InsurancePremium_id as primary and InsurancePlan_id as foreign *@
+    @* db.InsurancePlan- InsurancePlan_id as primary and Employee_id as foreign *@
     <div class="form-horizontal">
         <div class="collapsible" id="FirstStep">Health Insurance Premiums</div>
         <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">
@@ -32,7 +34,7 @@
                                 <th>Employee/Spouse</th>
                                 <th>Employee/Child(ren)</th>
                                 <th>Employee/Family</th>
-                                <th>Yearly Cost</th>
+                                <th>Cost</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -236,14 +238,14 @@
                         </p>*@
                     <div class="form-group">
                         <div class="col-md-offset-11">
-                            <button id="InsPremiumUpdateStepOne" @*onclick="return ContactUpdate()"*@>Save</button>
+                            <button id="InsPremiumUpdateStepOne" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>
                         </div>
                     </div>
                 </td>
             </tr>
         </table>
     </div>
-    @* db.InsurancePlanDetail- col- Item, Detail *@
+    @* db.InsurancePlanDetail- col- Item, Detail - InsurancePlanDetail_id as primary and InsurancePlan_id as foreign *@
     <div class="form-horizontal">
         <hr />
         <div class="collapsible" id="SecondStep">Health Insurance Supplement</div>
@@ -593,7 +595,7 @@
                     </p>
                     <div class="form-group">
                         <div class="col-md-offset-11">
-                            <button id="InsSupplementUpdateStepTwo" @*onclick="return ContactUpdate()"*@>Save</button>
+                            <button id="InsSupplementUpdateStepTwo" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>
                         </div>
                     </div>
                 </td>
@@ -601,6 +603,7 @@
         </table>
     </div>
     <hr />
+    @* db.Group_Healh- GroupHealthInsurance_id as primary and Employee_id as foreign *@
     <div class="form-horizontal">
         <div class="collapsible" id="ThirdStep">Group Health Insurance Enrollment</div>
         <div>
@@ -673,18 +676,18 @@
             <div>
                 <select id="EmpGender" class="form-control">
                     <option value="">Gender:</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
+                    <option value="Male" @*@((ViewBag.Gender) == "Male"   ? "selected" : "")*@>Male</option>
+                    <option value="Female" @*@((ViewBag.Gender) == "Female" ? "selected" : "")*@>Female</option>
                 </select>
             </div>
             <p></p>
             <div>
                 <select id="MaritalStatus" class="form-control">
                     <option value="">Marital Status:</option>
-                    <option value="MarriedwDep">Married with Dependents</option>
-                    <option value="Married">Married</option>
-                    <option value="SinglewDep">Single with Dependents</option>
-                    <option value="Single">Single</option>
+                    <option value="MarriedwDep" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Married with Dependents</option>
+                    <option value="Married" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>Married</option>
+                    <option value="SinglewDep" @*@((ViewBag.MaritalStatus) == "SinglewDep"  ? "selected": "")*@>Single with Dependents</option>
+                    <option value="Single" @*@((ViewBag.MaritalStatus) == "Single"      ? "selected": "")*@>Single</option>
                 </select>
             </div>
             <p></p>
@@ -822,13 +825,13 @@
                         <tr>
                             <td class="text" colspan="1">
                                 <select id="spGender" class="form-control">
-                                    <option>Gender Selection:</option>
+                                    <option>Gender:</option>
                                     <option>Male</option>
                                     <option>Female</option>
                                 </select>
                             </td>
                             <td class="text" colspan="1">
-                                <input type="text" class="form-control" placeholder="SSN" id="spSSN" name="SSN" value="" />
+                                <input type="text" class="form-control" placeholder="SSN#- Call HR" id="spSSN" name="SSN" value="" disabled />
                             </td>
                         </tr>
                     </table>
@@ -944,25 +947,32 @@
             </div>
             <hr />
             <div>
+                @* retrieve dep info from DepEnrollment page *@
                 <div id="depGen&InsInfo">
                     <div id="depGenInfo">
                         <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
                         <div id="depInfo">
                             <div class="form-group col-md-2">
-                                <input type="text" class="form-control" placeholder="First Name" id="depFirstName1" name="FirstName" value="" />
+                                <input type="text" id="depFirstName" class="form-control" placeholder="First Name" name="FirstName" value="" disabled />
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="text" class="form-control" placeholder="Last Name" id="depLastName1" name="LastName" value="" />
+                                <input type="text" id="depLastName" class="form-control" placeholder="Last Name" name="LastName" value="" disabled />
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="text" class="form-control" placeholder="SSN" id="depSSN1" name="SSN" value="" />
+                                <input type="text" id="depSSN" class="form-control" placeholder="For SSN#-Call HR" name="SSN" value="" disabled />
+                            </div>
+                            <div class="form-group col-md-3" id="depRelationshipToInsured">
+                                <input type="text" id="depRelationToInsured" class="form-control" placeholder="Relationship to Insured" name="RelationShipToInsured" value="" readonly>
+                                @*<input id="Child" name="RelationshipToInsured" class="form-control" value="Child" @((ViewBag.RelationshipToInsured.ToLower() == "Child") ? "selected" : "")/>*@
+                                @*<input id="StepChild" name="RelationshipToInsured" class="form-control" value="StepChild" @((ViewBag.RelationshipToInsured.ToLower() == "StepChild") ? "selected" : "")/>*@
+                                @*<input id="Other" name="RelationshipToInsured" class="form-control" value="Other" @((ViewBag.RelationshipToInsured.ToLower() == "Other") ? "selected" : "")/>*@
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="date" class="form-control" id="depDateOfBirth1" name="DateOfBirth" value="" />
+                                <input type="date" class="form-control" id="depDateOfBirth" name="DateOfBirth" value="" disabled />
                             </div>
                             <div class="form-group col-md-2">
-                                <select id="depGender1" class="form-control">
-                                    <option value="">Gender Selection:</option>
+                                <select id="depGender" class="form-control" disabled>
+                                    <option value="">Gender:</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
@@ -970,19 +980,19 @@
                         </div>
                     </div>
                     <div>
-                        <div id="depCoveredByOtherIns">
+                        <div>
                             <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
                             <label class="radio-inline"><input type="radio" id="depCoveredByOtherIns" class="radio-inline" onclick="return depCoveredByOtherIns()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
                             <label class="radio-inline"><input type="radio" id="depCoveredByOtherIns" class="radio-inline" onclick="return depCoveredByOtherIns()" name="CoveredByOtherInsurance" value="no" checked />No</label>
                             <div id="depInsInfo">
                                 <div class="form-group col-md-2">
-                                    <input type="text" id="depInsCompany1" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
+                                    <input type="text" id="depInsCompany" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <input type="text" id="depInsPolicyNumber1" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                                    <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <input type="tel" id="depInsPhoneNumber1" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                                    <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
                                 </div>
                             </div>
                         </div>
@@ -1072,33 +1082,10 @@
         overflow: hidden;
     }
 
-    /*td.text label {
-        margin: 0;
-        padding: 0;
-        display: block;
-        font-size: 100%;
-        padding-top: .1em;
-        padding-right: .25em;
-        width: 6em;
-        text-align: right;
-        float: left;
-    }
-
-    td.text input,
-    td.text textarea {
-        margin: 0;
-        padding: 0;
-        display: block;
-        font-size: 100%;
-    }*/ 
     table {
         border-collapse: collapse;
         width: 100%;
     }
-
-        /*table tr {
-            border-bottom: 1px solid black;
-        }*/
 
     td:empty {
         width: 10px;
@@ -1119,11 +1106,121 @@
 </style>
 
 
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        var cnt = 1;
+        /* This function recieves a name (string) and finds that element in the document, then removes it from it's parent node.
+         * You have to use the removeChild method on the parent node of the object.
+         */
+        function removeElement(name) {
+            var elementToRemove = document.getElementById(name);
+            elementToRemove.parentNode.removeChild(elementToRemove);
+        }
+
+        function createElement(name, type) {
+            var input = document.createElement("input");
+            input.type = type;
+            var newName = name + cnt;
+            input.name = newName;
+            input.id = newName;
+            return input;
+        }
+
+        /* This function recieves a name (string) and attempts to find it in the document object.  it's going to increment the number at the end
+         * of the name and create a new object, but only if that object doesn't already exist.
+         * It adds three elements, a file input, a red X inside a span tag, and a break tag
+         */
+        function addInputSelection() {
+            // skip the "fname" part of the name and grab the number that is the rest
+            newID = ++cnt;
+            //check to see if the next increment of that object already exists
+            if (document.getElementById("fname" + newID) == null) {
+                //get the form object so you have a reference to add child to for the three objects to create
+                var formObj = document.getElementById("dependentSelectForm");
+                // create the new input objects
+                formObj.appendChild(createElement('fname', 'text'));
+                formObj.appendChild(createElement('lname', 'text'));
+                formObj.appendChild(createElement('ssn', 'text'));
+                formObj.appendChild(createElement('relation', 'text'));
+                formObj.appendChild(createElement('dob', 'date'));
+                formObj.appendChild(createElement('gender', 'text'));
+              
+
+                //create the new span tag with the red X in it
+                var spanObj = document.createElement("span");
+                spanObj.id = "x" + newID;
+                spanObj.style = "color:red";
+                spanObj.addEventListener("click", function () {
+                    removeInputSelection(this);
+                })
+                spanObj.innerHTML = "X";
+                formObj.appendChild(spanObj);
+                //create the break tag to make a new line.  have to add an id so we know which one to remove when they click the X
+                var newBR = document.createElement("br");
+                newBR.id = "br" + newID;
+                with (document.getElementById('DepEnrollmentUpdate').style) {
+                    top = (cnt * 25) + 80 + "px";
+                }
+                with (document.getElementById('adddep').style) {
+                    top = (cnt * 25) + 80 + "px";
+                }
+                formObj.appendChild(newBR);
+
+            }
+        }
+        /* This function removes the file, span, and br tags with the same number at the end
+         */
+        function removeInputSelection(o) {
+            cnt--;
+            var elementIdNumber = parseInt(o.id.substring(2, o.id.length - 1));
+
+            removeElement("fname" + elementIdNumber);
+            removeElement("lname" + elementIdNumber);
+            removeElement("ssn" + elementIdNumber);
+            removeElement("relation" + elementIdNumber);
+            removeElement("dob" + elementIdNumber);
+            removeElement("gender" + elementIdNumber);
+            removeElement("x" + elementIdNumber);
+            removeElement("br" + elementIdNumber);
+            with (document.getElementById('DepEnrollmentUpdate').style) {
+                top = (cnt * 25) + 80 + "px";
+            }
+            with (document.getElementById('adddep').style) {
+                top = (cnt * 25) + 80 + "px";
+            }
+        }
+    </script>
+</head>
+<body>
+    <form id="dependentSelectForm" action="\Home\DependentPoster" method="post">
+        <input type="text" name="fname1" id="fname1" />
+        <input type="text" name="lname1" id="lname1" />
+        <input type="text" name="ssn1" id="ssn1" />
+        <input type="text" name="relation1" id="relation1" />
+        <input type="date" name="dob1" id="dob1" />
+        <input type="text" name="gender1" id="gender1" />
+
+        <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
+        <br id="br1" />
+
+        @*<input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
+        <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">*@
+    </form>
+</body>
+</html>
+
+
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
+    var emp_id;
     var insPlan_id;
-    var GroupHealthInsurance_id;
+    var insPrem_id;
+    var insDetail_id;
+    var grpHealthIns_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -1140,13 +1237,13 @@
 
     function empCoveredByOtherIns() {
 
-        var div = document.getElementById("empCoveredByOtherIns").checked;
+        var div = document.querySelector("empCoveredByOtherIns").value;
         var divEmpHide = document.getElementById("empInsInfo")
         var divEmpShow = document.getElementById("empInsInfo")
 
         div.addEventListener('click', function () {
      
-            if (div.checked = "no") {
+            if (div.value = "no") {
 
                 divEmpHide.style.display = "none";
             }
@@ -1157,9 +1254,9 @@
 
     function depCoveredByOtherIns() {
        
-        var div = document.getElementById("depCoveredByOtherIns").checked;
-        var divDepHide = document.getElementById("depInsInfo")
-        var divDepShow = document.getElementById("depInsInfo")
+        var div = document.querySelectorAll("depCoveredByOtherIns").value;
+        var divDepHide = document.querySelector("depInsInfo")
+        var divDepShow = document.querySelector("depInsInfo")
 
         div.addEventListener('click', function () {
 
@@ -1173,7 +1270,13 @@
         });
         
     }
-
+            //Have three tables- one parent- two children- 
+            //parent table -Insurance Plan
+            //-InsurancePlan_id as primary and Employee_id as foregin key
+            //child1- InsurancePlanDetail
+            //-InsurancePlanDetail_id as primary and InsurancePlan_id as foregin key
+            //child2- InsurancePremium
+            //-InsurancePremium_id as primary and InsurancePlan_id as foregin key
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#InsPremiumUpdateStepOne").addEventListener("click", function () {
             MECmonthlyEO = document.getElementById('MECmonthlyCostEmpOnly').value
@@ -1297,6 +1400,7 @@
             DentalNetWork = document.getElementById("DentalNetWork").value;
             RateGuarantee = document.getElementById("RateGuarantee").value;
 
+ 
             var data = {
                 "insPlan_id": insPlan_id,
                 "EmpDentalCost": EmpDentalCost,
@@ -1421,6 +1525,7 @@
             depFirstName = document.getElementById("depFirstName").value;
             depLastName = document.getElementById("depLastName").value;
             depSSN = document.getElementById("depSSN").value;
+            depRelationToInsured = document.getElementById("depRelationToInsured").value;
             depDateOfBirth = document.getElementById("depDateOfBirth").value;
             depGender = document.getElementById("depGender").value;
             depInsCompany = document.getElementById("depInsCompany").value;
@@ -1428,7 +1533,8 @@
             depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value;
 
             date = {
-                "GroupHealthInsurance_id": GroupHealthInsurance_id,
+                "GroupHealthInsurance_id": grpHealthIns_id,
+                "Employee_id": emp_id,
                 "GroupName": GroupName,
                 "IMSGroupNumber": IMSGroupNumber,
                 "Department": Department,
@@ -1486,6 +1592,7 @@
                 "depFirstName": depFirstName,
                 "depLastName": depLastName,
                 "depSSN": depSSN,
+                "depRelationToInsured": depRelationToInsured,
                 "depDateOfBirth": depDateOfBirth,
                 "depGender": depGender,
                 "depCoveredByOtherIns": depCoveredByOtherIns,
@@ -1549,8 +1656,6 @@
         //document.querySelector("#VisionCostEmpDep").value = EmpDepVisionCost;
         //document.querySelector("#DentalCostEmpFam").value = EmpFamDentalCost;
         //document.querySelector("#VisionCostEmpFam").value = EmpFamVisionCost;
-
-
     }
 
     function ThirdStep(ins) {

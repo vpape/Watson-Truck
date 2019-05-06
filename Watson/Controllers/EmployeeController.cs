@@ -384,7 +384,7 @@ namespace Watson.Controllers
         //SpEnrollment Method
         public ActionResult SpEnrollment(string MaritalStatus)
         {
-            ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
+           
  
             return View();
         }
@@ -512,6 +512,8 @@ namespace Watson.Controllers
         //SpDetail Method
         public ActionResult SpDetail(int Employee_id, int? FamilyMember_id)
         {
+            //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
+
             if (FamilyMember_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -760,6 +762,8 @@ namespace Watson.Controllers
         //DepDetail Method
         public ActionResult DepDetail(int? FamilyMember_id)
         {
+            //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
+
             if (FamilyMember_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

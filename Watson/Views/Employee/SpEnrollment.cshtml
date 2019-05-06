@@ -15,32 +15,12 @@
     <div class="form-horizontal">
         <hr />
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
-        <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value=@ViewBag.MaritalStatus />
+        @*<input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value=@ViewBag.MaritalStatus />
+        <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value=@ViewBag.RelationshipToInsured />*@
         <div class="collapsible" id="FirstStep">Spouse Enrollment</div>
         <div id="divEmpEnrollment" class="content">
             <p></p>
             <p></p>
-            <div class="form-group" id="divRelationshipToInsured">
-                <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
-                <div class="col-md-10">
-                    <select id="RelationToInsured" name="RelationShipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control" disabled>
-                        @*@if (ViewBag.spouseExist == false)\
-                            {
-                                <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")Spouse</option>
-                            }
-                            else
-                            {
-                                <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                            @*}*@
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
-                <div class="col-md-10">
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="" disabled />
-                </div>
-            </div>
             <div class="form-group">
                 <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
@@ -105,8 +85,8 @@
             <div class="form-group" id="divMailingAddress">
                 <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
                 <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" @*onclick="SpouseAddress()"*@ onclick="HidePhysicalAddress()" name="Address" value="true" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="addressNotSame" class="radio-inline" @*onclick="SpouseAddress()"*@ onclick="ShowPhysicalAddress()" name="Address" value="false" checked />No</label>
+                    <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" onclick="HidePhysicalAddress()" name="Address" value="true" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="addressNotSame" class="radio-inline" onclick="ShowPhysicalAddress()" name="Address" value="false" checked />No</label>
                 </div>
             </div>
             <div id="divPhysicalAddress">
@@ -114,7 +94,6 @@
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
                         <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="" />
-                        @*<input type="text" id="PObox2" class="form-control" placeholder="PO Box" name="PObox" />*@
                         <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="" />
                         <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="" />
                         <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
@@ -247,34 +226,7 @@
         border: 0px solid;
         top: 8px;
     }
-
-    /*.phone-number .col-xs-4 {
-        width: 25%;
-    }
-
-    .phone-number .col-xs-3, .phone-number .col-xs-4 {
-        padding-left: 0;
-    }*/
 </style>
-@*<script>
-        function SpouseOrDependent()
-        {
-            var choice = document.getElementById("RelationToInsured").value;
-            var spouse = document.getElementById("divSpouseInfo").value;
-            var dependent = document.getElementById("divDependentInfo").value;
-
-            if (choice == "Spouse")
-            {
-                spouse.style.display = 'block';
-                dependent.style.display = 'none';
-
-            }
-            else {
-                spouse.style.display = 'none';
-                dependent.style.display = 'block';
-            }
-        }
-    </script>*@
 
 <script>
     var col = document.querySelectorAll(".collapsible");
@@ -327,16 +279,16 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
-            RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
-            EmpNumber = document.getElementById("EmpNumber").value;
+            //RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
+            //EmpNumber = document.getElementById("EmpNumber").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
             Gender = document.getElementById("Gender").value;
 
             var data = {
-                "RelationshipToInsured": RelationshipToInsured,
-                "EmpNumber": EmpNumber,
+                //"RelationshipToInsured": RelationshipToInsured,
+                //"EmpNumber": EmpNumber,
                 "FirstName": FirstName,
                 "LastName": LastName,
                 "DateOfBirth": DateOfBirth,
@@ -376,7 +328,6 @@
             ZipCode = document.getElementById("ZipCode").value;
             County = document.getElementById("County").value;
             PhysicalAddress = document.getElementsById("PhysicalAddress").value;
-            //PObox2 = document.getElementById("PObox2").value;
             City2 = document.getElementById("City2").value;
             State2 = document.getElementById("State2").value;
             ZipCode2 = document.getElementById("ZipCode2").value;
@@ -394,7 +345,6 @@
                 "ZipCode": ZipCode,
                 "County": County,
                 "PhysicalAddress": PhysicalAddress,
-                //"PObox2": PObox2,
                 "City2": City2,
                 "State2": State2,
                 "ZipCode2": ZipCode2,
@@ -470,7 +420,6 @@
     function SecondStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        document.querySelector("#Employee_id").value = sp.Employee_id;
 
     }
 
@@ -478,7 +427,6 @@
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
-        document.querySelector("#Employee_id").value = sp.Employee_id;
     }
 
     function postData(url, data) {
