@@ -142,11 +142,11 @@ namespace Watson.Controllers
                 {
                     db.SaveChanges();
 
-                    if (e.MaritalStatus == "Married")
-                    {
-                         RedirectToAction("SpEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
-                         RedirectToAction("SpEnrollment");
-                    }
+                    //if (e.MaritalStatus == "Married")
+                    //{
+                    //     RedirectToAction("SpEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
+                    //     RedirectToAction("SpEnrollment");
+                    //}
                     //else if (e.MaritalStatus == "MarriedwDep")
                     //{
                     //     RedirectToAction("SpEnrollment", new { Employee_id = e.Employee_id, MaritalStatus = e.MaritalStatus });
@@ -157,10 +157,10 @@ namespace Watson.Controllers
                     //     RedirectToAction("SpEnrollment", "Employee");
                     //     RedirectToAction("DepEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
                     //}
-                    else
-                    {
-                         RedirectToAction("EnrollmentSelection", "Employee", new { e.Employee_id, e.MaritalStatus });
-                    }
+                    //else
+                    //{
+                    //     RedirectToAction("EnrollmentSelection", "Employee", new { e.Employee_id, e.MaritalStatus });
+                    //}
                 }
 
                 catch (Exception emp)
@@ -399,7 +399,6 @@ namespace Watson.Controllers
            string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
         {
             Family_Info sp = db.Family_Info
-                .Where(i => i.Employee_id == Employee_id)
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
                 .Where(i => i.RelationshipToInsured == "Spouse")
                 .Single();
@@ -451,7 +450,6 @@ namespace Watson.Controllers
             string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
             var sp = db.Family_Info
-                .Where(i => i.Employee_id == Employee_id)
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
                 .Where(i => i.RelationshipToInsured == "Spouse")
                 .Single();
@@ -566,9 +564,12 @@ namespace Watson.Controllers
         {
             Family_Info sp = db.Family_Info.Find(FamilyMember_id);
 
-            db.DeleteEmployeeAndDependents(FamilyMember_id);
+            Other_Insurance other = db.Other_Insurance.Find(FamilyMember_id);
+
+            db.DeleteSpouseAndDependent(FamilyMember_id);
 
             db.Family_Info.Remove(sp);
+            db.Other_Insurance.Remove(other);
             db.SaveChanges();
 
             return RedirectToAction("FamilyOverview", new { sp.Employee_id });
@@ -587,7 +588,6 @@ namespace Watson.Controllers
            string InsMailingAddress, string InsPObox, string InsCity, string InsState, string InsZipCode)
         {
             Family_Info dep = db.Family_Info
-                .Where(i => i.Employee_id == Employee_id)
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
                 .Where(i => i.RelationshipToInsured == "Dependent")
                 .Single();

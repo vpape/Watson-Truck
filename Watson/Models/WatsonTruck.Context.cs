@@ -53,5 +53,14 @@ namespace Watson.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteEmployeeAndDependents", empidParameter);
         }
+
+        public virtual int DeleteSpouseAndDependent(int? familyMember_id)
+        {
+
+            var familyMemberidParameter = familyMember_id.HasValue ?
+                new ObjectParameter("familyMember_id", familyMember_id) :
+                new ObjectParameter("familyMember_id", typeof(int));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteSpouseAndDependent", familyMemberidParameter);
+        }
     }
 }

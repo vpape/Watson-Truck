@@ -248,70 +248,51 @@
 
 
     function redirect() {
-        var maritalStatus = document.querySelector("#MaritalStatus").innerHTML;
-        var saveBtn = document.getElementById("divRedirect");
+        var maritalStatus = document.querySelector("#MaritalStatus").value;
 
-        saveBtn.addEventListener('click', function () {
+        var message;
+        var alert = confirm("Would you like to proceed ? If yes, click the OK button to continue")
 
-            var message;
-            var alert = confirm("Would you like to proceed ? If yes, click the OK button to continue")
+        if (maritalStatus == "Single") {
+            if (alert == true) {
 
-            if (maritalStatus == "Single")
-            {
+                message = "Please proceed to the Group Health Enrollment, Thank you!!";
+                var alert = confirm(message)
                 if (alert == true) {
 
-                    message = "Please proceed to the Group Health Enrollment, Thank you!!";
+                        window.location.href = "/Group_Health/GrpHealthEnrollment/" + emp_id;
 
-                    setTimeout(function () {
-
-                        window.location.href = "/Employee/EnrollmentSelection";
-
-                    }, 3000);
                 }
                 else {
-                    var message;
-                    message = "Please proceed to the Family Enrollment, Thank you!!";
-
-                    setTimeout(function () {
-                        window.location.href = "/Employee/EnrollmentSelection";
-                    }, 3000);
-
-                    document.getElementById("divRedirect").value = message;
-
-                    return confirm('divRedirect')
-
+                    window.location.href = "/Employee/EmpOverview/" + emp_id;
                 }
             }
-        })
+        }
+        else {
+            if (alert == false) {
+
+                window.location.href = "/Employee/EmpOverview/" + emp_id;
+            }
+            else {
+
+                message = "Please proceed to the Family Enrollment, Thank you!!";
+                var alert = confirm(message)
+
+                if (alert == true) {
+               
+                    window.location.href = "/Employee/FamilyEnrollment/" + emp_id;
+                    
+                }
+                else {
+
+                    window.location.href = "/Employee/EmpOverview/" + emp_id;
+                }
+
+            }
+
+        }
     }
-
-    //function ContactUpdate() {
-
-    //    redirectTime = "3000";
-    //    redirectURL = window.location('/Employee/'); if single, will need to redirect to EnrollmentSelection page, so
-    // enroll in group health....based on marital status and dependents, will need to redirect to corresponding page
-
-    //    var message;
-    //    var alert = confirm("Would you like to proceed? If yes, click the OK button to continue");
-
-    //    if (alert == true) {
-
-    //        message = "Please proceed to the next segment, Thank you!!";
-
-    //        window.setTimeout(function () {
-
-    //            window.location = "redirectURL", redirectTime
-    //        });
-    //    }
-    //    else {
-
-    //        message = "Please review your information and submit when complete";
-    //    }
-    //    document.getElementById("EmployeeEnrollmentUpdateStepTwo").value = message;
-
-    //    return confirm('EmployeeEnrollmentUpdateStepTwo')
-    //}
-
+    
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmployeeEnrollmentUpdate").addEventListener("click", function () {
             Role = document.getElementById("Role").value;
