@@ -21,7 +21,7 @@ namespace Watson.Models
         }
     
         public int FamilyMember_id { get; set; }
-        public Nullable<int> OtherInsurance_id { get; set; }
+        public int OtherInsurance_id { get; set; }
         public int Employee_id { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
@@ -45,10 +45,10 @@ namespace Watson.Models
         public string EmployerState { get; set; }
         public string EmployerZipCode { get; set; }
         public string EmployerPhoneNumber { get; set; }
-        public Nullable<bool> Medical { get; set; }
-        public Nullable<bool> Dental { get; set; }
-        public Nullable<bool> Vision { get; set; }
-        public Nullable<bool> Indemnity { get; set; }
+        public string Medical { get; set; }
+        public string Dental { get; set; }
+        public string Vision { get; set; }
+        public string Indemnity { get; set; }
         public string PObox { get; set; }
         public string EmployerPObox { get; set; }
     

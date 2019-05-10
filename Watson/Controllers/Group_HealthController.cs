@@ -87,9 +87,9 @@ namespace Watson.Controllers
 
         public JsonResult GrpHealthEnrollmentNew(int GroupHealthInsurance_id, int OtherInsurance_id, string InsuranceCarrier,
             string PolicyNumber, string GroupName, string IMSGroupNumber,string PhoneNumber, string ReasonForGrpCoverageRefusal,
-            bool OtherCoverage, bool OtherReason, bool Myself, bool Spouse, bool Dependent, string OtherInsuranceCoverage,
-            DateTime CafeteriaPlanYear, bool NoMedicalPlan, bool EmployeeOnly, bool EmployeeAndSpouse, bool EmployeeAndDependent,
-            bool EmployeeAndFamily, string EmployeeSignature, DateTime EmployeeSignatureDate, string EmployeeInitials,
+            string OtherCoverage, string OtherReason, string Myself, string Spouse, string Dependent, string OtherInsuranceCoverage,
+            DateTime CafeteriaPlanYear, string NoMedicalPlan, string EmployeeOnly, string EmployeeAndSpouse, string EmployeeAndDependent,
+            string EmployeeAndFamily, string EmployeeSignature, DateTime EmployeeSignatureDate, string EmployeeInitials,
             string OtherSignature, DateTime OtherSignatureDate, string CoveredByOtherIns, string InsCarrier, 
             string InsPolicyNumber, string InsPhoneNumber, string InsMailingAddress, string InsPObox, string InsCity, 
             string InsState, string InsZipCode)
@@ -164,10 +164,10 @@ namespace Watson.Controllers
         }
 
         public JsonResult GrpHealthInsEditUpdate(int GrpHealthIns_id, int OtherInsurance_id, string InsuranceCarrier,
-            string PolicyNumber, string GroupName, string IMSGroupNumber, string PhoneNumber, string ReasonForGrpCoverageRefusal, 
-            bool OtherCoverage, bool OtherReason, bool Myself, bool Spouse, bool Dependent, string OtherInsuranceCoverage,
-            DateTime CafeteriaPlanYear, bool NoMedicalPlan, bool EmployeeOnly, bool EmployeeAndSpouse,
-            bool EmployeeAndDependent, bool EmployeeAndFamily, string EmployeeSignature, DateTime EmployeeSignatureDate,
+            string PolicyNumber, string GroupName, string IMSGroupNumber, string PhoneNumber, string ReasonForGrpCoverageRefusal,
+            string OtherCoverage, string OtherReason, string Myself, string Spouse, string Dependent, string OtherInsuranceCoverage,
+            DateTime CafeteriaPlanYear, string NoMedicalPlan, string EmployeeOnly, string EmployeeAndSpouse,
+            string EmployeeAndDependent, string EmployeeAndFamily, string EmployeeSignature, DateTime EmployeeSignatureDate,
             string EmployeeInitials, string OtherSignature, DateTime OtherSignatureDate, string CoveredByOtherIns, 
             string InsCarrier, string InsPolicyNumber, string InsPhoneNumber, string InsMailingAddress, 
             string InsPObox, string InsCity, string InsState, string InsZipCode)

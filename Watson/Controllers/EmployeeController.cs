@@ -340,8 +340,8 @@ namespace Watson.Controllers
             DateTime DateOfBirth, string MailingAddress, string PObox, string City, string State, 
             string County, string ZipCode, string EmailAddress, string PhoneNumber, string CellPhone,
             string Gender, string Employer, string EmployerMailingAddress, string EmployerPObox,
-            string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber, 
-            bool Medical, bool Dental, bool Vision, bool Indemnity)
+            string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber,
+            string Medical, string Dental, string Vision, string Indemnity)
         {
             var f = db.Family_Info
                 .Where(i => i.Employee_id == Employee_id)

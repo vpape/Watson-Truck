@@ -22,23 +22,23 @@ namespace Watson.Models
         public string IMSGroupNumber { get; set; }
         public string PhoneNumber { get; set; }
         public string ReasonForGrpCoverageRefusal { get; set; }
-        public bool OtherCoverage { get; set; }
-        public bool OtherReason { get; set; }
-        public bool Myself { get; set; }
-        public bool Spouse { get; set; }
-        public bool Dependent { get; set; }
+        public string OtherCoverage { get; set; }
+        public string OtherReason { get; set; }
+        public string Myself { get; set; }
+        public string Spouse { get; set; }
+        public string Dependent { get; set; }
         public string OtherInsuranceCoverage { get; set; }
-        public System.DateTime CafeteriaPlanYear { get; set; }
-        public bool NoMedicalPlan { get; set; }
-        public bool EmployeeOnly { get; set; }
-        public bool EmployeeAndSpouse { get; set; }
-        public bool EmployeeAndDependent { get; set; }
-        public bool EmployeeAndFamily { get; set; }
+        public Nullable<System.DateTime> CafeteriaPlanYear { get; set; }
+        public string NoMedicalPlan { get; set; }
+        public string EmployeeOnly { get; set; }
+        public string EmployeeAndSpouse { get; set; }
+        public string EmployeeAndDependent { get; set; }
+        public string EmployeeAndFamily { get; set; }
         public string EmployeeSignature { get; set; }
-        public System.DateTime EmployeeSignatureDate { get; set; }
+        public Nullable<System.DateTime> EmployeeSignatureDate { get; set; }
         public string EmployeeInitials { get; set; }
         public string OtherSignature { get; set; }
-        public System.DateTime OtherSignatureDate { get; set; }
+        public Nullable<System.DateTime> OtherSignatureDate { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

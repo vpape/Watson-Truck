@@ -158,7 +158,7 @@
             <PropertyRef Name="FamilyMember_id" />
           </Key>
           <Property Name="FamilyMember_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OtherInsurance_id" Type="int" />
+          <Property Name="OtherInsurance_id" Type="int" Nullable="false" />
           <Property Name="Employee_id" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="30" />
           <Property Name="MiddleName" Type="varchar" MaxLength="30" />
@@ -182,10 +182,10 @@
           <Property Name="EmployerState" Type="varchar" MaxLength="30" />
           <Property Name="EmployerZipCode" Type="varchar" MaxLength="15" />
           <Property Name="EmployerPhoneNumber" Type="varchar" MaxLength="30" />
-          <Property Name="Medical" Type="bit" />
-          <Property Name="Dental" Type="bit" />
-          <Property Name="Vision" Type="bit" />
-          <Property Name="Indemnity" Type="bit" />
+          <Property Name="Medical" Type="varchar" MaxLength="15" />
+          <Property Name="Dental" Type="varchar" MaxLength="15" />
+          <Property Name="Vision" Type="varchar" MaxLength="15" />
+          <Property Name="Indemnity" Type="varchar" MaxLength="15" />
           <Property Name="PObox" Type="varchar" MaxLength="10" />
           <Property Name="EmployerPObox" Type="varchar" MaxLength="10" />
         </EntityType>
@@ -195,29 +195,29 @@
           </Key>
           <Property Name="GroupHealthInsurance_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Employee_id" Type="int" Nullable="false" />
-          <Property Name="InsuranceCarrier" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="PolicyNumber" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="GroupName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="IMSGroupNumber" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="ReasonForGrpCoverageRefusal" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="OtherCoverage" Type="bit" Nullable="false" />
-          <Property Name="OtherReason" Type="bit" Nullable="false" />
-          <Property Name="Myself" Type="bit" Nullable="false" />
-          <Property Name="Spouse" Type="bit" Nullable="false" />
-          <Property Name="Dependent" Type="bit" Nullable="false" />
-          <Property Name="OtherInsuranceCoverage" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="CafeteriaPlanYear" Type="date" Nullable="false" />
-          <Property Name="NoMedicalPlan" Type="bit" Nullable="false" />
-          <Property Name="EmployeeOnly" Type="bit" Nullable="false" />
-          <Property Name="EmployeeAndSpouse" Type="bit" Nullable="false" />
-          <Property Name="EmployeeAndDependent" Type="bit" Nullable="false" />
-          <Property Name="EmployeeAndFamily" Type="bit" Nullable="false" />
-          <Property Name="EmployeeSignature" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="EmployeeSignatureDate" Type="date" Nullable="false" />
-          <Property Name="EmployeeInitials" Type="char" MaxLength="2" Nullable="false" />
-          <Property Name="OtherSignature" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="OtherSignatureDate" Type="date" Nullable="false" />
+          <Property Name="InsuranceCarrier" Type="varchar" MaxLength="30" />
+          <Property Name="PolicyNumber" Type="varchar" MaxLength="20" />
+          <Property Name="GroupName" Type="varchar" MaxLength="35" />
+          <Property Name="IMSGroupNumber" Type="varchar" MaxLength="25" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
+          <Property Name="ReasonForGrpCoverageRefusal" Type="varchar" MaxLength="40" />
+          <Property Name="OtherCoverage" Type="varchar" MaxLength="15" />
+          <Property Name="OtherReason" Type="varchar" MaxLength="40" />
+          <Property Name="Myself" Type="varchar" MaxLength="15" />
+          <Property Name="Spouse" Type="varchar" MaxLength="15" />
+          <Property Name="Dependent" Type="varchar" MaxLength="15" />
+          <Property Name="OtherInsuranceCoverage" Type="varchar" MaxLength="15" />
+          <Property Name="CafeteriaPlanYear" Type="date" />
+          <Property Name="NoMedicalPlan" Type="varchar" MaxLength="15" />
+          <Property Name="EmployeeOnly" Type="varchar" MaxLength="25" />
+          <Property Name="EmployeeAndSpouse" Type="varchar" MaxLength="25" />
+          <Property Name="EmployeeAndDependent" Type="varchar" MaxLength="25" />
+          <Property Name="EmployeeAndFamily" Type="varchar" MaxLength="25" />
+          <Property Name="EmployeeSignature" Type="varchar" MaxLength="50" />
+          <Property Name="EmployeeSignatureDate" Type="date" />
+          <Property Name="EmployeeInitials" Type="varchar" MaxLength="3" />
+          <Property Name="OtherSignature" Type="varchar" MaxLength="50" />
+          <Property Name="OtherSignatureDate" Type="date" />
         </EntityType>
         <EntityType Name="InsurancePlan">
           <Key>
@@ -890,7 +890,7 @@
             <PropertyRef Name="FamilyMember_id" />
           </Key>
           <Property Name="FamilyMember_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OtherInsurance_id" Type="Int32" />
+          <Property Name="OtherInsurance_id" Type="Int32" Nullable="false" />
           <Property Name="Employee_id" Type="Int32" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="MiddleName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -914,10 +914,10 @@
           <Property Name="EmployerState" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="EmployerZipCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="EmployerPhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Medical" Type="Boolean" />
-          <Property Name="Dental" Type="Boolean" />
-          <Property Name="Vision" Type="Boolean" />
-          <Property Name="Indemnity" Type="Boolean" />
+          <Property Name="Medical" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Dental" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Vision" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Indemnity" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Family_Info_Employee" FromRole="Family_Info" ToRole="Employee" />
           <NavigationProperty Name="Other_Insurance" Relationship="WatsonTruckModel.FK_Other_Insurance_Family_Info" FromRole="Family_Info" ToRole="Other_Insurance" />
           <Property Name="PObox" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -929,29 +929,29 @@
           </Key>
           <Property Name="GroupHealthInsurance_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Employee_id" Type="Int32" Nullable="false" />
-          <Property Name="InsuranceCarrier" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="PolicyNumber" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="IMSGroupNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="ReasonForGrpCoverageRefusal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OtherCoverage" Type="Boolean" Nullable="false" />
-          <Property Name="OtherReason" Type="Boolean" Nullable="false" />
-          <Property Name="Myself" Type="Boolean" Nullable="false" />
-          <Property Name="Spouse" Type="Boolean" Nullable="false" />
-          <Property Name="Dependent" Type="Boolean" Nullable="false" />
-          <Property Name="OtherInsuranceCoverage" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="CafeteriaPlanYear" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="NoMedicalPlan" Type="Boolean" Nullable="false" />
-          <Property Name="EmployeeOnly" Type="Boolean" Nullable="false" />
-          <Property Name="EmployeeAndSpouse" Type="Boolean" Nullable="false" />
-          <Property Name="EmployeeAndDependent" Type="Boolean" Nullable="false" />
-          <Property Name="EmployeeAndFamily" Type="Boolean" Nullable="false" />
-          <Property Name="EmployeeSignature" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="EmployeeSignatureDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EmployeeInitials" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="OtherSignature" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="OtherSignatureDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="InsuranceCarrier" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PolicyNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GroupName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="IMSGroupNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReasonForGrpCoverageRefusal" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="OtherCoverage" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="OtherReason" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="Myself" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Spouse" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Dependent" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="OtherInsuranceCoverage" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CafeteriaPlanYear" Type="DateTime" Precision="0" />
+          <Property Name="NoMedicalPlan" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="EmployeeOnly" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="EmployeeAndSpouse" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="EmployeeAndDependent" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="EmployeeAndFamily" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="EmployeeSignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeSignatureDate" Type="DateTime" Precision="0" />
+          <Property Name="EmployeeInitials" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="OtherSignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OtherSignatureDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Group_Health_Employee" FromRole="Group_Health" ToRole="Employee" />
         </EntityType>
         <EntityType Name="InsurancePlan">
