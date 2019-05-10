@@ -14,7 +14,7 @@ namespace Watson.Controllers
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
         //private static Group_Health groupHealth = new Group_Health();
-        private static List<Group_Health> group = new List<Group_Health>();
+        private static List<Group_Health> groupIns = new List<Group_Health>();
 
         public Group_HealthController()
         {
@@ -49,6 +49,7 @@ namespace Watson.Controllers
 
             db.InsurancePlans.Add(insPlan);
             db.InsurancePremiums.Add(insPremium);
+
             db.SaveChanges();
 
             int insPlanResult = insPlan.InsurancePlan_id;
@@ -84,11 +85,14 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GrpHealthEnrollmentNew(string InsuranceCarrier, string PolicyNumber, string GroupName, string IMSGroupNumber,
-            string PhoneNumber, string ReasonForGrpCoverageRefusal, bool OtherCoverage, bool OtherReason, bool Myself, bool Spouse,
-            bool Dependent, string OtherInsuranceCoverage, DateTime CafeteriaPlanYear, bool NoMedicalPlan, bool EmployeeOnly, 
-            bool EmployeeAndSpouse, bool EmployeeAndDependent, bool EmployeeAndFamily, string EmployeeSignature, 
-            DateTime EmployeeSignatureDate, string EmployeeInitials, string OtherSignature, DateTime OtherSignatureDate)
+        public JsonResult GrpHealthEnrollmentNew(int GroupHealthInsurance_id, int OtherInsurance_id, string InsuranceCarrier,
+            string PolicyNumber, string GroupName, string IMSGroupNumber,string PhoneNumber, string ReasonForGrpCoverageRefusal,
+            bool OtherCoverage, bool OtherReason, bool Myself, bool Spouse, bool Dependent, string OtherInsuranceCoverage,
+            DateTime CafeteriaPlanYear, bool NoMedicalPlan, bool EmployeeOnly, bool EmployeeAndSpouse, bool EmployeeAndDependent,
+            bool EmployeeAndFamily, string EmployeeSignature, DateTime EmployeeSignatureDate, string EmployeeInitials,
+            string OtherSignature, DateTime OtherSignatureDate, string CoveredByOtherIns, string InsCarrier, 
+            string InsPolicyNumber, string InsPhoneNumber, string InsMailingAddress, string InsPObox, string InsCity, 
+            string InsState, string InsZipCode)
         {
             Group_Health g = new Group_Health();
 
@@ -116,10 +120,29 @@ namespace Watson.Controllers
             g.OtherSignature = OtherSignature;
             g.OtherSignatureDate = OtherSignatureDate;
 
+            Other_Insurance o = db.Other_Insurance
+              .Where(i => i.OtherInsurance_id == OtherInsurance_id)
+              .Single();
+
+            o.CoveredByOtherInsurance = CoveredByOtherIns;
+            o.InsuranceCarrier = InsCarrier;
+            o.PolicyNumber = InsPolicyNumber;
+            o.PhoneNumber = InsPhoneNumber;
+            o.MailingAddress = InsMailingAddress;
+            o.PObox = InsPObox;
+            o.City = InsCity;
+            o.State = InsState;
+            o.ZipCode = InsZipCode;
+
+            db.Other_Insurance.Add(o);
             db.Group_Health.Add(g);
+
             db.SaveChanges();
 
-            return Json(new { data = g }, JsonRequestBehavior.AllowGet);
+            int oResult = o.Employee_id;
+            int gResult = g.Employee_id;
+
+            return Json(new { data = oResult, gResult }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
@@ -140,12 +163,14 @@ namespace Watson.Controllers
             return View(g);
         }
 
-        public JsonResult GrpHealthInsEditUpdate(int GrpHealthIns_id, string InsuranceCarrier, string PolicyNumber, string GroupName,
-            string IMSGroupNumber, string PhoneNumber, string ReasonForGrpCoverageRefusal, bool OtherCoverage,
-            bool OtherReason, bool Myself, bool Spouse, bool Dependent, string OtherInsuranceCoverage,
+        public JsonResult GrpHealthInsEditUpdate(int GrpHealthIns_id, int OtherInsurance_id, string InsuranceCarrier,
+            string PolicyNumber, string GroupName, string IMSGroupNumber, string PhoneNumber, string ReasonForGrpCoverageRefusal, 
+            bool OtherCoverage, bool OtherReason, bool Myself, bool Spouse, bool Dependent, string OtherInsuranceCoverage,
             DateTime CafeteriaPlanYear, bool NoMedicalPlan, bool EmployeeOnly, bool EmployeeAndSpouse,
             bool EmployeeAndDependent, bool EmployeeAndFamily, string EmployeeSignature, DateTime EmployeeSignatureDate,
-            string EmployeeInitials, string OtherSignature, DateTime OtherSignatureDate)
+            string EmployeeInitials, string OtherSignature, DateTime OtherSignatureDate, string CoveredByOtherIns, 
+            string InsCarrier, string InsPolicyNumber, string InsPhoneNumber, string InsMailingAddress, 
+            string InsPObox, string InsCity, string InsState, string InsZipCode)
         {
             var g = db.Group_Health
                 .Where(i => i.GroupHealthInsurance_id == GrpHealthIns_id)
@@ -175,9 +200,24 @@ namespace Watson.Controllers
             g.OtherSignature = OtherSignature;
             g.OtherSignatureDate = OtherSignatureDate;
 
+            Other_Insurance o = db.Other_Insurance
+               .Where(i => i.OtherInsurance_id == OtherInsurance_id)
+               .Single();
+
+            o.CoveredByOtherInsurance = CoveredByOtherIns;
+            o.InsuranceCarrier = InsCarrier;
+            o.PolicyNumber = InsPolicyNumber;
+            o.PhoneNumber = InsPhoneNumber;
+            o.MailingAddress = InsMailingAddress;
+            o.PObox = InsPObox;
+            o.City = InsCity;
+            o.State = InsState;
+            o.ZipCode = InsZipCode;
+
             if (ModelState.IsValid)
             {
                 db.Entry(g).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(o).State = System.Data.Entity.EntityState.Modified;
 
                 try
                 {
@@ -191,9 +231,10 @@ namespace Watson.Controllers
                 RedirectToAction("EmpOverview");
             }
 
-            int result = g.GroupHealthInsurance_id;
+            int gResult = g.GroupHealthInsurance_id;
+            int oResult = o.OtherInsurance_id;
 
-            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = gResult, oResult }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
@@ -212,7 +253,19 @@ namespace Watson.Controllers
             return View(g);
         }
 
-        
+        public JsonResult GetGrpHealthInsDetail(int GroupHealthInsurance_id, int OtherInsurance_id)
+        {
+            var g = db.Group_Health
+                .Where(i => i.GroupHealthInsurance_id == GroupHealthInsurance_id)
+                .Single();
+
+            var o = db.Other_Insurance
+            .Where(i => i.OtherInsurance_id == OtherInsurance_id)
+            .Single();
+
+            return Json(new { data = g, o }, JsonRequestBehavior.AllowGet);
+        }
+
         //----------------------------------------------------------------------------------------
         // use both db.Deductions and db.InsurancePlan or just db.Deductions?
         //need to add employee signature and signature date to db.Deductions table and change data types

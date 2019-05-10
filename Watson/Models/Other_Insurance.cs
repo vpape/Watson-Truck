@@ -17,7 +17,6 @@ namespace Watson.Models
         public int FamilyMember_id { get; set; }
         public int OtherInsurance_id { get; set; }
         public int Employee_id { get; set; }
-        public string InsuranceCompany { get; set; }
         public string PolicyNumber { get; set; }
         public string MailingAddress { get; set; }
         public string City { get; set; }
@@ -26,6 +25,7 @@ namespace Watson.Models
         public string PhoneNumber { get; set; }
         public string CoveredByOtherInsurance { get; set; }
         public string PObox { get; set; }
+        public string InsuranceCarrier { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual Family_Info Family_Info { get; set; }

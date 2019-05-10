@@ -14,61 +14,45 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible" id="FirstStep"><h4>Spouse Enrollment</h4></div>
-        <div class="content" id="divSpEnrollment">
-            <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
-            <input type="hidden" id="FamilyMember_id" class="form-control" name="Employee_id" value=@ViewBag.FamilyMember_id />
-            <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value=@ViewBag.MaritalStatus />
-            <div class="form-group" id="divRelationshipToInsured">
-                <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+        @*<input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value=@ViewBag.MaritalStatus />
+            <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value=@ViewBag.RelationshipToInsured />*@
+        <div class="collapsible" id="FirstStep">Spouse Enrollment</div>
+        <div id="divEmpEnrollment" class="content">
+            <p></p>
+            <p></p>
+            <div class="form-group">
+                <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
-                    <select id="RelationToInsured" name="RelationShipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control" disabled>
-                        @if (ViewBag.spouseExist == false)
-                        {
-                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                        }
-                        else
-                        {
-                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                        }
+                    <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                <div class="col-md-10">
+                    <input type="text" id="LastName" class="form-control" placeholder="Last Name" name="LastName" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Date of Birth:</label>
+                <div class="col-md-10">
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Gender:</label>
+                <div class="col-md-10">
+                    <select id="Gender" class="form-control">
+                        <option value="">Select Option</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                     </select>
                 </div>
             </div>
-            <div class="form-group" id="EmpNumber" disabled>
-                <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
-                <div class="col-md-10">
-                    <text type="text" id="EmpNumber" class="form-control" name="SSN" value="sp.EmpNumber" />
-                </div>
-            </div>
-            <div class="form-group" div="divSpouseInfo">
-                <label for="FirstName" class="col-md-2 control-label">First Name:</label>
-                <div class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
-                </div>
-                <div class="form-group">
-                    <label for="LastName" class="col-md-2 control-label">Last Name:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="LastName" class="form-control" name="LastName" value="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-2 control-label">Gender:</label>
-                    <div class="col-md-10">
-                        <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="Male" checked />Male</label>
-                        <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="Female" />Female</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" id="SpouseEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
-                        @*<input id="Submit" type="submit" onclick="SpouseEnrollmentUpdate();" value="Save" class="btn btn-primary" />*@
-                    </div>
+            <div class="form-group">
+                <div class="col-md-offset-11">
+                    <button type="submit" id="SpouseEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
+                    @*<input id="Submit" type="submit" onclick="SpouseEnrollmentUpdate();" value="Save" class="btn btn-primary" />*@
                 </div>
             </div>
         </div>
@@ -101,19 +85,18 @@
             <div class="form-group" id="divMailingAddress">
                 <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
                 <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" onclick="SpouseAddress()" @*onclick="HidePhysicalAddress()"*@ name="Address" value="true" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="addressNotSame" class="radio-inline" onclick="SpouseAddress()" @*onclick="ShowPhysicalAddress()"*@ name="Address" value="false" checked />No</label>
+                    <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" onclick="HidePhysicalAddress()" name="Address" value="true" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="addressNotSame" class="radio-inline" onclick="ShowPhysicalAddress()" name="Address" value="false" checked />No</label>
                 </div>
             </div>
             <div id="divPhysicalAddress">
                 <div class="form-group">
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street2" name="PhysicalAddress" value="" />
-                        <input type="text" id="PObox2" class="form-control" placeholder="PO Box2" name="PObox" />
-                        <input type="text" id="City2" class="form-control" placeholder="City2" name="City" value="" />
-                        <input type="text" id="State2" class="form-control" placeholder="State2" name="State" value="" />
-                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code2" name="ZipCode" value="" />
+                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="" />
+                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="" />
+                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="" />
+                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -124,111 +107,27 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-2 control-label">Within City Limits?</label>
-                <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="true" checked />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="false" />No</label>
-                </div>
-            </div>
-            <div class="form-group">
                 <label for="EmailAddress" class="col-md-2 control-label">Email Address:</label>
                 <div class="col-md-10">
                     <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="" />
                 </div>
             </div>
             <div class="form-group">
-                <div class="container">
-                    <label class="col-md-2 control-label">Phone Number:</label>
-                    <div class="col-xs-4">
-                        <div class="form-group phone-number">
-                            <div class="col-xs-3">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
-                            </div>
-                            <div class="col-xs-3">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="3" value="" />
-                            </div>
-                            <div class="col-xs-4">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="4" maxlength="4" value="" />
-                            </div>
-                        </div>
-                    </div>
+                <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                <div class="col-md-10">
+                    <input type="text" id="PhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" maxlength="14" value="" />
                 </div>
             </div>
             <div class="form-group">
-                <div class="container">
-                    <label class="col-md-2 control-label">Cell Phone:</label>
-                    <div class="col-xs-4">
-                        <div class="form-group phone-number">
-                            <div class="col-xs-3">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value="" />
-                            </div>
-                            <div class="col-xs-3">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="3" value="" />
-                            </div>
-                            <div class="col-xs-4">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="4" maxlength="4" value="" />
-                            </div>
-                        </div>
-                    </div>
+                <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
+                <div class="col-md-10">
+                    <input type="text" id="CellPhone" class="form-control" placeholder="Cell Phone #" name="CellPhone" maxlength="14" value="" />
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
+                <div class="col-md-offset-11">
                     <button id="SpouseEnrollmentUpdateStepTwo" class="btn">Save</button>
                 </div>
-            </div>
-        </div>
-    </div>
-    @* Employee Contact *@
-    <div id="divEmpContact" disabled>
-        <div class="form-group" id="EmpMailingAddress">
-            <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
-            <div class="col-md-10">
-                <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="emp.MailingAddress" />
-                <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="emp.PObox" />
-                <input type="text" id="City" class="form-control" placeholder="City" name="City" value="emp.City" />
-                <input type="text" id="State" class="form-control" placeholder="State" name="State" value="emp.State" />
-                <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="emp.ZipCode" />
-            </div>
-            <div class="form-group">
-                <label for="County" class="col-md-2 control-label">County:</label>
-                <div class="col-md-10">
-                    <input type="text" id="County" class="form-control" placeholder="County" name="County" value="emp.County" />
-                </div>
-            </div>
-        </div>
-        <div class="form-group" id="EmpPhysicalAddress">
-            <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
-            <div class="col-md-10">
-                <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street2" name="PhysicalAddress" value="emp.PhysicalAddress" />
-                <input type="text" id="PObox2" class="form-control" placeholder="PO Box2" name="PObox" value="emp.PObox2" />
-                <input type="text" id="City2" class="form-control" placeholder="City2" name="City" value="emp.City2" />
-                <input type="text" id="State2" class="form-control" placeholder="State2" name="State" value="emp.State2" />
-                <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code2" name="ZipCode" value="emp.ZipCode2" />
-            </div>
-            <div class="form-group">
-                <label for="County" class="col-md-2 control-label">County:</label>
-                <div class="col-md-10">
-                    <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="emp.County2" />
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="EmailAddress" class="col-md-2 control-label">Email:</label>
-            <div class="col-md-10">
-                <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="emp.EmailAddress" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
-            <div class="col-md-10">
-                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" value="emp.PhoneNumber" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
-            <div class="col-md-10">
-                <input type="text" id="CellPhone" class="form-control" name="CellPhone" value="emp.CellPhone" />
             </div>
         </div>
     </div>
@@ -243,54 +142,30 @@
                 <div class="form-group">
                     <label for="Employer" class="col-md-2 control-label">Current Employer:</label>
                     <div class="col-md-10">
-                        <input type="text" id="Employer" class="form-control" name="Employer" value="" />
+                        <input type="text" id="Employer" class="form-control" placeholder="Current Employer" name="Employer" value="" />
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="EmployerAddress" class="col-md-2 control-label">Employer Address:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="EmployerAddress" class="form-control" name="EmployerMailingAddress" value="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="EmployerCity" class="col-md-2 control-label">City:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="EmployerState" class="col-md-2 control-label">State:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="EmployerState" class="form-control" name="EmployerState" value="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="EmployerZipCode" class="col-md-2 control-label">Zip Code:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="container">
-                        <label class="col-md-2 control-label">Phone Number:</label>
-                        <div class="col-xs-4">
-                            <div class="form-group phone-number">
-                                <div class="col-xs-3">
-                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="3" maxlength="3" value="" />
-                                </div>
-                                <div class="col-xs-3">
-                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="3" maxlength="3" value="" />
-                                </div>
-                                <div class="col-xs-4">
-                                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" size="4" maxlength="4" value="" />
-                                </div>
-                            </div>
+                <div id="divEmployerAddress">
+                    <div class="form-group">
+                        <label for="EmployerMailingAddress" class="col-md-2 control-label">Employer Address:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="EmployerMailingAddress" class="form-control" placeholder="Street" name="EmployerMailingAddress" value="" />
+                            <input type="text" id="EmployerPObox" class="form-control" placeholder="PO Box" name="EmployerPObox" />
+                            <input type="text" id="EmployerCity" class="form-control" placeholder="City" name="EmployerCity" value="" />
+                            <input type="text" id="EmployerState" class="form-control" placeholder="State" name="EmployerState" value="" />
+                            <input type="text" id="EmployerZipCode" class="form-control" placeholder="Zip Code" name="EmployerZipCode" value="" />
                         </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="EmployerPhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="EmployerPhoneNumber" class="form-control" placeholder="Phone #" name="EmployerPhoneNumber" maxlength="14" value="" />
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
+                <div class="col-md-offset-11">
                     <input id="SpouseEnrollmentUpdateStepThree" type="submit" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
                 </div>
             </div>
@@ -323,15 +198,6 @@
         background-color: #f1f1f1;
     }
 
-    .hide {
-        display: none;
-    }
-
-    .previous {
-        background-color: #333;
-        color: white;
-    }
-
     .btn {
         background-color: #333;
         color: white;
@@ -360,39 +226,12 @@
         border: 0px solid;
         top: 8px;
     }
-
-    .phone-number .col-xs-4 {
-        width: 25%;
-    }
-
-    .phone-number .col-xs-3, .phone-number .col-xs-4 {
-        padding-left: 0;
-    }
 </style>
-
-@*<script>
-        function SpouseOrDependent()
-        {
-            var choice = document.getElementById("RelationToInsured").value;
-            var spouse = document.getElementById("divSpouseInfo").value;
-            var dependent = document.getElementById("divDependentInfo").value;
-
-            if (choice == "Spouse")
-            {
-                spouse.style.display = 'block';
-                dependent.style.display = 'none';
-
-            }
-            else {
-                spouse.style.display = 'none';
-                dependent.style.display = 'block';
-            }
-        }
-    </script>*@
 
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
+    var emp_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -407,27 +246,28 @@
         });
     }
 
-    //if onclick= SpouseContact() is 'yes', then employee contact info will populate....otherwise spouse will 
+    //if onclick= SpouseAddress() is 'yes', then employee contact info will populate....otherwise spouse will
     //need to fill out information. How to submit employee contact info to family member db
-    function SpouseAddress() {
 
-        var spouse = document.getElementById('divSpContact')
-        var employee = document.getElementById('divEmpContact')
+    //function SpouseAddress() {
 
-        div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
+    //    var spouse = document.getElementById('divSpContact')
+    //    var employee = document.getElementById('divEmpContact')
 
-        if (spouse.value == "yes") {
+    //    div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
 
-            spouse.style.display = 'none';
-            employee.style.display = 'block';
+    //    if (spouse.value == "yes") {
 
-        }
-        else {
-            spouse.style.display = 'block';
-            employee.style.display = 'none';
+    //        spouse.style.display = 'none';
+    //        employee.style.display = 'block';
 
-        }
-    }
+    //    }
+    //    else {
+    //        spouse.style.display = 'block';
+    //        employee.style.display = 'none';
+
+    //    }
+    //}
 
     function HidePhysicalAddress() {
         document.getElementById("divPhysicalAddress").style.display = "none";
@@ -439,21 +279,16 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
-            RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
-            EmpNumber = document.getElementById("EmpNumber").value;
+            //RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
+            //EmpNumber = document.getElementById("EmpNumber").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
-
-            Gender = document.querySelectorAll('input [name = "Gender"]').forEach(function (e, i) {
-                if (e.checked) {
-                    Gender = e.value;
-                }
-            });
+            Gender = document.getElementById("Gender").value;
 
             var data = {
-                "RelationshipToInsured": RelationshipToInsured,
-                "EmpNumber": EmpNumber,
+                //"RelationshipToInsured": RelationshipToInsured,
+                //"EmpNumber": EmpNumber,
                 "FirstName": FirstName,
                 "LastName": LastName,
                 "DateOfBirth": DateOfBirth,
@@ -461,9 +296,28 @@
 
             }
 
-            var ret = postData('SpEnrollmentNew', data)
-                .then(data => SecondStep(data))
-                .catch(error => console.error(error))
+            //var ret = postData('SpEnrollmentNew', data)
+            //    .then(data => { console.log(data);
+            //                  FirstStep(data);
+            //                  })
+            //    .catch(error => console.error(error))
+
+            fetch('SpEnrollmentNew', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepTwo").addEventListener("click", function () {
@@ -474,7 +328,6 @@
             ZipCode = document.getElementById("ZipCode").value;
             County = document.getElementById("County").value;
             PhysicalAddress = document.getElementsById("PhysicalAddress").value;
-            PObox2 = document.getElementById("PObox2").value;
             City2 = document.getElementById("City2").value;
             State2 = document.getElementById("State2").value;
             ZipCode2 = document.getElementById("ZipCode2").value;
@@ -483,13 +336,8 @@
             PhoneNumber = document.getElementById("PhoneNumber").value;
             CellPhone = document.getElementById("CellPhone").value;
 
-            CityLimits = document.querySelectorAll('input [name = "CityLimts"]').forEach(function (e, i) {
-                if (e.checked) {
-                    CityLimits = e.value;
-                }
-            });
-
             var data = {
+                "Employee_id": emp_id,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
@@ -497,7 +345,6 @@
                 "ZipCode": ZipCode,
                 "County": County,
                 "PhysicalAddress": PhysicalAddress,
-                "PObox2": PObox2,
                 "City2": City2,
                 "State2": State2,
                 "ZipCode2": ZipCode2,
@@ -507,23 +354,46 @@
                 "CellPhone": CellPhone,
             }
 
-            var ret = postData('SpEnrollmentContact', data)
-                .then(data => SecondStep(data.data))
-                .error(error => console.error(error))
+            //var ret = postData('SpEnrollmentContact', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        SecondStep(data);
+            //    })
+            //    .error(error => console.error(error))
+
+            fetch('SpEnrollmentContact', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => SecondStep(response))
+                .catch(error => console.error('Error:', error));
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener(function () {
-            CurrentEmployer = document.getElementsById("Employer").value;
+            Employer = document.getElementsById("Employer").value;
             EmployerAddress = document.getElementById("EmployerAddress").value;
+            PEmployerPOboxbox3 = document.getElementById("EmployerPObox").value;
             EmployerCity = document.getElementById("EmployerCity").value;
             EmployerState = document.getElementById("EmployerState").value;
             EmployerZipCode = document.getElementById("EmployerZipCode").value;
             EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
-        
+
 
             var data = {
-                "CurrentEmployer": CurrentEmployer,
+                "Employee_id": emp_id,
+                "Employer": Employer,
                 "EmployerAddress": EmployerAddress,
+                "EmployerPObox": EmployerPObox,
                 "EmployerCity": EmployerCity,
                 "EmployerState": EmployerState,
                 "EmployerZipCode": EmployerZipCode,
@@ -531,62 +401,61 @@
             }
 
             var ret = postData('SpEmploymentUpdate', data)
-                .then(data => ThirdStep(data))
+                .then(data => {
+                    console.log(data);
+                    ThirdStep(data);
+                })
                 .catch(error => console.error(error))
         })
 
     })
-  
+
+    function FirstStep(sp) {
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+        emp_id = sp.data;
+
+    }
+
     function SecondStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        document.querySelector("#RelationshipToInsured").value = sp;
-        document.querySelector("#EmpNumber").value = sp;
-        document.querySelector("#FirstName").value = sp;
-        document.querySelector("#LastName").value = sp;
-        document.querySelector("#DateOfBirth").value = sp;
-        document.querySelector("#Gender").value = sp;
-        document.querySelector("#MailingAddress").value = sp;
-        document.querySelector("#PObox").value = sp;
-        document.querySelector("#City").value = sp;
-        document.querySelector("#State").value = sp;
-        document.querySelector("#ZipCode").value = sp;
-        document.querySelector("#County").value = sp;
-        document.querySelector("#PhysicalAddress").value = sp;
-        document.querySelector("#PObox2").value = sp;
-        document.querySelector("#City2").value = sp;
-        document.querySelector("#State2").value = sp;
-        document.querySelector("#ZipCode2").value = sp;
-        document.querySelector("#County2").value = sp;
+
     }
 
     function ThirdStep(sp) {
-        document.querySelector("#FirstStep").nextElementSibling.content.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.content.style.display = "none";
-        document.querySelector("#ThirdStep").nextElementSibling.content.style.display = "block";
-        document.querySelector("#Employer").value = sp;
-        document.querySelector("#EmployerAddress").value = sp;
-        document.querySelector("#EmployerCity").value = sp;
-        document.querySelector("#EmployerState").value = sp;
-        document.querySelector("#EmployerZipCode").value = sp;
-        document.querySelector("#EmployerPhoneNumber").value = sp;
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
     }
-   
+
     function postData(url, data) {
         //Default options are marked with *
+        console.log(data);
+        console.log(JSON.stringify(data));
         return fetch(url, {
             body: JSON.stringify(data), //must match 'Content-Type' header
             cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', //include, same-origin, *omit
             headers: {
+                'Accept': 'application/json',
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
             method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            mode: 'cors', //no-cors, cors, *same-origin
+            mode: 'same-origin', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer
-        })
-            .then(response => response.JSON()) //parses response to JSON
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+        //.then(Response => {
+        //    console.log(Response);
+        //    Response.json();
+        //}) //parses response to JSON
     }
 </script>
+
+
+
+

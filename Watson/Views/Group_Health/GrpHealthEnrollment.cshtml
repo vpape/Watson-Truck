@@ -706,12 +706,12 @@
             <div>
                 <div class="form-control">
                     <label>Are you covered by any other insurance, including Medicare?</label>
-                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="return empCoveredByOtherIns()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="return empCoveredByOtherIns()" name="CoveredByOtherInsurance" value="no" checked />No</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="return empCoveredByOtherIns()" name="OtherInsuranceCoverage" value="yes" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="return empCoveredByOtherIns()" name="OtherInsuranceCoverage" value="no" checked />No</label>
                 </div>
                 <div id="empInsInfo">
                     <div class="form-group col-md-3">
-                        <input type="text" id="InsCompany" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
+                        <input type="text" id="InsCarrier" class="form-control" placeholder="Insurance Company" name="InsuranceCarrier" value="" />
                     </div>
                     <div class="form-group col-md-3">
                         <input type="text" id="PolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
@@ -902,7 +902,7 @@
                         </thead>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spInsCompany" placeholder="Insurance Company" value="" />
+                                <input type="text" class="form-control" id="spInsCarrier" placeholder="Insurance Carrier" value="" />
                             </td>
                             <td class="text">
                                 <input type="text" class="form-control" id="" placeholder="" />
@@ -986,7 +986,7 @@
                             <label class="radio-inline"><input type="radio" id="depCoveredByOtherIns" class="radio-inline" onclick="return depCoveredByOtherIns()" name="CoveredByOtherInsurance" value="no" checked />No</label>
                             <div id="depInsInfo">
                                 <div class="form-group col-md-2">
-                                    <input type="text" id="depInsCompany" class="form-control" placeholder="Insurance Company" name="InsuranceCompany" value="" />
+                                    <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
                                 </div>
                                 <div class="form-group col-md-2">
                                     <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
@@ -1400,7 +1400,6 @@
             DentalNetWork = document.getElementById("DentalNetWork").value;
             RateGuarantee = document.getElementById("RateGuarantee").value;
 
- 
             var data = {
                 "insPlan_id": insPlan_id,
                 "EmpDentalCost": EmpDentalCost,
@@ -1464,30 +1463,18 @@
         document.querySelector("GrpHealthInsUpdateStepThree").addEventListener("click", function () {
             GroupName = document.getElementById("GroupName").value;
             IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
-            Department = document.getElementById("Department").value;
-            EnrollmentType = document.getElementById("EnrollmentType").value;
-            PayrollID = document.getElementById("Payroll_id").value;
-            Class = document.getElementById("Class").value;
-            AnnualSalary = document.getElementById("AnnualSalary").value;
-            JobTitle = document.getElementById("JobTitle").value;
-            HireDate = document.getElementById("HireDate").value;
-            EffectiveDate = document.getElementById("EffectiveDate").value;
-            HrsWrkPerWk = document.getElementById("HrsWrkPerWk").value;
-            EmpNumber = document.getElementById("EmployeeNumber").value;
-            FirstName = document.getElementById("FirstName").value;
-            LastName = document.getElementById("LastName").value;
-            MailingAddress = document.getElementById("MailingAddress").value;
-            PObox = document.getElementById("PObox").value;
-            City = document.getElementById("City").value;
-            State = document.getElementById("State").value;
-            ZipCode = document.getElementById("ZipCode").value;
-            EmpGender = document.getElementById("EmpGender").value;
-            MaritalStatus = document.getElementById("MaritalStatus").value;
-            EmailAddress = document.getElementById("EmailAddress").value;
-            PhoneNumber = document.getElementById("PhoneNumber").value;
-            DateOfBirth = document.getElementById("DateOfBirth").value;
-            CoveredByOtherIns = document.getAnimations("CoveredByOtherIns").value;
-            InsCompany = document.getElementById("InsuranceCompany").value;
+            //AnnualSalary = document.getElementById("AnnualSalary").value;-
+            //JobTitle = document.getElementById("JobTitle").value;
+            //HireDate = document.getElementById("HireDate").value;
+            //EffectiveDate = document.getElementById("EffectiveDate").value;
+            //HrsWrkPerWk = document.getElementById("HrsWrkPerWk").value;
+            //Department = document.getElementById("Department").value;
+            //EnrollmentType = document.getElementById("EnrollmentType").value;
+            //PayrollID = document.getElementById("Payroll_id").value;
+            //Class = document.getElementById("Class").value;  
+   
+            empCoveredByOtherIns = document.getAnimations("empCoveredByOtherIns").value;
+            InsCarrier = document.getElementById("InsCarrier").value;
             PolicyNumber = document.getElementById("PolicyNumber").value;
             InsPhoneNumber = document.getElementById("InsPhoneNumber").value;
 
@@ -1497,24 +1484,26 @@
             EmpDepGroupHealthOption = document.getElementById("EmpDepGroupHealthOption").value;
             EmpFamGroupHealthOption = document.getElementById("EmpFamGroupHealthOption").value;
 
-            spFirstName = document.getElementById("spFirstName").value;
-            spLastName = document.getElementById("spLastName").value;
-            spAddress = document.getElementById("spAddress").value;
-            spCity = document.getElementById("spCity").value;
-            spState = document.getElementById("spState").value;
-            spZipCode = document.getElementById("spZipCode").value;
-            spPhoneNumber = document.getElementById("spPhoneNumber").value;
-            spDateOfBirth = document.getElementById("spDateOfBirth").value;
+            //below info commmented out already posted to Family_Info Table, do not need to be posted to GrpHealth
 
-            spEmployer = document.getElementById("spEmployer").value;
-            spEmployerAddress = document.getElementById("spEmployerAddress").value;
-            spEmployerCity = document.getElementById("spEmployerCity").value;
-            spEmployerState = document.getElementById("spEmployerState").value;
-            spEmployerZipCode = document.getElementById("spEmployerZipCode").value;
-            spEmployerPhoneNumber = document.getElementById("spEmployerPhoneNumber").value;
+            //spFirstName = document.getElementById("spFirstName").value;
+            //spLastName = document.getElementById("spLastName").value;
+            //spAddress = document.getElementById("spAddress").value;
+            //spCity = document.getElementById("spCity").value;
+            //spState = document.getElementById("spState").value;
+            //spZipCode = document.getElementById("spZipCode").value;
+            //spPhoneNumber = document.getElementById("spPhoneNumber").value;
+            //spDateOfBirth = document.getElementById("spDateOfBirth").value;
+
+            //spEmployer = document.getElementById("spEmployer").value;
+            //spEmployerAddress = document.getElementById("spEmployerAddress").value;
+            //spEmployerCity = document.getElementById("spEmployerCity").value;
+            //spEmployerState = document.getElementById("spEmployerState").value;
+            //spEmployerZipCode = document.getElementById("spEmployerZipCode").value;
+            //spEmployerPhoneNumber = document.getElementById("spEmployerPhoneNumber").value;
+
             spOtherCoverageSelection = document.getElementById("spOtherCoverageSelection").value;
-
-            spInsCompany = document.getElementById("spInsCompany").value;
+            spInsCarrier = document.getElementById("spInsCarrier").value;
             spInsAddress = document.getElementById("spInsAddress").value;
             spInsCity = document.getElementById("spInsCity").value;
             spInsState = document.getElementById("spInsState").value;
@@ -1522,13 +1511,15 @@
             spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value;
             spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value;
 
-            depFirstName = document.getElementById("depFirstName").value;
-            depLastName = document.getElementById("depLastName").value;
-            depSSN = document.getElementById("depSSN").value;
-            depRelationToInsured = document.getElementById("depRelationToInsured").value;
-            depDateOfBirth = document.getElementById("depDateOfBirth").value;
-            depGender = document.getElementById("depGender").value;
-            depInsCompany = document.getElementById("depInsCompany").value;
+            //depFirstName = document.getElementById("depFirstName").value;
+            //depLastName = document.getElementById("depLastName").value;
+            //depSSN = document.getElementById("depSSN").value;
+            //depRelationToInsured = document.getElementById("depRelationToInsured").value;
+            //depDateOfBirth = document.getElementById("depDateOfBirth").value;
+            //depGender = document.getElementById("depGender").value;
+
+            depCoveredByOtherIns = document.getElementById("depCoveredByOtherIns").value;
+            depInsCarrier = document.getElementById("depInsCarrier").value;
             depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value;
             depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value;
 
@@ -1537,66 +1528,68 @@
                 "Employee_id": emp_id,
                 "GroupName": GroupName,
                 "IMSGroupNumber": IMSGroupNumber,
-                "Department": Department,
-                "EnrollmentType": EnrollmentType,
-                "Payroll_id": Payroll_id,
-                "Class": Class,
-                "AnnualSalary": AnnualSalary,
-                "Occupation": JobTitle,
-                "EmploymentDate": HireDate,
-                "EffectiveDate": EffectiveDate,
-                "HrsWrkPerWk": HrsWrkPerWk,
-                "EmpNumber": EmpNumber,
-                "FirstName": FirstName,
-                "LastName": LastName,
-                "MailingAddress": MailingAddress,
-                "PObox": PObox,
-                "City": City,
-                "State": State,
-                "ZipCode": ZipCode,
-                "EmpGender": EmpGender,
-                "MaritalStatus": MaritalStatus,
-                "EmailAddress": EmailAddress,
-                "PhoneNumber": PhoneNumber,
-                "DateOfBirth": DateOfBirth,
-                "CoveredByOtherIns": CoveredByOtherIns,
-                "InsCompany": InsCompany,
+                //"Department": Department,
+                //"EnrollmentType": EnrollmentType,
+                //"Payroll_id": Payroll_id,
+                //"Class": Class,
+                //"AnnualSalary": AnnualSalary,
+                //"Occupation": JobTitle,
+                //"EmploymentDate": HireDate,
+                //"EffectiveDate": EffectiveDate,
+                //"HrsWrkPerWk": HrsWrkPerWk,
+                //"EmpNumber": EmpNumber,
+                //"FirstName": FirstName,
+                //"LastName": LastName,
+                //"MailingAddress": MailingAddress,
+                //"PObox": PObox,
+                //"City": City,
+                //"State": State,
+                //"ZipCode": ZipCode,
+                //"EmpGender": EmpGender,
+                //"MaritalStatus": MaritalStatus,
+                //"EmailAddress": EmailAddress,
+                //"PhoneNumber": PhoneNumber,
+                //"DateOfBirth": DateOfBirth,
+                "empCoveredByOtherIns": empCoveredByOtherIns,
+                "InsCarrier": InsCarrier,
                 "PolicyNumber": PolicyNumber,
                 "InsPhoneNumber": InsPhoneNumber,
                 "EmpOnlyGroupHealthOption": EmpOnlyGroupHealthOption,
                 "EmpSpGroupHealthOption": EmpSpGroupHealthOption,
                 "EmpDepGroupHealthOption": EmpDepGroupHealthOption,
                 "EmpFamGroupHealthOption": EmpFamGroupHealthOption,
-                "spFirstName": spFirstName,
-                "spLastName": spLastName,
-                "spAddress": spAddress,
-                "spCity": spCity,
-                "spState": spState,
-                "spZipCode": spZipCode,
-                "spPhoneNumber": spPhoneNumber,
-                "spDateOfBirth": spDateOfBirth,
-                "spGender": spGender,
-                "spEmployer": spEmployer,
-                "spEmployerAddress": spEmployerAddress,
-                "spEmployerCity": spEmployerCity,
-                "spEmployerState": spEmployerState,
-                "spEmployerZipCode": spEmployerZipCode,
-                "spEmployerPhoneNumber": spEmployerPhoneNumber,
-                "spInsCompany": spInsCompany,
+
+                //"spFirstName": spFirstName,
+                //"spLastName": spLastName,
+                //"spAddress": spAddress,
+                //"spCity": spCity,
+                //"spState": spState,
+                //"spZipCode": spZipCode,
+                //"spPhoneNumber": spPhoneNumber,
+                //"spDateOfBirth": spDateOfBirth,
+                //"spGender": spGender,
+                //"spEmployer": spEmployer,
+                //"spEmployerAddress": spEmployerAddress,
+                //"spEmployerCity": spEmployerCity,
+                //"spEmployerState": spEmployerState,
+                //"spEmployerZipCode": spEmployerZipCode,
+                //"spEmployerPhoneNumber": spEmployerPhoneNumber,
+                "spInsCarrier": spInsCarrier,
                 "spInsAddress": spInsAddress,
                 "spInsCity": spInsCity,
                 "spInsState": spInsState,
                 "spInsZipCode": spInsZipCode,
                 "spInsPhoneNumber": spInsPhoneNumber,
                 "spInsPolicyNumber": spInsPolicyNumber,
-                "depFirstName": depFirstName,
-                "depLastName": depLastName,
-                "depSSN": depSSN,
-                "depRelationToInsured": depRelationToInsured,
-                "depDateOfBirth": depDateOfBirth,
-                "depGender": depGender,
+
+                //"depFirstName": depFirstName,
+                //"depLastName": depLastName,
+                //"depSSN": depSSN,
+                //"depRelationToInsured": depRelationToInsured,
+                //"depDateOfBirth": depDateOfBirth,
+                //"depGender": depGender,
                 "depCoveredByOtherIns": depCoveredByOtherIns,
-                "depInsCompany": depInsCompany,
+                "depInsCarrier": depInsCarrier,
                 "depInsPolicyNumber": depInsPolicyNumber,
                 "depInsPhoneNumber": depInsPhoneNumber,
             }

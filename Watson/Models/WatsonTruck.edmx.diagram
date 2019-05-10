@@ -20,7 +20,7 @@
         <EntityTypeShape EntityType="WatsonTruckModel.InsurancePlanDetail" Width="2" PointX="0.5" PointY="6.625" />
         <EntityTypeShape EntityType="WatsonTruckModel.InsurancePremium" Width="2" PointX="5.5" PointY="7.125" />
         <EntityTypeShape EntityType="WatsonTruckModel.Life_Insurance" Width="2.125" PointX="0.5" PointY="11.75" />
-        <EntityTypeShape EntityType="WatsonTruckModel.Other_Insurance" Width="2" PointX="9.125" PointY="15.75" />
+        <EntityTypeShape EntityType="WatsonTruckModel.Other_Insurance" Width="2" PointX="9.75" PointY="15.75" />
         <EntityTypeShape EntityType="WatsonTruckModel.Vacation" Width="1.75" PointX="0.625" PointY="9.25" />
         <AssociationConnector Association="WatsonTruckModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="WatsonTruckModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />

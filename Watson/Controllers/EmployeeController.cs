@@ -335,12 +335,13 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GetFamilyMember(int Employee_id, int FamilyMember_id, string FirstName, string LastName,
-            string RelationshipToInsured, string EmpLastName, string EmpNumber, DateTime DateOfBirth, string MailingAddress,
-            string PObox, string City, string State, string County, string ZipCode, string EmailAddress, string PhoneNumber,
-            string CellPhone, string Gender, string Employer, string EmployerMailingAddress, string EmployerPObox,
-            string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber, bool Medical,
-            bool Dental, bool Vision, bool Indemnity)
+        public JsonResult GetFamilyMember(int Employee_id, int FamilyMember_id, string FirstName, 
+            string LastName, string RelationshipToInsured, string EmpLastName, string EmpNumber, 
+            DateTime DateOfBirth, string MailingAddress, string PObox, string City, string State, 
+            string County, string ZipCode, string EmailAddress, string PhoneNumber, string CellPhone,
+            string Gender, string Employer, string EmployerMailingAddress, string EmployerPObox,
+            string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber, 
+            bool Medical, bool Dental, bool Vision, bool Indemnity)
         {
             var f = db.Family_Info
                 .Where(i => i.Employee_id == Employee_id)
@@ -365,7 +366,7 @@ namespace Watson.Controllers
             //f.SSN = SSN;
             f.Employer = Employer;
             f.EmployerMailingAddress = EmployerMailingAddress;
-            f.PObox = EmployerPObox;
+            f.EmployerPObox = EmployerPObox;
             f.EmployerCity = EmployerCity;
             f.EmployerState = EmployerState;
             f.EmployerZipCode = EmployerZipCode;
@@ -382,21 +383,20 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //SpEnrollment Method
-        public ActionResult SpEnrollment(string MaritalStatus)
+        public ActionResult SpEnrollment()
         {
-           
- 
             return View();
         }
-        //SpEnrollment2 Method no layout
+
+        //SpEnrollment2 Method- Test no layout
         public ActionResult SpEnrollment2()
         {
             return View();
         }
 
-
-        public JsonResult SpEnrollmentNew(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured,
-           string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
+        public JsonResult SpEnrollmentNew(int Employee_id, int FamilyMember_id, string MaritalStatus, 
+            string RelationshipToInsured, string EmpNumber, string FirstName, string LastName, 
+            DateTime DateOfBirth, string Gender)
         {
             Family_Info sp = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
@@ -422,6 +422,85 @@ namespace Watson.Controllers
 
         }
 
+        //SpContact Method
+        public ActionResult SpContact()
+        {
+            return View();
+        }
+
+        public JsonResult SpEnrollmentContact(int Employee_id, int FamilyMember_id, string MailingAddress,
+            string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress,
+            string City2, string State2, string ZipCode2, string EmailAddress, string PhoneNumber, string CellPhone)
+        {
+            Family_Info sp = db.Family_Info
+                .Where(i => i.FamilyMember_id == FamilyMember_id)
+                .Single();
+
+            sp.MailingAddress = MailingAddress;
+            sp.PObox = PObox;
+            sp.City = City;
+            sp.State = State;
+            sp.ZipCode = ZipCode;
+            sp.County = County;
+            sp.PhysicalAddress = PhysicalAddress;
+            sp.City = City2;
+            sp.State = State2;
+            sp.ZipCode = ZipCode2;
+            sp.EmailAddress = EmailAddress;
+            sp.PhoneNumber = PhoneNumber;
+            sp.CellPhone = CellPhone;
+
+            int result = sp.Employee_id;    
+
+            if (ModelState.IsValid)
+            {
+                db.Family_Info.Add(sp);
+                db.SaveChanges();
+            }
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //SpEmployment Method
+        public ActionResult SpEmployment()
+        {
+            return View();
+        }
+
+        public JsonResult SpEmploymentUpdate(int Employee_id, int FamilyMember_id, string MaritalStatus,
+            string Employer, string EmployerAddress, string EmployerPObox, string EmployerCity, 
+            string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
+        {
+            Family_Info sp = db.Family_Info
+                .Where(i => i.FamilyMember_id == FamilyMember_id)
+                .Single();
+
+            sp.Employer = Employer;
+            sp.EmployerMailingAddress = EmployerAddress;
+            sp.EmployerPObox = EmployerPObox;
+            sp.EmployerCity = EmployerCity;
+            sp.EmployerState = EmployerState;
+            sp.EmployerZipCode = EmployerZipCode;
+            sp.EmployerPhoneNumber = EmployerPhoneNumber;
+
+            if (ModelState.IsValid)
+            {
+                db.Family_Info.Add(sp);
+                db.SaveChanges();
+            }
+
+            int result = sp.Employee_id;
+
+            //if (MaritalStatus == "MarriedwDep")
+            //{
+            //    return RedirectToAction("DepEnrollment", "Family_info", new { sp.Employee_id, sp.MaritalStatus });
+            //}
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
+
         //EditSp Method
         public ActionResult EditSp(int Employee_id, int? FamilyMember_id)
         {
@@ -442,11 +521,12 @@ namespace Watson.Controllers
         }
 
         //SpEditUpdate Method
-        public JsonResult SpEditUpdate(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured,
-            string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress,
-            string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, /*string PObox2,*/
-            string City2, string State2, string ZipCode2, /*string County2,*/ string EmailAddress, string PhoneNumber,
-            string CellPhone, string Employer, string EmployerAddress, string EmployerPObox, string EmployerCity,
+        public JsonResult SpEditUpdate(int Employee_id, int FamilyMember_id, string MaritalStatus, 
+            string RelationshipToInsured, string EmpNumber, string FirstName, string LastName, 
+            DateTime DateOfBirth, string Gender, string MailingAddress, string PObox, string City,
+            string State, string ZipCode, string County, string PhysicalAddress, string City2, 
+            string State2, string ZipCode2, string EmailAddress, string PhoneNumber, string CellPhone,
+            string Employer, string EmployerAddress, string EmployerPObox, string EmployerCity,
             string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
             var sp = db.Family_Info
@@ -467,17 +547,15 @@ namespace Watson.Controllers
             sp.ZipCode = ZipCode;
             sp.County = County;
             sp.PhysicalAddress = PhysicalAddress;
-            //sp.PObox = PObox2;
             sp.City = City2;
             sp.State = State2;
             sp.ZipCode = ZipCode2;
-            //sp.County = County2;
             sp.EmailAddress = EmailAddress;
             sp.PhoneNumber = PhoneNumber;
             sp.CellPhone = CellPhone;
             sp.Employer = Employer;
             sp.EmployerMailingAddress = EmployerAddress;
-            sp.PObox = EmployerPObox;
+            sp.EmployerPObox = EmployerPObox;
             sp.EmployerCity = EmployerCity;
             sp.EmployerState = EmployerState;
             sp.EmployerZipCode = EmployerZipCode;
@@ -566,7 +644,7 @@ namespace Watson.Controllers
 
             Other_Insurance other = db.Other_Insurance.Find(FamilyMember_id);
 
-            db.DeleteSpouseAndDependent(FamilyMember_id);
+            //db.DeleteSpouseAndDependent(FamilyMember_id);
 
             db.Family_Info.Remove(sp);
             db.Other_Insurance.Remove(other);
@@ -582,10 +660,9 @@ namespace Watson.Controllers
         }
 
         //DepEnrollmentNew Method
-        public JsonResult DepEnrollmentNew(int Employee_id, int FamilyMember_id, int OtherInsurance_id, string MaritalStatus, string RelationshipToInsured,
-           string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender, string EmpNumber,
-           string CoveredByOtherIns, string InsCompany, string PolicyNumber, string InsPhoneNumber, 
-           string InsMailingAddress, string InsPObox, string InsCity, string InsState, string InsZipCode)
+        public JsonResult DepEnrollmentNew(int Employee_id, int FamilyMember_id, string MaritalStatus,
+            string RelationshipToInsured, string DepFirstName, string DepLastName, DateTime DateOfBirth,
+            string Gender, string EmpNumber)
         {
             Family_Info dep = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
@@ -623,35 +700,18 @@ namespace Watson.Controllers
             };
             ViewBag.EmpNumber = emp;
 
-            Other_Insurance o = db.Other_Insurance
-                .Where(i => i.OtherInsurance_id == OtherInsurance_id)
-                .Where(i => i.FamilyMember_id == FamilyMember_id)
-                .Where(i => i.Employee_id == Employee_id)
-                .Single();
-
-            o.CoveredByOtherInsurance = CoveredByOtherIns;
-            o.InsuranceCompany = InsCompany;
-            o.PolicyNumber = PolicyNumber;
-            o.PhoneNumber = InsPhoneNumber;
-            o.MailingAddress = InsMailingAddress;
-            o.PObox = InsPObox;
-            o.City = InsCity;
-            o.State = InsState;
-            o.ZipCode = InsZipCode;
-
             ViewBag.Family_Info = dep;
             ViewBag.Employee = emp;
-            ViewBag.Other_Insurance = o;
 
             db.Family_Info.Add(dep);
-            db.Other_Insurance.Add(o);
+           
             db.SaveChanges();
 
             int depResult = dep.Employee_id;
             int empResult = emp.Employee_id;
-            int oResult = o.Employee_id;
+           
 
-            return Json(new { data = depResult, empResult, oResult }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = depResult, empResult }, JsonRequestBehavior.AllowGet);
         }
 
         //EditDep Method
@@ -674,14 +734,12 @@ namespace Watson.Controllers
         }
 
         //DepEditUpdate Method
-        public JsonResult DepEditUpdate(int Employee_id, int FamilyMember_id, int OtherInsurance_id, string MaritalStatus, string RelationshipToInsured,
-           string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender, string EmpNumber,
-           string CoveredByOtherIns, string InsCompany, string PolicyNumber, string InsPhoneNumber,
-           string InsMailingAddress, string InsPObox, string InsCity, string InsState, string InsZipCode)
+        public JsonResult DepEditUpdate(int Employee_id, int FamilyMember_id, int OtherInsurance_id, 
+            string MaritalStatus, string RelationshipToInsured, string DepFirstName, string DepLastName,
+            DateTime DateOfBirth, string Gender, string EmpNumber)
         {
             Family_Info dep = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
-                .Where(i => i.Employee_id == Employee_id)
                 .Where(i => i.RelationshipToInsured == "Dependent")
                 .Single();
 
@@ -716,30 +774,13 @@ namespace Watson.Controllers
             };
             ViewBag.EmpNumber = emp;
 
-            Other_Insurance o = db.Other_Insurance
-                .Where(i => i.OtherInsurance_id == OtherInsurance_id)
-                .Where(i => i.FamilyMember_id == FamilyMember_id)
-                .Where(i => i.Employee_id == Employee_id)
-                .Single();
-
-            o.CoveredByOtherInsurance = CoveredByOtherIns;
-            o.InsuranceCompany = InsCompany;
-            o.PolicyNumber = PolicyNumber;
-            o.PhoneNumber = InsPhoneNumber;
-            o.MailingAddress = InsMailingAddress;
-            o.PObox = InsPObox;
-            o.City = InsCity;
-            o.State = InsState;
-            o.ZipCode = InsZipCode;
-
             ViewBag.Family_Info = dep;
             ViewBag.Employee = emp;
-            ViewBag.Other_Insurance = o;
+          
 
             if (ModelState.IsValid)
             {
                 db.Entry(dep).State = System.Data.Entity.EntityState.Modified;
-                db.Entry(o).State = System.Data.Entity.EntityState.Modified;
 
                 try
                 {
@@ -753,10 +794,9 @@ namespace Watson.Controllers
                 RedirectToAction("FamilyOverview", new { e.Employee_id });
             }
 
-            int depResult = dep.Employee_id;
-            int oResult = o.Employee_id;
+            int result = dep.Employee_id;
 
-            return Json(new { data = depResult, oResult }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
         //DepDetail Method

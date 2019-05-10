@@ -13,7 +13,7 @@ namespace Watson.Controllers
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        private static Other_Insurance otherInsurance = new Other_Insurance();
+        private static Other_Insurance otherIns = new Other_Insurance();
 
         public Other_InsuranceController()
         {
