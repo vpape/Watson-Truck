@@ -13,7 +13,6 @@ namespace Watson.Controllers
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        //private static Group_Health groupHealth = new Group_Health();
         private static List<Group_Health> groupIns = new List<Group_Health>();
 
         public Group_HealthController()
@@ -47,14 +46,14 @@ namespace Watson.Controllers
             insPremium.EmployeeAndFamily = EmpAndFamily;
             insPremium.YearlyPremiumCost = YearlyPremiumCost;
 
+            int insPlanResult = insPlan.InsurancePlan_id;
+            int insPremiumResult = insPremium.InsurancePremium_id;
+
             db.InsurancePlans.Add(insPlan);
             db.InsurancePremiums.Add(insPremium);
 
             db.SaveChanges();
 
-            int insPlanResult = insPlan.InsurancePlan_id;
-            int insPremiumResult = insPremium.InsurancePremium_id;
-            
             return Json(new { data = insPlanResult, insPremiumResult }, JsonRequestBehavior.AllowGet);
         }
 
@@ -85,10 +84,11 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GrpHealthEnrollmentNew(int GroupHealthInsurance_id, int OtherInsurance_id, string InsuranceCarrier,
-            string PolicyNumber, string GroupName, string IMSGroupNumber,string PhoneNumber, string ReasonForGrpCoverageRefusal,
-            string OtherCoverage, string OtherReason, string Myself, string Spouse, string Dependent, string OtherInsuranceCoverage,
-            DateTime CafeteriaPlanYear, string NoMedicalPlan, string EmployeeOnly, string EmployeeAndSpouse, string EmployeeAndDependent,
+        public JsonResult GrpHealthEnrollmentNew(int Employee_id, int GroupHealthInsurance_id, int OtherInsurance_id, 
+            string InsuranceCarrier, string PolicyNumber, string GroupName, string IMSGroupNumber,
+            string PhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
+            string Myself, string Spouse, string Dependent, string OtherInsuranceCoverage, DateTime CafeteriaPlanYear,
+            string NoMedicalPlan, string EmployeeOnly, string EmployeeAndSpouse, string EmployeeAndDependent,
             string EmployeeAndFamily, string EmployeeSignature, DateTime EmployeeSignatureDate, string EmployeeInitials,
             string OtherSignature, DateTime OtherSignatureDate, string CoveredByOtherIns, string InsCarrier, 
             string InsPolicyNumber, string InsPhoneNumber, string InsMailingAddress, string InsPObox, string InsCity, 
@@ -134,13 +134,16 @@ namespace Watson.Controllers
             o.State = InsState;
             o.ZipCode = InsZipCode;
 
-            db.Other_Insurance.Add(o);
-            db.Group_Health.Add(g);
-
-            db.SaveChanges();
-
             int oResult = o.Employee_id;
             int gResult = g.Employee_id;
+
+            if (ModelState.IsValid)
+            {
+                db.Other_Insurance.Add(o);
+                db.Group_Health.Add(g);
+
+                db.SaveChanges();
+            }
 
             return Json(new { data = oResult, gResult }, JsonRequestBehavior.AllowGet);
         }
@@ -164,11 +167,12 @@ namespace Watson.Controllers
         }
 
         public JsonResult GrpHealthInsEditUpdate(int GrpHealthIns_id, int OtherInsurance_id, string InsuranceCarrier,
-            string PolicyNumber, string GroupName, string IMSGroupNumber, string PhoneNumber, string ReasonForGrpCoverageRefusal,
-            string OtherCoverage, string OtherReason, string Myself, string Spouse, string Dependent, string OtherInsuranceCoverage,
-            DateTime CafeteriaPlanYear, string NoMedicalPlan, string EmployeeOnly, string EmployeeAndSpouse,
-            string EmployeeAndDependent, string EmployeeAndFamily, string EmployeeSignature, DateTime EmployeeSignatureDate,
-            string EmployeeInitials, string OtherSignature, DateTime OtherSignatureDate, string CoveredByOtherIns, 
+            string PolicyNumber, string GroupName, string IMSGroupNumber, string PhoneNumber,
+            string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason, string Myself,
+            string Spouse, string Dependent, string OtherInsuranceCoverage, DateTime CafeteriaPlanYear,
+            string NoMedicalPlan, string EmployeeOnly, string EmployeeAndSpouse, string EmployeeAndDependent,
+            string EmployeeAndFamily, string EmployeeSignature, DateTime EmployeeSignatureDate, string EmployeeInitials,
+            string OtherSignature, DateTime OtherSignatureDate, string CoveredByOtherIns, 
             string InsCarrier, string InsPolicyNumber, string InsPhoneNumber, string InsMailingAddress, 
             string InsPObox, string InsCity, string InsState, string InsZipCode)
         {
@@ -214,6 +218,9 @@ namespace Watson.Controllers
             o.State = InsState;
             o.ZipCode = InsZipCode;
 
+            int gResult = g.GroupHealthInsurance_id;
+            int oResult = o.OtherInsurance_id;
+
             if (ModelState.IsValid)
             {
                 db.Entry(g).State = System.Data.Entity.EntityState.Modified;
@@ -230,9 +237,6 @@ namespace Watson.Controllers
 
                 RedirectToAction("EmpOverview");
             }
-
-            int gResult = g.GroupHealthInsurance_id;
-            int oResult = o.OtherInsurance_id;
 
             return Json(new { data = gResult, oResult }, JsonRequestBehavior.AllowGet);
         }
@@ -275,8 +279,9 @@ namespace Watson.Controllers
         }
 
         
-        public JsonResult SalaryRedirectionUpdate(int Deductions_id, string Coverage, string Provider, string EElectionPreTax, decimal PremiumPreTax,
-            string EElectionPostTax, decimal PremiumPostTax, decimal TotalPreTax, decimal TotalPostTax)
+        public JsonResult SalaryRedirectionUpdate(int Employee_id, int Deductions_id, string Coverage, string Provider, 
+            string EElectionPreTax,
+            decimal PremiumPreTax, string EElectionPostTax, decimal PremiumPostTax, decimal TotalPreTax, decimal TotalPostTax)
         {
             Deduction d = new Deduction();
 
@@ -289,10 +294,12 @@ namespace Watson.Controllers
             d.TotalPreTax = TotalPreTax;
             d.TotalPostTax = TotalPostTax;
 
+            int result = d.Employee_id;
+
             db.Deductions.Add(d);
             db.SaveChanges();
 
-            return Json(new { data = d }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------

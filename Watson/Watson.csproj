@@ -280,6 +280,7 @@
     <Compile Include="Models\Group_Health.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GrpHealthMasterList.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InsurancePlan.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>

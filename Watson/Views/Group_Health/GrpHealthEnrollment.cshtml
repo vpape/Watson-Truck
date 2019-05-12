@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "GrpHealthEnrollment";
 }
 <h2>Health Insurance Premiums</h2>
@@ -19,8 +20,6 @@
     <input type="hidden" id="InsurancePlanDetail_id" class="form-control" name="InsurancePlanDetail_id" value=@ViewBag.InsurancePlanDetail_id />
     <input type="hidden" id="InsurancePlan_id" class="form-control" name="InsurancePlan_id" value=@ViewBag.InsurancePlan_id />
     <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value=@ViewBag.GroupHealthInsurance_id />
-    @* db.InsurancePremium- InsurancePremium_id as primary and InsurancePlan_id as foreign *@
-    @* db.InsurancePlan- InsurancePlan_id as primary and Employee_id as foreign *@
     <div class="form-horizontal">
         <div class="collapsible" id="FirstStep">Health Insurance Premiums</div>
         <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">
@@ -1147,7 +1146,7 @@
                 formObj.appendChild(createElement('relation', 'text'));
                 formObj.appendChild(createElement('dob', 'date'));
                 formObj.appendChild(createElement('gender', 'text'));
-              
+
 
                 //create the new span tag with the red X in it
                 var spanObj = document.createElement("span");
@@ -1195,7 +1194,7 @@
     </script>
 </head>
 <body>
-    <form id="dependentSelectForm" action="\Home\DependentPoster" method="post">
+    <div id="dependentSelectForm" @*action="\Home\DependentPoster" method="post"*@>
         <input type="text" name="fname1" id="fname1" />
         <input type="text" name="lname1" id="lname1" />
         <input type="text" name="ssn1" id="ssn1" />
@@ -1208,7 +1207,7 @@
 
         @*<input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
         <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">*@
-    </form>
+    </div>
 </body>
 </html>
 
@@ -1242,7 +1241,7 @@
         var divEmpShow = document.getElementById("empInsInfo")
 
         div.addEventListener('click', function () {
-     
+
             if (div.value = "no") {
 
                 divEmpHide.style.display = "none";
@@ -1252,100 +1251,414 @@
             }
         });
 
-    function depCoveredByOtherIns() {
-       
-        var div = document.querySelectorAll("depCoveredByOtherIns").value;
-        var divDepHide = document.querySelector("depInsInfo")
-        var divDepShow = document.querySelector("depInsInfo")
+        function depCoveredByOtherIns() {
 
-        div.addEventListener('click', function () {
+            var div = document.querySelectorAll("depCoveredByOtherIns").value;
+            var divDepHide = document.querySelector("depInsInfo")
+            var divDepShow = document.querySelector("depInsInfo")
 
-            if (div.checked == "no") {
+            div.addEventListener('click', function () {
 
-                divDepHide.style.visibility = "hidden";
-            }
-            else {
-                divDepShow.style.visibility = "visible";
-            }
-        });
-        
-    }
-            //Have three tables- one parent- two children- 
-            //parent table -Insurance Plan
-            //-InsurancePlan_id as primary and Employee_id as foregin key
-            //child1- InsurancePlanDetail
-            //-InsurancePlanDetail_id as primary and InsurancePlan_id as foregin key
-            //child2- InsurancePremium
-            //-InsurancePremium_id as primary and InsurancePlan_id as foregin key
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#InsPremiumUpdateStepOne").addEventListener("click", function () {
-            MECmonthlyEO = document.getElementById('MECmonthlyCostEmpOnly').value
-            MECmonthlyEmpSp = document.getElementById('MECmonthlyCostEmpSp').value
-            MECmonthlyEmpDep = document.getElementById('MECmonthlyCostEmpDep').value
-            MECmonthlyEmpFam = document.getElementById('MECmonthlyCostEmpFam').value
-            MECbiweeklyEO = document.getElementById('MECbiweeklyCostEmpOnly').value
-            MECbiweeklyEmpSp = document.getElementById('MECbiweeklyCostEmpSp').value
-            MECbiweeklyEmpDep = document.getElementById('MECbiweeklyCostEmpDep').value
-            MECbiweeklyEmpFam = document.getElementById('MECbiweeklyCostEmpFam').value
+                if (div.checked == "no") {
 
-            StndmonthlyEO = document.getElementById('StndmonthlyCostEmpOnly').value
-            StndmonthlyEmpSp = document.getElementById('StndmonthlyCostEmpSp').value
-            StndmonthlyEmpDep = document.getElementById('StndmonthlyCostEmpDep').value
-            StndmonthlyEmpFam = document.getElementById('StndmonthlyCostEmpFam').value
-            StndbiweeklyEO = document.getElementById('StndbiweeklyCostEmpOnly').value
-            StndbiweeklyEmpSp = document.getElementById('StndbiweeklyCostEmpSp').value
-            StndbiweeklyEmpDep = document.getElementById('StndbiweeklyCostEmpDep').value
-            StndbiweeklyEmpFam = document.getElementById('StndbiweeklyCostEmpFam').value
+                    divDepHide.style.visibility = "hidden";
+                }
+                else {
+                    divDepShow.style.visibility = "visible";
+                }
+            });
 
-            BuyUpmonthlyEO = document.getElementById('BuyUpmonthlyCostEmpOnly').value
-            BuyUpmonthlyEmpSp = document.getElementById('BuyUpmonthlyCostEmpSp').value
-            BuyUpmonthlyEmpDep = document.getElementById('BuyUpmonthlyCostEmpDep').value
-            BuyUpmonthlyEmpFam = document.getElementById('BuyUpmonthlyCostEmpFam').value
-            BuyUpbiweeklyEO = document.getElementById('BuyUpbiweeklyCostEmpOnly').value
-            BuyUpbiweeklyEmpSp = document.getElementById('BuyUpbiweeklyCostEmpSp').value
-            BuyUpbiweeklyEmpDep = document.getElementById('BuyUpbiweeklyCostEmpDep').value
-            BuyUpbiweeklyEmpFam = document.getElementById('BuyUpbiweeklyCostEmpAndFam').value
+        }
+        //Have three tables- one parent- two children-
+        //parent table -Insurance Plan
+        //-InsurancePlan_id as primary and Employee_id as foregin key
+        //child1- InsurancePlanDetail
+        //-InsurancePlanDetail_id as primary and InsurancePlan_id as foregin key
+        //child2- InsurancePremium
+        //-InsurancePremium_id as primary and InsurancePlan_id as foregin key
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("#InsPremiumUpdateStepOne").addEventListener("click", function () {
+                MECmonthlyEO = document.getElementById('MECmonthlyCostEmpOnly').value
+                MECmonthlyEmpSp = document.getElementById('MECmonthlyCostEmpSp').value
+                MECmonthlyEmpDep = document.getElementById('MECmonthlyCostEmpDep').value
+                MECmonthlyEmpFam = document.getElementById('MECmonthlyCostEmpFam').value
+                MECbiweeklyEO = document.getElementById('MECbiweeklyCostEmpOnly').value
+                MECbiweeklyEmpSp = document.getElementById('MECbiweeklyCostEmpSp').value
+                MECbiweeklyEmpDep = document.getElementById('MECbiweeklyCostEmpDep').value
+                MECbiweeklyEmpFam = document.getElementById('MECbiweeklyCostEmpFam').value
 
-            var data = {
-                "MECmonthlyEO": MECmonthlyEO,
-                "MECmonthlyEmpSp": MECmonthlyEmpSp,
-                "MECmonthlyEmpDep": MECmonthlyEmpDep,
-                "MECmonthlyEmpFam": MECmonthlyEmpFam,
-                "MECbiweeklyEO": MECbiweeklyEO,
-                "MECbiweeklyEmpSp": MECbiweeklyEmpSp,
-                "MECbiweeklyEmpDep": MECbiweeklyEmpDep,
-                "MECbiweeklyEmpFam": MECbiweeklyEmpFam,
-                "MECMnthyearlyPremiumCost": MECMnthyearlyPremiumCost,
-                "MECBiWkyearlyPremiumCost": MECBiWkyearlyPremiumCost,
+                StndmonthlyEO = document.getElementById('StndmonthlyCostEmpOnly').value
+                StndmonthlyEmpSp = document.getElementById('StndmonthlyCostEmpSp').value
+                StndmonthlyEmpDep = document.getElementById('StndmonthlyCostEmpDep').value
+                StndmonthlyEmpFam = document.getElementById('StndmonthlyCostEmpFam').value
+                StndbiweeklyEO = document.getElementById('StndbiweeklyCostEmpOnly').value
+                StndbiweeklyEmpSp = document.getElementById('StndbiweeklyCostEmpSp').value
+                StndbiweeklyEmpDep = document.getElementById('StndbiweeklyCostEmpDep').value
+                StndbiweeklyEmpFam = document.getElementById('StndbiweeklyCostEmpFam').value
 
-                "StndmonthlyEO": StndmonthlyEO,
-                "StndmonthlyEmpSp": StndmonthlyEmpSp,
-                "StndmonthlyEmpDep": StndmonthlyEmpDep,
-                "StndmonthlyEmpFam": StndmonthlyEmpFam,
-                "StndbiweeklyEO": StndbiweeklyEO,
-                "StndbiweeklyEmpSp": StndbiweeklyEmpSp,
-                "StndbiweeklyEmpDep": StndbiweeklyEmpDep,
-                "StndbiweeklyEmpFam": StndbiweeklyEmpFam,
-                "StndMnthyearlyPremiumCost": StndMnthyearlyPremiumCost,
-                "StndBiWkyearlyPremiumCost": StndBiWkyearlyPremiumCost,
+                BuyUpmonthlyEO = document.getElementById('BuyUpmonthlyCostEmpOnly').value
+                BuyUpmonthlyEmpSp = document.getElementById('BuyUpmonthlyCostEmpSp').value
+                BuyUpmonthlyEmpDep = document.getElementById('BuyUpmonthlyCostEmpDep').value
+                BuyUpmonthlyEmpFam = document.getElementById('BuyUpmonthlyCostEmpFam').value
+                BuyUpbiweeklyEO = document.getElementById('BuyUpbiweeklyCostEmpOnly').value
+                BuyUpbiweeklyEmpSp = document.getElementById('BuyUpbiweeklyCostEmpSp').value
+                BuyUpbiweeklyEmpDep = document.getElementById('BuyUpbiweeklyCostEmpDep').value
+                BuyUpbiweeklyEmpFam = document.getElementById('BuyUpbiweeklyCostEmpAndFam').value
 
-                "BuyUpmonthlyEO": BuyUpmonthlyEO,
-                "BuyUpmonthlyEmpSp": BuyUpmonthlyEmpSp,
-                "BuyUpmonthlyEmpDep": BuyUpmonthlyEmpDep,
-                "BuyUpmonthlyEmpFam": BuyUpmonthlyEmpFam,
-                "BuyUpbiweeklyEO": BuyUpbiweeklyEO,
-                "BuyUpbiweeklyEmpSp": BuyUpbiweeklyEmpSp,
-                "BuyUpbiweeklyEmpDep": BuyUpbiweeklyEmpDep,
-                "BuyUpbiweeklyEmpFam": BuyUpbiweeklyEmpFam,
-                "BuyUpMnthyearlyPremiumCost": BuyUpMnthyearlyPremiumCost,
-                "BuyUpBiWkyearlyPremiumCost": BuyUpBiWkyearlyPremiumCost,
-            }
+                var data = {
+                    "MECmonthlyEO": MECmonthlyEO,
+                    "MECmonthlyEmpSp": MECmonthlyEmpSp,
+                    "MECmonthlyEmpDep": MECmonthlyEmpDep,
+                    "MECmonthlyEmpFam": MECmonthlyEmpFam,
+                    "MECbiweeklyEO": MECbiweeklyEO,
+                    "MECbiweeklyEmpSp": MECbiweeklyEmpSp,
+                    "MECbiweeklyEmpDep": MECbiweeklyEmpDep,
+                    "MECbiweeklyEmpFam": MECbiweeklyEmpFam,
+                    "MECMnthyearlyPremiumCost": MECMnthyearlyPremiumCost,
+                    "MECBiWkyearlyPremiumCost": MECBiWkyearlyPremiumCost,
 
-            //var ret = postData('/Group_Health/GrpHealthInsPremiumUpdate', data)
-            //    .then(data => FirstStep(data))
-            //    .catch(error => console.error(error))
+                    "StndmonthlyEO": StndmonthlyEO,
+                    "StndmonthlyEmpSp": StndmonthlyEmpSp,
+                    "StndmonthlyEmpDep": StndmonthlyEmpDep,
+                    "StndmonthlyEmpFam": StndmonthlyEmpFam,
+                    "StndbiweeklyEO": StndbiweeklyEO,
+                    "StndbiweeklyEmpSp": StndbiweeklyEmpSp,
+                    "StndbiweeklyEmpDep": StndbiweeklyEmpDep,
+                    "StndbiweeklyEmpFam": StndbiweeklyEmpFam,
+                    "StndMnthyearlyPremiumCost": StndMnthyearlyPremiumCost,
+                    "StndBiWkyearlyPremiumCost": StndBiWkyearlyPremiumCost,
 
-            fetch('GrpHealthInsPremiumUpdate', {
+                    "BuyUpmonthlyEO": BuyUpmonthlyEO,
+                    "BuyUpmonthlyEmpSp": BuyUpmonthlyEmpSp,
+                    "BuyUpmonthlyEmpDep": BuyUpmonthlyEmpDep,
+                    "BuyUpmonthlyEmpFam": BuyUpmonthlyEmpFam,
+                    "BuyUpbiweeklyEO": BuyUpbiweeklyEO,
+                    "BuyUpbiweeklyEmpSp": BuyUpbiweeklyEmpSp,
+                    "BuyUpbiweeklyEmpDep": BuyUpbiweeklyEmpDep,
+                    "BuyUpbiweeklyEmpFam": BuyUpbiweeklyEmpFam,
+                    "BuyUpMnthyearlyPremiumCost": BuyUpMnthyearlyPremiumCost,
+                    "BuyUpBiWkyearlyPremiumCost": BuyUpBiWkyearlyPremiumCost,
+                }
+
+                var ret = postData('/Group_Health/GrpHealthInsPremiumUpdate', data)
+                    .then(data => FirstStep(data))
+                    .catch(error => console.error(error))
+
+                //fetch('GrpHealthInsPremiumUpdate', {
+                //    body: JSON.stringify(data), //must match 'Content-Type' header
+                //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                //    credentials: 'same-origin', //include, same-origin, *omit
+                //    headers: {
+                //        'Accept': 'application/json',
+                //        'user-agent': 'Mozilla/4.0 MDN Example',
+                //        'content-type': 'application/json'
+                //    },
+                //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                //    mode: 'same-origin', //no-cors, cors, *same-origin
+                //    redirect: 'follow', //manual, *follow, error
+                //    referrer: 'no-referrer', //*client, no-referrer
+                //}).then(res => res.json())
+                //    .then(response => FirstStep(response))
+                //    .catch(error => console.error('Error:', error));
+            })
+
+
+            document.querySelector("#InsSupplementUpdateStepTwo").addEventListener("click", function () {
+                EmpDentalCost = document.getElementById("DentalCostEmpOnly").value;
+                EmpVisionCost = document.getElementById("VisionCostEmpOnly").value;
+                EmpSpDentalCost = document.getElementById("DentalCostEmpSp").value;
+                EmpSpVisionCost = document.getElementById("VisionCostEmpSp").value;
+                EmpDepDentalCost = document.getElementById("DentalCostEmpDep").value;
+                EmpDepVisionCost = document.getElementById("VisionCostEmpDep").value;
+                EmpFamDentalCost = document.getElementById("DentalCostEmpFam").value;
+                EmpFamVisionCost = document.getElementById("VisionCostEmpFam").value;
+                SummaryOfDentalBenefits = document.getElementById("SummaryOfDentalBenefits").value;
+                SummaryOfVisionBenefits = document.getElementById("SummaryOfVisionBenefits").value;
+                CalendarYearDeductible = document.getElementById("CalendarYearDeductible").value;
+                CoPay = document.getElementById("CoPay").value;
+                WaivedForPreventive = document.getElementById("WaivedForPreventive").value;
+                Exams = document.getElementById("Exams").value;
+                AnnualMaximum = document.getElementById("AnnualMaximum").value;
+                Materials = document.getElementById("Materials").value;
+                Preventive = document.getElementById("Preventive").value;
+                LensesSingleVision = document.getElementById("LensesSingleVision").value;
+                Basic = document.getElementById("Basic").value;
+                BiFocal = document.getElementById("BiFocal").value;
+                Major = document.getElementById("Major").value;
+                TriFocal = document.getElementById("TriFocal").value;
+                UCRpercent = document.getElementById("UCRpercent").value;
+                Lenticular = document.getElementById("Lenticular").value;
+                EndoPeridontics = document.getElementById("EndoPeridontics").value;
+                ContactsMedically = document.getElementById("ContactsMedically").value;
+                Orthodontics = document.getElementById("Orthodontics").value;
+                ContactsElective = document.getElementById("ContactsElective").value;
+                OrthodontiaLifetimeMax = document.getElementById("OrthodontiaLifetimeMax").value;
+                Frames = document.getElementById("Frames").value;
+                WaitingPeriod = document.getElementById("WaitingPeriod").value;
+                Network = document.getElementById("NetWork").value;
+                DentalNetWork = document.getElementById("DentalNetWork").value;
+                RateGuarantee = document.getElementById("RateGuarantee").value;
+
+                var data = {
+                    "insPlan_id": insPlan_id,
+                    "EmpDentalCost": EmpDentalCost,
+                    "EmpVisionCost": EmpVisionCost,
+                    "EmpSpDentalCost": EmpSpDentalCost,
+                    "EmpSpVisionCost": EmpSpVisionCost,
+                    "EmpDepDentalCost": EmpDepDentalCost,
+                    "EmpDepVisionCost": EmpDepVisionCost,
+                    "EmpFamDentalCost": EmpFamDentalCost,
+                    "EmpFamVisionCost": EmpFamVisionCost,
+                    "SummaryOfDentalBenefits": SummaryOfDentalBenefits,
+                    "SummaryOfVisionBenefits": SummaryOfVisionBenefits,
+                    "CalendarYearDeductible": CalendarYearDeductible,
+                    "CoPay": CoPay,
+                    "WaivedForPreventive": WaivedForPreventive,
+                    "Exams": Exams,
+                    "AnnualMaximum": AnnualMaximum,
+                    "Materials": Materials,
+                    "Preventive": Preventive,
+                    "LensesSingleVision": LensesSingleVision,
+                    "Basic": Basic,
+                    "BiFocal": BiFocal,
+                    "Major": Major,
+                    "TriFocal": TriFocal,
+                    "UCRpercent": UCRpercent,
+                    "Lenticular": Lenticular,
+                    "EndoPeridontics": EndoPeridontics,
+                    "ContactsMedically": ContactsMedically,
+                    "Orthodontics": Orthodontics,
+                    "ContactsElective": ContactsElective,
+                    "OrthodontiaLifetimeMax": OrthodontiaLifetimeMax,
+                    "Frames": Frames,
+                    "WaitingPeriod": WaitingPeriod,
+                    "Network": Network,
+                    "DentalNetWork": DentalNetWork,
+                    "RateGuarantee": RateGuarantee,
+                }
+
+                var ret = postData('/Group_Health/GrpHealthInsSupplementUpdate', data)
+                    .then(data => SecondStep(data))
+                    .catch(error => console.error(error))
+
+                //fetch('GrpHealthInsSupplementUpdate', {
+                //    body: JSON.stringify(data), //must match 'Content-Type' header
+                //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                //    credentials: 'same-origin', //include, same-origin, *omit
+                //    headers: {
+                //        'Accept': 'application/json',
+                //        'user-agent': 'Mozilla/4.0 MDN Example',
+                //        'content-type': 'application/json'
+                //    },
+                //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                //    mode: 'same-origin', //no-cors, cors, *same-origin
+                //    redirect: 'follow', //manual, *follow, error
+                //    referrer: 'no-referrer', //*client, no-referrer
+                //}).then(res => res.json())
+                //    .then(response => SecondStep(response))
+                //    .catch(error => console.error('Error:', error));
+            })
+
+            document.querySelector("GrpHealthInsUpdateStepThree").addEventListener("click", function () {
+                GroupName = document.getElementById("GroupName").value;
+                IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
+                //AnnualSalary = document.getElementById("AnnualSalary").value;
+                //JobTitle = document.getElementById("JobTitle").value;
+                //HireDate = document.getElementById("HireDate").value;
+                //EffectiveDate = document.getElementById("EffectiveDate").value;
+                //HrsWrkPerWk = document.getElementById("HrsWrkPerWk").value;
+                //Department = document.getElementById("Department").value;
+                //EnrollmentType = document.getElementById("EnrollmentType").value;
+                //PayrollID = document.getElementById("Payroll_id").value;
+                //Class = document.getElementById("Class").value;
+
+                empCoveredByOtherIns = document.getElementById("empCoveredByOtherIns").value;
+                InsCarrier = document.getElementById("InsCarrier").value;
+                PolicyNumber = document.getElementById("PolicyNumber").value;
+                InsPhoneNumber = document.getElementById("InsPhoneNumber").value;
+
+                NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
+                EmpOnlyGroupHealthOption = document.getElementById("EmpOnlyGroupHealthOption").value;
+                EmpSpGroupHealthOption = document.getElementById("EmpSpGroupHealthOption").value;
+                EmpDepGroupHealthOption = document.getElementById("EmpDepGroupHealthOption").value;
+                EmpFamGroupHealthOption = document.getElementById("EmpFamGroupHealthOption").value;
+
+                //spFirstName = document.getElementById("spFirstName").value;
+                //spLastName = document.getElementById("spLastName").value;
+                //spAddress = document.getElementById("spAddress").value;
+                //spCity = document.getElementById("spCity").value;
+                //spState = document.getElementById("spState").value;
+                //spZipCode = document.getElementById("spZipCode").value;
+                //spPhoneNumber = document.getElementById("spPhoneNumber").value;
+                //spDateOfBirth = document.getElementById("spDateOfBirth").value;
+
+                //spEmployer = document.getElementById("spEmployer").value;
+                //spEmployerAddress = document.getElementById("spEmployerAddress").value;
+                //spEmployerCity = document.getElementById("spEmployerCity").value;
+                //spEmployerState = document.getElementById("spEmployerState").value;
+                //spEmployerZipCode = document.getElementById("spEmployerZipCode").value;
+                //spEmployerPhoneNumber = document.getElementById("spEmployerPhoneNumber").value;
+
+                spOtherCoverageSelection = document.getElementById("spOtherCoverageSelection").value;
+                spInsCarrier = document.getElementById("spInsCarrier").value;
+                spInsAddress = document.getElementById("spInsAddress").value;
+                spInsCity = document.getElementById("spInsCity").value;
+                spInsState = document.getElementById("spInsState").value;
+                spInsZipCode = document.getElementById("spInsZipCode").value;
+                spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value;
+                spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value;
+
+                //depFirstName = document.getElementById("depFirstName").value;
+                //depLastName = document.getElementById("depLastName").value;
+                //depSSN = document.getElementById("depSSN").value;
+                //depRelationToInsured = document.getElementById("depRelationToInsured").value;
+                //depDateOfBirth = document.getElementById("depDateOfBirth").value;
+                //depGender = document.getElementById("depGender").value;
+
+                depCoveredByOtherIns = document.getElementById("depCoveredByOtherIns").value;
+                depInsCarrier = document.getElementById("depInsCarrier").value;
+                depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value;
+                depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value;
+
+                date = {
+                    "GroupHealthInsurance_id": grpHealthIns_id,
+                    "Employee_id": emp_id,
+                    "GroupName": GroupName,
+                    "IMSGroupNumber": IMSGroupNumber,
+                    //"Department": Department,
+                    //"EnrollmentType": EnrollmentType,
+                    //"Payroll_id": Payroll_id,
+                    //"Class": Class,
+                    //"AnnualSalary": AnnualSalary,
+                    //"Occupation": JobTitle,
+                    //"EmploymentDate": HireDate,
+                    //"EffectiveDate": EffectiveDate,
+                    //"HrsWrkPerWk": HrsWrkPerWk,
+                    //"EmpNumber": EmpNumber,
+                    //"FirstName": FirstName,
+                    //"LastName": LastName,
+                    //"MailingAddress": MailingAddress,
+                    //"PObox": PObox,
+                    //"City": City,
+                    //"State": State,
+                    //"ZipCode": ZipCode,
+                    //"EmpGender": EmpGender,
+                    //"MaritalStatus": MaritalStatus,
+                    //"EmailAddress": EmailAddress,
+                    //"PhoneNumber": PhoneNumber,
+                    //"DateOfBirth": DateOfBirth,
+                    "empCoveredByOtherIns": empCoveredByOtherIns,
+                    "InsCarrier": InsCarrier,
+                    "PolicyNumber": PolicyNumber,
+                    "InsPhoneNumber": InsPhoneNumber,
+                    "EmpOnlyGroupHealthOption": EmpOnlyGroupHealthOption,
+                    "EmpSpGroupHealthOption": EmpSpGroupHealthOption,
+                    "EmpDepGroupHealthOption": EmpDepGroupHealthOption,
+                    "EmpFamGroupHealthOption": EmpFamGroupHealthOption,
+
+                    //"spFirstName": spFirstName,
+                    //"spLastName": spLastName,
+                    //"spAddress": spAddress,
+                    //"spCity": spCity,
+                    //"spState": spState,
+                    //"spZipCode": spZipCode,
+                    //"spPhoneNumber": spPhoneNumber,
+                    //"spDateOfBirth": spDateOfBirth,
+                    //"spGender": spGender,
+                    //"spEmployer": spEmployer,
+                    //"spEmployerAddress": spEmployerAddress,
+                    //"spEmployerCity": spEmployerCity,
+                    //"spEmployerState": spEmployerState,
+                    //"spEmployerZipCode": spEmployerZipCode,
+                    //"spEmployerPhoneNumber": spEmployerPhoneNumber,
+                    "spInsCarrier": spInsCarrier,
+                    "spInsAddress": spInsAddress,
+                    "spInsCity": spInsCity,
+                    "spInsState": spInsState,
+                    "spInsZipCode": spInsZipCode,
+                    "spInsPhoneNumber": spInsPhoneNumber,
+                    "spInsPolicyNumber": spInsPolicyNumber,
+
+                    //"depFirstName": depFirstName,
+                    //"depLastName": depLastName,
+                    //"depSSN": depSSN,
+                    //"depRelationToInsured": depRelationToInsured,
+                    //"depDateOfBirth": depDateOfBirth,
+                    //"depGender": depGender,
+                    "depCoveredByOtherIns": depCoveredByOtherIns,
+                    "depInsCarrier": depInsCarrier,
+                    "depInsPolicyNumber": depInsPolicyNumber,
+                    "depInsPhoneNumber": depInsPhoneNumber,
+                }
+
+                var ret = postData('/GrpHealthInsurance/GrpHealthEnrollmentNew', data)
+                    .then(data => {
+                        console.log(data);
+                        ThirdStep(data);
+                    })
+                    .catch(error => console.error(error))
+            })
+        })
+
+        function FirstStep(ins) {
+            document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+            insPlan_id = ins.data;
+            //document.querySelector("#MECmonthlyEO").value = ins.MECmonthlyEO;
+            //document.querySelector("#MECmonthlyEmpSp").value = ins.MECmonthlyEmpSp;
+            //document.querySelector("#MECmonthlyEmpDep").value = ins.MECmonthlyEmpDep;
+            //document.querySelector("#MECmonthlyEmpFam").value = ins.MECmonthlyEmpFam;
+            //document.querySelector("#MECbiweeklyEO").value = ins.MECbiweeklyEO;
+            //document.querySelector("#MECbiweeklyEmpSp").value = ins.MECbiweeklyEmpSp;
+            //document.querySelector("#MECbiweeklyEmpDep").value = ins.MECbiweeklyEmpDep;
+            //document.querySelector("#MECbiweeklyEmpFam").value = ins.MECbiweeklyEmpFam;
+            //document.querySelector("#StndmonthlyEO").value = ins.StndmonthlyEO;
+            //document.querySelector("#StndmonthlyEmpSp").value = ins.StndmonthlyEmpSp;
+            //document.querySelector("#StndmonthlyEmpDep").value = ins.StndmonthlyEmpDep;
+            //document.querySelector("#StndmonthlyEmpFam").value = ins.StndmonthlyEmpFam;
+            //document.querySelector("#StndbiweeklyEO").value = ins.StndbiweeklyEO;
+            //document.querySelector("#StndbiweeklyEmpSp").value = ins.StndbiweeklyEmpSp;
+            //document.querySelector("#StndbiweeklyEmpDep").value = ins.StndbiweeklyEmpDep;
+            //document.querySelector("#StndbiweeklyEmpFam").value = ins.StndbiweeklyEmpFam;
+            //document.querySelector("#BuyUpmonthlyEO").value = ins.BuyUpmonthlyEO;
+            //document.querySelector("#BuyUpmonthlyEmpSp").value = ins.BuyUpmonthlyEmpSp;
+            //document.querySelector("#BuyUpmonthlyEmpDep").value = ins.BuyUpmonthlyEmpDep;
+            //document.querySelector("#BuyUpmonthlyEmpFam").value = ins.BuyUpmonthlyEmpFam;
+            //document.querySelector("#BuyUpbiweeklyEO").value = ins.BuyUpbiweeklyEO;
+            //document.querySelector("#BuyUpbiweeklyEmpSp").value = ins.BuyUpbiweeklyEmpSp;
+            //document.querySelector("#BuyUpbiweeklyEmpDep").value = ins.BuyUpbiweeklyEmpDep;
+            //document.querySelector("#BuyUpbiweeklyEmpFam").value = ins.BuyUpbiweeklyEmpFam;
+            //document.querySelector("#MECMnthyearlyPremiumCost").value = ins.MECMnthyearlyPremiumCost;
+            //document.querySelector("#MECBiWkyearlyPremiumCost").value = ins.MECBiWkyearlyPremiumCost;
+            //document.querySelector("#StndMnthyearlyPremiumCost").value = ins.StndMnthyearlyPremiumCost;
+            //document.querySelector("#StndBiWkyearlyPremiumCost").value = ins.StndBiWkyearlyPremiumCost;
+            //document.querySelector("#BuyUpMnthyearlyPremiumCost").value = ins.BuyUpMnthyearlyPremiumCost;
+            //document.querySelector("#BuyUpBiWkyearlyPremiumCost").value = ins.BuyUpBiWkyearlyPremiumCost;
+        }
+
+        function SecondStep(ins) {
+            document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+            insPlan_id = ins.data;
+            //document.querySelector("#DentalCostEmpOnly").value = ins.EmpDentalCost;
+            //document.querySelector("#VisionCostEmpOnly").value = ins.EmpVisionCost;
+            //document.querySelector("#DentalCostEmpSp").value = EmpSpDentalCost;
+            //document.querySelector("#VisionCostEmpSp").value = EmpSpVisionCost;
+            //document.querySelector("#DentalCostEmpDep").value = EmpDepDentalCost;
+            //document.querySelector("#VisionCostEmpDep").value = EmpDepVisionCost;
+            //document.querySelector("#DentalCostEmpFam").value = EmpFamDentalCost;
+            //document.querySelector("#VisionCostEmpFam").value = EmpFamVisionCost;
+        }
+
+        function ThirdStep(ins) {
+            document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+            document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
+            GroupHealthInsurance_id = ins.data;
+        }
+
+        function postData(url, data) {
+            //Default options are marked with *
+            console.log(data);
+            console.log(JSON.stringify(data));
+            return fetch(url, {
                 body: JSON.stringify(data), //must match 'Content-Type' header
                 cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', //include, same-origin, *omit
@@ -1359,328 +1672,12 @@
                 redirect: 'follow', //manual, *follow, error
                 referrer: 'no-referrer', //*client, no-referrer
             }).then(res => res.json())
-                .then(response => FirstStep(response))
+                .then(response => console.log('Success:', JSON.stringify(response)))
                 .catch(error => console.error('Error:', error));
-        })
-    
-
-        document.querySelector("#InsSupplementUpdateStepTwo").addEventListener("click", function () {
-            EmpDentalCost = document.getElementById("DentalCostEmpOnly").value;
-            EmpVisionCost = document.getElementById("VisionCostEmpOnly").value;
-            EmpSpDentalCost = document.getElementById("DentalCostEmpSp").value;
-            EmpSpVisionCost = document.getElementById("VisionCostEmpSp").value;
-            EmpDepDentalCost = document.getElementById("DentalCostEmpDep").value;
-            EmpDepVisionCost = document.getElementById("VisionCostEmpDep").value;
-            EmpFamDentalCost = document.getElementById("DentalCostEmpFam").value;
-            EmpFamVisionCost = document.getElementById("VisionCostEmpFam").value;
-            SummaryOfDentalBenefits = document.getElementById("SummaryOfDentalBenefits").value;
-            SummaryOfVisionBenefits = document.getElementById("SummaryOfVisionBenefits").value;
-            CalendarYearDeductible = document.getElementById("CalendarYearDeductible").value;
-            CoPay = document.getElementById("CoPay").value;
-            WaivedForPreventive = document.getElementById("WaivedForPreventive").value;
-            Exams = document.getElementById("Exams").value;
-            AnnualMaximum = document.getElementById("AnnualMaximum").value;
-            Materials = document.getElementById("Materials").value;
-            Preventive = document.getElementById("Preventive").value;
-            LensesSingleVision = document.getElementById("LensesSingleVision").value;
-            Basic = document.getElementById("Basic").value;
-            BiFocal = document.getElementById("BiFocal").value;
-            Major = document.getElementById("Major").value;
-            TriFocal = document.getElementById("TriFocal").value;
-            UCRpercent = document.getElementById("UCRpercent").value;
-            Lenticular = document.getElementById("Lenticular").value;
-            EndoPeridontics = document.getElementById("EndoPeridontics").value;
-            ContactsMedically = document.getElementById("ContactsMedically").value;
-            Orthodontics = document.getElementById("Orthodontics").value;
-            ContactsElective = document.getElementById("ContactsElective").value;
-            OrthodontiaLifetimeMax = document.getElementById("OrthodontiaLifetimeMax").value;
-            Frames = document.getElementById("Frames").value;
-            WaitingPeriod = document.getElementById("WaitingPeriod").value;
-            Network = document.getElementById("NetWork").value;
-            DentalNetWork = document.getElementById("DentalNetWork").value;
-            RateGuarantee = document.getElementById("RateGuarantee").value;
-
-            var data = {
-                "insPlan_id": insPlan_id,
-                "EmpDentalCost": EmpDentalCost,
-                "EmpVisionCost": EmpVisionCost,
-                "EmpSpDentalCost": EmpSpDentalCost,
-                "EmpSpVisionCost": EmpSpVisionCost,
-                "EmpDepDentalCost": EmpDepDentalCost,
-                "EmpDepVisionCost": EmpDepVisionCost,
-                "EmpFamDentalCost": EmpFamDentalCost,
-                "EmpFamVisionCost": EmpFamVisionCost,
-                "SummaryOfDentalBenefits": SummaryOfDentalBenefits,
-                "SummaryOfVisionBenefits": SummaryOfVisionBenefits,
-                "CalendarYearDeductible": CalendarYearDeductible,
-                "CoPay": CoPay,
-                "WaivedForPreventive": WaivedForPreventive,
-                "Exams": Exams,
-                "AnnualMaximum": AnnualMaximum,
-                "Materials": Materials,
-                "Preventive": Preventive,
-                "LensesSingleVision": LensesSingleVision,
-                "Basic": Basic,
-                "BiFocal": BiFocal,
-                "Major": Major,
-                "TriFocal": TriFocal,
-                "UCRpercent": UCRpercent,
-                "Lenticular": Lenticular,
-                "EndoPeridontics": EndoPeridontics,
-                "ContactsMedically": ContactsMedically,
-                "Orthodontics": Orthodontics,
-                "ContactsElective": ContactsElective,
-                "OrthodontiaLifetimeMax": OrthodontiaLifetimeMax,
-                "Frames": Frames,
-                "WaitingPeriod": WaitingPeriod,
-                "Network": Network,
-                "DentalNetWork": DentalNetWork,
-                "RateGuarantee": RateGuarantee,             
-            }    
-
-            //var ret = postData('/Group_Health/GrpHealthInsSupplementUpdate', data)
-            //    .then(data => SecondStep(data))
-            //    .catch(error => console.error(error))
-
-            fetch('GrpHealthInsSupplementUpdate', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => SecondStep(response))
-                .catch(error => console.error('Error:', error));
-        })
-
-        document.querySelector("GrpHealthInsUpdateStepThree").addEventListener("click", function () {
-            GroupName = document.getElementById("GroupName").value;
-            IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
-            //AnnualSalary = document.getElementById("AnnualSalary").value;-
-            //JobTitle = document.getElementById("JobTitle").value;
-            //HireDate = document.getElementById("HireDate").value;
-            //EffectiveDate = document.getElementById("EffectiveDate").value;
-            //HrsWrkPerWk = document.getElementById("HrsWrkPerWk").value;
-            //Department = document.getElementById("Department").value;
-            //EnrollmentType = document.getElementById("EnrollmentType").value;
-            //PayrollID = document.getElementById("Payroll_id").value;
-            //Class = document.getElementById("Class").value;  
-   
-            empCoveredByOtherIns = document.getAnimations("empCoveredByOtherIns").value;
-            InsCarrier = document.getElementById("InsCarrier").value;
-            PolicyNumber = document.getElementById("PolicyNumber").value;
-            InsPhoneNumber = document.getElementById("InsPhoneNumber").value;
-
-            NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
-            EmpOnlyGroupHealthOption = document.getElementById("EmpOnlyGroupHealthOption").value;
-            EmpSpGroupHealthOption = document.getElementById("EmpSpGroupHealthOption").value;
-            EmpDepGroupHealthOption = document.getElementById("EmpDepGroupHealthOption").value;
-            EmpFamGroupHealthOption = document.getElementById("EmpFamGroupHealthOption").value;
-
-            //below info commmented out already posted to Family_Info Table, do not need to be posted to GrpHealth
-
-            //spFirstName = document.getElementById("spFirstName").value;
-            //spLastName = document.getElementById("spLastName").value;
-            //spAddress = document.getElementById("spAddress").value;
-            //spCity = document.getElementById("spCity").value;
-            //spState = document.getElementById("spState").value;
-            //spZipCode = document.getElementById("spZipCode").value;
-            //spPhoneNumber = document.getElementById("spPhoneNumber").value;
-            //spDateOfBirth = document.getElementById("spDateOfBirth").value;
-
-            //spEmployer = document.getElementById("spEmployer").value;
-            //spEmployerAddress = document.getElementById("spEmployerAddress").value;
-            //spEmployerCity = document.getElementById("spEmployerCity").value;
-            //spEmployerState = document.getElementById("spEmployerState").value;
-            //spEmployerZipCode = document.getElementById("spEmployerZipCode").value;
-            //spEmployerPhoneNumber = document.getElementById("spEmployerPhoneNumber").value;
-
-            spOtherCoverageSelection = document.getElementById("spOtherCoverageSelection").value;
-            spInsCarrier = document.getElementById("spInsCarrier").value;
-            spInsAddress = document.getElementById("spInsAddress").value;
-            spInsCity = document.getElementById("spInsCity").value;
-            spInsState = document.getElementById("spInsState").value;
-            spInsZipCode = document.getElementById("spInsZipCode").value;
-            spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value;
-            spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value;
-
-            //depFirstName = document.getElementById("depFirstName").value;
-            //depLastName = document.getElementById("depLastName").value;
-            //depSSN = document.getElementById("depSSN").value;
-            //depRelationToInsured = document.getElementById("depRelationToInsured").value;
-            //depDateOfBirth = document.getElementById("depDateOfBirth").value;
-            //depGender = document.getElementById("depGender").value;
-
-            depCoveredByOtherIns = document.getElementById("depCoveredByOtherIns").value;
-            depInsCarrier = document.getElementById("depInsCarrier").value;
-            depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value;
-            depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value;
-
-            date = {
-                "GroupHealthInsurance_id": grpHealthIns_id,
-                "Employee_id": emp_id,
-                "GroupName": GroupName,
-                "IMSGroupNumber": IMSGroupNumber,
-                //"Department": Department,
-                //"EnrollmentType": EnrollmentType,
-                //"Payroll_id": Payroll_id,
-                //"Class": Class,
-                //"AnnualSalary": AnnualSalary,
-                //"Occupation": JobTitle,
-                //"EmploymentDate": HireDate,
-                //"EffectiveDate": EffectiveDate,
-                //"HrsWrkPerWk": HrsWrkPerWk,
-                //"EmpNumber": EmpNumber,
-                //"FirstName": FirstName,
-                //"LastName": LastName,
-                //"MailingAddress": MailingAddress,
-                //"PObox": PObox,
-                //"City": City,
-                //"State": State,
-                //"ZipCode": ZipCode,
-                //"EmpGender": EmpGender,
-                //"MaritalStatus": MaritalStatus,
-                //"EmailAddress": EmailAddress,
-                //"PhoneNumber": PhoneNumber,
-                //"DateOfBirth": DateOfBirth,
-                "empCoveredByOtherIns": empCoveredByOtherIns,
-                "InsCarrier": InsCarrier,
-                "PolicyNumber": PolicyNumber,
-                "InsPhoneNumber": InsPhoneNumber,
-                "EmpOnlyGroupHealthOption": EmpOnlyGroupHealthOption,
-                "EmpSpGroupHealthOption": EmpSpGroupHealthOption,
-                "EmpDepGroupHealthOption": EmpDepGroupHealthOption,
-                "EmpFamGroupHealthOption": EmpFamGroupHealthOption,
-
-                //"spFirstName": spFirstName,
-                //"spLastName": spLastName,
-                //"spAddress": spAddress,
-                //"spCity": spCity,
-                //"spState": spState,
-                //"spZipCode": spZipCode,
-                //"spPhoneNumber": spPhoneNumber,
-                //"spDateOfBirth": spDateOfBirth,
-                //"spGender": spGender,
-                //"spEmployer": spEmployer,
-                //"spEmployerAddress": spEmployerAddress,
-                //"spEmployerCity": spEmployerCity,
-                //"spEmployerState": spEmployerState,
-                //"spEmployerZipCode": spEmployerZipCode,
-                //"spEmployerPhoneNumber": spEmployerPhoneNumber,
-                "spInsCarrier": spInsCarrier,
-                "spInsAddress": spInsAddress,
-                "spInsCity": spInsCity,
-                "spInsState": spInsState,
-                "spInsZipCode": spInsZipCode,
-                "spInsPhoneNumber": spInsPhoneNumber,
-                "spInsPolicyNumber": spInsPolicyNumber,
-
-                //"depFirstName": depFirstName,
-                //"depLastName": depLastName,
-                //"depSSN": depSSN,
-                //"depRelationToInsured": depRelationToInsured,
-                //"depDateOfBirth": depDateOfBirth,
-                //"depGender": depGender,
-                "depCoveredByOtherIns": depCoveredByOtherIns,
-                "depInsCarrier": depInsCarrier,
-                "depInsPolicyNumber": depInsPolicyNumber,
-                "depInsPhoneNumber": depInsPhoneNumber,
-            }
-
-            var ret = postData('/GrpHealthInsurance/GrpHealthEnrollmentNew', data)
-                .then(data => {
-                    console.log(data);
-                    ThirdStep(data);
-                })
-                .catch(error => console.error(error))
-        })
-    })
-
-    function FirstStep(ins) {
-        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        insPlan_id = ins.data;
-        //document.querySelector("#MECmonthlyEO").value = ins.MECmonthlyEO;
-        //document.querySelector("#MECmonthlyEmpSp").value = ins.MECmonthlyEmpSp;
-        //document.querySelector("#MECmonthlyEmpDep").value = ins.MECmonthlyEmpDep;
-        //document.querySelector("#MECmonthlyEmpFam").value = ins.MECmonthlyEmpFam;
-        //document.querySelector("#MECbiweeklyEO").value = ins.MECbiweeklyEO;
-        //document.querySelector("#MECbiweeklyEmpSp").value = ins.MECbiweeklyEmpSp;
-        //document.querySelector("#MECbiweeklyEmpDep").value = ins.MECbiweeklyEmpDep;
-        //document.querySelector("#MECbiweeklyEmpFam").value = ins.MECbiweeklyEmpFam;
-        //document.querySelector("#StndmonthlyEO").value = ins.StndmonthlyEO;
-        //document.querySelector("#StndmonthlyEmpSp").value = ins.StndmonthlyEmpSp;
-        //document.querySelector("#StndmonthlyEmpDep").value = ins.StndmonthlyEmpDep;
-        //document.querySelector("#StndmonthlyEmpFam").value = ins.StndmonthlyEmpFam;
-        //document.querySelector("#StndbiweeklyEO").value = ins.StndbiweeklyEO;
-        //document.querySelector("#StndbiweeklyEmpSp").value = ins.StndbiweeklyEmpSp;
-        //document.querySelector("#StndbiweeklyEmpDep").value = ins.StndbiweeklyEmpDep;
-        //document.querySelector("#StndbiweeklyEmpFam").value = ins.StndbiweeklyEmpFam;
-        //document.querySelector("#BuyUpmonthlyEO").value = ins.BuyUpmonthlyEO;
-        //document.querySelector("#BuyUpmonthlyEmpSp").value = ins.BuyUpmonthlyEmpSp;
-        //document.querySelector("#BuyUpmonthlyEmpDep").value = ins.BuyUpmonthlyEmpDep;
-        //document.querySelector("#BuyUpmonthlyEmpFam").value = ins.BuyUpmonthlyEmpFam;
-        //document.querySelector("#BuyUpbiweeklyEO").value = ins.BuyUpbiweeklyEO;
-        //document.querySelector("#BuyUpbiweeklyEmpSp").value = ins.BuyUpbiweeklyEmpSp;
-        //document.querySelector("#BuyUpbiweeklyEmpDep").value = ins.BuyUpbiweeklyEmpDep;
-        //document.querySelector("#BuyUpbiweeklyEmpFam").value = ins.BuyUpbiweeklyEmpFam;
-        //document.querySelector("#MECMnthyearlyPremiumCost").value = ins.MECMnthyearlyPremiumCost;
-        //document.querySelector("#MECBiWkyearlyPremiumCost").value = ins.MECBiWkyearlyPremiumCost;
-        //document.querySelector("#StndMnthyearlyPremiumCost").value = ins.StndMnthyearlyPremiumCost;
-        //document.querySelector("#StndBiWkyearlyPremiumCost").value = ins.StndBiWkyearlyPremiumCost;
-        //document.querySelector("#BuyUpMnthyearlyPremiumCost").value = ins.BuyUpMnthyearlyPremiumCost;
-        //document.querySelector("#BuyUpBiWkyearlyPremiumCost").value = ins.BuyUpBiWkyearlyPremiumCost;
-    }
-
-    function SecondStep(ins) {
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-        insPlan_id = ins.data;
-        //document.querySelector("#DentalCostEmpOnly").value = ins.EmpDentalCost;
-        //document.querySelector("#VisionCostEmpOnly").value = ins.EmpVisionCost;
-        //document.querySelector("#DentalCostEmpSp").value = EmpSpDentalCost;
-        //document.querySelector("#VisionCostEmpSp").value = EmpSpVisionCost;
-        //document.querySelector("#DentalCostEmpDep").value = EmpDepDentalCost;
-        //document.querySelector("#VisionCostEmpDep").value = EmpDepVisionCost;
-        //document.querySelector("#DentalCostEmpFam").value = EmpFamDentalCost;
-        //document.querySelector("#VisionCostEmpFam").value = EmpFamVisionCost;
-    }
-
-    function ThirdStep(ins) {
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-        document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
-        GroupHealthInsurance_id = ins.data;
-    }
-
-    function postData(url, data) {
-        //Default options are marked with *
-        console.log(data);
-        console.log(JSON.stringify(data));
-        return fetch(url, {
-            body: JSON.stringify(data), //must match 'Content-Type' header
-            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', //include, same-origin, *omit
-            headers: {
-                'Accept': 'application/json',
-                'user-agent': 'Mozilla/4.0 MDN Example',
-                'content-type': 'application/json'
-            },
-            method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            mode: 'same-origin', //no-cors, cors, *same-origin
-            redirect: 'follow', //manual, *follow, error
-            referrer: 'no-referrer', //*client, no-referrer
-        }).then(res => res.json())
-            .then(response => console.log('Success:', JSON.stringify(response)))
-            .catch(error => console.error('Error:', error));
             //.then(Response => {
             //    console.log(Response);
             //    Response.json();
             //}) //parses response to JSON
-    }
+        }
 </script>
 
