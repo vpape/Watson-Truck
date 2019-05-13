@@ -396,17 +396,18 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult SpEnrollmentNew(int FamilyMember_id, string MaritalStatus, 
-            string RelationshipToInsured, string EmpNumber, string FirstName, string LastName, 
+        public JsonResult SpEnrollmentNew(/*int Employee_id, int FamilyMember_id,string MaritalStatus, 
+            string RelationshipToInsured, string EmpNumber,*/ string FirstName, string LastName, 
             DateTime DateOfBirth, string Gender)
         {
-            Family_Info sp = db.Family_Info
-                .Where(i => i.FamilyMember_id == FamilyMember_id)
-                .Where(i => i.RelationshipToInsured == "Spouse")
-                .Single();
+            Family_Info sp = new Family_Info();
 
-            sp.RelationshipToInsured = RelationshipToInsured;
-            sp.SSN = EmpNumber;
+            //Family_Info sp = db.Family_Info
+            //    .Where(i => i.FamilyMember_id == FamilyMember_id)
+            //    .Where(i => i.RelationshipToInsured == "Spouse")
+            //    .Single();
+
+            //sp.RelationshipToInsured = RelationshipToInsured;
             sp.FirstName = FirstName;
             sp.LastName = LastName;
             sp.DateOfBirth = DateOfBirth;
