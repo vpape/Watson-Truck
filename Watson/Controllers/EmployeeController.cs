@@ -396,8 +396,8 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult SpEnrollmentNew(/*int Employee_id, int FamilyMember_id,string MaritalStatus, 
-            string RelationshipToInsured, string EmpNumber,*/ string FirstName, string LastName, 
+        public JsonResult SpEnrollmentNew(int Employee_id, /*int FamilyMember_id,*/ /*string MaritalStatus,*/ 
+            /*string RelationshipToInsured,*/ /*string EmpNumber,*/ string FirstName, string LastName, 
             DateTime DateOfBirth, string Gender)
         {
             Family_Info sp = new Family_Info();
@@ -413,13 +413,13 @@ namespace Watson.Controllers
             sp.DateOfBirth = DateOfBirth;
             sp.Gender = Gender;
 
-            int result = sp.Employee_id;
-
             if (ModelState.IsValid)
             {
                 db.Family_Info.Add(sp);
                 db.SaveChanges();
             }
+
+            int result = sp.Employee_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
 
@@ -453,13 +453,13 @@ namespace Watson.Controllers
             sp.PhoneNumber = PhoneNumber;
             sp.CellPhone = CellPhone;
 
-            int result = sp.Employee_id;    
-
             if (ModelState.IsValid)
             {
                 db.Family_Info.Add(sp);
                 db.SaveChanges();
             }
+
+            int result = sp.Employee_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
@@ -486,13 +486,13 @@ namespace Watson.Controllers
             sp.EmployerZipCode = EmployerZipCode;
             sp.EmployerPhoneNumber = EmployerPhoneNumber;
 
-            int result = sp.Employee_id;
-
             if (ModelState.IsValid)
             {
                 db.Family_Info.Add(sp);
                 db.SaveChanges();
             }
+
+            int result = sp.Employee_id;
 
             //if (MaritalStatus == "MarriedwDep")
             //{
@@ -567,8 +567,6 @@ namespace Watson.Controllers
             ViewBag.Employee_id = sp.Employee_id;
             ViewBag.MaritalStatus = MaritalStatus;
 
-            int result = sp.Employee_id;
-
             if (ModelState.IsValid)
             {
                 db.Entry(sp).State = System.Data.Entity.EntityState.Modified;
@@ -584,6 +582,9 @@ namespace Watson.Controllers
 
                 RedirectToAction("FamilyOverview", new { sp.Employee_id });
             }
+
+
+            int result = sp.Employee_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
