@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Employee Page</title>
+    <title>Salary Redirection</title>
 </head>
 <body>
     @* Salary Redirect *@
@@ -91,16 +91,28 @@
                     </td>
                 </tr>
             </table>
-    
-            <p></p>
-            On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my insurance
-            premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended or terminated, these
-            <p></p>
+            <div class="text-justify">
+                <p>
+                    On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
+                    insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
+                    or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
+                    payroll throughout the plan year. The amount of my required contribution is set forth on a schedule that has been
+                    provided to me. In the event of a rate change, I authorize a corresponding change in the amount deducted from my
+                    salary without signing a new Salary Redirection Agreement. If the rate change is brought on by the third-party carrier
+                    (insurance company), the premium increase or decrease can be deducted pre-tax. "Employer-provided" non-elective benefits
+                    (if any) will not be deducted from my paycheck. In addition, pre-tax contributions reduce compensation for Social Security
+                    tax purposes; therefore, my Social Security benefits could be decreased. I elect to receive the following coverage(s) the
+                    Benefits Plan as elected in the pre-tax column. Any previous election and Salary Redirection Agreement under the
+                    Benefits Plan relating to the same benefits selected below are hereby revoked. My employer's deduction of premium/contribution
+                    amounts hereunder shall evidnece acceptance of this agreement.
+                </p>
+            </div>
         </div>
         @* db.Deductions= PK Deductions_id, FK Employee_id *@
         <table class="container-fluid table-bordered" id="SalaryRedirectTable" cellpadding="20" cellspacing="20">
             <tr>
                 <td>
+                    <label>Check the desired coverage(s) below:</label>
                     <table class="table table-condensed" width="400" cellpadding="10" cellspacing="10" border="1">
                         <thead class="thead-dark">
                             <tr>
@@ -395,6 +407,39 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="text-justify">
+                        <label style="padding-left: 10px;"><u>I understand and agree to the following (inital all):</u></label>
+                        <p>
+                            _______On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
+                            insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
+                            or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
+                        </p>
+                        <p>
+                            _______On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
+                            insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
+                            or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
+                        </p>
+                        <p>
+                            _______On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
+                            insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
+                            or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
+                        </p>
+                        <p>
+                            _______On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
+                            insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
+                            or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
+                        </p>
+                        <label style="padding-left: 10px;"><u>Waiver of Pre-Tax Benefits Under the Benefits Plan:</u></label>
+                        <p>
+                            _______On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
+                            insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
+                            or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
+                        </p>
+                        <label style="padding-left: 10px;">
+                            Employee Signature:_____________________________________________________________________Date:________________________
+                        </label>
+                        
+                    </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-11">
@@ -453,7 +498,10 @@
             background-color: #ddd;
             color: black;
         }
-
+    p {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
     table {
         border-collapse: collapse;
         width: 100%;
