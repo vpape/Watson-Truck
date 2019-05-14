@@ -290,11 +290,28 @@
 
             }
 
-            var ret = postData('SpEnrollmentNew', data)
-                .then(data => { console.log(data);
-                              FirstStep(data);
-                              })
-                .catch(error => console.error(error))
+            //var ret = postData('SpEnrollmentNew', data)
+            //    .then(data => { console.log(data);
+            //                  FirstStep(data);
+            //                  })
+            //    .catch(error => console.error(error))
+
+            fetch('SpEnrollmentNew', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => SecondStep(response))
+                .catch(error => console.error('Error:', error));
 
         })
 
@@ -337,22 +354,6 @@
                 })
                 .error(error => console.error(error))
 
-            //fetch('SpEnrollmentContact', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    .then(response => SecondStep(response))
-            //    .catch(error => console.error('Error:', error));
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener("click", function () {

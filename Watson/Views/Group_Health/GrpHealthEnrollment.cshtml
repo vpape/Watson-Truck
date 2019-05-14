@@ -947,18 +947,18 @@
             <hr />
             <div>
                 @* retrieve dep info from DepEnrollment page *@
-                <div id="depGen&InsInfo">
-                    <div id="depGenInfo">
+                <div id="depGen&InsInfo1">
+                    <div id="depGenInfo1">
                         <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
-                        <div id="depInfo">
+                        <div id="depInfo1">
                             <div class="form-group col-md-2">
-                                <input type="text" id="depFirstName" class="form-control" placeholder="First Name" name="FirstName" value="" disabled />
+                                <input type="text" id="depFirstName1" class="form-control" placeholder="First Name" name="FirstName" value="" disabled />
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="text" id="depLastName" class="form-control" placeholder="Last Name" name="LastName" value="" disabled />
+                                <input type="text" id="depLastName1" class="form-control" placeholder="Last Name" name="LastName" value="" disabled />
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="text" id="depSSN" class="form-control" placeholder="SSN#- Call HR" name="SSN" value="" disabled />
+                                <input type="text" id="depSSN1" class="form-control" placeholder="SSN#- Call HR" name="SSN" value="" disabled />
                             </div>
                             <div class="form-group col-md-3" id="depRelationshipToInsured">
                                 <input type="text" id="depRelationToInsured" class="form-control" placeholder="Relationship to Insured" name="RelationShipToInsured" value="" readonly>
@@ -967,10 +967,10 @@
                                 @*<input id="Other" name="RelationshipToInsured" class="form-control" value="Other" @((ViewBag.RelationshipToInsured.ToLower() == "Other") ? "selected" : "")/>*@
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="date" class="form-control" id="depDateOfBirth" name="DateOfBirth" value="" disabled />
+                                <input type="date" class="form-control" id="depDateOfBirth1" name="DateOfBirth" value="" disabled />
                             </div>
                             <div class="form-group col-md-2">
-                                <select id="depGender" class="form-control" disabled>
+                                <select id="depGender1" class="form-control" disabled>
                                     <option value="">Gender:</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -983,15 +983,15 @@
                             <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
                             <label class="radio-inline"><input type="radio" id="depCoveredByOtherIns" class="radio-inline" onclick="return depCoveredByOtherIns()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
                             <label class="radio-inline"><input type="radio" id="depCoveredByOtherIns" class="radio-inline" onclick="return depCoveredByOtherIns()" name="CoveredByOtherInsurance" value="no" checked />No</label>
-                            <div id="depInsInfo">
+                            <div id="depInsInfo1">
                                 <div class="form-group col-md-2">
-                                    <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
+                                    <input type="text" id="depInsCarrier1" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                                    <input type="text" id="depInsPolicyNumber1" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                                    <input type="tel" id="depInsPhoneNumber1" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
                                 </div>
                             </div>
                         </div>
@@ -1254,17 +1254,26 @@
         function depCoveredByOtherIns() {
 
             var div = document.querySelectorAll("depCoveredByOtherIns").value;
-            var divDepHide = document.querySelector("depInsInfo")
-            var divDepShow = document.querySelector("depInsInfo")
+            var divDepHide1 = document.querySelector("depInsInfo1")
+            var divDepShow1 = document.querySelector("depInsInfo1")
+            var divDepHide2 = document.querySelector("depInsInfo2")
+            var divDepShow2 = document.querySelector("depInsInfo2")
+            var divDepHide3 = document.querySelector("depInsInfo3")
+            var divDepShow3 = document.querySelector("depInsInfo3")
+
 
             div.addEventListener('click', function () {
 
                 if (div.checked == "no") {
 
-                    divDepHide.style.visibility = "hidden";
+                    divDepHide1.style.visibility = "hidden";
+                    divDepHide2.style.visibility = "hidden";
+                    divDepHide3.style.visibility = "hidden";
                 }
                 else {
-                    divDepShow.style.visibility = "visible";
+                    divDepShow1.style.visibility = "visible";
+                    divDepShow2.style.visibility = "visible";
+                    divDepShow3.style.visibility = "visible";
                 }
             });
 
