@@ -96,10 +96,12 @@ namespace Watson.Controllers
             string EmployeeSignature, DateTime EmployeeSignatureDate, string EmployeeInitials, string OtherSignature, 
             DateTime OtherSignatureDate, string CoveredByOtherIns, string InsCarrier, string InsPolicyNumber, 
             string InsPhoneNumber, string InsMailingAddress, string InsPObox, string InsCity, string InsState,
-            string InsZipCode, string MaritalStatus, string FirstName, string LastName, DateTime DateOfBirth,
-            string Gender, string EmpNumber, string MailingAddress, string PObox, string City, string State, string ZipCode,           
-            string EmailAddress, string EmpPhoneNumber, string CellPhone, string RelationshipToInsured, string SSN,
-            string )
+            string InsZipCode, string eMaritalStatus, string eFirstName, string eLastName, DateTime eDateOfBirth,
+            string eGender, string EmpNumber, string eMailingAddress, string ePObox, string eCity, string eState, string eZipCode,           
+            string eEmailAddress, string EmpPhoneNumber, string eCellPhone, string spRelationshipToInsured, string spSSN,
+            string spFirstName, string spLastName, DateTime spDateOfBirth, string spGender, string spMailingAddress, string spPObox,
+            string spCity, string spState, string spZipCode, string spEmailAddress, string spPhoneNumber, string spCellPhone,
+            string depRelationshipToInsured, string depSSN, string depFirstName, string depLastName, DateTime depDateOfBirth, string depGender)
         {
             Group_Health g = new Group_Health();
 
@@ -143,50 +145,50 @@ namespace Watson.Controllers
              .Where(i => i.Employee_id == Employee_id)
              .Single();
 
-            e.MaritalStatus = MaritalStatus;
-            e.FirstName = FirstName;
-            e.LastName = LastName;
-            e.DateOfBirth = DateOfBirth;
-            e.Gender = Gender;
+            e.MaritalStatus = eMaritalStatus;
+            e.FirstName = eFirstName;
+            e.LastName = eLastName;
+            e.DateOfBirth = eDateOfBirth;
+            e.Gender = eGender;
             e.SSN = EmpNumber;
-            e.MailingAddress = MailingAddress;
-            e.PObox = PObox;
-            e.City = City;
-            e.State = State;
-            e.ZipCode = ZipCode;
-            e.EmailAddress = EmailAddress;
+            e.MailingAddress = eMailingAddress;
+            e.PObox = ePObox;
+            e.City = eCity;
+            e.State = eState;
+            e.ZipCode = eZipCode;
+            e.EmailAddress = eEmailAddress;
             e.PhoneNumber = EmpPhoneNumber;
-            e.CellPhone = CellPhone;
+            e.CellPhone = eCellPhone;
 
             Family_Info sp = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
                 .Single();
 
-            sp.RelationshipToInsured = RelationshipToInsured;
-            sp.SSN = SSN;
-            sp.FirstName = FirstName;
-            sp.LastName = LastName;
-            sp.DateOfBirth = DateOfBirth;
-            sp.Gender = Gender;
-            sp.MailingAddress = MailingAddress;
-            sp.PObox = PObox;
-            sp.City = City;
-            sp.State = State;
-            sp.ZipCode = ZipCode;      
-            sp.EmailAddress = EmailAddress;
-            sp.PhoneNumber = PhoneNumber;
-            sp.CellPhone = CellPhone;
+            sp.RelationshipToInsured = spRelationshipToInsured;
+            sp.SSN = spSSN;
+            sp.FirstName = spFirstName;
+            sp.LastName = spLastName;
+            sp.DateOfBirth = spDateOfBirth;
+            sp.Gender = spGender;
+            sp.MailingAddress = spMailingAddress;
+            sp.PObox = spPObox;
+            sp.City = spCity;
+            sp.State = spState;
+            sp.ZipCode = spZipCode;      
+            sp.EmailAddress = spEmailAddress;
+            sp.PhoneNumber = spPhoneNumber;
+            sp.CellPhone = spCellPhone;
 
             Family_Info dep = db.Family_Info
                .Where(i => i.FamilyMember_id == FamilyMember_id)
                .Single();
 
-            dep.RelationshipToInsured = RelationshipToInsured;
-            dep.SSN = SSN;
-            dep.FirstName = FirstName;
-            dep.LastName = LastName;
-            dep.DateOfBirth = DateOfBirth;
-            dep.Gender = Gender;
+            dep.RelationshipToInsured = depRelationshipToInsured;
+            dep.SSN = depSSN;
+            dep.FirstName = depFirstName;
+            dep.LastName = depLastName;
+            dep.DateOfBirth = depDateOfBirth;
+            dep.Gender = depGender;
 
             if (ModelState.IsValid)
             {
