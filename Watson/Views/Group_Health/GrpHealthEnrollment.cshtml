@@ -15,12 +15,7 @@
     <title>Health Insurance Enrollment</title>
 </head>
 <body>
-    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
-    <input type="hidden" id="InsurancePremium_id" class="form-control" name="InsurancePremium_id" value=@ViewBag.InsurancePremium_id />
-    <input type="hidden" id="InsurancePlanDetail_id" class="form-control" name="InsurancePlanDetail_id" value=@ViewBag.InsurancePlanDetail_id />
-    <input type="hidden" id="InsurancePlan_id" class="form-control" name="InsurancePlan_id" value=@ViewBag.InsurancePlan_id />
-    <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value=@ViewBag.GroupHealthInsurance_id />
-    <input type="hidden" id="OtherInsurance_id" class="form-control" name="OtherInsurance_id" value=@ViewBag.OtherInsurance_id />
+    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.e.Employee_id />
     <div class="form-horizontal">
         <div class="collapsible" id="FirstStep">Health Insurance Premiums</div>
         <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">
@@ -1217,11 +1212,11 @@
     var col = document.querySelectorAll(".collapsible");
     var i;
     var emp_id;
-    var insPlan_id;
-    var insPrem_id;
-    var insDetail_id;
-    var grpHealthIns_id;
-    var otherIns_id;
+    //var insPlan_id;
+    //var insPrem_id;
+    //var insDetail_id;
+    //var grpHealthIns_id;
+    //var otherIns_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -1253,6 +1248,7 @@
             }
         });
 
+        //create a for loop i=8
         function depCoveredByOtherIns() {
 
             var div = document.querySelectorAll("depCoveredByOtherIns").value;
@@ -1354,25 +1350,7 @@
                 var ret = postData('/Group_Health/GrpHealthInsPremiumUpdate', data)
                     .then(data => FirstStep(data))
                     .catch(error => console.error(error))
-
-                //fetch('GrpHealthInsPremiumUpdate', {
-                //    body: JSON.stringify(data), //must match 'Content-Type' header
-                //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                //    credentials: 'same-origin', //include, same-origin, *omit
-                //    headers: {
-                //        'Accept': 'application/json',
-                //        'user-agent': 'Mozilla/4.0 MDN Example',
-                //        'content-type': 'application/json'
-                //    },
-                //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                //    mode: 'same-origin', //no-cors, cors, *same-origin
-                //    redirect: 'follow', //manual, *follow, error
-                //    referrer: 'no-referrer', //*client, no-referrer
-                //}).then(res => res.json())
-                //    .then(response => FirstStep(response))
-                //    .catch(error => console.error('Error:', error));
             })
-
 
             document.querySelector("#InsSupplementUpdateStepTwo").addEventListener("click", function () {
                 EmpDentalCost = document.getElementById("DentalCostEmpOnly").value;
@@ -1411,7 +1389,7 @@
                 RateGuarantee = document.getElementById("RateGuarantee").value;
 
                 var data = {
-                    "insPlan_id": insPlan_id,
+                    "Employee_id": emp_id,
                     "EmpDentalCost": EmpDentalCost,
                     "EmpVisionCost": EmpVisionCost,
                     "EmpSpDentalCost": EmpSpDentalCost,
@@ -1451,40 +1429,13 @@
                 var ret = postData('/Group_Health/GrpHealthInsSupplementUpdate', data)
                     .then(data => SecondStep(data))
                     .catch(error => console.error(error))
-
-                //fetch('GrpHealthInsSupplementUpdate', {
-                //    body: JSON.stringify(data), //must match 'Content-Type' header
-                //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                //    credentials: 'same-origin', //include, same-origin, *omit
-                //    headers: {
-                //        'Accept': 'application/json',
-                //        'user-agent': 'Mozilla/4.0 MDN Example',
-                //        'content-type': 'application/json'
-                //    },
-                //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                //    mode: 'same-origin', //no-cors, cors, *same-origin
-                //    redirect: 'follow', //manual, *follow, error
-                //    referrer: 'no-referrer', //*client, no-referrer
-                //}).then(res => res.json())
-                //    .then(response => SecondStep(response))
-                //    .catch(error => console.error('Error:', error));
             })
 
             document.querySelector("GrpHealthInsUpdateStepThree").addEventListener("click", function () {
                 GroupName = document.getElementById("GroupName").value;
                 IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
-                //AnnualSalary = document.getElementById("AnnualSalary").value;
-                //JobTitle = document.getElementById("JobTitle").value;
-                //HireDate = document.getElementById("HireDate").value;
-                //EffectiveDate = document.getElementById("EffectiveDate").value;
-                //HrsWrkPerWk = document.getElementById("HrsWrkPerWk").value;
-                //Department = document.getElementById("Department").value;
-                //EnrollmentType = document.getElementById("EnrollmentType").value;
-                //PayrollID = document.getElementById("Payroll_id").value;
-                //Class = document.getElementById("Class").value;
-
                 empCoveredByOtherIns = document.getElementById("empCoveredByOtherIns").value;
-                InsCarrier = document.getElementById("InsCarrier").value;
+                InsuranceCarrier = document.getElementById("InsCarrier").value;
                 PolicyNumber = document.getElementById("PolicyNumber").value;
                 InsPhoneNumber = document.getElementById("InsPhoneNumber").value;
 
@@ -1604,7 +1555,7 @@
 
         function FirstStep(ins) {
             document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-            insPlan_id = ins.data;
+            emp_id = ins.data;
             //document.querySelector("#MECmonthlyEO").value = ins.MECmonthlyEO;
             //document.querySelector("#MECmonthlyEmpSp").value = ins.MECmonthlyEmpSp;
             //document.querySelector("#MECmonthlyEmpDep").value = ins.MECmonthlyEmpDep;
@@ -1639,7 +1590,6 @@
 
         function SecondStep(ins) {
             document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-            insPlan_id = ins.data;
             //document.querySelector("#DentalCostEmpOnly").value = ins.EmpDentalCost;
             //document.querySelector("#VisionCostEmpOnly").value = ins.EmpVisionCost;
             //document.querySelector("#DentalCostEmpSp").value = EmpSpDentalCost;
@@ -1653,7 +1603,7 @@
         function ThirdStep(ins) {
             document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
             document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
-            GroupHealthInsurance_id = ins.data;
+           
         }
 
         function postData(url, data) {

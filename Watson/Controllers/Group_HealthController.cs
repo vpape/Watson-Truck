@@ -88,20 +88,14 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GrpHealthEnrollmentNew(int Employee_id, int FamilyMember_id, int GroupHealthInsurance_id, int OtherInsurance_id, 
-            string InsuranceCarrier, string PolicyNumber, string GroupName, string IMSGroupNumber, string PhoneNumber, 
-            string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason, string Myself, string Spouse, 
-            string Dependent, string OtherInsuranceCoverage, DateTime CafeteriaPlanYear, string NoMedicalPlan, 
-            string EmployeeOnly, string EmployeeAndSpouse, string EmployeeAndDependent, string EmployeeAndFamily, 
-            string EmployeeSignature, DateTime EmployeeSignatureDate, string EmployeeInitials, string OtherSignature, 
-            DateTime OtherSignatureDate, string CoveredByOtherIns, string InsCarrier, string InsPolicyNumber, 
-            string InsPhoneNumber, string InsMailingAddress, string InsPObox, string InsCity, string InsState,
-            string InsZipCode, string eMaritalStatus, string eFirstName, string eLastName, DateTime eDateOfBirth,
-            string eGender, string EmpNumber, string eMailingAddress, string ePObox, string eCity, string eState, string eZipCode,           
-            string eEmailAddress, string EmpPhoneNumber, string eCellPhone, string spRelationshipToInsured, string spSSN,
-            string spFirstName, string spLastName, DateTime spDateOfBirth, string spGender, string spMailingAddress, string spPObox,
-            string spCity, string spState, string spZipCode, string spEmailAddress, string spPhoneNumber, string spCellPhone,
-            string depRelationshipToInsured, string depSSN, string depFirstName, string depLastName, DateTime depDateOfBirth, string depGender)
+        public JsonResult GrpHealthEnrollmentNew(int Employee_id, int FamilyMember_id, string InsuranceCarrier, 
+            string PolicyNumber, string GroupName, string IMSGroupNumber, string PhoneNumber, string ReasonForGrpCoverageRefusal, 
+            string OtherCoverage, string OtherReason, string Myself, string Spouse, string Dependent, string OtherInsuranceCoverage,
+            DateTime CafeteriaPlanYear, string NoMedicalPlan, string EmployeeOnly, string EmployeeAndSpouse,
+            string EmployeeAndDependent, string EmployeeAndFamily, string EmployeeSignature, DateTime EmployeeSignatureDate,
+            string EmployeeInitials, string OtherSignature, DateTime OtherSignatureDate, string CoveredByOtherIns,
+            string InsCarrier, string InsPolicyNumber, string InsPhoneNumber, string InsMailingAddress, string InsPObox,
+            string InsCity, string InsState, string InsZipCode)
         {
             Group_Health g = new Group_Health();
 
@@ -145,50 +139,19 @@ namespace Watson.Controllers
              .Where(i => i.Employee_id == Employee_id)
              .Single();
 
-            e.MaritalStatus = eMaritalStatus;
-            e.FirstName = eFirstName;
-            e.LastName = eLastName;
-            e.DateOfBirth = eDateOfBirth;
-            e.Gender = eGender;
-            e.SSN = EmpNumber;
-            e.MailingAddress = eMailingAddress;
-            e.PObox = ePObox;
-            e.City = eCity;
-            e.State = eState;
-            e.ZipCode = eZipCode;
-            e.EmailAddress = eEmailAddress;
-            e.PhoneNumber = EmpPhoneNumber;
-            e.CellPhone = eCellPhone;
+            ViewBag.e = e;
 
             Family_Info sp = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
                 .Single();
 
-            sp.RelationshipToInsured = spRelationshipToInsured;
-            sp.SSN = spSSN;
-            sp.FirstName = spFirstName;
-            sp.LastName = spLastName;
-            sp.DateOfBirth = spDateOfBirth;
-            sp.Gender = spGender;
-            sp.MailingAddress = spMailingAddress;
-            sp.PObox = spPObox;
-            sp.City = spCity;
-            sp.State = spState;
-            sp.ZipCode = spZipCode;      
-            sp.EmailAddress = spEmailAddress;
-            sp.PhoneNumber = spPhoneNumber;
-            sp.CellPhone = spCellPhone;
+            ViewBag.sp = sp;
 
             Family_Info dep = db.Family_Info
                .Where(i => i.FamilyMember_id == FamilyMember_id)
                .Single();
 
-            dep.RelationshipToInsured = depRelationshipToInsured;
-            dep.SSN = depSSN;
-            dep.FirstName = depFirstName;
-            dep.LastName = depLastName;
-            dep.DateOfBirth = depDateOfBirth;
-            dep.Gender = depGender;
+            ViewBag.dep = dep;
 
             if (ModelState.IsValid)
             {
@@ -198,13 +161,10 @@ namespace Watson.Controllers
                 db.SaveChanges();
             }
 
-            int oResult = o.Employee_id;
-            int gResult = g.Employee_id;
-            int eResult = e.Employee_id;
-            int spResult = sp.Employee_id;
-            int depResult = dep.Employee_id;
+            int result = e.Employee_id;
+           
 
-            return Json(new { data = oResult, gResult, eResult, spResult, depResult  }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------

@@ -425,15 +425,11 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult SpEnrollmentContact(int Employee_id,/* int FamilyMember_id,*/ string MailingAddress,
-            string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress,
-            string City2, string State2, string ZipCode2, string EmailAddress, string PhoneNumber, string CellPhone)
+        public JsonResult SpEnrollmentContact(int Employee_id, string MailingAddress, string PObox, string City, 
+            string State, string ZipCode, string County, string PhysicalAddress, string City2, string State2,
+            string ZipCode2, string EmailAddress, string PhoneNumber, string CellPhone)
         {
             Family_Info sp = new Family_Info();
-
-            //Family_Info sp = db.Family_Info
-            //    .Where(i => i.FamilyMember_id == FamilyMember_id)
-            //    .Single();
 
             sp.MailingAddress = MailingAddress;
             sp.PObox = PObox;
