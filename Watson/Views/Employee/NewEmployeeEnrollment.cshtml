@@ -305,15 +305,15 @@
             MaritalStatus = document.getElementById("MaritalStatus").value;
             Gender = document.getElementById("Gender").value;
 
-            //need to add:
-            //AnnualSalary = document.getElementById("AnnualSalary").value;-
+            //need to add html:
             //HireDate = document.getElementById("HireDate").value;
             //EffectiveDate = document.getElementById("EffectiveDate").value;
-            //HrsWrkPerWk = document.getElementById("HrsWrkPerWk").value;
             //Department = document.getElementById("Department").value;
             //EnrollmentType = document.getElementById("EnrollmentType").value;
+            //Class = document.getElementById("Class").value
             //PayrollID = document.getElementById("Payroll_id").value;
-            //Class = document.getElementById("Class").value;      
+            //HrsWrkPerWk = document.getElementById("HrsWrkPerWk").value;
+            //AnnualSalary = document.getElementById("AnnualSalary").value;-
 
             var data = {
                 "Role": Role,
@@ -324,7 +324,15 @@
                 "FirstName": FirstName,
                 "LastName": LastName,
                 "DateOfBirth": DateOfBirth,
-                "Gender": Gender
+                "Gender": Gender,
+                //"EmploymentDate": HireDate,,
+                //"EffectiveDate": EffectiveDate,
+                //"Department": Department,
+                //"EnrollmentType": EnrollmentType,
+                //"Class": Class,
+                //"Payroll_id": Payroll_id,                      
+                //"HrsWrkPerWk": HrsWrkPerWk,
+                //"AnnualSalary": AnnualSalary,
             }
 
             //var ret = postData('EmployeeEnrollmentNew', data)

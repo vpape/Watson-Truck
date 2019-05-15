@@ -14,6 +14,10 @@ namespace Watson.Controllers
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
         private static List<Group_Health> groupIns = new List<Group_Health>();
+        private static List<Employee> employee = new List<Employee>();
+        private static List<Family_Info> family = new List<Family_Info>();
+        private static List<Other_Insurance> otherins = new List<Other_Insurance>();
+        private static List<GrpHealthMasterList> grpHMasterList = new List<GrpHealthMasterList>();
 
         public Group_HealthController()
         {
@@ -84,15 +88,18 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult GrpHealthEnrollmentNew(int Employee_id, int GroupHealthInsurance_id, int OtherInsurance_id, 
-            string InsuranceCarrier, string PolicyNumber, string GroupName, string IMSGroupNumber,
-            string PhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
-            string Myself, string Spouse, string Dependent, string OtherInsuranceCoverage, DateTime CafeteriaPlanYear,
-            string NoMedicalPlan, string EmployeeOnly, string EmployeeAndSpouse, string EmployeeAndDependent,
-            string EmployeeAndFamily, string EmployeeSignature, DateTime EmployeeSignatureDate, string EmployeeInitials,
-            string OtherSignature, DateTime OtherSignatureDate, string CoveredByOtherIns, string InsCarrier, 
-            string InsPolicyNumber, string InsPhoneNumber, string InsMailingAddress, string InsPObox, string InsCity, 
-            string InsState, string InsZipCode)
+        public JsonResult GrpHealthEnrollmentNew(int Employee_id, int FamilyMember_id, int GroupHealthInsurance_id, int OtherInsurance_id, 
+            string InsuranceCarrier, string PolicyNumber, string GroupName, string IMSGroupNumber, string PhoneNumber, 
+            string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason, string Myself, string Spouse, 
+            string Dependent, string OtherInsuranceCoverage, DateTime CafeteriaPlanYear, string NoMedicalPlan, 
+            string EmployeeOnly, string EmployeeAndSpouse, string EmployeeAndDependent, string EmployeeAndFamily, 
+            string EmployeeSignature, DateTime EmployeeSignatureDate, string EmployeeInitials, string OtherSignature, 
+            DateTime OtherSignatureDate, string CoveredByOtherIns, string InsCarrier, string InsPolicyNumber, 
+            string InsPhoneNumber, string InsMailingAddress, string InsPObox, string InsCity, string InsState,
+            string InsZipCode, string MaritalStatus, string FirstName, string LastName, DateTime DateOfBirth,
+            string Gender, string EmpNumber, string MailingAddress, string PObox, string City, string State, string ZipCode,           
+            string EmailAddress, string EmpPhoneNumber, string CellPhone, string RelationshipToInsured, string SSN,
+            string )
         {
             Group_Health g = new Group_Health();
 
@@ -120,9 +127,7 @@ namespace Watson.Controllers
             g.OtherSignature = OtherSignature;
             g.OtherSignatureDate = OtherSignatureDate;
 
-            Other_Insurance o = db.Other_Insurance
-              .Where(i => i.OtherInsurance_id == OtherInsurance_id)
-              .Single();
+            Other_Insurance o = new Other_Insurance();
 
             o.CoveredByOtherInsurance = CoveredByOtherIns;
             o.InsuranceCarrier = InsCarrier;
@@ -134,8 +139,54 @@ namespace Watson.Controllers
             o.State = InsState;
             o.ZipCode = InsZipCode;
 
-            int oResult = o.Employee_id;
-            int gResult = g.Employee_id;
+            Employee e = db.Employees
+             .Where(i => i.Employee_id == Employee_id)
+             .Single();
+
+            e.MaritalStatus = MaritalStatus;
+            e.FirstName = FirstName;
+            e.LastName = LastName;
+            e.DateOfBirth = DateOfBirth;
+            e.Gender = Gender;
+            e.SSN = EmpNumber;
+            e.MailingAddress = MailingAddress;
+            e.PObox = PObox;
+            e.City = City;
+            e.State = State;
+            e.ZipCode = ZipCode;
+            e.EmailAddress = EmailAddress;
+            e.PhoneNumber = EmpPhoneNumber;
+            e.CellPhone = CellPhone;
+
+            Family_Info sp = db.Family_Info
+                .Where(i => i.FamilyMember_id == FamilyMember_id)
+                .Single();
+
+            sp.RelationshipToInsured = RelationshipToInsured;
+            sp.SSN = SSN;
+            sp.FirstName = FirstName;
+            sp.LastName = LastName;
+            sp.DateOfBirth = DateOfBirth;
+            sp.Gender = Gender;
+            sp.MailingAddress = MailingAddress;
+            sp.PObox = PObox;
+            sp.City = City;
+            sp.State = State;
+            sp.ZipCode = ZipCode;      
+            sp.EmailAddress = EmailAddress;
+            sp.PhoneNumber = PhoneNumber;
+            sp.CellPhone = CellPhone;
+
+            Family_Info dep = db.Family_Info
+               .Where(i => i.FamilyMember_id == FamilyMember_id)
+               .Single();
+
+            dep.RelationshipToInsured = RelationshipToInsured;
+            dep.SSN = SSN;
+            dep.FirstName = FirstName;
+            dep.LastName = LastName;
+            dep.DateOfBirth = DateOfBirth;
+            dep.Gender = Gender;
 
             if (ModelState.IsValid)
             {
@@ -145,7 +196,13 @@ namespace Watson.Controllers
                 db.SaveChanges();
             }
 
-            return Json(new { data = oResult, gResult }, JsonRequestBehavior.AllowGet);
+            int oResult = o.Employee_id;
+            int gResult = g.Employee_id;
+            int eResult = e.Employee_id;
+            int spResult = sp.Employee_id;
+            int depResult = dep.Employee_id;
+
+            return Json(new { data = oResult, gResult, eResult, spResult, depResult  }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------

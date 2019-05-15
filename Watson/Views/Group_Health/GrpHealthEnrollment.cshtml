@@ -1,4 +1,4 @@
-﻿
+﻿@model Watson.Models.GrpHealthMasterList
 @{
     ViewBag.Title = "GrpHealthEnrollment";
 }
@@ -20,6 +20,7 @@
     <input type="hidden" id="InsurancePlanDetail_id" class="form-control" name="InsurancePlanDetail_id" value=@ViewBag.InsurancePlanDetail_id />
     <input type="hidden" id="InsurancePlan_id" class="form-control" name="InsurancePlan_id" value=@ViewBag.InsurancePlan_id />
     <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value=@ViewBag.GroupHealthInsurance_id />
+    <input type="hidden" id="OtherInsurance_id" class="form-control" name="OtherInsurance_id" value=@ViewBag.OtherInsurance_id />
     <div class="form-horizontal">
         <div class="collapsible" id="FirstStep">Health Insurance Premiums</div>
         <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">
@@ -1206,7 +1207,7 @@
         <br id="br1" />
 
         @*<input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
-        <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">*@
+            <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">*@
     </div>
 </body>
 </html>
@@ -1220,6 +1221,7 @@
     var insPrem_id;
     var insDetail_id;
     var grpHealthIns_id;
+    var otherIns_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -1508,7 +1510,7 @@
                 //spEmployerZipCode = document.getElementById("spEmployerZipCode").value;
                 //spEmployerPhoneNumber = document.getElementById("spEmployerPhoneNumber").value;
 
-                spOtherCoverageSelection = document.getElementById("spOtherCoverageSelection").value;
+                spOtherCoverageSelected = document.getElementById("spOtherCoverageSelection").value;
                 spInsCarrier = document.getElementById("spInsCarrier").value;
                 spInsAddress = document.getElementById("spInsAddress").value;
                 spInsCity = document.getElementById("spInsCity").value;
@@ -1534,15 +1536,6 @@
                     "Employee_id": emp_id,
                     "GroupName": GroupName,
                     "IMSGroupNumber": IMSGroupNumber,
-                    //"Department": Department,
-                    //"EnrollmentType": EnrollmentType,
-                    //"Payroll_id": Payroll_id,
-                    //"Class": Class,
-                    //"AnnualSalary": AnnualSalary,
-                    //"Occupation": JobTitle,
-                    //"EmploymentDate": HireDate,
-                    //"EffectiveDate": EffectiveDate,
-                    //"HrsWrkPerWk": HrsWrkPerWk,
                     //"EmpNumber": EmpNumber,
                     //"FirstName": FirstName,
                     //"LastName": LastName,
