@@ -209,7 +209,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#DepEnrollmentUpdate").addEventListener("click", function () {
-            //RelationshipToInsured = document.getElementById("RelationToInsured").value
+            RelationshipToInsured = document.getElementById("RelationToInsured").value
             //EmpNumber = document.getElementById("SSN").value
             DepFirstName = document.getElementById("DepFirstName").value
             DepLastName = document.getElementById("DepLastName").value
@@ -227,7 +227,7 @@
 
             var data = {
                 "Employee_id": emp_id,
-                //"RelationshipToInsured": RelationshipToInsured,
+                "RelationshipToInsured": RelationshipToInsured,
                 //"EmpNumber": EmpNumber,
                 "DepFirstName": DepFirstName,
                 "DepLastName": DepLastName,

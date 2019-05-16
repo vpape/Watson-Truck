@@ -701,18 +701,18 @@
             <div>
                 <div class="form-control">
                     <label>Are you covered by any other insurance, including Medicare?</label>
-                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="return empCoveredByOtherIns()" name="OtherInsuranceCoverage" value="yes" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="return empCoveredByOtherIns()" name="OtherInsuranceCoverage" value="no" checked />No</label>
+                    <label class="radio-inline"><input type="radio" id="empOtherInsCoverage" class="radio-inline" onclick="return empOtherInsCoverage()" name="OtherInsuranceCoverage" value="yes" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="empOtherInsCoverage" class="radio-inline" onclick="return empOtherInsCoverage()" name="OtherInsuranceCoverage" value="no" checked />No</label>
                 </div>
                 <div id="empInsInfo">
                     <div class="form-group col-md-3">
-                        <input type="text" id="InsCarrier" class="form-control" placeholder="Insurance Company" name="InsuranceCarrier" value="" />
+                        <input type="text" id="empInsCarrier" class="form-control" placeholder="Insurance Company" name="InsuranceCarrier" value="" />
                     </div>
                     <div class="form-group col-md-3">
-                        <input type="text" id="PolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                        <input type="text" id="empInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
                     </div>
                     <div class="form-group col-md-3">
-                        <input type="tel" id="InsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                        <input type="tel" id="empInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
                     </div>
                 </div>
             </div>
@@ -876,10 +876,10 @@
                             <td class="text">
                                 <select id="spOtherCoverageSelection" class="form-control">
                                     <option>Other Ins. Coverage:</option>
-                                    <option>Medical</option>
-                                    <option>Dental</option>
-                                    <option>Vision</option>
-                                    <option>Indemnity</option>
+                                    <option value="Medical">Medical</option>
+                                    <option value="Dental">Dental</option>
+                                    <option value="Vision">Vision</option>
+                                    <option value="Indemnity">Indemnity</option>
                                 </select>
                             </td>
                             <td class="text">
@@ -897,7 +897,7 @@
                         </thead>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spInsCarrier" placeholder="Insurance Carrier" value="" />
+                                <input type="text" class="form-control" id="spInsCarrier" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
                             </td>
                             <td class="text">
                                 <input type="text" class="form-control" id="" placeholder="" />
@@ -905,25 +905,25 @@
                         </tr>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spInsAddress" placeholder="Street" value="" />
+                                <input type="text" class="form-control" id="spInsMailingAddress" placeholder="Street" name="MailingAddress" value="" />
                             </td>
                             <td class="text">
-                                <input type="text" class="form-control" id="spInsCity" placeholder="City" value="" />
-                            </td>
-                        </tr>
-                        <tr></tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spInsState" placeholder="State" value="" />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spInsZipCode" placeholder="Zip Code" value="" />
+                                <input type="text" class="form-control" id="spInsCity" placeholder="City" name="City" value="" />
                             </td>
                         </tr>
                         <tr></tr>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spInsPhoneNumber" placeholder="Phone Number" value="" />
+                                <input type="text" class="form-control" id="spInsState" placeholder="State" name="State" value="" />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spInsZipCode" placeholder="Zip Code" name="ZipCode" value="" />
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spInsPhoneNumber" placeholder="Phone Number" name="PhoneNumber" value="" />
                             </td>
                             <td class="text">
                                 <input type="text" class="form-control" id="" placeholder="" />
@@ -931,7 +931,7 @@
                         </tr>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spInsPolicyNumber" placeholder="Policy #" value="" />
+                                <input type="text" class="form-control" id="spInsPolicyNumber" placeholder="Policy #" name="PolicyNumber" value="" />
                             </td>
                             <td class="text">
                                 <input type="text" class="form-control" id="" placeholder="" />
@@ -943,18 +943,18 @@
             <hr />
             <div>
                 @* retrieve dep info from DepEnrollment page *@
-                <div id="depGen&InsInfo1">
-                    <div id="depGenInfo1">
+                <div id="depGen&InsInfo">
+                    <div id="depGenInfo">
                         <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
-                        <div id="depInfo1">
+                        <div id="depInfo">
                             <div class="form-group col-md-2">
-                                <input type="text" id="depFirstName1" class="form-control" placeholder="First Name" name="FirstName" value="" disabled />
+                                <input type="text" id="depFirstName" class="form-control" placeholder="First Name" name="FirstName" value="" disabled />
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="text" id="depLastName1" class="form-control" placeholder="Last Name" name="LastName" value="" disabled />
+                                <input type="text" id="depLastName" class="form-control" placeholder="Last Name" name="LastName" value="" disabled />
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="text" id="depSSN1" class="form-control" placeholder="SSN#- Call HR" name="SSN" value="" disabled />
+                                <input type="text" id="depSSN" class="form-control" placeholder="SSN#- Call HR" name="SSN" value="" disabled />
                             </div>
                             <div class="form-group col-md-3" id="depRelationshipToInsured">
                                 <input type="text" id="depRelationToInsured" class="form-control" placeholder="Relationship to Insured" name="RelationShipToInsured" value="" readonly>
@@ -966,7 +966,7 @@
                                 <input type="date" class="form-control" id="depDateOfBirth1" name="DateOfBirth" value="" disabled />
                             </div>
                             <div class="form-group col-md-2">
-                                <select id="depGender1" class="form-control" disabled>
+                                <select id="depGender" class="form-control" disabled>
                                     <option value="">Gender:</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -977,17 +977,17 @@
                     <div>
                         <div>
                             <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                            <label class="radio-inline"><input type="radio" id="depCoveredByOtherIns" class="radio-inline" onclick="return depCoveredByOtherIns()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
-                            <label class="radio-inline"><input type="radio" id="depCoveredByOtherIns" class="radio-inline" onclick="return depCoveredByOtherIns()" name="CoveredByOtherInsurance" value="no" checked />No</label>
+                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="return depOtherInsCoverage()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
+                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="return depOtherInsCoverage()" name="CoveredByOtherInsurance" value="no" checked />No</label>
                             <div id="depInsInfo1">
                                 <div class="form-group col-md-2">
-                                    <input type="text" id="depInsCarrier1" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
+                                    <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <input type="text" id="depInsPolicyNumber1" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                                    <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <input type="tel" id="depInsPhoneNumber1" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                                    <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
                                 </div>
                             </div>
                         </div>
@@ -1212,11 +1212,6 @@
     var col = document.querySelectorAll(".collapsible");
     var i;
     var emp_id;
-    //var insPlan_id;
-    //var insPrem_id;
-    //var insDetail_id;
-    //var grpHealthIns_id;
-    //var otherIns_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -1231,9 +1226,9 @@
         });
     }
 
-    function empCoveredByOtherIns() {
+    function empOtherInsCoverage() {
 
-        var div = document.querySelector("empCoveredByOtherIns").value;
+        var div = document.querySelector("empOtherInsCoverage").value;
         var divEmpHide = document.getElementById("empInsInfo")
         var divEmpShow = document.getElementById("empInsInfo")
 
@@ -1249,29 +1244,22 @@
         });
 
         //create a for loop i=8
-        function depCoveredByOtherIns() {
+        function depOtherInsCoverage() {
 
-            var div = document.querySelectorAll("depCoveredByOtherIns").value;
-            var divDepHide1 = document.querySelector("depInsInfo1")
-            var divDepShow1 = document.querySelector("depInsInfo1")
-            var divDepHide2 = document.querySelector("depInsInfo2")
-            var divDepShow2 = document.querySelector("depInsInfo2")
-            var divDepHide3 = document.querySelector("depInsInfo3")
-            var divDepShow3 = document.querySelector("depInsInfo3")
-
+            var div = document.querySelectorAll("depOtherInsCoverage").value;
+            var divDepHide1 = document.querySelector("depInsInfo")
+            var divDepShow1 = document.querySelector("depInsInfo")
 
             div.addEventListener('click', function () {
 
                 if (div.checked == "no") {
 
                     divDepHide1.style.visibility = "hidden";
-                    divDepHide2.style.visibility = "hidden";
-                    divDepHide3.style.visibility = "hidden";
+
                 }
                 else {
                     divDepShow1.style.visibility = "visible";
-                    divDepShow2.style.visibility = "visible";
-                    divDepShow3.style.visibility = "visible";
+
                 }
             });
 
@@ -1434,50 +1422,32 @@
             document.querySelector("GrpHealthInsUpdateStepThree").addEventListener("click", function () {
                 GroupName = document.getElementById("GroupName").value;
                 IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
-                empCoveredByOtherIns = document.getElementById("empCoveredByOtherIns").value;
-                InsuranceCarrier = document.getElementById("InsCarrier").value;
-                PolicyNumber = document.getElementById("PolicyNumber").value;
-                InsPhoneNumber = document.getElementById("InsPhoneNumber").value;
+                empOtherInsCoverage = document.getElementById("empCoveredByOtherIns").value;
+                empInsuranceCarrier = document.getElementById("empInsCarrier").value;
+                empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value;
+                empInsPhoneNumber = document.getElementById("empInsPhoneNumber").value;
 
                 NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
                 EmpOnlyGroupHealthOption = document.getElementById("EmpOnlyGroupHealthOption").value;
                 EmpSpGroupHealthOption = document.getElementById("EmpSpGroupHealthOption").value;
                 EmpDepGroupHealthOption = document.getElementById("EmpDepGroupHealthOption").value;
                 EmpFamGroupHealthOption = document.getElementById("EmpFamGroupHealthOption").value;
-
-                //spFirstName = document.getElementById("spFirstName").value;
-                //spLastName = document.getElementById("spLastName").value;
-                //spAddress = document.getElementById("spAddress").value;
-                //spCity = document.getElementById("spCity").value;
-                //spState = document.getElementById("spState").value;
-                //spZipCode = document.getElementById("spZipCode").value;
-                //spPhoneNumber = document.getElementById("spPhoneNumber").value;
-                //spDateOfBirth = document.getElementById("spDateOfBirth").value;
-
-                //spEmployer = document.getElementById("spEmployer").value;
-                //spEmployerAddress = document.getElementById("spEmployerAddress").value;
-                //spEmployerCity = document.getElementById("spEmployerCity").value;
-                //spEmployerState = document.getElementById("spEmployerState").value;
-                //spEmployerZipCode = document.getElementById("spEmployerZipCode").value;
-                //spEmployerPhoneNumber = document.getElementById("spEmployerPhoneNumber").value;
-
-                spOtherCoverageSelected = document.getElementById("spOtherCoverageSelection").value;
+                //EmpSignature = document.getElementById("EmpSignature").value;
+                //EmpInitials = document.getElementById("EmpInitials").value;
+                //EmpSignatureDate = document.getElementById("EmpSignatureDate").value;
+                //OtherSignature = document.getElementById("EmpSignature").value;
+                //OtherSignatureDate = document.getElementById("OtherSignatureDate").value;
+                
+                spOtherInsCoverage  = document.getElementById("spOtherCoverageSelection").value;
                 spInsCarrier = document.getElementById("spInsCarrier").value;
-                spInsAddress = document.getElementById("spInsAddress").value;
+                spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
                 spInsCity = document.getElementById("spInsCity").value;
                 spInsState = document.getElementById("spInsState").value;
                 spInsZipCode = document.getElementById("spInsZipCode").value;
                 spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value;
                 spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value;
 
-                //depFirstName = document.getElementById("depFirstName").value;
-                //depLastName = document.getElementById("depLastName").value;
-                //depSSN = document.getElementById("depSSN").value;
-                //depRelationToInsured = document.getElementById("depRelationToInsured").value;
-                //depDateOfBirth = document.getElementById("depDateOfBirth").value;
-                //depGender = document.getElementById("depGender").value;
-
-                depCoveredByOtherIns = document.getElementById("depCoveredByOtherIns").value;
+                depOtherInsCoverage = document.getElementById("depOtherInsCoverage").value;
                 depInsCarrier = document.getElementById("depInsCarrier").value;
                 depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value;
                 depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value;
@@ -1487,58 +1457,26 @@
                     "Employee_id": emp_id,
                     "GroupName": GroupName,
                     "IMSGroupNumber": IMSGroupNumber,
-                    //"EmpNumber": EmpNumber,
-                    //"FirstName": FirstName,
-                    //"LastName": LastName,
-                    //"MailingAddress": MailingAddress,
-                    //"PObox": PObox,
-                    //"City": City,
-                    //"State": State,
-                    //"ZipCode": ZipCode,
-                    //"EmpGender": EmpGender,
-                    //"MaritalStatus": MaritalStatus,
-                    //"EmailAddress": EmailAddress,
-                    //"PhoneNumber": PhoneNumber,
-                    //"DateOfBirth": DateOfBirth,
-                    "empCoveredByOtherIns": empCoveredByOtherIns,
-                    "InsCarrier": InsCarrier,
-                    "PolicyNumber": PolicyNumber,
-                    "InsPhoneNumber": InsPhoneNumber,
+                    "empOtherInsCoverage": empOtherInsCoverage,
+                    "empInsCarrier": empInsCarrier,
+                    "empInsPolicyNumber": empInsPolicyNumber,
+                    "empInsPhoneNumber": empInsPhoneNumber,
+                    "NoneGroupHealthOption": NoneGroupHealthOption,
                     "EmpOnlyGroupHealthOption": EmpOnlyGroupHealthOption,
                     "EmpSpGroupHealthOption": EmpSpGroupHealthOption,
                     "EmpDepGroupHealthOption": EmpDepGroupHealthOption,
                     "EmpFamGroupHealthOption": EmpFamGroupHealthOption,
 
-                    //"spFirstName": spFirstName,
-                    //"spLastName": spLastName,
-                    //"spAddress": spAddress,
-                    //"spCity": spCity,
-                    //"spState": spState,
-                    //"spZipCode": spZipCode,
-                    //"spPhoneNumber": spPhoneNumber,
-                    //"spDateOfBirth": spDateOfBirth,
-                    //"spGender": spGender,
-                    //"spEmployer": spEmployer,
-                    //"spEmployerAddress": spEmployerAddress,
-                    //"spEmployerCity": spEmployerCity,
-                    //"spEmployerState": spEmployerState,
-                    //"spEmployerZipCode": spEmployerZipCode,
-                    //"spEmployerPhoneNumber": spEmployerPhoneNumber,
+                    "spOtherInsCoverage": spOtherInsCoverage,
                     "spInsCarrier": spInsCarrier,
-                    "spInsAddress": spInsAddress,
+                    "spInsMailingAddress": spInsMailingAddress,
                     "spInsCity": spInsCity,
                     "spInsState": spInsState,
                     "spInsZipCode": spInsZipCode,
                     "spInsPhoneNumber": spInsPhoneNumber,
                     "spInsPolicyNumber": spInsPolicyNumber,
 
-                    //"depFirstName": depFirstName,
-                    //"depLastName": depLastName,
-                    //"depSSN": depSSN,
-                    //"depRelationToInsured": depRelationToInsured,
-                    //"depDateOfBirth": depDateOfBirth,
-                    //"depGender": depGender,
-                    "depCoveredByOtherIns": depCoveredByOtherIns,
+                    "depOtherInsCoverage": depOtherInsCoverage,
                     "depInsCarrier": depInsCarrier,
                     "depInsPolicyNumber": depInsPolicyNumber,
                     "depInsPhoneNumber": depInsPhoneNumber,
