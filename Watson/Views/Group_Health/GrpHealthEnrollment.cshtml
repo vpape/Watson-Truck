@@ -615,23 +615,23 @@
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Department" id="Department" placeholder="Department" value="" />
+                    <input type="text" class="form-control" name="Department" id="empDepartment" placeholder="Department" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="EnrollmentType" id="EnrollmentType" placeholder="Enrollment Type" value="" />
+                    <input type="text" class="form-control" name="EnrollmentType" id="empEnrollmentType" placeholder="Enrollment Type" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Payroll_id" id="Payroll_id" placeholder="Payroll ID" value="" />
+                    <input type="text" class="form-control" name="Payroll_id" id="empPayroll_id" placeholder="Payroll ID" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Class" id="Class" placeholder="Class" value="" />
+                    <input type="text" class="form-control" name="Class" id="empClass" placeholder="Class" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="AnnualSalary" id="AnnualSalary" placeholder="Annual Salary" value="" />
+                    <input type="text" class="form-control" name="AnnualSalary" id="empAnnualSalary" placeholder="Annual Salary" value="" />
                 </div>
                 <p></p>
                 <div>
@@ -643,11 +643,11 @@
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="EffectiveDate" id="EffectiveDate" placeholder="Effective Date" value="" />
+                    <input type="text" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="number" class="form-control" name="HoursWorkedPerWeek" id="HrsWkPerWk" placeholder="Min. Hrs. Worked/Wk" value="" />
+                    <input type="number" class="form-control" name="HoursWorkedPerWeek" id="empHrsWkPerWk" placeholder="Min. Hrs. Worked/Wk" value="" />
                 </div>
             </div>
 
@@ -874,7 +874,7 @@
                         </tr>
                         <tr>
                             <td class="text">
-                                <select id="spOtherCoverageSelection" class="form-control">
+                                <select id="spOtherInsCoverage" class="form-control">
                                     <option>Other Ins. Coverage:</option>
                                     <option value="Medical">Medical</option>
                                     <option value="Dental">Dental</option>
@@ -1323,13 +1323,7 @@
             });
 
         }
-        //Have three tables- one parent- two children-
-        //parent table -Insurance Plan
-        //-InsurancePlan_id as primary and Employee_id as foregin key
-        //child1- InsurancePlanDetail
-        //-InsurancePlanDetail_id as primary and InsurancePlan_id as foregin key
-        //child2- InsurancePremium
-        //-InsurancePremium_id as primary and InsurancePlan_id as foregin key
+
         document.addEventListener("DOMContentLoaded", function () {
             document.querySelector("#InsPremiumUpdateStepOne").addEventListener("click", function () {
                 MECmonthlyEO = document.getElementById('MECmonthlyCostEmpOnly').value
@@ -1481,23 +1475,27 @@
             document.querySelector("GrpHealthInsUpdateStepThree").addEventListener("click", function () {
                 GroupName = document.getElementById("GroupName").value;
                 IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
+                //empDepartment = document.getElementById("empDepartment").value;
+                //empEnrollmentType = document.getElementById("empEnrollmentType").value;
+                //empPayroll_id = document.getElementById("empPayroll_id").value;
+                //empClass = document.getElementById("empClass").value
+                //empAnnualSalary = document.getElementById("empAnnualSalary").value;
+                //empEffectiveDate = document.getElementById("empEffectiveDate").value;
+                //empHrsWrkPerWk = document.getElementById("empHrsWrkPerWk").value;
                 empOtherInsCoverage = document.getElementById("empCoveredByOtherIns").value;
                 empInsuranceCarrier = document.getElementById("empInsCarrier").value;
                 empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value;
                 empInsPhoneNumber = document.getElementById("empInsPhoneNumber").value;
-
+                //EmpSignature = document.getElementById("EmpSignature").value;
+                //EmpSignatureDate = document.getElementById("EmpSignatureDate").value;
+     
                 NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
                 EmpOnlyGroupHealthOption = document.getElementById("EmpOnlyGroupHealthOption").value;
                 EmpSpGroupHealthOption = document.getElementById("EmpSpGroupHealthOption").value;
                 EmpDepGroupHealthOption = document.getElementById("EmpDepGroupHealthOption").value;
                 EmpFamGroupHealthOption = document.getElementById("EmpFamGroupHealthOption").value;
-                //EmpSignature = document.getElementById("EmpSignature").value;
-                //EmpInitials = document.getElementById("EmpInitials").value;
-                //EmpSignatureDate = document.getElementById("EmpSignatureDate").value;
-                //OtherSignature = document.getElementById("EmpSignature").value;
-                //OtherSignatureDate = document.getElementById("OtherSignatureDate").value;
-                
-                spOtherInsCoverage  = document.getElementById("spOtherCoverageSelection").value;
+               
+                spOtherInsCoverage = document.getElementById("spOtherInsCoverage").value;
                 spInsCarrier = document.getElementById("spInsCarrier").value;
                 spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
                 spInsCity = document.getElementById("spInsCity").value;
@@ -1516,6 +1514,13 @@
                     "Employee_id": emp_id,
                     "GroupName": GroupName,
                     "IMSGroupNumber": IMSGroupNumber,
+                    "empDepartment": empDepartment,
+                    "empEnrollmentType": empEnrollmentType,
+                    "empPayroll_id": empPayroll_id,
+                    "empClass": empClass,
+                    "empAnnualSalary": empAnnualSalary,
+                    "empEffectiveDate": empEffectiveDate,
+                    "empHrsWrkPerWk": empHrsWrkPerWk,
                     "empOtherInsCoverage": empOtherInsCoverage,
                     "empInsCarrier": empInsCarrier,
                     "empInsPolicyNumber": empInsPolicyNumber,

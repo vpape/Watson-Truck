@@ -95,10 +95,12 @@ namespace Watson.Controllers
             string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason, string Myself, string Spouse,
             string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear,
             string NoneGroupHealthOption, string EmpOnlyGroupHealthOption, string EmpSpGroupHealthOption, 
-            string EmpDepGroupHealthOption, string EmpFamGroupHealthOption, string EmpSignature, DateTime EmpSignatureDate,
-            string EmpInitials, string OtherSignature, DateTime OtherSignatureDate, string spOtherInsCoverage,
-            string spInsCarrier, string spInsPolicyNumber, string spInsPhoneNumber, string spInsMailingAddress, 
-            string spInsPObox, string spInsCity, string spInsState, string spInsZipCode, string depOtherInsCoverage,
+            string EmpDepGroupHealthOption, string EmpFamGroupHealthOption, string EmpSignature,
+            DateTime EmpSignatureDate, string EmpInitials, string OtherSignature, DateTime OtherSignatureDate,
+            string empDepartment, string empEnrollmentType, int empPayroll_id, string empClass, decimal empAnnualSalary,
+            DateTime empEffectiveDate, int empHrsWkPerWk, string spOtherInsCoverage, string spInsCarrier, 
+            string spInsPolicyNumber, string spInsPhoneNumber, string spInsMailingAddress, string spInsPObox,
+            string spInsCity, string spInsState, string spInsZipCode, string depOtherInsCoverage,
             string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
         {
             Group_Health g = new Group_Health();
@@ -126,6 +128,16 @@ namespace Watson.Controllers
             g.EmployeeInitials = EmpInitials;
             g.OtherSignature = OtherSignature;
             g.OtherSignatureDate = OtherSignatureDate;
+
+            Employee emp = new Employee();
+
+            emp.Department = empDepartment;
+            emp.EnrollmentType = empEnrollmentType;
+            emp.Payroll_id = empPayroll_id;
+            emp.Class = empClass;
+            emp.AnnualSalary = empAnnualSalary;
+            emp.EffectiveDate = empEffectiveDate;
+            emp.HoursWorkedPerWeek = empHrsWkPerWk;
 
             Other_Insurance o = new Other_Insurance();
 
@@ -199,10 +211,11 @@ namespace Watson.Controllers
             string Myself, string Spouse, string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear,
             string NoneGroupHealthOption, string EmpOnlyGroupHealthOption, string EmpSpGroupHealthOption,
             string EmpDepGroupHealthOption, string EmpFamGroupHealthOption, string EmpSignature, DateTime EmpSignatureDate,
-            string EmpInitials, string OtherSignature, DateTime OtherSignatureDate, string spOtherInsCoverage,
-            string spInsCarrier, string spInsPolicyNumber, string spInsPhoneNumber, string spInsMailingAddress,
-            string spInsPObox, string spInsCity, string spInsState, string spInsZipCode, string depOtherInsCoverage,
-            string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
+            string EmpInitials, string OtherSignature, DateTime OtherSignatureDate, string empDepartment, string empEnrollmentType,
+            int empPayroll_id, string empClass, decimal empAnnualSalary, DateTime empEffectiveDate, int empHrsWkPerWk,
+            string spOtherInsCoverage, string spInsCarrier, string spInsPolicyNumber, string spInsPhoneNumber,
+            string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState, string spInsZipCode,
+             string depOtherInsCoverage, string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
         {
             var g = db.Group_Health
                 .Where(i => i.GroupHealthInsurance_id == GrpHealthIns_id)
@@ -233,6 +246,20 @@ namespace Watson.Controllers
             g.OtherSignatureDate = OtherSignatureDate;
 
             ViewBag.g = g;
+
+            Employee emp = db.Employees
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
+
+            emp.Department = empDepartment;
+            emp.EnrollmentType = empEnrollmentType;
+            emp.Payroll_id = empPayroll_id;
+            emp.Class = empClass;
+            emp.AnnualSalary = empAnnualSalary;
+            emp.EffectiveDate = empEffectiveDate;
+            emp.HoursWorkedPerWeek = empHrsWkPerWk;
+
+            ViewBag.emp = emp;
 
             Other_Insurance o = db.Other_Insurance
                .Where(i => i.OtherInsurance_id == OtherInsurance_id)
@@ -324,6 +351,12 @@ namespace Watson.Controllers
             string EElectionPreTax, decimal PremiumPreTax, string EElectionPostTax, decimal PremiumPostTax,
             decimal TotalPreTax, decimal TotalPostTax)
         {
+            Employee e = db.Employees
+            .Where(i => i.Employee_id == Employee_id)
+            .Single();
+
+            ViewBag.e = e;
+
             Deduction d = new Deduction();
 
             d.Coverage = Coverage;
