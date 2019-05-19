@@ -1,4 +1,4 @@
-﻿@model Watson.Models.GrpHealthMasterList
+﻿@*@model Watson.Models.GrpHealthMasterList*@
 @{
     ViewBag.Title = "GrpHealthEnrollment";
 }
@@ -15,7 +15,7 @@
     <title>Health Insurance Enrollment</title>
 </head>
 <body>
-    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.e.Employee_id />
+    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" @*value=@ViewBag.e.Employee_id*@ />
     <div class="form-horizontal">
         <div class="collapsible" id="FirstStep">Health Insurance Premiums</div>
         <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">
@@ -652,24 +652,24 @@
             </div>
 
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="Employee Number" id="EmployeeNumber" name="SSN" value="" />
+                <input type="text" class="form-control" placeholder="Employee Number" id="EmployeeNumber" name="SSN" value="" disabled/>
             </div>
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" />
+                <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" disabled/>
             </div>
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="" />
+                <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="" disabled/>
             </div>
             <p></p>
             <div class="form-group col-md-6">
-                <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
-                <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" />
-                <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
-                <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
-                <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" disabled/>
+                <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" disabled/>
+                <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" disabled/>
+                <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" disabled/>
+                <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" disabled/>
             </div>
             <div>
-                <select id="EmpGender" class="form-control">
+                <select id="EmpGender" class="form-control" disabled>
                     <option value="">Gender:</option>
                     <option value="Male" @*@((ViewBag.Gender) == "Male"   ? "selected" : "")*@>Male</option>
                     <option value="Female" @*@((ViewBag.Gender) == "Female" ? "selected" : "")*@>Female</option>
@@ -677,7 +677,7 @@
             </div>
             <p></p>
             <div>
-                <select id="MaritalStatus" class="form-control">
+                <select id="MaritalStatus" class="form-control" disabled>
                     <option value="">Marital Status:</option>
                     <option value="MarriedwDep" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Married with Dependents</option>
                     <option value="Married" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>Married</option>
@@ -687,15 +687,15 @@
             </div>
             <p></p>
             <div>
-                <input type="text" class="form-control" placeholder="Email Address" id="EmailAddress" name="EmailAddress" value="" />
+                <input type="text" class="form-control" placeholder="Email Address" id="EmailAddress" name="EmailAddress" value="" disabled/>
             </div>
             <div>
-                <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" />
+                <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" disabled/>
             </div>
             <p></p>
             <div>
                 <label>Birth Date:</label>
-                <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="" />
+                <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="" disabled/>
             </div>
             <hr />
             <div>
@@ -787,42 +787,42 @@
                         </thead>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spFirstName" placeholder="First Name" value="" />
+                                <input type="text" class="form-control" id="spFirstName" placeholder="First Name" value="" disabled/>
                             </td>
                             <td class="text">
-                                <input type="text" class="form-control" id="spLastName" placeholder="Last Name" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spAddress" placeholder="Street" value="" />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spCity" placeholder="City" value="" />
+                                <input type="text" class="form-control" id="spLastName" placeholder="Last Name" value="" disabled/>
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spState" placeholder="State" value="" />
+                                <input type="text" class="form-control" id="spAddress" placeholder="Street" value="" disabled/>
                             </td>
                             <td class="text">
-                                <input type="text" class="form-control" id="spZipCode" placeholder="Zip Code" value="" />
+                                <input type="text" class="form-control" id="spCity" placeholder="City" value="" disabled/>
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <input type="tel" class="form-control" id="spPhoneNumber" placeholder="Phone Number" value="" />
+                                <input type="text" class="form-control" id="spState" placeholder="State" value="" disabled/>
                             </td>
                             <td class="text">
-                                <input type="date" class="form-control" id="spDateOfBirth" placeholder="Birth Date" value="" />
+                                <input type="text" class="form-control" id="spZipCode" placeholder="Zip Code" value="" disabled/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text">
+                                <input type="tel" class="form-control" id="spPhoneNumber" placeholder="Phone Number" value="" disabled/>
+                            </td>
+                            <td class="text">
+                                <input type="date" class="form-control" id="spDateOfBirth" placeholder="Birth Date" value="" disabled/>
                             </td>
                         </tr>
                         <tr>
                             <td class="text" colspan="1">
-                                <select id="spGender" class="form-control">
+                                <select id="spGender" class="form-control" disabled>
                                     <option>Gender:</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
                                 </select>
                             </td>
                             <td class="text" colspan="1">
@@ -840,7 +840,7 @@
                         </thead>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spEmployer" placeholder="Employer" value="" />
+                                <input type="text" class="form-control" id="spEmployer" placeholder="Employer" value="" disabled/>
                             </td>
                             <td class="text">
                                 <input type="text" class="form-control" id="" placeholder="" />
@@ -848,25 +848,25 @@
                         </tr>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spEmployerAddress" placeholder="Street" value="" />
+                                <input type="text" class="form-control" id="spEmployerAddress" placeholder="Street" value="" disabled/>
                             </td>
                             <td class="text">
-                                <input type="text" class="form-control" id="spEmployerCity" placeholder="City" value="" />
-                            </td>
-                        </tr>
-                        <tr></tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spEmployerState" placeholder="State" value="" />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spEmployerZipCode" placeholder="Zip Code" value="" />
+                                <input type="text" class="form-control" id="spEmployerCity" placeholder="City" value="" disabled/>
                             </td>
                         </tr>
                         <tr></tr>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spEmployerPhoneNumber" placeholder="Phone Number" value="" />
+                                <input type="text" class="form-control" id="spEmployerState" placeholder="State" value="" disabled/>
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spEmployerZipCode" placeholder="Zip Code" value="" disabled/>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spEmployerPhoneNumber" placeholder="Phone Number" value="" disabled/>
                             </td>
                             <td class="text">
                                 <input type="text" class="form-control" id="" placeholder="" />
@@ -957,7 +957,7 @@
                                 <input type="text" id="depSSN" class="form-control" placeholder="SSN#- Call HR" name="SSN" value="" disabled />
                             </div>
                             <div class="form-group col-md-3" id="depRelationshipToInsured">
-                                <input type="text" id="depRelationToInsured" class="form-control" placeholder="Relationship to Insured" name="RelationShipToInsured" value="" readonly>
+                                <input type="text" id="depRelationToInsured" class="form-control" placeholder="Relationship to Insured" name="RelationShipToInsured" value="" disabled>
                                 @*<input id="Child" name="RelationshipToInsured" class="form-control" value="Child" @((ViewBag.RelationshipToInsured.ToLower() == "Child") ? "selected" : "")/>*@
                                 @*<input id="StepChild" name="RelationshipToInsured" class="form-control" value="StepChild" @((ViewBag.RelationshipToInsured.ToLower() == "StepChild") ? "selected" : "")/>*@
                                 @*<input id="Other" name="RelationshipToInsured" class="form-control" value="Other" @((ViewBag.RelationshipToInsured.ToLower() == "Other") ? "selected" : "")/>*@
@@ -998,6 +998,65 @@
                         <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
                     </div>
                 </div>
+                <hr />
+                <div class="text-justify">
+                    <label style="padding-left: 10px;"></label>
+                    <p>
+                        I AUTHORIZE any physician, dentist, medical practitioner, hospital, pharmacy or toerh provider of heal care, any insurance company,
+                        government agency or consumer reporting agency to disclose to Insurance Management Services or my employer all information and records
+                        relating to diagnosis, treatment, medical history, physical or mental condition and evaluation, or any other informationrelating to me,
+                        my spouse, or my dependent children. I understand that nay information obtained will not be released to any person or organization except
+                        re-insurers, other persons or organizations performing business or legal services in conjunction with my coverage, or as required by law,
+                        or as I may authorize. A photocopy of this authorization remains valid for the term of coverage. I have the right to receive a copy of this
+                        authorization upon request.
+                    </p>
+                    <hr />
+                    <label @*style="padding-left: 10px;"*@>
+                        Employee Signature:_____________________________________________________________________Date:________________________
+                    </label>
+                </div>
+                <hr />
+                <div>
+                    <table class="table-bordered">
+                        <tr>
+                            <td>
+                                <div>
+                                    <h4><b>Refusal of Group Health Coverage</b></h4>
+                                    <h6>This is to certify I have been given an opportunity to apply for group health coverage available to me through my Employer, and I have decided to not apply coverage for:</h6>
+                                    <label class="radio-inline"><input type="radio" id="Myself" class="radio-inline" onclick="return RefuseCoverage()" name="Myself" value="Myself" />Myself</label>
+                                    <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" onclick="return RefuseCoverage()" name="Spouse" value="Spouse" />Spouse</label>
+                                    <label class="radio-inline"><input type="radio" id="Child(ren)" class="radio-inline" onclick="return RefuseCoverage()" name="Child(ren)" value="Child(ren)" />Child(ren)</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <h4><b>Reason for Refusal</b></h4>
+                                    <label class="radio-inline"><input type="radio" id="OtherCoverage" class="radio-inline" onclick="return ReasonForRefusal()" name="OtherCoverage" value="OtherCoverage" />Other Coverage</label>
+                                    <label class="radio-inline"><input type="radio" id="OtherReason" class="radio-inline" onclick="return ReasonForRefusal()" name="OtherReason" value="OtherReason" />Other Reason</label>
+                                    <input type="text" id="OtherReason" class="form-control" placeholder="Please input reason" name="OtherReason" value="" />
+                                    <hr />
+                                    <label @*style="padding-left: 10px;"*@>
+                                        Employee Signature:_____________________________________________________________________Date:________________________
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr />
+                    <div class="text-justify">
+                        <h4><b>Special Enrollment Rules</b></h4>
+                        <p>
+                            If you aredeclining enrollment for yourself or your dependents (including your spouse) because of other health insurance coverage, you may in the future
+                            be able to enroll yourself or your dependent in this Plan, provided that you request enrollment within 30 days after your coverage ends. In addition, if
+                            you have a new dependent as a result of marriage, birth, adoption, or placement for adoption, you may be able to enroll yourself and your dependents,
+                            provided that you request enrollment within 30 days after the marriage, birth, adoption, or placement for adoption.
+                        </p>
+                    </div>
+                </div>
+                <hr />
                 <div class="form-group">
                     <div class="col-md-offset-11">
                         <button id="GrpHealthInsUpdateStepThree" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>

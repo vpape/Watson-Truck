@@ -7,10 +7,10 @@ namespace Watson.Models
 {
     public class GrpHealthMasterList
     {
-        Employee emp;
-        Family_Info family;
-        Group_Health grpHealth;
-        Other_Insurance otherIns;
+        //Employee emp;
+        //Family_Info family;
+        //Group_Health grpHealth;
+        //Other_Insurance otherIns;
 
     }
 }
