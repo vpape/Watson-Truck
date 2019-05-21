@@ -247,19 +247,19 @@ namespace Watson.Controllers
 
             ViewBag.g = g;
 
-            Employee emp = db.Employees
+            Employee e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)
                 .Single();
 
-            emp.Department = empDepartment;
-            emp.EnrollmentType = empEnrollmentType;
-            emp.Payroll_id = empPayroll_id;
-            emp.Class = empClass;
-            emp.AnnualSalary = empAnnualSalary;
-            emp.EffectiveDate = empEffectiveDate;
-            emp.HoursWorkedPerWeek = empHrsWkPerWk;
+            e.Department = empDepartment;
+            e.EnrollmentType = empEnrollmentType;
+            e.Payroll_id = empPayroll_id;
+            e.Class = empClass;
+            e.AnnualSalary = empAnnualSalary;
+            e.EffectiveDate = empEffectiveDate;
+            e.HoursWorkedPerWeek = empHrsWkPerWk;
 
-            ViewBag.emp = emp;
+            ViewBag.e = e;
 
             Other_Insurance o = db.Other_Insurance
                .Where(i => i.OtherInsurance_id == OtherInsurance_id)

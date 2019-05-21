@@ -14,6 +14,7 @@
 </head>
 <body>
     @* Salary Redirect *@
+    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" @*value=@ViewBag.e.Employee_id*@ />
     <div class="form-horizontal">
         <div class="collapsible" id="FourthStep">Salary Redirection Agreement</div>
         <div class="table table-bordered">
@@ -755,50 +756,52 @@
             EEelectionPostTaxVisionIns = document.getElementById("EEelectionPostTaxVisionIns").Value;
             PremiumPostTaxVisionIns = document.getElementById("PremiumPostTaxVisionIns").value;
 
-            AccidentInsProvider = document.get("AccidentInsProvider").value;
-            EEelectionPreTaxAccidentIns = document.getElementById("EEelectionPreTaxAccidentIns").value;
-            PremiumPreTaxAccidentIns = document.getElementById("PremiumPreTaxAccidentIns").value;
-            EEelectionPostTaxAccidentIns = document.getElementById("EEelectionPostTaxAccidentIns").value;
-            PremiumPostTaxAccidentIns = document.getElementById("PremiumPostTaxAccidentIns").value;
-
-            CancerInsProvider = document.getElementById("CancerInsProvider").value;
-            EEelectionPreTaxCancerIns = document.getElementById("EEelectionPreTaxCancerIns").value;
-            PremiumPreTaxCancerIns = document.getElementById("PremiumPreTaxCancerIns").value;
-            EEelectionPostTaxCancerIns = document.getElementById("EEelectionPostTaxCancerIns").value;
-            PremiumPostTaxCancerIns = document.getElementById("PremiumPostTaxCancerIns").value;
-
-            StDisabilityProvider = document.getElementById("StDisabilityProvider").value;
-            EEelectionPreTaxStDisability = document.getElementById("EEelectionPreTaxStDisability").value;
-            PremiumPreTaxStDisability = document.getElementById("PremiumPreTaxStDisability").value;
-            EEelectionPostTaxStDisability = document.getElementById("EEelectionPostTaxStDisability").value;
-            PremiumPostTaxStDisability = document.getElementById("PremiumPostTaxStDisability").value;
-
-            HospitalIndemProvider = document.getElementById("HospitalIndemProvider").value;
-            EEelectionPreTaxHospitalIndemn = document.getElementById("EEelectionPreTaxHospitalIndemn").value;
-            PremiumPreTaxHospitalIndem = document.getElementById("PremiumPreTaxHospitalIndem").value;
-            EEelectionPostTaxHospitalIndem = document.getElementById("EEelectionPostTaxHospitalIndem").value;
-            PremiumPostTaxHospitalIndem = document.getElementById("PremiumPostTaxHospitalIndem").value;
-
-            TermLifeInsProvider = document.getElementById("TermLifeInsProvider").value;
-            EEelectionPreTaxTermLifeIns = document.getElementById("EEelectionPreTaxTermLifeIns").value;
-            PremiumPreTaxTermLifeIns = document.getElementById("PremiumPreTaxTermLifeIns").value;
-            EEelectionPostTaxTermLifeIns = document.getElementById("EEelectionPostTaxTermLifeIns").value;
-            PremiumPostTaxTermLifeIns = document.getElementById("PremiumPostTaxTermLifeIns").value;
-
-            WholeLifeInsProvider = document.getElementById("WholeLifeInsProvider").value;
-            EEelectionPreTaxWholeLifeIns = document.getElementById("EEelectionPreTaxWholeLifeIns").value;
-            PremiumPreTaxWholeLifeIns = document.getElementById("PremiumPreTaxWholeLifeIns").value;
-            EEelectionPostTaxWholeLifeIns = document.getElementById("EEelectionPostTaxWholeLifeIns").value;
-            PremiumPostTaxWholeLifeIns = document.getElementById("PremiumPostTaxWholeLifeIns").value;
-
-            OtherInsProvider = document.getElementById("OtherInsProvider").value;
-            EEelectionPreTaxOtherIns = document.getElementById("EEelectionPreTaxOtherIns").value;
-            PremiumPreTaxOtherIns = document.getElementById("PremiumPreTaxOtherIns").value;
-            EEelectionPostTaxOtherIns = document.getElementById("EEelectionPostTaxOtherIns").value;
-            PremiumPostTaxOtherIns = document.getElementById("PremiumPostTaxOtherIns").value;
-
             //EmpSignature = document.getElementById("EmpSignature").value;
             //EmpInitials = document.getElementById("EmpInitials").value;
+
+            //AccidentInsProvider = document.get("AccidentInsProvider").value;
+            //EEelectionPreTaxAccidentIns = document.getElementById("EEelectionPreTaxAccidentIns").value;
+            //PremiumPreTaxAccidentIns = document.getElementById("PremiumPreTaxAccidentIns").value;
+            //EEelectionPostTaxAccidentIns = document.getElementById("EEelectionPostTaxAccidentIns").value;
+            //PremiumPostTaxAccidentIns = document.getElementById("PremiumPostTaxAccidentIns").value;
+
+            //CancerInsProvider = document.getElementById("CancerInsProvider").value;
+            //EEelectionPreTaxCancerIns = document.getElementById("EEelectionPreTaxCancerIns").value;
+            //PremiumPreTaxCancerIns = document.getElementById("PremiumPreTaxCancerIns").value;
+            //EEelectionPostTaxCancerIns = document.getElementById("EEelectionPostTaxCancerIns").value;
+            //PremiumPostTaxCancerIns = document.getElementById("PremiumPostTaxCancerIns").value;
+
+            //StDisabilityProvider = document.getElementById("StDisabilityProvider").value;
+            //EEelectionPreTaxStDisability = document.getElementById("EEelectionPreTaxStDisability").value;
+            //PremiumPreTaxStDisability = document.getElementById("PremiumPreTaxStDisability").value;
+            //EEelectionPostTaxStDisability = document.getElementById("EEelectionPostTaxStDisability").value;
+            //PremiumPostTaxStDisability = document.getElementById("PremiumPostTaxStDisability").value;
+
+            //HospitalIndemProvider = document.getElementById("HospitalIndemProvider").value;
+            //EEelectionPreTaxHospitalIndemn = document.getElementById("EEelectionPreTaxHospitalIndemn").value;
+            //PremiumPreTaxHospitalIndem = document.getElementById("PremiumPreTaxHospitalIndem").value;
+            //EEelectionPostTaxHospitalIndem = document.getElementById("EEelectionPostTaxHospitalIndem").value;
+            //PremiumPostTaxHospitalIndem = document.getElementById("PremiumPostTaxHospitalIndem").value;
+
+            //TermLifeInsProvider = document.getElementById("TermLifeInsProvider").value;
+            //EEelectionPreTaxTermLifeIns = document.getElementById("EEelectionPreTaxTermLifeIns").value;
+            //PremiumPreTaxTermLifeIns = document.getElementById("PremiumPreTaxTermLifeIns").value;
+            //EEelectionPostTaxTermLifeIns = document.getElementById("EEelectionPostTaxTermLifeIns").value;
+            //PremiumPostTaxTermLifeIns = document.getElementById("PremiumPostTaxTermLifeIns").value;
+
+            //WholeLifeInsProvider = document.getElementById("WholeLifeInsProvider").value;
+            //EEelectionPreTaxWholeLifeIns = document.getElementById("EEelectionPreTaxWholeLifeIns").value;
+            //PremiumPreTaxWholeLifeIns = document.getElementById("PremiumPreTaxWholeLifeIns").value;
+            //EEelectionPostTaxWholeLifeIns = document.getElementById("EEelectionPostTaxWholeLifeIns").value;
+            //PremiumPostTaxWholeLifeIns = document.getElementById("PremiumPostTaxWholeLifeIns").value;
+
+            //OtherInsProvider = document.getElementById("OtherInsProvider").value;
+            //EEelectionPreTaxOtherIns = document.getElementById("EEelectionPreTaxOtherIns").value;
+            //PremiumPreTaxOtherIns = document.getElementById("PremiumPreTaxOtherIns").value;
+            //EEelectionPostTaxOtherIns = document.getElementById("EEelectionPostTaxOtherIns").value;
+            //PremiumPostTaxOtherIns = document.getElementById("PremiumPostTaxOtherIns").value;
+
+      
 
             var data = {
                 "MedicalInsProvider": MedicalInsProvider,
@@ -819,53 +822,52 @@
                 "EEelectionPostTaxVisionIns": EEelectionPostTaxVisionIns,
                 "PremiumPostTaxVisionIns": PremiumPostTaxVisionIns,
 
-                "AccidentInsProvider ": AccidentInsProvider ,
-                "EEelectionPreTaxAccidentIns": EEelectionPreTaxAccidentIns,
-                "PremiumPreTaxAccidentIns": PremiumPreTaxAccidentIns,
-                "EEelectionPostTaxAccidentIns": EEelectionPostTaxAccidentIns,
-                "PremiumPostTaxAccidentIns": PremiumPostTaxAccidentIns,
+                //"AccidentInsProvider ": AccidentInsProvider ,
+                //"EEelectionPreTaxAccidentIns": EEelectionPreTaxAccidentIns,
+                //"PremiumPreTaxAccidentIns": PremiumPreTaxAccidentIns,
+                //"EEelectionPostTaxAccidentIns": EEelectionPostTaxAccidentIns,
+                //"PremiumPostTaxAccidentIns": PremiumPostTaxAccidentIns,
 
-                "CancerInsProvider ": CancerInsProvider,
-                "EEelectionPreTaxCancerIns": EEelectionPreTaxCancerIns,
-                "PremiumPreTaxCancerIns": PremiumPreTaxCancerIns,
-                "EEelectionPostTaxCancerIns": EEelectionPostTaxCancerIns,
-                "PremiumPostTaxCancerIns": PremiumPostTaxCancerIns,
+                //"CancerInsProvider ": CancerInsProvider,
+                //"EEelectionPreTaxCancerIns": EEelectionPreTaxCancerIns,
+                //"PremiumPreTaxCancerIns": PremiumPreTaxCancerIns,
+                //"EEelectionPostTaxCancerIns": EEelectionPostTaxCancerIns,
+                //"PremiumPostTaxCancerIns": PremiumPostTaxCancerIns,
 
-                "StDisabilityProvider": StDisabilityProvider,
-                "EEelectionPreTaxStDisability": EEelectionPreTaxStDisability,
-                "PremiumPreTaxStDisability": PremiumPreTaxStDisability,
-                "EEelectionPostTaxStDisability": EEelectionPostTaxStDisability,
-                "PremiumPostTaxStDisability": PremiumPostTaxStDisability,
+                //"StDisabilityProvider": StDisabilityProvider,
+                //"EEelectionPreTaxStDisability": EEelectionPreTaxStDisability,
+                //"PremiumPreTaxStDisability": PremiumPreTaxStDisability,
+                //"EEelectionPostTaxStDisability": EEelectionPostTaxStDisability,
+                //"PremiumPostTaxStDisability": PremiumPostTaxStDisability,
 
-                "HospitalIndemProvider": HospitalIndemProvider,
-                "EEelectionPreTaxHospitalIndem": EEelectionPreTaxHospitalIndem,
-                "PremiumPreTaxHospitalIndem": PremiumPreTaxHospitalIndem,
-                "EEelectionPostTaxHospitalIndem": EEelectionPostTaxHospitalIndem,
-                "PremiumPostTaxHospitalIndem": PremiumPostTaxHospitalIndem,
+                //"HospitalIndemProvider": HospitalIndemProvider,
+                //"EEelectionPreTaxHospitalIndem": EEelectionPreTaxHospitalIndem,
+                //"PremiumPreTaxHospitalIndem": PremiumPreTaxHospitalIndem,
+                //"EEelectionPostTaxHospitalIndem": EEelectionPostTaxHospitalIndem,
+                //"PremiumPostTaxHospitalIndem": PremiumPostTaxHospitalIndem,
 
-                "TermLifeInsProvider": TermLifeInsProvider,
-                "EEelectionPreTaxTermLifeIns": EEelectionPreTaxTermLifeIns,
-                "PremiumPreTaxTermLifeIns": PremiumPreTaxTermLifeIns,
-                "EEelectionPostTaxTermLifeIns": EEelectionPostTaxTermLifeIns,
-                "PremiumPostTaxTermLifeIns": PremiumPostTaxTermLifeIns,
+                //"TermLifeInsProvider": TermLifeInsProvider,
+                //"EEelectionPreTaxTermLifeIns": EEelectionPreTaxTermLifeIns,
+                //"PremiumPreTaxTermLifeIns": PremiumPreTaxTermLifeIns,
+                //"EEelectionPostTaxTermLifeIns": EEelectionPostTaxTermLifeIns,
+                //"PremiumPostTaxTermLifeIns": PremiumPostTaxTermLifeIns,
 
-                "WholeLifeInsProvider": WholeLifeInsProvider,
-                "EEelectionPreTaxWholeLifeIns": EEelectionPreTaxWholeLifeIns,
-                "PremiumPreTaxWholeLifeIns": PremiumPreTaxWholeLifeIns,
-                "EEelectionPostTaxWholeLifeIns": EEelectionPostTaxWholeLifeIns,
-                "PremiumPostTaxWholeLifeIns": PremiumPostTaxWholeLifeIns,
+                //"WholeLifeInsProvider": WholeLifeInsProvider,
+                //"EEelectionPreTaxWholeLifeIns": EEelectionPreTaxWholeLifeIns,
+                //"PremiumPreTaxWholeLifeIns": PremiumPreTaxWholeLifeIns,
+                //"EEelectionPostTaxWholeLifeIns": EEelectionPostTaxWholeLifeIns,
+                //"PremiumPostTaxWholeLifeIns": PremiumPostTaxWholeLifeIns,
 
-                "OtherInsProvider": OtherInsProvider,
-                "EEelectionPreTaxOtherIns": EEelectionPreTaxOtherIns,
-                "PremiumPreTaxOtherIns": PremiumPreTaxOtherIns,
-                "EEelectionPostTaxOtherIns": EEelectionPostTaxOtherIns,
-                "PremiumPostTaxOtherIns": PremiumPostTaxOtherIns,
+                //"OtherInsProvider": OtherInsProvider,
+                //"EEelectionPreTaxOtherIns": EEelectionPreTaxOtherIns,
+                //"PremiumPreTaxOtherIns": PremiumPreTaxOtherIns,
+                //"EEelectionPostTaxOtherIns": EEelectionPostTaxOtherIns,
+                //"PremiumPostTaxOtherIns": PremiumPostTaxOtherIns,
 
                 "EmpSignature": EmpSignature,
                 "EmpInitials": EmpInitials,
                 "EmpSignatureDate": EmpSignatureDate,
-                "OtherSignature": OtherSignature,
-                "OtherSignatureDate": OtherSignatureDate,
+
             }
 
             var ret = postData('/GroupHealth/SalaryRedirectionUpdate', data)
@@ -878,9 +880,9 @@
 
         })
         function FourthStep(salaryRedirect) {
-            document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-            document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-            document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
+            //document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+            //document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+            //document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
             document.querySelector("#FourthStep").nextElementSibling.style.display = "block";
             emp_id = salaryRedirect.data;
 
