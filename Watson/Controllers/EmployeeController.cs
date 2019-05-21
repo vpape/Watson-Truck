@@ -80,7 +80,7 @@ namespace Watson.Controllers
   
         //EmpEnrollment Method
         public JsonResult EmployeeEnrollmentNew(string Role, string CurrentEmployer, string JobTitle, string EmpNumber,
-            string MaritalStatus, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
+            DateTime HireDate, string MaritalStatus, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
         {
             Employee e = new Employee();
 
@@ -88,6 +88,7 @@ namespace Watson.Controllers
             e.CurrentEmployer = CurrentEmployer;
             e.JobTitle = JobTitle;
             e.SSN = EmpNumber;
+            e.HireDate = HireDate;
             e.MaritalStatus = MaritalStatus;
             e.FirstName = FirstName;
             e.LastName = LastName;
@@ -192,8 +193,8 @@ namespace Watson.Controllers
         }
 
         public JsonResult EmployeeEditUpdate(int Employee_id,string EmpRole, string CurrentEmployer, string JobTitle, 
-            string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MaritalStatus,
-            string MailingAddress, string PObox, string City, string State, string ZipCode, string County, 
+            string EmpNumber, DateTime HireDate, string FirstName, string LastName, DateTime DateOfBirth, string Gender,
+            string MaritalStatus, string MailingAddress, string PObox, string City, string State, string ZipCode, string County,
             string PhysicalAddress, string City2, string State2, string ZipCode2, string CityLimits, string EmailAddress, 
             string PhoneNumber, string CellPhone)
         {
@@ -205,6 +206,7 @@ namespace Watson.Controllers
             e.CurrentEmployer = CurrentEmployer;
             e.JobTitle = JobTitle;
             e.SSN = EmpNumber;
+            e.HireDate = HireDate;
             e.FirstName = FirstName;
             e.LastName = LastName;
             e.DateOfBirth = DateOfBirth;

@@ -1475,19 +1475,19 @@
             document.querySelector("GrpHealthInsUpdateStepThree").addEventListener("click", function () {
                 GroupName = document.getElementById("GroupName").value;
                 IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
-                //empDepartment = document.getElementById("empDepartment").value;
-                //empEnrollmentType = document.getElementById("empEnrollmentType").value;
-                //empPayroll_id = document.getElementById("empPayroll_id").value;
-                //empClass = document.getElementById("empClass").value
-                //empAnnualSalary = document.getElementById("empAnnualSalary").value;
-                //empEffectiveDate = document.getElementById("empEffectiveDate").value;
-                //empHrsWrkPerWk = document.getElementById("empHrsWrkPerWk").value;
+                empDepartment = document.getElementById("empDepartment").value;
+                empEnrollmentType = document.getElementById("empEnrollmentType").value;
+                empPayroll_id = document.getElementById("empPayroll_id").value;
+                empClass = document.getElementById("empClass").value
+                empAnnualSalary = document.getElementById("empAnnualSalary").value;
+                empEffectiveDate = document.getElementById("empEffectiveDate").value;
+                empHrsWrkPerWk = document.getElementById("empHrsWrkPerWk").value;
                 empOtherInsCoverage = document.getElementById("empCoveredByOtherIns").value;
                 empInsuranceCarrier = document.getElementById("empInsCarrier").value;
                 empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value;
                 empInsPhoneNumber = document.getElementById("empInsPhoneNumber").value;
-                //EmpSignature = document.getElementById("EmpSignature").value;
-                //EmpSignatureDate = document.getElementById("EmpSignatureDate").value;
+                EmpSignature = document.getElementById("EmpSignature").value;
+                EmpSignatureDate = document.getElementById("EmpSignatureDate").value;
      
                 NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
                 EmpOnlyGroupHealthOption = document.getElementById("EmpOnlyGroupHealthOption").value;
@@ -1530,6 +1530,8 @@
                     "EmpSpGroupHealthOption": EmpSpGroupHealthOption,
                     "EmpDepGroupHealthOption": EmpDepGroupHealthOption,
                     "EmpFamGroupHealthOption": EmpFamGroupHealthOption,
+                    "EmpSignature": EmpSignature,
+                    "EmpSignatureDate": EmpSignatureDate,
 
                     "spOtherInsCoverage": spOtherInsCoverage,
                     "spInsCarrier": spInsCarrier,
