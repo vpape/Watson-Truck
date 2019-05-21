@@ -347,9 +347,10 @@ namespace Watson.Controllers
         }
 
         
-        public JsonResult SalaryRedirectionUpdate(int Employee_id, int Deductions_id, string Coverage, string Provider, 
-            string EElectionPreTax, decimal PremiumPreTax, string EElectionPostTax, decimal PremiumPostTax,
-            decimal TotalPreTax, decimal TotalPostTax)
+        public JsonResult SalaryRedirectionUpdate(int Employee_id, int Deductions_id, string Provider, 
+            string EElectionPreTax, decimal PremiumPreTax, string EElectionPostTax,
+            decimal PremiumPostTax, decimal TotalPreTax, decimal TotalPostTax)
+
         {
             Employee e = db.Employees
             .Where(i => i.Employee_id == Employee_id)
@@ -359,7 +360,6 @@ namespace Watson.Controllers
 
             Deduction d = new Deduction();
 
-            d.Coverage = Coverage;
             d.Provider = Provider;
             d.EEelectionPreTax = EElectionPreTax;
             d.PremiumPreTax = PremiumPreTax;
