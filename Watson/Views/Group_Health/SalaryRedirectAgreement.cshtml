@@ -15,7 +15,7 @@
 <body>
     @* Salary Redirect *@
     <div class="form-horizontal">
-        <div class="collapsible" id="FirstStep">Salary Redirection Agreement</div>
+        <div class="collapsible" id="FourthStep">Salary Redirection Agreement</div>
         <div class="table table-bordered">
             <table class="table table-condensed" id="SalaryRedirectTable">
                 <tr>
@@ -868,10 +868,57 @@
                 "PremiumPreTaxOtherIns": PremiumPreTaxOtherIns,
                 "EEelectionPostTaxOtherIns": EEelectionPostTaxOtherIns,
                 "PremiumPostTaxOtherIns": PremiumPostTaxOtherIns,
+
+                "EmpSignature": EmpSignature,
+                "EmpInitials": EmpInitials,
+                "EmpSignatureDate": EmpSignatureDate,
+                "OtherSignature": OtherSignature,
+                "OtherSignatureDate": OtherSignatureDate,
             }
 
+            var ret = postData('/GroupHealth/SalaryRedirectionUpdate', data)
+                .then(data => {
+                    console.log(data);
+                    FourthStep(data);
+                })
+                .catch(error => console.error(error))
 
 
         })
+        function FourthStep(salaryRedirect) {
+            document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+            document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+            document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
+            document.querySelector("#FourthStep").nextElementSibling.style.display = "block";
+            emp_id = salaryRedirect.data;
+
+        }
+
+
+        function postData(url, data) {
+            //Default options are marked with *
+            console.log(data);
+            console.log(JSON.stringify(data));
+            return fetch(url, {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => console.log('Success:', JSON.stringify(response)))
+                .catch(error => console.error('Error:', error));
+            //.then(Response => {
+            //    console.log(Response);
+            //    Response.json();
+            //}) //parses response to JSON
+        }
     })
 </script>
