@@ -380,6 +380,25 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
+        public ActionResult AuthorizationForm()
+        {
+            return View();
+        }
+
+
+        public JsonResult AuthorizationFormUpdate(int Employee_id )
+
+        {
+
+
+
+
+
+
+            return Json(new {  }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
         public ActionResult DeleteGrpHealthIns(int? id)
         {
             if (id == null)
