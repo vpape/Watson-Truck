@@ -2,8 +2,6 @@
 @{
     ViewBag.Title = "AuthorizationForm";
 }
-
-<h2>AuthorizationForm</h2>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +14,12 @@
 </head>
 <body>
     @* Authorization Form *@
-    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" @*value=@ViewBag.e.Employee_id*@ />
     <div class="form-horizontal">
+        <hr />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" @*value=@ViewBag.e.Employee_id*@ />
         <div class="collapsible" id="FirstStep">Authorization Form</div>
         <div class="table table-bordered">
-            <table class="table table-condensed" id="">
+            <table class="table table-condensed" id="AuthorizationFormTable">
                 <tr>
                     <td>
                         <div id="label">
@@ -115,56 +114,55 @@
                     to regarding the policy or the individual(s) on the policy.
                 </p>
             </div>
-        </div>
-        <table class="table-bordered" id="AuthorizationSignatures" cellpadding="20" cellspacing="20">
-            <tr>
-                <td>
-                    <div class="text-justify">
-                        <p>
+            <table class="table-bordered" id="AuthorizationSignatures" cellpadding="20" cellspacing="20">
+                <tr>
+                    <td>
+                        <div class="text-justify">
+                            <p>
 
-                        </p>
-                        <p>
+                            </p>
+                            <p>
 
-                        </p>
-                        <hr />
-                        <label style="padding-left: 10px;">
-                            Policyholder's Signature:
-                        </label>
-                        <input type="text" id="signature" value="" />
-                        <label style="padding-left: 10px;">
-                            Date:
-                        </label>
-                        <input type="date" id="signatureDate" value="" />
-                        <hr />
-                        <label style="padding-left: 10px;">
-                            Signature of person to release information to:
-                        </label>
-                        <input type="text" id="signature" value="" />
-                        <label style="padding-left: 10px;">
-                            Date:
-                        </label>
-                        <input type="date" id="signatureDate" value="" />
-                        <hr />
-                        <label style="padding-left: 10px;">
-                            Signature of person to release information to:
-                        </label>
-                        <input type="text" id="signature" value="" />
-                        <label style="padding-left: 10px;">
-                            Date:
-                        </label>
-                        <input id="signature" type="date" value="" />
-                    </div>
-                    <hr />
-                    <div class="form-group">
-                        <div class="col-md-offset-11">
-                            <button id="AuthorizationFormUpdateStepOne" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
+                            </p>
+                            <hr />
+                            <label style="padding-left: 10px;">
+                                Policyholder's Signature:
+                            </label>
+                            <input type="text" id="signature" value="" />
+                            <label style="padding-left: 10px;">
+                                Date:
+                            </label>
+                            <input type="date" id="signatureDate" value="" />
+                            <hr />
+                            <label style="padding-left: 10px;">
+                                Signature of person to release information to:
+                            </label>
+                            <input type="text" id="signature" value="" />
+                            <label style="padding-left: 10px;">
+                                Date:
+                            </label>
+                            <input type="date" id="signatureDate" value="" />
+                            <hr />
+                            <label style="padding-left: 10px;">
+                                Signature of person to release information to:
+                            </label>
+                            <input type="text" id="signature" value="" />
+                            <label style="padding-left: 10px;">
+                                Date:
+                            </label>
+                            <input id="signature" type="date" value="" />
                         </div>
-                    </div>
-                </td>
-            </tr>
-        </table>
+                        <hr />
+                        <div class="form-group">
+                            <div class="col-md-offset-11">
+                                <button id="AuthorizationFormUpdateStepOne" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
-
 </body>
 </html>
 
