@@ -23,7 +23,15 @@
                 <tr>
                     <td>
                         <div id="label">
-                            1.<label class="" style="padding-left: 10px;">Policyholder's Name:</label>
+                            1.<label class="" style="padding-left: 10px;">Policyholder's First Name:</label>
+                            <input type="text" class="form-control" id="signature" placeholder="Name" value="" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="label">
+                            1.<label class="" style="padding-left: 10px;">Policyholder's Last Name:</label>
                             <input type="text" class="form-control" id="signature" placeholder="Name" value="" />
                         </div>
                     </td>
@@ -73,7 +81,7 @@
                     <label style="padding-left: 10px;">
                         Signature:
                     </label>
-                    <input type="text" id="signature" value="" />
+                    <input type="text" id="signature" name="OtherSignature"  value="" />
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
@@ -81,12 +89,12 @@
                     <label style="padding-left: 10px;">
                         Date:
                     </label>
-                    <input type="date" id="signatureDate" value="" />
+                    <input type="date" id="signatureDate" name="OtherSignatureDate" value="" />
                     <hr />
                     <label style="padding-left: 10px;">
                         Signature:
                     </label>
-                    <input type="text" id="signature" value="" />
+                    <input type="text" id="signature" name="OtherSignature" value="" />
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
@@ -94,7 +102,7 @@
                     <label style="padding-left: 10px;">
                         Date:
                     </label>
-                    <input type="date" id="signatureDate" value="" />
+                    <input type="date" id="signatureDate" name="OtherSignatureDate" value="" />
                 </div>
             </div>
             <hr />
@@ -128,29 +136,29 @@
                             <label style="padding-left: 10px;">
                                 Policyholder's Signature:
                             </label>
-                            <input type="text" id="signature" value="" />
+                            <input type="text" id="signature" name="EmployeeSignature" value="" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="signatureDate" value="" />
+                            <input type="date" id="signatureDate" name="EmployeeSignatureDate" value="" />
                             <hr />
                             <label style="padding-left: 10px;">
                                 Signature of person to release information to:
                             </label>
-                            <input type="text" id="signature" value="" />
+                            <input type="text" id="signature" name="OtherSignature" value="" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="signatureDate" value="" />
+                            <input type="date" id="signatureDate" name="OtherSignatureDate" value="" />
                             <hr />
                             <label style="padding-left: 10px;">
                                 Signature of person to release information to:
                             </label>
-                            <input type="text" id="signature" value="" />
+                            <input type="text" id="signature" name="OtherSignature" value="" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input id="signature" type="date" value="" />
+                            <input id="signature" type="date" name="OtherSignatureDate" value="" />
                         </div>
                         <hr />
                         <div class="form-group">
@@ -275,7 +283,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#SalaryRedirectUpdateStepOne").addEventListener("click", function () {
+        document.querySelector("#AuthorizationFormUpdateStepOne").addEventListener("click", function () {
             MedicalInsProvider = document.getElementById("MedicalInsProvider").value;
             EEelectionPreTaxMedIns = document.getElementById("EEelectionPreTaxMedIns").value;
             PremiumPreTaxMedIns = document.getElementById("PremiumPreTaxMedIns").value;

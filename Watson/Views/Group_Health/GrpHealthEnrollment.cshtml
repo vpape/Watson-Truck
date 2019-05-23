@@ -635,11 +635,11 @@
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="JobTitle" id="JobTitle" placeholder="Occupation" value="" />
+                    <input type="text" class="form-control" name="JobTitle" id="empJobTitle" placeholder="Occupation" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="HireDate" id="HireDate" placeholder="Employment Date" value="" />
+                    <input type="text" class="form-control" name="HireDate" id="empHireDate" placeholder="Employment Date" value="" />
                 </div>
                 <p></p>
                 <div>
@@ -1011,9 +1011,17 @@
                         authorization upon request.
                     </p>
                     <hr />
-                    <label @*style="padding-left: 10px;"*@>
-                        Employee Signature:_____________________________________________________________________Date:________________________
-                    </label>
+                    <div>
+                        <label style="padding-left: 10px;">
+                            Employee Signature:
+                        </label>
+                        <input type="text" id="signature" name="EmployeeSignature" value="" />
+                        <label style="padding-left: 10px;">
+                            Date:
+                        </label>
+                        <input type="date" id="signatureDate" name="EmployeeSignatureDate" value="" />
+                        <hr />
+                    </div>
                 </div>
                 <hr />
                 <div>
@@ -1038,9 +1046,16 @@
                                     <label class="radio-inline"><input type="radio" id="OtherReason" class="radio-inline" onclick="return ReasonForRefusal()" name="OtherReason" value="OtherReason" />Other Reason</label>
                                     <input type="text" id="OtherReason" class="form-control" placeholder="Please input reason" name="OtherReason" value="" />
                                     <hr />
-                                    <label @*style="padding-left: 10px;"*@>
-                                        Employee Signature:_____________________________________________________________________Date:________________________
-                                    </label>
+                                    <div>
+                                        <label style="padding-left: 10px;">
+                                            Employee Signature:
+                                        </label>
+                                        <input type="text" id="signature" name="EmployeeSignature" value="" />
+                                        <label style="padding-left: 10px;">
+                                            Date:
+                                        </label>
+                                        <input type="date" id="signatureDate" name="EmployeeSignatureDate" value="" />
+                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -1112,6 +1127,19 @@
             background-color: #ddd;
             color: black;
         }
+
+    #label {
+        font-weight: bold;
+        text-align: left;
+        font-size: 100%;
+    }
+
+    #signature, #signatureDate {
+        width: 100%;
+        border: 0px;
+        border-bottom: 1px solid black;
+        height: 20px;
+    }
 
     .aside {
         float: right;
@@ -1480,20 +1508,22 @@
                 empPayroll_id = document.getElementById("empPayroll_id").value;
                 empClass = document.getElementById("empClass").value
                 empAnnualSalary = document.getElementById("empAnnualSalary").value;
+                empJobTitle = document.getElementById("empJobTitle").value;
+                empHireDate = document.getElementById("empHireDate").value;
                 empEffectiveDate = document.getElementById("empEffectiveDate").value;
                 empHrsWrkPerWk = document.getElementById("empHrsWrkPerWk").value;
                 empOtherInsCoverage = document.getElementById("empCoveredByOtherIns").value;
                 empInsuranceCarrier = document.getElementById("empInsCarrier").value;
                 empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value;
                 empInsPhoneNumber = document.getElementById("empInsPhoneNumber").value;
-                EmpSignature = document.getElementById("EmpSignature").value;
-                EmpSignatureDate = document.getElementById("EmpSignatureDate").value;
+                empSignature = document.getElementById("empSignature").value;
+                empSignatureDate = document.getElementById("empSignatureDate").value;
      
                 NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
-                EmpOnlyGroupHealthOption = document.getElementById("EmpOnlyGroupHealthOption").value;
-                EmpSpGroupHealthOption = document.getElementById("EmpSpGroupHealthOption").value;
-                EmpDepGroupHealthOption = document.getElementById("EmpDepGroupHealthOption").value;
-                EmpFamGroupHealthOption = document.getElementById("EmpFamGroupHealthOption").value;
+                empOnlyGroupHealthOption = document.getElementById("EmpOnlyGroupHealthOption").value;
+                empSpGroupHealthOption = document.getElementById("EmpSpGroupHealthOption").value;
+                empDepGroupHealthOption = document.getElementById("EmpDepGroupHealthOption").value;
+                empFamGroupHealthOption = document.getElementById("EmpFamGroupHealthOption").value;
                
                 spOtherInsCoverage = document.getElementById("spOtherInsCoverage").value;
                 spInsCarrier = document.getElementById("spInsCarrier").value;
@@ -1526,12 +1556,12 @@
                     "empInsPolicyNumber": empInsPolicyNumber,
                     "empInsPhoneNumber": empInsPhoneNumber,
                     "NoneGroupHealthOption": NoneGroupHealthOption,
-                    "EmpOnlyGroupHealthOption": EmpOnlyGroupHealthOption,
-                    "EmpSpGroupHealthOption": EmpSpGroupHealthOption,
-                    "EmpDepGroupHealthOption": EmpDepGroupHealthOption,
-                    "EmpFamGroupHealthOption": EmpFamGroupHealthOption,
-                    "EmpSignature": EmpSignature,
-                    "EmpSignatureDate": EmpSignatureDate,
+                    "empOnlyGroupHealthOption": empOnlyGroupHealthOption,
+                    "empSpGroupHealthOption": empSpGroupHealthOption,
+                    "empDepGroupHealthOption": empDepGroupHealthOption,
+                    "empFamGroupHealthOption": empFamGroupHealthOption,
+                    "empSignature": empSignature,
+                    "empSignatureDate": empSignatureDate,
 
                     "spOtherInsCoverage": spOtherInsCoverage,
                     "spInsCarrier": spInsCarrier,

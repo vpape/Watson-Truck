@@ -205,17 +205,17 @@ namespace Watson.Controllers
             return View(g);
         }
 
-        public JsonResult GrpHealthInsEditUpdate(int GrpHealthIns_id, int Employee_id, int FamilyMember_id, int OtherInsurance_id,
-            string empInsuranceCarrier, string empInsPolicyNumber, string GroupName, string IMSGroupNumber,
-            string PhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
+        public JsonResult GrpHealthInsEditUpdate(int GrpHealthIns_id, int Employee_id, int FamilyMember_id, 
+            int OtherInsurance_id, string empInsuranceCarrier, string empInsPolicyNumber, string GroupName, 
+            string IMSGroupNumber, string PhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
             string Myself, string Spouse, string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear,
-            string NoneGroupHealthOption, string EmpOnlyGroupHealthOption, string EmpSpGroupHealthOption,
-            string EmpDepGroupHealthOption, string EmpFamGroupHealthOption, string EmpSignature, DateTime EmpSignatureDate,
-            string EmpInitials, string OtherSignature, DateTime OtherSignatureDate, string empDepartment, string empEnrollmentType,
-            int empPayroll_id, string empClass, decimal empAnnualSalary, DateTime empEffectiveDate, int empHrsWkPerWk,
-            string spOtherInsCoverage, string spInsCarrier, string spInsPolicyNumber, string spInsPhoneNumber,
-            string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState, string spInsZipCode,
-             string depOtherInsCoverage, string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
+            string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption,
+            string empDepGroupHealthOption, string empFamGroupHealthOption, string empSignature, DateTime empSignatureDate,
+            string empDepartment, string empEnrollmentType, int empPayroll_id, string empClass, string empJobTitle,
+            DateTime empHireDate, decimal empAnnualSalary, DateTime empEffectiveDate, int empHrsWkPerWk, string spOtherInsCoverage, string spInsCarrier, string spInsPolicyNumber,
+            string spInsPhoneNumber, string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState,
+            string spInsZipCode, string depOtherInsCoverage, string depInsCarrier, string depInsPolicyNumber,
+            string depInsPhoneNumber)
         {
             var g = db.Group_Health
                 .Where(i => i.GroupHealthInsurance_id == GrpHealthIns_id)
@@ -235,15 +235,12 @@ namespace Watson.Controllers
             g.OtherInsuranceCoverage = empOtherInsuranceCoverage;
             g.CafeteriaPlanYear = CafeteriaPlanYear;
             g.NoMedicalPlan = NoneGroupHealthOption;
-            g.EmployeeOnly = EmpOnlyGroupHealthOption;
-            g.EmployeeAndSpouse = EmpSpGroupHealthOption;
-            g.EmployeeAndDependent = EmpDepGroupHealthOption;
-            g.EmployeeAndFamily = EmpFamGroupHealthOption;
-            g.EmployeeSignature = EmpSignature;
-            g.EmployeeSignatureDate = EmpSignatureDate;
-            g.EmployeeInitials = EmpInitials;
-            g.OtherSignature = OtherSignature;
-            g.OtherSignatureDate = OtherSignatureDate;
+            g.EmployeeOnly = empOnlyGroupHealthOption;
+            g.EmployeeAndSpouse = empSpGroupHealthOption;
+            g.EmployeeAndDependent = empDepGroupHealthOption;
+            g.EmployeeAndFamily = empFamGroupHealthOption;
+            g.EmployeeSignature = empSignature;
+            g.EmployeeSignatureDate = empSignatureDate;
 
             ViewBag.g = g;
 
@@ -256,6 +253,8 @@ namespace Watson.Controllers
             e.Payroll_id = empPayroll_id;
             e.Class = empClass;
             e.AnnualSalary = empAnnualSalary;
+            e.JobTitle = empJobTitle;
+            e.HireDate = empHireDate;
             e.EffectiveDate = empEffectiveDate;
             e.HoursWorkedPerWeek = empHrsWkPerWk;
 
@@ -385,9 +384,10 @@ namespace Watson.Controllers
             return View();
         }
 
-
-        public JsonResult AuthorizationFormUpdate(int Employee_id )
-
+        //g.OtherSignature = OtherSignature;
+        //g.OtherSignatureDate = OtherSignatureDate;
+        //string OtherSignature, DateTime OtherSignatureDate,
+        public JsonResult AuthorizationFormUpdate(int Employee_id, string PolicyholdersFirstName, string PolicyholdersLastName)
         {
 
 

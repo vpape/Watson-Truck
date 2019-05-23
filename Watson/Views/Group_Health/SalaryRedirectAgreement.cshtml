@@ -596,38 +596,48 @@
                     <div class="text-justify">
                         <label style="padding-left: 10px;"><u>I understand and agree to the following (inital all):</u></label>
                         <p>
-                            _______On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
+                            <input type="text" id="empInitials" name="EmployeeInitials" value="" />
+                            On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                             insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                             or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                         </p>
                         <p>
-                            _______On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
+                            <input type="text" id="empInitials" name="EmployeeInitials" value="" />
+                            On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                             insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                             or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                         </p>
                         <p>
-                            _______On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
+                            <input type="text" id="empInitials" name="EmployeeInitials" value="" />
+                            On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                             insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                             or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                         </p>
                         <p>
-                            _______On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
+                            <input type="text" id="empInitials" name="EmployeeInitials" value="" />
+                            On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                             insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                             or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                         </p>
                         <label style="padding-left: 10px;"><u>Waiver of Pre-Tax Benefits Under the Benefits Plan:</u></label>
                         <p>
-                            _______On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
+                            <input type="text" id="empInitials" name="EmployeeInitials" value="" />
+                            On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                             insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                             or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                         </p>
                         <hr />
-                        <label style="padding-left: 10px;">
-                            Employee Signature:_____________________________________________________________________Date:________________________
-                        </label>
-
+                        <div>
+                            <label style="padding-left: 10px;">
+                                Employee Signature:
+                            </label>
+                            <input type="text" id="signature" name="EmployeeSignature" value="" />
+                            <label style="padding-left: 10px;">
+                                Date:
+                            </label>
+                            <input type="date" id="signatureDate" name="EmployeeSignatureDate" value="" />
+                        </div>
                     </div>
-
                     <div class="form-group">
                         <div class="col-md-offset-11">
                             <button id="SalaryRedirectUpdateStepOne" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
@@ -681,14 +691,34 @@
         padding: 8px 16px;
     }
 
-        a:hover {
-            background-color: #ddd;
-            color: black;
-        }
+    a:hover {
+        background-color: #ddd;
+        color: black;
+    }
 
     p {
         padding-left: 10px;
         padding-right: 10px;
+    }
+
+    #label {
+        font-weight: bold;
+        text-align: left;
+        font-size: 100%;
+    }
+    #empInitials {
+        width: 5%;
+        border: 0px;
+        border-bottom: 1px solid black;
+        height: 20px;
+        text-align:center;
+    }
+
+    #signature, #signatureDate {
+        width: 100%;
+        border: 0px;
+        border-bottom: 1px solid black;
+        height: 20px;
     }
 
     table {
