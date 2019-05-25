@@ -22,7 +22,7 @@
                 <tr>
                     <td>
                         <label>
-                            Watson Truck & Supply, Inc.
+                           Watson Truck & Supply, Inc.
                         </label>
                     </td>
                 </tr>
@@ -593,35 +593,48 @@
                             </tr>
                         </tbody>
                     </table>
+                    <table>
+                        <tr>
+                            <td>
+                                <label class="col-md-offset-4">Total Pre-Tax</label>
+                                <input type="text" id="TotalPostTax" value="" />
+                            </td>
+                            <td>
+                                <label class="col-md-offset-3">Total Post-Tax</label>
+                                <input type="text" id="TotalPostTax" value="" />
+                            </td>
+                        </tr>
+                    </table>
+                    <hr />
                     <div class="text-justify">
                         <label style="padding-left: 10px;"><u>I understand and agree to the following (inital all):</u></label>
                         <p>
-                            <input type="text" id="empInitials" name="EmployeeInitials" value="" />
+                            <input type="text" id="empInitials1" name="EmployeeInitials" value="" />
                             On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                             insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                             or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                         </p>
                         <p>
-                            <input type="text" id="empInitials" name="EmployeeInitials" value="" />
+                            <input type="text" id="empInitials2" name="EmployeeInitials" value="" />
                             On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                             insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                             or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                         </p>
                         <p>
-                            <input type="text" id="empInitials" name="EmployeeInitials" value="" />
+                            <input type="text" id="empInitials3" name="EmployeeInitials" value="" />
                             On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                             insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                             or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                         </p>
                         <p>
-                            <input type="text" id="empInitials" name="EmployeeInitials" value="" />
+                            <input type="text" id="empInitials4" name="EmployeeInitials" value="" />
                             On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                             insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                             or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                         </p>
                         <label style="padding-left: 10px;"><u>Waiver of Pre-Tax Benefits Under the Benefits Plan:</u></label>
                         <p>
-                            <input type="text" id="empInitials" name="EmployeeInitials" value="" />
+                            <input type="text" id="empInitials5" name="EmployeeInitials" value="" />
                             On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                             insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                             or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
@@ -706,12 +719,23 @@
         text-align: left;
         font-size: 100%;
     }
-    #empInitials {
+
+    #TotalPreTax, #TotalPostTax {
+        width: 12%;
+        border: 0px;
+        border-bottom: 1px solid black;
+        height: 20px;
+        text-align: center;
+    }
+
+    #empInitials1, #empInitials2,
+    #empInitials3, #empInitials4,
+    #empInitials5 {
         width: 5%;
         border: 0px;
         border-bottom: 1px solid black;
         height: 20px;
-        text-align:center;
+        text-align: center;
     }
 
     #signature {
@@ -793,9 +817,6 @@
             EEelectionPostTaxVisionIns = document.getElementById("EEelectionPostTaxVisionIns").Value;
             PremiumPostTaxVisionIns = document.getElementById("PremiumPostTaxVisionIns").value;
 
-            //EmpSignature = document.getElementById("EmpSignature").value;
-            //EmpInitials = document.getElementById("EmpInitials").value;
-
             //AccidentInsProvider = document.get("AccidentInsProvider").value;
             //EEelectionPreTaxAccidentIns = document.getElementById("EEelectionPreTaxAccidentIns").value;
             //PremiumPreTaxAccidentIns = document.getElementById("PremiumPreTaxAccidentIns").value;
@@ -838,6 +859,16 @@
             //EEelectionPostTaxOtherIns = document.getElementById("EEelectionPostTaxOtherIns").value;
             //PremiumPostTaxOtherIns = document.getElementById("PremiumPostTaxOtherIns").value;
 
+            TotalPreTax = document.getElementById("TotalPreTax").value;
+            TotalPostTax = document.getElementById("TotalPostTax").value;
+            empSignature = document.getElementById("signature").value;
+            empSignatureDate = document.getElementById("signatureDate").value;
+            empInitials1 = document.getElementById("EmpInitials1").value;
+            empInitials2 = document.getElementById("EmpInitials2").value;
+            empInitials3 = document.getElementById("EmpInitials3").value;
+            empInitials4 = document.getElementById("EmpInitials4").value;
+            empInitials5 = document.getElementById("EmpInitials5").value;
+
       
 
             var data = {
@@ -858,6 +889,16 @@
                 "PremiumPreTaxVisionIns": PremiumPreTaxVisionIns,
                 "EEelectionPostTaxVisionIns": EEelectionPostTaxVisionIns,
                 "PremiumPostTaxVisionIns": PremiumPostTaxVisionIns,
+
+                "TotalPreTax": TotalPreTax,
+                "TotalPostTax": TotalPostTax,
+                "empSignature": empSignature,
+                "empSignatureDate": empSignatureDate,
+                "empInitials1": empInitials1,
+                "empInitials2": empInitials2,
+                "empInitials3": empInitials3,
+                "empInitials4": empInitials4,
+                "empInitials5": empInitials5,
 
                 //"AccidentInsProvider ": AccidentInsProvider ,
                 //"EEelectionPreTaxAccidentIns": EEelectionPreTaxAccidentIns,
@@ -900,11 +941,6 @@
                 //"PremiumPreTaxOtherIns": PremiumPreTaxOtherIns,
                 //"EEelectionPostTaxOtherIns": EEelectionPostTaxOtherIns,
                 //"PremiumPostTaxOtherIns": PremiumPostTaxOtherIns,
-
-                "EmpSignature": EmpSignature,
-                "EmpInitials": EmpInitials,
-                "EmpSignatureDate": EmpSignatureDate,
-
             }
 
             var ret = postData('/GroupHealth/SalaryRedirectionUpdate', data)
@@ -914,17 +950,12 @@
                 })
                 .catch(error => console.error(error))
 
-
         })
         function FourthStep(salaryRedirect) {
-            //document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-            //document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-            //document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
             document.querySelector("#FourthStep").nextElementSibling.style.display = "block";
             emp_id = salaryRedirect.data;
 
         }
-
 
         function postData(url, data) {
             //Default options are marked with *
