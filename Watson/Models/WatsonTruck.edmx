@@ -105,14 +105,17 @@
           </Key>
           <Property Name="Deductions_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Employee_id" Type="int" Nullable="false" />
-          <Property Name="Coverage" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="Provider" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="EEelectionPreTax" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="PremiumPreTax" Type="money" Nullable="false" />
-          <Property Name="EEelectionPostTax" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="PremiumPostTax" Type="money" Nullable="false" />
-          <Property Name="TotalPreTax" Type="money" Nullable="false" />
-          <Property Name="TotalPostTax" Type="money" Nullable="false" />
+          <Property Name="Coverage" Type="varchar" MaxLength="40" />
+          <Property Name="Provider" Type="varchar" MaxLength="40" />
+          <Property Name="EEelectionPreTax" Type="varchar" MaxLength="40" />
+          <Property Name="PremiumPreTax" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="EEelectionPostTax" Type="varchar" MaxLength="40" />
+          <Property Name="PremiumPostTax" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="TotalPreTax" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="TotalPostTax" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="EmployeeSignature" Type="varchar" MaxLength="50" />
+          <Property Name="EmployeeSignatureDate" Type="date" />
+          <Property Name="EmployeeInitials" Type="varchar" MaxLength="3" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -218,6 +221,8 @@
           <Property Name="EmployeeInitials" Type="varchar" MaxLength="3" />
           <Property Name="OtherSignature" Type="varchar" MaxLength="50" />
           <Property Name="OtherSignatureDate" Type="date" />
+          <Property Name="NameOfPersonToReleaseInfoTo" Type="varchar" MaxLength="70" />
+          <Property Name="Relationship" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="InsurancePlan">
           <Key>
@@ -828,15 +833,18 @@
           </Key>
           <Property Name="Deductions_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Employee_id" Type="Int32" Nullable="false" />
-          <Property Name="Coverage" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="Provider" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="EEelectionPreTax" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="PremiumPreTax" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="EEelectionPostTax" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="PremiumPostTax" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="TotalPreTax" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="TotalPostTax" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Coverage" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Provider" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="EEelectionPreTax" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="PremiumPreTax" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="EEelectionPostTax" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="PremiumPostTax" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="TotalPreTax" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="TotalPostTax" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Deductions_Employee" FromRole="Deduction" ToRole="Employee" />
+          <Property Name="EmployeeSignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeSignatureDate" Type="DateTime" Precision="0" />
+          <Property Name="EmployeeInitials" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -953,6 +961,8 @@
           <Property Name="OtherSignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OtherSignatureDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Group_Health_Employee" FromRole="Group_Health" ToRole="Employee" />
+          <Property Name="NameOfPersonToReleaseInfoTo" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Relationship" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="InsurancePlan">
           <Key>
@@ -1377,6 +1387,9 @@
           <EntitySetMapping Name="Deductions">
             <EntityTypeMapping TypeName="WatsonTruckModel.Deduction">
               <MappingFragment StoreEntitySet="Deductions">
+                <ScalarProperty Name="EmployeeInitials" ColumnName="EmployeeInitials" />
+                <ScalarProperty Name="EmployeeSignatureDate" ColumnName="EmployeeSignatureDate" />
+                <ScalarProperty Name="EmployeeSignature" ColumnName="EmployeeSignature" />
                 <ScalarProperty Name="TotalPostTax" ColumnName="TotalPostTax" />
                 <ScalarProperty Name="TotalPreTax" ColumnName="TotalPreTax" />
                 <ScalarProperty Name="PremiumPostTax" ColumnName="PremiumPostTax" />
@@ -1470,6 +1483,8 @@
           <EntitySetMapping Name="Group_Health">
             <EntityTypeMapping TypeName="WatsonTruckModel.Group_Health">
               <MappingFragment StoreEntitySet="Group_Health">
+                <ScalarProperty Name="Relationship" ColumnName="Relationship" />
+                <ScalarProperty Name="NameOfPersonToReleaseInfoTo" ColumnName="NameOfPersonToReleaseInfoTo" />
                 <ScalarProperty Name="OtherSignatureDate" ColumnName="OtherSignatureDate" />
                 <ScalarProperty Name="OtherSignature" ColumnName="OtherSignature" />
                 <ScalarProperty Name="EmployeeInitials" ColumnName="EmployeeInitials" />

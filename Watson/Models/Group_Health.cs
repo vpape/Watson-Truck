@@ -39,6 +39,8 @@ namespace Watson.Models
         public string EmployeeInitials { get; set; }
         public string OtherSignature { get; set; }
         public Nullable<System.DateTime> OtherSignatureDate { get; set; }
+        public string NameOfPersonToReleaseInfoTo { get; set; }
+        public string Relationship { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

@@ -338,18 +338,19 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-        // use both db.Deductions and db.InsurancePlan or just db.Deductions?
-        //need to add employee signature and signature date to db.Deductions table and change data types
+
         public ActionResult SalaryRedirectAgreement()
         {
             return View();
         }
 
         
-        public JsonResult SalaryRedirectionUpdate(int Employee_id, int Deductions_id, string Provider, 
-            string EElectionPreTax, decimal PremiumPreTax, string EElectionPostTax,
-            decimal PremiumPostTax, decimal TotalPreTax, decimal TotalPostTax)
-
+        public JsonResult SalaryRedirectionUpdate(int Employee_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
+            decimal PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, decimal PremiumPostTaxMedIns, string DentalInsProvider,
+            string EEelectionPreTaxDentalIns, decimal PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns,
+            decimal PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns, 
+            decimal PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, decimal PremiumPostTaxVisionIns,
+            decimal TotalPreTax, decimal TotalPostTax)
         {
             Employee e = db.Employees
             .Where(i => i.Employee_id == Employee_id)
@@ -359,13 +360,34 @@ namespace Watson.Controllers
 
             Deduction d = new Deduction();
 
-            d.Provider = Provider;
-            d.EEelectionPreTax = EElectionPreTax;
-            d.PremiumPreTax = PremiumPreTax;
-            d.EEelectionPostTax = EElectionPostTax;
-            d.PremiumPostTax = PremiumPostTax;
+            d.Provider = MedicalInsProvider;
+            d.EEelectionPreTax = EEelectionPreTaxMedIns;
+            d.PremiumPreTax = PremiumPreTaxMedIns;
+            d.EEelectionPostTax = EEelectionPostTaxMedIns;
+            d.PremiumPostTax = PremiumPostTaxMedIns;
+
+            d.Provider = DentalInsProvider;
+            d.EEelectionPreTax = EEelectionPreTaxDentalIns;
+            d.PremiumPreTax = PremiumPreTaxDentalIns;
+            d.EEelectionPostTax = EEelectionPostTaxDentalIns;
+            d.PremiumPostTax = PremiumPostTaxDentalIns;
+
+            d.Provider = VisionInsProvider;
+            d.EEelectionPreTax = EEelectionPreTaxVisionIns;
+            d.PremiumPreTax = PremiumPreTaxVisionIns;
+            d.EEelectionPostTax = EEelectionPostTaxVisionIns;
+            d.PremiumPostTax = PremiumPostTaxVisionIns;
+
             d.TotalPreTax = TotalPreTax;
             d.TotalPostTax = TotalPostTax;
+
+            //"empSignature": empSignature,
+            //    "empSignatureDate": empSignatureDate,
+            //    "empInitials1": empInitials1,
+            //    "empInitials2": empInitials2,
+            //    "empInitials3": empInitials3,
+            //    "empInitials4": empInitials4,
+            //    "empInitials5": empInitials5,
 
             ViewBag.d = d;
 
