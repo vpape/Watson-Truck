@@ -85,7 +85,7 @@
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
-                    <input type="text" id="NameOfPersonRelationship1" name="Relationship" value="" />
+                    <input type="text" id="NameOfPerson1Relationship" name="Relationship" value="" />
                     <hr />
                     <label style="padding-left: 10px;">
                         Name:
@@ -94,7 +94,7 @@
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
-                    <input type="text" id="NameOfPersonRelationship2" name="Relationship" value="" />
+                    <input type="text" id="NameOfPerson2Relationship" name="Relationship" value="" />
                 </div>
             </div>
             <hr />
@@ -290,28 +290,47 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#AuthorizationFormUpdateStepOne").addEventListener("click", function () {
-            empFirstName = document.getElementById("FirstName").value;
-            empLastName = document.getElementById("LastName").value;
-            CurrentEmployer = document.getElementById("Employer").value;
+            FirstName = document.getElementById("FirstName").value;
+            LastName = document.getElementById("LastName").value;
+            CurrentEmployer = document.getElementById("CurrentEmployer").value;
+            SSN = document.getElementById("SSN").value;
+            MailingAddress = document.getElementById("MailingAddress").value;
+            PObox = document.getElementById("PObox").value;
+            City = document.getElementById("City").value;
+            State = document.getElementById("State").value;
+            NameOfPerson1 = document.getElementById("NameOfPerson1").value;
+            NameOfPerson2 = document.getElementById("NameOfPerson2").value;
+            NameOfPerson1Relationship = document.getElementById("NameOfPerson1Relationship").value;
+            NameOfPerson2Relationship = document.getElementById("NameOfPerson2Relationship").value;        
+            EmpSignature = document.getElementById("EmpSignature").value;
+            EmpSignatureDate = document.getElementById("EmpSignatureDate").value;
+            NameOfPerson1Signature = document.getElementById("NameOfPerson1Signature").value;
+            NameOfPerson1SignatureDate = document.getElementById("NameOfPerson1SignatureDate").value;
+            NameOfPerson2Signature = document.getElementById("NameOfPerson2Signature").value;
+            NameOfPerson2SignatureDate = document.getElementById("NameOfPerson2SignatureDate").value;
 
 
             var data = {
-                "empFirstName": empFirstName,
-                "empLastName": empLastName,
+                "FirstName": FirstName,
+                "LastName": LastName,
                 "CurrentEmployer": CurrentEmployer,
                 "SSN": SSN,
-                "empDateOfBirth": empDateOfBirth,
+                "DateOfBirth": DateOfBirth,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
                 "State": State,
                 "ZipCode": ZipCode,
-                "empSignature": empSignature,
-                "empSignatureDate": empSignatureDate,
-                "OtherSignature1": OtherSignature1,
-                "OtherSignatureDate1": OtherSignatureDate1,
-                "OtherSignature2": OtherSignature2,
-                "OtherSignatureDate2": OtherSignatureDate2
+                "NameOfPerson1": NameOfPerson1,
+                "NameOfPerson1Relationship": NameOfPerson1Relationship,
+                "NameOfPerson2": NameOfPerson2,
+                "NameOfPerson2Relationship": NameOfPerson2Relationship,
+                "EmpSignature": EmpSignature,
+                "EmpSignatureDate": EmpSignatureDate,
+                "NameOfPerson1Signature": NameOfPerson1Signature,
+                "NameOfPerson1SignatureDate": NameOfPerson1SignatureDate,
+                "NameOfPerson2Signature": NameOfPerson2Signature,
+                "NameOfPerson2SignatureDate": NameOfPerson2SignatureDate
             }
 
             var ret = postData('/GroupHealth/AuthorizationFormUpdate', data)

@@ -401,18 +401,37 @@ namespace Watson.Controllers
             return View();
         }
 
-        //g.OtherSignature = OtherSignature;
-        //g.OtherSignatureDate = OtherSignatureDate;
-        //string OtherSignature, DateTime OtherSignatureDate,
-        public JsonResult AuthorizationFormUpdate(int Employee_id, string PolicyholdersFirstName, string PolicyholdersLastName)
+        public JsonResult AuthorizationFormUpdate(int Employee_id, string NameOfPerson1, string NameOfPerson1Relationship, string NameOfPerson2,
+            string NameOfPerson2Relationship, string EmpSignature, DateTime EmpSignatureDate, string NameOfPerson1Signature, 
+            DateTime NameOfPerson1SignatureDate, string NameOfPerson2Signature, DateTime NameOfPerson2SignatureDate)
         {
+            Employee e = db.Employees
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
 
+            ViewBag.e = e;
 
+            Group_Health g = new Group_Health();
 
+            g.NameOfPersonToReleaseInfoTo = NameOfPerson1;
+            g.Relationship = NameOfPerson1Relationship;
+            g.NameOfPersonToReleaseInfoTo = NameOfPerson2;
+            g.Relationship = NameOfPerson2Relationship;
+            g.EmployeeSignature = EmpSignature;
+            g.EmployeeSignatureDate = EmpSignatureDate;
+            g.OtherSignature = NameOfPerson1Signature;
+            g.OtherSignatureDate = NameOfPerson1SignatureDate;
+            g.OtherSignature = NameOfPerson2Signature;
+            g.OtherSignatureDate = NameOfPerson2SignatureDate;
 
+            ViewBag.g = g;
 
+            db.Group_Health.Add(g);
+            db.SaveChanges();
 
-            return Json(new {  }, JsonRequestBehavior.AllowGet);
+            int result = g.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
