@@ -350,7 +350,7 @@ namespace Watson.Controllers
             string EEelectionPreTaxDentalIns, decimal PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns,
             decimal PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns, 
             decimal PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, decimal PremiumPostTaxVisionIns,
-            decimal TotalPreTax, decimal TotalPostTax)
+            decimal TotalPreTax, decimal TotalPostTax, string empSignature, DateTime empSignatureDate, string empInitials1)
         {
             Employee e = db.Employees
             .Where(i => i.Employee_id == Employee_id)
@@ -380,15 +380,10 @@ namespace Watson.Controllers
 
             d.TotalPreTax = TotalPreTax;
             d.TotalPostTax = TotalPostTax;
-
-            //"empSignature": empSignature,
-            //    "empSignatureDate": empSignatureDate,
-            //    "empInitials1": empInitials1,
-            //    "empInitials2": empInitials2,
-            //    "empInitials3": empInitials3,
-            //    "empInitials4": empInitials4,
-            //    "empInitials5": empInitials5,
-
+            d.EmployeeSignature = empSignature;
+            d.EmployeeSignatureDate = empSignatureDate;
+            d.EmployeeInitials = empInitials1;
+         
             ViewBag.d = d;
 
             db.Deductions.Add(d);
