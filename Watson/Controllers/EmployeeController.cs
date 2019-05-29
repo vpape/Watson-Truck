@@ -134,6 +134,7 @@ namespace Watson.Controllers
             e.CellPhone = CellPhone;
 
             ViewBag.MaritalStatus = e.MaritalStatus;
+            ViewBag.e = e;
 
             if (ModelState.IsValid)
             {
@@ -226,6 +227,8 @@ namespace Watson.Controllers
             e.EmailAddress = EmailAddress;
             e.PhoneNumber = PhoneNumber;
             e.CellPhone = CellPhone;
+
+            ViewBag.e = e;
 
             if (ModelState.IsValid)
             {

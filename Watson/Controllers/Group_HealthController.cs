@@ -71,6 +71,7 @@ namespace Watson.Controllers
             return View();
         }
 
+        //need to add items to db.InsDetail
         public JsonResult GrpHealthInsSupplementUpdate(int InsurancePlan_id, string Item, string Detail)
         {
             InsurancePlanDetail insDetail = new InsurancePlanDetail();
@@ -82,6 +83,9 @@ namespace Watson.Controllers
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
+
+        //Add EditGrpHealthSupplement()
+        //Add GrpHealthInsSupplementEditUpdate()
 
         //----------------------------------------------------------------------------------------
 
@@ -395,6 +399,90 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
+        public ActionResult EditSalaryRedirection(int? Employee_id)
+        {
+            if (Employee_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Group_Health g = db.Group_Health.Find(Employee_id);
+            if (g == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.g = g.Employee_id;
+
+            return View(g);
+        }
+
+        public JsonResult SalaryRedirectionEditUpdate(int Employee_id, int Deductions_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
+            decimal PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, decimal PremiumPostTaxMedIns, string DentalInsProvider,
+            string EEelectionPreTaxDentalIns, decimal PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns,
+            decimal PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
+            decimal PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, decimal PremiumPostTaxVisionIns,
+            decimal TotalPreTax, decimal TotalPostTax, string empSignature, DateTime empSignatureDate, string empInitials1)
+        {
+            Employee e = db.Employees
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
+
+            ViewBag.e = e;
+
+            Deduction d = db.Deductions
+                .Where(i => i.Deductions_id == Deductions_id)
+                .Single();
+
+            d.Provider = MedicalInsProvider;
+            d.EEelectionPreTax = EEelectionPreTaxMedIns;
+            d.PremiumPreTax = PremiumPreTaxMedIns;
+            d.EEelectionPostTax = EEelectionPostTaxMedIns;
+            d.PremiumPostTax = PremiumPostTaxMedIns;
+
+            d.Provider = DentalInsProvider;
+            d.EEelectionPreTax = EEelectionPreTaxDentalIns;
+            d.PremiumPreTax = PremiumPreTaxDentalIns;
+            d.EEelectionPostTax = EEelectionPostTaxDentalIns;
+            d.PremiumPostTax = PremiumPostTaxDentalIns;
+
+            d.Provider = VisionInsProvider;
+            d.EEelectionPreTax = EEelectionPreTaxVisionIns;
+            d.PremiumPreTax = PremiumPreTaxVisionIns;
+            d.EEelectionPostTax = EEelectionPostTaxVisionIns;
+            d.PremiumPostTax = PremiumPostTaxVisionIns;
+
+            d.TotalPreTax = TotalPreTax;
+            d.TotalPostTax = TotalPostTax;
+            d.EmployeeSignature = empSignature;
+            d.EmployeeSignatureDate = empSignatureDate;
+            d.EmployeeInitials = empInitials1;
+            //THere are 5 items that need initials for the salaryRedirect waviers.
+
+            ViewBag.d = d;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(d).State = System.Data.Entity.EntityState.Modified;
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err);
+                }
+
+                RedirectToAction("EmpOverview", new { d.Employee_id });
+            }
+
+            int result = d.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
 
         public ActionResult AuthorizationForm()
         {
@@ -428,6 +516,75 @@ namespace Watson.Controllers
 
             db.Group_Health.Add(g);
             db.SaveChanges();
+
+            int result = g.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
+
+        public ActionResult EditAuthorizationForm(int? Employee_id)
+        {
+            if (Employee_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Group_Health g = db.Group_Health.Find(Employee_id);
+            if (g == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.g = g.Employee_id;
+
+            return View(g);
+        }
+
+        public JsonResult AuthorizationFormEditUpdate(int Employee_id, int GrpHealthIns_id, string NameOfPerson1,
+            string NameOfPerson1Relationship, string NameOfPerson2, string NameOfPerson2Relationship, string EmpSignature,
+            DateTime EmpSignatureDate, string NameOfPerson1Signature, DateTime NameOfPerson1SignatureDate,
+            string NameOfPerson2Signature, DateTime NameOfPerson2SignatureDate)
+        {
+            Employee e = db.Employees
+               .Where(i => i.Employee_id == Employee_id)
+               .Single();
+
+            ViewBag.e = e;
+
+            Group_Health g = db.Group_Health
+                .Where(i => i.GroupHealthInsurance_id == GrpHealthIns_id)
+                .Single();
+
+            g.NameOfPersonToReleaseInfoTo = NameOfPerson1;
+            g.Relationship = NameOfPerson1Relationship;
+            g.NameOfPersonToReleaseInfoTo = NameOfPerson2;
+            g.Relationship = NameOfPerson2Relationship;
+            g.EmployeeSignature = EmpSignature;
+            g.EmployeeSignatureDate = EmpSignatureDate;
+            g.OtherSignature = NameOfPerson1Signature;
+            g.OtherSignatureDate = NameOfPerson1SignatureDate;
+            g.OtherSignature = NameOfPerson2Signature;
+            g.OtherSignatureDate = NameOfPerson2SignatureDate;
+
+            ViewBag.g = g;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(g).State = System.Data.Entity.EntityState.Modified;
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err);
+                }
+
+                RedirectToAction("EmpOverview", new { g.Employee_id });
+            }
 
             int result = g.Employee_id;
 

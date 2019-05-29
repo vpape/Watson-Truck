@@ -457,6 +457,7 @@
     <Content Include="Views\Employee\SpContact.cshtml" />
     <Content Include="Views\Employee\SpEmployment.cshtml" />
     <Content Include="Views\Group_Health\AuthorizationForm.cshtml" />
+    <Content Include="Views\Group_Health\EditAuthorizationForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
