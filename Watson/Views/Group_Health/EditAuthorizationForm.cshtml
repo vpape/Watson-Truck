@@ -13,9 +13,375 @@
     <title>Edit Authorization Form</title>
 </head>
 <body>
-    <div>
-
+    @* Edit Authorization Form *@
+    <div class="form-horizontal">
+        <hr />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" @*value=@ViewBag.e.Employee_id*@ />
+        <div class="collapsible" id="FirstStep">Edit Authorization Form</div>
+        <div class="table table-bordered">
+            <table class="table table-condensed" id="AuthorizationFormTable">
+                <tr>
+                    <td>
+                        <div id="label">
+                            1.<label class="" style="padding-left: 10px;">Policyholder's First Name:</label>
+                            <input type="text" class="form-control" id="FirstName" placeholder="First Name" name="FirstName" value="" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="label">
+                            2.<label class="" style="padding-left: 10px;">Policyholder's Last Name:</label>
+                            <input type="text" class="form-control" id="LastName" placeholder="Last Name" name="LastName" value="" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="label">
+                            3.<label class="" style="padding-left: 10px;">Policyholder's Employers Name:</label>
+                            <input type="text" class="form-control" id="Employer" placeholder="Employer" name="CurrentEmployer" value="" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="label">
+                            4.<label class="" style="padding-left: 10px;">Policyholder's SSN:</label>
+                            <input type="text" class="form-control" id="SSN" placeholder="SSN#" name="SSN" value="" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="label">
+                            5.<label class="" style="padding-left: 10px;">Policyholder's Date of Birth:</label>
+                            <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="label">
+                            6.<label class="" style="padding-left: 10px;">Policyholder's Mailing Address:</label>
+                            <input type="text" class="form-control" id="MailingAddress" placeholder="Street" name="MailingAddress" value="" />
+                            <input type="text" class="form-control" id="PObox" placeholder="PO Box" name="PObox" value="" />
+                            <input type="text" class="form-control" id="City" placeholder="City" name="City" value="" />
+                            <input type="text" class="form-control" id="State" placeholder="State" name="State" value="" />
+                            <input type="text" class="form-control" id="ZipCode" placeholder="ZipCode" name="ZipCode" value="" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+            <div>
+                <div id="label">
+                    7.<label class="" style="padding-left: 10px;">Full Name of person(s) to release Information to:</label>
+                    <p></p>
+                    <label style="padding-left: 10px;">
+                        Name:
+                    </label>
+                    <input type="text" id="NameOfPerson1" name="NameOfPersonToReleaseInfoTo" value="" />
+                    <label style="padding-left: 10px;">
+                        Relationship:
+                    </label>
+                    <input type="text" id="NameOfPerson1Relationship" name="Relationship" value="" />
+                    <hr />
+                    <label style="padding-left: 10px;">
+                        Name:
+                    </label>
+                    <input type="text" id="NameOfPerson2" name="NameOfPersonToReleaseInfoTo" value="" />
+                    <label style="padding-left: 10px;">
+                        Relationship:
+                    </label>
+                    <input type="text" id="NameOfPerson2Relationship" name="Relationship" value="" />
+                </div>
+            </div>
+            <hr />
+            <div class="col-md-12 table table-bordered">
+                <p></p>
+                I AUTHORIZE Insurance Management Services to release any and all necessary Protected Health Information (PHI) to
+                the above listed person(s).
+                <p></p>
+                A copy of this authorization remains valid for the term of coverage, unless specified in a written request. I have
+                the right to receive a copy of the authorization upon request.<br />
+                <p></p>
+                *The policyholder must fill out this form in order to authorize another individual, other than themselves, to discuss
+                claims, EOBs, or any other Protected Health Information (PHI) concerning the policyholder and/or dependent(s) on this
+                plan, with this office. This individual may be a spouse, parent, friend, etc.*<br />
+                <p></p>
+                *Without a signed Authorization form, the policyholder will be the only individual that this office will release information
+                to regarding the policy or the individual(s) on the policy.<br />
+                <p></p>
+            </div>
+            <table class="table-bordered" id="AuthorizedSignatures" cellpadding="20" cellspacing="20">
+                <tr>
+                    <td>
+                        <div class="text-justify">
+                            <hr />
+                            <label style="padding-left: 10px;">
+                                Policyholder's Signature:
+                            </label>
+                            <input type="text" id="EmpSignature" name="EmployeeSignature" value="" />
+                            <label style="padding-left: 10px;">
+                                Date:
+                            </label>
+                            <input type="date" id="EmpSignatureDate" name="EmployeeSignatureDate" value="" />
+                            <hr />
+                            <label style="padding-left: 10px;">
+                                Signature of person to release information to:
+                            </label>
+                            <input type="text" id="NameOfPerson1Signature" name="OtherSignature" value="" />
+                            <label style="padding-left: 10px;">
+                                Date:
+                            </label>
+                            <input type="date" id="NameOfPerson1SignatureDate" name="OtherSignatureDate" value="" />
+                            <hr />
+                            <label style="padding-left: 10px;">
+                                Signature of person to release information to:
+                            </label>
+                            <input type="text" id="NameOfPerson2Signature" name="OtherSignature" value="" />
+                            <label style="padding-left: 10px;">
+                                Date:
+                            </label>
+                            <input type="date" id="NameOfPerson2SignatureDate" name="OtherSignatureDate" value="" />
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <div class="col-md-offset-11">
+                                <button id="EditAuthorizationFormUpdate" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 </html>
+
+
+<style>
+    .collapsible {
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    .btn {
+        background-color: #333;
+        color: white;
+    }
+
+    .button {
+        text-align: right;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+    p {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #label {
+        font-weight: bold;
+        text-align: left;
+        font-size: 100%;
+    }
+
+    #EmpSignature,
+    #NameOfPerson1,
+    #NameOfPerson2,
+    #NameOfPerson1Signature,
+    #NameOfPerson2Signature {
+        width: 100%;
+        border: 0px;
+        border-bottom: 1px solid black;
+        height: 30px;
+    }
+
+    #EmpSignatureDate,
+    #NameOfPerson1SignatureDate,
+    #NameOfPerson2SignatureDate {
+        width: 15%;
+        border: 0px;
+        border-bottom: 1px solid black;
+        height: 30px;
+    }
+
+    #NameOfPersonRelationship1, #NameOfPersonRelationship2 {
+        width: 15%;
+        border: 0px;
+        border-bottom: 1px solid black;
+        height: 30px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    /*table tr {
+            border-bottom: 1px solid black;
+        }*/
+
+    td:empty {
+        width: 10px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 0px;
+    }
+
+    th {
+        border-bottom: 5px solid black;
+    }
+
+    tr:nth-child(even) {
+        /*background-color: #f2f2f2;*/
+    }
+</style>
+
+<script>
+    var col = document.querySelectorAll(".collapsible");
+    var i;
+    var emp_id;
+
+    for (i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#EditAuthorizationFormUpdate").addEventListener("click", function () {
+            FirstName = document.getElementById("FirstName").value;
+            LastName = document.getElementById("LastName").value;
+            CurrentEmployer = document.getElementById("CurrentEmployer").value;
+            SSN = document.getElementById("SSN").value;
+            MailingAddress = document.getElementById("MailingAddress").value;
+            PObox = document.getElementById("PObox").value;
+            City = document.getElementById("City").value;
+            State = document.getElementById("State").value;
+            NameOfPerson1 = document.getElementById("NameOfPerson1").value;
+            NameOfPerson2 = document.getElementById("NameOfPerson2").value;
+            NameOfPerson1Relationship = document.getElementById("NameOfPerson1Relationship").value;
+            NameOfPerson2Relationship = document.getElementById("NameOfPerson2Relationship").value;
+            EmpSignature = document.getElementById("EmpSignature").value;
+            EmpSignatureDate = document.getElementById("EmpSignatureDate").value;
+            NameOfPerson1Signature = document.getElementById("NameOfPerson1Signature").value;
+            NameOfPerson1SignatureDate = document.getElementById("NameOfPerson1SignatureDate").value;
+            NameOfPerson2Signature = document.getElementById("NameOfPerson2Signature").value;
+            NameOfPerson2SignatureDate = document.getElementById("NameOfPerson2SignatureDate").value;
+
+
+            var data = {
+                "Employee_id": emp_id,
+                "FirstName": FirstName,
+                "LastName": LastName,
+                "CurrentEmployer": CurrentEmployer,
+                "SSN": SSN,
+                "DateOfBirth": DateOfBirth,
+                "MailingAddress": MailingAddress,
+                "PObox": PObox,
+                "City": City,
+                "State": State,
+                "ZipCode": ZipCode,
+                "NameOfPerson1": NameOfPerson1,
+                "NameOfPerson1Relationship": NameOfPerson1Relationship,
+                "NameOfPerson2": NameOfPerson2,
+                "NameOfPerson2Relationship": NameOfPerson2Relationship,
+                "EmpSignature": EmpSignature,
+                "EmpSignatureDate": EmpSignatureDate,
+                "NameOfPerson1Signature": NameOfPerson1Signature,
+                "NameOfPerson1SignatureDate": NameOfPerson1SignatureDate,
+                "NameOfPerson2Signature": NameOfPerson2Signature,
+                "NameOfPerson2SignatureDate": NameOfPerson2SignatureDate
+            }
+
+            var ret = postData('/GroupHealth/AuthorizationFormEditUpdate', data)
+                .then(data => {
+                    console.log(data);
+                    FifthStep(data);
+                })
+                .catch(error => console.error(error))
+
+
+        })
+        function FifthStep(authoriztionForm) {
+            //document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+            //document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+            //document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
+            //document.querySelector("#FourthStep").nextElementSibling.style.display = "none";
+            document.querySelector("#FifthStep").nextElementSibling.style.display = "block";
+            emp_id = authoriztionForm.data;
+
+        }
+
+
+        function postData(url, data) {
+            //Default options are marked with *
+            console.log(data);
+            console.log(JSON.stringify(data));
+            return fetch(url, {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => console.log('Success:', JSON.stringify(response)))
+                .catch(error => console.error('Error:', error));
+            //.then(Response => {
+            //    console.log(Response);
+            //    Response.json();
+            //}) //parses response to JSON
+        }
+    })
+</script>
+
+
+
 
