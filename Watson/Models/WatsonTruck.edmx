@@ -185,10 +185,6 @@
           <Property Name="EmployerState" Type="varchar" MaxLength="30" />
           <Property Name="EmployerZipCode" Type="varchar" MaxLength="15" />
           <Property Name="EmployerPhoneNumber" Type="varchar" MaxLength="30" />
-          <Property Name="Medical" Type="varchar" MaxLength="15" />
-          <Property Name="Dental" Type="varchar" MaxLength="15" />
-          <Property Name="Vision" Type="varchar" MaxLength="15" />
-          <Property Name="Indemnity" Type="varchar" MaxLength="15" />
           <Property Name="PObox" Type="varchar" MaxLength="10" />
           <Property Name="EmployerPObox" Type="varchar" MaxLength="10" />
         </EntityType>
@@ -230,11 +226,11 @@
           </Key>
           <Property Name="InsurancePlan_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Employee_id" Type="int" Nullable="false" />
-          <Property Name="MECPlan" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="StandardPlan" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="BuyUpPlan" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="DentalPlan" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="VisionPlan" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MECPlan" Type="varchar" MaxLength="20" />
+          <Property Name="StandardPlan" Type="varchar" MaxLength="20" />
+          <Property Name="BuyUpPlan" Type="varchar" MaxLength="20" />
+          <Property Name="DentalPlan" Type="varchar" MaxLength="20" />
+          <Property Name="VisionPlan" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="InsurancePlanDetail">
           <Key>
@@ -251,11 +247,11 @@
           </Key>
           <Property Name="InsurancePremium_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InsurancePlan_id" Type="int" Nullable="false" />
-          <Property Name="EmployeeOnly" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="EmployeeAndSpouse" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="EmployeeAndDependent" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="EmployeeAndFamily" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="YearlyPremiumCost" Type="money" Nullable="false" />
+          <Property Name="EmployeeOnly" Type="varchar" MaxLength="20" />
+          <Property Name="EmployeeAndSpouse" Type="varchar" MaxLength="20" />
+          <Property Name="EmployeeAndDependent" Type="varchar" MaxLength="20" />
+          <Property Name="EmployeeAndFamily" Type="varchar" MaxLength="20" />
+          <Property Name="YearlyPremiumCost" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Life_Insurance">
           <Key>
@@ -348,6 +344,10 @@
           <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
           <Property Name="CoveredByOtherInsurance" Type="varchar" MaxLength="30" />
           <Property Name="PObox" Type="varchar" MaxLength="10" />
+          <Property Name="Medical" Type="varchar" MaxLength="15" />
+          <Property Name="Dental" Type="varchar" MaxLength="15" />
+          <Property Name="Vision" Type="varchar" MaxLength="15" />
+          <Property Name="Indemnity" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Vacation">
           <Key>
@@ -922,10 +922,6 @@
           <Property Name="EmployerState" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="EmployerZipCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="EmployerPhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Medical" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="Dental" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="Vision" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="Indemnity" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Family_Info_Employee" FromRole="Family_Info" ToRole="Employee" />
           <NavigationProperty Name="Other_Insurance" Relationship="WatsonTruckModel.FK_Other_Insurance_Family_Info" FromRole="Family_Info" ToRole="Other_Insurance" />
           <Property Name="PObox" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -970,11 +966,11 @@
           </Key>
           <Property Name="InsurancePlan_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Employee_id" Type="Int32" Nullable="false" />
-          <Property Name="MECPlan" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="StandardPlan" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="BuyUpPlan" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="DentalPlan" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="VisionPlan" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MECPlan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="StandardPlan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BuyUpPlan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DentalPlan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VisionPlan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_InsurancePlan_Employee" FromRole="InsurancePlan" ToRole="Employee" />
           <NavigationProperty Name="InsurancePlanDetails" Relationship="WatsonTruckModel.FK_InsurancePlanDetail_InsurancePlan" FromRole="InsurancePlan" ToRole="InsurancePlanDetail" />
           <NavigationProperty Name="InsurancePremiums" Relationship="WatsonTruckModel.FK_InsurancePremium_InsurancePlan" FromRole="InsurancePlan" ToRole="InsurancePremium" />
@@ -995,11 +991,11 @@
           </Key>
           <Property Name="InsurancePremium_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InsurancePlan_id" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeOnly" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="EmployeeAndSpouse" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="EmployeeAndDependent" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="EmployeeAndFamily" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="YearlyPremiumCost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="EmployeeOnly" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeAndSpouse" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeAndDependent" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeAndFamily" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="YearlyPremiumCost" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="InsurancePlan" Relationship="WatsonTruckModel.FK_InsurancePremium_InsurancePlan" FromRole="InsurancePremium" ToRole="InsurancePlan" />
         </EntityType>
         <EntityType Name="Life_Insurance">
@@ -1096,6 +1092,10 @@
           <NavigationProperty Name="Family_Info" Relationship="WatsonTruckModel.FK_Other_Insurance_Family_Info" FromRole="Other_Insurance" ToRole="Family_Info" />
           <Property Name="PObox" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="InsuranceCarrier" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Medical" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Dental" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Vision" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Indemnity" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Vacation">
           <Key>
@@ -1448,10 +1448,6 @@
               <MappingFragment StoreEntitySet="Family_Info">
                 <ScalarProperty Name="EmployerPObox" ColumnName="EmployerPObox" />
                 <ScalarProperty Name="PObox" ColumnName="PObox" />
-                <ScalarProperty Name="Indemnity" ColumnName="Indemnity" />
-                <ScalarProperty Name="Vision" ColumnName="Vision" />
-                <ScalarProperty Name="Dental" ColumnName="Dental" />
-                <ScalarProperty Name="Medical" ColumnName="Medical" />
                 <ScalarProperty Name="EmployerPhoneNumber" ColumnName="EmployerPhoneNumber" />
                 <ScalarProperty Name="EmployerZipCode" ColumnName="EmployerZipCode" />
                 <ScalarProperty Name="EmployerState" ColumnName="EmployerState" />
@@ -1628,6 +1624,10 @@
           <EntitySetMapping Name="Other_Insurance">
             <EntityTypeMapping TypeName="WatsonTruckModel.Other_Insurance">
               <MappingFragment StoreEntitySet="Other_Insurance">
+                <ScalarProperty Name="Indemnity" ColumnName="Indemnity" />
+                <ScalarProperty Name="Vision" ColumnName="Vision" />
+                <ScalarProperty Name="Dental" ColumnName="Dental" />
+                <ScalarProperty Name="Medical" ColumnName="Medical" />
                 <ScalarProperty Name="InsuranceCarrier" ColumnName="InsuranceCarrier" />
                 <ScalarProperty Name="PObox" ColumnName="PObox" />
                 <ScalarProperty Name="CoveredByOtherInsurance" ColumnName="CoveredByOtherInsurance" />

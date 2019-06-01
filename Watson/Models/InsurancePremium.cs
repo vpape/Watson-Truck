@@ -20,7 +20,7 @@ namespace Watson.Models
         public string EmployeeAndSpouse { get; set; }
         public string EmployeeAndDependent { get; set; }
         public string EmployeeAndFamily { get; set; }
-        public decimal YearlyPremiumCost { get; set; }
+        public Nullable<decimal> YearlyPremiumCost { get; set; }
     
         public virtual InsurancePlan InsurancePlan { get; set; }
     }

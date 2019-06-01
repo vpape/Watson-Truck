@@ -26,6 +26,10 @@ namespace Watson.Models
         public string CoveredByOtherInsurance { get; set; }
         public string PObox { get; set; }
         public string InsuranceCarrier { get; set; }
+        public string Medical { get; set; }
+        public string Dental { get; set; }
+        public string Vision { get; set; }
+        public string Indemnity { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual Family_Info Family_Info { get; set; }

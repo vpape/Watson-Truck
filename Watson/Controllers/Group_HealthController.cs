@@ -97,14 +97,14 @@ namespace Watson.Controllers
         public JsonResult GrpHealthEnrollmentNew(int Employee_id, int FamilyMember_id, string empInsuranceCarrier, 
             string empInsPolicyNumber, string GroupName, string IMSGroupNumber, string PhoneNumber, 
             string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason, string Myself, string Spouse,
-            string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear,
-            string NoneGroupHealthOption, string EmpOnlyGroupHealthOption, string EmpSpGroupHealthOption, 
-            string EmpDepGroupHealthOption, string EmpFamGroupHealthOption, string EmpSignature,
-            DateTime EmpSignatureDate, string EmpInitials, string OtherSignature, DateTime OtherSignatureDate,
-            string empDepartment, string empEnrollmentType, int empPayroll_id, string empClass, decimal empAnnualSalary,
-            DateTime empEffectiveDate, int empHrsWkPerWk, string spOtherInsCoverage, string spInsCarrier, 
-            string spInsPolicyNumber, string spInsPhoneNumber, string spInsMailingAddress, string spInsPObox,
-            string spInsCity, string spInsState, string spInsZipCode, string depOtherInsCoverage,
+            string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear, string NoneGroupHealthOption,
+            string EmpOnlyGroupHealthOption, string EmpSpGroupHealthOption, string EmpDepGroupHealthOption, 
+            string EmpFamGroupHealthOption, string EmpSignature, DateTime EmpSignatureDate, string EmpInitials, 
+            string OtherSignature, DateTime OtherSignatureDate, string empDepartment, string empEnrollmentType, 
+            int empPayroll_id, string empClass, decimal empAnnualSalary, DateTime empEffectiveDate, int empHrsWkPerWk,
+            string spOtherInsCoverage, string spInsCarrier, string spInsPolicyNumber, string spInsPhoneNumber,
+            string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState, string spInsZipCode, 
+            string spMedical, string spDental, string spVision, string spIndemnity, string depOtherInsCoverage,
             string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
         {
             Group_Health g = new Group_Health();
@@ -154,6 +154,10 @@ namespace Watson.Controllers
             o.City = spInsCity;
             o.State = spInsState;
             o.ZipCode = spInsZipCode;
+            o.Medical = spMedical;
+            o.Vision = spVision;
+            o.Dental = spDental;
+            o.Indemnity = spIndemnity;
             o.CoveredByOtherInsurance = depOtherInsCoverage;
             o.InsuranceCarrier = depInsCarrier;
             o.PolicyNumber = depInsPolicyNumber;
@@ -210,16 +214,17 @@ namespace Watson.Controllers
         }
 
         public JsonResult GrpHealthInsEditUpdate(int GrpHealthIns_id, int Employee_id, int FamilyMember_id, 
-            int OtherInsurance_id, string empInsuranceCarrier, string empInsPolicyNumber, string GroupName, 
-            string IMSGroupNumber, string PhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
+            int OtherInsurance_id, string empInsuranceCarrier, string empInsPolicyNumber, string GroupName, string IMSGroupNumber, 
+            string PhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
             string Myself, string Spouse, string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear,
             string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption,
             string empDepGroupHealthOption, string empFamGroupHealthOption, string empSignature, DateTime empSignatureDate,
             string empDepartment, string empEnrollmentType, int empPayroll_id, string empClass, string empJobTitle,
-            DateTime empHireDate, decimal empAnnualSalary, DateTime empEffectiveDate, int empHrsWkPerWk, string spOtherInsCoverage, string spInsCarrier, string spInsPolicyNumber,
-            string spInsPhoneNumber, string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState,
-            string spInsZipCode, string depOtherInsCoverage, string depInsCarrier, string depInsPolicyNumber,
-            string depInsPhoneNumber)
+            DateTime empHireDate, decimal empAnnualSalary, DateTime empEffectiveDate, int empHrsWkPerWk, 
+            string spOtherInsCoverage, string spInsCarrier, string spInsPolicyNumber, string spInsPhoneNumber,
+            string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState, string spInsZipCode,
+            string spMedical, string spDental, string spVision, string spIndemnity, string depOtherInsCoverage, 
+            string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
         {
             var g = db.Group_Health
                 .Where(i => i.GroupHealthInsurance_id == GrpHealthIns_id)
@@ -277,10 +282,15 @@ namespace Watson.Controllers
             o.City = spInsCity;
             o.State = spInsState;
             o.ZipCode = spInsZipCode;
+            o.Medical = spMedical;
+            o.Vision = spVision;
+            o.Dental = spDental;
+            o.Indemnity = spIndemnity;
             o.CoveredByOtherInsurance = depOtherInsCoverage;
             o.InsuranceCarrier = depInsCarrier;
             o.PolicyNumber = depInsPolicyNumber;
             o.PhoneNumber = depInsPhoneNumber;
+            
 
             ViewBag.o = o;
 

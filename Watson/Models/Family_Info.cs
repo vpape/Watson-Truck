@@ -45,10 +45,6 @@ namespace Watson.Models
         public string EmployerState { get; set; }
         public string EmployerZipCode { get; set; }
         public string EmployerPhoneNumber { get; set; }
-        public string Medical { get; set; }
-        public string Dental { get; set; }
-        public string Vision { get; set; }
-        public string Indemnity { get; set; }
         public string PObox { get; set; }
         public string EmployerPObox { get; set; }
     

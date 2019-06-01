@@ -341,8 +341,7 @@ namespace Watson.Controllers
             string RelationshipToInsured, string EmpLastName, string EmpNumber, DateTime DateOfBirth, string MailingAddress,
             string PObox, string City, string State, string County, string ZipCode, string EmailAddress, string PhoneNumber,
             string CellPhone, string Gender, string Employer, string EmployerMailingAddress, string EmployerPObox,
-            string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber,
-            string Medical, string Dental, string Vision, string Indemnity)
+            string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
             var f = db.Family_Info
                 .Where(i => i.Employee_id == Employee_id)
@@ -372,10 +371,6 @@ namespace Watson.Controllers
             f.EmployerState = EmployerState;
             f.EmployerZipCode = EmployerZipCode;
             f.EmployerPhoneNumber = EmployerPhoneNumber;
-            f.Medical = Medical;
-            f.Dental = Dental;
-            f.Vision = Vision;
-            f.Indemnity = Indemnity;
 
             int result = f.Employee_id;
 
