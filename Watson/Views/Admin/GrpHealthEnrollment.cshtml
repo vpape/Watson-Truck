@@ -1,0 +1,1684 @@
+﻿@*@model Watson.Models.GrpHealthMasterList*@
+@{
+    ViewBag.Title = "GrpHealthEnrollment";
+}
+<h2>Health Insurance Premiums</h2>
+<h5>Major Medical (includes 15K Life Insurance)</h5>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Admin- Group Health Enrollment</title>
+</head>
+<body>
+    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" @*value=@ViewBag.e.Employee_id*@ />
+    <div class="form-horizontal">
+        <div class="collapsible" id="FirstStep">Admin- Health Insurance Premiums</div>
+        <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">
+            <tr>
+                <td>
+                    <table class="table table-condensed table-hover" width="400" cellpadding="10" cellspacing="10" border="1">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Plan</th>
+                                <th>Employee Only</th>
+                                <th>Employee/Spouse</th>
+                                <th>Employee/Child(ren)</th>
+                                <th>Employee/Family</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label>(MEC Plan) Monthly Cost per Employee:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeOnly" size="10" id="MECmonthlyCostEmpOnly" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="MECmonthlyCostEmpSp" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="MECmonthlyCostEmpDep" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="MECmonthlyCostEmpFam" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="MECMnthyearlyPremiumCost" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>(MEC Plan) Bi-weekly Cost per Employee:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeOnly" size="10" id="MECbiweeklyCostEmpOnly" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="MECbiweeklyCostEmpSp" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="MECbiweeklyCostEmpDep" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="MECbiweeklyCostEmpFam" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="MECBiWkyearlyPremiumCost" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>(Standard Plan) Monthly Cost per Employee:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeOnly" size="10" id="StndmonthlyCostEmpOnly" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="StndmonthlyCostEmpSp" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="StndmonthlyCostEmpDep" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="StndmonthlyCostEmpFam" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="StndMnthyearlyPremiumCost" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>(Standard Plan) Bi-weekly Cost per Employee:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeOnly" size="10" id="StndbiweeklyCostEmpOnly" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="StndbiweeklyCostEmpSp" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="StndbiweeklyCostEmpDep" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="StndbiweeklyCostEmpFam" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="StndBiWkyearlyPremiumCost" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>(Buy Up Plan) Monthly Cost per Employee:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeOnly" size="10" id="BuyUpmonthlyCostEmpOnly" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="BuyUpmonthlyCostEmpSp" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="BuyUpmonthlyCostEmpDep" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="BuyUpmonthlyCostEmpFam" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="BuyUpMnthyearlyPremiumCost" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>(Buy Up Plan) Bi-weekly Cost per Employee:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeOnly" size="10" id="BuyUpbiweeklyCostEmpOnly" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndSpouse" size="10" id="BuyUpbiweeklyCostEmpSp" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndDependent" size="10" id="BuyUpbiweeklyCostEmpDep" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="EmployeeAndFamily" size="10" id="BuyUpbiweeklyCostEmpAndFam" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-10">
+                                        <input type="text" name="YearlyPremiumCost" size="10" id="BuyUpBiWkyearlyPremiumCost" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-md-12 table-bordered" readonly>
+                        These prices are in effect for 01-01-2019 through 12-31-2019<br />
+                        <p></p>
+                        Estimated costs* for COBRA participants for the 2019 year:<br />
+                        <p></p>
+                        Employee rate MEC plan $75.00 per month<br />
+                        Employee/Family rate MEC plan $230.00 per month<br />
+                        --------------------------------------------------<br />
+                        Employee rate Premium plan $638.52 per month<br />
+                        Employee/Family rate Premium plan $1,518 per month<br />
+                        <p></p>
+                        *Note: a 2% Adminstration fee will be added to the COBRA rates listed<br />
+                    </div>
+                    @*<p>
+                            <button type="submit" class="btn" id="InsPremiumUpdateStepThree" @*onclick="InsPremiumUpdate()" value="Submit">Save</button>
+                        </p>*@
+                    <div class="form-group">
+                        <div class="col-md-offset-11">
+                            <button id="InsPremiumUpdateStepOne" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    @* db.InsurancePlanDetail- col- Item, Detail - InsurancePlanDetail_id as primary and InsurancePlan_id as foreign *@
+    <div class="form-horizontal">
+        <hr />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
+        <div class="collapsible" id="SecondStep">Health Insurance Supplement</div>
+        <table class="container-fluid table-bordered" id="InsSupplementTable" cellpadding="20" cellspacing="20">
+            <tr>
+                <td>
+                    <table class="table table-condensed" width="400" cellpadding="10" cellspacing="10" border="1">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th><u>Dental Cost Analysis</u></th>
+                                <th><u>Guardian Dental Plan</u></th>
+                                <th></th>
+                                <th><u>Vision Cost Analysis</u></th>
+                                <th><u>Guardian Vision Plan</u></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label>Employee Only:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="DentalCostEmpOnly" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Employee Only:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="VisionCostEmpOnly" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Employee + Spouse:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="DentalCostEmpSp" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Employee + Spouse:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="VisionCostEmpSp" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Employee + Child(ren):</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="DentalCostEmpDep" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Employee + Child(ren):</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="VisionCostEmpDep" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Employee + Family:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="DentalCostEmpFam" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Employee + Family:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="VisionCostEmpFam" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Summary of Dental Benefits:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="SummaryOfDentalBenefits" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Summary of Dental Benefits:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="SummaryOfVisionBenefits" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Calendar Year Deductible:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="CalendarYearDeductible" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Co-pay:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="CoPay" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Waived for Preventive:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="WaivedForPreventive" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Exams:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="Exams" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Annual Maximum:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="AnnualMaximum" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Materials:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="Materials" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Preventive:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="Preventive" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Lenses Single Vision:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="LensesSingleVision" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Basic:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="Basic" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Bifocal:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="BiFocal" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Major:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="Major" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Trifocal:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="TriFocal" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>UCR%:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="UCRpercent" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Lenticular:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="Lenticular" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Endodontics/Peridontics:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="EndoPeridontics" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Contact (medically necessary):</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="ContactsMedically" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Orthodontics:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="Orthodontics" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Contact (elective):</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="ContactsElective" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Orthodontia Lifetime Maximum:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="OrthodontiaLifetimeMax" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Frames:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="Frames" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Waiting Period:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="WaitingPeriod" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Network:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="NetWork" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Dental Network:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="DentalNetwork" value="" />
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Rate Guarantee:</label>
+                                </td>
+                                <td>
+                                    <div class="col-md-6">
+                                        <input type="text" name="Item" size="10" id="RateGuarantee" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        **Rates guarantee for 1 year<br />
+                        -Subject to maxiumum rollover (Threshold $500; Rollover amount $250)<br />
+                        -Basic Life/AD&D: Only those on medical are eligible for basic life & AD&D
+                    </p>
+                    <div class="form-group">
+                        <div class="col-md-offset-11">
+                            <button id="InsSupplementUpdateStepTwo" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr />
+    @* db.Group_Healh- GroupHealthInsurance_id as primary and Employee_id as foreign *@
+    <div class="form-horizontal">
+        <div class="collapsible" id="ThirdStep">Group Health Insurance Enrollment</div>
+        <div>
+            <p></p>
+            <div style="border:solid" class="aside">
+                <label>Employment Information: (To be completed by Employer)</label>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="GroupName" id="GroupName" placeholder="Group Name" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="IMSGroupNumber" id="IMSGroupNumber" placeholder="IMS Group Number" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="Department" id="empDepartment" placeholder="Department" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="EnrollmentType" id="empEnrollmentType" placeholder="Enrollment Type" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="Payroll_id" id="empPayroll_id" placeholder="Payroll ID" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="Class" id="empClass" placeholder="Class" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="AnnualSalary" id="empAnnualSalary" placeholder="Annual Salary" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="JobTitle" id="empJobTitle" placeholder="Occupation" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="HireDate" id="empHireDate" placeholder="Employment Date" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <input type="number" class="form-control" name="HoursWorkedPerWeek" id="empHrsWkPerWk" placeholder="Min. Hrs. Worked/Wk" value="" />
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" placeholder="Employee Number" id="EmployeeNumber" name="SSN" value="" disabled />
+            </div>
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" disabled />
+            </div>
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="" disabled />
+            </div>
+            <p></p>
+            <div class="form-group col-md-6">
+                <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" disabled />
+                <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" disabled />
+                <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" disabled />
+                <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" disabled />
+                <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" disabled />
+            </div>
+            <div>
+                <select id="EmpGender" class="form-control" disabled>
+                    <option value="">Gender:</option>
+                    <option value="Male" @*@((ViewBag.Gender) == "Male"   ? "selected" : "")*@>Male</option>
+                    <option value="Female" @*@((ViewBag.Gender) == "Female" ? "selected" : "")*@>Female</option>
+                </select>
+            </div>
+            <p></p>
+            <div>
+                <select id="MaritalStatus" class="form-control" disabled>
+                    <option value="">Marital Status:</option>
+                    <option value="MarriedwDep" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Married with Dependents</option>
+                    <option value="Married" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>Married</option>
+                    <option value="SinglewDep" @*@((ViewBag.MaritalStatus) == "SinglewDep"  ? "selected": "")*@>Single with Dependents</option>
+                    <option value="Single" @*@((ViewBag.MaritalStatus) == "Single"      ? "selected": "")*@>Single</option>
+                </select>
+            </div>
+            <p></p>
+            <div>
+                <input type="text" class="form-control" placeholder="Email Address" id="EmailAddress" name="EmailAddress" value="" disabled />
+            </div>
+            <div>
+                <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" disabled />
+            </div>
+            <p></p>
+            <div>
+                <label>Birth Date:</label>
+                <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="" disabled />
+            </div>
+            <hr />
+            <div>
+                <div class="form-control">
+                    <label>Are you covered by any other insurance, including Medicare?</label>
+                    <label class="radio-inline"><input type="radio" id="empOtherInsCoverage" class="radio-inline" onclick="return empOtherInsCoverage()" name="OtherInsuranceCoverage" value="yes" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="empOtherInsCoverage" class="radio-inline" onclick="return empOtherInsCoverage()" name="OtherInsuranceCoverage" value="no" checked />No</label>
+                </div>
+                <div id="empInsInfo">
+                    <div class="form-group col-md-3">
+                        <input type="text" id="empInsCarrier" class="form-control" placeholder="Insurance Company" name="InsuranceCarrier" value="" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input type="text" id="empInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input type="tel" id="empInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <div id="GrpHealthCoverageOptions" class="control-label">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>None</th>
+                            <th>Employee Only</th>
+                            <th>Employee & Spouse</th>
+                            <th>Employee & Child(ren)</th>
+                            <th>Employee & Family</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Medical Plan:</td>
+                        <td>
+                            <select id="NoneGroupHealthOption" class="form-control">
+                                <option value="">Choose Option:</option>
+                                <option value="N/A" name="NoMedicalPlan"></option>
+                                <option value="No Medical Plan" name="NoMedicalPlan">No Medical Plan</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="EmpOnlyGroupHealthOption" class="form-control">
+                                <option value="">Choose Option:</option>
+                                <option value="N/A" name="EmployeeOnly"></option>
+                                <option value="MEC Plan" name="EmployeeOnly">MEC Plan</option>
+                                <option value="Standard Plan" name="EmployeeOnly">Standard Plan</option>
+                                <option value="Buy Up Plan" name="EmployeeOnly">Buy Up Plan</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="EmpSpGroupHealthOption" class="form-control">
+                                <option value="">Choose Option:</option>
+                                <option value="N/A" name="EmployeeAndSpouse"></option>
+                                <option value="MEC Plan" name="EmployeeAndSpouse">MEC Plan</option>
+                                <option value="Standard Plan" name="EmployeeAndSpouse">Standard Plan</option>
+                                <option value="Buy Up Plan" name="EmployeeAndSpouse">Buy Up Plan</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="EmpDepGroupHealthOption" class="form-control">
+                                <option value="">Choose Option:</option>
+                                <option value="N/A" name="EmployeeAndDependent"></option>
+                                <option value="MEC Plan" name="EmployeeAndDependent">MEC Plan</option>
+                                <option value="Standard Plan" name="EmployeeAndDependent">Standard Plan</option>
+                                <option value="Buy Up Plan" name="EmployeeAndDependent">Buy Up Plan</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="EmpFamGroupHealthOption" class="form-control">
+                                <option value="">Choose Option:</option>
+                                <option value="N/A" name="EmployeeAndFamily"></option>
+                                <option value="MEC Plan" name="EmployeeAndFamily">MEC Plan</option>
+                                <option value="Standard Plan" name="EmployeeAndFamily">Standard Plan</option>
+                                <option value="Buy Up Plan" name="EmployeeAnEmployeeAndFamilydDependent">Buy Up Plan</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form-group col-md-12">
+                <div id="spGenInfo" class="floatLeft">
+                    <table class="table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th colspan="2">Spouse's Information</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spFirstName" placeholder="First Name" value="" disabled />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spLastName" placeholder="Last Name" value="" disabled />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spAddress" placeholder="Street" value="" disabled />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spCity" placeholder="City" value="" disabled />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spState" placeholder="State" value="" disabled />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spZipCode" placeholder="Zip Code" value="" disabled />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text">
+                                <input type="tel" class="form-control" id="spPhoneNumber" placeholder="Phone Number" value="" disabled />
+                            </td>
+                            <td class="text">
+                                <input type="date" class="form-control" id="spDateOfBirth" placeholder="Birth Date" value="" disabled />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text" colspan="1">
+                                <select id="spGender" class="form-control" disabled>
+                                    <option>Gender:</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </td>
+                            <td class="text" colspan="1">
+                                <input type="text" class="form-control" placeholder="SSN#- Call HR" id="spSSN" name="SSN" value="" disabled />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="spEmploymentInfo" class="floatCenter">
+                    <table class="table-bordered" border="1">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th colspan="2">Spouse's Employer</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spEmployer" placeholder="Employer" value="" disabled />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="" placeholder="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spEmployerAddress" placeholder="Street" value="" disabled />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spEmployerCity" placeholder="City" value="" disabled />
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spEmployerState" placeholder="State" value="" disabled />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spEmployerZipCode" placeholder="Zip Code" value="" disabled />
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spEmployerPhoneNumber" placeholder="Phone Number" value="" disabled />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="" placeholder="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text">
+                                <select id="spOtherInsCoverage" class="form-control">
+                                    <option>Other Ins. Coverage:</option>
+                                    <option value="Medical">Medical</option>
+                                    <option value="Dental">Dental</option>
+                                    <option value="Vision">Vision</option>
+                                    <option value="Indemnity">Indemnity</option>
+                                </select>
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="" placeholder="" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="spInsInfo" class="floatRight">
+                    <table class="table-bordered" border="1">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th colspan="2">Spouse's Insurance</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spInsCarrier" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="" placeholder="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spInsMailingAddress" placeholder="Street" name="MailingAddress" value="" />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spInsCity" placeholder="City" name="City" value="" />
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spInsState" placeholder="State" name="State" value="" />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spInsZipCode" placeholder="Zip Code" name="ZipCode" value="" />
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spInsPhoneNumber" placeholder="Phone Number" name="PhoneNumber" value="" />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="" placeholder="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spInsPolicyNumber" placeholder="Policy #" name="PolicyNumber" value="" />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="" placeholder="" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <hr />
+            <div>
+                @* retrieve dep info from DepEnrollment page *@
+                <div id="depGen&InsInfo">
+                    <div id="depGenInfo">
+                        <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
+                        <div id="depInfo">
+                            <div class="form-group col-md-2">
+                                <input type="text" id="depFirstName" class="form-control" placeholder="First Name" name="FirstName" value="" disabled />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" id="depLastName" class="form-control" placeholder="Last Name" name="LastName" value="" disabled />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" id="depSSN" class="form-control" placeholder="SSN#- Call HR" name="SSN" value="" disabled />
+                            </div>
+                            <div class="form-group col-md-3" id="depRelationshipToInsured">
+                                <input type="text" id="depRelationToInsured" class="form-control" placeholder="Relationship to Insured" name="RelationShipToInsured" value="" disabled>
+                                @*<input id="Child" name="RelationshipToInsured" class="form-control" value="Child" @((ViewBag.RelationshipToInsured.ToLower() == "Child") ? "selected" : "")/>*@
+                                @*<input id="StepChild" name="RelationshipToInsured" class="form-control" value="StepChild" @((ViewBag.RelationshipToInsured.ToLower() == "StepChild") ? "selected" : "")/>*@
+                                @*<input id="Other" name="RelationshipToInsured" class="form-control" value="Other" @((ViewBag.RelationshipToInsured.ToLower() == "Other") ? "selected" : "")/>*@
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="date" class="form-control" id="depDateOfBirth1" name="DateOfBirth" value="" disabled />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <select id="depGender" class="form-control" disabled>
+                                    <option value="">Gender:</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
+                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="return depOtherInsCoverage()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
+                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="return depOtherInsCoverage()" name="CoveredByOtherInsurance" value="no" checked />No</label>
+                            <div id="depInsInfo1">
+                                <div class="form-group col-md-2">
+                                    <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-11">
+                        <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
+                    </div>
+                </div>
+                <hr />
+                <div class="text-justify">
+                    <label style="padding-left: 10px;"></label>
+                    <p>
+                        I AUTHORIZE any physician, dentist, medical practitioner, hospital, pharmacy or toerh provider of heal care, any insurance company,
+                        government agency or consumer reporting agency to disclose to Insurance Management Services or my employer all information and records
+                        relating to diagnosis, treatment, medical history, physical or mental condition and evaluation, or any other informationrelating to me,
+                        my spouse, or my dependent children. I understand that nay information obtained will not be released to any person or organization except
+                        re-insurers, other persons or organizations performing business or legal services in conjunction with my coverage, or as required by law,
+                        or as I may authorize. A photocopy of this authorization remains valid for the term of coverage. I have the right to receive a copy of this
+                        authorization upon request.
+                    </p>
+                    <hr />
+                    <div>
+                        <label style="padding-left: 10px;">
+                            Employee Signature:
+                        </label>
+                        <input type="text" id="signature" name="EmployeeSignature" value="" />
+                        <label style="padding-left: 10px;">
+                            Date:
+                        </label>
+                        <input type="date" id="signatureDate" name="EmployeeSignatureDate" value="" />
+                        <hr />
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <table class="table-bordered">
+                        <tr>
+                            <td>
+                                <div>
+                                    <h4><b>Refusal of Group Health Coverage</b></h4>
+                                    <h6>This is to certify I have been given an opportunity to apply for group health coverage available to me through my Employer, and I have decided to not apply coverage for:</h6>
+                                    <label class="radio-inline"><input type="radio" id="Myself" class="radio-inline" onclick="return RefuseCoverage()" name="Myself" value="Myself" />Myself</label>
+                                    <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" onclick="return RefuseCoverage()" name="Spouse" value="Spouse" />Spouse</label>
+                                    <label class="radio-inline"><input type="radio" id="Child(ren)" class="radio-inline" onclick="return RefuseCoverage()" name="Child(ren)" value="Child(ren)" />Child(ren)</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <h4><b>Reason for Refusal</b></h4>
+                                    <label class="radio-inline"><input type="radio" id="OtherCoverage" class="radio-inline" onclick="return ReasonForRefusal()" name="OtherCoverage" value="OtherCoverage" />Other Coverage</label>
+                                    <label class="radio-inline"><input type="radio" id="OtherReason" class="radio-inline" onclick="return ReasonForRefusal()" name="OtherReason" value="OtherReason" />Other Reason</label>
+                                    <input type="text" id="OtherReason" class="form-control" placeholder="Please input reason" name="OtherReason" value="" />
+                                    <hr />
+                                    <div>
+                                        <label style="padding-left: 10px;">
+                                            Employee Signature:
+                                        </label>
+                                        <input type="text" id="signature" name="EmployeeSignature" value="" />
+                                        <label style="padding-left: 10px;">
+                                            Date:
+                                        </label>
+                                        <input type="date" id="signatureDate" name="EmployeeSignatureDate" value="" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr />
+                    <div class="text-justify">
+                        <h4><b>Special Enrollment Rules</b></h4>
+                        <p>
+                            If you aredeclining enrollment for yourself or your dependents (including your spouse) because of other health insurance coverage, you may in the future
+                            be able to enroll yourself or your dependent in this Plan, provided that you request enrollment within 30 days after your coverage ends. In addition, if
+                            you have a new dependent as a result of marriage, birth, adoption, or placement for adoption, you may be able to enroll yourself and your dependents,
+                            provided that you request enrollment within 30 days after the marriage, birth, adoption, or placement for adoption.
+                        </p>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <div class="col-md-offset-11">
+                        <button id="GrpHealthInsUpdateStepThree" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<style>
+    .collapsible {
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    .btn {
+        background-color: #333;
+        color: white;
+    }
+
+    .button {
+        text-align: right;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+    #label {
+        font-weight: bold;
+        text-align: left;
+        font-size: 100%;
+    }
+
+    #signature {
+        width: 100%;
+        border: 0px;
+        border-bottom: 1px solid black;
+        height: 20px;
+    }
+
+    #signatureDate {
+        width: 15%;
+        border: 0px;
+        border-bottom: 1px solid black;
+        height: 20px;
+    }
+
+    .aside {
+        float: right;
+    }
+
+    .floatLeft {
+        width: 33%;
+        display: inline-block;
+    }
+
+    .floatCenter {
+        width: 33%;
+        display: inline-block;
+    }
+
+    .floatRight {
+        width: 33%;
+        display: inline-block;
+    }
+
+    .container-fluid {
+        overflow: hidden;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td:empty {
+        width: 10px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 0px;
+    }
+
+    th {
+        border-bottom: 5px solid black;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        var cnt = 1;
+        /* This function recieves a name (string) and finds that element in the document, then removes it from it's parent node.
+         * You have to use the removeChild method on the parent node of the object.
+         */
+        function removeElement(name) {
+            var elementToRemove = document.getElementById(name);
+            elementToRemove.parentNode.removeChild(elementToRemove);
+        }
+
+        function createElement(name, type) {
+            var input = document.createElement("input");
+            input.type = type;
+            var newName = name + cnt;
+            input.name = newName;
+            input.id = newName;
+            return input;
+        }
+
+        /* This function recieves a name (string) and attempts to find it in the document object.  it's going to increment the number at the end
+         * of the name and create a new object, but only if that object doesn't already exist.
+         * It adds three elements, a file input, a red X inside a span tag, and a break tag
+         */
+        function addInputSelection() {
+            // skip the "fname" part of the name and grab the number that is the rest
+            newID = ++cnt;
+            //check to see if the next increment of that object already exists
+            if (document.getElementById("fname" + newID) == null) {
+                //get the form object so you have a reference to add child to for the three objects to create
+                var formObj = document.getElementById("dependentSelectForm");
+                // create the new input objects
+                formObj.appendChild(createElement('fname', 'text'));
+                formObj.appendChild(createElement('lname', 'text'));
+                formObj.appendChild(createElement('ssn', 'text'));
+                formObj.appendChild(createElement('relation', 'text'));
+                formObj.appendChild(createElement('dob', 'date'));
+                formObj.appendChild(createElement('gender', 'text'));
+
+
+                //create the new span tag with the red X in it
+                var spanObj = document.createElement("span");
+                spanObj.id = "x" + newID;
+                spanObj.style = "color:red";
+                spanObj.addEventListener("click", function () {
+                    removeInputSelection(this);
+                })
+                spanObj.innerHTML = "X";
+                formObj.appendChild(spanObj);
+                //create the break tag to make a new line.  have to add an id so we know which one to remove when they click the X
+                var newBR = document.createElement("br");
+                newBR.id = "br" + newID;
+                with (document.getElementById('DepEnrollmentUpdate').style) {
+                    top = (cnt * 25) + 80 + "px";
+                }
+                with (document.getElementById('adddep').style) {
+                    top = (cnt * 25) + 80 + "px";
+                }
+                formObj.appendChild(newBR);
+
+            }
+        }
+        /* This function removes the file, span, and br tags with the same number at the end
+         */
+        function removeInputSelection(o) {
+            cnt--;
+            var elementIdNumber = parseInt(o.id.substring(2, o.id.length - 1));
+
+            removeElement("fname" + elementIdNumber);
+            removeElement("lname" + elementIdNumber);
+            removeElement("ssn" + elementIdNumber);
+            removeElement("relation" + elementIdNumber);
+            removeElement("dob" + elementIdNumber);
+            removeElement("gender" + elementIdNumber);
+            removeElement("x" + elementIdNumber);
+            removeElement("br" + elementIdNumber);
+            with (document.getElementById('DepEnrollmentUpdate').style) {
+                top = (cnt * 25) + 80 + "px";
+            }
+            with (document.getElementById('adddep').style) {
+                top = (cnt * 25) + 80 + "px";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="dependentSelectForm" @*action="\Home\DependentPoster" method="post"*@>
+        <input type="text" name="fname1" id="fname1" />
+        <input type="text" name="lname1" id="lname1" />
+        <input type="text" name="ssn1" id="ssn1" />
+        <input type="text" name="relation1" id="relation1" />
+        <input type="date" name="dob1" id="dob1" />
+        <input type="text" name="gender1" id="gender1" />
+
+        <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
+        <br id="br1" />
+
+        @*<input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
+            <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">*@
+    </div>
+</body>
+</html>
+
+
+<script>
+    var col = document.querySelectorAll(".collapsible");
+    var i;
+    var emp_id;
+
+    for (i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+
+        });
+    }
+
+    function empOtherInsCoverage() {
+
+        var div = document.querySelector("empOtherInsCoverage").value;
+        var divEmpHide = document.getElementById("empInsInfo")
+        var divEmpShow = document.getElementById("empInsInfo")
+
+        div.addEventListener('click', function () {
+
+            if (div.value = "no") {
+
+                divEmpHide.style.display = "none";
+            }
+            else {
+                divEmpShow.style.display = "block";
+            }
+        });
+
+        //create a for loop i=8
+        function depOtherInsCoverage() {
+
+            var div = document.querySelectorAll("depOtherInsCoverage").value;
+            var divDepHide1 = document.querySelector("depInsInfo")
+            var divDepShow1 = document.querySelector("depInsInfo")
+
+            div.addEventListener('click', function () {
+
+                if (div.checked == "no") {
+
+                    divDepHide1.style.visibility = "hidden";
+
+                }
+                else {
+                    divDepShow1.style.visibility = "visible";
+
+                }
+            });
+
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("#InsPremiumUpdateStepOne").addEventListener("click", function () {
+                MECmonthlyEO = document.getElementById('MECmonthlyCostEmpOnly').value
+                MECmonthlyEmpSp = document.getElementById('MECmonthlyCostEmpSp').value
+                MECmonthlyEmpDep = document.getElementById('MECmonthlyCostEmpDep').value
+                MECmonthlyEmpFam = document.getElementById('MECmonthlyCostEmpFam').value
+                MECbiweeklyEO = document.getElementById('MECbiweeklyCostEmpOnly').value
+                MECbiweeklyEmpSp = document.getElementById('MECbiweeklyCostEmpSp').value
+                MECbiweeklyEmpDep = document.getElementById('MECbiweeklyCostEmpDep').value
+                MECbiweeklyEmpFam = document.getElementById('MECbiweeklyCostEmpFam').value
+
+                StndmonthlyEO = document.getElementById('StndmonthlyCostEmpOnly').value
+                StndmonthlyEmpSp = document.getElementById('StndmonthlyCostEmpSp').value
+                StndmonthlyEmpDep = document.getElementById('StndmonthlyCostEmpDep').value
+                StndmonthlyEmpFam = document.getElementById('StndmonthlyCostEmpFam').value
+                StndbiweeklyEO = document.getElementById('StndbiweeklyCostEmpOnly').value
+                StndbiweeklyEmpSp = document.getElementById('StndbiweeklyCostEmpSp').value
+                StndbiweeklyEmpDep = document.getElementById('StndbiweeklyCostEmpDep').value
+                StndbiweeklyEmpFam = document.getElementById('StndbiweeklyCostEmpFam').value
+
+                BuyUpmonthlyEO = document.getElementById('BuyUpmonthlyCostEmpOnly').value
+                BuyUpmonthlyEmpSp = document.getElementById('BuyUpmonthlyCostEmpSp').value
+                BuyUpmonthlyEmpDep = document.getElementById('BuyUpmonthlyCostEmpDep').value
+                BuyUpmonthlyEmpFam = document.getElementById('BuyUpmonthlyCostEmpFam').value
+                BuyUpbiweeklyEO = document.getElementById('BuyUpbiweeklyCostEmpOnly').value
+                BuyUpbiweeklyEmpSp = document.getElementById('BuyUpbiweeklyCostEmpSp').value
+                BuyUpbiweeklyEmpDep = document.getElementById('BuyUpbiweeklyCostEmpDep').value
+                BuyUpbiweeklyEmpFam = document.getElementById('BuyUpbiweeklyCostEmpAndFam').value
+
+                var data = {
+                    "Employee_id": emp_id,
+                    "MECmonthlyEO": MECmonthlyEO,
+                    "MECmonthlyEmpSp": MECmonthlyEmpSp,
+                    "MECmonthlyEmpDep": MECmonthlyEmpDep,
+                    "MECmonthlyEmpFam": MECmonthlyEmpFam,
+                    "MECbiweeklyEO": MECbiweeklyEO,
+                    "MECbiweeklyEmpSp": MECbiweeklyEmpSp,
+                    "MECbiweeklyEmpDep": MECbiweeklyEmpDep,
+                    "MECbiweeklyEmpFam": MECbiweeklyEmpFam,
+                    "MECMnthyearlyPremiumCost": MECMnthyearlyPremiumCost,
+                    "MECBiWkyearlyPremiumCost": MECBiWkyearlyPremiumCost,
+
+                    "StndmonthlyEO": StndmonthlyEO,
+                    "StndmonthlyEmpSp": StndmonthlyEmpSp,
+                    "StndmonthlyEmpDep": StndmonthlyEmpDep,
+                    "StndmonthlyEmpFam": StndmonthlyEmpFam,
+                    "StndbiweeklyEO": StndbiweeklyEO,
+                    "StndbiweeklyEmpSp": StndbiweeklyEmpSp,
+                    "StndbiweeklyEmpDep": StndbiweeklyEmpDep,
+                    "StndbiweeklyEmpFam": StndbiweeklyEmpFam,
+                    "StndMnthyearlyPremiumCost": StndMnthyearlyPremiumCost,
+                    "StndBiWkyearlyPremiumCost": StndBiWkyearlyPremiumCost,
+
+                    "BuyUpmonthlyEO": BuyUpmonthlyEO,
+                    "BuyUpmonthlyEmpSp": BuyUpmonthlyEmpSp,
+                    "BuyUpmonthlyEmpDep": BuyUpmonthlyEmpDep,
+                    "BuyUpmonthlyEmpFam": BuyUpmonthlyEmpFam,
+                    "BuyUpbiweeklyEO": BuyUpbiweeklyEO,
+                    "BuyUpbiweeklyEmpSp": BuyUpbiweeklyEmpSp,
+                    "BuyUpbiweeklyEmpDep": BuyUpbiweeklyEmpDep,
+                    "BuyUpbiweeklyEmpFam": BuyUpbiweeklyEmpFam,
+                    "BuyUpMnthyearlyPremiumCost": BuyUpMnthyearlyPremiumCost,
+                    "BuyUpBiWkyearlyPremiumCost": BuyUpBiWkyearlyPremiumCost,
+                }
+
+                var ret = postData('/Group_Health/GrpHealthInsPremiumUpdate', data)
+                    .then(data => FirstStep(data))
+                    .catch(error => console.error(error))
+            })
+
+            document.querySelector("#InsSupplementUpdateStepTwo").addEventListener("click", function () {
+                EmpDentalCost = document.getElementById("DentalCostEmpOnly").value;
+                EmpVisionCost = document.getElementById("VisionCostEmpOnly").value;
+                EmpSpDentalCost = document.getElementById("DentalCostEmpSp").value;
+                EmpSpVisionCost = document.getElementById("VisionCostEmpSp").value;
+                EmpDepDentalCost = document.getElementById("DentalCostEmpDep").value;
+                EmpDepVisionCost = document.getElementById("VisionCostEmpDep").value;
+                EmpFamDentalCost = document.getElementById("DentalCostEmpFam").value;
+                EmpFamVisionCost = document.getElementById("VisionCostEmpFam").value;
+                SummaryOfDentalBenefits = document.getElementById("SummaryOfDentalBenefits").value;
+                SummaryOfVisionBenefits = document.getElementById("SummaryOfVisionBenefits").value;
+                CalendarYearDeductible = document.getElementById("CalendarYearDeductible").value;
+                CoPay = document.getElementById("CoPay").value;
+                WaivedForPreventive = document.getElementById("WaivedForPreventive").value;
+                Exams = document.getElementById("Exams").value;
+                AnnualMaximum = document.getElementById("AnnualMaximum").value;
+                Materials = document.getElementById("Materials").value;
+                Preventive = document.getElementById("Preventive").value;
+                LensesSingleVision = document.getElementById("LensesSingleVision").value;
+                Basic = document.getElementById("Basic").value;
+                BiFocal = document.getElementById("BiFocal").value;
+                Major = document.getElementById("Major").value;
+                TriFocal = document.getElementById("TriFocal").value;
+                UCRpercent = document.getElementById("UCRpercent").value;
+                Lenticular = document.getElementById("Lenticular").value;
+                EndoPeridontics = document.getElementById("EndoPeridontics").value;
+                ContactsMedically = document.getElementById("ContactsMedically").value;
+                Orthodontics = document.getElementById("Orthodontics").value;
+                ContactsElective = document.getElementById("ContactsElective").value;
+                OrthodontiaLifetimeMax = document.getElementById("OrthodontiaLifetimeMax").value;
+                Frames = document.getElementById("Frames").value;
+                WaitingPeriod = document.getElementById("WaitingPeriod").value;
+                Network = document.getElementById("NetWork").value;
+                DentalNetWork = document.getElementById("DentalNetWork").value;
+                RateGuarantee = document.getElementById("RateGuarantee").value;
+
+                var data = {
+                    "Employee_id": emp_id,
+                    "EmpDentalCost": EmpDentalCost,
+                    "EmpVisionCost": EmpVisionCost,
+                    "EmpSpDentalCost": EmpSpDentalCost,
+                    "EmpSpVisionCost": EmpSpVisionCost,
+                    "EmpDepDentalCost": EmpDepDentalCost,
+                    "EmpDepVisionCost": EmpDepVisionCost,
+                    "EmpFamDentalCost": EmpFamDentalCost,
+                    "EmpFamVisionCost": EmpFamVisionCost,
+                    "SummaryOfDentalBenefits": SummaryOfDentalBenefits,
+                    "SummaryOfVisionBenefits": SummaryOfVisionBenefits,
+                    "CalendarYearDeductible": CalendarYearDeductible,
+                    "CoPay": CoPay,
+                    "WaivedForPreventive": WaivedForPreventive,
+                    "Exams": Exams,
+                    "AnnualMaximum": AnnualMaximum,
+                    "Materials": Materials,
+                    "Preventive": Preventive,
+                    "LensesSingleVision": LensesSingleVision,
+                    "Basic": Basic,
+                    "BiFocal": BiFocal,
+                    "Major": Major,
+                    "TriFocal": TriFocal,
+                    "UCRpercent": UCRpercent,
+                    "Lenticular": Lenticular,
+                    "EndoPeridontics": EndoPeridontics,
+                    "ContactsMedically": ContactsMedically,
+                    "Orthodontics": Orthodontics,
+                    "ContactsElective": ContactsElective,
+                    "OrthodontiaLifetimeMax": OrthodontiaLifetimeMax,
+                    "Frames": Frames,
+                    "WaitingPeriod": WaitingPeriod,
+                    "Network": Network,
+                    "DentalNetWork": DentalNetWork,
+                    "RateGuarantee": RateGuarantee,
+                }
+
+                var ret = postData('/Group_Health/GrpHealthInsSupplementUpdate', data)
+                    .then(data => SecondStep(data))
+                    .catch(error => console.error(error))
+            })
+
+            document.querySelector("GrpHealthInsUpdateStepThree").addEventListener("click", function () {
+                GroupName = document.getElementById("GroupName").value;
+                IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
+                empDepartment = document.getElementById("empDepartment").value;
+                empEnrollmentType = document.getElementById("empEnrollmentType").value;
+                empPayroll_id = document.getElementById("empPayroll_id").value;
+                empClass = document.getElementById("empClass").value
+                empAnnualSalary = document.getElementById("empAnnualSalary").value;
+                empJobTitle = document.getElementById("empJobTitle").value;
+                empHireDate = document.getElementById("empHireDate").value;
+                empEffectiveDate = document.getElementById("empEffectiveDate").value;
+                empHrsWrkPerWk = document.getElementById("empHrsWrkPerWk").value;
+                empOtherInsCoverage = document.getElementById("empCoveredByOtherIns").value;
+                empInsuranceCarrier = document.getElementById("empInsCarrier").value;
+                empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value;
+                empInsPhoneNumber = document.getElementById("empInsPhoneNumber").value;
+                empSignature = document.getElementById("empSignature").value;
+                empSignatureDate = document.getElementById("empSignatureDate").value;
+
+                NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
+                empOnlyGroupHealthOption = document.getElementById("EmpOnlyGroupHealthOption").value;
+                empSpGroupHealthOption = document.getElementById("EmpSpGroupHealthOption").value;
+                empDepGroupHealthOption = document.getElementById("EmpDepGroupHealthOption").value;
+                empFamGroupHealthOption = document.getElementById("EmpFamGroupHealthOption").value;
+
+                spOtherInsCoverage = document.getElementById("spOtherInsCoverage").value;
+                spInsCarrier = document.getElementById("spInsCarrier").value;
+                spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
+                spInsCity = document.getElementById("spInsCity").value;
+                spInsState = document.getElementById("spInsState").value;
+                spInsZipCode = document.getElementById("spInsZipCode").value;
+                spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value;
+                spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value;
+
+                depOtherInsCoverage = document.getElementById("depOtherInsCoverage").value;
+                depInsCarrier = document.getElementById("depInsCarrier").value;
+                depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value;
+                depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value;
+
+                data = {
+                    "Employee_id": emp_id,
+                    "GroupName": GroupName,
+                    "IMSGroupNumber": IMSGroupNumber,
+                    "empDepartment": empDepartment,
+                    "empEnrollmentType": empEnrollmentType,
+                    "empPayroll_id": empPayroll_id,
+                    "empClass": empClass,
+                    "empAnnualSalary": empAnnualSalary,
+                    "empEffectiveDate": empEffectiveDate,
+                    "empHrsWrkPerWk": empHrsWrkPerWk,
+                    "empOtherInsCoverage": empOtherInsCoverage,
+                    "empInsCarrier": empInsCarrier,
+                    "empInsPolicyNumber": empInsPolicyNumber,
+                    "empInsPhoneNumber": empInsPhoneNumber,
+                    "NoneGroupHealthOption": NoneGroupHealthOption,
+                    "empOnlyGroupHealthOption": empOnlyGroupHealthOption,
+                    "empSpGroupHealthOption": empSpGroupHealthOption,
+                    "empDepGroupHealthOption": empDepGroupHealthOption,
+                    "empFamGroupHealthOption": empFamGroupHealthOption,
+                    "empSignature": empSignature,
+                    "empSignatureDate": empSignatureDate,
+
+                    "spOtherInsCoverage": spOtherInsCoverage,
+                    "spInsCarrier": spInsCarrier,
+                    "spInsMailingAddress": spInsMailingAddress,
+                    "spInsCity": spInsCity,
+                    "spInsState": spInsState,
+                    "spInsZipCode": spInsZipCode,
+                    "spInsPhoneNumber": spInsPhoneNumber,
+                    "spInsPolicyNumber": spInsPolicyNumber,
+
+                    "depOtherInsCoverage": depOtherInsCoverage,
+                    "depInsCarrier": depInsCarrier,
+                    "depInsPolicyNumber": depInsPolicyNumber,
+                    "depInsPhoneNumber": depInsPhoneNumber,
+                }
+
+                var ret = postData('/GrpHealthInsurance/GrpHealthEnrollmentNew', data)
+                    .then(data => {
+                        console.log(data);
+                        ThirdStep(data);
+                    })
+                    .catch(error => console.error(error))
+            })
+        })
+
+        function FirstStep(ins) {
+            document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+            emp_id = ins.data;
+            //document.querySelector("#MECmonthlyEO").value = ins.MECmonthlyEO;
+            //document.querySelector("#MECmonthlyEmpSp").value = ins.MECmonthlyEmpSp;
+            //document.querySelector("#MECmonthlyEmpDep").value = ins.MECmonthlyEmpDep;
+            //document.querySelector("#MECmonthlyEmpFam").value = ins.MECmonthlyEmpFam;
+            //document.querySelector("#MECbiweeklyEO").value = ins.MECbiweeklyEO;
+            //document.querySelector("#MECbiweeklyEmpSp").value = ins.MECbiweeklyEmpSp;
+            //document.querySelector("#MECbiweeklyEmpDep").value = ins.MECbiweeklyEmpDep;
+            //document.querySelector("#MECbiweeklyEmpFam").value = ins.MECbiweeklyEmpFam;
+            //document.querySelector("#StndmonthlyEO").value = ins.StndmonthlyEO;
+            //document.querySelector("#StndmonthlyEmpSp").value = ins.StndmonthlyEmpSp;
+            //document.querySelector("#StndmonthlyEmpDep").value = ins.StndmonthlyEmpDep;
+            //document.querySelector("#StndmonthlyEmpFam").value = ins.StndmonthlyEmpFam;
+            //document.querySelector("#StndbiweeklyEO").value = ins.StndbiweeklyEO;
+            //document.querySelector("#StndbiweeklyEmpSp").value = ins.StndbiweeklyEmpSp;
+            //document.querySelector("#StndbiweeklyEmpDep").value = ins.StndbiweeklyEmpDep;
+            //document.querySelector("#StndbiweeklyEmpFam").value = ins.StndbiweeklyEmpFam;
+            //document.querySelector("#BuyUpmonthlyEO").value = ins.BuyUpmonthlyEO;
+            //document.querySelector("#BuyUpmonthlyEmpSp").value = ins.BuyUpmonthlyEmpSp;
+            //document.querySelector("#BuyUpmonthlyEmpDep").value = ins.BuyUpmonthlyEmpDep;
+            //document.querySelector("#BuyUpmonthlyEmpFam").value = ins.BuyUpmonthlyEmpFam;
+            //document.querySelector("#BuyUpbiweeklyEO").value = ins.BuyUpbiweeklyEO;
+            //document.querySelector("#BuyUpbiweeklyEmpSp").value = ins.BuyUpbiweeklyEmpSp;
+            //document.querySelector("#BuyUpbiweeklyEmpDep").value = ins.BuyUpbiweeklyEmpDep;
+            //document.querySelector("#BuyUpbiweeklyEmpFam").value = ins.BuyUpbiweeklyEmpFam;
+            //document.querySelector("#MECMnthyearlyPremiumCost").value = ins.MECMnthyearlyPremiumCost;
+            //document.querySelector("#MECBiWkyearlyPremiumCost").value = ins.MECBiWkyearlyPremiumCost;
+            //document.querySelector("#StndMnthyearlyPremiumCost").value = ins.StndMnthyearlyPremiumCost;
+            //document.querySelector("#StndBiWkyearlyPremiumCost").value = ins.StndBiWkyearlyPremiumCost;
+            //document.querySelector("#BuyUpMnthyearlyPremiumCost").value = ins.BuyUpMnthyearlyPremiumCost;
+            //document.querySelector("#BuyUpBiWkyearlyPremiumCost").value = ins.BuyUpBiWkyearlyPremiumCost;
+        }
+
+        function SecondStep(ins) {
+            document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+            //document.querySelector("#DentalCostEmpOnly").value = ins.EmpDentalCost;
+            //document.querySelector("#VisionCostEmpOnly").value = ins.EmpVisionCost;
+            //document.querySelector("#DentalCostEmpSp").value = EmpSpDentalCost;
+            //document.querySelector("#VisionCostEmpSp").value = EmpSpVisionCost;
+            //document.querySelector("#DentalCostEmpDep").value = EmpDepDentalCost;
+            //document.querySelector("#VisionCostEmpDep").value = EmpDepVisionCost;
+            //document.querySelector("#DentalCostEmpFam").value = EmpFamDentalCost;
+            //document.querySelector("#VisionCostEmpFam").value = EmpFamVisionCost;
+        }
+
+        function ThirdStep(ins) {
+            document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+            document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
+
+        }
+
+        //function FourthStep(ins) {
+        //    document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+        //    document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
+
+        //}
+
+        function postData(url, data) {
+            //Default options are marked with *
+            console.log(data);
+            console.log(JSON.stringify(data));
+            return fetch(url, {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => console.log('Success:', JSON.stringify(response)))
+                .catch(error => console.error('Error:', error));
+            //.then(Response => {
+            //    console.log(Response);
+            //    Response.json();
+            //}) //parses response to JSON
+        }
+</script>
+
+

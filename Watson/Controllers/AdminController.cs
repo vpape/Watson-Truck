@@ -17,261 +17,622 @@ namespace Watson.Controllers
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        static List<Employee> employee = new List<Employee>();
-        static List<Family_Info> family = new List<Family_Info>();
+        private static List<Employee> employee = new List<Employee>();
+        private static List<Family_Info> family = new List<Family_Info>();
+        private static List<Other_Insurance> otherins = new List<Other_Insurance>();
+        private static List<Group_Health> groupIns = new List<Group_Health>();
+        private static List<GrpHealthMasterList> grpHMasterList = new List<GrpHealthMasterList>();
 
         public AdminController()
         {
            
         }
 
-        //public ActionResult Employees()
-        //{
-        //    return View();
-        //}
-
-        //[System.Web.Http.Route("api/Employee/GetEmployees/{Employee_id:int}")]
-
-        //[System.Web.Http.HttpGet]
-        //public List<string> GetEmployees(int Employee_id)
-        //{
-        //    List<string> output = new List<string>();
-
-        //    foreach (var e in employee)
-        //    {
-        //        output.Add(e.SSN);
-        //        output.Add(e.FirstName);
-        //        output.Add(e.LastName);
-        //        output.Add(e.EmployeeRole);
-        //        output.Add(e.JobTitle);
-        //        //output.Add(e.isActive);
-        //        //output.Add(e.HireDate);
-        //    }
-
-        //    return output;
-        //}
-
-        //GET: Employees
-        //public List<Employee> GetEmployees()
-        //{
-        //    return db.Employees.ToList();
-        //}
-
-        //public JsonResult GetEmployees()
-        //{
-        //    var output = (from e in db.Employees
-        //                  select new
-        //                  {
-        //                      e.Employee_id,
-        //                      e.SSN,
-        //                      e.FirstName,
-        //                      e.LastName,
-        //                      e.EmployeeRole,
-        //                      e.JobTitle,
-        //                      e.isActive,
-        //                      e.HireDate,
-        //                      e.EmailAddress,
-        //                      e.MailingAddress,
-        //                      e.City,
-        //                      e.State,
-        //                      e.ZipCode,
-        //                      e.Department,
-        //                      e.AnnualSalary,
-        //                      e.EnrollmentType,
-        //                      e.Class,
-        //                      e.Payroll_id,
-        //                      e.WorkStatus,
-        //                      e.HoursWorkedPerWeek,
-
-        //                  });
-
-        //    return Json(new { data = output }, JsonRequestBehavior.AllowGet);
-
-        //}
-
-        // GET: api/Employee
-        public List<Employee> EmpOverview()
+        public ActionResult GrpHealthInsPremiums()
         {
-            return employee;
+            return View();
         }
 
-        // GET: api/Employee/5
-        public Employee EmpOverview(int Employee_id)
+        public JsonResult GrpHealthInsPremiumUpdate(int Employee_id, int InsurancePlan_id, string EmployeeOnly,
+            string EmployeeAndSpouse, string EmployeeAndDependent, string EmployeeAndFamily, decimal YearlyPremiumCost,
+            string InsMECPlan, string InsStndPlan, string InsBuyUpPlan, string DentalPlan, string VisionPlan)
         {
-            return employee.Where(e => e.Employee_id == Employee_id).FirstOrDefault();
-        }     
+            InsurancePlan insPlan = new InsurancePlan();
 
-        // GET: api/Employee
-        public List<Employee> NewEmployeeEnrollment()
-        {
-            return employee;
-        }
+            insPlan.MECPlan = InsMECPlan;
+            insPlan.StandardPlan = InsStndPlan;
+            insPlan.BuyUpPlan = InsBuyUpPlan;
+            insPlan.DentalPlan = DentalPlan;
+            insPlan.VisionPlan = VisionPlan;
 
-        //GET: api/Employee/5
-        public Employee EmployeeEnrollmentNew(int id)
-        {
-            return employee.Where(e => e.Employee_id == id).FirstOrDefault();
-        }
+            ViewBag.insPlan = insPlan;
 
-        // POST: api/Employee
-        [System.Web.Http.HttpPost]
-        [ValidateAntiForgeryToken]
-        public void EmployeeEnrollmentNew([Bind(Include = "Employee_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
-            "Sex,MaritalStatus,JobTitle,HireDate,EffectiveDate,ElgibilityDate,AnnualSalary,HoursWorkedPerWeek")] Employee employee)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Employees.Add(employee);
-                db.SaveChanges();
+            InsurancePremium insPremium = new InsurancePremium();
 
-            }
+            insPremium.YearlyPremiumCost = YearlyPremiumCost;
+            insPremium.EmployeeOnly = EmployeeOnly;
+            insPremium.EmployeeAndSpouse = EmployeeAndSpouse;
+            insPremium.EmployeeAndDependent = EmployeeAndDependent;
+            insPremium.EmployeeAndFamily = EmployeeAndFamily;
+            insPremium.YearlyPremiumCost = YearlyPremiumCost;
 
+            ViewBag.insPremium = insPremium;
 
-            // POST: api/Employee/5
-            //public void CreateEmployee(Employee employee)
-            //{
-            //    if (ModelState.IsValid)
-            //    {
-            //        db.Employees.Add(employee);
-            //    }
+            db.InsurancePlans.Add(insPlan);
+            db.InsurancePremiums.Add(insPremium);
 
-            //    db.Employees.Add(employee);
-
-            //    db.SaveChanges();
-
-            //if (employee.MartialStatus == "MarriedWDep")
-            //{
-            //    RedirectToAction("SpouseEnrollment", "Family_Info", new { employee.User_id, employee.MartialStatus });
-            //}
-            //else if (employee.MartialStatus == "SingleWDep")
-            //{
-            //    RedirectToRouteResult("DependentEnrollment", "Family_Info", new {employee.User_id, employee.MartialStatus});
-            //}
-            //else
-            //{
-            //    RedirectToRouteResult("Index", "Employee");
-            //}
-
-        }
-
-        //GET: api/Employee/5
-        public Employee EmployeeDetail(int Employee_id)
-        {
-            return employee.Where(e => e.Employee_id == Employee_id).FirstOrDefault();
-        }
-
-
-        // PUT: api/Employee/5
-        //public void UpdateEmployee(int id, Employee value)
-        //{
-        //    employee[id] = value;
-        //}
-
-        // GET: api/Employee/5
-        public void EmployeeContact(int? Employee_id)
-        {
-            Employee employee = db.Employees.Find(Employee_id);
-        }
-
-        // POST: api/Employee/5
-        [System.Web.Http.HttpPost]
-        [ValidateAntiForgeryToken]
-        public void EmployeeContact([Bind(Include = "Employee_id,MailingAddress,PhysicalAddress,City,State,ZipCode,County,CityLimits,EmailAddress,PhoneNumber," +
-            "CellPhone")] Employee contact)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Employees.Add(contact);
-                db.SaveChanges();
-
-            }
-    
-        }
-
-        // GET: api/Employee/5
-        public void EditEmployee(int? Employee_id)
-        {
-            Employee employee = db.Employees.Find(Employee_id);
-
-        }
-
-        // POST: api/Employee/5
-        [System.Web.Http.HttpPost]
-        [ValidateAntiForgeryToken]
-        public void EditEmployee([Bind(Include = "Employee_id,CurrentEmployer,EmployeeRole,SSN,FirstName,MiddleName,LastName,DateOfBirth," +
-            "Sex,MaritalStatus,JobTitle,HireDate,EffectiveDate,ElgibilityDate,AnnualSalary,HoursWorkedPerWeek,MailingAddress,PhysicalAddress," +
-            "City,State,ZipCode,County,CityLimits,EmailAddress,PhoneNumber,CellPhone")] Employee employee)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-            }
-        }
-
-        // GET: api/FamilyMember/5
-        public void EditSpouse(int? FamilyMember_id)
-        {
-            Family_Info fmember = db.Family_Info.Find(FamilyMember_id);
-
-        }
-
-        // POST: api/FamilyMember/5
-        [System.Web.Http.HttpPost]
-        [ValidateAntiForgeryToken]
-        public void EditSpouse([Bind(Include = "Employee_id,FamilyMember_id,CurrentEmployer,EmployerAddress,EmployerCity,EmployerState,EmployerZipCode,EmployerPhoneNumber," +
-            "EmployeeName,RelationShipToInsured,FirstName,MiddleName,LastName,DateOfBirth,Sex,MaritalStatus,MailingAddress,PhysicalAddress,City,State,ZipCode," +
-            "County,CityLimits,EmailAddress,PhoneNumber,CellPhone")] Family_Info fmember)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(fmember).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-            }
-        }
-
-        // GET: api/FamilyMember/5
-        public void EditDependent(int? FamilyMember_id)
-        {
-            Family_Info fmember = db.Family_Info.Find(FamilyMember_id);
-
-        }
-
-        // POST: api/Employee/5
-        [System.Web.Http.HttpPost]
-        [ValidateAntiForgeryToken]
-        public void EditDependent([Bind(Include = "Employee_id,FamilyMember_id,RelationshipToInsured,EmployeeRole,EmployeeName,FirstName,MiddleName,LastName," +
-            "DateOfBirth,Sex")] Family_Info fmember)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(fmember).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-            }
-        }
-
-        // DELETE: api/Employee/5
-        public void DeleteEmployee(int? Employee_id)
-        {
-            Employee employee = db.Employees.Find(Employee_id);
-
-            db.Employees.Remove(employee);
             db.SaveChanges();
 
-            //db.DeleteEmployeeAndDependents(id);
+            int result = insPlan.Employee_id;
 
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: api/Employee/5
-        [System.Web.Http.HttpPost, System.Web.Http.ActionName("DeleteEmployee")]
-        [ValidateAntiForgeryToken]
-        public void DeleteEmployee(int Employee_id)
-        {
-            Employee employee = db.Employees.Find(Employee_id);
+        //----------------------------------------------------------------------------------------
 
-            db.Employees.Remove(employee);
+        public ActionResult GrpHealthInsSupplement()
+        {
+            return View();
+        }
+
+        //need to add items to db.InsDetail
+        public JsonResult GrpHealthInsSupplementUpdate(int InsurancePlan_id, string Item, string Detail)
+        {
+            InsurancePlanDetail insDetail = new InsurancePlanDetail();
+
+            insDetail.Item = Item;
+            insDetail.Detail = Detail;
+
+            int result = insDetail.InsurancePlan_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //Add EditGrpHealthSupplement()
+        //Add GrpHealthInsSupplementEditUpdate()
+
+        //----------------------------------------------------------------------------------------
+
+        public ActionResult GrpHealthEnrollment()
+        {
+            return View();
+        }
+
+        public JsonResult GrpHealthEnrollmentNew(int Employee_id, int FamilyMember_id, string empInsuranceCarrier,
+            string empInsPolicyNumber, string GroupName, string IMSGroupNumber, string PhoneNumber,
+            string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason, string Myself, string Spouse,
+            string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear, string NoneGroupHealthOption,
+            string EmpOnlyGroupHealthOption, string EmpSpGroupHealthOption, string EmpDepGroupHealthOption,
+            string EmpFamGroupHealthOption, string EmpSignature, DateTime EmpSignatureDate, string EmpInitials,
+            string OtherSignature, DateTime OtherSignatureDate, string empDepartment, string empEnrollmentType,
+            int empPayroll_id, string empClass, decimal empAnnualSalary, DateTime empEffectiveDate, int empHrsWkPerWk,
+            string spOtherInsCoverage, string spInsCarrier, string spInsPolicyNumber, string spInsPhoneNumber,
+            string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState, string spInsZipCode,
+            string spMedical, string spDental, string spVision, string spIndemnity, string depOtherInsCoverage,
+            string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
+        {
+            Group_Health g = new Group_Health();
+
+            g.InsuranceCarrier = empInsuranceCarrier;
+            g.PolicyNumber = empInsPolicyNumber;
+            g.GroupName = GroupName;
+            g.IMSGroupNumber = IMSGroupNumber;
+            g.PhoneNumber = PhoneNumber;
+            g.ReasonForGrpCoverageRefusal = ReasonForGrpCoverageRefusal;
+            g.OtherCoverage = OtherCoverage;
+            g.OtherReason = OtherReason;
+            g.Myself = Myself;
+            g.Spouse = Spouse;
+            g.Dependent = Dependent;
+            g.OtherInsuranceCoverage = empOtherInsuranceCoverage;
+            g.CafeteriaPlanYear = CafeteriaPlanYear;
+            g.NoMedicalPlan = NoneGroupHealthOption;
+            g.EmployeeOnly = EmpOnlyGroupHealthOption;
+            g.EmployeeAndSpouse = EmpSpGroupHealthOption;
+            g.EmployeeAndDependent = EmpDepGroupHealthOption;
+            g.EmployeeAndFamily = EmpFamGroupHealthOption;
+            g.EmployeeSignature = EmpSignature;
+            g.EmployeeSignatureDate = EmpSignatureDate;
+            g.EmployeeInitials = EmpInitials;
+            g.OtherSignature = OtherSignature;
+            g.OtherSignatureDate = OtherSignatureDate;
+
+            Employee emp = new Employee();
+
+            emp.Department = empDepartment;
+            emp.EnrollmentType = empEnrollmentType;
+            emp.Payroll_id = empPayroll_id;
+            emp.Class = empClass;
+            emp.AnnualSalary = empAnnualSalary;
+            emp.EffectiveDate = empEffectiveDate;
+            emp.HoursWorkedPerWeek = empHrsWkPerWk;
+
+            Other_Insurance o = new Other_Insurance();
+
+            o.CoveredByOtherInsurance = spOtherInsCoverage;
+            o.InsuranceCarrier = spInsCarrier;
+            o.PolicyNumber = spInsPolicyNumber;
+            o.PhoneNumber = spInsPhoneNumber;
+            o.MailingAddress = spInsMailingAddress;
+            o.PObox = spInsPObox;
+            o.City = spInsCity;
+            o.State = spInsState;
+            o.ZipCode = spInsZipCode;
+            o.Medical = spMedical;
+            o.Vision = spVision;
+            o.Dental = spDental;
+            o.Indemnity = spIndemnity;
+            o.CoveredByOtherInsurance = depOtherInsCoverage;
+            o.InsuranceCarrier = depInsCarrier;
+            o.PolicyNumber = depInsPolicyNumber;
+            o.PhoneNumber = depInsPhoneNumber;
+
+            Employee e = db.Employees
+             .Where(i => i.Employee_id == Employee_id)
+             .Single();
+
+            ViewBag.e = e;
+
+            Family_Info sp = db.Family_Info
+                .Where(i => i.FamilyMember_id == FamilyMember_id)
+                .Single();
+
+            ViewBag.sp = sp;
+
+            Family_Info dep = db.Family_Info
+               .Where(i => i.FamilyMember_id == FamilyMember_id)
+               .Single();
+
+            ViewBag.dep = dep;
+
+            if (ModelState.IsValid)
+            {
+                db.Other_Insurance.Add(o);
+                db.Group_Health.Add(g);
+
+                db.SaveChanges();
+            }
+
+            int result = e.Employee_id;
+
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
+
+        public ActionResult EditGrpHealthIns(int? GrpHealthIns_id)
+        {
+            if (GrpHealthIns_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Group_Health g = db.Group_Health.Find(GrpHealthIns_id);
+            if (g == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(g);
+        }
+
+        public JsonResult GrpHealthInsEditUpdate(int GrpHealthIns_id, int Employee_id, int FamilyMember_id,
+            int OtherInsurance_id, string empInsuranceCarrier, string empInsPolicyNumber, string GroupName, string IMSGroupNumber,
+            string PhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
+            string Myself, string Spouse, string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear,
+            string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption,
+            string empDepGroupHealthOption, string empFamGroupHealthOption, string empSignature, DateTime empSignatureDate,
+            string empDepartment, string empEnrollmentType, int empPayroll_id, string empClass, string empJobTitle,
+            DateTime empHireDate, decimal empAnnualSalary, DateTime empEffectiveDate, int empHrsWkPerWk,
+            string spOtherInsCoverage, string spInsCarrier, string spInsPolicyNumber, string spInsPhoneNumber,
+            string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState, string spInsZipCode,
+            string spMedical, string spDental, string spVision, string spIndemnity, string depOtherInsCoverage,
+            string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
+        {
+            var g = db.Group_Health
+                .Where(i => i.GroupHealthInsurance_id == GrpHealthIns_id)
+                .Single();
+
+            g.InsuranceCarrier = empInsuranceCarrier;
+            g.PolicyNumber = empInsPolicyNumber;
+            g.GroupName = GroupName;
+            g.IMSGroupNumber = IMSGroupNumber;
+            g.PhoneNumber = PhoneNumber;
+            g.ReasonForGrpCoverageRefusal = ReasonForGrpCoverageRefusal;
+            g.OtherCoverage = OtherCoverage;
+            g.OtherReason = OtherReason;
+            g.Myself = Myself;
+            g.Spouse = Spouse;
+            g.Dependent = Dependent;
+            g.OtherInsuranceCoverage = empOtherInsuranceCoverage;
+            g.CafeteriaPlanYear = CafeteriaPlanYear;
+            g.NoMedicalPlan = NoneGroupHealthOption;
+            g.EmployeeOnly = empOnlyGroupHealthOption;
+            g.EmployeeAndSpouse = empSpGroupHealthOption;
+            g.EmployeeAndDependent = empDepGroupHealthOption;
+            g.EmployeeAndFamily = empFamGroupHealthOption;
+            g.EmployeeSignature = empSignature;
+            g.EmployeeSignatureDate = empSignatureDate;
+
+            ViewBag.g = g;
+
+            Employee e = db.Employees
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
+
+            e.Department = empDepartment;
+            e.EnrollmentType = empEnrollmentType;
+            e.Payroll_id = empPayroll_id;
+            e.Class = empClass;
+            e.AnnualSalary = empAnnualSalary;
+            e.JobTitle = empJobTitle;
+            e.HireDate = empHireDate;
+            e.EffectiveDate = empEffectiveDate;
+            e.HoursWorkedPerWeek = empHrsWkPerWk;
+
+            ViewBag.e = e;
+
+            Other_Insurance o = db.Other_Insurance
+               .Where(i => i.OtherInsurance_id == OtherInsurance_id)
+               .Single();
+
+            o.CoveredByOtherInsurance = spOtherInsCoverage;
+            o.InsuranceCarrier = spInsCarrier;
+            o.PolicyNumber = spInsPolicyNumber;
+            o.PhoneNumber = spInsPhoneNumber;
+            o.MailingAddress = spInsMailingAddress;
+            o.PObox = spInsPObox;
+            o.City = spInsCity;
+            o.State = spInsState;
+            o.ZipCode = spInsZipCode;
+            o.Medical = spMedical;
+            o.Vision = spVision;
+            o.Dental = spDental;
+            o.Indemnity = spIndemnity;
+            o.CoveredByOtherInsurance = depOtherInsCoverage;
+            o.InsuranceCarrier = depInsCarrier;
+            o.PolicyNumber = depInsPolicyNumber;
+            o.PhoneNumber = depInsPhoneNumber;
+
+
+            ViewBag.o = o;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(g).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(o).State = System.Data.Entity.EntityState.Modified;
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err);
+                }
+
+                RedirectToAction("EmpOverview");
+            }
+
+            int result = g.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
+
+        public ActionResult GrpHealthInsDetail(int? GrpHealthIns_id)
+        {
+            if (GrpHealthIns_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Group_Health g = db.Group_Health.Find(GrpHealthIns_id);
+            if (g == null)
+            {
+                return HttpNotFound();
+            }
+            return View(g);
+        }
+
+        public JsonResult GetGrpHealthInsDetail(int GrpHealthIns_id, int OtherInsurance_id)
+        {
+            var g = db.Group_Health
+                .Where(i => i.GroupHealthInsurance_id == GrpHealthIns_id)
+                .Single();
+
+            ViewBag.g = g;
+
+            var o = db.Other_Insurance
+            .Where(i => i.OtherInsurance_id == OtherInsurance_id)
+            .Single();
+
+            ViewBag.o = o;
+
+            int result = g.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
+
+        public ActionResult SalaryRedirectAgreement()
+        {
+            return View();
+        }
+
+
+        public JsonResult SalaryRedirectionUpdate(int Employee_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
+            decimal PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, decimal PremiumPostTaxMedIns, string DentalInsProvider,
+            string EEelectionPreTaxDentalIns, decimal PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns,
+            decimal PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
+            decimal PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, decimal PremiumPostTaxVisionIns,
+            decimal TotalPreTax, decimal TotalPostTax, string empSignature, DateTime empSignatureDate, string empInitials1)
+        {
+            Employee e = db.Employees
+            .Where(i => i.Employee_id == Employee_id)
+            .Single();
+
+            ViewBag.e = e;
+
+            Deduction d = new Deduction();
+
+            d.Provider = MedicalInsProvider;
+            d.EEelectionPreTax = EEelectionPreTaxMedIns;
+            d.PremiumPreTax = PremiumPreTaxMedIns;
+            d.EEelectionPostTax = EEelectionPostTaxMedIns;
+            d.PremiumPostTax = PremiumPostTaxMedIns;
+
+            d.Provider = DentalInsProvider;
+            d.EEelectionPreTax = EEelectionPreTaxDentalIns;
+            d.PremiumPreTax = PremiumPreTaxDentalIns;
+            d.EEelectionPostTax = EEelectionPostTaxDentalIns;
+            d.PremiumPostTax = PremiumPostTaxDentalIns;
+
+            d.Provider = VisionInsProvider;
+            d.EEelectionPreTax = EEelectionPreTaxVisionIns;
+            d.PremiumPreTax = PremiumPreTaxVisionIns;
+            d.EEelectionPostTax = EEelectionPostTaxVisionIns;
+            d.PremiumPostTax = PremiumPostTaxVisionIns;
+
+            d.TotalPreTax = TotalPreTax;
+            d.TotalPostTax = TotalPostTax;
+            d.EmployeeSignature = empSignature;
+            d.EmployeeSignatureDate = empSignatureDate;
+            d.EmployeeInitials = empInitials1;
+
+            ViewBag.d = d;
+
+            db.Deductions.Add(d);
             db.SaveChanges();
 
+            int result = d.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
+        public ActionResult EditSalaryRedirection(int? Employee_id)
+        {
+            if (Employee_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Group_Health g = db.Group_Health.Find(Employee_id);
+            if (g == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.g = g.Employee_id;
+
+            return View(g);
+        }
+
+        public JsonResult SalaryRedirectionEditUpdate(int Employee_id, int Deductions_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
+            decimal PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, decimal PremiumPostTaxMedIns, string DentalInsProvider,
+            string EEelectionPreTaxDentalIns, decimal PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns,
+            decimal PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
+            decimal PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, decimal PremiumPostTaxVisionIns,
+            decimal TotalPreTax, decimal TotalPostTax, string empSignature, DateTime empSignatureDate, string empInitials1)
+        {
+            Employee e = db.Employees
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
+
+            ViewBag.e = e;
+
+            Deduction d = db.Deductions
+                .Where(i => i.Deductions_id == Deductions_id)
+                .Single();
+
+            d.Provider = MedicalInsProvider;
+            d.EEelectionPreTax = EEelectionPreTaxMedIns;
+            d.PremiumPreTax = PremiumPreTaxMedIns;
+            d.EEelectionPostTax = EEelectionPostTaxMedIns;
+            d.PremiumPostTax = PremiumPostTaxMedIns;
+
+            d.Provider = DentalInsProvider;
+            d.EEelectionPreTax = EEelectionPreTaxDentalIns;
+            d.PremiumPreTax = PremiumPreTaxDentalIns;
+            d.EEelectionPostTax = EEelectionPostTaxDentalIns;
+            d.PremiumPostTax = PremiumPostTaxDentalIns;
+
+            d.Provider = VisionInsProvider;
+            d.EEelectionPreTax = EEelectionPreTaxVisionIns;
+            d.PremiumPreTax = PremiumPreTaxVisionIns;
+            d.EEelectionPostTax = EEelectionPostTaxVisionIns;
+            d.PremiumPostTax = PremiumPostTaxVisionIns;
+
+            d.TotalPreTax = TotalPreTax;
+            d.TotalPostTax = TotalPostTax;
+            d.EmployeeSignature = empSignature;
+            d.EmployeeSignatureDate = empSignatureDate;
+            d.EmployeeInitials = empInitials1;
+            //THere are 5 items that need initials for the salaryRedirect waviers.
+
+            ViewBag.d = d;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(d).State = System.Data.Entity.EntityState.Modified;
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err);
+                }
+
+                RedirectToAction("EmpOverview", new { d.Employee_id });
+            }
+
+            int result = d.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
+
+        public ActionResult AuthorizationForm()
+        {
+            return View();
+        }
+
+        public JsonResult AuthorizationFormUpdate(int Employee_id, string NameOfPerson1, string NameOfPerson1Relationship, string NameOfPerson2,
+            string NameOfPerson2Relationship, string EmpSignature, DateTime EmpSignatureDate, string NameOfPerson1Signature,
+            DateTime NameOfPerson1SignatureDate, string NameOfPerson2Signature, DateTime NameOfPerson2SignatureDate)
+        {
+            Employee e = db.Employees
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
+
+            ViewBag.e = e;
+
+            Group_Health g = new Group_Health();
+
+            g.NameOfPersonToReleaseInfoTo = NameOfPerson1;
+            g.Relationship = NameOfPerson1Relationship;
+            g.NameOfPersonToReleaseInfoTo = NameOfPerson2;
+            g.Relationship = NameOfPerson2Relationship;
+            g.EmployeeSignature = EmpSignature;
+            g.EmployeeSignatureDate = EmpSignatureDate;
+            g.OtherSignature = NameOfPerson1Signature;
+            g.OtherSignatureDate = NameOfPerson1SignatureDate;
+            g.OtherSignature = NameOfPerson2Signature;
+            g.OtherSignatureDate = NameOfPerson2SignatureDate;
+
+            ViewBag.g = g;
+
+            db.Group_Health.Add(g);
+            db.SaveChanges();
+
+            int result = g.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
+
+        public ActionResult EditAuthorizationForm(int? Employee_id)
+        {
+            if (Employee_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Group_Health g = db.Group_Health.Find(Employee_id);
+            if (g == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.g = g.Employee_id;
+
+            return View(g);
+        }
+
+        public JsonResult AuthorizationFormEditUpdate(int Employee_id, int GrpHealthIns_id, string NameOfPerson1,
+            string NameOfPerson1Relationship, string NameOfPerson2, string NameOfPerson2Relationship, string EmpSignature,
+            DateTime EmpSignatureDate, string NameOfPerson1Signature, DateTime NameOfPerson1SignatureDate,
+            string NameOfPerson2Signature, DateTime NameOfPerson2SignatureDate)
+        {
+            Employee e = db.Employees
+               .Where(i => i.Employee_id == Employee_id)
+               .Single();
+
+            ViewBag.e = e;
+
+            Group_Health g = db.Group_Health
+                .Where(i => i.GroupHealthInsurance_id == GrpHealthIns_id)
+                .Single();
+
+            g.NameOfPersonToReleaseInfoTo = NameOfPerson1;
+            g.Relationship = NameOfPerson1Relationship;
+            g.NameOfPersonToReleaseInfoTo = NameOfPerson2;
+            g.Relationship = NameOfPerson2Relationship;
+            g.EmployeeSignature = EmpSignature;
+            g.EmployeeSignatureDate = EmpSignatureDate;
+            g.OtherSignature = NameOfPerson1Signature;
+            g.OtherSignatureDate = NameOfPerson1SignatureDate;
+            g.OtherSignature = NameOfPerson2Signature;
+            g.OtherSignatureDate = NameOfPerson2SignatureDate;
+
+            ViewBag.g = g;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(g).State = System.Data.Entity.EntityState.Modified;
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err);
+                }
+
+                RedirectToAction("EmpOverview", new { g.Employee_id });
+            }
+
+            int result = g.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //----------------------------------------------------------------------------------------
+        public ActionResult DeleteGrpHealthIns(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Group_Health groupHealth = db.Group_Health.Find(id);
+            if (groupHealth == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(groupHealth);
+        }
+
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteGrpHealthIns")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteGroupHealth(int id)
+        {
+            Group_Health groupHealth = db.Group_Health.Find(id);
+            db.Group_Health.Remove(groupHealth);
+            db.SaveChanges();
+
+            db.DeleteEmployeeAndDependents(id);
+
+            return RedirectToAction("GrpHealthEnrollment");
         }
 
         protected override void Dispose(bool disposing)
@@ -282,5 +643,8 @@ namespace Watson.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //----------------------------------------------------------------------------------------
+
     }
 }

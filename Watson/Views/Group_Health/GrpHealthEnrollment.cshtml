@@ -1,5 +1,4 @@
-﻿@*@model Watson.Models.GrpHealthMasterList*@
-@{
+﻿@{
     ViewBag.Title = "GrpHealthEnrollment";
 }
 <h2>Health Insurance Premiums</h2>
@@ -12,11 +11,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Health Insurance Enrollment</title>
+    <title>Employee- GroupHealth Insurance</title>
 </head>
 <body>
+    <h2>Employee- Health Insurance Premiums</h2>
+    @*<iframe src="https://docs.google.com/gview?url=http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43934.pdf&embedded=true" style="width: 660px; height:  640px;" frameborder="0"></iframe>*@
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" @*value=@ViewBag.e.Employee_id*@ />
-    <div class="form-horizontal">
+    <div class="form-horizontal" hidden>
         <div class="collapsible" id="FirstStep">Health Insurance Premiums</div>
         <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">
             <tr>
@@ -241,7 +242,7 @@
         </table>
     </div>
     @* db.InsurancePlanDetail- col- Item, Detail - InsurancePlanDetail_id as primary and InsurancePlan_id as foreign *@
-    <div class="form-horizontal">
+    <div class="form-horizontal" hidden>
         <hr />
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
         <div class="collapsible" id="SecondStep">Health Insurance Supplement</div>
@@ -653,21 +654,21 @@
             </div>
 
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="Employee Number" id="EmployeeNumber" name="SSN" value="" disabled/>
+                <input type="text" class="form-control" placeholder="Employee Number" id="EmployeeNumber" name="SSN" value="" disabled />
             </div>
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" disabled/>
+                <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" disabled />
             </div>
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="" disabled/>
+                <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="" disabled />
             </div>
             <p></p>
             <div class="form-group col-md-6">
-                <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" disabled/>
-                <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" disabled/>
-                <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" disabled/>
-                <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" disabled/>
-                <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" disabled/>
+                <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" disabled />
+                <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" disabled />
+                <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" disabled />
+                <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" disabled />
+                <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" disabled />
             </div>
             <div>
                 <select id="EmpGender" class="form-control" disabled>
@@ -688,15 +689,15 @@
             </div>
             <p></p>
             <div>
-                <input type="text" class="form-control" placeholder="Email Address" id="EmailAddress" name="EmailAddress" value="" disabled/>
+                <input type="text" class="form-control" placeholder="Email Address" id="EmailAddress" name="EmailAddress" value="" disabled />
             </div>
             <div>
-                <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" disabled/>
+                <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" disabled />
             </div>
             <p></p>
             <div>
                 <label>Birth Date:</label>
-                <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="" disabled/>
+                <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="" disabled />
             </div>
             <hr />
             <div>
@@ -788,34 +789,34 @@
                         </thead>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spFirstName" placeholder="First Name" value="" disabled/>
+                                <input type="text" class="form-control" id="spFirstName" placeholder="First Name" value="" disabled />
                             </td>
                             <td class="text">
-                                <input type="text" class="form-control" id="spLastName" placeholder="Last Name" value="" disabled/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spAddress" placeholder="Street" value="" disabled/>
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spCity" placeholder="City" value="" disabled/>
+                                <input type="text" class="form-control" id="spLastName" placeholder="Last Name" value="" disabled />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spState" placeholder="State" value="" disabled/>
+                                <input type="text" class="form-control" id="spAddress" placeholder="Street" value="" disabled />
                             </td>
                             <td class="text">
-                                <input type="text" class="form-control" id="spZipCode" placeholder="Zip Code" value="" disabled/>
+                                <input type="text" class="form-control" id="spCity" placeholder="City" value="" disabled />
                             </td>
                         </tr>
                         <tr>
                             <td class="text">
-                                <input type="tel" class="form-control" id="spPhoneNumber" placeholder="Phone Number" value="" disabled/>
+                                <input type="text" class="form-control" id="spState" placeholder="State" value="" disabled />
                             </td>
                             <td class="text">
-                                <input type="date" class="form-control" id="spDateOfBirth" placeholder="Birth Date" value="" disabled/>
+                                <input type="text" class="form-control" id="spZipCode" placeholder="Zip Code" value="" disabled />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text">
+                                <input type="tel" class="form-control" id="spPhoneNumber" placeholder="Phone Number" value="" disabled />
+                            </td>
+                            <td class="text">
+                                <input type="date" class="form-control" id="spDateOfBirth" placeholder="Birth Date" value="" disabled />
                             </td>
                         </tr>
                         <tr>
@@ -841,7 +842,7 @@
                         </thead>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spEmployer" placeholder="Employer" value="" disabled/>
+                                <input type="text" class="form-control" id="spEmployer" placeholder="Employer" value="" disabled />
                             </td>
                             <td class="text">
                                 <input type="text" class="form-control" id="" placeholder="" />
@@ -849,25 +850,25 @@
                         </tr>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spEmployerAddress" placeholder="Street" value="" disabled/>
+                                <input type="text" class="form-control" id="spEmployerAddress" placeholder="Street" value="" disabled />
                             </td>
                             <td class="text">
-                                <input type="text" class="form-control" id="spEmployerCity" placeholder="City" value="" disabled/>
-                            </td>
-                        </tr>
-                        <tr></tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spEmployerState" placeholder="State" value="" disabled/>
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spEmployerZipCode" placeholder="Zip Code" value="" disabled/>
+                                <input type="text" class="form-control" id="spEmployerCity" placeholder="City" value="" disabled />
                             </td>
                         </tr>
                         <tr></tr>
                         <tr>
                             <td class="text">
-                                <input type="text" class="form-control" id="spEmployerPhoneNumber" placeholder="Phone Number" value="" disabled/>
+                                <input type="text" class="form-control" id="spEmployerState" placeholder="State" value="" disabled />
+                            </td>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spEmployerZipCode" placeholder="Zip Code" value="" disabled />
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td class="text">
+                                <input type="text" class="form-control" id="spEmployerPhoneNumber" placeholder="Phone Number" value="" disabled />
                             </td>
                             <td class="text">
                                 <input type="text" class="form-control" id="" placeholder="" />
@@ -1549,7 +1550,6 @@
                 depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value;
 
                 data = {
-                    "GroupHealthInsurance_id": grpHealthIns_id,
                     "Employee_id": emp_id,
                     "GroupName": GroupName,
                     "IMSGroupNumber": IMSGroupNumber,
