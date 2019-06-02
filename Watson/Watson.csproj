@@ -379,10 +379,12 @@
     <Content Include="Models\WatsonTruck.edmx.diagram">
       <DependentUpon>WatsonTruck.edmx</DependentUpon>
     </Content>
-    <Content Include="App_Data\enrollmentApps\Employees with Health Election.pdf" />
-    <Content Include="App_Data\enrollmentApps\Employees without Health Election.pdf" />
-    <Content Include="App_Data\enrollmentApps\Managers with Health Election.pdf" />
-    <Content Include="App_Data\enrollmentApps\Managers without Health Election.pdf" />
+    <Content Include="App_Data\enrollmentApps\Employees-with-Health-Election.pdf" />
+    <Content Include="App_Data\enrollmentApps\Employees-without-Health-Election.pdf" />
+    <Content Include="App_Data\enrollmentApps\Managers-with-Health-Election.pdf" />
+    <Content Include="App_Data\enrollmentApps\Managers-without-Health-Election.pdf" />
+    <Content Include="App_Data\pdfFiles\2019-Guardian-Dental-&amp;-Vision-Benefits.pdf" />
+    <Content Include="App_Data\pdfFiles\2019-Insurance-Cost.pdf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
