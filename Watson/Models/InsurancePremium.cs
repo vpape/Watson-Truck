@@ -21,6 +21,8 @@ namespace Watson.Models
         public string EmployeeAndDependent { get; set; }
         public string EmployeeAndFamily { get; set; }
         public Nullable<decimal> YearlyPremiumCost { get; set; }
+        public Nullable<decimal> MonthlyPremiumCost { get; set; }
+        public Nullable<decimal> BiWeeklyPremiumCost { get; set; }
     
         public virtual InsurancePlan InsurancePlan { get; set; }
     }

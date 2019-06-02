@@ -18,6 +18,31 @@ namespace Watson.Models
         public int InsurancePlan_id { get; set; }
         public string Item { get; set; }
         public string Detail { get; set; }
+        public string CalendarYearDeductible { get; set; }
+        public string WaivedForPreventive { get; set; }
+        public string AnnualMaximum { get; set; }
+        public string Preventive { get; set; }
+        public string Basic { get; set; }
+        public string Major { get; set; }
+        public string UCRPercentage { get; set; }
+        public string EndodonticsOrPeriodontics { get; set; }
+        public string Orthodontia { get; set; }
+        public string OrthodontiaLifeTimeMaximum { get; set; }
+        public string WaitingPeriod { get; set; }
+        public string DentalNetwork { get; set; }
+        public string CoPay { get; set; }
+        public string Exams { get; set; }
+        public string Materials { get; set; }
+        public string LensesSingleVision { get; set; }
+        public string Bifocal { get; set; }
+        public string Trifocal { get; set; }
+        public string Lenticular { get; set; }
+        public string Contacts { get; set; }
+        public string ContactMedicallyNecessary { get; set; }
+        public string ContactElective { get; set; }
+        public string Frames { get; set; }
+        public string Network { get; set; }
+        public string RateGuarantee { get; set; }
     
         public virtual InsurancePlan InsurancePlan { get; set; }
     }

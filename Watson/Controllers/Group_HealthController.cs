@@ -86,10 +86,6 @@ namespace Watson.Controllers
                 .Where(i => i.Employee_id == Employee_id)
                 .Single();
 
-            var g = db.Group_Health
-                .Where(i => i.Employee_id == Employee_id)
-                .Single();
-
             InsurancePremium insPremium = db.InsurancePremiums
                 .Where(i => i.InsurancePremium_id == InsurancePremium_id)
                 .Single();
@@ -139,6 +135,7 @@ namespace Watson.Controllers
 
             insDetail.Item = Item;
             insDetail.Detail = Detail;
+
 
             int result = insDetail.InsurancePlanDetail_id;
 

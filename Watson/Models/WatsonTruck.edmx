@@ -238,8 +238,33 @@
           </Key>
           <Property Name="InsurancePlanDetail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InsurancePlan_id" Type="int" Nullable="false" />
-          <Property Name="Item" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="Detail" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Item" Type="varchar" MaxLength="40" />
+          <Property Name="Detail" Type="varchar" MaxLength="40" />
+          <Property Name="CalendarYearDeductible" Type="varchar" MaxLength="8" />
+          <Property Name="WaivedForPreventive" Type="varchar" MaxLength="5" />
+          <Property Name="AnnualMaximum" Type="varchar" MaxLength="10" />
+          <Property Name="Preventive" Type="varchar" MaxLength="8" />
+          <Property Name="Basic" Type="varchar" MaxLength="8" />
+          <Property Name="Major" Type="varchar" MaxLength="8" />
+          <Property Name="UCRPercentage" Type="varchar" MaxLength="8" />
+          <Property Name="EndodonticsOrPeriodontics" Type="varchar" MaxLength="8" />
+          <Property Name="Orthodontia" Type="varchar" MaxLength="8" />
+          <Property Name="OrthodontiaLifeTimeMaximum" Type="varchar" MaxLength="8" />
+          <Property Name="WaitingPeriod" Type="varchar" MaxLength="8" />
+          <Property Name="DentalNetwork" Type="varchar" MaxLength="30" />
+          <Property Name="CoPay" Type="varchar" MaxLength="50" />
+          <Property Name="Exams" Type="varchar" MaxLength="50" />
+          <Property Name="Materials" Type="varchar" MaxLength="50" />
+          <Property Name="LensesSingleVision" Type="varchar" MaxLength="50" />
+          <Property Name="Bifocal" Type="varchar" MaxLength="50" />
+          <Property Name="Trifocal" Type="varchar" MaxLength="50" />
+          <Property Name="Lenticular" Type="varchar" MaxLength="50" />
+          <Property Name="Contacts" Type="varchar" MaxLength="50" />
+          <Property Name="ContactMedicallyNecessary" Type="varchar" MaxLength="50" />
+          <Property Name="ContactElective" Type="varchar" MaxLength="50" />
+          <Property Name="Frames" Type="varchar" MaxLength="50" />
+          <Property Name="Network" Type="varchar" MaxLength="50" />
+          <Property Name="RateGuarantee" Type="varchar" MaxLength="7" />
         </EntityType>
         <EntityType Name="InsurancePremium">
           <Key>
@@ -252,6 +277,8 @@
           <Property Name="EmployeeAndDependent" Type="varchar" MaxLength="20" />
           <Property Name="EmployeeAndFamily" Type="varchar" MaxLength="20" />
           <Property Name="YearlyPremiumCost" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MonthlyPremiumCost" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="BiWeeklyPremiumCost" Type="decimal" Precision="6" Scale="2" />
         </EntityType>
         <EntityType Name="Life_Insurance">
           <Key>
@@ -981,9 +1008,34 @@
           </Key>
           <Property Name="InsurancePlanDetail_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InsurancePlan_id" Type="Int32" Nullable="false" />
-          <Property Name="Item" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="Detail" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Item" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Detail" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="InsurancePlan" Relationship="WatsonTruckModel.FK_InsurancePlanDetail_InsurancePlan" FromRole="InsurancePlanDetail" ToRole="InsurancePlan" />
+          <Property Name="CalendarYearDeductible" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="WaivedForPreventive" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="AnnualMaximum" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Preventive" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Basic" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Major" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="UCRPercentage" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="EndodonticsOrPeriodontics" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Orthodontia" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="OrthodontiaLifeTimeMaximum" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="WaitingPeriod" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="DentalNetwork" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CoPay" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Exams" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Materials" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LensesSingleVision" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Bifocal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Trifocal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lenticular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contacts" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactMedicallyNecessary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactElective" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Frames" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Network" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RateGuarantee" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="InsurancePremium">
           <Key>
@@ -997,6 +1049,8 @@
           <Property Name="EmployeeAndFamily" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="YearlyPremiumCost" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="InsurancePlan" Relationship="WatsonTruckModel.FK_InsurancePremium_InsurancePlan" FromRole="InsurancePremium" ToRole="InsurancePlan" />
+          <Property Name="MonthlyPremiumCost" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="BiWeeklyPremiumCost" Type="Decimal" Precision="6" Scale="2" />
         </EntityType>
         <EntityType Name="Life_Insurance">
           <Key>
@@ -1525,6 +1579,31 @@
           <EntitySetMapping Name="InsurancePlanDetails">
             <EntityTypeMapping TypeName="WatsonTruckModel.InsurancePlanDetail">
               <MappingFragment StoreEntitySet="InsurancePlanDetail">
+                <ScalarProperty Name="RateGuarantee" ColumnName="RateGuarantee" />
+                <ScalarProperty Name="Network" ColumnName="Network" />
+                <ScalarProperty Name="Frames" ColumnName="Frames" />
+                <ScalarProperty Name="ContactElective" ColumnName="ContactElective" />
+                <ScalarProperty Name="ContactMedicallyNecessary" ColumnName="ContactMedicallyNecessary" />
+                <ScalarProperty Name="Contacts" ColumnName="Contacts" />
+                <ScalarProperty Name="Lenticular" ColumnName="Lenticular" />
+                <ScalarProperty Name="Trifocal" ColumnName="Trifocal" />
+                <ScalarProperty Name="Bifocal" ColumnName="Bifocal" />
+                <ScalarProperty Name="LensesSingleVision" ColumnName="LensesSingleVision" />
+                <ScalarProperty Name="Materials" ColumnName="Materials" />
+                <ScalarProperty Name="Exams" ColumnName="Exams" />
+                <ScalarProperty Name="CoPay" ColumnName="CoPay" />
+                <ScalarProperty Name="DentalNetwork" ColumnName="DentalNetwork" />
+                <ScalarProperty Name="WaitingPeriod" ColumnName="WaitingPeriod" />
+                <ScalarProperty Name="OrthodontiaLifeTimeMaximum" ColumnName="OrthodontiaLifeTimeMaximum" />
+                <ScalarProperty Name="Orthodontia" ColumnName="Orthodontia" />
+                <ScalarProperty Name="EndodonticsOrPeriodontics" ColumnName="EndodonticsOrPeriodontics" />
+                <ScalarProperty Name="UCRPercentage" ColumnName="UCRPercentage" />
+                <ScalarProperty Name="Major" ColumnName="Major" />
+                <ScalarProperty Name="Basic" ColumnName="Basic" />
+                <ScalarProperty Name="Preventive" ColumnName="Preventive" />
+                <ScalarProperty Name="AnnualMaximum" ColumnName="AnnualMaximum" />
+                <ScalarProperty Name="WaivedForPreventive" ColumnName="WaivedForPreventive" />
+                <ScalarProperty Name="CalendarYearDeductible" ColumnName="CalendarYearDeductible" />
                 <ScalarProperty Name="Detail" ColumnName="Detail" />
                 <ScalarProperty Name="Item" ColumnName="Item" />
                 <ScalarProperty Name="InsurancePlan_id" ColumnName="InsurancePlan_id" />
@@ -1535,6 +1614,8 @@
           <EntitySetMapping Name="InsurancePremiums">
             <EntityTypeMapping TypeName="WatsonTruckModel.InsurancePremium">
               <MappingFragment StoreEntitySet="InsurancePremium">
+                <ScalarProperty Name="BiWeeklyPremiumCost" ColumnName="BiWeeklyPremiumCost" />
+                <ScalarProperty Name="MonthlyPremiumCost" ColumnName="MonthlyPremiumCost" />
                 <ScalarProperty Name="YearlyPremiumCost" ColumnName="YearlyPremiumCost" />
                 <ScalarProperty Name="EmployeeAndFamily" ColumnName="EmployeeAndFamily" />
                 <ScalarProperty Name="EmployeeAndDependent" ColumnName="EmployeeAndDependent" />
