@@ -414,10 +414,8 @@
     <Content Include="Views\Dependent\DeleteDependent.cshtml" />
     <Content Include="Views\Dependent\EditDependent.cshtml" />
     <Content Include="Views\Dependent\DependentDetail.cshtml" />
-    <Content Include="Views\Spouse\DeleteSpouse.cshtml" />
     <Content Include="Views\Spouse\EditSpouse.cshtml" />
     <Content Include="Views\Employee\EnrollmentSelection.cshtml" />
-    <Content Include="Views\Group_Health\GroupHealthEnrollment.cshtml" />
     <Content Include="Views\Life_Insurance\LifeInsuranceEnrollment.cshtml" />
     <Content Include="Views\Life_Insurance\EditLifeInsurance.cshtml" />
     <Content Include="Views\Life_Insurance\LifeInsuranceDetail.cshtml" />

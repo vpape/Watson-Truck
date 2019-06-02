@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Watson.Models.Family_Info
+@{
     ViewBag.Title = "EditSp";
 }
 <!DOCTYPE html>
@@ -62,7 +63,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Gender:</label>
                 <select class="col-md-10" id="Gender">
-                    <option value="Male"   @(ViewBag.Gender == "Male"   ? "selected" : "")>Male</option>
+                    <option value="Male" @(ViewBag.Gender == "Male" ? "selected" : "")>Male</option>
                     <option value="Female" @(ViewBag.Gender == "Female" ? "selected" : "")>Female</option>
                 </select>
             </div>
@@ -118,11 +119,11 @@
                     </div>
                 </div>
                 @*<div class="form-group">
-                    <label for="County" class="col-md-2 control-label">County:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="@ViewBag.County" />
-                    </div>
-                </div>*@
+                        <label for="County" class="col-md-2 control-label">County:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="@ViewBag.County" />
+                        </div>
+                    </div>*@
             </div>
             <div class="form-group">
                 <label for="EmailAddress" class="col-md-2 control-label">Email Address:</label>
@@ -180,7 +181,7 @@
                         <label for="EmployerMailingAddress" class="col-md-2 control-label">Employer Address:</label>
                         <div class="col-md-10">
                             <input type="text" id="EmployerMailingAddress" class="form-control" placeholder="Street" name="EmployerMailingAddress" value="@ViewBag.EmployerMailingAddress" />
-                            <input type="text" id="EmployerPObox" class="form-control" placeholder="PO Box" name="EmployerPObox" value="@ViewBag.EmployerPObox"  />
+                            <input type="text" id="EmployerPObox" class="form-control" placeholder="PO Box" name="EmployerPObox" value="@ViewBag.EmployerPObox" />
                             <input type="text" id="EmployerCity" class="form-control" placeholder="City" name="EmployerCity" value="@ViewBag.EmployerCity" />
                             <input type="text" id="EmployerState" class="form-control" placeholder="State" name="EmployerState" value="@ViewBag.EmployerState" />
                             <input type="text" id="EmployerZipCode" class="form-control" placeholder="Zip Code" name="EmployerZipCode" value="@ViewBag.EmployerZipCode" />
@@ -272,7 +273,6 @@
     .phone-number .col-xs-3, .phone-number .col-xs-4 {
         padding-left: 0;
     }
-
 </style>
 
 @*<script>
@@ -510,10 +510,10 @@
         }).then(res => res.json())
             .then(response => console.log('Success:', JSON.stringify(response)))
             .catch(error => console.error('Error:', error));
-            //.then(Response => {
-            //    console.log(Response);
-            //    Response.json();
-            //}) //parses response to JSON
+        //.then(Response => {
+        //    console.log(Response);
+        //    Response.json();
+        //}) //parses response to JSON
     }
 </script>
 

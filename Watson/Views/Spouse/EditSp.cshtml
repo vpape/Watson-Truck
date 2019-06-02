@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Watson.Models.Family_Info
+@{
     ViewBag.Title = "EditSp";
 }
 <!DOCTYPE html>
@@ -39,7 +40,7 @@
             <div class="form-group">
                 <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="" disabled />
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" @*value="@Html.DisplayFor(model => model.Employee.SSN)*@" disabled />
                 </div>
             </div>
             <div class="form-group">
@@ -448,7 +449,7 @@
             EmployerState = document.getElementById("EmployerState").value;
             EmployerZipCode = document.getElementById("EmployerZipCode").value;
             EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
-        
+
 
             var data = {
                 "Employer": Employer,
@@ -475,7 +476,7 @@
         document.querySelector("#LastName").value = sp.LastName;
         document.querySelector("#DateOfBirth").value = sp.DateOfBirth;
         document.querySelector("#Gender").value = sp.Gender;
-       
+
     }
 
     function SecondStep(sp) {
