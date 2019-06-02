@@ -321,15 +321,15 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\image\AllisionTransImage.jpg" />
-    <Content Include="App_Data\image\CumminsImage.jpg" />
-    <Content Include="App_Data\image\DetroitDieselimage.jpg" />
-    <Content Include="App_Data\image\InsMgtServ.JPG" />
-    <Content Include="App_Data\image\Internationalimage.jpg" />
-    <Content Include="App_Data\image\WatsonHopperImage.jpg" />
-    <Content Include="App_Data\image\WatsonTruckImage.jpg" />
-    <Content Include="App_Data\video\IMS_RBP.mov" />
-    <Content Include="App_Data\video\IMS_Spanish_RBP.mp4" />
+    <Content Include="App_Data\images\AllisionTransImage.jpg" />
+    <Content Include="App_Data\images\CumminsImage.jpg" />
+    <Content Include="App_Data\images\DetroitDieselimage.jpg" />
+    <Content Include="App_Data\images\InsMgtServ.JPG" />
+    <Content Include="App_Data\images\Internationalimage.jpg" />
+    <Content Include="App_Data\images\WatsonHopperImage.jpg" />
+    <Content Include="App_Data\images\WatsonTruckImage.jpg" />
+    <Content Include="App_Data\videos\IMS_RBP.mov" />
+    <Content Include="App_Data\videos\IMS_Spanish_RBP.mp4" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -379,10 +379,10 @@
     <Content Include="Models\WatsonTruck.edmx.diagram">
       <DependentUpon>WatsonTruck.edmx</DependentUpon>
     </Content>
-    <Content Include="App_Data\healthApplication\Employees with Health Election.pdf" />
-    <Content Include="App_Data\healthApplication\Employees without Health Election.pdf" />
-    <Content Include="App_Data\healthApplication\Managers with Health Election.pdf" />
-    <Content Include="App_Data\healthApplication\Managers without Health Election.pdf" />
+    <Content Include="App_Data\enrollmentApps\Employees with Health Election.pdf" />
+    <Content Include="App_Data\enrollmentApps\Employees without Health Election.pdf" />
+    <Content Include="App_Data\enrollmentApps\Managers with Health Election.pdf" />
+    <Content Include="App_Data\enrollmentApps\Managers without Health Election.pdf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
