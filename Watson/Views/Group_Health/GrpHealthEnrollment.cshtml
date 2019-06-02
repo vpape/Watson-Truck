@@ -14,7 +14,7 @@
     <title>Employee- Group Health Insurance</title>
 </head>
 <body>
-    <embed src="/App_Data/healthApplication/Employees%20with%20Health%20Election.pdf" style="width:860px; height:640px;" frameborder="0">
+    @*<embed src="/App_Data/healthApplication/Employees%20with%20Health%20Election.pdf" style="width:860px; height:640px;" frameborder="0">*@
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" @*value=@ViewBag.e.Employee_id*@ />
     <div class="form-horizontal" hidden>
         <div class="collapsible" id="FirstStep">Health Insurance Premiums</div>
@@ -740,7 +740,7 @@
                             </select>
                         </td>
                         <td>
-                            <select id="EmpOnlyGroupHealthOption" class="form-control">
+                            <select id="empOnlyGroupHealthOption" class="form-control">
                                 <option value="">Choose Option:</option>
                                 <option value="N/A" name="EmployeeOnly"></option>
                                 <option value="MEC Plan" name="EmployeeOnly">MEC Plan</option>
@@ -749,7 +749,7 @@
                             </select>
                         </td>
                         <td>
-                            <select id="EmpSpGroupHealthOption" class="form-control">
+                            <select id="empSpGroupHealthOption" class="form-control">
                                 <option value="">Choose Option:</option>
                                 <option value="N/A" name="EmployeeAndSpouse"></option>
                                 <option value="MEC Plan" name="EmployeeAndSpouse">MEC Plan</option>
@@ -758,7 +758,7 @@
                             </select>
                         </td>
                         <td>
-                            <select id="EmpDepGroupHealthOption" class="form-control">
+                            <select id="empDepGroupHealthOption" class="form-control">
                                 <option value="">Choose Option:</option>
                                 <option value="N/A" name="EmployeeAndDependent"></option>
                                 <option value="MEC Plan" name="EmployeeAndDependent">MEC Plan</option>
@@ -767,7 +767,7 @@
                             </select>
                         </td>
                         <td>
-                            <select id="EmpFamGroupHealthOption" class="form-control">
+                            <select id="empFamGroupHealthOption" class="form-control">
                                 <option value="">Choose Option:</option>
                                 <option value="N/A" name="EmployeeAndFamily"></option>
                                 <option value="MEC Plan" name="EmployeeAndFamily">MEC Plan</option>
@@ -1425,7 +1425,7 @@
                     "BuyUpBiWkyearlyPremiumCost": BuyUpBiWkyearlyPremiumCost,
                 }
 
-                var ret = postData('/Group_Health/GrpHealthInsPremiumUpdate', data)
+                var ret = postData('/Group_Health/GrpHealthInsPremiumNew', data)
                     .then(data => FirstStep(data))
                     .catch(error => console.error(error))
             })
@@ -1504,7 +1504,7 @@
                     "RateGuarantee": RateGuarantee,
                 }
 
-                var ret = postData('/Group_Health/GrpHealthInsSupplementUpdate', data)
+                var ret = postData('/Group_Health/GrpHealthInsSupplementNew', data)
                     .then(data => SecondStep(data))
                     .catch(error => console.error(error))
             })
@@ -1529,10 +1529,10 @@
                 empSignatureDate = document.getElementById("empSignatureDate").value;
      
                 NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
-                empOnlyGroupHealthOption = document.getElementById("EmpOnlyGroupHealthOption").value;
-                empSpGroupHealthOption = document.getElementById("EmpSpGroupHealthOption").value;
-                empDepGroupHealthOption = document.getElementById("EmpDepGroupHealthOption").value;
-                empFamGroupHealthOption = document.getElementById("EmpFamGroupHealthOption").value;
+                empOnlyGroupHealthOption = document.getElementById("empOnlyGroupHealthOption").value;
+                empSpGroupHealthOption = document.getElementById("empSpGroupHealthOption").value;
+                empDepGroupHealthOption = document.getElementById("empDepGroupHealthOption").value;
+                empFamGroupHealthOption = document.getElementById("empFamGroupHealthOption").value;
                
                 spOtherInsCoverage = document.getElementById("spOtherInsCoverage").value;
                 spInsCarrier = document.getElementById("spInsCarrier").value;

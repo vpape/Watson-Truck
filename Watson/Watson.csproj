@@ -408,12 +408,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Admin\CreateEmployee.cshtml" />
-    <Content Include="Views\Admin\GetEmployees.cshtml" />
-    <Content Include="Views\Admin\EmployeeDetail.cshtml" />
-    <Content Include="Views\Admin\EditEmployee.cshtml" />
-    <Content Include="Views\Admin\DeleteEmployee.cshtml" />
-    <Content Include="Views\Admin\EmployeeContact.cshtml" />
     <Content Include="Views\Dependent\DependentEnrollment.cshtml" />
     <Content Include="Views\Dependent\DeleteDependent.cshtml" />
     <Content Include="Views\Dependent\EditDependent.cshtml" />

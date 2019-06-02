@@ -334,7 +334,7 @@
                 "NameOfPerson2SignatureDate": NameOfPerson2SignatureDate
             }
 
-            var ret = postData('/GroupHealth/AuthorizationFormUpdate', data)
+            var ret = postData('/GroupHealth/AuthorizationFormNew', data)
                 .then(data => {
                     console.log(data);
                     FifthStep(data);
