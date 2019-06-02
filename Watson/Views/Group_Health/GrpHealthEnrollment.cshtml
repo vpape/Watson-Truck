@@ -505,7 +505,7 @@
                                 </td>
                                 <td>
                                     <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="ContactsMedically" value="" />
+                                        <input type="text" name="Item" size="10" id="ContactsMedicallyNecessary" value="" />
                                     </div>
                                 </td>
                             </tr>
@@ -1442,31 +1442,34 @@
                 EmpDepVisionCost = document.getElementById("VisionCostEmpDep").value;
                 EmpFamDentalCost = document.getElementById("DentalCostEmpFam").value;
                 EmpFamVisionCost = document.getElementById("VisionCostEmpFam").value;
-                SummaryOfDentalBenefits = document.getElementById("SummaryOfDentalBenefits").value;
-                SummaryOfVisionBenefits = document.getElementById("SummaryOfVisionBenefits").value;
+
+                //SummaryOfDentalBenefits = document.getElementById("SummaryOfDentalBenefits").value;
                 CalendarYearDeductible = document.getElementById("CalendarYearDeductible").value;
-                CoPay = document.getElementById("CoPay").value;
                 WaivedForPreventive = document.getElementById("WaivedForPreventive").value;
-                Exams = document.getElementById("Exams").value;
                 AnnualMaximum = document.getElementById("AnnualMaximum").value;
-                Materials = document.getElementById("Materials").value;
                 Preventive = document.getElementById("Preventive").value;
-                LensesSingleVision = document.getElementById("LensesSingleVision").value;
                 Basic = document.getElementById("Basic").value;
-                BiFocal = document.getElementById("BiFocal").value;
                 Major = document.getElementById("Major").value;
-                TriFocal = document.getElementById("TriFocal").value;
-                UCRpercent = document.getElementById("UCRpercent").value;
-                Lenticular = document.getElementById("Lenticular").value;
+                UCRpercentage = document.getElementById("UCRpercent").value;
                 EndoPeridontics = document.getElementById("EndoPeridontics").value;
-                ContactsMedically = document.getElementById("ContactsMedically").value;
-                Orthodontics = document.getElementById("Orthodontics").value;
-                ContactsElective = document.getElementById("ContactsElective").value;
+                Orthodontia = document.getElementById("Orthodontics").value;
                 OrthodontiaLifetimeMax = document.getElementById("OrthodontiaLifetimeMax").value;
-                Frames = document.getElementById("Frames").value;
                 WaitingPeriod = document.getElementById("WaitingPeriod").value;
-                Network = document.getElementById("NetWork").value;
                 DentalNetWork = document.getElementById("DentalNetWork").value;
+
+                //SummaryOfVisionBenefits = document.getElementById("SummaryOfVisionBenefits").value;
+                CoPay = document.getElementById("CoPay").value;
+                Exams = document.getElementById("Exams").value;
+                Materials = document.getElementById("Materials").value;
+                LensesSingleVision = document.getElementById("LensesSingleVision").value;
+                BiFocal = document.getElementById("BiFocal").value;
+                TriFocal = document.getElementById("TriFocal").value;
+                Lenticular = document.getElementById("Lenticular").value;
+                //Contacts = document.getElementById("Contacts").value;
+                ContactsMedicallyNecessary = document.getElementById("ContactsMedicallyNecessary").value;
+                ContactsElective = document.getElementById("ContactsElective").value;
+                Frames = document.getElementById("Frames").value;
+                Network = document.getElementById("NetWork").value;
                 RateGuarantee = document.getElementById("RateGuarantee").value;
 
                 var data = {
@@ -1479,31 +1482,34 @@
                     "EmpDepVisionCost": EmpDepVisionCost,
                     "EmpFamDentalCost": EmpFamDentalCost,
                     "EmpFamVisionCost": EmpFamVisionCost,
-                    "SummaryOfDentalBenefits": SummaryOfDentalBenefits,
-                    "SummaryOfVisionBenefits": SummaryOfVisionBenefits,
+
+                    //"SummaryOfDentalBenefits": SummaryOfDentalBenefits,
                     "CalendarYearDeductible": CalendarYearDeductible,
-                    "CoPay": CoPay,
                     "WaivedForPreventive": WaivedForPreventive,
-                    "Exams": Exams,
                     "AnnualMaximum": AnnualMaximum,
-                    "Materials": Materials,
                     "Preventive": Preventive,
-                    "LensesSingleVision": LensesSingleVision,
                     "Basic": Basic,
-                    "BiFocal": BiFocal,
                     "Major": Major,
-                    "TriFocal": TriFocal,
-                    "UCRpercent": UCRpercent,
-                    "Lenticular": Lenticular,
+                    "UCRpercentage": UCRpercentage,
                     "EndoPeridontics": EndoPeridontics,
-                    "ContactsMedically": ContactsMedically,
-                    "Orthodontics": Orthodontics,
-                    "ContactsElective": ContactsElective,
+                    "Orthodontia": Orthodontia,
                     "OrthodontiaLifetimeMax": OrthodontiaLifetimeMax,
-                    "Frames": Frames,
                     "WaitingPeriod": WaitingPeriod,
-                    "Network": Network,
                     "DentalNetWork": DentalNetWork,
+
+                    //"SummaryOfVisionBenefits": SummaryOfVisionBenefits,
+                    "Exams": Exams,
+                    "Materials": Materials,
+                    "LensesSingleVision": LensesSingleVision,
+                    "BiFocal": BiFocal,
+                    "TriFocal": TriFocal,
+                    "Lenticular": Lenticular,
+                    //"Contacts": Contacts,
+                    "ContactsMedicallyNecessary": ContactsMedicallyNecessary,
+                    "ContactsElective": ContactsElective,
+                    "Frames": Frames,
+                    "Network": Network,
+                    "Network": DentalNetWork,
                     "RateGuarantee": RateGuarantee,
                 }
 

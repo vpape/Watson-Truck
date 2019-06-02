@@ -128,16 +128,54 @@ namespace Watson.Controllers
         }
 
         //Create-InsSupplment
-        //need to add items to db.InsDetail and list them below
-        public JsonResult GrpHealthInsSupplementNew(int InsurancePlanDetail_id, string Item, string Detail)
+        //ask about the Dental and Vision Cost sheet premimums- do they need to be added to db.InsPremimum table
+        public JsonResult GrpHealthInsSupplementNew(int InsurancePlanDetail_id, string CalendarYearDeductible, string WaivedForPreventive, 
+            string AnnualMaximum, string Preventive, string Basic, string Major, string UCRpercentage, string EndoPeridontics,
+            string Orthodontia, string OrthodontiaLifetimeMax, string WaitingPeriod, string DentalNetWork, string Exams, 
+            string Materials, string LensesSingleVision, string BiFocal, string TriFocal, string Lenticular, 
+            string ContactsMedicallyNecessary, string ContactsElective, string Frames, string Network, string DentalNetwork,
+            string RateGuarantee, string Item, string Detail)
         {
-            InsurancePlanDetail insDetail = new InsurancePlanDetail();
+            InsurancePlanDetail insPlanDetail = new InsurancePlanDetail();
 
-            insDetail.Item = Item;
-            insDetail.Detail = Detail;
+            //"EmpDentalCost": EmpDentalCost,
+            //"EmpVisionCost": EmpVisionCost,
+            //"EmpSpDentalCost": EmpSpDentalCost,
+            //"EmpSpVisionCost": EmpSpVisionCost,
+            //"EmpDepDentalCost": EmpDepDentalCost,
+            //"EmpDepVisionCost": EmpDepVisionCost,
+            //"EmpFamDentalCost": EmpFamDentalCost,
+            //"EmpFamVisionCost": EmpFamVisionCost,
 
+            insPlanDetail.CalendarYearDeductible = CalendarYearDeductible;
+            insPlanDetail.WaivedForPreventive = WaivedForPreventive;
+            insPlanDetail.AnnualMaximum = AnnualMaximum;
+            insPlanDetail.Preventive = Preventive;
+            insPlanDetail.Basic = Basic;
+            insPlanDetail.Major = Major;
+            insPlanDetail.UCRPercentage = UCRpercentage;
+            insPlanDetail.EndodonticsOrPeriodontics = EndoPeridontics;
+            insPlanDetail.Orthodontia = Orthodontia;
+            insPlanDetail.OrthodontiaLifeTimeMaximum = OrthodontiaLifetimeMax;
+            insPlanDetail.WaitingPeriod = WaitingPeriod;
+            insPlanDetail.DentalNetwork = DentalNetWork;
 
-            int result = insDetail.InsurancePlanDetail_id;
+            insPlanDetail.Exams = Exams;
+            insPlanDetail.Materials = Materials;
+            insPlanDetail.LensesSingleVision = LensesSingleVision;
+            insPlanDetail.Bifocal = BiFocal;
+            insPlanDetail.Trifocal = TriFocal;
+            insPlanDetail.Lenticular = Lenticular;
+            insPlanDetail.ContactMedicallyNecessary = ContactsMedicallyNecessary;
+            insPlanDetail.ContactElective = ContactsElective;
+            insPlanDetail.Frames = Frames;
+            insPlanDetail.Network = Network;
+            insPlanDetail.RateGuarantee = RateGuarantee;
+
+            insPlanDetail.Item = Item;
+            insPlanDetail.Detail = Detail;
+
+            int result = insPlanDetail.InsurancePlanDetail_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
@@ -145,35 +183,78 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //Edit-InsSupplment
-        public ActionResult EditGrpHealthSupplement(int? Employee_id)
+        public ActionResult EditGrpHealthSupplement(int? InsurancePlanDetail_id)
         {
-            if (Employee_id == null)
+            if (InsurancePlanDetail_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Group_Health g = db.Group_Health.Find(Employee_id);
-            if (g == null)
+            InsurancePlanDetail insPlanDetail = db.InsurancePlanDetails.Find(InsurancePlanDetail_id);
+            if (insPlanDetail == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.Group_Health = g.Employee_id;
+            ViewBag.InsurancePlanDetail = insPlanDetail.InsurancePlan_id;
 
-            return View(g);
+            return View(insPlanDetail);
         }
 
         //EditUpdate-InsSupplment
-        //Add GrpHealthInsSupplementEditUpdate()
-        public JsonResult GrpHealthInsSupplementEditUpdate(int InsurancePlan_id)
+        public JsonResult GrpHealthInsSupplementEditUpdate(int InsurancePlanDetail_id, string CalendarYearDeductible, string WaivedForPreventive,
+            string AnnualMaximum, string Preventive, string Basic, string Major, string UCRpercentage, string EndoPeridontics,
+            string Orthodontia, string OrthodontiaLifetimeMax, string WaitingPeriod, string DentalNetWork, string Exams,
+            string Materials, string LensesSingleVision, string BiFocal, string TriFocal, string Lenticular,
+            string ContactsMedicallyNecessary, string ContactsElective, string Frames, string Network, string DentalNetwork,
+            string RateGuarantee, string Item, string Detail)
         {
-            var insPlan = db.InsurancePlans
-                .Where(i => i.InsurancePlan_id == InsurancePlan_id)
+            var insPlanDetail = db.InsurancePlanDetails
+                .Where(i => i.InsurancePlanDetail_id == InsurancePlanDetail_id)
                 .Single();
+
+            //"EmpDentalCost": EmpDentalCost,
+            //"EmpVisionCost": EmpVisionCost,
+            //"EmpSpDentalCost": EmpSpDentalCost,
+            //"EmpSpVisionCost": EmpSpVisionCost,
+            //"EmpDepDentalCost": EmpDepDentalCost,
+            //"EmpDepVisionCost": EmpDepVisionCost,
+            //"EmpFamDentalCost": EmpFamDentalCost,
+            //"EmpFamVisionCost": EmpFamVisionCost,
+
+            insPlanDetail.CalendarYearDeductible = CalendarYearDeductible;
+            insPlanDetail.WaivedForPreventive = WaivedForPreventive;
+            insPlanDetail.AnnualMaximum = AnnualMaximum;
+            insPlanDetail.Preventive = Preventive;
+            insPlanDetail.Basic = Basic;
+            insPlanDetail.Major = Major;
+            insPlanDetail.UCRPercentage = UCRpercentage;
+            insPlanDetail.EndodonticsOrPeriodontics = EndoPeridontics;
+            insPlanDetail.Orthodontia = Orthodontia;
+            insPlanDetail.OrthodontiaLifeTimeMaximum = OrthodontiaLifetimeMax;
+            insPlanDetail.WaitingPeriod = WaitingPeriod;
+            insPlanDetail.DentalNetwork = DentalNetWork;
+
+            insPlanDetail.Exams = Exams;
+            insPlanDetail.Materials = Materials;
+            insPlanDetail.LensesSingleVision = LensesSingleVision;
+            insPlanDetail.Bifocal = BiFocal;
+            insPlanDetail.Trifocal = TriFocal;
+            insPlanDetail.Lenticular = Lenticular;
+            insPlanDetail.ContactMedicallyNecessary = ContactsMedicallyNecessary;
+            insPlanDetail.ContactElective = ContactsElective;
+            insPlanDetail.Frames = Frames;
+            insPlanDetail.Network = Network;
+            insPlanDetail.RateGuarantee = RateGuarantee;
+
+            insPlanDetail.Item = Item;
+            insPlanDetail.Detail = Detail;
+
+            ViewBag.insPlanDetail = insPlanDetail;
 
             if (ModelState.IsValid)
             {
-                db.Entry(insPlan).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(insPlanDetail).State = System.Data.Entity.EntityState.Modified;
      
                 try
                 {
@@ -184,10 +265,10 @@ namespace Watson.Controllers
                     Console.WriteLine(err);
                 }
 
-                RedirectToAction("EmpOverview", new { insPlan.Employee_id });
+                RedirectToAction("EmpOverview", new { insPlanDetail.InsurancePlan_id });
             }
 
-            int result = insPlan.Employee_id;
+            int result = insPlanDetail.InsurancePlan_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
