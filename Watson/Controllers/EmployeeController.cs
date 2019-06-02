@@ -270,12 +270,18 @@ namespace Watson.Controllers
             return View(e);
         }
 
-        public JsonResult GetEmpDetail(int Employee_id)
+        public JsonResult GetEmpDetail(int Employee_id, string City2, string State2, string ZipCode2)
         {
             var e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)
                 .Single();
 
+            e.City = City2;
+            e.State = State2;
+            e.ZipCode = ZipCode2;
+
+            ViewBag.e = e;
+            
             int result = e.Employee_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);    
@@ -313,14 +319,6 @@ namespace Watson.Controllers
             return RedirectToAction("EmpOverview", new { e.Employee_id });
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
         //----------------------------------------------------------------------------------------
 
         public ActionResult FamilyOverview(/*Family_Info family*/)

@@ -27,7 +27,306 @@ namespace Watson.Controllers
         {
            
         }
-        //GroupHealth-Start---------------------------------------------------------------------------------------
+
+        //Employee-Start----------------------------------------------------------------------------------------
+        //public ActionResult EmpOverview(Employee employee)
+        //{
+        //    Employee e = db.Employees.Find(employee);
+
+        //    e = employee;
+
+        //    return View(employee);
+
+        //}
+
+        //EmpOverview
+        public ActionResult EmpOverview(int? Employee_id)
+        {
+            if (Employee_id == null)
+            {
+                return View(db.Employees.ToList());
+            }
+            else
+            {
+                return View(db.Employees.Find(Employee_id));
+            }
+
+        }
+
+        public JsonResult GetEmployee(int Employee_id, string EmpFirstName, string EmpLastName, string EmailAddress)
+        {
+            var e = db.Employees.Find();
+
+            e.FirstName = EmpFirstName;
+            e.LastName = EmpLastName;
+            e.EmailAddress = EmailAddress;
+
+            return Json(new { data = e }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        //----------------------------------------------------------------------------------------
+
+        public ActionResult EnrollmentSelection(string MaritalStatus)
+        {
+            var empMaritalStatus = new Employee()
+            {
+                MaritalStatus = "Single"
+            };
+            ViewBag.MaritalStatus = empMaritalStatus;
+
+            return View(empMaritalStatus);
+        }
+
+        public ActionResult NewEmployeeEnrollment()
+        {
+            return View();
+        }
+
+
+        //Create-EmpEnrollment
+        public JsonResult EmployeeEnrollmentNew(string Role, string CurrentEmployer, string JobTitle, string EmpNumber,
+            DateTime HireDate, string MaritalStatus, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
+        {
+            Employee e = new Employee();
+
+            e.EmployeeRole = Role;
+            e.CurrentEmployer = CurrentEmployer;
+            e.JobTitle = JobTitle;
+            e.SSN = EmpNumber;
+            e.HireDate = HireDate;
+            e.MaritalStatus = MaritalStatus;
+            e.FirstName = FirstName;
+            e.LastName = LastName;
+            e.DateOfBirth = DateOfBirth;
+            e.Gender = Gender;
+
+            db.Employees.Add(e);
+            db.SaveChanges();
+
+            int result = e.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.DenyGet);
+        }
+
+        //EmpContact Method
+        public ActionResult EmpContact()
+        {
+            return View();
+        }
+
+        //Create-EmpContact
+        public JsonResult EmpEnrollmentContact(int Employee_id, string MaritalStatus, string MailingAddress, string PObox,
+            string City, string State, string ZipCode, string County, string CityLimits, string PhysicalAddress,
+            string City2, string State2, string ZipCode2, string EmailAddress, string PhoneNumber, string CellPhone)
+        {
+            Employee e = db.Employees
+               .Where(i => i.Employee_id == Employee_id)
+               .Single();
+
+            e.MailingAddress = MailingAddress;
+            e.PObox = PObox;
+            e.City = City;
+            e.State = State;
+            e.ZipCode = ZipCode;
+            e.County = County;
+            e.CityLimits = CityLimits;
+            e.PhysicalAddress = PhysicalAddress;
+            e.City = City2;
+            e.State = State2;
+            e.ZipCode = ZipCode2;
+            e.EmailAddress = EmailAddress;
+            e.PhoneNumber = PhoneNumber;
+            e.CellPhone = CellPhone;
+
+            ViewBag.MaritalStatus = e.MaritalStatus;
+            ViewBag.e = e;
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    db.SaveChanges();
+
+                    //if (e.MaritalStatus == "Married")
+                    //{
+                    //     RedirectToAction("SpEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
+                    //     RedirectToAction("SpEnrollment");
+                    //}
+                    //else if (e.MaritalStatus == "MarriedwDep")
+                    //{
+                    //     RedirectToAction("SpEnrollment", new { Employee_id = e.Employee_id, MaritalStatus = e.MaritalStatus });
+                    //     RedirectToAction("SpEnrollment", "Employee", new { Employee_id = e.Employee_id, MaritalStatus = e.MaritalStatus });
+                    //}
+                    //else if (e.MaritalStatus == "SinglewDep")
+                    //{
+                    //     RedirectToAction("SpEnrollment", "Employee");
+                    //     RedirectToAction("DepEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
+                    //}
+                    //else
+                    //{
+                    //     RedirectToAction("EnrollmentSelection", "Employee", new { e.Employee_id, e.MaritalStatus });
+                    //}
+                }
+
+                catch (Exception emp)
+                {
+                    Console.WriteLine(emp);
+                }
+            }
+
+            int result = e.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //Edit-Emp
+        public ActionResult EditEmp(int? Employee_id)
+        {
+            if (Employee_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Employee e = db.Employees.Find(Employee_id);
+            if (e == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Employee = e.Employee_id;
+
+            return View(e);
+        }
+
+        //EditUpdate-Emp
+        public JsonResult EmployeeEditUpdate(int Employee_id, string EmpRole, string CurrentEmployer, string JobTitle,
+            string EmpNumber, DateTime HireDate, string FirstName, string LastName, DateTime DateOfBirth, string Gender,
+            string MaritalStatus, string MailingAddress, string PObox, string City, string State, string ZipCode, string County,
+            string PhysicalAddress, string City2, string State2, string ZipCode2, string CityLimits, string EmailAddress,
+            string PhoneNumber, string CellPhone)
+        {
+            var e = db.Employees
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
+
+            e.EmployeeRole = EmpRole;
+            e.CurrentEmployer = CurrentEmployer;
+            e.JobTitle = JobTitle;
+            e.SSN = EmpNumber;
+            e.HireDate = HireDate;
+            e.FirstName = FirstName;
+            e.LastName = LastName;
+            e.DateOfBirth = DateOfBirth;
+            e.Gender = Gender;
+            e.MaritalStatus = MaritalStatus;
+            e.MailingAddress = MailingAddress;
+            e.PObox = PObox;
+            e.City = City;
+            e.State = State;
+            e.ZipCode = ZipCode;
+            e.County = County;
+            e.PhysicalAddress = PhysicalAddress;
+            e.City = City2;
+            e.State = State2;
+            e.ZipCode = ZipCode2;
+            e.CityLimits = CityLimits;
+            e.EmailAddress = EmailAddress;
+            e.PhoneNumber = PhoneNumber;
+            e.CellPhone = CellPhone;
+
+            ViewBag.e = e;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(e).State = System.Data.Entity.EntityState.Modified;
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err);
+                }
+
+                RedirectToAction("EmpOverview", new { e.Employee_id });
+            }
+
+            int result = e.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //Get-EmpDetail
+        public ActionResult EmpDetail(int? Employee_id)
+        {
+            if (Employee_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Employee e = db.Employees.Find(Employee_id);
+            if (e == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Employee = e;
+
+            return View(e);
+        }
+
+        //Get-EmpEnrollment
+        public JsonResult GetEmpDetail(int Employee_id)
+        {
+            var e = db.Employees
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
+
+            int result = e.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+        //----------------------------------------------------------------------------------------
+
+        //DeleteEmp Method
+        public ActionResult DeleteEmp(int? Employee_id)
+        {
+            if (Employee_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Employee e = db.Employees.Find(Employee_id);
+            if (e == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(e);
+        }
+
+        //DeleteEmp Method
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteEmp")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int Employee_id)
+        {
+            Employee e = db.Employees.Find(Employee_id);
+            db.Employees.Remove(e);
+            db.SaveChanges();
+
+            db.DeleteEmployeeAndDependents(Employee_id);
+
+            return RedirectToAction("EmpOverview", new { e.Employee_id });
+        }
+
+        //Employee-End---------------------------------------------------------------------------------------
+
+
+        //Need to add Family Overview- Spouse, Dependents(Create, Edit, Delete methods)
+
+        //GroupHealth-Start----------------------------------------------------------------------------------
 
         public ActionResult GrpHealthInsPremiums()
         {

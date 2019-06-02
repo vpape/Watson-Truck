@@ -15,6 +15,7 @@
 <body>
     <div class="form-horizontal">
         <hr />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id"/>
         <div class="collapsible" id="FirstStep">Edit Employee Enrollment?</div>
         <div id="divEditEmp" class="content">
             <p></p>
@@ -22,29 +23,25 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
                 <div class="col-md-10">
-                    <select id="Role" class="form-control" disabled>
-                        <option id="AdminRole" value=@(ViewBag.EmployeeRole == "Administrator"  ? "selected" : "")>Administrator</option>
-                        <option id="ManagerRole" value=@(ViewBag.EmployeeRole == "Manager"      ? "selected" : "")>Manager</option>
-                        <option id="EmployeeRole" value=@(ViewBag.EmployeeRole == "Employee"    ? "selected" : "")>Employee</option>
-                    </select>
+                    <input type="text" id="Role" class="form-control" value="@Html.DisplayFor(model => model.EmployeeRole)" disabled>                    
                 </div>
             </div>
             <div class="form-group">
                 <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
                 <div class="col-md-10">
-                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@ViewBag.CurrentEmployer" />
+                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@Html.DisplayFor(model => model.CurrentEmployer)" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
                 <div class="col-md-10">
-                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@ViewBag.JobTitle" />
+                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@Html.DisplayFor(model => model.JobTitle)" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@ViewBag.SSN" />
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.SSN)" />
                 </div>
             </div>
             <div class="form-group">
@@ -61,19 +58,19 @@
             <div class="form-group">
                 <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@ViewBag.FirstName" />
+                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(model => model.FirstName)" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="LastName" class="col-md-2 control-label">Last Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="LastName" class="form-control" name="LastName" value="@ViewBag.LastName" />
+                    <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(model => model.LastName)" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Date of Birth:</label>
                 <div class="col-md-10">
-                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@(ViewBag.DateOfBirth)" />
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Html.DisplayFor(model => model.DateOfBirth)" />
                 </div>
             </div>
             <div class="form-group">
@@ -103,11 +100,11 @@
                 <div class="form-group">
                     <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@ViewBag.MailingAddress" />
-                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="@ViewBag.PObox" />
-                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@ViewBag.City" />
-                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@ViewBag.State" />
-                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@ViewBag.ZipCode" />
+                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(model => model.MailingAddress)" />
+                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="@Html.DisplayFor(model => model.PObox)" />
+                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@Html.DisplayFor(model => model.City)" />
+                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@Html.DisplayFor(model => model.State)" />
+                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.DisplayFor(model => model.ZipCode)" />
                     </div>
                 </div>
             </div>
@@ -138,17 +135,17 @@
                 <div class="form-group">
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="@ViewBag.MailingAddress" />
-                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="@ViewBag.City" />
-                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="@ViewBag.State " />
-                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="@ViewBag.ZipCode" />
+                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="@Html.DisplayFor(model => model.PhysicalAddress)" />
+                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="@Html.DisplayFor(model => model.City)" />
+                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="@Html.DisplayFor(model => model.State)" />
+                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.DisplayFor(model => model.ZipCode)" />
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="EmailAddress" class="col-md-2 control-label">Email Address:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="@ViewBag.EmailAddress" />
+                    <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="@Html.DisplayFor(model => model.EmailAddress)" />
                 </div>
             </div>
             <div class="form-group">
@@ -157,7 +154,7 @@
                     <div class="col-xs-6">
                         <div class="form-group phone-number">
                             <div class="col-xs-4">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="5" value="@ViewBag.PhoneNumber" />
+                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="5" value="@Html.DisplayFor(model => model.PhoneNumber)" />
                             </div>
                         </div>
                     </div>
@@ -169,7 +166,7 @@
                     <div class="col-xs-6">
                         <div class="form-group phone-number">
                             <div class="col-xs-4">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="5" value="@ViewBag.CellPhone" />
+                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="5" value="@Html.DisplayFor(model => model.CellPhone)" />
                             </div>
                         </div>
                     </div>

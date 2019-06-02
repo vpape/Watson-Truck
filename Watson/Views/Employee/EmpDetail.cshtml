@@ -15,66 +15,72 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id"/>
         <div class="collapsible" id="EmpDetail">Employee Detail</div>
-        <div class="content" disabled>
+        <div class="content">
             <p></p>
             <p></p>
             <dl class="dl-horizontal">
                 <dt>
+                    <label class="col-md-2 control-label">Employee Role:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="Role" class="form-control" name="CurrentEmployer" value="@Html.DisplayFor(model => model.EmployeeRole)" disabled>
+                </dd>
+                <dt>
                     <label class="col-md-2 control-label">Current Employer:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@Html.DisplayFor(Model => Model.CurrentEmployer)">
+                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@Html.DisplayFor(Model => Model.CurrentEmployer)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Job Title:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@Html.DisplayFor(Model => Model.JobTitle)">
+                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@Html.DisplayFor(Model => Model.JobTitle)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Employee Number:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.DisplayFor(Model => Model.SSN)">
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.DisplayFor(Model => Model.SSN)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">First Name:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(Model => Model.FirstName)">
+                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(Model => Model.FirstName)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Last Name:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(Model => Model.LastName)">
+                    <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(Model => Model.LastName)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Date of Birth:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Convert.ToDateTime(Model.DateOfBirth).ToString("yyyy-MM-dd")">
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Convert.ToDateTime(Model.DateOfBirth).ToString("yyyy-MM-dd")" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Gender:</label>
                 </dt>
                 <dd class="col-md-10 form-group" id="Gender">
-                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @*@((ViewBag.Gender == "Male") ? "checked" : "")*@ />Male</label>
-                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @*@((ViewBag.Gender == "Female") ? "checked" : "")*@ />Female</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Male"   class="radio-inline" name="Gender" value="Male"   @((ViewBag.Gender == "Male") ? "selected" : "") />Male</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((ViewBag.Gender == "Female") ? "selected" : "") />Female</label>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Marital Status:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@Html.DisplayFor(Model => Model.MaritalStatus)">
+                    <input type="text" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@Html.DisplayFor(Model => Model.MaritalStatus)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">MailingAddress:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(Model => Model.MailingAddress)">
+                    <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(Model => Model.MailingAddress)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">PObox:</label>
@@ -104,56 +110,57 @@
                     <label class="col-md-2 control-label">Within City Limits?</label>
                 </dt>
                 <dd class="col-md-10 form-group" id="CityLimits">
-                    <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @(ViewBag.CityLimits == "Yes" ? "selected" : "") />Yes</label>
-                    <label class="radio-inline"><input disabled type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="No" @(ViewBag.CityLimits == "No" ? "selected" : "") />No</label>
+                    <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.CityLimits == "Yes") ? "selected" : "") />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="NoCityLimits"  class="radio-inline" name="CityLimits" value="No"  @((ViewBag.CityLimits == "No" ) ? "selected" : "") />No</label>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Physical Address:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@Html.DisplayFor(Model => Model.PhysicalAddress)">
+                    <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@Html.DisplayFor(Model => Model.PhysicalAddress)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">City:Not pulling City2</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="City2" class="form-control" name="City" value="@Html.DisplayFor(Model => Model.City)">
+                    <input type="text" id="City2" class="form-control" name="City" value="@Html.DisplayFor(Model => Model.City)" >
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">State:Not pulling State2</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="State2" class="form-control" name="State" value="@Html.DisplayFor(Model => Model.State)">
+                    <input type="text" id="State2" class="form-control" name="State" value="@Html.DisplayFor(Model => Model.State)" >
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">ZipCode:Not pulling ZipCode2</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="ZipCode2" class="form-control" name="ZipCode" value="@Html.DisplayFor(Model => Model.ZipCode)">
+                    <input type="text" id="ZipCode2" class="form-control" name="ZipCode" value="@Html.DisplayFor(Model => Model.ZipCode)" >
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Email:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(Model => Model.EmailAddress)">
+                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(Model => Model.EmailAddress)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Phone Number:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(Model => Model.PhoneNumber)">
+                    <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(Model => Model.PhoneNumber)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Cell Phone:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="@Html.DisplayFor(Model => Model.CellPhone)">
+                    <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="@Html.DisplayFor(Model => Model.CellPhone)" disabled>
                 </dd>
             </dl>
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditEmp")|
+        
+        @Html.ActionLink("Edit", "EditEmp", "Employee", new { Employee_id = Model.Employee_id }, null)|
         @Html.ActionLink("Back to List", "EmpOverview")
     </p>
 </body>
