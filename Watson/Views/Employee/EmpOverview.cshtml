@@ -7,6 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -30,12 +31,9 @@
             {
                 <tr>
                     <td>
-                        <div>
-                            @* <map name = "FamilyOverview"> *@
-                            @*<img class="icons" src="" width="" height="" alt="FamilyOverview" usemap="#FamilyOverview"*@
-                            @*Dynamic button (image mapping??) to redirect to family overview*@
-                            <a href="#" onclick="return FamilyOverview()" class="next round"></a>
-                        </div>
+                        <span>
+                            <i class="fa fa-arrow-circle-o-right" style="font-size:24px" onclick="FamilyOverview()"></i>
+                        </span>
                     </td>
                     <td>
                         <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.DisplayFor(model => item.SSN)" readonly />
@@ -72,34 +70,14 @@
 </html>
 
 <style>
-    .btn {
-        background-color: #333;
-        color: white;
-    }
-
     .button {
         text-align: right;
     }
 
-    a {
-        text-decoration: underline;
-        display: inline-flex;
-        padding: 8px 16px;
+    .btn:hover {
+        background-color: blue;
+        color: white;
     }
-
-        a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-        table tr {
-            border-bottom: 1px solid black;
-        }
 
     .next {
         background-color: #333;
@@ -109,12 +87,37 @@
     .round {
         border-radius: 50%;
     }
+
+    a {
+        text-decoration: none;
+        display: inline-flex;
+        padding: 8px 8px;
+    }
+
+    .fa-arrow-circle-o-right:hover {
+        border-radius: 50%;
+        color: white;
+        background-color: blue;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    table tr {
+        border-bottom: 1px solid black;
+    }
 </style>
 
 <script>
     function NewEmployeeEnrollment() {
         window.location.href = "/Employee/EnrollmentSelection";
 
+    }
+
+    function FamilyOverview() {
+        window.location.href = "/Employee/FamilyOverview";
     }
 
     document.addEventListener("DOMContentLoaded", function () {
