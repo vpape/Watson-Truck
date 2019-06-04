@@ -237,6 +237,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\Family_InfoController.cs" />
+    <Compile Include="Controllers\FileUploadingController.cs" />
     <Compile Include="Controllers\Group_HealthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Life_InsuranceController.cs" />
@@ -326,15 +327,15 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Data\images\AllisionTransImage.jpg" />
-    <Content Include="Data\images\CumminsImage.jpg" />
-    <Content Include="Data\images\DetroitDieselimage.jpg" />
-    <Content Include="Data\images\InsMgtServ.JPG" />
-    <Content Include="Data\images\Internationalimage.jpg" />
-    <Content Include="Data\images\WatsonHopperImage.jpg" />
-    <Content Include="Data\images\WatsonTruckImage.jpg" />
-    <Content Include="Data\videos\IMS_RBP.mov" />
-    <Content Include="Data\videos\IMS_Spanish_RBP.mp4" />
+    <Content Include="App_Files\images\AllisionTransImage.jpg" />
+    <Content Include="App_Files\images\CumminsImage.jpg" />
+    <Content Include="App_Files\images\DetroitDieselimage.jpg" />
+    <Content Include="App_Files\images\InsMgtServ.JPG" />
+    <Content Include="App_Files\images\Internationalimage.jpg" />
+    <Content Include="App_Files\images\WatsonHopperImage.jpg" />
+    <Content Include="App_Files\images\WatsonTruckImage.jpg" />
+    <Content Include="App_Files\videos\IMS_RBP.mov" />
+    <Content Include="App_Files\videos\IMS_Spanish_RBP.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -379,12 +380,12 @@
     <Content Include="Models\WatsonTruck.edmx.diagram">
       <DependentUpon>WatsonTruck.edmx</DependentUpon>
     </Content>
-    <Content Include="Data\enrollmentApps\Employees-with-Health-Election.pdf" />
-    <Content Include="Data\enrollmentApps\Employees-without-Health-Election.pdf" />
-    <Content Include="Data\enrollmentApps\Managers-with-Health-Election.pdf" />
-    <Content Include="Data\enrollmentApps\Managers-without-Health-Election.pdf" />
-    <Content Include="Data\pdfFiles\2019-Guardian-Dental-&amp;-Vision-Benefits.pdf" />
-    <Content Include="Data\pdfFiles\2019-Insurance-Cost.pdf" />
+    <Content Include="App_Files\enrollmentApps\Employees-with-Health-Election.pdf" />
+    <Content Include="App_Files\enrollmentApps\Employees-without-Health-Election.pdf" />
+    <Content Include="App_Files\enrollmentApps\Managers-with-Health-Election.pdf" />
+    <Content Include="App_Files\enrollmentApps\Managers-without-Health-Election.pdf" />
+    <Content Include="App_Files\pdfFiles\2019-Guardian-Dental-&amp;-Vision-Benefits.pdf" />
+    <Content Include="App_Files\pdfFiles\2019-Insurance-Cost.pdf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

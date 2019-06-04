@@ -215,7 +215,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="col-md-12 table-bordered" readonly>
+                    <div class="col-md-12 table" >
                         These prices are in effect for 01-01-2019 through 12-31-2019<br />
                         <p></p>
                         Estimated costs* for COBRA participants for the 2019 year:<br />
@@ -228,14 +228,21 @@
                         <p></p>
                         *Note: a 2% Adminstration fee will be added to the COBRA rates listed<br />
                     </div>
-                    @*<p>
-                            <button type="submit" class="btn" id="InsPremiumUpdateStepThree" @*onclick="InsPremiumUpdate()" value="Submit">Save</button>
-                        </p>*@
+                    <form method="post" enctype="multipart/form-data" action="">
+                        <div>
+                            <label for="file" style="padding-left:5px;">Upload Ins. Premium File</label>
+                            <input name="file" class="btn" type="file" />
+                        </div>
+                        <div class="col-md-1">
+                            <input type="submit" class="btn" value="Upload"/>
+                        </div>
+                    </form>
                     <div class="form-group">
                         <div class="col-md-offset-11">
                             <button id="InsPremiumUpdateStepOne" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>
                         </div>
                     </div>
+                    @*<p><button type="submit" class="btn" id="InsPremiumUpdateStepThree" @*onclick="InsPremiumUpdate()" value="Submit">Save</button></p>*@
                 </td>
             </tr>
         </table>
@@ -584,11 +591,20 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p>
+                    <div class="col-md-12 table">
                         **Rates guarantee for 1 year<br />
                         -Subject to maxiumum rollover (Threshold $500; Rollover amount $250)<br />
                         -Basic Life/AD&D: Only those on medical are eligible for basic life & AD&D
-                    </p>
+                    </div>
+                    <form method="post" enctype="multipart/form-data" action="">
+                        <div>
+                            <label for="file" style="padding-left:5px;">Upload Vision & Dental Cost Sheet</label>
+                            <input name="file" class="btn" type="file" />
+                        </div>
+                        <div class="col-md-1">
+                            <input type="submit" class="btn" value="Upload" />
+                        </div>
+                    </form>
                     <div class="form-group">
                         <div class="col-md-offset-11">
                             <button id="InsSupplementUpdateStepTwo" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>
