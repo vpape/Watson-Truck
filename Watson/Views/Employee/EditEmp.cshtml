@@ -48,10 +48,10 @@
                 <label class="col-md-2 control-label">Marital Status:</label>
                 <div class="col-md-10">
                     <select id="MaritalStatus" onchange="return MaritalStatusChange()" class="form-control">
-                        <option value="MarriedwDep" @(ViewBag.MaritalStatus == "MarriedwDep" ? "selected" : "")>Married with Dependents</option>
-                        <option value="Married" @(ViewBag.MaritalStatus == "Married" ? "selected" : "")>Married</option>
-                        <option value="SinglewDep" @(ViewBag.MaritalStatus == "SinglewDep" ? "selected" : "")>Single with Dependents</option>
-                        <option value="Single" @(ViewBag.MaritalStatus == "Single" ? "selected" : "")>Single</option>
+                        <option value="MarriedwDep" @(Model.MaritalStatus == "MarriedwDep" ? "selected" : "")>Married with Dependents</option>
+                        <option value="Married" @(Model.MaritalStatus == "Married" ? "selected" : "")>Married</option>
+                        <option value="SinglewDep" @(Model.MaritalStatus == "SinglewDep" ? "selected" : "")>Single with Dependents</option>
+                        <option value="Single" @(Model.MaritalStatus == "Single" ? "selected" : "")>Single</option>
                     </select>
                 </div>
             </div>
@@ -70,7 +70,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Date of Birth:</label>
                 <div class="col-md-10">
-                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Html.DisplayFor(model => model.DateOfBirth)" />
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Convert.ToDateTime(Model.DateOfBirth).ToString("yyyy-MM-dd")" />
                 </div>
             </div>
             <div class="form-group">
@@ -136,9 +136,9 @@
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
                         <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="@Html.DisplayFor(model => model.PhysicalAddress)" />
-                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="@Html.DisplayFor(model => model.City)" />
-                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="@Html.DisplayFor(model => model.State)" />
-                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.DisplayFor(model => model.ZipCode)" />
+                        <input type="text" id="City2" class="form-control" placeholder="City" name="CityTwo" value="@Html.DisplayFor(model => model.CityTwo)" />
+                        <input type="text" id="State2" class="form-control" placeholder="State" name="StateTwo" value="@Html.DisplayFor(model => model.StateTwo)" />
+                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCodeTwo" value="@Html.DisplayFor(model => model.ZipCodeTwo)" />
                     </div>
                 </div>
             </div>
@@ -151,10 +151,10 @@
             <div class="form-group">
                 <div class="container">
                     <label class="col-md-2 control-label">Phone Number:</label>
-                    <div class="col-xs-6">
+                    <div>
                         <div class="form-group phone-number">
-                            <div class="col-xs-4">
-                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" size="3" maxlength="5" value="@Html.DisplayFor(model => model.PhoneNumber)" />
+                            <div>
+                                <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(model => model.PhoneNumber)" />
                             </div>
                         </div>
                     </div>
@@ -163,10 +163,10 @@
             <div class="form-group">
                 <div class="container">
                     <label class="col-md-2 control-label">Cell Phone:</label>
-                    <div class="col-xs-6">
+                    <div>
                         <div class="form-group phone-number">
-                            <div class="col-xs-4">
-                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" size="3" maxlength="5" value="@Html.DisplayFor(model => model.CellPhone)" />
+                            <div>
+                                <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="@Html.DisplayFor(model => model.CellPhone)" />
                             </div>
                         </div>
                     </div>
@@ -247,7 +247,7 @@
     }
 
     .phone-number .col-xs-6 {
-        width: 25%;
+        width: 100%;
     }
 
     .phone-number .col-xs-4, .phone-number .col-xs-6 {

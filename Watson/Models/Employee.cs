@@ -61,6 +61,9 @@ namespace Watson.Models
         public Nullable<int> Payroll_id { get; set; }
         public string Class { get; set; }
         public string PObox { get; set; }
+        public string CityTwo { get; set; }
+        public string StateTwo { get; set; }
+        public string ZipCodeTwo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Beneficiary> Beneficiaries { get; set; }

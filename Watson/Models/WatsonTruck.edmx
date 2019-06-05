@@ -155,6 +155,9 @@
           <Property Name="Payroll_id" Type="int" />
           <Property Name="Class" Type="varchar" MaxLength="20" />
           <Property Name="PObox" Type="varchar" MaxLength="15" />
+          <Property Name="CityTwo" Type="varchar" MaxLength="30" />
+          <Property Name="StateTwo" Type="varchar" MaxLength="30" />
+          <Property Name="ZipCodeTwo" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Family_Info">
           <Key>
@@ -187,6 +190,9 @@
           <Property Name="EmployerPhoneNumber" Type="varchar" MaxLength="30" />
           <Property Name="PObox" Type="varchar" MaxLength="10" />
           <Property Name="EmployerPObox" Type="varchar" MaxLength="10" />
+          <Property Name="CityTwo" Type="varchar" MaxLength="30" />
+          <Property Name="StateTwo" Type="varchar" MaxLength="30" />
+          <Property Name="ZipCodeTwo" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Group_Health">
           <Key>
@@ -919,6 +925,9 @@
           <NavigationProperty Name="Other_Insurance" Relationship="WatsonTruckModel.FK_Other_Insurance_Employee" FromRole="Employee" ToRole="Other_Insurance" />
           <NavigationProperty Name="Vacations" Relationship="WatsonTruckModel.FK_Vacation_Employee" FromRole="Employee" ToRole="Vacation" />
           <Property Name="PObox" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CityTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="StateTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCodeTwo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Family_Info">
           <Key>
@@ -953,6 +962,9 @@
           <NavigationProperty Name="Other_Insurance" Relationship="WatsonTruckModel.FK_Other_Insurance_Family_Info" FromRole="Family_Info" ToRole="Other_Insurance" />
           <Property Name="PObox" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="EmployerPObox" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CityTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="StateTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCodeTwo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Group_Health">
           <Key>
@@ -1460,6 +1472,9 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="WatsonTruckModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="ZipCodeTwo" ColumnName="ZipCodeTwo" />
+                <ScalarProperty Name="StateTwo" ColumnName="StateTwo" />
+                <ScalarProperty Name="CityTwo" ColumnName="CityTwo" />
                 <ScalarProperty Name="PObox" ColumnName="PObox" />
                 <ScalarProperty Name="Class" ColumnName="Class" />
                 <ScalarProperty Name="Payroll_id" ColumnName="Payroll_id" />
@@ -1500,6 +1515,9 @@
           <EntitySetMapping Name="Family_Info">
             <EntityTypeMapping TypeName="WatsonTruckModel.Family_Info">
               <MappingFragment StoreEntitySet="Family_Info">
+                <ScalarProperty Name="ZipCodeTwo" ColumnName="ZipCodeTwo" />
+                <ScalarProperty Name="StateTwo" ColumnName="StateTwo" />
+                <ScalarProperty Name="CityTwo" ColumnName="CityTwo" />
                 <ScalarProperty Name="EmployerPObox" ColumnName="EmployerPObox" />
                 <ScalarProperty Name="PObox" ColumnName="PObox" />
                 <ScalarProperty Name="EmployerPhoneNumber" ColumnName="EmployerPhoneNumber" />

@@ -47,6 +47,9 @@ namespace Watson.Models
         public string EmployerPhoneNumber { get; set; }
         public string PObox { get; set; }
         public string EmployerPObox { get; set; }
+        public string CityTwo { get; set; }
+        public string StateTwo { get; set; }
+        public string ZipCodeTwo { get; set; }
     
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -67,8 +67,9 @@
                     <label class="col-md-2 control-label">Gender:</label>
                 </dt>
                 <dd class="col-md-10 form-group" id="Gender">
-                    <label class="radio-inline"><input disabled type="radio" id="Male"   class="radio-inline" name="Gender" value="Male"   @((ViewBag.Gender == "Male") ? "selected" : "") />Male</label>
-                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((ViewBag.Gender == "Female") ? "selected" : "") />Female</label>
+                    <input type="text" id="Gender" class="form-control" name="Gender" value="@Html.DisplayFor(m => Model.Gender)" disabled />
+                    @*<label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((ViewBag.Gender == "Male") ? "selected" : "") />Male</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((ViewBag.Gender == "Female") ? "selected" : "") />Female</label>*@
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Marital Status:</label>
@@ -83,35 +84,36 @@
                     <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(Model => Model.MailingAddress)" disabled>
                 </dd>
                 <dt>
-                    <label class="col-md-2 control-label">PObox:</label>
+                    <label class="col-md-2 control-label">P.O. box:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="PObox" class="form-control" name="PObox" value="@Html.DisplayFor(Model => Model.PObox)">
+                    <input type="text" id="PObox" class="form-control" name="PObox" value="@Html.DisplayFor(Model => Model.PObox)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">City:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="City" class="form-control" name="City" value="@Html.DisplayFor(Model => Model.City)">
+                    <input type="text" id="City" class="form-control" name="City" value="@Html.DisplayFor(Model => Model.City)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">State:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="State" class="form-control" name="State" value="@Html.DisplayFor(Model => Model.State)">
+                    <input type="text" id="State" class="form-control" name="State" value="@Html.DisplayFor(Model => Model.State)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">ZipCode:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(Model => Model.ZipCode)">
+                    <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(Model => Model.ZipCode)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Within City Limits?</label>
                 </dt>
                 <dd class="col-md-10 form-group" id="CityLimits">
-                    <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.CityLimits == "Yes") ? "selected" : "") />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="NoCityLimits"  class="radio-inline" name="CityLimits" value="No"  @((ViewBag.CityLimits == "No" ) ? "selected" : "") />No</label>
+                    <input type="text" id="CityLimits" class="form-control" name="CityLimits" value="@Html.DisplayFor(m => Model.CityLimits)" disabled/>
+                    @*<label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.CityLimits == "Yes") ? "selected" : "") />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="NoCityLimits"  class="radio-inline" name="CityLimits" value="No"  @((ViewBag.CityLimits == "No" ) ? "selected" : "") />No</label>*@
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Physical Address:</label>
@@ -120,22 +122,22 @@
                     <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@Html.DisplayFor(Model => Model.PhysicalAddress)" disabled>
                 </dd>
                 <dt>
-                    <label class="col-md-2 control-label">City:Not pulling City2</label>
+                    <label class="col-md-2 control-label">City:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="City2" class="form-control" name="City" value="@Html.DisplayFor(Model => Model.City)" >
+                    <input type="text" id="City2" class="form-control" name="CityTwo" value="@Html.DisplayFor(Model => Model.CityTwo)" disabled>
                 </dd>
                 <dt>
-                    <label class="col-md-2 control-label">State:Not pulling State2</label>
+                    <label class="col-md-2 control-label">State:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="State2" class="form-control" name="State" value="@Html.DisplayFor(Model => Model.State)" >
+                    <input type="text" id="State2" class="form-control" name="StateTwo" value="@Html.DisplayFor(Model => Model.StateTwo)" disabled>
                 </dd>
                 <dt>
-                    <label class="col-md-2 control-label">ZipCode:Not pulling ZipCode2</label>
+                    <label class="col-md-2 control-label">ZipCode:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="ZipCode2" class="form-control" name="ZipCode" value="@Html.DisplayFor(Model => Model.ZipCode)" >
+                    <input type="text" id="ZipCode2" class="form-control" name="ZipCodeTwo" value="@Html.DisplayFor(Model => Model.ZipCodeTwo)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Email:</label>
