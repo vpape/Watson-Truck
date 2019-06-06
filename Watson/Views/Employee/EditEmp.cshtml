@@ -308,26 +308,26 @@
                 "Gender": Gender,
             }
 
-            var ret = postData('EmployeeEditUpdate', data)
-                .then(data => FirstStep(data))
-                .error(error => console.error(error))
+            //var ret = postData('EmployeeEditUpdate', data)
+            //    .then(data => FirstStep(data))
+            //    .error(error => console.error(error))
 
-            //fetch('EmployeeEditUpdate', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    .then(response => FirstStep(response))
-            //    .catch(error => console.error('Error:', error));
+            fetch('EmployeeEditUpdate', data, {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
         })
 
         document.querySelector("#EditEmpUpdateStepTwo").addEventListener("click", function () {
@@ -362,50 +362,25 @@
                 "CellPhone": CellPhone,
             }
 
-            var ret = postData('EmployeeEditUpdate', data)
-                .then(data => {
-                    console.log(data);
-                    SecondStep(data)
-                })
-                .catch(error => console.error(error))
+            //var ret = postData('EmployeeEditUpdate', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        SecondStep(data)
+            //    })
+            //    .catch(error => console.error(error))
         })
     })
 
     function FirstStep(emp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        //    emp_id = emp.data;
-        //    document.querySelector("#Role").value = emp.Role;
-        //    document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
-        //    document.querySelector("#JobTitle").value = emp.JobTitle;
-        //    document.querySelector("#EmpNumber").value = emp.EmpNumber;
-        //    document.querySelector("#MaritalStatus").value = emp.MaritalStatus;
-        //    document.querySelector("#FirstName").value = emp.FirstName;
-        //    document.querySelector("#LastName").value = emp.LastName;
-        //    document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
-        //    document.querySelector("#Gender").value = emp.Gender;
+        emp_id = emp.data;
     }
 
     function SecondStep(emp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-        //document.querySelector("#Employee_id").value = emp.Employee_id;
-        //document.querySelector("#MailingAddress").value = emp.MailingAddress;
-        //document.querySelector("#PObox").value = emp.PObox;
-        //document.querySelector("#City").value = emp.City;
-        //document.querySelector("#State").value = emp.State;
-        //document.querySelector("#ZipCode").value = emp.ZipCode;
-        //document.querySelector("#County").value = emp.County;
-        //document.querySelector("#CityLimits").value = emp.CityLimits;
-        //document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
-        //document.querySelector("#PObox2").value = emp.PObox2;
-        //document.querySelector("#City2").value = emp.City2;
-        //document.querySelector("#State2").value = emp.State2;
-        //document.querySelector("#ZipCode2").value = emp.ZipCode2;
-        //document.querySelector("#County2").value = emp.County2;
     }
-
-
 
     function postData(url, data) {
         //Default options are marked with *

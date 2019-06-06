@@ -611,72 +611,72 @@
                 <label>Employment Information: (To be completed by Employer)</label>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="GroupName" id="GroupName" placeholder="Group Name" value="" />
+                    <input type="text" class="form-control" name="GroupName" id="GroupName" placeholder="Group Name" value="@Html.DisplayFor(m => m.GroupName)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="IMSGroupNumber" id="IMSGroupNumber" placeholder="IMS Group Number" value="" />
+                    <input type="text" class="form-control" name="IMSGroupNumber" id="IMSGroupNumber" placeholder="IMS Group Number" value="@Html.DisplayFor(m => m.GroupName)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Department" id="empDepartment" placeholder="Department" value="" />
+                    <input type="text" class="form-control" name="Department" id="empDepartment" placeholder="Department" value="@Html.DisplayFor(m => m.Employee.Department)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="EnrollmentType" id="empEnrollmentType" placeholder="Enrollment Type" value="" />
+                    <input type="text" class="form-control" name="EnrollmentType" id="empEnrollmentType" placeholder="Enrollment Type" value="@Html.DisplayFor(m => m.Employee.EnrollmentType)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Payroll_id" id="empPayroll_id" placeholder="Payroll ID" value="" />
+                    <input type="text" class="form-control" name="Payroll_id" id="empPayroll_id" placeholder="Payroll ID" value="@Html.DisplayFor(m => m.Employee.Payroll_id)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Class" id="empClass" placeholder="Class" value="" />
+                    <input type="text" class="form-control" name="Class" id="empClass" placeholder="Class" value="@Html.DisplayFor(m => m.Employee.Class)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="AnnualSalary" id="empAnnualSalary" placeholder="Annual Salary" value="" />
+                    <input type="text" class="form-control" name="AnnualSalary" id="empAnnualSalary" placeholder="Annual Salary" value="@Html.DisplayFor(m => m.Employee.AnnualSalary)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="JobTitle" id="empJobTitle" placeholder="Occupation" value="" />
+                    <input type="text" class="form-control" name="JobTitle" id="empJobTitle" placeholder="Occupation" value="@Html.DisplayFor(m => m.Employee.JobTitle)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="HireDate" id="empHireDate" placeholder="Employment Date" value="" />
+                    <input type="text" class="form-control" name="HireDate" id="empHireDate" placeholder="Employment Date" value="@Html.DisplayFor(m => m.Employee.HireDate)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="" />
+                    <input type="text" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="@Html.DisplayFor(m => m.Employee.EffectiveDate)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="number" class="form-control" name="HoursWorkedPerWeek" id="empHrsWkPerWk" placeholder="Min. Hrs. Worked/Wk" value="" />
+                    <input type="number" class="form-control" name="HoursWorkedPerWeek" id="empHrsWkPerWk" placeholder="Min. Hrs. Worked/Wk" value="@Html.DisplayFor(m => m.Employee.HoursWorkedPerWeek)" disabled />
                 </div>
             </div>
 
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="Employee Number" id="EmployeeNumber" name="SSN" value="" disabled />
+                <input type="text" class="form-control" placeholder="Employee Number" id="EmployeeNumber" name="SSN" value="@Html.DisplayFor(m => m.Employee.SSN)" disabled />
             </div>
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" disabled />
+                <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="@Html.DisplayFor(m => m.Employee.FirstName)" disabled />
             </div>
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="" disabled />
+                <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="@Html.DisplayFor(m => m.Employee.LastName)" disabled />
             </div>
             <p></p>
             <div class="form-group col-md-6">
-                <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" disabled />
-                <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" disabled />
-                <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" disabled />
-                <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" disabled />
-                <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" disabled />
+                <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(m => m.Employee.MailingAddress)" disabled />
+                <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="@Html.DisplayFor(m => m.Employee.PObox)" disabled />
+                <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@Html.DisplayFor(m => m.Employee.City)" disabled />
+                <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@Html.DisplayFor(m => m.Employee.State)" disabled />
+                <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.DisplayFor(m => m.Employee.ZipCode)" disabled />
             </div>
             <div>
                 <select id="EmpGender" class="form-control" disabled>
                     <option value="">Gender:</option>
-                    <option value="Male" @*@((ViewBag.Gender) == "Male"   ? "selected" : "")*@>Male</option>
-                    <option value="Female" @*@((ViewBag.Gender) == "Female" ? "selected" : "")*@>Female</option>
+                    <option value="Male"   @((Model.Employee.Gender) == "Male"   ? "selected" : "")>Male</option>
+                    <option value="Female" @((Model.Employee.Gender) == "Female" ? "selected" : "")>Female</option>
                 </select>
             </div>
             <p></p>

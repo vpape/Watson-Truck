@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Watson.Models.Group_Health
+@{
     ViewBag.Title = "SalaryRedirectAgreement";
 }
 <h2></h2>
@@ -29,12 +30,12 @@
                 <tr>
                     <td>
                         <div>
-                            <input type="text" class="form-control" placeholder="First Name" value="" />
+                            <input type="text" class="form-control" placeholder="First Name" value="@Html.DisplayFor(Model => Model.Employee.FirstName)" disabled />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" placeholder="Last Name" value="" />
+                            <input type="text" class="form-control" placeholder="Last Name" value="@Html.DisplayFor(Model => Model.Employee.LastName)" disabled />
                         </div>
                     </td>
                     <td>
@@ -46,23 +47,23 @@
                 <tr>
                     <td>
                         <div>
-                            <input type="text" class="form-control" placeholder="Mailing Address" value="" />
-                            <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" />
+                            <input type="text" class="form-control" placeholder="Mailing Address" value="@Html.DisplayFor(Model => Model.Employee.MailingAddress)" disabled />
+                            <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="@Html.DisplayFor(Model => Model.Employee.PObox)" disabled />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" placeholder="City" value="" />
+                            <input type="text" class="form-control" placeholder="City" value="@Html.DisplayFor(Model => Model.Employee.City)" disabled />
 
                         </div>
                         <div>
-                            <input type="text" class="form-control" placeholder="State" value="" />
+                            <input type="text" class="form-control" placeholder="State" value="@Html.DisplayFor(Model => Model.Employee.State)" disabled />
 
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" placeholder="Zip Code" value="" />
+                            <input type="text" class="form-control" placeholder="Zip Code" value="@Html.DisplayFor(Model => Model.Employee.ZipCode)" disabled />
 
                         </div>
                         <div>
@@ -75,21 +76,21 @@
                     <td>
                         <label>Social Security Number:</label>
                         <div>
-                            <input type="text" class="form-control" placeholder="SSN #" value="" />
+                            <input type="text" class="form-control" placeholder="SSN #" value="@Html.DisplayFor(Model => Model.Employee.SSN)" disabled />
 
                         </div>
                     </td>
                     <td>
                         <label>Hire Date:</label>
                         <div>
-                            <input type="date" class="form-control" placeholder="Hire Date" value="" />
+                            <input type="date" class="form-control" placeholder="Hire Date" value="@Html.DisplayFor(Model => Model.Employee.HireDate)" disabled />
 
                         </div>
                     </td>
                     <td>
                         <label>Effective Date:</label>
                         <div>
-                            <input type="date" class="form-control" placeholder="Effective Date" value="" />
+                            <input type="date" class="form-control" placeholder="Effective Date" value="@Html.DisplayFor(Model => Model.Employee.EffectiveDate)" disabled />
 
                         </div>
                     </td>
@@ -705,10 +706,10 @@
         padding: 8px 16px;
     }
 
-    a:hover {
-        background-color: #ddd;
-        color: black;
-    }
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
 
     p {
         padding-left: 10px;
@@ -870,7 +871,7 @@
             empInitials4 = document.getElementById("EmpInitials4").value;
             empInitials5 = document.getElementById("EmpInitials5").value;
 
-      
+
 
             var data = {
                 "Employee_id": emp_id,

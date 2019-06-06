@@ -382,9 +382,7 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult SpEnrollmentNew(int Employee_id, /*int FamilyMember_id,*/ /*string MaritalStatus,*/ 
-            /*string RelationshipToInsured,*/ /*string EmpNumber,*/ string FirstName, string LastName, 
-            DateTime DateOfBirth, string Gender)
+        public JsonResult SpEnrollmentNew(int Employee_id, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
         {
             Family_Info sp = new Family_Info();
 
@@ -451,7 +449,7 @@ namespace Watson.Controllers
             return View();
         }
 
-        public JsonResult SpEmploymentUpdate(int Employee_id, string MaritalStatus, string Employer, string EmployerAddress,
+        public JsonResult SpEmployment(int Employee_id, string MaritalStatus, string Employer, string EmployerAddress,
             string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
             Family_Info sp = new Family_Info();
