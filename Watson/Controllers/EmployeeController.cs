@@ -47,13 +47,13 @@ namespace Watson.Controllers
             
         }
 
-        public JsonResult GetEmployee(int Employee_id, string empNumber, string empFirstName, string empLastName, string EmailAddress)
+        public JsonResult GetEmployee(int Employee_id, string empNumber, string FirstName, string LastName, string EmailAddress)
         {
             var e = db.Employees.Find();
 
             e.SSN = empNumber;             
-            e.FirstName = empFirstName;
-            e.LastName = empLastName;
+            e.FirstName = FirstName;
+            e.LastName = LastName;
             e.EmailAddress = EmailAddress;
 
             int result = e.Employee_id;

@@ -39,10 +39,10 @@
                         <input type="text" id="empNumber" class="form-control" name="SSN" value="@Html.DisplayFor(model => item.SSN)" readonly />
                     </td>
                     <td>
-                        <input type="text" id="empFirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(model => item.FirstName)" readonly />
+                        <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(model => item.FirstName)" readonly />
                     </td>
                     <td>
-                        <input type="text" id="empLastName" class="form-control" name="LastName" value="@Html.DisplayFor(model => item.LastName)" readonly />
+                        <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(model => item.LastName)" readonly />
                     </td>
                     <td>
                         <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(model => item.EmailAddress)" readonly />
@@ -120,19 +120,19 @@
         window.location.href = "/Employee/FamilyOverview?Employee_id=" + emp_id;
     }
 
-    var emp_id;
+    var Employee_id;
 
     document.addEventListener("DOMContentLoaded", function () {
-        emp_id = document.getElementById("Employee_id").value;
-        empFirstName = document.getElementById("empFirstName").value;
-        empLastName = document.getElementById("empLastName").value;
+        Employee_id = document.getElementById("Employee_id").value;
+        FirstName = document.getElementById("FirstName").value;
+        LastName = document.getElementById("LastName").value;
         EmailAddress = document.getElementById("EmailAddress").value;
 
 
         var data = {
-            "Employee_id": emp_id,
-            "EmpFirstName": empFirstName,
-            "EmpLastName": empLastName,
+            "Employee_id": Employee_id,
+            "EmpFirstName": FirstName,
+            "EmpLastName": LastName,
             "EmailAddress": EmailAddress,
         }
 
