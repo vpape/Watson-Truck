@@ -47,15 +47,18 @@ namespace Watson.Controllers
             
         }
 
-        public JsonResult GetEmployee(int Employee_id, string EmpFirstName, string EmpLastName, string EmailAddress)
+        public JsonResult GetEmployee(int Employee_id, string empNumber, string empFirstName, string empLastName, string EmailAddress)
         {
             var e = db.Employees.Find();
-                         
-            e.FirstName = EmpFirstName;
-            e.LastName = EmpLastName;
+
+            e.SSN = empNumber;             
+            e.FirstName = empFirstName;
+            e.LastName = empLastName;
             e.EmailAddress = EmailAddress;
 
-            return Json(new { data = e }, JsonRequestBehavior.AllowGet);
+            int result = e.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -321,13 +324,17 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult FamilyOverview(/*Family_Info family*/)
+        public ActionResult FamilyOverview(int? emp_id)
         {
+            var familyInfo = (from fi in db.Family_Info
+                              where fi.Employee_id == emp_id
+                              select fi).ToList();
             //Family_Info f = db.Family_Info.Find(family);
 
             //f = family;
 
-            return View(db.Family_Info.ToList());
+            //return View(db.Family_Info.ToList());
+            return View(familyInfo);
         }
 
         public ActionResult FamilyEnrollment()
