@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Watson.Models.Employee
+@{
     ViewBag.Title = "SpEnrollment";
 }
 <!DOCTYPE html>
@@ -14,7 +15,7 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@Html.DisplayFor(Model => Model.Employee_id)" />
         <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" />
         <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" />
         <div class="collapsible" id="FirstStep">Spouse Enrollment</div>
@@ -52,7 +53,6 @@
             <div class="form-group">
                 <div class="col-md-offset-11">
                     <button type="submit" id="SpouseEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
-                    @*<input id="Submit" type="submit" onclick="SpouseEnrollmentUpdate();" value="Save" class="btn btn-primary" />*@
                 </div>
             </div>
         </div>
@@ -241,6 +241,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
+            emp_id = document.getElementById("Employee_id").value;
             //RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
             //EmpNumber = document.getElementById("EmpNumber").value;
             FirstName = document.getElementById("FirstName").value;
@@ -285,6 +286,7 @@
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepTwo").addEventListener("click", function () {
+            emp_id = document.getElementById("Employee_id").value;
             MailingAddress = document.getElementsById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
@@ -326,6 +328,7 @@
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener("click", function () {
+            emp_id = document.getElementById("Employee_id").value;
             Employer = document.getElementsById("Employer").value;
             EmployerAddress = document.getElementById("EmployerAddress").value;
             PEmployerPOboxbox3 = document.getElementById("EmployerPObox").value;
