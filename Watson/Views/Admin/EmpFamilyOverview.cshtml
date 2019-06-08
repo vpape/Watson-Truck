@@ -2,6 +2,188 @@
 @{
     ViewBag.Title = "EmpFamilyOverview";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Admin-Family Overview</title>
+</head>
+<body>
+    <h4>Admin-Family Overview</h4>
+    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
+    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" />
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Relation To Employee</th>
+                <th>Employee Number</th>
+                <th>Employee Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <span>
+                            <i class="fa fa-file-text-o" style="font-size:24px" onclick="FamilyInsurance(@Html.Raw(item.Employee_id))"></i>
+                        </span>
+                    </td>
+                    <td>
+                        <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.DisplayFor(model => item.RelationshipToInsured)" readonly />
+                    </td>
+                    <td>
+                        <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(model => item.FirstName)" readonly />
+                    </td>
+                    <td>
+                        <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(model => item.LastName)" readonly />
+                    </td>
+                    <td>
+                        <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.DisplayFor(model => item.Employee.SSN)" readonly />
+                    </td>
+                    <td>
+                        <input type="text" id="EmpFirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(model => item.Employee.FirstName)" readonly />
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit Spouse", "EditSp", "Employee", new { Employee_id = item.FamilyMember_id }, null)  |
+                        @Html.ActionLink("Edit Dependent", "EditDep", "Employee", new { Employee_id = item.FamilyMember_id }, null)  |
+                        @Html.ActionLink("Spouse Detail", "SpDetail", "Employee", new { Employee_id = item.FamilyMember_id }, null)  |
+                        @Html.ActionLink("Dependent Detail", "DepDetail", "Employee", new { Employee_id = item.FamilyMember_id }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="form-group">
+        <div class="col-md-2">
+            <button id="FamilyEnrollmentUpdate" onclick="FamilyEnrollment()" class="btn">Add Family Member</button>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Back to List", "EmpOverview")
+    </p>
 
-<h2>EmpFamilyOverview</h2>
+
+</body>
+</html>
+
+
+<style>
+    .btn:hover {
+        background-color: blue;
+        color: white;
+    }
+
+    .button {
+        text-align: right;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-flex;
+        padding: 8px 8px;
+    }
+
+    .fa-arrow-circle-o-right:hover {
+        border-radius: 50%;
+        color: white;
+        background-color: blue;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        table tr {
+            border-bottom: 1px solid black;
+        }
+
+    .next {
+        background-color: #333;
+        padding-left: 1px;
+    }
+
+    .round {
+        border-radius: 50%;
+    }
+</style>
+
+<script>
+    function FamilyInsurance() {
+
+        window.location.href = "/Admin/EmpFamilyInsurance?Employee_id=" + Employee_id
+    }
+
+    function FamilyEnrollment() {
+
+        window.location.href = "/Admin/EmpFamilyEnrollment?Employee_id=" + Employee_id;
+    }
+
+    var Employee_id;
+
+    document.addEventListener("DOMContentLoaded", function () {
+        Employee_id = document.getElementById("Employee_id").value;
+        FirstName = document.getElementById("FirstName").value;
+        LastName = document.getElementById("LastName").value;
+        RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
+        EmpNumber = document.getElementById("EmpNumber").value;
+        EmpFirstName = document.getElementById("EmpFirstName").value;
+
+        var data = {
+            "Employee_id": Employee_id,
+            "FirstName": FirstName,
+            "LastName": LastName,
+            "RelationToEmp": RelationshipToInsured,
+            "EmpNumber": EmpNumber,
+            "EmpFirstName": EmpFirstName,
+        }
+
+        var ret = postData('GetFamilyMember', data)
+            .then(data => {
+                console.log(data);
+                FirstStep(data);
+            })
+            .catch(error => console.error(error))
+    })
+
+    function FirstStep(f) {
+        Employee_id = f.data;
+    }
+
+
+    function postData(url, data) {
+        //Default options are marked with *
+        console.log(data);
+        console.log(JSON.stringify(data));
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'Accept': 'application/json',
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'same-origin', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+            //.then(Response => {
+            //    console.log(Response);
+            //    Response.json();
+            //}) //parses response to JSON
+    }
+</script>
 

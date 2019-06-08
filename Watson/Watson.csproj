@@ -471,17 +471,12 @@
     <Content Include="Views\Group_Health\EditAuthorizationForm.cshtml" />
     <Content Include="Views\Group_Health\EditSalaryRedirection.cshtml" />
     <Content Include="Views\Admin\GrpHealthEnrollment.cshtml" />
-    <Content Include="Views\Admin\EmpEnrollmentSelection.cshtml" />
     <Content Include="Views\Admin\NewEmployeeEnrollment.cshtml" />
-    <Content Include="Views\Admin\EmpContact.cshtml" />
     <Content Include="Views\Admin\EditEmp.cshtml" />
     <Content Include="Views\Admin\EmpDetail.cshtml" />
     <Content Include="Views\Admin\DeleteEmp.cshtml" />
     <Content Include="Views\Admin\EmpFamilyOverview.cshtml" />
-    <Content Include="Views\Admin\EmpFamilyEnrollment.cshtml" />
     <Content Include="Views\Admin\EmpSpEnrollment.cshtml" />
-    <Content Include="Views\Admin\EmpSpContact.cshtml" />
-    <Content Include="Views\Admin\EmpSpEmployment.cshtml" />
     <Content Include="Views\Admin\EditEmpSp.cshtml" />
     <Content Include="Views\Admin\EmpSpDetail.cshtml" />
     <Content Include="Views\Admin\DeleteSp.cshtml" />
