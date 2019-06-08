@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IronPdf, Version=5.2.0.22321, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPdf.5.2.0.1\lib\net40\IronPdf.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -468,6 +471,24 @@
     <Content Include="Views\Group_Health\EditAuthorizationForm.cshtml" />
     <Content Include="Views\Group_Health\EditSalaryRedirection.cshtml" />
     <Content Include="Views\Admin\GrpHealthEnrollment.cshtml" />
+    <Content Include="Views\Admin\EmpEnrollmentSelection.cshtml" />
+    <Content Include="Views\Admin\NewEmployeeEnrollment.cshtml" />
+    <Content Include="Views\Admin\EmpContact.cshtml" />
+    <Content Include="Views\Admin\EditEmp.cshtml" />
+    <Content Include="Views\Admin\EmpDetail.cshtml" />
+    <Content Include="Views\Admin\DeleteEmp.cshtml" />
+    <Content Include="Views\Admin\EmpFamilyOverview.cshtml" />
+    <Content Include="Views\Admin\EmpFamilyEnrollment.cshtml" />
+    <Content Include="Views\Admin\EmpSpEnrollment.cshtml" />
+    <Content Include="Views\Admin\EmpSpContact.cshtml" />
+    <Content Include="Views\Admin\EmpSpEmployment.cshtml" />
+    <Content Include="Views\Admin\EditEmpSp.cshtml" />
+    <Content Include="Views\Admin\EmpSpDetail.cshtml" />
+    <Content Include="Views\Admin\DeleteSp.cshtml" />
+    <Content Include="Views\Admin\EmpDepEnrollment.cshtml" />
+    <Content Include="Views\Admin\EditEmpDep.cshtml" />
+    <Content Include="Views\Admin\EmpDepDetail.cshtml" />
+    <Content Include="Views\Admin\DeleteDep.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

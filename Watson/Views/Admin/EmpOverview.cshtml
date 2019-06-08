@@ -15,7 +15,7 @@
 </head>
 <body>
     <h4>Employee Overview</h4>
-    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
+    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
@@ -48,19 +48,14 @@
                         <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(model => item.EmailAddress)" readonly />
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "EditEmp", "Employee", new { Employee_id = item.Employee_id }, null)|
-                        @Html.ActionLink("Detail", "EmpDetail", "Employee", new { Employee_id = item.Employee_id }, null)|
-                        @Html.ActionLink("Insurance", "EmpInsurance", "Employee", new { Employee_id = item.Employee_id }, null)
+                        @Html.ActionLink("Edit", "EditEmp", "Admin", new { Employee_id = item.Employee_id }, null)|
+                        @Html.ActionLink("Detail", "EmpDetail", "Admin", new { Employee_id = item.Employee_id }, null)|
+                        @Html.ActionLink("Insurance", "EmpInsurance", "Admin", new { Employee_id = item.Employee_id }, null)
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-    @*<div class="form-group">
-            <div class="col-md-2">
-                <button id="EnrollmentSelectionUpdate" onclick="return EnrollmentSelection()" class="btn">Enrollment Selection</button>
-            </div>
-        </div>*@
     <div class="form-group">
         <div class="col-md-2">
             <button @*id="NewEmployeeEnrollment"*@ onclick="return NewEmployeeEnrollment()" class="btn">Create New</button>
@@ -112,12 +107,12 @@
 
 <script>
     function NewEmployeeEnrollment() {
-        window.location.href = "/Employee/EnrollmentSelection";
+        window.location.href = "/Admin/EmpEnrollmentSelection";
 
     }
 
-    function FamilyOverview(emp_id) {
-        window.location.href = "/Employee/FamilyOverview?Employee_id=" + emp_id;
+    function FamilyOverview(Employee_id) {
+        window.location.href = "/Admin/EmpFamilyOverview?Employee_id=" + Employee_id;
     }
 
     var Employee_id;
@@ -145,7 +140,7 @@
     })
 
     function FirstStep(emp) {
-        emp_id = emp.data;
+        Employee_id = emp.data;
     }
 
     function postData(url, data) {

@@ -1651,11 +1651,13 @@
             //document.querySelector("#VisionCostEmpDep").value = EmpDepVisionCost;
             //document.querySelector("#DentalCostEmpFam").value = EmpFamDentalCost;
             //document.querySelector("#VisionCostEmpFam").value = EmpFamVisionCost;
+            Employee_id = ins.data;
         }
 
         function ThirdStep(ins) {
             document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
             document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
+            Employee_id = ins.data;
 
         }
 
