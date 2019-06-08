@@ -34,7 +34,7 @@
                 <tr>
                     <td>
                         <span>
-                            <i class="fa fa-file-text-o" style="font-size:24px" onclick="FamilyInsurance()"></i>
+                            <i class="fa fa-file-text-o" style="font-size:24px" onclick="FamilyInsurance(@Html.Raw(item.Employee_id))"></i>
                         </span>
                     </td>
                     <td>
@@ -64,7 +64,7 @@
     </table>
     <div class="form-group">
         <div class="col-md-2">
-            <button id="FamilyEnrollmentUpdate" onclick="return FamilyEnrollment()" class="btn">Add Family Member</button>
+            <button id="FamilyEnrollmentUpdate" onclick="FamilyEnrollment(@ViewBag.Employee_id)" class="btn">Add Family Member</button>
         </div>
     </div>
     <p>
@@ -118,17 +118,18 @@
 <script>
     function FamilyInsurance() {
 
-        window.location.href = "/Employee/FamilyInsurance";
+        window.location.href = "/Employee/FamilyInsurance?Employee_id=" + Employee_id
     }
 
     function FamilyEnrollment() {
 
-        window.location.href = "/Employee/FamilyEnrollment";
+        window.location.href = "/Employee/FamilyEnrollment?Employee_id=" + Employee_id;
     }
 
     var Employee_id;
 
     document.addEventListener("DOMContentLoaded", function () {
+        Employee_id = document.getElementById("Employee_id").value;
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
         RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
@@ -145,19 +146,17 @@
         }
 
         var ret = postData('GetFamilyMember', data)
-            .then(data => FirstStep(data))
+            .then(data => {
+                console.log(data);
+                FirstStep(data);
+            })
             .catch(error => console.error(error))
     })
 
     function FirstStep(f) {
-        document.querySelector("#Employee_id").value = f.Employee_id;
-        document.querySelector("#FirstName").value = f.FirstName;
-        document.querySelector("#LastName").value = f.LastName;
-        document.querySelector("#RelationshipToInsured").value = f.RelationshipToInsured;
-        document.querySelector("#EmpNumber").value = f.EmpNumber;
-        document.querySelector("#EmpLastName").value = f.EmpLastName;
         Employee_id = f.data;
     }
+
 
     function postData(url, data) {
         //Default options are marked with *
@@ -168,18 +167,21 @@
             cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', //include, same-origin, *omit
             headers: {
+                'Accept': 'application/json',
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
             method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            mode: 'cors', //no-cors, cors, *same-origin
+            mode: 'same-origin', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer
-        })
-            .then(Response => {
-                console.log(Response);
-                Response.json();
-            }) //parses response to JSON
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+            //.then(Response => {
+            //    console.log(Response);
+            //    Response.json();
+            //}) //parses response to JSON
     }
 </script>
 

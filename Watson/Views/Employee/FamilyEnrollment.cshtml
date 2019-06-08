@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Watson.Models.Family_Info>
+@{
     ViewBag.Title = "FamilyEnrollment";
 }
 <!DOCTYPE html>
@@ -13,6 +14,7 @@
 </head>
 <body>
     <div class="container">
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
         <h3>Family Member Selection</h3>
         <table class="table">
             <tbody>
@@ -54,7 +56,7 @@
     }
 
         .active, .button:hover {
-            background-color: #555;
+            background-color: blue;
         }
 
     .content {
@@ -66,14 +68,9 @@
 
     a {
         text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
+        display: inline-flex;
+        padding: 8px 8px;
     }
-
-        a:hover {
-            background-color: #ddd;
-            color: black;
-        }
 
     table {
         border-collapse: collapse;
@@ -87,7 +84,7 @@
 <script>
     //var col = document.querySelectorAll(".collapsible");
     //var i;
-    //var Employee_id;
+
 
     //for (i = 0; i < col.length; i++) {
     //    col[i].addEventListener("click", function () {
@@ -103,16 +100,15 @@
 
     //    });
     //}
-</script>
 
-<script type="text/javascript">
+    var Employee_id;
 
     function SpouseEnrollment() {
-        window.location.href = "/Employee/SpEnrollment";
+        window.location.href = "/Employee/SpEnrollment?Employee_id=" + Employee_id;
     }
 
     function DependentEnrollment() {
-        window.location.href = "/Employee/DepEnrollment";
+        window.location.href = "/Employee/DepEnrollment?Employee_id=" + Employee_id;
     }
 
 </script>

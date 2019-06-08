@@ -325,15 +325,11 @@ namespace Watson.Controllers
             var familyInfo = (from fi in db.Family_Info
                               where fi.Employee_id == Employee_id
                               select fi).ToList();
-            //Family_Info f = db.Family_Info.Find(family);
 
-            //f = family;
-
-            //return View(db.Family_Info.ToList());
             return View(familyInfo);
         }
 
-        public ActionResult FamilyEnrollment()
+        public ActionResult FamilyEnrollment(int? Employee_id)
         {
             return View();
         }
