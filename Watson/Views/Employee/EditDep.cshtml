@@ -200,6 +200,7 @@
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
+    var Employee_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -419,6 +420,7 @@
         document.querySelector("#InsCity").value = dep.InsCity;
         document.querySelector("#InsState").value = dep.InsState;
         document.querySelector("#InsZipCode").value = dep.InsZipCode;
+        Employee_id = dep.data;
     }
 
     function postData(url, data) {

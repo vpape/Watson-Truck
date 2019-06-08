@@ -7,18 +7,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Admin Page</title>
+    <title>Employee Overview</title>
 </head>
 <body>
-    <h4>Admin Employee Overview</h4>
+    <h4>Employee Overview</h4>
+    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
-                @*Create a column for a dynmaic button using image mapping?? to call SpouseAndDependentOverview)*@
-                <th>Family Overview</th>
+                <th></th>
+                <th>Employee Number</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email Address</th>
@@ -29,22 +31,26 @@
             {
                 <tr>
                     <td>
-                        @* Dynamic button (image mapping??) to redirect to family overview *@
-                        <a href="#" onclick="return FamilyOverview()" class="next round"></a>
+                        <span>
+                            <i class="fa fa-arrow-circle-o-right" style="font-size:24px" onclick="FamilyOverview(@Html.Raw(item.Employee_id))"></i>
+                        </span>
                     </td>
                     <td>
-                        <input type="text" id="EmpFirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(model => item.FirstName)" readonly />
+                        <input type="text" id="empNumber" class="form-control" name="SSN" value="@Html.DisplayFor(model => item.SSN)" readonly />
                     </td>
                     <td>
-                        <input type="text" id="EmpLastName" class="form-control" name="LastName" value="@Html.DisplayFor(model => item.FirstName)" readonly />
+                        <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(model => item.FirstName)" readonly />
                     </td>
                     <td>
-                        <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(model => item.FirstName)" readonly />
+                        <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(model => item.LastName)" readonly />
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "EditEmp", "Employee", new { Employee_id = item.Employee_id }) |
-                        @Html.ActionLink("Detail", "EmpDetail", "Employee", new { Employee_id = item.Employee_id }) |
-                        @Html.ActionLink("Insurance", "EmpInsurance", "Employee", new { Employee_id = item.Employee_id })
+                        <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(model => item.EmailAddress)" readonly />
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditEmp", "Employee", new { Employee_id = item.Employee_id }, null)|
+                        @Html.ActionLink("Detail", "EmpDetail", "Employee", new { Employee_id = item.Employee_id }, null)|
+                        @Html.ActionLink("Insurance", "EmpInsurance", "Employee", new { Employee_id = item.Employee_id }, null)
                     </td>
                 </tr>
             }
@@ -64,34 +70,14 @@
 </html>
 
 <style>
-    .btn {
-        background-color: #333;
-        color: white;
-    }
-
     .button {
         text-align: right;
     }
 
-    a {
-        text-decoration: underline;
-        display: inline-flex;
-        padding: 8px 16px;
+    .btn:hover {
+        background-color: blue;
+        color: white;
     }
-
-        a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-        table tr {
-            border-bottom: 1px solid black;
-        }
 
     .next {
         background-color: #333;
@@ -101,6 +87,27 @@
     .round {
         border-radius: 50%;
     }
+
+    a {
+        text-decoration: none;
+        display: inline-flex;
+        padding: 8px 8px;
+    }
+
+    .fa-arrow-circle-o-right:hover {
+        border-radius: 50%;
+        color: white;
+        background-color: blue;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        table tr {
+            border-bottom: 1px solid black;
+        }
 </style>
 
 <script>
@@ -109,27 +116,36 @@
 
     }
 
+    function FamilyOverview(emp_id) {
+        window.location.href = "/Employee/FamilyOverview?Employee_id=" + emp_id;
+    }
+
+    var Employee_id;
+
     document.addEventListener("DOMContentLoaded", function () {
-        EmpFirstName = document.getElementById("EmpFirstName").value;
-        EmpLastName = document.getElementById("EmpLastName").value;
+        Employee_id = document.getElementById("Employee_id").value;
+        FirstName = document.getElementById("FirstName").value;
+        LastName = document.getElementById("LastName").value;
         EmailAddress = document.getElementById("EmailAddress").value;
 
 
         var data = {
-            "EmpFirstName": EmpFirstName,
-            "EmpLastName": EmpLastName,
+            "Employee_id": Employee_id,
+            "EmpFirstName": FirstName,
+            "EmpLastName": LastName,
             "EmailAddress": EmailAddress,
         }
 
         var ret = postData('GetEmployee', data)
-            .then(data => FirstStep(data))
+            .then(data => {
+                console.log(data);
+                FirstStep(data);
+            })
             .catch(error => console.error(error))
     })
 
     function FirstStep(emp) {
-        document.querySelector("#EmpFirstName").value = emp.EmpFirstName;
-        document.querySelector("#EmpLastName").value = emp.EmpLastName;
-        document.querySelector("#EmailAddress").value = emp.EmailAddress;
+        emp_id = emp.data;
     }
 
     function postData(url, data) {
@@ -141,40 +157,23 @@
             cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', //include, same-origin, *omit
             headers: {
+                'Accept': 'application/json',
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
-            method: 'POST', //*GET, POST, PUT, DELETE, etc...
-            mode: 'cors', //no-cors, cors, *same-origin
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'same-origin', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer
-        })
-            .then(Response => {
-                console.log(Response);
-                Response.json();
-            }) //parses response to JSON
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+        //.then(Response => {
+        //    console.log(Response);
+        //    Response.json();
+        //}) //parses response to JSON
     }
 
-    //function postData(url, data) {
-    //    //Default options are marked with *
-    //    return fetch(url, {
-    //        body: JSON.stringify(data), //must match 'Content-Type' header
-    //        cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-    //        credentials: 'same-origin', //include, same-origin, *omit
-    //        headers: {
-    //            'user-agent': 'Mozilla/4.0 MDN Example',
-    //            'content-type': 'application/json'
-    //        },
-    //        method: 'Post', //*GET, POST, PUT, DELETE, etc...
-    //        mode: 'cors', //no-cors, cors, *same-origin
-    //        redirect: 'follow', //manual, *follow, error
-    //        referrer: 'no-referrer', //*client, no-referrer
-    //    })
-    //        .then(Response => Response.json()) //parses response to JSON
-    //}
-
 </script>
-
-
 
 

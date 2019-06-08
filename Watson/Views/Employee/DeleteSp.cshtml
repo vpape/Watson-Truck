@@ -226,6 +226,7 @@
 
     var col = document.querySelectorAll(".collapsible");
     var i;
+    var Employee_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -339,6 +340,7 @@
         document.querySelector("#EmployerState").value = sp.EmployerState;
         document.querySelector("#EmployerZipCode").value = sp.EmployerZipCode;
         document.querySelector("#EmployerPhoneNumber").value = sp.EmployerPhoneNumber;
+        Employee_id = sp.data;
     }
 
     function postData(url, data) {

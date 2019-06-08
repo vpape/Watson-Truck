@@ -178,7 +178,7 @@
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
-    var emp_id;
+    var Employee_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -226,7 +226,7 @@
             //InsZipCode = document.getElementById("InsZipCode").value
 
             var data = {
-                "Employee_id": emp_id,
+                "Employee_id": Employee_id,
                 "RelationshipToInsured": RelationshipToInsured,
                 //"EmpNumber": EmpNumber,
                 "DepFirstName": DepFirstName,
@@ -256,7 +256,7 @@
 
     function FirstStep(dep) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "block";
-        emp_id = dep.data
+        Employee_id = dep.data
     }
 
     function postData(url, data) {

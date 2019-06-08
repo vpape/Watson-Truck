@@ -212,6 +212,7 @@
 
     var col = document.querySelectorAll(".collapsible");
     var i;
+    var Employee_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -248,7 +249,7 @@
                 }
             });
 
-            ID = document.getElementById("Employee_id").value;
+            Employee_id = document.getElementById("Employee_id").value;
             MailingAddress = document.getElementsById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
@@ -271,7 +272,7 @@
             });
 
             var data = {
-                "Employee_id": ID,
+                "Employee_id": Employee_id,
                 "EmployeeRole": EmployeeRole,
                 "CurrentEmployer": CurrentEmployer,
                 "JobTitle": JobTitle,
@@ -330,6 +331,7 @@
         document.querySelector("EmailAddress").value = emp.EmailAddress;
         document.querySelector("PhoneNumber").value = emp.PhoneNumber;
         document.querySelector("CellPhone").value = emp.CellPhone;
+        Employee_id = emp.data;
     }
 
     function postData(url, data) {

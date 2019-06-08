@@ -152,6 +152,7 @@
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
+    var Employee_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -243,29 +244,7 @@
         document.querySelector("#EmpNumber").value = sp.EmpNumber;
         document.querySelector("#FirstName").value = sp.FirstName;
         document.querySelector("#DateOfBirth").value = sp.DateOfBirth;
-        document.querySelector("#Gender").value = sp.Gender;
-        document.querySelector("#MailingAddress").value = sp.MailingAddress;
-        document.querySelector("#PObox").value = sp.PObox;
-        document.querySelector("#City").value = sp.City;
-        document.querySelector("#State").value = sp.State;
-        document.querySelector("#ZipCode").value = sp.ZipCode;
-        document.querySelector("#County").value = sp.County;
-        document.querySelector("#PhysicalAddress").value = sp.PhysicalAddress;
-        document.querySelector("#PObox2").value = sp.PObox2;
-        document.querySelector("#City2").value = sp.City2;
-        document.querySelector("#State2").value = sp.State2;
-        document.querySelector("#ZipCode2").value = sp.ZipCode2;
-        document.querySelector("#County2").value = sp.County2;
-        document.querySelector("#EmailAddress").value = sp.EmailAddress;
-        document.querySelector("#PhoneNumber").value = sp.PhoneNumber;
-        document.querySelector("#CellPhone").value = sp.CellPhone;
-        document.querySelector("#CityLimits").value = sp.CityLimits;
-        document.querySelector("#EmployerMailingAddress").value = sp.EmployerAddress;
-        document.querySelector("#EmployerPObox").value = sp.EmployerPObox;
-        document.querySelector("#EmployerCity").value = sp.EmployerCity;
-        document.querySelector("#EmployerState").value = sp.EmployerState;
-        document.querySelector("#EmployerZipCode").value = sp.EmployerZipCode;
-        document.querySelector("#EmployerPhoneNumber").value = sp.EmployerPhoneNumber;
+        Employee_id = sp.data;
     }
 
     function postData(url, data) {

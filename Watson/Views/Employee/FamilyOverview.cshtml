@@ -126,6 +126,8 @@
         window.location.href = "/Employee/FamilyEnrollment";
     }
 
+    var Employee_id;
+
     document.addEventListener("DOMContentLoaded", function () {
         FirstName = document.getElementById("FirstName").value;
         LastName = document.getElementById("LastName").value;
@@ -154,6 +156,7 @@
         document.querySelector("#RelationshipToInsured").value = f.RelationshipToInsured;
         document.querySelector("#EmpNumber").value = f.EmpNumber;
         document.querySelector("#EmpLastName").value = f.EmpLastName;
+        Employee_id = f.data;
     }
 
     function postData(url, data) {

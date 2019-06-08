@@ -210,7 +210,7 @@
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
-    var emp_id;
+    var Employee_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -249,7 +249,7 @@
         CellPhone = document.getElementById("CellPhone").value;
 
         var data = {
-            "Employee_id": emp_id,
+            "Employee_id": Employee_id,
             "CurrentEmployer": CurrentEmployer,
             "JobTitle": JobTitle,
             "EmpNumber": EmpNumber,
@@ -281,32 +281,8 @@
 
     function FirstStep(emp) {
         document.querySelector("#EmpDetail").nextElementSibling.style.display = "none";
-        //emp_id = emp.data;
-        //document.querySelector("#Employee_id").value = emp.Employee_id;
-        //document.querySelector("#CurrentEmployer").value = emp.CurrentEmployer;
-        //document.querySelector("#JobTitle").value = emp.JobTitle;
-        //document.querySelector("#EmpNumber").value = emp.EmpNumber;
-        //document.querySelector("#MaritalStatus").value = emp.MaritalStatus;
-        //document.querySelector("#FirstName").value = emp.FirstName;
-        //document.querySelector("#LastName").value = emp.LastName;
-        //document.querySelector("#DateOfBirth").value = emp.DateOfBirth;
-        //document.querySelector("#Gender").value = emp.Gender;
-        //document.querySelector("#MailingAddress").value = emp.MailingAddress;
-        //document.querySelector("#PObox").value = emp.PObox;
-        //document.querySelector("#City").value = emp.City;
-        //document.querySelector("#State").value = emp.State;
-        //document.querySelector("#ZipCode").value = emp.ZipCode;
-        //document.querySelector("#County").value = emp.County;
-        //document.querySelector("#CityLimits").value = emp.CityLimits;
-        //document.querySelector("#PhysicalAddress").value = emp.PhysicalAddress;
-        //document.querySelector("#PObox2").value = emp.PObox2;
-        //document.querySelector("#City2").value = emp.City2;
-        //document.querySelector("#State2").value = emp.State2;
-        //document.querySelector("#ZipCode2").value = emp.ZipCode2;
-        //document.querySelector("#County2").value = emp.County2;
-        //document.querySelector("#EmailAddress").value = emp.EmailAddress;
-        //document.querySelector("#PhoneNumber").value = emp.PhoneNumber;
-        //document.querySelector("#CellPhone").value = emp.CellPhone;
+        Employee_id = emp.data;
+
     }
 
     function postData(url, data) {

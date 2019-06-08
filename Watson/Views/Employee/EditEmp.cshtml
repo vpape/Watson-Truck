@@ -258,7 +258,7 @@
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
-    var emp_id;
+    var Employee_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -346,7 +346,7 @@
             CityLimits = document.getElementById("CityLimits").value;
 
             var data = {
-                "Employee_id": emp_id,
+                "Employee_id": Employee_id,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
@@ -374,7 +374,7 @@
     function FirstStep(emp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        emp_id = emp.data;
+        Employee_id = emp.data;
     }
 
     function SecondStep(emp) {

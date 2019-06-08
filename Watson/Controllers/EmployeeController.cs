@@ -34,6 +34,7 @@ namespace Watson.Controllers
 
         //}
 
+        //EmpOverview
         public ActionResult EmpOverview(int? Employee_id)
         {
             if(Employee_id == null)
@@ -47,6 +48,7 @@ namespace Watson.Controllers
             
         }
 
+        //GetEmployee
         public JsonResult GetEmployee(int Employee_id, string empNumber, string FirstName, string LastName, string EmailAddress)
         {
             var e = db.Employees.Find();
@@ -80,8 +82,8 @@ namespace Watson.Controllers
             return View();
         }
 
-  
-        //EmpEnrollment Method
+
+        //Create-EmpEnrollment
         public JsonResult EmployeeEnrollmentNew(string Role, string CurrentEmployer, string JobTitle, string EmpNumber,
             DateTime HireDate, string MaritalStatus, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
         {
@@ -112,7 +114,7 @@ namespace Watson.Controllers
             return View();
         }
 
-        
+        //Create-EmpContact
         public JsonResult EmpEnrollmentContact(int Employee_id, string MaritalStatus, string MailingAddress, string PObox, 
             string City, string State, string ZipCode, string County, string CityLimits, string PhysicalAddress,
             string City2, string State2, string ZipCode2, string EmailAddress, string PhoneNumber, string CellPhone)
@@ -177,7 +179,7 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);             
         }
 
-        //EditEmp Method
+        //Edit-Emp
         public ActionResult EditEmp(int? Employee_id)
         {
             if (Employee_id == null)
@@ -196,6 +198,7 @@ namespace Watson.Controllers
             return View(e);
         }
 
+        //EditUpdate-Emp
         public JsonResult EmployeeEditUpdate(int Employee_id,string EmpRole, string CurrentEmployer, string JobTitle, 
             string EmpNumber, DateTime HireDate, string FirstName, string LastName, DateTime DateOfBirth, string Gender,
             string MaritalStatus, string MailingAddress, string PObox, string City, string State, string ZipCode, string County,
@@ -254,7 +257,7 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        //EmpDetail Method
+        //Get-EmpDetail
         public ActionResult EmpDetail(int? Employee_id)
         {
             if (Employee_id == null)
@@ -273,6 +276,7 @@ namespace Watson.Controllers
             return View(e);
         }
 
+        //Get-EmpDetail
         public JsonResult GetEmpDetail(int Employee_id, string City2, string State2, string ZipCode2)
         {
             var e = db.Employees
@@ -324,10 +328,10 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult FamilyOverview(int? emp_id)
+        public ActionResult FamilyOverview(int? Employee_id)
         {
             var familyInfo = (from fi in db.Family_Info
-                              where fi.Employee_id == emp_id
+                              where fi.Employee_id == Employee_id
                               select fi).ToList();
             //Family_Info f = db.Family_Info.Find(family);
 
@@ -341,7 +345,8 @@ namespace Watson.Controllers
         {
             return View();
         }
-
+        
+        //GetFamilyMember
         public JsonResult GetFamilyMember(int Employee_id, int FamilyMember_id, string FirstName, string LastName,
             string RelationshipToInsured, string EmpLastName, string EmpNumber, DateTime DateOfBirth, string MailingAddress,
             string PObox, string City, string State, string County, string ZipCode, string EmailAddress, string PhoneNumber,
@@ -389,6 +394,7 @@ namespace Watson.Controllers
             return View();
         }
 
+        //Create-SpouseEnrollment
         public JsonResult SpEnrollmentNew(int Employee_id, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
         {
             Family_Info sp = new Family_Info();
@@ -419,6 +425,7 @@ namespace Watson.Controllers
             return View();
         }
 
+        //Create-SpouseContact
         public JsonResult SpEnrollmentContact(int Employee_id, string MailingAddress, string PObox, string City, string State,
             string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, 
             string EmailAddress, string PhoneNumber, string CellPhone)
@@ -456,6 +463,7 @@ namespace Watson.Controllers
             return View();
         }
 
+        //Create-SpouseEmployment
         public JsonResult SpEmployment(int Employee_id, string MaritalStatus, string Employer, string EmployerAddress,
             string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
@@ -506,7 +514,7 @@ namespace Watson.Controllers
             return View(f);
         }
 
-        //SpEditUpdate Method
+        //EditUpdate-Spouse
         public JsonResult SpEditUpdate(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured,
             string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress,
             string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, string City2, 
@@ -571,7 +579,7 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        //SpDetail Method
+        //Get-SpDetail
         public ActionResult SpDetail(int Employee_id, int? FamilyMember_id)
         {
             //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
@@ -592,7 +600,7 @@ namespace Watson.Controllers
             return View(f);
         }
 
-        //GetSpDetail Method
+        //Get-SpDetail
         public JsonResult GetSpDetail(int FamilyMember_id)
         {
             var sp = db.Family_Info
@@ -645,7 +653,7 @@ namespace Watson.Controllers
             return View();
         }
 
-        //DepEnrollmentNew Method
+        //Create-DepEnrollment
         public JsonResult DepEnrollmentNew(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured,
             string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender, string EmpNumber)
         {
@@ -714,7 +722,7 @@ namespace Watson.Controllers
             return View(f);
         }
 
-        //DepEditUpdate Method
+        //EditUpdate-DepEdit
         public JsonResult DepEditUpdate(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured, 
             string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender, string EmpNumber)
         {
@@ -778,7 +786,7 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        //DepDetail Method
+        //Get-DepDetail
         public ActionResult DepDetail(int? FamilyMember_id)
         {
             //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
@@ -797,6 +805,7 @@ namespace Watson.Controllers
             return View(dep);
         }
 
+        //Get-DepDetail
         public JsonResult GetDepDetail(int FamilyMember_id)
         {
             var dep = db.Family_Info

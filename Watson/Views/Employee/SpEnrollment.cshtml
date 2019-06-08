@@ -216,7 +216,7 @@
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
-    var emp_id;
+    var Employee_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -241,7 +241,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
-            emp_id = document.getElementById("Employee_id").value;
+            Employee_id = document.getElementById("Employee_id").value;
             //RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
             //EmpNumber = document.getElementById("EmpNumber").value;
             FirstName = document.getElementById("FirstName").value;
@@ -252,7 +252,7 @@
             var data = {
                 //"RelationshipToInsured": RelationshipToInsured,
                 //"EmpNumber": EmpNumber,
-                "Employee_id": emp_id,
+                "Employee_id": Employee_id,
                 "FirstName": FirstName,
                 "LastName": LastName,
                 "DateOfBirth": DateOfBirth,
@@ -286,7 +286,7 @@
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            emp_id = document.getElementById("Employee_id").value;
+            Employee_id = document.getElementById("Employee_id").value;
             MailingAddress = document.getElementsById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
@@ -302,7 +302,7 @@
             CellPhone = document.getElementById("CellPhone").value;
 
             var data = {
-                "Employee_id": emp_id,
+                "Employee_id": Employee_id,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
@@ -328,7 +328,7 @@
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener("click", function () {
-            emp_id = document.getElementById("Employee_id").value;
+            Employee_id = document.getElementById("Employee_id").value;
             Employer = document.getElementsById("Employer").value;
             EmployerAddress = document.getElementById("EmployerAddress").value;
             PEmployerPOboxbox3 = document.getElementById("EmployerPObox").value;
@@ -339,7 +339,7 @@
 
 
             var data = {
-                "Employee_id": emp_id,
+                "Employee_id": Employee_id,
                 "Employer": Employer,
                 "EmployerAddress": EmployerAddress,
                 "EmployerPObox": EmployerPObox,
@@ -362,20 +362,21 @@
     function FirstStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-        emp_id = sp.data;
+        Employee_id = sp.data;
 
     }
 
     function SecondStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-
+        Employee_id = sp.data;
     }
 
     function ThirdStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
+        Employee_id = sp.data;
     }
 
     function postData(url, data) {

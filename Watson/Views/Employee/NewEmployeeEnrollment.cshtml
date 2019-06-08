@@ -222,7 +222,7 @@
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
-    var emp_id;
+    var Employee_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -260,18 +260,18 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                        window.location.href = "/Group_Health/GrpHealthEnrollment/" + emp_id;
+                    window.location.href = "/Group_Health/GrpHealthEnrollment/" + Employee_id;
 
                 }
                 else {
-                    window.location.href = "/Employee/EmpOverview/" + emp_id;
+                    window.location.href = "/Employee/EmpOverview/" + Employee_id;
                 }
             }
         }
         else {
             if (alert == false) {
 
-                window.location.href = "/Employee/EmpOverview/" + emp_id;
+                window.location.href = "/Employee/EmpOverview/" + Employee_id;
             }
             else {
 
@@ -280,12 +280,12 @@
 
                 if (alert == true) {
                
-                    window.location.href = "/Employee/FamilyEnrollment/" + emp_id;
+                    window.location.href = "/Employee/FamilyEnrollment/" + Employee_id;
                     
                 }
                 else {
 
-                    window.location.href = "/Employee/EmpOverview/" + emp_id;
+                    window.location.href = "/Employee/EmpOverview/" + Employee_id;
                 }
 
             }
@@ -360,7 +360,7 @@
             MaritalStatus = document.getElementById("MaritalStatus").value;
 
             var data = {
-                "Employee_id": emp_id,
+                "Employee_id": Employee_id,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
@@ -388,7 +388,7 @@
     function FirstStep(emp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        emp_id = emp.data;
+        Employee_id = emp.data;
     }
 
     function SecondStep(emp) {
