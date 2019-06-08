@@ -15,7 +15,7 @@
 </head>
 <body>
     <h4>Employee Overview</h4>
-    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id"/>
+    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id"/>
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
@@ -116,8 +116,8 @@
 
     }
 
-    function FamilyOverview(emp_id) {
-        window.location.href = "/Employee/FamilyOverview?Employee_id=" + emp_id;
+    function FamilyOverview(Employee_id) {
+        window.location.href = "/Employee/FamilyOverview?Employee_id=" + Employee_id;
     }
 
     var Employee_id;

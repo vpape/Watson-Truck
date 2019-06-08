@@ -24,20 +24,10 @@ namespace Watson.Controllers
      
         }
 
-        //public ActionResult EmpOverview(Employee employee)
-        //{
-        //    Employee e = db.Employees.Find(employee);
-
-        //    e = employee;
-
-        //    return View(employee);
-
-        //}
-
         //EmpOverview
         public ActionResult EmpOverview(int? Employee_id)
         {
-            if(Employee_id == null)
+            if (Employee_id == null)
             {
                 return View(db.Employees.ToList());
             }
@@ -45,7 +35,7 @@ namespace Watson.Controllers
             {
                 return View(db.Employees.Find(Employee_id));
             }
-            
+
         }
 
         //GetEmployee
@@ -57,6 +47,8 @@ namespace Watson.Controllers
             e.FirstName = FirstName;
             e.LastName = LastName;
             e.EmailAddress = EmailAddress;
+
+            Employee_id = e.Employee_id;
 
             int result = e.Employee_id;
 
@@ -139,7 +131,7 @@ namespace Watson.Controllers
             e.CellPhone = CellPhone;
 
             ViewBag.MaritalStatus = e.MaritalStatus;
-            ViewBag.e = e;
+            ViewBag.Employee_id = e.Employee_id;
 
             if (ModelState.IsValid)
             {
@@ -234,7 +226,7 @@ namespace Watson.Controllers
             e.PhoneNumber = PhoneNumber;
             e.CellPhone = CellPhone;
 
-            ViewBag.e = e;
+            ViewBag.Employee_id = e.Employee_id;
 
             if (ModelState.IsValid)
             {
@@ -271,7 +263,7 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.Employee = e;
+            ViewBag.Employee_id = e.Employee_id;
 
             return View(e);
         }
@@ -283,11 +275,11 @@ namespace Watson.Controllers
                 .Where(i => i.Employee_id == Employee_id)
                 .Single();
 
-            e.City = City2;
-            e.State = State2;
-            e.ZipCode = ZipCode2;
+            e.CityTwo = City2;
+            e.StateTwo = State2;
+            e.ZipCodeTwo = ZipCode2;
 
-            ViewBag.e = e;
+            ViewBag.Employee_id = e.Employee_id;
             
             int result = e.Employee_id;
 
@@ -395,17 +387,18 @@ namespace Watson.Controllers
         }
 
         //Create-SpouseEnrollment
-        public JsonResult SpEnrollmentNew(int Employee_id, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
+        public JsonResult SpEnrollmentNew(int Employee_id, string RelationshipToInsured, string FirstName, string LastName, 
+            DateTime DateOfBirth, string Gender)
         {
             Family_Info sp = new Family_Info();
 
-            //sp.RelationshipToInsured = RelationshipToInsured;
+            sp.RelationshipToInsured = RelationshipToInsured;
             sp.FirstName = FirstName;
             sp.LastName = LastName;
             sp.DateOfBirth = DateOfBirth;
             sp.Gender = Gender;
 
-            //ViewBag.RelationshipToInsured = RelationshipToInsured;
+            ViewBag.RelationshipToInsured = sp.RelationshipToInsured;
 
             if (ModelState.IsValid)
             {
@@ -509,7 +502,7 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.Family_Info = f.Employee_id;
+            ViewBag.Employee_id = f.Employee_id;
 
             return View(f);
         }
@@ -554,8 +547,28 @@ namespace Watson.Controllers
             sp.EmployerZipCode = EmployerZipCode;
             sp.EmployerPhoneNumber = EmployerPhoneNumber;
 
-            ViewBag.Employee_id = sp.Employee_id;
-            ViewBag.MaritalStatus = MaritalStatus;
+            ViewBag.FamilyMember_id = sp.FamilyMember_id;
+            //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
+
+            ViewBag.spouseExist = true;
+            ViewBag.MartialStatus = MaritalStatus;
+            ViewBag.RelationshipToInsured = "Spouse";
+
+            Employee e = db.Employees.Find(Employee_id);
+            if (e.MaritalStatus == "Single")
+            {
+                ViewBag.spouseExist = false;
+                ViewBag.RelationshipToInsured = "Single";
+            }
+            else if (e.MaritalStatus == "SinglewDep")
+            {
+                ViewBag.spouseExist = false;
+                ViewBag.RelationshipToInsured = "Spouse";
+            }
+            else
+            {
+                ViewBag.RelationshipToInsured = "Dependent";
+            }
 
             if (ModelState.IsValid)
             {
@@ -565,14 +578,13 @@ namespace Watson.Controllers
                 {
                     db.SaveChanges();
                 }
-                catch (Exception e)
+                catch (Exception err)
                 {
-                    Console.WriteLine(e);
+                    Console.WriteLine(err);
                 }
 
                 RedirectToAction("FamilyOverview", new { sp.Employee_id });
             }
-
 
             int result = sp.Employee_id;
 
@@ -580,9 +592,9 @@ namespace Watson.Controllers
         }
 
         //Get-SpDetail
-        public ActionResult SpDetail(int Employee_id, int? FamilyMember_id)
+        public ActionResult SpDetail(int Employee_id, int? FamilyMember_id, string MaritalStatus)
         {
-            //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
+            ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
 
             if (FamilyMember_id == null)
             {
@@ -595,7 +607,7 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.Family_info = f.Employee_id;
+            ViewBag.FamilyMember_id = f.FamilyMember_id;
 
             return View(f);
         }
@@ -607,7 +619,9 @@ namespace Watson.Controllers
                  .Where(i => i.FamilyMember_id == FamilyMember_id)
                  .Single();
 
-            int result = sp.Employee_id;
+            ViewBag.FamilyMember_id = sp.FamilyMember_id;
+
+            int result = sp.FamilyMember_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
@@ -625,7 +639,7 @@ namespace Watson.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Family_Info = sp.Employee_id;
+            ViewBag.sp = sp.FamilyMember_id;
             return View(sp);
         }
         
@@ -690,9 +704,6 @@ namespace Watson.Controllers
                 SSN = EmpNumber
             };
             ViewBag.EmpNumber = emp;
-
-            ViewBag.Family_Info = dep;
-            ViewBag.Employee = emp;
 
             int result = dep.Employee_id;
 
@@ -762,9 +773,6 @@ namespace Watson.Controllers
             };
             ViewBag.EmpNumber = emp;
 
-            ViewBag.Family_Info = dep;
-            ViewBag.Employee = emp;
-
             int result = dep.Employee_id;
 
             if (ModelState.IsValid)
@@ -830,7 +838,7 @@ namespace Watson.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Family_Info = dep;
+
             return View(dep);
         }
 
