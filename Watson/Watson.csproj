@@ -438,7 +438,6 @@
     <Content Include="Views\Spouse\DeleteSp.cshtml" />
     <Content Include="Views\Spouse\EditSp.cshtml" />
     <Content Include="Views\Spouse\SpDetail.cshtml" />
-    <Content Include="Views\Employee\EmpOverview.cshtml" />
     <Content Include="Views\Employee\FamilyInsurance.cshtml" />
     <Content Include="Views\Employee\EditEmp.cshtml" />
     <Content Include="Views\Employee\EmpContact.cshtml" />
@@ -484,6 +483,7 @@
     <Content Include="Views\Admin\EditEmpDep.cshtml" />
     <Content Include="Views\Admin\EmpDepDetail.cshtml" />
     <Content Include="Views\Admin\DeleteDep.cshtml" />
+    <Content Include="Views\Employee\EmpOverview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -35,25 +35,23 @@ namespace Watson.Controllers
             {
                 return View(db.Employees.Find(Employee_id));
             }
-
         }
 
         //GetEmployee
-        public JsonResult GetEmployee(int Employee_id, string empNumber, string FirstName, string LastName, string EmailAddress)
+        public ActionResult GetEmployee(int Employee_id, string empNumber, string FirstName, string LastName, string EmailAddress)
         {
-            var e = db.Employees.Find();
+            Employee e = db.Employees.Find();
 
-            e.SSN = empNumber;             
+            e.SSN = empNumber;
             e.FirstName = FirstName;
             e.LastName = LastName;
             e.EmailAddress = EmailAddress;
 
-            Employee_id = e.Employee_id;
+            ViewBag.Employee_id = e.Employee_id;
 
             int result = e.Employee_id;
-
+       
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-
         }
 
         //----------------------------------------------------------------------------------------
@@ -91,6 +89,8 @@ namespace Watson.Controllers
             e.LastName = LastName;
             e.DateOfBirth = DateOfBirth;
             e.Gender = Gender;
+
+            ViewBag.Employee_id = e.Employee_id;
 
             db.Employees.Add(e);
             db.SaveChanges();
@@ -185,7 +185,7 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.Employee = e.Employee_id;
+            ViewBag.Employee_id = e.Employee_id;
 
             return View(e);
         }
@@ -322,6 +322,8 @@ namespace Watson.Controllers
 
         public ActionResult FamilyOverview(int? Employee_id)
         {
+            ViewBag.Employee_id = Employee_id;
+
             var familyInfo = (from fi in db.Family_Info
                               where fi.Employee_id == Employee_id
                               select fi).ToList();
@@ -331,11 +333,12 @@ namespace Watson.Controllers
 
         public ActionResult FamilyEnrollment(int? Employee_id)
         {
+            ViewBag.Employee_id = Employee_id;
             return View();
         }
         
         //GetFamilyMember
-        public JsonResult GetFamilyMember(int Employee_id, int FamilyMember_id, string FirstName, string LastName,
+        public JsonResult GetFamilyMember(int? Employee_id, int FamilyMember_id, string FirstName, string LastName,
             string RelationshipToInsured, string EmpLastName, string EmpNumber, DateTime DateOfBirth, string MailingAddress,
             string PObox, string City, string State, string County, string ZipCode, string EmailAddress, string PhoneNumber,
             string CellPhone, string Gender, string Employer, string EmployerMailingAddress, string EmployerPObox,
@@ -370,6 +373,9 @@ namespace Watson.Controllers
             f.EmployerZipCode = EmployerZipCode;
             f.EmployerPhoneNumber = EmployerPhoneNumber;
 
+            ViewBag.FamilyMember_id = f.FamilyMember_id;
+            ViewBag.Employee_id = f.Employee_id;
+
             int result = f.Employee_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
@@ -394,6 +400,7 @@ namespace Watson.Controllers
             sp.DateOfBirth = DateOfBirth;
             sp.Gender = Gender;
 
+            ViewBag.Employee_id = sp.Employee_id;
             ViewBag.RelationshipToInsured = sp.RelationshipToInsured;
 
             if (ModelState.IsValid)
