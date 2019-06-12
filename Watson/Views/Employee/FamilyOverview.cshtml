@@ -1,7 +1,6 @@
 ﻿@model List<Watson.Models.Family_Info>
 @{
     ViewBag.Title = "FamilyOverview";
-    //ViewBag.Employee_id = "Employee_id";
 }
 <!DOCTYPE html>
 <html>
@@ -17,7 +16,6 @@
 <body>
     <h4>Family Overview</h4>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
-    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" />
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
@@ -69,7 +67,7 @@
         </p>
     </div>
     <p>
-        @Html.ActionLink("Back to List", "EmpOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
+        @Html.ActionLink("Back to List", "EmpOverview")
     </p>
 </body>
 </html>

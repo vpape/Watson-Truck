@@ -22,6 +22,21 @@
             <p></p>
             <p></p>
             <div class="form-group">
+                <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
+                <div class="col-md-10">
+                    <select id="RelationToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                        @if (ViewBag.spouseExist == false)
+                        {
+                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                        }
+                        else
+                        {
+                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
                     <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="" />

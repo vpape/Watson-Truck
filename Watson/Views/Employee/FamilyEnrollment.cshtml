@@ -15,6 +15,7 @@
 <body>
     <div class="container">
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
+        <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
         <h3>Family Member Selection</h3>
         <table class="table">
             <tbody>
@@ -81,37 +82,45 @@
     }
 </style>
 <script>
-    //var col = document.querySelectorAll(".collapsible");
-    //var i;
+    function SpouseAndOrDependent() {
+        var maritalStatus = document.querySelector("MaritalStatus").value;
+        var spouse = document.querySelector("SpouseEnrollment").value;
+        var dependent = document.querySelector("DependentEnrollment").value;
 
-
-    //for (i = 0; i < col.length; i++) {
-    //    col[i].addEventListener("click", function () {
-    //        this.classList.toggle("active");
-
-    //        var content = this.nextElementSibling;
-    //        if (content.style.display === "block") {
-    //            content.style.display = "none";
-    //        }
-    //        else {
-    //            content.style.display = "block";
-    //        }
-
-    //    });
-    //}
+        if (maritalStatus == "Single")
+        {
+            spouse.style.display = 'hidden';
+            dependent.style.display = 'hidden';
+        }
+        if (maritalStatus == "SinglewDep")
+        {
+            spouse.style.display = 'hidden';
+            dependent.style.display = 'visible';
+        }
+        if (maritalStatus == "Married")
+        {
+            spouse.style.display = 'visible';
+            dependent.style.display = 'hidden';
+        }
+        if (maritalStatus == "MarriedwDep")
+        {
+            spouse.style.display = 'visible';
+            dependent.style.display = 'visible';
+        }
+        else {
+            //spouse.style.display = 'none';
+            //dependent.style.display = 'block';
+        }
+    }
 
     var Employee_id;
 
     function SpouseEnrollment() {
         window.location.href = "/Employee/SpEnrollment?Employee_id=@ViewBag.Employee_id"
-
-        //*/?Employee_id=" + Employee_id;*/
     }
 
     function DependentEnrollment() {
         window.location.href = "/Employee/DepEnrollment?Employee_id=@ViewBag.Employee_id"
-
-        //*/?Employee_id=" + Employee_id;*/
     }
 
 </script>
