@@ -261,21 +261,21 @@
                 .catch(error => console.error(error))
 
             //fetch('SpEnrollmentNew', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
+            //    body: json.stringify(data), //must match 'content-type' header
             //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
             //    credentials: 'same-origin', //include, same-origin, *omit
             //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
+            //        'accept': 'application/json',
+            //        'user-agent': 'mozilla/4.0 mdn example',
             //        'content-type': 'application/json'
             //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            //    method: 'post', //*get, post, put, delete, etc...
             //    mode: 'same-origin', //no-cors, cors, *same-origin
             //    redirect: 'follow', //manual, *follow, error
             //    referrer: 'no-referrer', //*client, no-referrer
             //}).then(res => res.json())
-            //    .then(response => SecondStep(response))
-            //    .catch(error => console.error('Error:', error));
+            //    .then(response => FirstStep(response))
+            //    .catch(error => console.error('error:', error));
 
         })
 
@@ -355,20 +355,20 @@
 
     function FirstStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        //document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
         Employee_id = sp.data;
 
     }
 
     function SecondStep(sp) {
-        //document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
         Employee_id = sp.data;
     }
 
     function ThirdStep(sp) {
-        //document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        //document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
         Employee_id = sp.data;
     }

@@ -345,19 +345,15 @@ namespace Watson.Controllers
         }
         
         //GetFamilyMember
-        public JsonResult GetFamilyMember(int? Employee_id, int FamilyMember_id, string FirstName, string LastName,
+        public JsonResult GetFamilyMember(int Employee_id, string FirstName, string LastName,
             string RelationshipToInsured, string EmpLastName, string EmpNumber, DateTime DateOfBirth, string MailingAddress,
             string PObox, string City, string State, string County, string ZipCode, string EmailAddress, string PhoneNumber,
             string CellPhone, string Gender, string Employer, string EmployerMailingAddress, string EmployerPObox,
             string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
             ViewBag.Employee_id = Employee_id;
-            ViewBag.FamilyMember_id = FamilyMember_id;
 
-            var f = db.Family_Info
-                .Where(i => i.Employee_id == Employee_id)
-                .Where(i => i.FamilyMember_id == FamilyMember_id)
-                .Single();
+            var f = db.Family_Info.Find();
 
             f.FirstName = FirstName;
             f.LastName = LastName;
@@ -390,7 +386,7 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //SpEnrollment Method
-        public ActionResult SpEnrollment(int? Employee_id, string MaritalStatus, string RelationshipToInsured)
+        public ActionResult SpEnrollment(int Employee_id, string MaritalStatus, string RelationshipToInsured)
         {
             //var maritalStatus = new Employee()
             //{
@@ -405,7 +401,7 @@ namespace Watson.Controllers
         }
 
         //Create-SpouseEnrollment
-        public JsonResult SpEnrollmentNew(int Employee_id, int FamilyMember_id, string FirstName, string LastName, 
+        public JsonResult SpEnrollmentNew(int Employee_id, string FirstName, string LastName, 
             DateTime DateOfBirth, string Gender)
         {
             //Create an if statement that checks to see if there's already a record using FamilyMember_id
@@ -446,16 +442,15 @@ namespace Watson.Controllers
         }
 
         //SpContact Method
-        public ActionResult SpContact(int Employee_id, int FamilyMember_id)
+        public ActionResult SpContact(int Employee_id)
         {
             ViewBag.Employee_id = Employee_id;
-            ViewBag.FamilyMember_id = FamilyMember_id;
-
+  
             return View();
         }
 
         //Create-SpouseContact
-        public JsonResult SpEnrollmentContact(int Employee_id, int FamilyMember_id, string MailingAddress, string PObox, string City,
+        public JsonResult SpEnrollmentContact(int Employee_id, string MailingAddress, string PObox, string City,
             string State, string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, 
             string EmailAddress, string PhoneNumber, string CellPhone)
         {
@@ -488,21 +483,21 @@ namespace Watson.Controllers
         }
 
         //SpEmployment Method
-        public ActionResult SpEmployment(int Employee_id, int FamilyMember_id, string MaritalStatus)
+        public ActionResult SpEmployment(int? Employee_id, string MaritalStatus)
         {
             ViewBag.Employee_id = Employee_id;
-            ViewBag.FamilyMember_id = FamilyMember_id;
             ViewBag.MaritalStatus = MaritalStatus;
 
             return View();
         }
 
         //Create-SpouseEmployment
-        public JsonResult SpEmployment(int Employee_id, int FamilyMember_id, string MaritalStatus, string Employer, string EmployerAddress,
+        public JsonResult SpEmployment(int Employee_id, string MaritalStatus, string Employer, string EmployerAddress,
             string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
             Family_Info sp = new Family_Info();
 
+            ViewBag.Employee_id = Employee_id;
             ViewBag.MaritalStatus = MaritalStatus;
 
             sp.Employee_id = Employee_id;
