@@ -52,7 +52,7 @@ namespace Watson.Controllers
             ViewBag.Employee_id = Employee_id;
 
             int result = e.Employee_id;
-       
+
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
@@ -395,7 +395,7 @@ namespace Watson.Controllers
 
             ViewBag.Employee_id = Employee_id;
             ViewBag.MaritalStatus = MaritalStatus;
-            ViewBag.RelationshipToInsured = RelationshipToInsured;
+            ViewBag.RelationshipToInsured = RelationshipToInsured= "Spouse";
 
             return View();
         }
@@ -701,17 +701,21 @@ namespace Watson.Controllers
         }
         //----------------------------------------------------------------------------------------
 
-        public ActionResult DepEnrollment()
+        public ActionResult DepEnrollment(int Employee_id, string RelationshipToInsured)
         {
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.RelationshipToInsured = RelationshipToInsured = "Dependent";
+
             return View();
         }
 
         //Create-DepEnrollment
-        public JsonResult DepEnrollmentNew(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured,
+        public JsonResult DepEnrollmentNew(int Employee_id, string RelationshipToInsured,
             string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender, string EmpNumber)
         {
             Family_Info dep = new Family_Info();
 
+            dep.Employee_id = Employee_id;
             dep.RelationshipToInsured = RelationshipToInsured;
             dep.FirstName = DepFirstName;
             dep.LastName = DepLastName;
@@ -719,7 +723,6 @@ namespace Watson.Controllers
             dep.Gender = Gender;
 
             ViewBag.spouseExist = true;
-            ViewBag.MartialStatus = MaritalStatus;
             ViewBag.RelationshipToInsured = "Dependent";
 
             Employee e = db.Employees.Find(Employee_id);
@@ -737,12 +740,6 @@ namespace Watson.Controllers
             {
                 ViewBag.RelationshipToInsured = "Dependent";
             }
-
-            var emp = new Employee()
-            {
-                SSN = EmpNumber
-            };
-            ViewBag.EmpNumber = emp;
 
             int result = dep.Employee_id;
 

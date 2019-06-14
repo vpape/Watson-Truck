@@ -356,21 +356,17 @@
     function FirstStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        Employee_id = sp.data;
-
     }
 
     function SecondStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        Employee_id = sp.data;
     }
 
     function ThirdStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
-        Employee_id = sp.data;
     }
 
     function postData(url, data) {
