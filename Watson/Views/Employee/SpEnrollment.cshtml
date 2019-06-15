@@ -119,7 +119,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <button id="SpouseEnrollmentUpdateStepTwo" class="btn">Save</button>
+                    <button type="submit" id="SpouseEnrollmentUpdateStepTwo" class="btn">Save</button>
                 </div>
             </div>
         </div>
@@ -159,7 +159,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <input id="SpouseEnrollmentUpdateStepThree" type="submit" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
+                    <input type="submit" id="SpouseEnrollmentUpdateStepThree" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
                 </div>
             </div>
         </div>
@@ -261,33 +261,32 @@
                 .catch(error => console.error(error))
 
             //fetch('SpEnrollmentNew', {
-            //    body: json.stringify(data), //must match 'content-type' header
+            //    body: JSON.stringify(data), //must match 'Content-Type' header
             //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
             //    credentials: 'same-origin', //include, same-origin, *omit
             //    headers: {
-            //        'accept': 'application/json',
-            //        'user-agent': 'mozilla/4.0 mdn example',
+            //        'Accept': 'application/json',
+            //        'user-agent': 'Mozilla/4.0 MDN Example',
             //        'content-type': 'application/json'
             //    },
-            //    method: 'post', //*get, post, put, delete, etc...
+            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
             //    mode: 'same-origin', //no-cors, cors, *same-origin
             //    redirect: 'follow', //manual, *follow, error
             //    referrer: 'no-referrer', //*client, no-referrer
             //}).then(res => res.json())
             //    .then(response => FirstStep(response))
-            //    .catch(error => console.error('error:', error));
-
+            //    .catch(error => console.error('Error:', error));
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepTwo").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            MailingAddress = document.getElementsById("MailingAddress").value;
+            MailingAddress = document.getElementById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
             State = document.getElementById("State").value;
             ZipCode = document.getElementById("ZipCode").value;
             County = document.getElementById("County").value;
-            PhysicalAddress = document.getElementsById("PhysicalAddress").value;
+            PhysicalAddress = document.getElementById("PhysicalAddress").value;
             City2 = document.getElementById("City2").value;
             State2 = document.getElementById("State2").value;
             ZipCode2 = document.getElementById("ZipCode2").value;
@@ -317,13 +316,31 @@
                     console.log(data);
                     SecondStep(data);
                 })
-                .error(error => console.error(error))
+                .catch(error => console.error(error))
+
+            //fetch('SpEnrollmentContact', {
+            //    body: json.stringify(data), //must match 'content-type' header
+            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            //    credentials: 'same-origin', //include, same-origin, *omit
+            //    headers: {
+            //        'accept': 'application/json',
+            //        'user-agent': 'mozilla/4.0 mdn example',
+            //        'content-type': 'application/json'
+            //    },
+            //    method: 'post', //*get, post, put, delete, etc...
+            //    mode: 'same-origin', //no-cors, cors, *same-origin
+            //    redirect: 'follow', //manual, *follow, error
+            //    referrer: 'no-referrer', //*client, no-referrer
+            //}).then(res => res.json())
+            //    .then(response => SecondStep(response))
+            //    .catch(error => console.error('error:', error));
+
 
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            Employer = document.getElementsById("Employer").value;
+            Employer = document.getElementById("Employer").value;
             EmployerAddress = document.getElementById("EmployerAddress").value;
             EmployerPObox = document.getElementById("EmployerPObox").value;
             EmployerCity = document.getElementById("EmployerCity").value;
@@ -360,13 +377,16 @@
 
     function SecondStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
+
     }
 
     function ThirdStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-        document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
+      
     }
 
     function postData(url, data) {

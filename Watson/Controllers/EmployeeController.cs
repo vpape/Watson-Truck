@@ -404,7 +404,7 @@ namespace Watson.Controllers
         public JsonResult SpEnrollmentNew(int Employee_id, string FirstName, string LastName, 
             DateTime DateOfBirth, string Gender)
         {
-            //Create an if statement that checks to see if there's already a record using FamilyMember_id
+            //Create an if statement that checks to see if there's already a record
 
             //var output = (from fi in db.Family_Info
             //              where fi.FamilyMember_id == FamilyMember_id
