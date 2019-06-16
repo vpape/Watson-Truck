@@ -341,26 +341,26 @@ namespace Watson.Controllers
             ViewBag.Employee_id = Employee_id;
 
             Employee e = db.Employees.Find(Employee_id);
-            if (e.MaritalStatus == "Single")
-            {
-                ViewBag.spouseExist = false;
-                ViewBag.MaritalStatus = "Single";
-            }
-            else if (e.MaritalStatus == "SinglewDep")
-            {
-                ViewBag.spouseExist = false;
-                ViewBag.MaritalStatus = "SinglewDep";
-            }
-            else if (e.MaritalStatus == "Married")
-            {
-                ViewBag.spouseExist = true;
-                ViewBag.MaritalStatus = "Married";
-            }
-            else
-            {
-                ViewBag.spouseExist = true;
-                ViewBag.MaritalStatus = "MarriedwDep";
-            }
+            //if (e.MaritalStatus == "Single")
+            //{
+            //    ViewBag.spouseExist = false;
+            //    ViewBag.MaritalStatus = "Single";
+            //}
+            //else if (e.MaritalStatus == "SinglewDep")
+            //{
+            //    ViewBag.spouseExist = false;
+            //    ViewBag.MaritalStatus = "SinglewDep";
+            //}
+            //else if (e.MaritalStatus == "Married")
+            //{
+            //    ViewBag.spouseExist = true;
+            //    ViewBag.MaritalStatus = "Married";
+            //}
+            //else
+            //{
+            //    ViewBag.spouseExist = true;
+            //    ViewBag.MaritalStatus = "MarriedwDep";
+            //}
 
 
             return View();

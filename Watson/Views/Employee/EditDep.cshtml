@@ -23,18 +23,18 @@
             <p></p>
             <div class="form-group">
                 <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
-                <div class="col-md-10">
-                    <select id="RelationToInsured" name="RelationshipToInsured" @*onchange=" return SpouseOrDependent()"*@ class="form-control" disabled>
+                @*<div class="col-md-10 col-md-offset-2">
+                    <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
                         @if (ViewBag.spouseExist == false)
                         {
-                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.Family_Info.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                            <option id="Spouse"  name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
                         }
                         else
                         {
-                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.Family_Info.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
                         }
                     </select>
-                </div>
+                </div>*@
             </div>
             <div class="form-group">
                 <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
@@ -110,12 +110,11 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" id="EditDepEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
+                        <button type="submit" id="EditDepEnrollmentUpdate" @*onclick="EditDepEnrollmentUpdate()"*@ class="btn">Save</button>
                         <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -196,27 +195,6 @@
         padding-left: 0;
     }
 </style>
-
-<script>
-    var col = document.querySelectorAll(".collapsible");
-    var i;
-    var Employee_id;
-
-    for (i = 0; i < col.length; i++) {
-        col[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            }
-            else {
-                content.style.display = "block";
-            }
-
-        });
-    }
-</script>
 
 <html>
 <head>
@@ -300,7 +278,7 @@
     </script>
 </head>
 <body>
-    <form id="dependentSelectForm" action="\Home\DependentPoster" method="post">
+    @*<form id="dependentSelectForm" action="\Home\DependentPoster" method="post">
         <input type="text" name="fname1" id="fname1" />
         <input type="text" name="lname1" id="lname1" />
         <input type="date" name="dob1" id="dob1" />
@@ -308,29 +286,49 @@
         <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
         <br id="br1" />
 
-        <input type="submit" value="Submit" id="DepEnrollmentUpdate" @*id="submit"*@ style="position:absolute;top:80px;" />
+        <input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
         <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">
-    </form>
+    </form>*@
 </body>
 </html>
 
 <script>
-    //function SpouseOrDependent() {
-    //    var choice = document.getElementById("RelationToInsured")
-    //    var dependent = document.getElementById("divDependentInfo")
-    //    var spouse = document.getElementById("divSpouseInfo")
+    var col = document.querySelectorAll(".collapsible");
+    var i;
+    var Employee_id;
+
+    for (i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            }
+            else {
+                content.style.display = "block";
+            }
+
+        });
+    }
+
+          //function SpouseOrDependent() {
+
+    //    var choice = document.getElementById("RelationshipToInsured")
+    //    var spouse = document.getElementById("Spouse")
+    //    var dependent = document.getElementById("Dependent")
+
     //    if (choice.value == "Spouse")
     //    {
-    //        spouse.style.display = 'block';
+    //        spouse.style.display = 'visible';
     //        dependent.style.display = 'none';
     //    }
     //    else
     //    {
     //        spouse.style.display = 'none';
-    //        dependent.style.display = 'block';
+    //        dependent.style.display = 'none';
 
     //    }
-    //}
 
     //function CoveredByOtherIns() {
     //    if (document.getElementById("CoveredByOther").checked) {

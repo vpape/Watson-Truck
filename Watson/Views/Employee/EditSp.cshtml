@@ -23,18 +23,18 @@
             <p></p>
             <div class="form-group" id="divRelationshipToInsured">
                 <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
-                <div class="col-md-10">
-                    <select id="RelationToInsured" name="RelationShipToInsured" @*onchange="SpouseOrDependent()"*@ class="form-control" disabled>
-                        @if (ViewBag.spouseExist == false)
-                        {
-                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                        }
-                        else
-                        {
-                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                        }
-                    </select>
-                </div>
+                @*<div class="col-md-10 col-md-offset-2">
+            <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                @if (ViewBag.spouseExist == false)
+                {
+                    <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                }
+                else
+                {
+                    <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                }
+            </select>
+        </div>*@
             </div>
             <div class="form-group">
                 <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
@@ -274,26 +274,6 @@
     }
 </style>
 
-@*<script>
-        function SpouseOrDependent()
-        {
-            var choice = document.getElementById("RelationToInsured").value;
-            var spouse = document.getElementById("divSpouseInfo").value;
-            var dependent = document.getElementById("divDependentInfo").value;
-
-            if (choice == "Spouse")
-            {
-                spouse.style.display = 'block';
-                dependent.style.display = 'none';
-
-            }
-            else {
-                spouse.style.display = 'none';
-                dependent.style.display = 'block';
-            }
-        }
-    </script>*@
-
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
@@ -311,6 +291,26 @@
 
         });
     }
+
+    //function SpouseOrDependent() {
+
+    //    var choice = document.getElementById("RelationshipToInsured")
+    //    var spouse = document.getElementById("Spouse")
+    //    var dependent = document.getElementById("Dependent")
+
+    //    if (choice.value == "Spouse")
+    //    {
+    //        spouse.style.display = 'visible';
+    //        dependent.style.display = 'none';
+    //    }
+    //    else
+    //    {
+    //        spouse.style.display = 'none';
+    //        dependent.style.display = 'none';
+
+    //    }
+    //}
+
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EditSpEnrollmentUpdate").addEventListener("click", function () {

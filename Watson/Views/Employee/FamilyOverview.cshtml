@@ -16,6 +16,7 @@
 <body>
     <h4>Family Overview</h4>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
+    <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
@@ -37,7 +38,7 @@
                         </span>
                     </td>
                     <td>
-                        <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.Raw(item.RelationshipToInsured)" readonly />
+                        <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.Raw(ViewBag.RelationshipToInsured)" readonly />
                     </td>
                     <td>
                         <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.Raw(item.FirstName)" readonly />

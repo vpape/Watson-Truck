@@ -17,10 +17,30 @@
         <hr />
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
         <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
+        <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
         <div class="collapsible" id="FirstStep">Spouse Enrollment</div>
-        <div id="divEmpEnrollment" class="content">
+        <div id="divSpEnrollment" class="content">
             <p></p>
             <p></p>
+            <div class="form-group" id="divRelationshipToInsured">
+                <label for="RelationshipToInsured" class="col-md-2 control-label">Relation To Employee:</label>
+                <div class="col-md-10">
+                    <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
+                </div>
+                @*<div class="col-md-10 col-md-offset-2">
+                    <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                        @if (ViewBag.spouseExist == false)
+                        {
+                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                        }
+                        else
+                        {
+                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                        }
+                    </select>
+                </div>*@
+            </div>
+
             <div class="form-group">
                 <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
@@ -228,6 +248,26 @@
 
         });
     }
+
+
+    //function SpouseOrDependent() {
+
+    //    var choice = document.getElementById("RelationshipToInsured")
+    //    var spouse = document.getElementById("Spouse")
+    //    var dependent = document.getElementById("Dependent")
+
+    //    if (choice.value == "Spouse")
+    //    {
+    //        spouse.style.display = 'visible';
+    //        dependent.style.display = 'none';
+    //    }
+    //    else
+    //    {
+    //        spouse.style.display = 'none';
+    //        dependent.style.display = 'none';
+
+    //    }
+    //}
 
     function HidePhysicalAddress() {
         document.getElementById("divPhysicalAddress").style.display = "none";
