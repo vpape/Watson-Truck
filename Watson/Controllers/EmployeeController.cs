@@ -388,11 +388,6 @@ namespace Watson.Controllers
         //SpEnrollment Method
         public ActionResult SpEnrollment(int Employee_id, string MaritalStatus, string RelationshipToInsured)
         {
-            //var maritalStatus = new Employee()
-            //{
-            //    MaritalStatus = MaritalStatus
-            //};
-
             ViewBag.Employee_id = Employee_id;
             ViewBag.MaritalStatus = MaritalStatus;
             ViewBag.RelationshipToInsured = RelationshipToInsured= "Spouse";
@@ -492,7 +487,7 @@ namespace Watson.Controllers
         }
 
         //Create-SpouseEmployment
-        public JsonResult SpEmployment(int Employee_id, string MaritalStatus, string Employer, string EmployerAddress,
+        public JsonResult SpEnrollmentEmployment(int Employee_id, string MaritalStatus, string Employer, string EmployerAddress,
             string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
             Family_Info sp = new Family_Info();
