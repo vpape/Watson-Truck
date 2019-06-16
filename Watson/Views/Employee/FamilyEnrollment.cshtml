@@ -23,6 +23,14 @@
                     <td>
                         <div id="SpouseEnrollment">
                             <button type="button" class="button" onclick="return SpouseEnrollment(@ViewBag.Employee_id)">Spouse</button>
+                            @if (ViewBag.spouseExist == true)
+                            {
+                                
+                            }
+                            else
+                            {
+                                
+                            }
                         </div>
                     </td>
                 </tr>
@@ -30,6 +38,14 @@
                     <td>
                         <div id="DependentEnrollment">
                             <button type="button" class="button" onclick="return DependentEnrollment(@ViewBag.Employee_id)">Dependent</button>
+                            @if (ViewBag.spouseExist == false)
+                            {
+
+                            }
+                            else
+                            {
+
+                            }
                         </div>
                     </td>
                 </tr>
@@ -82,42 +98,66 @@
     }
 </style>
 <script>
-    function SpouseAndOrDependent() {
-        var maritalStatus = document.querySelector("MaritalStatus").value;
-        var spouse = document.querySelector("SpouseEnrollment").value;
-        var dependent = document.querySelector("DependentEnrollment").value;
 
-        if (maritalStatus == "Single")
+    document.addEventListener("DOMContentLoaded", function () {
+
+        var maritalStatus = document.getElementById("MaritalStatus").value;
+        var spouse = document.getElementById("SpouseEnrollment");
+        var dependent = document.getElementById("DependentEnrollment");
+
+        if (maritalStatus.value == "Single")
         {
             spouse.style.display = 'hidden';
             dependent.style.display = 'hidden';
         }
-        if (maritalStatus == "SinglewDep")
+        if (maritalStatus.value == "SinglewDep")
         {
             spouse.style.display = 'hidden';
             dependent.style.display = 'visible';
         }
-        if (maritalStatus == "Married")
+        if (maritalStatus.value == "Married")
         {
             spouse.style.display = 'visible';
             dependent.style.display = 'hidden';
         }
-        if (maritalStatus == "MarriedwDep")
+        if (maritalStatus.value == "MarriedwDep")
         {
             spouse.style.display = 'visible';
             dependent.style.display = 'visible';
         }
-    }
+    })
 
-    var Employee_id;
+        //function SpouseOrDependent() {
+    //    var choice = document.getElementById("RelationToInsured")
+    //    var dependent = document.getElementById("divDependentInfo")
+    //    var spouse = document.getElementById("divSpouseInfo")
+    //    if (choice.value == "Spouse")
+    //    {
+    //        spouse.style.display = 'block';
+    //        dependent.style.display = 'none';
+    //    }
+    //    else
+    //    {
+    //        spouse.style.display = 'none';
+    //        dependent.style.display = 'block';
+
+    //    }
+    //}
+
+
 
     function SpouseEnrollment() {
+
         window.location.href = "/Employee/SpEnrollment?Employee_id=@ViewBag.Employee_id"
     }
 
     function DependentEnrollment() {
+
+
         window.location.href = "/Employee/DepEnrollment?Employee_id=@ViewBag.Employee_id"
     }
+
+
 
 </script>
 

@@ -339,7 +339,29 @@ namespace Watson.Controllers
         public ActionResult FamilyEnrollment(int? Employee_id, string MaritalStatus)
         {
             ViewBag.Employee_id = Employee_id;
-            ViewBag.MaritalStatus = MaritalStatus;
+
+            Employee e = db.Employees.Find(Employee_id);
+            if (e.MaritalStatus == "Single")
+            {
+                ViewBag.spouseExist = false;
+                ViewBag.MaritalStatus = "Single";
+            }
+            else if (e.MaritalStatus == "SinglewDep")
+            {
+                ViewBag.spouseExist = false;
+                ViewBag.MaritalStatus = "SinglewDep";
+            }
+            else if (e.MaritalStatus == "Married")
+            {
+                ViewBag.spouseExist = true;
+                ViewBag.MaritalStatus = "Married";
+            }
+            else
+            {
+                ViewBag.spouseExist = true;
+                ViewBag.MaritalStatus = "MarriedwDep";
+            }
+
 
             return View();
         }
