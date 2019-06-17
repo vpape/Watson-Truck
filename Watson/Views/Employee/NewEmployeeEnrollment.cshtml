@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Employee Enrollment</title>
+    <title>New Employee Enrollment</title>
 </head>
 <body>
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible" id="FirstStep">Enrollment</div>
+        <div class="collapsible" id="FirstStep">New Employee Enrollment</div>
         <div id="divEmpEnrollment" class="content">
             <p></p>
             <div class="form-group">
@@ -99,7 +99,7 @@
     <div class="form-horizontal">
         <p></p>
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
-        <div class="collapsible" id="SecondStep">Contact Information</div>
+        <div class="collapsible" id="SecondStep">New Employee Contact</div>
         <div id="divEmpEnrollment" class="content">
             <p></p>
             <div id="divMailingAddress">
@@ -167,6 +167,9 @@
             </div>
         </div>
     </div>
+    <p>
+        @Html.ActionLink("Back to Enrollment Selection", "NewEnrollmentSelection")
+    </p>
 </body>
 </html>
 
@@ -260,7 +263,7 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Group_Health/GrpHealthEnrollment/" + Employee_id;
+                    window.location.href = "/Group_Health/NewGrpHealthEnrollment/" + Employee_id;
 
                 }
                 else {
@@ -280,7 +283,7 @@
 
                 if (alert == true) {
                
-                    window.location.href = "/Employee/FamilyEnrollment/" + Employee_id;
+                    window.location.href = "/Employee/NewFamilyEnrollment/" + Employee_id;
                     
                 }
                 else {

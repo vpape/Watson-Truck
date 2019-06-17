@@ -1,7 +1,4 @@
 ﻿@model Watson.Models.Family_Info
-@{
-    ViewBag.Title = "DepEnrollment";
-}
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,35 +7,35 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Dependent Enrollment</title>
+    <title>New Dependent Enrollment</title>
 </head>
 <body>
     <div class="form-horizontal">
         <div id="divDepEnrollment">
             <hr />
             <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
-            <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
-            <div class="collapsible" id="FirstStep">Dependent Enrollment</div>
+            @*<input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />*@
+            <div class="collapsible" id="FirstStep">New Dependent Enrollment</div>
             <div class="content" id="dependentSelectForm">
                 <p></p>
                 <p></p>
                 <div class="form-group" id="divRelationshipToInsured">
                     <label for="RelationshipToInsured" class="col-md-2 control-label">Relation To Employee:</label>
                     <div class="col-md-10">
-                        <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
+                        @*<input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />*@
                     </div>
                     @*<div class="col-md-10 col-md-offset-2">
-                            <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                                @if (ViewBag.spouseExist == false)
-                                {
-                                    <option id="Spouse"  name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                                }
-                                else
-                                {
-                                    <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                                }
-                            </select>
-                        </div>*@
+                    <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                        @if (ViewBag.spouseExist == false)
+                        {
+                            <option id="Spouse"  name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                        }
+                        else
+                        {
+                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                        }
+                    </select>
+                </div>*@
                 </div>
 
                 <div class="form-group">
@@ -79,7 +76,7 @@
         </div>
     </div>
     <p>
-        @Html.ActionLink("Back to Family Overview", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
+        @Html.ActionLink("Back to Enrollment Selection", "NewEnrollmentSelection")
     </p>
 </body>
 </html>
@@ -97,9 +94,9 @@
         font-size: 15px;
     }
 
-    .active, .collapsible:hover {
-        background-color: #555;
-    }
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
 
     .content {
         padding: 0 18px;
@@ -207,16 +204,16 @@
 </head>
 <body>
     @*<form id="dependentSelectForm" action="\Home\DependentPoster" method="post">
-        <input type="text" name="fname1" id="fname1" />
-        <input type="text" name="lname1" id="lname1" />
-        <input type="date" name="dob1" id="dob1" />
+            <input type="text" name="fname1" id="fname1" />
+            <input type="text" name="lname1" id="lname1" />
+            <input type="date" name="dob1" id="dob1" />
 
-        <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
-        <br id="br1" />
+            <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
+            <br id="br1" />
 
-        <input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
-        <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">
-    </form>*@
+            <input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
+            <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">
+        </form>*@
 </body>
 </html>
 
@@ -311,7 +308,4 @@
         //}) //parses response to JSON
     }
 </script>
-
-
-
 

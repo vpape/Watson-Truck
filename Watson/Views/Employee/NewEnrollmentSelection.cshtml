@@ -6,40 +6,40 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Enrollment Selection</title>
+    <title>New Enrollment Selection</title>
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
     <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
     <div class="container">
-        <h3>Enrollment Selection</h3>
+        <h3>New Enrollment Selection</h3>
         <div id="EnrollmentSelection">
             <table class="table-bordered" align="center">
                 <tr>
                     <td>
                         <div id="NewEmployeeEnrollment">
-                            <button type="button" class="button" onclick="return EmployeeEnrollment()">Employee Enrollment</button>
+                            <button type="button" class="button" onclick="return NewEmployeeEnrollment()">New Employee Enrollment</button>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div id="FamilyEnrollment">
-                            <button type="button" class="button" onclick="return FamilyEnrollment()">Family Enrollment</button>
+                            <button type="button" class="button" onclick="return NewFamilyEnrollment(@ViewBag.Employee_id)">New Family Enrollment</button>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div id="GroupHealthEnrollment">
-                            <button type="button" class="button" onclick="return GrpHealthEnrollment()">Group Health Enrollment</button>
+                            <button type="button" class="button" onclick="return NewGrpHealthEnrollment(@ViewBag.Employee_id)">New Group Health Enrollment</button>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div id="LifeInsuranceEnrollment">
-                            <button type="button" class="button" onclick="return LifeInsuranceEnrollment()">Life Insurance Enrollment</button>
+                            <button type="button" class="button" onclick="return NewLifeInsuranceEnrollment(@ViewBag.Employee_id)">New Life Insurance Enrollment</button>
                         </div>
                     </td>
                 </tr>
@@ -65,9 +65,9 @@
         font-size: 15px;
     }
 
-    .active, .button:hover {
-        background-color: blue;
-    }
+        .active, .button:hover {
+            background-color: blue;
+        }
 
     .content {
         padding: 0 18px;
@@ -85,7 +85,6 @@
     table {
         border-collapse: collapse;
         width: 75%;
-   
     }
 
     div {
@@ -94,7 +93,7 @@
 </style>
 
 <script>
-    function EmployeeEnrollment() {
+    function NewEmployeeEnrollment() {
         window.location.href = "/Employee/NewEmployeeEnrollment";
 
     }
@@ -116,22 +115,22 @@
             }
         })
 
-        window.location.href = "/Employee/FamilyEnrollment?Employee_id=@ViewBag.Employee_id";
+        window.location.href = "/Employee/NewFamilyEnrollment";
+    }
+
+    function NewFamilyEnrollment() {
+        window.location.href = "/Employee/NewFamilyEnrollment";
 
     }
 
-    function FamilyEnrollment() {
-        window.location.href = "/Employee/FamilyEnrollment?Employee_id=@ViewBag.Employee_id";
+    function NewGrpHealthEnrollment() {
+
+        window.location.href = "/Group_Health/NewGrpHealthEnrollment";
     }
 
-    function GrpHealthEnrollment() {
-        window.location.href = "/Group_Health/GrpHealthEnrollment?Employee_id=@ViewBag.Employee_id";
-    }
+    function NewLifeInsuranceEnrollment() {
 
-    function LifeInsuranceEnrollment() {
-        window.location.href = "/Life_Insurance/LifeInsEnrollment?Employee_id=@ViewBag.Employee_id";
+        window.location.href = "/Life_Insurance/NewLifeInsEnrollment";
     }
 
 </script>
-
-

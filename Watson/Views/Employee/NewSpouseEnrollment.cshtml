@@ -1,6 +1,4 @@
-﻿@{
-    ViewBag.Title = "SpEnrollment";
-}
+﻿@model Watson.Models.Family_Info
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,22 +7,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Spouse Enrollment</title>
+    <title>New Spouse Enrollment</title>
 </head>
 <body>
     <div class="form-horizontal">
         <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
-        @*<input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value=@ViewBag.MaritalStatus />
-            <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value=@ViewBag.RelationshipToInsured />*@
-        <div class="collapsible" id="FirstStep">Spouse Enrollment</div>
-        <div id="divEmpEnrollment" class="content">
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
+        @*<input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />*@
+        @*<input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />*@
+        <div class="collapsible" id="FirstStep">New Spouse Enrollment</div>
+        <div id="divSpEnrollment" class="content">
             <p></p>
             <p></p>
-            <div class="form-group">
-                <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
+            <div class="form-group" id="divRelationshipToInsured">
+                <label for="RelationshipToInsured" class="col-md-2 control-label">Relation To Employee:</label>
                 <div class="col-md-10">
-                    <select id="RelationToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                    @*<input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />*@
+                </div>
+                @*<div class="col-md-10 col-md-offset-2">
+                    <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
                         @if (ViewBag.spouseExist == false)
                         {
                             <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
@@ -34,8 +35,9 @@
                             <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
                         }
                     </select>
-                </div>
+                </div>*@
             </div>
+
             <div class="form-group">
                 <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
@@ -67,7 +69,6 @@
             <div class="form-group">
                 <div class="col-md-offset-11">
                     <button type="submit" id="SpouseEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
-                    @*<input id="Submit" type="submit" onclick="SpouseEnrollmentUpdate();" value="Save" class="btn btn-primary" />*@
                 </div>
             </div>
         </div>
@@ -75,7 +76,7 @@
     @* Spouse Contact *@
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible" id="SecondStep">Spouse Contact</div>
+        <div class="collapsible" id="SecondStep">New Spouse Contact</div>
         <div id="divSpEnrollment" class="content">
             <p></p>
             <p></p>
@@ -109,15 +110,9 @@
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
                         <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="" />
-                        <input type="text" id="City2" class="form-control" placeholder="City" name="City" value="" />
-                        <input type="text" id="State2" class="form-control" placeholder="State" name="State" value="" />
-                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="County" class="col-md-2 control-label">County:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="County2" class="form-control" placeholder="County2" name="County" value="" />
+                        <input type="text" id="City2" class="form-control" placeholder="City" name="CityTwo" value="" />
+                        <input type="text" id="State2" class="form-control" placeholder="State" name="StateTwo" value="" />
+                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCodeTwo" value="" />
                     </div>
                 </div>
             </div>
@@ -141,7 +136,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <button id="SpouseEnrollmentUpdateStepTwo" class="btn">Save</button>
+                    <button type="submit" id="SpouseEnrollmentUpdateStepTwo" class="btn">Save</button>
                 </div>
             </div>
         </div>
@@ -149,7 +144,7 @@
     @* Spouse Employment *@
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible" id="ThirdStep">Spouse Employment</div>
+        <div class="collapsible" id="ThirdStep">New Spouse Employment</div>
         <div class="content">
             <p></p>
             <p></p>
@@ -162,9 +157,9 @@
                 </div>
                 <div id="divEmployerAddress">
                     <div class="form-group">
-                        <label for="EmployerMailingAddress" class="col-md-2 control-label">Employer Address:</label>
+                        <label for="EmployerAddress" class="col-md-2 control-label">Employer Address:</label>
                         <div class="col-md-10">
-                            <input type="text" id="EmployerMailingAddress" class="form-control" placeholder="Street" name="EmployerMailingAddress" value="" />
+                            <input type="text" id="EmployerAddress" class="form-control" placeholder="Street" name="EmployerMailingAddress" value="" />
                             <input type="text" id="EmployerPObox" class="form-control" placeholder="PO Box" name="EmployerPObox" />
                             <input type="text" id="EmployerCity" class="form-control" placeholder="City" name="EmployerCity" value="" />
                             <input type="text" id="EmployerState" class="form-control" placeholder="State" name="EmployerState" value="" />
@@ -181,11 +176,15 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <input id="SpouseEnrollmentUpdateStepThree" type="submit" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
+                    <input type="submit" id="SpouseEnrollmentUpdateStepThree" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
                 </div>
             </div>
         </div>
     </div>
+    <p>
+        @Html.ActionLink("Back to Enrollment Selection", "NewEnrollmentSelection")
+    </p>
+
 </body>
 </html>
 
@@ -203,7 +202,7 @@
     }
 
         .active, .collapsible:hover {
-            background-color: #555;
+            background-color: blue;
         }
 
     .content {
@@ -213,40 +212,26 @@
         background-color: #f1f1f1;
     }
 
-    .btn {
-        background-color: #333;
-        color: white;
-    }
-
     .button {
         text-align: right;
     }
 
-    a {
-        text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
+    .btn:hover {
+        background-color: blue;
+        color: white;
     }
 
-        a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-    .phone-number .col-xs-3::after {
-        content: "-";
-        position: absolute;
-        right: 5px;
-        color: black;
-        border: 0px solid;
-        top: 8px;
+    a {
+        text-decoration: none;
+        display: inline-flex;
+        padding: 8px 8px;
     }
 </style>
 
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
-    var emp_id;
+    var Employee_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -261,29 +246,6 @@
         });
     }
 
-    //if onclick= SpouseAddress() is 'yes', then employee contact info will populate....otherwise spouse will
-    //need to fill out information. How to submit employee contact info to family member db
-
-    //function SpouseAddress() {
-
-    //    var spouse = document.getElementById('divSpContact')
-    //    var employee = document.getElementById('divEmpContact')
-
-    //    div.style.visibility = (div.style.visibility == 'hidden') ? 'visible' : 'hidden';
-
-    //    if (spouse.value == "yes") {
-
-    //        spouse.style.display = 'none';
-    //        employee.style.display = 'block';
-
-    //    }
-    //    else {
-    //        spouse.style.display = 'block';
-    //        employee.style.display = 'none';
-
-    //    }
-    //}
-
     function HidePhysicalAddress() {
         document.getElementById("divPhysicalAddress").style.display = "none";
     }
@@ -294,16 +256,14 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
-            //RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
-            //EmpNumber = document.getElementById("EmpNumber").value;
+            Employee_id = document.getElementById("Employee_id").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
             Gender = document.getElementById("Gender").value;
 
             var data = {
-                //"RelationshipToInsured": RelationshipToInsured,
-                //"EmpNumber": EmpNumber,
+                "Employee_id": Employee_id,
                 "FirstName": FirstName,
                 "LastName": LastName,
                 "DateOfBirth": DateOfBirth,
@@ -311,48 +271,32 @@
 
             }
 
-            //var ret = postData('SpEnrollmentNew', data)
-            //    .then(data => { console.log(data);
-            //                  FirstStep(data);
-            //                  })
-            //    .catch(error => console.error(error))
-
-            fetch('SpEnrollmentNew', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => FirstStep(response))
-                .catch(error => console.error('Error:', error));
+            var ret = postData('SpEnrollmentNew', data)
+                .then(data => {
+                    console.log(data);
+                    FirstStep(data);
+                })
+                .catch(error => console.error(error))
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            MailingAddress = document.getElementsById("MailingAddress").value;
+            Employee_id = document.getElementById("Employee_id").value;
+            MailingAddress = document.getElementById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
             State = document.getElementById("State").value;
             ZipCode = document.getElementById("ZipCode").value;
             County = document.getElementById("County").value;
-            PhysicalAddress = document.getElementsById("PhysicalAddress").value;
+            PhysicalAddress = document.getElementById("PhysicalAddress").value;
             City2 = document.getElementById("City2").value;
             State2 = document.getElementById("State2").value;
             ZipCode2 = document.getElementById("ZipCode2").value;
-            County2 = document.getElementById("County2").value;
             EmailAddress = document.getElementById("EmailAddress").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             CellPhone = document.getElementById("CellPhone").value;
 
             var data = {
-                "Employee_id": emp_id,
+                "Employee_id": Employee_id,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
@@ -363,7 +307,6 @@
                 "City2": City2,
                 "State2": State2,
                 "ZipCode2": ZipCode2,
-                "County2": County2,
                 "EmailAddress": EmailAddress,
                 "PhoneNumber": PhoneNumber,
                 "CellPhone": CellPhone,
@@ -374,7 +317,7 @@
             //        console.log(data);
             //        SecondStep(data);
             //    })
-            //    .error(error => console.error(error))
+            //    .catch(error => console.error(error))
 
             fetch('SpEnrollmentContact', {
                 body: JSON.stringify(data), //must match 'Content-Type' header
@@ -394,18 +337,18 @@
                 .catch(error => console.error('Error:', error));
         })
 
-        document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener(function () {
-            Employer = document.getElementsById("Employer").value;
+        document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
+            Employer = document.getElementById("Employer").value;
             EmployerAddress = document.getElementById("EmployerAddress").value;
-            PEmployerPOboxbox3 = document.getElementById("EmployerPObox").value;
+            EmployerPObox = document.getElementById("EmployerPObox").value;
             EmployerCity = document.getElementById("EmployerCity").value;
             EmployerState = document.getElementById("EmployerState").value;
             EmployerZipCode = document.getElementById("EmployerZipCode").value;
             EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
 
-
             var data = {
-                "Employee_id": emp_id,
+                "Employee_id": Employee_id,
                 "Employer": Employer,
                 "EmployerAddress": EmployerAddress,
                 "EmployerPObox": EmployerPObox,
@@ -415,33 +358,47 @@
                 "EmployerPhoneNumber": EmployerPhoneNumber,
             }
 
-            var ret = postData('SpEmploymentUpdate', data)
-                .then(data => {
-                    console.log(data);
-                    ThirdStep(data);
-                })
-                .catch(error => console.error(error))
+            //var ret = postData('SpEnrollmentEmployment', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        ThirdStep(data);
+            //    })
+            //    .catch(error => console.error(error))
+
+            fetch('SpEnrollmentEmployment', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => ThirdStep(response))
+                .catch(error => console.error('Error:', error));
         })
 
     })
 
     function FirstStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-        emp_id = sp.data;
-
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
+        Employee_id = sp.data;
     }
 
     function SecondStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
     }
 
     function ThirdStep(sp) {
-        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-        document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
     }
 
     function postData(url, data) {
@@ -470,7 +427,4 @@
         //}) //parses response to JSON
     }
 </script>
-
-
-
 

@@ -1,7 +1,4 @@
-﻿@model List<Watson.Models.Family_Info>
-@{
-    ViewBag.Title = "FamilyEnrollment";
-}
+﻿
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,42 +7,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Family Member Enrollment</title>
+    <title>New Family Member Enrollment</title>
 </head>
 <body>
     <div class="container">
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
         <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
-        <h3>Family Member Selection</h3>
+        <h3>New Family Member Selection</h3>
         <table class="table">
             <tbody>
                 <tr>
                     <td>
                         <div id="SpouseEnrollment">
-                            <button type="button" class="button" onclick="return SpouseEnrollment(@ViewBag.Employee_id)">Spouse</button>
-                            @*@if (ViewBag.spouseExist == true)
-                            {
-                                
-                            }
-                            else
-                            {
-                                
-                            }*@
+                            <button type="button" class="button" onclick="return NewSpouseEnrollment(@ViewBag.Employee_id)">Spouse</button>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div id="DependentEnrollment">
-                            <button type="button" class="button" onclick="return DependentEnrollment(@ViewBag.Employee_id)">Dependent</button>
-                            @*@if (ViewBag.spouseExist == false)
-                            {
-
-                            }
-                            else
-                            {
-
-                            }*@
+                            <button type="button" class="button" onclick="return NewDependentEnrollment(@ViewBag.Employee_id)">Dependent</button>
                         </div>
                     </td>
                 </tr>
@@ -53,7 +34,7 @@
         </table>
     </div>
     <p>
-        @Html.ActionLink("Back to Family Overview", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
+        @Html.ActionLink("Back to Enrollment Selection", "NewEnrollmentSelection")
     </p>
 </body>
 </html>
@@ -127,17 +108,14 @@
         }
     })
 
-    function SpouseEnrollment() {
+    function NewSpouseEnrollment() {
 
-        window.location.href = "/Employee/SpEnrollment?Employee_id=@ViewBag.Employee_id";
+        window.location.href = "/Employee/NewSpouseEnrollment";
     }
 
-    function DependentEnrollment() {
+    function NewDependentEnrollment() {
 
-
-        window.location.href = "/Employee/DepEnrollment?Employee_id=@ViewBag.Employee_id";
+        window.location.href = "/Employee/NewDependentEnrollment";
     }
 
 </script>
-
-

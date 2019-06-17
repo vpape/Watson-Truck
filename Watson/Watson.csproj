@@ -432,12 +432,8 @@
     <Content Include="Views\Dependent\EditDep.cshtml" />
     <Content Include="Views\Dependent\DepDetail.cshtml" />
     <Content Include="Views\Dependent\DeleteDep.cshtml" />
-    <Content Include="Views\Spouse\SpEmployment.cshtml" />
-    <Content Include="Views\Spouse\SpEnrollment.cshtml" />
-    <Content Include="Views\Spouse\SpContact.cshtml" />
     <Content Include="Views\Spouse\DeleteSp.cshtml" />
     <Content Include="Views\Spouse\EditSp.cshtml" />
-    <Content Include="Views\Spouse\SpDetail.cshtml" />
     <Content Include="Views\Employee\FamilyInsurance.cshtml" />
     <Content Include="Views\Employee\EditEmp.cshtml" />
     <Content Include="Views\Employee\EmpContact.cshtml" />
@@ -464,8 +460,6 @@
     <Content Include="Views\Employee\EmpInsurance.cshtml" />
     <Content Include="Views\Admin\GrpHealthInsPremiums.cshtml" />
     <Content Include="Views\Employee\SpEnrollment.cshtml" />
-    <Content Include="Views\Employee\SpContact.cshtml" />
-    <Content Include="Views\Employee\SpEmployment.cshtml" />
     <Content Include="Views\Group_Health\AuthorizationForm.cshtml" />
     <Content Include="Views\Group_Health\EditAuthorizationForm.cshtml" />
     <Content Include="Views\Group_Health\EditSalaryRedirection.cshtml" />
@@ -484,6 +478,10 @@
     <Content Include="Views\Admin\EmpDepDetail.cshtml" />
     <Content Include="Views\Admin\DeleteDep.cshtml" />
     <Content Include="Views\Employee\EmpOverview.cshtml" />
+    <Content Include="Views\Employee\NewSpouseEnrollment.cshtml" />
+    <Content Include="Views\Employee\NewDependentEnrollment.cshtml" />
+    <Content Include="Views\Employee\NewFamilyEnrollment.cshtml" />
+    <Content Include="Views\Employee\NewEnrollmentSelection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
