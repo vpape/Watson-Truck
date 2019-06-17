@@ -235,8 +235,8 @@
                         *Note: a 2% Adminstration fee will be added to the COBRA rates listed<br />
                     </div>
                     @*<p>
-                            <button type="submit" class="btn" id="InsPremiumUpdateStepThree" @*onclick="InsPremiumUpdate()" value="Submit">Save</button>
-                        </p>*@
+                        <button type="submit" class="btn" id="InsPremiumUpdateStepThree" @*onclick="InsPremiumUpdate()" value="Submit">Save</button>
+                    </p>*@
                     <div class="form-group">
                         <div class="col-md-offset-11">
                             <button id="InsPremiumUpdateStepOne" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>
@@ -245,6 +245,9 @@
                 </td>
             </tr>
         </table>
+        <p>
+            @Html.ActionLink("Edit Insurance Premium", "", new { Employee_id = ViewBag.Employee_id }, null)
+        </p>
     </div>
     @* db.InsurancePlanDetail- col- Item, Detail - InsurancePlanDetail_id as primary and InsurancePlan_id as foreign *@
     <div class="form-horizontal" hidden>
@@ -603,6 +606,9 @@
                 </td>
             </tr>
         </table>
+        <p>
+            @Html.ActionLink("Edit Insurance Supplement", "", new { Employee_id = ViewBag.Employee_id }, null)
+        </p>
     </div>
     <hr />
     @* db.Group_Healh- GroupHealthInsurance_id as primary and Employee_id as foreign *@
@@ -679,7 +685,7 @@
                 <select id="EmpGender" class="form-control" disabled>
                     <option value="">Gender:</option>
                     @*<option value="Male"   @((Model.Employee.Gender) == "Male"   ? "selected" : "")>Male</option>
-                        <option value="Female" @((Model.Employee.Gender) == "Female" ? "selected" : "")>Female</option>*@
+                    <option value="Female" @((Model.Employee.Gender) == "Female" ? "selected" : "")>Female</option>*@
                 </select>
             </div>
             <p></p>
@@ -1086,6 +1092,9 @@
                 </div>
             </div>
         </div>
+        <p>
+            @Html.ActionLink("Edit Group Insurance", "EditGrpHealthIns", new { Employee_id = ViewBag.Employee_id }, null)
+        </p>
     </div>
 </body>
 </html>

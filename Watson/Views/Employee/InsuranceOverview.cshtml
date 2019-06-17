@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -6,40 +7,39 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>New Enrollment Selection</title>
+    <title>Insurance Overview</title>
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
-    <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
     <div class="container">
-        <h3>New Enrollment Selection</h3>
+        <h3>Insurance Overview</h3>
         <div id="EnrollmentSelection">
             <table class="table-bordered" align="center">
                 <tr>
                     <td>
                         <div id="NewEmployeeEnrollment">
-                            <button type="button" class="button" onclick="return NewEmployeeEnrollment()">New Employee Enrollment</button>
+                            <button type="button" class="button" onclick="return GroupHealthInsurance(@ViewBag.Employee_id)">Group Health Insurance</button>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div id="FamilyEnrollment">
-                            <button type="button" class="button" onclick="return NewFamilyEnrollment()">New Family Enrollment</button>
+                            <button type="button" class="button" onclick="return AuthorizationForm(@ViewBag.Employee_id)">Authorization Form</button>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div id="GroupHealthEnrollment">
-                            <button type="button" class="button" onclick="return NewGrpHealthEnrollment()">New Group Health Enrollment</button>
+                            <button type="button" class="button" onclick="return SalaryRedirectAgreement(@ViewBag.Employee_id)">Salary Redirection Agreement</button>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div id="LifeInsuranceEnrollment">
-                            <button type="button" class="button" onclick="return NewLifeInsuranceEnrollment()">New Life Insurance Enrollment</button>
+                            <button type="button" class="button" onclick="return LifeInsurance(@ViewBag.Employee_id)">Life Insurance</button>
                         </div>
                     </td>
                 </tr>
@@ -47,7 +47,7 @@
         </div>
     </div>
     <p>
-        @Html.ActionLink("Back to Employee Overview", "EmpOverview")
+        @Html.ActionLink("Back to Employee Overview", "EmpOverview", new { Employee_id = ViewBag.Employee_id }, null)
     </p>
 </body>
 </html>
@@ -93,44 +93,23 @@
 </style>
 
 <script>
-    function NewEmployeeEnrollment() {
-        window.location.href = "/Employee/NewEmployeeEnrollment";
+    function GroupHealthInsurance() {
 
+        window.location.href = "/Group_Health/GrpHealthEnrollment?Employee_id=" + Employee_id;
     }
 
-    function NewFamilyEnrollmentBtn() {
+    function AuthorizationForm() {
 
-        var maritalStatus = document.querySelector("#MaritalStatus").value;
-        var hideFamilybtn = document.getElementById("FamilyEnrollment")
-        var showFamilybtn = document.getElementById("FamilyEnrollment")
-
-        hideFamilybtn.addEventListener('click', function () {
-
-            if (maritalStatus == "Single") {
-
-                hideFamilybtn.style.visibility = "hidden";
-            }
-            else {
-                showFamilybtn.style.visibility = "visible";
-            }
-        })
-
-        window.location.href = "/Employee/NewFamilyEnrollment";
+        window.location.href = " /Group_Health/AuthorizationForm?Employee_id=" + Employee_id;
     }
 
-    function NewFamilyEnrollment() {
-        window.location.href = "/Employee/NewFamilyEnrollment";
+    function SalaryRedirectAgreement() {
 
+        window.location.href = " /Group_Health/SalaryRedirectAgreement?Employee_id=" + Employee_id;
     }
 
-    function NewGrpHealthEnrollment() {
+    function LifeInsurance() {
 
-        window.location.href = "/Group_Health/NewGrpHealthEnrollment";
+        window.location.href = " /Life_Insurance/LifeInsuranceEnrollment?Employee_id=" + Employee_id;
     }
-
-    function NewLifeInsuranceEnrollment() {
-
-        window.location.href = "/Life_Insurance/NewLifeInsEnrollment";
-    }
-
 </script>
