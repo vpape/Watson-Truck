@@ -369,7 +369,7 @@ namespace Watson.Controllers
         }
 
         //Create-SpouseEnrollment
-        public JsonResult SpEnrollmentNew(int Employee_id, string FirstName, string LastName, 
+        public JsonResult SpEnrollmentNew(int Employee_id, string RelationshipToInsured, string FirstName, string LastName, 
             DateTime DateOfBirth, string Gender)
         {
             //Create an if statement that checks to see if there's already a record
@@ -380,7 +380,7 @@ namespace Watson.Controllers
 
             //if(output != null)
             //{
-                
+
             //}
 
             Employee e = db.Employees.Find(Employee_id);
@@ -391,6 +391,7 @@ namespace Watson.Controllers
             Family_Info sp = new Family_Info();
 
             sp.Employee_id = Employee_id;
+            sp.RelationshipToInsured = RelationshipToInsured;
             sp.FirstName = FirstName;
             sp.LastName = LastName;
             sp.DateOfBirth = DateOfBirth;
@@ -403,7 +404,7 @@ namespace Watson.Controllers
                 db.SaveChanges();
             }
 
-            int result = sp.Employee_id;
+            int result = sp.FamilyMember_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
 
@@ -413,13 +414,17 @@ namespace Watson.Controllers
         //public ActionResult SpContact(int Employee_id)
 
         //Create-SpouseContact
-        public JsonResult SpEnrollmentContact(int Employee_id, string MailingAddress, string PObox, string City,
+        public JsonResult SpEnrollmentContact(int FamilyMember_id, int Employee_id, string MailingAddress, string PObox, string City,
             string State, string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, 
             string EmailAddress, string PhoneNumber, string CellPhone)
         {
-            Family_Info sp = new Family_Info();
+            //Family_Info sp = new Family_Info();
 
-            sp.Employee_id = Employee_id;
+            var sp = (from fi in db.Family_Info
+                     where fi.FamilyMember_id == FamilyMember_id
+                     select fi).SingleOrDefault();
+
+            //sp.Employee_id = Employee_id;
             sp.MailingAddress = MailingAddress;
             sp.PObox = PObox;
             sp.City = City;
@@ -434,13 +439,10 @@ namespace Watson.Controllers
             sp.PhoneNumber = PhoneNumber;
             sp.CellPhone = CellPhone;
 
-            if (ModelState.IsValid)
-            {
-                db.Family_Info.Add(sp);
-                db.SaveChanges();
-            }
-
-            int result = sp.Employee_id;
+            //db.Family_Info.Add(sp);
+            db.SaveChanges();
+            
+            int result = sp.FamilyMember_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
@@ -450,13 +452,17 @@ namespace Watson.Controllers
 
 
         //Create-SpouseEmployment
-        public JsonResult SpEnrollmentEmployment(int Employee_id, string MaritalStatus, string Employer, string EmployerAddress,
+        public JsonResult SpEnrollmentEmployment(int Familyinfo_id, int Employee_id, string MaritalStatus, string Employer, string EmployerAddress,
             string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
-            Family_Info sp = new Family_Info();
+            //Family_Info sp = new Family_Info();
 
             ViewBag.Employee_id = Employee_id;
             ViewBag.MaritalStatus = MaritalStatus;
+
+            var sp = (from fi in db.Family_Info
+                      where fi.FamilyMember_id == Familyinfo_id
+                      select fi).SingleOrDefault();
 
             sp.Employee_id = Employee_id;
             sp.Employer = Employer;
@@ -469,11 +475,11 @@ namespace Watson.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Family_Info.Add(sp);
+                //db.Family_Info.Add(sp);
                 db.SaveChanges();
             }
 
-            int result = sp.Employee_id;
+            int result = sp.FamilyMember_id;
 
             //if (MaritalStatus == "MarriedwDep")
             //{

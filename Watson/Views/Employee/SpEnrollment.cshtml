@@ -235,6 +235,7 @@
     var col = document.querySelectorAll(".collapsible");
     var i;
     var Employee_id;
+    var familyinfo_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -280,6 +281,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
+            RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
@@ -287,6 +289,7 @@
 
             var data = {
                 "Employee_id": Employee_id,
+                "RelationshipToInsured": RelationshipToInsured,
                 "FirstName": FirstName,
                 "LastName": LastName,
                 "DateOfBirth": DateOfBirth,
@@ -294,11 +297,29 @@
 
             }
 
-            var ret = postData('SpEnrollmentNew', data)
-                .then(data => { console.log(data);
-                              FirstStep(data);
-                              })
-                .catch(error => console.error(error))
+            //var ret = postData('SpEnrollmentNew', data)
+            //    .then(data => { console.log(data);
+            //                  FirstStep(data);
+            //                  })
+            //    .catch(error => console.error(error))
+
+            fetch('SpEnrollmentNew', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                //.then(response => console.log('Success:', JSON.stringify(response)))
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
 
      
         })
@@ -319,6 +340,7 @@
             CellPhone = document.getElementById("CellPhone").value;
 
             var data = {
+                "FamilyMember_id": familyinfo_id,
                 "Employee_id": Employee_id,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
@@ -371,6 +393,7 @@
 
 
             var data = {
+                "Familyinfo_id": familyinfo_id,
                 "Employee_id": Employee_id,
                 "Employer": Employer,
                 "EmployerAddress": EmployerAddress,
@@ -411,7 +434,9 @@
     function FirstStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        Employee_id = sp.data;
+        //Employee_id = sp.data;
+        console.log(sp);
+        familyinfo_id = sp.data;
     }
 
     function SecondStep(sp) {
