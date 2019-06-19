@@ -18,9 +18,16 @@
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
     <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
     <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
-    <iframe id="2019InsCost" src="2019-Insurance-Cost.pdf" style="width:100%; height:640px;" frameborder="0"></iframe>
+
+    <a href="~/App_Files/pdfFiles/2019-Insurance-Cost.pdf">2019 Insurance Cost</a>
+    <a href="~/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf">Dental and Vision Benefits</a>
     <p></p>
-    <iframe id="2019Dental&VisionBenefits" src="2019-Guardian-Dental-&-Vision-Benefits.pdf" style="width:100%; height:640px;" frameborder="0"></iframe>
+
+    <p><embed id="2019Dental&VisionBenefits" src="/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf" type="application/pdf" style="width:100%; height:1122px; transform:rotate(-90deg)" frameborder="0" /></p>
+    <p><embed id="2019InsCost" src="/App_Files/pdfFiles/2019-Insurance-Cost.pdf" type="application/pdf" style="width:100%; height:1122px;" frameborder="0" />@*width:826px;*@</p>
+    <p><embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=http://localhost:57772/App_Files/pdfFiles/2019-Insurance-Cost.pdf" style="width:100%; height:1122px;" frameborder="0"></p>
+    <p><embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=http://example.com/~/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf" style="width:100%; height:1122px;" frameborder="0"></p>
+
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
     <div class="form-horizontal" hidden>
         <div class="collapsible" id="FirstStep">Health Insurance Premiums</div>
@@ -235,8 +242,8 @@
                         *Note: a 2% Adminstration fee will be added to the COBRA rates listed<br />
                     </div>
                     @*<p>
-                        <button type="submit" class="btn" id="InsPremiumUpdateStepThree" @*onclick="InsPremiumUpdate()" value="Submit">Save</button>
-                    </p>*@
+                            <button type="submit" class="btn" id="InsPremiumUpdateStepThree" @*onclick="InsPremiumUpdate()" value="Submit">Save</button>
+                        </p>*@
                     <div class="form-group">
                         <div class="col-md-offset-11">
                             <button id="InsPremiumUpdateStepOne" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>
@@ -685,7 +692,7 @@
                 <select id="EmpGender" class="form-control" disabled>
                     <option value="">Gender:</option>
                     @*<option value="Male"   @((Model.Employee.Gender) == "Male"   ? "selected" : "")>Male</option>
-                    <option value="Female" @((Model.Employee.Gender) == "Female" ? "selected" : "")>Female</option>*@
+                        <option value="Female" @((Model.Employee.Gender) == "Female" ? "selected" : "")>Female</option>*@
                 </select>
             </div>
             <p></p>

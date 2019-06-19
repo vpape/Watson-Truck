@@ -31,6 +31,7 @@ namespace Watson.Controllers
 
             if (Employee_id == null)
             {
+                //return View(db.Employees.Find(Employee_id));
                 return View(db.Employees.ToList());
             }
             else
