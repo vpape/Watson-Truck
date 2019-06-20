@@ -224,6 +224,9 @@
     var col = document.querySelectorAll(".collapsible");
     var i;
     var Employee_id;
+    var FamilyMember_id;
+    //var familyinfo_id;
+
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -263,6 +266,7 @@
 
             var data = {
                 "Employee_id": Employee_id,
+                "FamilyMember_id": FamilyMember_id,
                 "RelationshipToInsured": RelationshipToInsured,
                 "DepFirstName": DepFirstName,
                 "DepLastName": DepLastName,
@@ -270,19 +274,39 @@
                 "Gender": Gender,
             }
 
-            var ret = postData('DepEnrollmentNew', data)
-                .then(data => {
-                    console.log(data);
-                    FirstStep(data);
-                })
-                .catch(error => console.error(error))
+            //var ret = postData('DepEnrollmentNew', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        FirstStep(data);
+            //    })
+            //    .catch(error => console.error(error))
+
+            fetch('DepEnrollmentNew', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                //.then(response => console.log('Success:', JSON.stringify(response)))
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
 
         })
     })
 
     function FirstStep(dep) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        Employee_id = dep.data
+        //Employee_id = dep.data;
+        console.log(dep);
+        familyinfo_id = dep.data;
     }
 
     function postData(url, data) {

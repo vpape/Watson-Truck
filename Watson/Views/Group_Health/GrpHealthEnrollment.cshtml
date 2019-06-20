@@ -22,9 +22,8 @@
     <a href="~/App_Files/pdfFiles/2019-Insurance-Cost.pdf">2019 Insurance Cost</a>
     <a href="~/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf">Dental and Vision Benefits</a>
     <p></p>
-
-    <p><embed id="2019Dental&VisionBenefits" src="/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf" type="application/pdf" style="width:100%; height:1122px; transform:rotate(-90deg)" frameborder="0" /></p>
     <p><embed id="2019InsCost" src="/App_Files/pdfFiles/2019-Insurance-Cost.pdf" type="application/pdf" style="width:100%; height:1122px;" frameborder="0" />@*width:826px;*@</p>
+    <p><embed id="2019Dental&VisionBenefits" src="/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf" type="application/pdf" style="width:100%; height:1122px; transform:rotate()" frameborder="0" /></p>
     <p><embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=http://localhost:57772/App_Files/pdfFiles/2019-Insurance-Cost.pdf" style="width:100%; height:1122px;" frameborder="0"></p>
     <p><embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=http://example.com/~/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf" style="width:100%; height:1122px;" frameborder="0"></p>
 
@@ -627,47 +626,47 @@
                 <label>Employment Information: (To be completed by Employer)</label>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="GroupName" id="GroupName" placeholder="Group Name" value="@Html.DisplayFor(m => m.GroupName)" disabled />
+                    <input type="text" class="form-control" name="GroupName" id="GroupName" placeholder="Group Name" value="@Html.DisplayFor(m => m.GroupName)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="IMSGroupNumber" id="IMSGroupNumber" placeholder="IMS Group Number" value="@Html.DisplayFor(m => m.GroupName)" disabled />
+                    <input type="text" class="form-control" name="IMSGroupNumber" id="IMSGroupNumber" placeholder="IMS Group Number" value="@Html.DisplayFor(m => m.GroupName)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Department" id="empDepartment" placeholder="Department" value="@Html.DisplayFor(m => m.Employee.Department)" disabled />
+                    <input type="text" class="form-control" name="Department" id="empDepartment" placeholder="Department" value="@Html.DisplayFor(m => m.Employee.Department)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="EnrollmentType" id="empEnrollmentType" placeholder="Enrollment Type" value="@Html.DisplayFor(m => m.Employee.EnrollmentType)" disabled />
+                    <input type="text" class="form-control" name="EnrollmentType" id="empEnrollmentType" placeholder="Enrollment Type" value="@Html.DisplayFor(m => m.Employee.EnrollmentType)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Payroll_id" id="empPayroll_id" placeholder="Payroll ID" value="@Html.DisplayFor(m => m.Employee.Payroll_id)" disabled />
+                    <input type="text" class="form-control" name="Payroll_id" id="empPayroll_id" placeholder="Payroll ID" value="@Html.DisplayFor(m => m.Employee.Payroll_id)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Class" id="empClass" placeholder="Class" value="@Html.DisplayFor(m => m.Employee.Class)" disabled />
+                    <input type="text" class="form-control" name="Class" id="empClass" placeholder="Class" value="@Html.DisplayFor(m => m.Employee.Class)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="AnnualSalary" id="empAnnualSalary" placeholder="Annual Salary" value="@Html.DisplayFor(m => m.Employee.AnnualSalary)" disabled />
+                    <input type="text" class="form-control" name="AnnualSalary" id="empAnnualSalary" placeholder="Annual Salary" value="@Html.DisplayFor(m => m.Employee.AnnualSalary)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="JobTitle" id="empJobTitle" placeholder="Occupation" value="@Html.DisplayFor(m => m.Employee.JobTitle)" disabled />
+                    <input type="text" class="form-control" name="JobTitle" id="empJobTitle" placeholder="Occupation" value="@Html.DisplayFor(m => m.Employee.JobTitle)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="HireDate" id="empHireDate" placeholder="Employment Date" value="@Html.DisplayFor(m => m.Employee.HireDate)" disabled />
+                    <input type="text" class="form-control" name="HireDate" id="empHireDate" placeholder="Employment Date" value="@Html.DisplayFor(m => m.Employee.HireDate)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="@Html.DisplayFor(m => m.Employee.EffectiveDate)" disabled />
+                    <input type="text" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="@Html.DisplayFor(m => m.Employee.EffectiveDate)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="number" class="form-control" name="HoursWorkedPerWeek" id="empHrsWkPerWk" placeholder="Min. Hrs. Worked/Wk" value="@Html.DisplayFor(m => m.Employee.HoursWorkedPerWeek)" disabled />
+                    <input type="number" class="form-control" name="HoursWorkedPerWeek" id="empHrsWkPerWk" placeholder="Min. Hrs. Worked/Wk" value="@Html.DisplayFor(m => m.Employee.HoursWorkedPerWeek)" />
                 </div>
             </div>
 

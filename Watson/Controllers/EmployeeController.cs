@@ -453,7 +453,7 @@ namespace Watson.Controllers
 
 
         //Create-SpouseEmployment
-        public JsonResult SpEnrollmentEmployment(int Familyinfo_id, int Employee_id, string MaritalStatus, string Employer, string EmployerAddress,
+        public JsonResult SpEnrollmentEmployment(int? FamilyMember_id, int Employee_id, string MaritalStatus, string Employer, string EmployerAddress,
             string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
             //Family_Info sp = new Family_Info();
@@ -462,7 +462,7 @@ namespace Watson.Controllers
             ViewBag.MaritalStatus = MaritalStatus;
 
             var sp = (from fi in db.Family_Info
-                      where fi.FamilyMember_id == Familyinfo_id
+                      where fi.FamilyMember_id == FamilyMember_id
                       select fi).SingleOrDefault();
 
             sp.Employee_id = Employee_id;
