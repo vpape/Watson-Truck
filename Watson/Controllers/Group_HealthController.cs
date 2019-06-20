@@ -31,7 +31,7 @@ namespace Watson.Controllers
             return View();
         }
 
-        //Create-InsPrem
+        //Create-InsPrem---Finish Html page for Admin. Employee will only view Ins Cost and Vision and Dental pdf
         public JsonResult GrpHealthInsPremiumNew(int Employee_id, int InsurancePremium_id, string EmployeeOnly, 
             string EmployeeAndSpouse, string EmployeeAndDependent, string EmployeeAndFamily, decimal YearlyPremiumCost)
         {
@@ -127,7 +127,7 @@ namespace Watson.Controllers
             return View();
         }
 
-        //Create-InsSupplment
+        //Create-InsSupplment---Finish Html page for Admin. Employee will only view Ins Cost and Vision and Dental pdf
         //ask about the Dental and Vision Cost sheet premimums- do they need to be added to db.InsPremimum table
         public JsonResult GrpHealthInsSupplementNew(int InsurancePlanDetail_id, string CalendarYearDeductible, string WaivedForPreventive, 
             string AnnualMaximum, string Preventive, string Basic, string Major, string UCRpercentage, string EndoPeridontics,
@@ -275,14 +275,14 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult GrpHealthEnrollment()
+        public ActionResult GrpHealthEnrollment(int? Employee_id)
         {
-            
+            ViewBag.Employee_id = Employee_id;
             return View();
         }
 
         //Create-GrpHealthEnrollment
-        public JsonResult GrpHealthEnrollmentNew(int GrpHealthIns_id, int Employee_id, int InsurancePlan_id, int FamilyMember_id,
+        public JsonResult GrpHealthEnrollmentNew(int Employee_id, int InsurancePlan_id, int FamilyMember_id,
             int OtherInsurance_id, string empInsuranceCarrier, string empInsPolicyNumber, string GroupName, string IMSGroupNumber,
             string PhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
             string Myself, string Spouse, string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear,
@@ -395,14 +395,14 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //Edit-GrpHealthEnrollment
-        public ActionResult EditGrpHealthIns(int? GrpHealthIns_id)
+        public ActionResult EditGrpHealthIns(int? GroupHealthInsurance_id)
         {
-            if (GrpHealthIns_id == null)
+            if (GroupHealthInsurance_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Group_Health g = db.Group_Health.Find(GrpHealthIns_id);
+            Group_Health g = db.Group_Health.Find(GroupHealthInsurance_id);
             if (g == null)
             {
                 return HttpNotFound();
@@ -412,7 +412,7 @@ namespace Watson.Controllers
         }
 
         //EditUpdate-GrpHealthEnrollment
-        public JsonResult GrpHealthInsEditUpdate(int GrpHealthIns_id, int Employee_id, int InsurancePlan_id, int FamilyMember_id, 
+        public JsonResult GrpHealthInsEditUpdate(int GroupHealthInsurance_id, int Employee_id, int InsurancePlan_id, int FamilyMember_id, 
             int OtherInsurance_id, string empInsuranceCarrier, string empInsPolicyNumber, string GroupName, string IMSGroupNumber, 
             string PhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
             string Myself, string Spouse, string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear,
@@ -427,7 +427,7 @@ namespace Watson.Controllers
             string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
         {
             var g = db.Group_Health
-                .Where(i => i.GroupHealthInsurance_id == GrpHealthIns_id)
+                .Where(i => i.GroupHealthInsurance_id == GroupHealthInsurance_id)
                 .Single();
 
             g.InsuranceCarrier = empInsuranceCarrier;
@@ -529,13 +529,13 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult GrpHealthInsDetail(int? GrpHealthIns_id)
+        public ActionResult GrpHealthInsDetail(int? GroupHealthInsurance_id)
         {
-            if (GrpHealthIns_id == null)
+            if (GroupHealthInsurance_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group_Health g = db.Group_Health.Find(GrpHealthIns_id);
+            Group_Health g = db.Group_Health.Find(GroupHealthInsurance_id);
             if (g == null)
             {
                 return HttpNotFound();
@@ -543,10 +543,10 @@ namespace Watson.Controllers
             return View(g);
         }
 
-        public JsonResult GetGrpHealthInsDetail(int GrpHealthIns_id, int OtherInsurance_id)
+        public JsonResult GetGrpHealthInsDetail(int GroupHealthInsurance_id, int OtherInsurance_id)
         {
             var g = db.Group_Health
-                .Where(i => i.GroupHealthInsurance_id == GrpHealthIns_id)
+                .Where(i => i.GroupHealthInsurance_id == GroupHealthInsurance_id)
                 .Single();
 
             ViewBag.g = g;

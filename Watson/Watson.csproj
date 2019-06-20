@@ -483,6 +483,7 @@
     <Content Include="Views\Employee\NewFamilyEnrollment.cshtml" />
     <Content Include="Views\Employee\NewEnrollmentSelection.cshtml" />
     <Content Include="Views\Employee\InsuranceOverview.cshtml" />
+    <Content Include="Views\Admin\EmpGrpHealthEnrollment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
