@@ -16,12 +16,13 @@
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
+    <input type="hidden" id="GrpHealth_id" class="form-control" name="GrpHealth_id" value="@ViewBag.GrpHealth_id" />
     <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
     <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
     <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
     <p></p>
     <p><embed id="2019InsCost" src="/App_Files/pdfFiles/2019-Insurance-Cost.pdf" type="application/pdf" style="width:100%; height:1122px;" frameborder="0" /></p>
-    <p><embed id="2019Dental&VisionBenefits" src="/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf" type="application/pdf" style="width:100%; height:1122px; transform:rotate()" frameborder="0" /></p>
+    <p><embed id="2019Dental&VisionBenefits" src="/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf" type="application/pdf" style="width:100%; height:1000px; transform:rotate()" frameborder="0" /></p>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
     <div class="form-horizontal" hidden>
         <div class="collapsible" id="FirstStep">Employee-Health Insurance Premiums</div>
@@ -621,66 +622,66 @@
                 <label>Employment Information: (To be completed by Employer)</label>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="GroupName" id="GroupName" placeholder="Group Name" value="@Html.DisplayFor(Model => Model.GroupName)" />
+                    <input type="text" class="form-control" name="GroupName" id="GroupName" placeholder="Group Name" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="IMSGroupNumber" id="IMSGroupNumber" placeholder="IMS Group Number" value="@Html.DisplayFor(Model => Model.IMSGroupNumber)" />
+                    <input type="text" class="form-control" name="IMSGroupNumber" id="IMSGroupNumber" placeholder="IMS Group Number" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Department" id="empDepartment" placeholder="Department" value="@Html.DisplayFor(Model => Model.Employee.Department)" />
+                    <input type="text" class="form-control" name="Department" id="empDepartment" placeholder="Department" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="EnrollmentType" id="empEnrollmentType" placeholder="Enrollment Type" value="@Html.DisplayFor(Model => Model.Employee.EnrollmentType)" />
+                    <input type="text" class="form-control" name="EnrollmentType" id="empEnrollmentType" placeholder="Enrollment Type" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Payroll_id" id="empPayroll_id" placeholder="Payroll ID" value="@Html.DisplayFor(Model => Model.Employee.Payroll_id)" />
+                    <input type="text" class="form-control" name="Payroll_id" id="empPayroll_id" placeholder="Payroll ID" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Class" id="empClass" placeholder="Class" value="@Html.DisplayFor(Model => Model.Employee.Class)" />
+                    <input type="text" class="form-control" name="Class" id="empClass" placeholder="Class" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="AnnualSalary" id="empAnnualSalary" placeholder="Annual Salary" value="@Html.DisplayFor(Model => Model.Employee.AnnualSalary)" />
+                    <input type="text" class="form-control" name="AnnualSalary" id="empAnnualSalary" placeholder="Annual Salary" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="JobTitle" id="empJobTitle" placeholder="Occupation" value="@Html.DisplayFor(Model => Model.Employee.JobTitle)" />
+                    <input type="text" class="form-control" name="JobTitle" id="empJobTitle" placeholder="Occupation" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="HireDate" id="empHireDate" placeholder="Employment Date" value="@Html.DisplayFor(Model => Model.Employee.HireDate)" />
+                    <input type="text" class="form-control" name="HireDate" id="empHireDate" placeholder="Employment Date" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="@Html.DisplayFor(Model => Model.Employee.EffectiveDate)" />
+                    <input type="text" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="number" class="form-control" name="HoursWorkedPerWeek" id="empHrsWkPerWk" placeholder="Min. Hrs. Worked/Wk" value="@Html.DisplayFor(Model => Model.Employee.HoursWorkedPerWeek)" />
+                    <input type="number" class="form-control" name="HoursWorkedPerWeek" id="empHrsWkPerWk" placeholder="Min. Hrs. Worked/Wk" value="" />
                 </div>
             </div>
 
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="Employee Number" id="EmployeeNumber" name="SSN" value="@Html.DisplayFor(Model => Model.Employee.SSN)" disabled />
+                <input type="text" class="form-control" placeholder="Employee Number" id="EmployeeNumber" name="SSN" value="" disabled />
             </div>
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="@Html.DisplayFor(Model => Model.Employee.FirstName)" disabled />
+                <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" disabled />
             </div>
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="@Html.DisplayFor(Model => Model.Employee.LastName)" disabled />
+                <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="" disabled />
             </div>
             <p></p>
             <div class="form-group col-md-6">
-                <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(Model => Model.Employee.MailingAddress)" disabled />
-                <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="@Html.DisplayFor(Model => Model.Employee.PObox)" disabled />
-                <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@Html.DisplayFor(Model => Model.Employee.City)" disabled />
-                <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@Html.DisplayFor(Model => Model.Employee.State)" disabled />
-                <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.DisplayFor(Model => Model.Employee.ZipCode)" disabled />
+                <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" disabled />
+                <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" disabled />
+                <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" disabled />
+                <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" disabled />
+                <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" disabled />
             </div>
             <div>
                 <select id="EmpGender" class="form-control" disabled>
@@ -715,8 +716,8 @@
             <div>
                 <div class="form-control">
                     <label>Are you covered by any other insurance, including Medicare?</label>
-                    <label class="radio-inline"><input type="radio" id="empOtherInsCoverage" class="radio-inline" onclick="return empOtherInsCoverage()" name="OtherInsuranceCoverage" value="yes" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="empOtherInsCoverage" class="radio-inline" onclick="return empOtherInsCoverage()" name="OtherInsuranceCoverage" value="no" checked />No</label>
+                    <label class="radio-inline"><input type="radio" id="empOtherInsCoverage" class="radio-inline" onclick="ShowempOtherInsCoverage()" name="OtherInsuranceCoverage" value="yes" checked/>Yes</label>
+                    <label class="radio-inline"><input type="radio" id="empOtherInsCoverage" class="radio-inline" onclick="HideempOtherInsCoverage()" name="OtherInsuranceCoverage" value="no" />No</label>
                 </div>
                 <div id="empInsInfo">
                     <div class="form-group col-md-3">
@@ -991,9 +992,9 @@
                     <div>
                         <div>
                             <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="return depOtherInsCoverage()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
-                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="return depOtherInsCoverage()" name="CoveredByOtherInsurance" value="no" checked />No</label>
-                            <div id="depInsInfo1">
+                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="ShowdepOtherInsCoverage()" name="CoveredByOtherInsurance" value="yes" checked/>Yes</label>
+                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="HidedepOtherInsCoverage()" name="CoveredByOtherInsurance" value="no"  />No</label>
+                            <div id="depInsInfo">
                                 <div class="form-group col-md-2">
                                     <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
                                 </div>
@@ -1007,6 +1008,7 @@
                         </div>
                     </div>
                 </div>
+                <p></p>
                 <div class="form-group">
                     <div class="col-md-11">
                         <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
@@ -1323,6 +1325,7 @@
     var col = document.querySelectorAll(".collapsible");
     var i;
     var Employee_id;
+    var GrpHealth_id;
     //var familyinfo_id;
 
     for (i = 0; i < col.length; i++) {
@@ -1338,24 +1341,42 @@
         });
     }
 
-    function empOtherInsCoverage() {
-
-        var div = document.querySelector("empOtherInsCoverage").value;
-        var divEmpHide = document.getElementById("empInsInfo")
-        var divEmpShow = document.getElementById("empInsInfo")
-
-        div.addEventListener('click', function () {
-
-            if (div.value = "no") {
-
-                divEmpHide.style.display = "none";
-            }
-            else {
-                divEmpShow.style.display = "block";
-            }
-        });
+    
+    function ShowempOtherInsCoverage() {
+        document.getElementById("empInsInfo").style.display = "block";
     }
-        
+
+    function HideempOtherInsCoverage() {
+        document.getElementById("empInsInfo").style.display = "none";
+    }
+
+    function ShowdepOtherInsCoverage() {
+        document.getElementById("depInsInfo").style.display = "block";
+    }
+
+    function HidedepOtherInsCoverage() {
+        document.getElementById("depInsInfo").style.display = "none";
+    }
+
+
+    //function empOtherInsCoverage() {
+
+    //    var div = document.querySelector("empOtherInsCoverage").value;
+    //    var divEmpHide = document.getElementById("empInsInfo")
+    //    var divEmpShow = document.getElementById("empInsInfo")
+
+    //    div.addEventListener('click', function () {
+
+    //        if (div.value = "no") {
+
+    //            divEmpHide.style.display = "none";
+    //        }
+    //        else {
+    //            divEmpShow.style.display = "block";
+    //        }
+    //    });
+    //}
+
 
     //create a for loop i=8
     function depOtherInsCoverage() {
@@ -1379,165 +1400,167 @@
 
     }
 
-    //c
+
     //document.addEventListener("DOMContentLoaded", function () {
-        //document.querySelector("#InsPremiumUpdateStepOne").addEventListener("click", function () {
-        //    MECmonthlyEO = document.getElementById('MECmonthlyCostEmpOnly').value
-        //    MECmonthlyEmpSp = document.getElementById('MECmonthlyCostEmpSp').value
-        //    MECmonthlyEmpDep = document.getElementById('MECmonthlyCostEmpDep').value
-        //    MECmonthlyEmpFam = document.getElementById('MECmonthlyCostEmpFam').value
-        //    MECbiweeklyEO = document.getElementById('MECbiweeklyCostEmpOnly').value
-        //    MECbiweeklyEmpSp = document.getElementById('MECbiweeklyCostEmpSp').value
-        //    MECbiweeklyEmpDep = document.getElementById('MECbiweeklyCostEmpDep').value
-        //    MECbiweeklyEmpFam = document.getElementById('MECbiweeklyCostEmpFam').value
+    //document.querySelector("#InsPremiumUpdateStepOne").addEventListener("click", function () {
+    //    MECmonthlyEO = document.getElementById('MECmonthlyCostEmpOnly').value
+    //    MECmonthlyEmpSp = document.getElementById('MECmonthlyCostEmpSp').value
+    //    MECmonthlyEmpDep = document.getElementById('MECmonthlyCostEmpDep').value
+    //    MECmonthlyEmpFam = document.getElementById('MECmonthlyCostEmpFam').value
+    //    MECbiweeklyEO = document.getElementById('MECbiweeklyCostEmpOnly').value
+    //    MECbiweeklyEmpSp = document.getElementById('MECbiweeklyCostEmpSp').value
+    //    MECbiweeklyEmpDep = document.getElementById('MECbiweeklyCostEmpDep').value
+    //    MECbiweeklyEmpFam = document.getElementById('MECbiweeklyCostEmpFam').value
 
-        //    StndmonthlyEO = document.getElementById('StndmonthlyCostEmpOnly').value
-        //    StndmonthlyEmpSp = document.getElementById('StndmonthlyCostEmpSp').value
-        //    StndmonthlyEmpDep = document.getElementById('StndmonthlyCostEmpDep').value
-        //    StndmonthlyEmpFam = document.getElementById('StndmonthlyCostEmpFam').value
-        //    StndbiweeklyEO = document.getElementById('StndbiweeklyCostEmpOnly').value
-        //    StndbiweeklyEmpSp = document.getElementById('StndbiweeklyCostEmpSp').value
-        //    StndbiweeklyEmpDep = document.getElementById('StndbiweeklyCostEmpDep').value
-        //    StndbiweeklyEmpFam = document.getElementById('StndbiweeklyCostEmpFam').value
+    //    StndmonthlyEO = document.getElementById('StndmonthlyCostEmpOnly').value
+    //    StndmonthlyEmpSp = document.getElementById('StndmonthlyCostEmpSp').value
+    //    StndmonthlyEmpDep = document.getElementById('StndmonthlyCostEmpDep').value
+    //    StndmonthlyEmpFam = document.getElementById('StndmonthlyCostEmpFam').value
+    //    StndbiweeklyEO = document.getElementById('StndbiweeklyCostEmpOnly').value
+    //    StndbiweeklyEmpSp = document.getElementById('StndbiweeklyCostEmpSp').value
+    //    StndbiweeklyEmpDep = document.getElementById('StndbiweeklyCostEmpDep').value
+    //    StndbiweeklyEmpFam = document.getElementById('StndbiweeklyCostEmpFam').value
 
-        //    BuyUpmonthlyEO = document.getElementById('BuyUpmonthlyCostEmpOnly').value
-        //    BuyUpmonthlyEmpSp = document.getElementById('BuyUpmonthlyCostEmpSp').value
-        //    BuyUpmonthlyEmpDep = document.getElementById('BuyUpmonthlyCostEmpDep').value
-        //    BuyUpmonthlyEmpFam = document.getElementById('BuyUpmonthlyCostEmpFam').value
-        //    BuyUpbiweeklyEO = document.getElementById('BuyUpbiweeklyCostEmpOnly').value
-        //    BuyUpbiweeklyEmpSp = document.getElementById('BuyUpbiweeklyCostEmpSp').value
-        //    BuyUpbiweeklyEmpDep = document.getElementById('BuyUpbiweeklyCostEmpDep').value
-        //    BuyUpbiweeklyEmpFam = document.getElementById('BuyUpbiweeklyCostEmpAndFam').value
+    //    BuyUpmonthlyEO = document.getElementById('BuyUpmonthlyCostEmpOnly').value
+    //    BuyUpmonthlyEmpSp = document.getElementById('BuyUpmonthlyCostEmpSp').value
+    //    BuyUpmonthlyEmpDep = document.getElementById('BuyUpmonthlyCostEmpDep').value
+    //    BuyUpmonthlyEmpFam = document.getElementById('BuyUpmonthlyCostEmpFam').value
+    //    BuyUpbiweeklyEO = document.getElementById('BuyUpbiweeklyCostEmpOnly').value
+    //    BuyUpbiweeklyEmpSp = document.getElementById('BuyUpbiweeklyCostEmpSp').value
+    //    BuyUpbiweeklyEmpDep = document.getElementById('BuyUpbiweeklyCostEmpDep').value
+    //    BuyUpbiweeklyEmpFam = document.getElementById('BuyUpbiweeklyCostEmpAndFam').value
 
-        //    var data = {
-        //        "Employee_id": Employee_id,
-        //        "MECmonthlyEO": MECmonthlyEO,
-        //        "MECmonthlyEmpSp": MECmonthlyEmpSp,
-        //        "MECmonthlyEmpDep": MECmonthlyEmpDep,
-        //        "MECmonthlyEmpFam": MECmonthlyEmpFam,
-        //        "MECbiweeklyEO": MECbiweeklyEO,
-        //        "MECbiweeklyEmpSp": MECbiweeklyEmpSp,
-        //        "MECbiweeklyEmpDep": MECbiweeklyEmpDep,
-        //        "MECbiweeklyEmpFam": MECbiweeklyEmpFam,
-        //        "MECMnthyearlyPremiumCost": MECMnthyearlyPremiumCost,
-        //        "MECBiWkyearlyPremiumCost": MECBiWkyearlyPremiumCost,
+    //    var data = {
+    //        "Employee_id": Employee_id,
+    //        "MECmonthlyEO": MECmonthlyEO,
+    //        "MECmonthlyEmpSp": MECmonthlyEmpSp,
+    //        "MECmonthlyEmpDep": MECmonthlyEmpDep,
+    //        "MECmonthlyEmpFam": MECmonthlyEmpFam,
+    //        "MECbiweeklyEO": MECbiweeklyEO,
+    //        "MECbiweeklyEmpSp": MECbiweeklyEmpSp,
+    //        "MECbiweeklyEmpDep": MECbiweeklyEmpDep,
+    //        "MECbiweeklyEmpFam": MECbiweeklyEmpFam,
+    //        "MECMnthyearlyPremiumCost": MECMnthyearlyPremiumCost,
+    //        "MECBiWkyearlyPremiumCost": MECBiWkyearlyPremiumCost,
 
-        //        "StndmonthlyEO": StndmonthlyEO,
-        //        "StndmonthlyEmpSp": StndmonthlyEmpSp,
-        //        "StndmonthlyEmpDep": StndmonthlyEmpDep,
-        //        "StndmonthlyEmpFam": StndmonthlyEmpFam,
-        //        "StndbiweeklyEO": StndbiweeklyEO,
-        //        "StndbiweeklyEmpSp": StndbiweeklyEmpSp,
-        //        "StndbiweeklyEmpDep": StndbiweeklyEmpDep,
-        //        "StndbiweeklyEmpFam": StndbiweeklyEmpFam,
-        //        "StndMnthyearlyPremiumCost": StndMnthyearlyPremiumCost,
-        //        "StndBiWkyearlyPremiumCost": StndBiWkyearlyPremiumCost,
+    //        "StndmonthlyEO": StndmonthlyEO,
+    //        "StndmonthlyEmpSp": StndmonthlyEmpSp,
+    //        "StndmonthlyEmpDep": StndmonthlyEmpDep,
+    //        "StndmonthlyEmpFam": StndmonthlyEmpFam,
+    //        "StndbiweeklyEO": StndbiweeklyEO,
+    //        "StndbiweeklyEmpSp": StndbiweeklyEmpSp,
+    //        "StndbiweeklyEmpDep": StndbiweeklyEmpDep,
+    //        "StndbiweeklyEmpFam": StndbiweeklyEmpFam,
+    //        "StndMnthyearlyPremiumCost": StndMnthyearlyPremiumCost,
+    //        "StndBiWkyearlyPremiumCost": StndBiWkyearlyPremiumCost,
 
-        //        "BuyUpmonthlyEO": BuyUpmonthlyEO,
-        //        "BuyUpmonthlyEmpSp": BuyUpmonthlyEmpSp,
-        //        "BuyUpmonthlyEmpDep": BuyUpmonthlyEmpDep,
-        //        "BuyUpmonthlyEmpFam": BuyUpmonthlyEmpFam,
-        //        "BuyUpbiweeklyEO": BuyUpbiweeklyEO,
-        //        "BuyUpbiweeklyEmpSp": BuyUpbiweeklyEmpSp,
-        //        "BuyUpbiweeklyEmpDep": BuyUpbiweeklyEmpDep,
-        //        "BuyUpbiweeklyEmpFam": BuyUpbiweeklyEmpFam,
-        //        "BuyUpMnthyearlyPremiumCost": BuyUpMnthyearlyPremiumCost,
-        //        "BuyUpBiWkyearlyPremiumCost": BuyUpBiWkyearlyPremiumCost,
-        //    }
+    //        "BuyUpmonthlyEO": BuyUpmonthlyEO,
+    //        "BuyUpmonthlyEmpSp": BuyUpmonthlyEmpSp,
+    //        "BuyUpmonthlyEmpDep": BuyUpmonthlyEmpDep,
+    //        "BuyUpmonthlyEmpFam": BuyUpmonthlyEmpFam,
+    //        "BuyUpbiweeklyEO": BuyUpbiweeklyEO,
+    //        "BuyUpbiweeklyEmpSp": BuyUpbiweeklyEmpSp,
+    //        "BuyUpbiweeklyEmpDep": BuyUpbiweeklyEmpDep,
+    //        "BuyUpbiweeklyEmpFam": BuyUpbiweeklyEmpFam,
+    //        "BuyUpMnthyearlyPremiumCost": BuyUpMnthyearlyPremiumCost,
+    //        "BuyUpBiWkyearlyPremiumCost": BuyUpBiWkyearlyPremiumCost,
+    //    }
 
-        //    var ret = postData('/Group_Health/GrpHealthInsPremiumNew', data)
-        //        .then(data => FirstStep(data))
-        //        .catch(error => console.error(error))
-        //})
+    //    var ret = postData('/Group_Health/GrpHealthInsPremiumNew', data)
+    //        .then(data => FirstStep(data))
+    //        .catch(error => console.error(error))
+    //})
 
-        //document.querySelector("#InsSupplementUpdateStepTwo").addEventListener("click", function () {
-        //    Employee_id = document.getElementById("Employee_id").value;
-        //    EmpDentalCost = document.getElementById("DentalCostEmpOnly").value;
-        //    EmpVisionCost = document.getElementById("VisionCostEmpOnly").value;
-        //    EmpSpDentalCost = document.getElementById("DentalCostEmpSp").value;
-        //    EmpSpVisionCost = document.getElementById("VisionCostEmpSp").value;
-        //    EmpDepDentalCost = document.getElementById("DentalCostEmpDep").value;
-        //    EmpDepVisionCost = document.getElementById("VisionCostEmpDep").value;
-        //    EmpFamDentalCost = document.getElementById("DentalCostEmpFam").value;
-        //    EmpFamVisionCost = document.getElementById("VisionCostEmpFam").value;
+    //document.querySelector("#InsSupplementUpdateStepTwo").addEventListener("click", function () {
+    //    Employee_id = document.getElementById("Employee_id").value;
+    //    EmpDentalCost = document.getElementById("DentalCostEmpOnly").value;
+    //    EmpVisionCost = document.getElementById("VisionCostEmpOnly").value;
+    //    EmpSpDentalCost = document.getElementById("DentalCostEmpSp").value;
+    //    EmpSpVisionCost = document.getElementById("VisionCostEmpSp").value;
+    //    EmpDepDentalCost = document.getElementById("DentalCostEmpDep").value;
+    //    EmpDepVisionCost = document.getElementById("VisionCostEmpDep").value;
+    //    EmpFamDentalCost = document.getElementById("DentalCostEmpFam").value;
+    //    EmpFamVisionCost = document.getElementById("VisionCostEmpFam").value;
 
-        //    //SummaryOfDentalBenefits = document.getElementById("SummaryOfDentalBenefits").value;
-        //    CalendarYearDeductible = document.getElementById("CalendarYearDeductible").value;
-        //    WaivedForPreventive = document.getElementById("WaivedForPreventive").value;
-        //    AnnualMaximum = document.getElementById("AnnualMaximum").value;
-        //    Preventive = document.getElementById("Preventive").value;
-        //    Basic = document.getElementById("Basic").value;
-        //    Major = document.getElementById("Major").value;
-        //    UCRpercentage = document.getElementById("UCRpercent").value;
-        //    EndoPeridontics = document.getElementById("EndoPeridontics").value;
-        //    Orthodontia = document.getElementById("Orthodontics").value;
-        //    OrthodontiaLifetimeMax = document.getElementById("OrthodontiaLifetimeMax").value;
-        //    WaitingPeriod = document.getElementById("WaitingPeriod").value;
-        //    DentalNetWork = document.getElementById("DentalNetWork").value;
+    //    //SummaryOfDentalBenefits = document.getElementById("SummaryOfDentalBenefits").value;
+    //    CalendarYearDeductible = document.getElementById("CalendarYearDeductible").value;
+    //    WaivedForPreventive = document.getElementById("WaivedForPreventive").value;
+    //    AnnualMaximum = document.getElementById("AnnualMaximum").value;
+    //    Preventive = document.getElementById("Preventive").value;
+    //    Basic = document.getElementById("Basic").value;
+    //    Major = document.getElementById("Major").value;
+    //    UCRpercentage = document.getElementById("UCRpercent").value;
+    //    EndoPeridontics = document.getElementById("EndoPeridontics").value;
+    //    Orthodontia = document.getElementById("Orthodontics").value;
+    //    OrthodontiaLifetimeMax = document.getElementById("OrthodontiaLifetimeMax").value;
+    //    WaitingPeriod = document.getElementById("WaitingPeriod").value;
+    //    DentalNetWork = document.getElementById("DentalNetWork").value;
 
-        //    //SummaryOfVisionBenefits = document.getElementById("SummaryOfVisionBenefits").value;
-        //    CoPay = document.getElementById("CoPay").value;
-        //    Exams = document.getElementById("Exams").value;
-        //    Materials = document.getElementById("Materials").value;
-        //    LensesSingleVision = document.getElementById("LensesSingleVision").value;
-        //    BiFocal = document.getElementById("BiFocal").value;
-        //    TriFocal = document.getElementById("TriFocal").value;
-        //    Lenticular = document.getElementById("Lenticular").value;
-        //    //Contacts = document.getElementById("Contacts").value;
-        //    ContactsMedicallyNecessary = document.getElementById("ContactsMedicallyNecessary").value;
-        //    ContactsElective = document.getElementById("ContactsElective").value;
-        //    Frames = document.getElementById("Frames").value;
-        //    Network = document.getElementById("NetWork").value;
-        //    RateGuarantee = document.getElementById("RateGuarantee").value;
+    //    //SummaryOfVisionBenefits = document.getElementById("SummaryOfVisionBenefits").value;
+    //    CoPay = document.getElementById("CoPay").value;
+    //    Exams = document.getElementById("Exams").value;
+    //    Materials = document.getElementById("Materials").value;
+    //    LensesSingleVision = document.getElementById("LensesSingleVision").value;
+    //    BiFocal = document.getElementById("BiFocal").value;
+    //    TriFocal = document.getElementById("TriFocal").value;
+    //    Lenticular = document.getElementById("Lenticular").value;
+    //    //Contacts = document.getElementById("Contacts").value;
+    //    ContactsMedicallyNecessary = document.getElementById("ContactsMedicallyNecessary").value;
+    //    ContactsElective = document.getElementById("ContactsElective").value;
+    //    Frames = document.getElementById("Frames").value;
+    //    Network = document.getElementById("NetWork").value;
+    //    RateGuarantee = document.getElementById("RateGuarantee").value;
 
-        //    var data = {
-        //        "Employee_id": Employee_id,
-        //        "EmpDentalCost": EmpDentalCost,
-        //        "EmpVisionCost": EmpVisionCost,
-        //        "EmpSpDentalCost": EmpSpDentalCost,
-        //        "EmpSpVisionCost": EmpSpVisionCost,
-        //        "EmpDepDentalCost": EmpDepDentalCost,
-        //        "EmpDepVisionCost": EmpDepVisionCost,
-        //        "EmpFamDentalCost": EmpFamDentalCost,
-        //        "EmpFamVisionCost": EmpFamVisionCost,
+    //    var data = {
+    //        "Employee_id": Employee_id,
+    //        "EmpDentalCost": EmpDentalCost,
+    //        "EmpVisionCost": EmpVisionCost,
+    //        "EmpSpDentalCost": EmpSpDentalCost,
+    //        "EmpSpVisionCost": EmpSpVisionCost,
+    //        "EmpDepDentalCost": EmpDepDentalCost,
+    //        "EmpDepVisionCost": EmpDepVisionCost,
+    //        "EmpFamDentalCost": EmpFamDentalCost,
+    //        "EmpFamVisionCost": EmpFamVisionCost,
 
-        //        //"SummaryOfDentalBenefits": SummaryOfDentalBenefits,
-        //        "CalendarYearDeductible": CalendarYearDeductible,
-        //        "WaivedForPreventive": WaivedForPreventive,
-        //        "AnnualMaximum": AnnualMaximum,
-        //        "Preventive": Preventive,
-        //        "Basic": Basic,
-        //        "Major": Major,
-        //        "UCRpercentage": UCRpercentage,
-        //        "EndoPeridontics": EndoPeridontics,
-        //        "Orthodontia": Orthodontia,
-        //        "OrthodontiaLifetimeMax": OrthodontiaLifetimeMax,
-        //        "WaitingPeriod": WaitingPeriod,
-        //        "DentalNetWork": DentalNetWork,
+    //        //"SummaryOfDentalBenefits": SummaryOfDentalBenefits,
+    //        "CalendarYearDeductible": CalendarYearDeductible,
+    //        "WaivedForPreventive": WaivedForPreventive,
+    //        "AnnualMaximum": AnnualMaximum,
+    //        "Preventive": Preventive,
+    //        "Basic": Basic,
+    //        "Major": Major,
+    //        "UCRpercentage": UCRpercentage,
+    //        "EndoPeridontics": EndoPeridontics,
+    //        "Orthodontia": Orthodontia,
+    //        "OrthodontiaLifetimeMax": OrthodontiaLifetimeMax,
+    //        "WaitingPeriod": WaitingPeriod,
+    //        "DentalNetWork": DentalNetWork,
 
-        //        //"SummaryOfVisionBenefits": SummaryOfVisionBenefits,
-        //        "Exams": Exams,
-        //        "Materials": Materials,
-        //        "LensesSingleVision": LensesSingleVision,
-        //        "BiFocal": BiFocal,
-        //        "TriFocal": TriFocal,
-        //        "Lenticular": Lenticular,
-        //        //"Contacts": Contacts,
-        //        "ContactsMedicallyNecessary": ContactsMedicallyNecessary,
-        //        "ContactsElective": ContactsElective,
-        //        "Frames": Frames,
-        //        "Network": Network,
-        //        "Network": DentalNetWork,
-        //        "RateGuarantee": RateGuarantee,
-        //    }
+    //        //"SummaryOfVisionBenefits": SummaryOfVisionBenefits,
+    //        "Exams": Exams,
+    //        "Materials": Materials,
+    //        "LensesSingleVision": LensesSingleVision,
+    //        "BiFocal": BiFocal,
+    //        "TriFocal": TriFocal,
+    //        "Lenticular": Lenticular,
+    //        //"Contacts": Contacts,
+    //        "ContactsMedicallyNecessary": ContactsMedicallyNecessary,
+    //        "ContactsElective": ContactsElective,
+    //        "Frames": Frames,
+    //        "Network": Network,
+    //        "Network": DentalNetWork,
+    //        "RateGuarantee": RateGuarantee,
+    //    }
 
-        //    var ret = postData('/Group_Health/GrpHealthInsSupplementNew', data)
-        //        .then(data => SecondStep(data))
-        //        .catch(error => console.error(error))
-        //})
+    //    var ret = postData('/Group_Health/GrpHealthInsSupplementNew', data)
+    //        .then(data => SecondStep(data))
+    //        .catch(error => console.error(error))
+    //})
 
+    document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("GrpHealthInsUpdateStepThree").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
+            GrpHealth_id = document.getElementById("GrpHealth_id").value;
             GroupName = document.getElementById("GroupName").value;
             IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
             empDepartment = document.getElementById("empDepartment").value;
@@ -1578,6 +1601,7 @@
 
             data = {
                 "Employee_id": Employee_id,
+                "GrpHealth_id": GrpHealth_id,
                 "GroupName": GroupName,
                 "IMSGroupNumber": IMSGroupNumber,
                 "empDepartment": empDepartment,
@@ -1660,22 +1684,11 @@
 
     function SecondStep(ins) {
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-        //document.querySelector("#DentalCostEmpOnly").value = ins.EmpDentalCost;
-        //document.querySelector("#VisionCostEmpOnly").value = ins.EmpVisionCost;
-        //document.querySelector("#DentalCostEmpSp").value = EmpSpDentalCost;
-        //document.querySelector("#VisionCostEmpSp").value = EmpSpVisionCost;
-        //document.querySelector("#DentalCostEmpDep").value = EmpDepDentalCost;
-        //document.querySelector("#VisionCostEmpDep").value = EmpDepVisionCost;
-        //document.querySelector("#DentalCostEmpFam").value = EmpFamDentalCost;
-        //document.querySelector("#VisionCostEmpFam").value = EmpFamVisionCost;
-        Employee_id = ins.data;
     }
 
     function ThirdStep(ins) {
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
-        Employee_id = ins.data;
-
     }
 
     //function FourthStep(ins) {
