@@ -275,19 +275,20 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult GrpHealthEnrollment(int? Employee_id, int? FamilyMember_id, int? GrpHealth_id)
+        public ActionResult GrpHealthEnrollment(int? Employee_id, int? FamilyMember_id, int? OtherInsurance_id)
         {
             Employee e = db.Employees.Find(Employee_id);
 
-            ViewBag.Employee_id = Employee_id;
             ViewBag.e = e;
 
             Family_Info f = db.Family_Info.Find(FamilyMember_id);
 
-            ViewBag.FamilyMember_id = FamilyMember_id;
-            ViewBag.f = f;
+            ViewBag.FamilyMember_id = f;
 
-           
+
+            Other_Insurance otherIns = db.Other_Insurance.Find(OtherInsurance_id);
+
+            ViewBag.otherIns = otherIns;
 
             return View();
         }
@@ -371,8 +372,8 @@ namespace Watson.Controllers
             o.PhoneNumber = depInsPhoneNumber;
 
             Employee e = db.Employees
-             .Where(i => i.Employee_id == Employee_id)
-             .Single();
+                 .Where(i => i.Employee_id == Employee_id)
+                 .Single();
 
             ViewBag.e = e;
 

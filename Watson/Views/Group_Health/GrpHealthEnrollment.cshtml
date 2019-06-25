@@ -16,7 +16,6 @@
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
-    <input type="hidden" id="GrpHealth_id" class="form-control" name="GrpHealth_id" value="@ViewBag.GrpHealth_id" />
     <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
     <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
     <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
@@ -958,7 +957,7 @@
             <hr />
             <div>
                 @* retrieve dep info from DepEnrollment page *@
-                <div id="depGen&InsInfo">
+                <form id="depGen&InsInfo" method="post" action="#" class="repeatingSection" enctype="multipart/form-data">
                     <div id="depGenInfo">
                         <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
                         <div id="depInfo">
@@ -969,7 +968,7 @@
                                 <input type="text" id="depLastName" class="form-control" placeholder="Last Name" name="LastName" value="" disabled />
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="text" id="depSSN" class="form-control" placeholder="SSN#- Call HR" name="SSN" value="" disabled />
+                                <input type="text" id="depSSN" class="form-control" placeholder="SSN #" name="SSN" value="" disabled />
                             </div>
                             <div class="form-group col-md-3" id="depRelationshipToInsured">
                                 <input type="text" id="depRelationToInsured" class="form-control" placeholder="Relationship to Insured" name="RelationShipToInsured" value="" disabled>
@@ -978,7 +977,7 @@
                                 @*<input id="Other" name="RelationshipToInsured" class="form-control" value="Other" @((ViewBag.RelationshipToInsured.ToLower() == "Other") ? "selected" : "")/>*@
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="date" class="form-control" id="depDateOfBirth1" name="DateOfBirth" value="" disabled />
+                                <input type="date" class="form-control" id="depDateOfBirth" name="DateOfBirth" value="" disabled />
                             </div>
                             <div class="form-group col-md-2">
                                 <select id="depGender" class="form-control" disabled>
@@ -992,8 +991,8 @@
                     <div>
                         <div>
                             <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="ShowdepOtherInsCoverage()" name="CoveredByOtherInsurance" value="yes" checked/>Yes</label>
-                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="HidedepOtherInsCoverage()" name="CoveredByOtherInsurance" value="no"  />No</label>
+                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="ShowdepOtherInsCoverage()" name="CoveredByOtherInsurance" value="yes" checked />Yes</label>
+                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="HidedepOtherInsCoverage()" name="CoveredByOtherInsurance" value="no" />No</label>
                             <div id="depInsInfo">
                                 <div class="form-group col-md-2">
                                     <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
@@ -1007,13 +1006,25 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 <p></p>
-                <div class="form-group">
+                <div class="form-group" >
                     <div class="col-md-11">
                         <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
                     </div>
                 </div>
+                <div id="dependentSelectForm" @*action="\Home\DependentPoster" method="post"*@>
+                    <input type="text" name="fname1" id="fname1" />
+                    <input type="text" name="lname1" id="lname1" />
+                    <input type="text" name="ssn1" id="ssn1" />
+                    <input type="text" name="relation1" id="relation1" />
+                    <input type="date" name="dob1" id="dob1" />
+                    <input type="text" name="gender1" id="gender1" />
+
+                    <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
+                    <br id="br1" />
+                </div>
+
                 <hr />
                 <div class="text-justify">
                     <label style="padding-left: 10px;"></label>
@@ -1256,7 +1267,6 @@
                 formObj.appendChild(createElement('dob', 'date'));
                 formObj.appendChild(createElement('gender', 'text'));
 
-
                 //create the new span tag with the red X in it
                 var spanObj = document.createElement("span");
                 spanObj.id = "x" + newID;
@@ -1303,7 +1313,7 @@
     </script>
 </head>
 <body>
-    <div id="dependentSelectForm" @*action="\Home\DependentPoster" method="post"*@>
+    @*<div id="dependentSelectForm" action="\Home\DependentPoster" method="post">
         <input type="text" name="fname1" id="fname1" />
         <input type="text" name="lname1" id="lname1" />
         <input type="text" name="ssn1" id="ssn1" />
@@ -1314,9 +1324,9 @@
         <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
         <br id="br1" />
 
-        @*<input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
-            <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">*@
-    </div>
+        <input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
+        <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">
+    </div>*@
 </body>
 </html>
 
@@ -1359,6 +1369,31 @@
     }
 
 
+    //create a for loop i=8
+    function depOtherInsCoverage() {
+
+        var div = document.querySelectorAll("depOtherInsCoverage").value;
+        var divDepHide = document.querySelector("depInsInfo")
+        var divDepShow = document.querySelector("depInsInfo")
+
+        div.addEventListener('click', function () {
+
+            if (div.checked == "no") {
+
+                divDepHide.style.display = "none";
+                //divDepHide.style.visibility = "hidden";
+
+            }
+            else {
+
+                divDepShow.style.display = "block";
+                //divDepShow.style.visibility = "visible";
+
+            }
+        });
+
+    }
+
     //function empOtherInsCoverage() {
 
     //    var div = document.querySelector("empOtherInsCoverage").value;
@@ -1378,184 +1413,6 @@
     //}
 
 
-    //create a for loop i=8
-    function depOtherInsCoverage() {
-
-        var div = document.querySelectorAll("depOtherInsCoverage").value;
-        var divDepHide1 = document.querySelector("depInsInfo")
-        var divDepShow1 = document.querySelector("depInsInfo")
-
-        div.addEventListener('click', function () {
-
-            if (div.checked == "no") {
-
-                divDepHide1.style.visibility = "hidden";
-
-            }
-            else {
-                divDepShow1.style.visibility = "visible";
-
-            }
-        });
-
-    }
-
-
-    //document.addEventListener("DOMContentLoaded", function () {
-    //document.querySelector("#InsPremiumUpdateStepOne").addEventListener("click", function () {
-    //    MECmonthlyEO = document.getElementById('MECmonthlyCostEmpOnly').value
-    //    MECmonthlyEmpSp = document.getElementById('MECmonthlyCostEmpSp').value
-    //    MECmonthlyEmpDep = document.getElementById('MECmonthlyCostEmpDep').value
-    //    MECmonthlyEmpFam = document.getElementById('MECmonthlyCostEmpFam').value
-    //    MECbiweeklyEO = document.getElementById('MECbiweeklyCostEmpOnly').value
-    //    MECbiweeklyEmpSp = document.getElementById('MECbiweeklyCostEmpSp').value
-    //    MECbiweeklyEmpDep = document.getElementById('MECbiweeklyCostEmpDep').value
-    //    MECbiweeklyEmpFam = document.getElementById('MECbiweeklyCostEmpFam').value
-
-    //    StndmonthlyEO = document.getElementById('StndmonthlyCostEmpOnly').value
-    //    StndmonthlyEmpSp = document.getElementById('StndmonthlyCostEmpSp').value
-    //    StndmonthlyEmpDep = document.getElementById('StndmonthlyCostEmpDep').value
-    //    StndmonthlyEmpFam = document.getElementById('StndmonthlyCostEmpFam').value
-    //    StndbiweeklyEO = document.getElementById('StndbiweeklyCostEmpOnly').value
-    //    StndbiweeklyEmpSp = document.getElementById('StndbiweeklyCostEmpSp').value
-    //    StndbiweeklyEmpDep = document.getElementById('StndbiweeklyCostEmpDep').value
-    //    StndbiweeklyEmpFam = document.getElementById('StndbiweeklyCostEmpFam').value
-
-    //    BuyUpmonthlyEO = document.getElementById('BuyUpmonthlyCostEmpOnly').value
-    //    BuyUpmonthlyEmpSp = document.getElementById('BuyUpmonthlyCostEmpSp').value
-    //    BuyUpmonthlyEmpDep = document.getElementById('BuyUpmonthlyCostEmpDep').value
-    //    BuyUpmonthlyEmpFam = document.getElementById('BuyUpmonthlyCostEmpFam').value
-    //    BuyUpbiweeklyEO = document.getElementById('BuyUpbiweeklyCostEmpOnly').value
-    //    BuyUpbiweeklyEmpSp = document.getElementById('BuyUpbiweeklyCostEmpSp').value
-    //    BuyUpbiweeklyEmpDep = document.getElementById('BuyUpbiweeklyCostEmpDep').value
-    //    BuyUpbiweeklyEmpFam = document.getElementById('BuyUpbiweeklyCostEmpAndFam').value
-
-    //    var data = {
-    //        "Employee_id": Employee_id,
-    //        "MECmonthlyEO": MECmonthlyEO,
-    //        "MECmonthlyEmpSp": MECmonthlyEmpSp,
-    //        "MECmonthlyEmpDep": MECmonthlyEmpDep,
-    //        "MECmonthlyEmpFam": MECmonthlyEmpFam,
-    //        "MECbiweeklyEO": MECbiweeklyEO,
-    //        "MECbiweeklyEmpSp": MECbiweeklyEmpSp,
-    //        "MECbiweeklyEmpDep": MECbiweeklyEmpDep,
-    //        "MECbiweeklyEmpFam": MECbiweeklyEmpFam,
-    //        "MECMnthyearlyPremiumCost": MECMnthyearlyPremiumCost,
-    //        "MECBiWkyearlyPremiumCost": MECBiWkyearlyPremiumCost,
-
-    //        "StndmonthlyEO": StndmonthlyEO,
-    //        "StndmonthlyEmpSp": StndmonthlyEmpSp,
-    //        "StndmonthlyEmpDep": StndmonthlyEmpDep,
-    //        "StndmonthlyEmpFam": StndmonthlyEmpFam,
-    //        "StndbiweeklyEO": StndbiweeklyEO,
-    //        "StndbiweeklyEmpSp": StndbiweeklyEmpSp,
-    //        "StndbiweeklyEmpDep": StndbiweeklyEmpDep,
-    //        "StndbiweeklyEmpFam": StndbiweeklyEmpFam,
-    //        "StndMnthyearlyPremiumCost": StndMnthyearlyPremiumCost,
-    //        "StndBiWkyearlyPremiumCost": StndBiWkyearlyPremiumCost,
-
-    //        "BuyUpmonthlyEO": BuyUpmonthlyEO,
-    //        "BuyUpmonthlyEmpSp": BuyUpmonthlyEmpSp,
-    //        "BuyUpmonthlyEmpDep": BuyUpmonthlyEmpDep,
-    //        "BuyUpmonthlyEmpFam": BuyUpmonthlyEmpFam,
-    //        "BuyUpbiweeklyEO": BuyUpbiweeklyEO,
-    //        "BuyUpbiweeklyEmpSp": BuyUpbiweeklyEmpSp,
-    //        "BuyUpbiweeklyEmpDep": BuyUpbiweeklyEmpDep,
-    //        "BuyUpbiweeklyEmpFam": BuyUpbiweeklyEmpFam,
-    //        "BuyUpMnthyearlyPremiumCost": BuyUpMnthyearlyPremiumCost,
-    //        "BuyUpBiWkyearlyPremiumCost": BuyUpBiWkyearlyPremiumCost,
-    //    }
-
-    //    var ret = postData('/Group_Health/GrpHealthInsPremiumNew', data)
-    //        .then(data => FirstStep(data))
-    //        .catch(error => console.error(error))
-    //})
-
-    //document.querySelector("#InsSupplementUpdateStepTwo").addEventListener("click", function () {
-    //    Employee_id = document.getElementById("Employee_id").value;
-    //    EmpDentalCost = document.getElementById("DentalCostEmpOnly").value;
-    //    EmpVisionCost = document.getElementById("VisionCostEmpOnly").value;
-    //    EmpSpDentalCost = document.getElementById("DentalCostEmpSp").value;
-    //    EmpSpVisionCost = document.getElementById("VisionCostEmpSp").value;
-    //    EmpDepDentalCost = document.getElementById("DentalCostEmpDep").value;
-    //    EmpDepVisionCost = document.getElementById("VisionCostEmpDep").value;
-    //    EmpFamDentalCost = document.getElementById("DentalCostEmpFam").value;
-    //    EmpFamVisionCost = document.getElementById("VisionCostEmpFam").value;
-
-    //    //SummaryOfDentalBenefits = document.getElementById("SummaryOfDentalBenefits").value;
-    //    CalendarYearDeductible = document.getElementById("CalendarYearDeductible").value;
-    //    WaivedForPreventive = document.getElementById("WaivedForPreventive").value;
-    //    AnnualMaximum = document.getElementById("AnnualMaximum").value;
-    //    Preventive = document.getElementById("Preventive").value;
-    //    Basic = document.getElementById("Basic").value;
-    //    Major = document.getElementById("Major").value;
-    //    UCRpercentage = document.getElementById("UCRpercent").value;
-    //    EndoPeridontics = document.getElementById("EndoPeridontics").value;
-    //    Orthodontia = document.getElementById("Orthodontics").value;
-    //    OrthodontiaLifetimeMax = document.getElementById("OrthodontiaLifetimeMax").value;
-    //    WaitingPeriod = document.getElementById("WaitingPeriod").value;
-    //    DentalNetWork = document.getElementById("DentalNetWork").value;
-
-    //    //SummaryOfVisionBenefits = document.getElementById("SummaryOfVisionBenefits").value;
-    //    CoPay = document.getElementById("CoPay").value;
-    //    Exams = document.getElementById("Exams").value;
-    //    Materials = document.getElementById("Materials").value;
-    //    LensesSingleVision = document.getElementById("LensesSingleVision").value;
-    //    BiFocal = document.getElementById("BiFocal").value;
-    //    TriFocal = document.getElementById("TriFocal").value;
-    //    Lenticular = document.getElementById("Lenticular").value;
-    //    //Contacts = document.getElementById("Contacts").value;
-    //    ContactsMedicallyNecessary = document.getElementById("ContactsMedicallyNecessary").value;
-    //    ContactsElective = document.getElementById("ContactsElective").value;
-    //    Frames = document.getElementById("Frames").value;
-    //    Network = document.getElementById("NetWork").value;
-    //    RateGuarantee = document.getElementById("RateGuarantee").value;
-
-    //    var data = {
-    //        "Employee_id": Employee_id,
-    //        "EmpDentalCost": EmpDentalCost,
-    //        "EmpVisionCost": EmpVisionCost,
-    //        "EmpSpDentalCost": EmpSpDentalCost,
-    //        "EmpSpVisionCost": EmpSpVisionCost,
-    //        "EmpDepDentalCost": EmpDepDentalCost,
-    //        "EmpDepVisionCost": EmpDepVisionCost,
-    //        "EmpFamDentalCost": EmpFamDentalCost,
-    //        "EmpFamVisionCost": EmpFamVisionCost,
-
-    //        //"SummaryOfDentalBenefits": SummaryOfDentalBenefits,
-    //        "CalendarYearDeductible": CalendarYearDeductible,
-    //        "WaivedForPreventive": WaivedForPreventive,
-    //        "AnnualMaximum": AnnualMaximum,
-    //        "Preventive": Preventive,
-    //        "Basic": Basic,
-    //        "Major": Major,
-    //        "UCRpercentage": UCRpercentage,
-    //        "EndoPeridontics": EndoPeridontics,
-    //        "Orthodontia": Orthodontia,
-    //        "OrthodontiaLifetimeMax": OrthodontiaLifetimeMax,
-    //        "WaitingPeriod": WaitingPeriod,
-    //        "DentalNetWork": DentalNetWork,
-
-    //        //"SummaryOfVisionBenefits": SummaryOfVisionBenefits,
-    //        "Exams": Exams,
-    //        "Materials": Materials,
-    //        "LensesSingleVision": LensesSingleVision,
-    //        "BiFocal": BiFocal,
-    //        "TriFocal": TriFocal,
-    //        "Lenticular": Lenticular,
-    //        //"Contacts": Contacts,
-    //        "ContactsMedicallyNecessary": ContactsMedicallyNecessary,
-    //        "ContactsElective": ContactsElective,
-    //        "Frames": Frames,
-    //        "Network": Network,
-    //        "Network": DentalNetWork,
-    //        "RateGuarantee": RateGuarantee,
-    //    }
-
-    //    var ret = postData('/Group_Health/GrpHealthInsSupplementNew', data)
-    //        .then(data => SecondStep(data))
-    //        .catch(error => console.error(error))
-    //})
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("GrpHealthInsUpdateStepThree").addEventListener("click", function () {
