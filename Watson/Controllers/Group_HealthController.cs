@@ -275,27 +275,28 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult GrpHealthEnrollment(int? Employee_id, int? FamilyMember_id, int? OtherInsurance_id)
+        public ActionResult GrpHealthEnrollment(int? Employee_id, int? FamilyMember_id, int? OtherInsurance_id, int? InsurancePlan_id, string RelationshipToInsured)
         {
-            Employee e = db.Employees.Find(Employee_id);
+            //Employee e = db.Employees.Find(Employee_id);
+            //Family_Info f = db.Family_Info.Find(FamilyMember_id);
+            //Other_Insurance otherIns = db.Other_Insurance.Find(OtherInsurance_id);
 
-            ViewBag.e = e;
+            //ViewBag.e = e;
+            //ViewBag.FamilyMember_id = f;
+            //ViewBag.otherIns = otherIns;
 
-            Family_Info f = db.Family_Info.Find(FamilyMember_id);
-
-            ViewBag.FamilyMember_id = f;
-
-
-            Other_Insurance otherIns = db.Other_Insurance.Find(OtherInsurance_id);
-
-            ViewBag.otherIns = otherIns;
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.FamilyMember_id = FamilyMember_id;
+            ViewBag.OtherInsurance_id = OtherInsurance_id;
+            ViewBag.InsurancePlan_id = InsurancePlan_id;
+            ViewBag.RelationshipToInsured = RelationshipToInsured;
 
             return View();
         }
 
         //Create-GrpHealthEnrollment
-        public JsonResult GrpHealthEnrollmentNew(int Employee_id, int InsurancePlan_id, int FamilyMember_id,
-            int OtherInsurance_id, string empInsuranceCarrier, string empInsPolicyNumber, string GroupName, string IMSGroupNumber,
+        public JsonResult GrpHealthEnrollmentNew(int GrpHealth_id, int Employee_id, int InsurancePlan_id, int FamilyMember_id,
+            int OtherInsurance_id, string GroupName, string IMSGroupNumber, string empInsuranceCarrier, string empInsPolicyNumber, 
             string PhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
             string Myself, string Spouse, string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear,
             string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption,
@@ -310,10 +311,11 @@ namespace Watson.Controllers
         {
             Group_Health g = new Group_Health();
 
-            g.InsuranceCarrier = empInsuranceCarrier;
-            g.PolicyNumber = empInsPolicyNumber;
+            g.GroupHealthInsurance_id = GrpHealth_id;
             g.GroupName = GroupName;
             g.IMSGroupNumber = IMSGroupNumber;
+            g.InsuranceCarrier = empInsuranceCarrier;
+            g.PolicyNumber = empInsPolicyNumber;
             g.PhoneNumber = PhoneNumber;
             g.ReasonForGrpCoverageRefusal = ReasonForGrpCoverageRefusal;
             g.OtherCoverage = OtherCoverage;
@@ -331,8 +333,11 @@ namespace Watson.Controllers
             g.EmployeeSignature = empSignature;
             g.EmployeeSignatureDate = empSignatureDate;
 
+            ViewBag.GroupHealthInsurance_id = GrpHealth_id;
+
             Employee emp = new Employee();
 
+            emp.Employee_id = Employee_id;
             emp.Department = empDepartment;
             emp.EnrollmentType = empEnrollmentType;
             emp.Payroll_id = empPayroll_id;
@@ -341,8 +346,11 @@ namespace Watson.Controllers
             emp.EffectiveDate = empEffectiveDate;
             emp.HoursWorkedPerWeek = empHrsWkPerWk;
 
+            ViewBag.Employee_id = Employee_id;
+
             InsurancePlan insPlan = new InsurancePlan();
 
+            insPlan.InsurancePlan_id = InsurancePlan_id;
             insPlan.MECPlan = InsMECPlan;
             insPlan.StandardPlan = InsStndPlan;
             insPlan.BuyUpPlan = InsBuyUpPlan;
@@ -350,9 +358,11 @@ namespace Watson.Controllers
             insPlan.VisionPlan = VisionPlan;
 
             ViewBag.insPlan = insPlan;
+            ViewBag.InsurancePlan_id = InsurancePlan_id;
 
             Other_Insurance o = new Other_Insurance();
 
+            o.OtherInsurance_id = OtherInsurance_id;
             o.CoveredByOtherInsurance = spOtherInsCoverage;
             o.InsuranceCarrier = spInsCarrier;
             o.PolicyNumber = spInsPolicyNumber;
@@ -370,6 +380,8 @@ namespace Watson.Controllers
             o.InsuranceCarrier = depInsCarrier;
             o.PolicyNumber = depInsPolicyNumber;
             o.PhoneNumber = depInsPhoneNumber;
+
+            ViewBag.OtherInsurance_id = OtherInsurance_id;
 
             Employee e = db.Employees
                  .Where(i => i.Employee_id == Employee_id)
@@ -398,7 +410,7 @@ namespace Watson.Controllers
                 db.SaveChanges();
             }
 
-            int result = e.Employee_id;
+            int result = g.GroupHealthInsurance_id;
            
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);

@@ -645,7 +645,7 @@
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="AnnualSalary" id="empAnnualSalary" placeholder="Annual Salary" value="" />
+                    <input type="text" class="form-control" name="AnnualSalary" id="empJobTitle" placeholder="Annual Salary" value="" />
                 </div>
                 <p></p>
                 <div>
@@ -661,12 +661,12 @@
                 </div>
                 <p></p>
                 <div>
-                    <input type="number" class="form-control" name="HoursWorkedPerWeek" id="empHrsWkPerWk" placeholder="Min. Hrs. Worked/Wk" value="" />
+                    <input type="number" class="form-control" name="HoursWorkedPerWeek" id="empHrsWrkPerWk" placeholder="Min. Hrs. Worked/Wk" value="" />
                 </div>
             </div>
 
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="Employee Number" id="EmployeeNumber" name="SSN" value="" disabled />
+                <input type="text" class="form-control" placeholder="Employee Number" id="empNumber" name="SSN" value="" disabled />
             </div>
             <div class="form-group col-md-6">
                 <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" disabled />
@@ -683,7 +683,7 @@
                 <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" disabled />
             </div>
             <div>
-                <select id="EmpGender" class="form-control" disabled>
+                <select id="Gender" class="form-control" disabled>
                     <option value="">Gender:</option>
                     @*<option value="Male"   @((ViewBag.Employee.Gender) == "Male"   ? "selected" : "")>Male</option>
                         <option value="Female" @((ViewBag.Employee.Gender) == "Female" ? "selected" : "")>Female</option>*@
@@ -1101,7 +1101,7 @@
                 <hr />
                 <div class="form-group">
                     <div class="col-md-offset-11">
-                        <button id="GrpHealthInsUpdateStepThree" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>
+                        <button type="submit" id="GrpHealthInsUpdateStepThree" class="btn" @*onclick="return function()"*@>Save</button>
                     </div>
                 </div>
             </div>
@@ -1334,9 +1334,8 @@
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
-    var Employee_id;
+    //var Employee_id;
     var GrpHealth_id;
-    //var familyinfo_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -1415,9 +1414,8 @@
 
 
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("GrpHealthInsUpdateStepThree").addEventListener("click", function () {
+        document.querySelector("#GrpHealthInsUpdateStepThree").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            GrpHealth_id = document.getElementById("GrpHealth_id").value;
             GroupName = document.getElementById("GroupName").value;
             IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
             empDepartment = document.getElementById("empDepartment").value;
@@ -1436,6 +1434,20 @@
             empSignature = document.getElementById("empSignature").value;
             empSignatureDate = document.getElementById("empSignatureDate").value;
 
+            //empNumber = document.getElementById("empNumber").value;
+            //FirstName = document.getElementById("FirstName").value;
+            //LastName = document.getElementById("LastName").value;
+            //MailingAddress = document.getElementById("MailingAddress").value;
+            //PObox = document.getElementById("PObox").value;
+            //City = document.getElementById("City").value;
+            //State = document.getElementById("State").value;
+            //ZipCode = document.getElementById("ZipCode").value;
+            //Gender = document.getElementById("Gender").value;
+            //MaritalStatus = document.getElementById("MaritalStatus").value;
+            //EmailAddress = document.getElementById("EmailAddress").value;
+            //PhoneNumber = document.getElementById("PhoneNumber").value;
+            //DateOfBirth = document.getElementById("DateOfBirth").value;
+ 
             NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
             empOnlyGroupHealthOption = document.getElementById("empOnlyGroupHealthOption").value;
             empSpGroupHealthOption = document.getElementById("empSpGroupHealthOption").value;
@@ -1451,14 +1463,23 @@
             spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value;
             spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value;
 
+            //depFirstName = document.getElementById("depFirstName").value;
+            //depLastName = document.getElementById("depLastName").value;
+            //depSSN = document.getElementById("depSSN").value;
+            //depRelationToInsured = document.getElementById("depRelationToInsured").value;
+            //depDateOfBirth = document.getElementById("depDateOfBirth").value;
+            //depGender = document.getElementById("depGender").value;
+
             depOtherInsCoverage = document.getElementById("depOtherInsCoverage").value;
             depInsCarrier = document.getElementById("depInsCarrier").value;
             depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value;
             depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value;
 
             data = {
-                "Employee_id": Employee_id,
                 "GrpHealth_id": GrpHealth_id,
+                "Employee_id": Employee_id,
+                "FamilyMember_id": FamilyMember_id,
+                "OtherInsurance_id": OtherInsurance_id,
                 "GroupName": GroupName,
                 "IMSGroupNumber": IMSGroupNumber,
                 "empDepartment": empDepartment,
@@ -1480,6 +1501,20 @@
                 "empSignature": empSignature,
                 "empSignatureDate": empSignatureDate,
 
+                //"empNumber": empNumber,
+                //"FirstName": FirstName,
+                //"LastName": LastName,
+                //"MailingAddress": MailingAddress,
+                //"PObox": PObox,
+                //"City": City,
+                //"State": State,
+                //"ZipCode": ZipCode,
+                //"Gender": Gender,
+                //"MaritalStatus": MaritalStatus,
+                //"EmailAddress": EmailAddress,
+                //"PhoneNumber": PhoneNumber,
+                //"DateOfBirth": DateOfBirth,
+         
                 "spOtherInsCoverage": spOtherInsCoverage,
                 "spInsCarrier": spInsCarrier,
                 "spInsMailingAddress": spInsMailingAddress,
@@ -1489,70 +1524,89 @@
                 "spInsPhoneNumber": spInsPhoneNumber,
                 "spInsPolicyNumber": spInsPolicyNumber,
 
+                //"depFirstName": depFirstName,
+                //"depLastName": depLastName,
+                //"depSSN": depSSN,
+                //"depRelationToInsured": depRelationToInsured,
+                //"depDateOfBirth": depDateOfBirth,
+                //"depGender": depGender,
+
                 "depOtherInsCoverage": depOtherInsCoverage,
                 "depInsCarrier": depInsCarrier,
                 "depInsPolicyNumber": depInsPolicyNumber,
                 "depInsPhoneNumber": depInsPhoneNumber,
             }
 
-            var ret = postData('/GrpHealthInsurance/GrpHealthEnrollmentNew', data)
-                .then(data => {
-                    console.log(data);
-                    ThirdStep(data);
-                })
-                .catch(error => console.error(error))
+            //var ret = postData('/GrpHealthInsurance/GrpHealthEnrollmentNew', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        ThirdStep(data);
+            //    })
+            //    .catch(error => console.error(error))
+
+            fetch('/GrpHealthInsurance/GrpHealthEnrollmentNew', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                //.then(response => console.log('Success:', JSON.stringify(response)))
+                .then(response => ThirdStep(response))
+                .catch(error => console.error('Error:', error));
         })
     })
 
-    function FirstStep(ins) {
-        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        Employee_id = ins.data;
-        //document.querySelector("#MECmonthlyEO").value = ins.MECmonthlyEO;
-        //document.querySelector("#MECmonthlyEmpSp").value = ins.MECmonthlyEmpSp;
-        //document.querySelector("#MECmonthlyEmpDep").value = ins.MECmonthlyEmpDep;
-        //document.querySelector("#MECmonthlyEmpFam").value = ins.MECmonthlyEmpFam;
-        //document.querySelector("#MECbiweeklyEO").value = ins.MECbiweeklyEO;
-        //document.querySelector("#MECbiweeklyEmpSp").value = ins.MECbiweeklyEmpSp;
-        //document.querySelector("#MECbiweeklyEmpDep").value = ins.MECbiweeklyEmpDep;
-        //document.querySelector("#MECbiweeklyEmpFam").value = ins.MECbiweeklyEmpFam;
-        //document.querySelector("#StndmonthlyEO").value = ins.StndmonthlyEO;
-        //document.querySelector("#StndmonthlyEmpSp").value = ins.StndmonthlyEmpSp;
-        //document.querySelector("#StndmonthlyEmpDep").value = ins.StndmonthlyEmpDep;
-        //document.querySelector("#StndmonthlyEmpFam").value = ins.StndmonthlyEmpFam;
-        //document.querySelector("#StndbiweeklyEO").value = ins.StndbiweeklyEO;
-        //document.querySelector("#StndbiweeklyEmpSp").value = ins.StndbiweeklyEmpSp;
-        //document.querySelector("#StndbiweeklyEmpDep").value = ins.StndbiweeklyEmpDep;
-        //document.querySelector("#StndbiweeklyEmpFam").value = ins.StndbiweeklyEmpFam;
-        //document.querySelector("#BuyUpmonthlyEO").value = ins.BuyUpmonthlyEO;
-        //document.querySelector("#BuyUpmonthlyEmpSp").value = ins.BuyUpmonthlyEmpSp;
-        //document.querySelector("#BuyUpmonthlyEmpDep").value = ins.BuyUpmonthlyEmpDep;
-        //document.querySelector("#BuyUpmonthlyEmpFam").value = ins.BuyUpmonthlyEmpFam;
-        //document.querySelector("#BuyUpbiweeklyEO").value = ins.BuyUpbiweeklyEO;
-        //document.querySelector("#BuyUpbiweeklyEmpSp").value = ins.BuyUpbiweeklyEmpSp;
-        //document.querySelector("#BuyUpbiweeklyEmpDep").value = ins.BuyUpbiweeklyEmpDep;
-        //document.querySelector("#BuyUpbiweeklyEmpFam").value = ins.BuyUpbiweeklyEmpFam;
-        //document.querySelector("#MECMnthyearlyPremiumCost").value = ins.MECMnthyearlyPremiumCost;
-        //document.querySelector("#MECBiWkyearlyPremiumCost").value = ins.MECBiWkyearlyPremiumCost;
-        //document.querySelector("#StndMnthyearlyPremiumCost").value = ins.StndMnthyearlyPremiumCost;
-        //document.querySelector("#StndBiWkyearlyPremiumCost").value = ins.StndBiWkyearlyPremiumCost;
-        //document.querySelector("#BuyUpMnthyearlyPremiumCost").value = ins.BuyUpMnthyearlyPremiumCost;
-        //document.querySelector("#BuyUpBiWkyearlyPremiumCost").value = ins.BuyUpBiWkyearlyPremiumCost;
-    }
+    //function FirstStep(ins) {
+    //    document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+    //    Employee_id = ins.data;
+    //    //document.querySelector("#MECmonthlyEO").value = ins.MECmonthlyEO;
+    //    //document.querySelector("#MECmonthlyEmpSp").value = ins.MECmonthlyEmpSp;
+    //    //document.querySelector("#MECmonthlyEmpDep").value = ins.MECmonthlyEmpDep;
+    //    //document.querySelector("#MECmonthlyEmpFam").value = ins.MECmonthlyEmpFam;
+    //    //document.querySelector("#MECbiweeklyEO").value = ins.MECbiweeklyEO;
+    //    //document.querySelector("#MECbiweeklyEmpSp").value = ins.MECbiweeklyEmpSp;
+    //    //document.querySelector("#MECbiweeklyEmpDep").value = ins.MECbiweeklyEmpDep;
+    //    //document.querySelector("#MECbiweeklyEmpFam").value = ins.MECbiweeklyEmpFam;
+    //    //document.querySelector("#StndmonthlyEO").value = ins.StndmonthlyEO;
+    //    //document.querySelector("#StndmonthlyEmpSp").value = ins.StndmonthlyEmpSp;
+    //    //document.querySelector("#StndmonthlyEmpDep").value = ins.StndmonthlyEmpDep;
+    //    //document.querySelector("#StndmonthlyEmpFam").value = ins.StndmonthlyEmpFam;
+    //    //document.querySelector("#StndbiweeklyEO").value = ins.StndbiweeklyEO;
+    //    //document.querySelector("#StndbiweeklyEmpSp").value = ins.StndbiweeklyEmpSp;
+    //    //document.querySelector("#StndbiweeklyEmpDep").value = ins.StndbiweeklyEmpDep;
+    //    //document.querySelector("#StndbiweeklyEmpFam").value = ins.StndbiweeklyEmpFam;
+    //    //document.querySelector("#BuyUpmonthlyEO").value = ins.BuyUpmonthlyEO;
+    //    //document.querySelector("#BuyUpmonthlyEmpSp").value = ins.BuyUpmonthlyEmpSp;
+    //    //document.querySelector("#BuyUpmonthlyEmpDep").value = ins.BuyUpmonthlyEmpDep;
+    //    //document.querySelector("#BuyUpmonthlyEmpFam").value = ins.BuyUpmonthlyEmpFam;
+    //    //document.querySelector("#BuyUpbiweeklyEO").value = ins.BuyUpbiweeklyEO;
+    //    //document.querySelector("#BuyUpbiweeklyEmpSp").value = ins.BuyUpbiweeklyEmpSp;
+    //    //document.querySelector("#BuyUpbiweeklyEmpDep").value = ins.BuyUpbiweeklyEmpDep;
+    //    //document.querySelector("#BuyUpbiweeklyEmpFam").value = ins.BuyUpbiweeklyEmpFam;
+    //    //document.querySelector("#MECMnthyearlyPremiumCost").value = ins.MECMnthyearlyPremiumCost;
+    //    //document.querySelector("#MECBiWkyearlyPremiumCost").value = ins.MECBiWkyearlyPremiumCost;
+    //    //document.querySelector("#StndMnthyearlyPremiumCost").value = ins.StndMnthyearlyPremiumCost;
+    //    //document.querySelector("#StndBiWkyearlyPremiumCost").value = ins.StndBiWkyearlyPremiumCost;
+    //    //document.querySelector("#BuyUpMnthyearlyPremiumCost").value = ins.BuyUpMnthyearlyPremiumCost;
+    //    //document.querySelector("#BuyUpBiWkyearlyPremiumCost").value = ins.BuyUpBiWkyearlyPremiumCost;
+    //}
 
-    function SecondStep(ins) {
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-    }
+    //function SecondStep(ins) {
+    //    document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+    //}
 
     function ThirdStep(ins) {
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
+        GrpHealth_id = ins.data;
     }
-
-    //function FourthStep(ins) {
-    //    document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-    //    document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
-
-    //}
 
     function postData(url, data) {
         //Default options are marked with *
