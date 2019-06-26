@@ -1058,9 +1058,10 @@
                                 <div>
                                     <h4><b>Refusal of Group Health Coverage</b></h4>
                                     <h6>This is to certify I have been given an opportunity to apply for group health coverage available to me through my Employer, and I have decided to not apply coverage for:</h6>
-                                    <label class="radio-inline"><input type="radio" id="Myself" class="radio-inline" onclick="return RefuseCoverage()" name="Myself" value="Myself" />Myself</label>
-                                    <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" onclick="return RefuseCoverage()" name="Spouse" value="Spouse" />Spouse</label>
-                                    <label class="radio-inline"><input type="radio" id="Child(ren)" class="radio-inline" onclick="return RefuseCoverage()" name="Child(ren)" value="Child(ren)" />Child(ren)</label>
+                                    <label class="radio-inline"><input type="radio" id="Myself" class="radio-inline" @*onclick="return RefusalOfGrpHealthCoverage()"*@ name="Myself" value="Myself" />Myself</label>
+                                    <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" name="Spouse" value="Spouse" />Spouse</label>
+                                    <label class="radio-inline"><input type="radio" id="Dependent" class="radio-inline" name="Dependent" value="Child(ren)" />Child(ren)</label>
+                                    <p></p>
                                 </div>
                             </td>
                         </tr>
@@ -1069,9 +1070,12 @@
                             <td>
                                 <div>
                                     <h4><b>Reason for Refusal</b></h4>
-                                    <label class="radio-inline"><input type="radio" id="OtherCoverage" class="radio-inline" onclick="return ReasonForRefusal()" name="OtherCoverage" value="OtherCoverage" />Other Coverage</label>
-                                    <label class="radio-inline"><input type="radio" id="OtherReason" class="radio-inline" onclick="return ReasonForRefusal()" name="OtherReason" value="OtherReason" />Other Reason</label>
-                                    <input type="text" id="OtherReason" class="form-control" placeholder="Please input reason" name="OtherReason" value="" />
+                                    <div>
+                                        <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="OtherCoverage" onclick="return hideReasonForRefusal()" value="OtherCoverage" />OtherCoverage</label>
+                                        <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="OtherCoverage" onclick="return showReasonForRefusal()" value="OtherReason" checked />OtherReason</label>
+                                        <p></p>
+                                        <input type="text" id="OtherReason" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="" />
+                                    </div>
                                     <hr />
                                     <div>
                                         <label style="padding-left: 10px;">
@@ -1411,6 +1415,16 @@
     //    });
     //}
 
+    function showReasonForRefusal() {
+
+        document.getElementById("OtherReason").style.visibility = "visible";
+
+    }
+
+    function hideReasonForRefusal() {
+
+        document.getElementById("OtherReason").style.visibility = "hidden";
+    }
 
 
     document.addEventListener("DOMContentLoaded", function () {
