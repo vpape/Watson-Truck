@@ -280,7 +280,7 @@ namespace Watson.Controllers
             Employee e = db.Employees.Find(Employee_id);
             Family_Info f = db.Family_Info.Find(FamilyMember_id);
      
-            ViewBag.e = e;
+            ViewBag.Employee_id = e;
             ViewBag.FamilyMember_id = f;
             ViewBag.Employee_id = Employee_id;
             ViewBag.FamilyMember_id = FamilyMember_id;
@@ -298,12 +298,12 @@ namespace Watson.Controllers
             string PhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
             string Myself, string Spouse, string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear,
             string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption,
-            string empDepGroupHealthOption, string empFamGroupHealthOption, string empSignature, DateTime empSignatureDate,
-            string empDepartment, string empEnrollmentType, int empPayroll_id, string empClass, string empJobTitle,
-            DateTime empHireDate, decimal empAnnualSalary, DateTime empEffectiveDate, int empHrsWkPerWk,
-            string InsMECPlan, string InsStndPlan, string InsBuyUpPlan, string DentalPlan, string VisionPlan,
-            string spOtherInsCoverage, string spInsCarrier, string spInsPolicyNumber, string spInsPhoneNumber,
-            string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState, string spInsZipCode,
+            string empDepGroupHealthOption, string empFamGroupHealthOption, string empSignature1, DateTime empSignatureDate1,
+            string empSignature2, DateTime empSignatureDate2, string empDepartment, string empEnrollmentType,
+            int empPayroll_id, string empClass, string empJobTitle, DateTime empHireDate, decimal empAnnualSalary, 
+            DateTime empEffectiveDate, int empHrsWkPerWk, string InsMECPlan, string InsStndPlan, string InsBuyUpPlan,
+            string DentalPlan, string VisionPlan, string spOtherInsCoverage, string spInsCarrier, string spInsPolicyNumber,
+            string spInsPhoneNumber, string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState, string spInsZipCode,
             string spMedical, string spDental, string spVision, string spIndemnity, string depOtherInsCoverage,
             string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
         {
@@ -328,8 +328,10 @@ namespace Watson.Controllers
             g.EmployeeAndSpouse = empSpGroupHealthOption;
             g.EmployeeAndDependent = empDepGroupHealthOption;
             g.EmployeeAndFamily = empFamGroupHealthOption;
-            g.EmployeeSignature = empSignature;
-            g.EmployeeSignatureDate = empSignatureDate;
+            g.EmployeeSignature = empSignature1;
+            g.EmployeeSignatureDate = empSignatureDate1;
+            g.EmployeeSignature = empSignature2;
+            g.EmployeeSignatureDate = empSignatureDate2;
 
             ViewBag.GroupHealthInsurance_id = GrpHealth_id;
 

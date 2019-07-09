@@ -15,6 +15,7 @@
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
     <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
+    <input type="hidden" id="OtherInsurance_id" class="form-control" name="OtherInsurance_id" value="@ViewBag.OtherInsurance_id" />
     <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
     <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
     <p></p>
@@ -643,7 +644,7 @@
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="AnnualSalary" id="empJobTitle" placeholder="Annual Salary" value="" />
+                    <input type="text" class="form-control" name="AnnualSalary" id="empAnnualSalary" placeholder="Annual Salary" value="" />
                 </div>
                 <p></p>
                 <div>
@@ -651,70 +652,74 @@
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="HireDate" id="empHireDate" placeholder="Employment Date" value="" />
+                    <label>Hire Date:</label>
+                    <input type="date" class="form-control" name="HireDate" id="empHireDate" placeholder="Employment Date" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="" />
+                    <label>Effective Date:</label>
+                    <input type="date" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="" />
                 </div>
                 <p></p>
                 <div>
                     <input type="number" class="form-control" name="HoursWorkedPerWeek" id="empHrsWrkPerWk" placeholder="Min. Hrs. Worked/Wk" value="" />
                 </div>
             </div>
-
-            <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="Employee Number" id="empNumber" name="SSN" value="" disabled />
-            </div>
-            <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" disabled />
-            </div>
-            <div class="form-group col-md-6">
-                <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="" disabled />
-            </div>
-            <p></p>
-            <div class="form-group col-md-6">
-                <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" disabled />
-                <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" disabled />
-                <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" disabled />
-                <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" disabled />
-                <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" disabled />
-            </div>
-            <div>
-                <select id="Gender" class="form-control" disabled>
-                    <option value="">Gender:</option>
-                    @*<option value="Male"   @((ViewBag.Employee.Gender) == "Male"   ? "selected" : "")>Male</option>
-                        <option value="Female" @((ViewBag.Employee.Gender) == "Female" ? "selected" : "")>Female</option>*@
-                </select>
-            </div>
-            <p></p>
-            <div>
-                <select id="MaritalStatus" class="form-control" disabled>
-                    <option value="">Marital Status:</option>
-                    <option value="MarriedwDep" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Married with Dependents</option>
-                    <option value="Married" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>Married</option>
-                    <option value="SinglewDep" @*@((ViewBag.MaritalStatus) == "SinglewDep"  ? "selected": "")*@>Single with Dependents</option>
-                    <option value="Single" @*@((ViewBag.MaritalStatus) == "Single"      ? "selected": "")*@>Single</option>
-                </select>
-            </div>
-            <p></p>
-            <div>
-                <input type="text" class="form-control" placeholder="Email Address" id="EmailAddress" name="EmailAddress" value="" disabled />
-            </div>
-            <div>
-                <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" disabled />
-            </div>
-            <p></p>
-            <div>
-                <label>Birth Date:</label>
-                <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="" disabled />
+            <div id="empInfo">
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="Employee Number" id="empNumber" name="SSN" value="" disabled />
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" disabled />
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="" disabled />
+                </div>
+                <div>
+                    <select id="MaritalStatus" class="form-control" disabled>
+                        <option value="">Marital Status:</option>
+                        <option value="MarriedwDep" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Married with Dependents</option>
+                        <option value="Married" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>Married</option>
+                        <option value="SinglewDep" @*@((ViewBag.MaritalStatus) == "SinglewDep"  ? "selected": "")*@>Single with Dependents</option>
+                        <option value="Single" @*@((ViewBag.MaritalStatus) == "Single"      ? "selected": "")*@>Single</option>
+                    </select>
+                </div>
+                <p></p>
+                <div class="form-group col-md-6">
+                    <label>Street Address:</label>
+                    <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" disabled />
+                    <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" disabled />
+                    <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" disabled />
+                    <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" disabled />
+                    <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" disabled />
+                </div>
+                <div>
+                    <select id="Gender" class="form-control" disabled>
+                        <option value="">Gender:</option>
+                        @*<option value="Male"   @((ViewBag.Employee.Gender) == "Male"   ? "selected" : "")>Male</option>
+                            <option value="Female" @((ViewBag.Employee.Gender) == "Female" ? "selected" : "")>Female</option>*@
+                    </select>
+                </div>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" placeholder="Email Address" id="EmailAddress" name="EmailAddress" value="" disabled />
+                </div>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" disabled />
+                </div>
+                <p></p>
+                <div>
+                    <label>Birth Date:</label>
+                    <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="" disabled />
+                </div>
             </div>
             <hr />
             <div>
                 <div class="form-control">
                     <label>Are you covered by any other insurance, including Medicare?</label>
-                    <label class="radio-inline"><input type="radio" id="empOtherInsCoverage" class="radio-inline" onclick="ShowempOtherInsCoverage()" name="OtherInsuranceCoverage" value="yes" checked />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="empOtherInsCoverage" class="radio-inline" onclick="HideempOtherInsCoverage()" name="OtherInsuranceCoverage" value="no" />No</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="ShowempOtherInsCoverage()" name="OtherInsuranceCoverage" value="yes" checked />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="HideempOtherInsCoverage()" name="OtherInsuranceCoverage" value="no" />No</label>
                 </div>
                 <div id="empInsInfo">
                     <div class="form-group col-md-3">
@@ -1040,11 +1045,11 @@
                         <label style="padding-left: 10px;">
                             Employee Signature:
                         </label>
-                        <input type="text" id="signature" name="EmployeeSignature" value="" />
+                        <input type="text" id="empSignature1" name="EmployeeSignature" value="" />
                         <label style="padding-left: 10px;">
                             Date:
                         </label>
-                        <input type="date" id="signatureDate" name="EmployeeSignatureDate" value="" />
+                        <input type="date" id="empSignatureDate1" name="EmployeeSignatureDate" value="" />
                         <hr />
                     </div>
                 </div>
@@ -1079,11 +1084,11 @@
                                         <label style="padding-left: 10px;">
                                             Employee Signature:
                                         </label>
-                                        <input type="text" id="signature" name="EmployeeSignature" value="" />
+                                        <input type="text" id="empSignature2" name="EmployeeSignature" value="" />
                                         <label style="padding-left: 10px;">
                                             Date:
                                         </label>
-                                        <input type="date" id="signatureDate" name="EmployeeSignatureDate" value="" />
+                                        <input type="date" id="empSignatureDate2" name="EmployeeSignatureDate" value="" />
                                     </div>
                                 </div>
                             </td>
@@ -1443,22 +1448,24 @@
             empInsuranceCarrier = document.getElementById("empInsCarrier").value;
             empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value;
             empInsPhoneNumber = document.getElementById("empInsPhoneNumber").value;
-            empSignature = document.getElementById("empSignature").value;
-            empSignatureDate = document.getElementById("empSignatureDate").value;
+            empSignature1 = document.getElementById("empSignature1").value;
+            empSignatureDate1 = document.getElementById("empSignatureDate1").value;
+            empSignature2 = document.getElementById("empSignature2").value;
+            empSignatureDate2 = document.getElementById("empSignatureDate2").value;
 
-            //empNumber = document.getElementById("empNumber").value;
-            //FirstName = document.getElementById("FirstName").value;
-            //LastName = document.getElementById("LastName").value;
-            //MailingAddress = document.getElementById("MailingAddress").value;
-            //PObox = document.getElementById("PObox").value;
-            //City = document.getElementById("City").value;
-            //State = document.getElementById("State").value;
-            //ZipCode = document.getElementById("ZipCode").value;
-            //Gender = document.getElementById("Gender").value;
-            //MaritalStatus = document.getElementById("MaritalStatus").value;
-            //EmailAddress = document.getElementById("EmailAddress").value;
-            //PhoneNumber = document.getElementById("PhoneNumber").value;
-            //DateOfBirth = document.getElementById("DateOfBirth").value;
+            empNumber = document.getElementById("empNumber").value;
+            FirstName = document.getElementById("FirstName").value;
+            LastName = document.getElementById("LastName").value;
+            MailingAddress = document.getElementById("MailingAddress").value;
+            PObox = document.getElementById("PObox").value;
+            City = document.getElementById("City").value;
+            State = document.getElementById("State").value;
+            ZipCode = document.getElementById("ZipCode").value;
+            Gender = document.getElementById("Gender").value;
+            MaritalStatus = document.getElementById("MaritalStatus").value;
+            EmailAddress = document.getElementById("EmailAddress").value;
+            PhoneNumber = document.getElementById("PhoneNumber").value;
+            DateOfBirth = document.getElementById("DateOfBirth").value;
 
             NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
             empOnlyGroupHealthOption = document.getElementById("empOnlyGroupHealthOption").value;
@@ -1475,12 +1482,12 @@
             spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value;
             spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value;
 
-            //depFirstName = document.getElementById("depFirstName").value;
-            //depLastName = document.getElementById("depLastName").value;
-            //depSSN = document.getElementById("depSSN").value;
-            //depRelationToInsured = document.getElementById("depRelationToInsured").value;
-            //depDateOfBirth = document.getElementById("depDateOfBirth").value;
-            //depGender = document.getElementById("depGender").value;
+            depFirstName = document.getElementById("depFirstName").value;
+            depLastName = document.getElementById("depLastName").value;
+            depSSN = document.getElementById("depSSN").value;
+            depRelationToInsured = document.getElementById("depRelationToInsured").value;
+            depDateOfBirth = document.getElementById("depDateOfBirth").value;
+            depGender = document.getElementById("depGender").value;
 
             depOtherInsCoverage = document.getElementById("depOtherInsCoverage").value;
             depInsCarrier = document.getElementById("depInsCarrier").value;
@@ -1510,22 +1517,24 @@
                 "empSpGroupHealthOption": empSpGroupHealthOption,
                 "empDepGroupHealthOption": empDepGroupHealthOption,
                 "empFamGroupHealthOption": empFamGroupHealthOption,
-                "empSignature": empSignature,
-                "empSignatureDate": empSignatureDate,
+                "empSignature1": empSignature1,
+                "empSignatureDate1": empSignatureDate1,
+                "empSignature2": empSignature2,
+                "empSignatureDate2": empSignatureDate2,
 
-                //"empNumber": empNumber,
-                //"FirstName": FirstName,
-                //"LastName": LastName,
-                //"MailingAddress": MailingAddress,
-                //"PObox": PObox,
-                //"City": City,
-                //"State": State,
-                //"ZipCode": ZipCode,
-                //"Gender": Gender,
-                //"MaritalStatus": MaritalStatus,
-                //"EmailAddress": EmailAddress,
-                //"PhoneNumber": PhoneNumber,
-                //"DateOfBirth": DateOfBirth,
+                "empNumber": empNumber,
+                "FirstName": FirstName,
+                "LastName": LastName,
+                "MailingAddress": MailingAddress,
+                "PObox": PObox,
+                "City": City,
+                "State": State,
+                "ZipCode": ZipCode,
+                "Gender": Gender,
+                "MaritalStatus": MaritalStatus,
+                "EmailAddress": EmailAddress,
+                "PhoneNumber": PhoneNumber,
+                "DateOfBirth": DateOfBirth,
 
                 "spOtherInsCoverage": spOtherInsCoverage,
                 "spInsCarrier": spInsCarrier,
@@ -1536,12 +1545,12 @@
                 "spInsPhoneNumber": spInsPhoneNumber,
                 "spInsPolicyNumber": spInsPolicyNumber,
 
-                //"depFirstName": depFirstName,
-                //"depLastName": depLastName,
-                //"depSSN": depSSN,
-                //"depRelationToInsured": depRelationToInsured,
-                //"depDateOfBirth": depDateOfBirth,
-                //"depGender": depGender,
+                "depFirstName": depFirstName,
+                "depLastName": depLastName,
+                "depSSN": depSSN,
+                "depRelationToInsured": depRelationToInsured,
+                "depDateOfBirth": depDateOfBirth,
+                "depGender": depGender,
 
                 "depOtherInsCoverage": depOtherInsCoverage,
                 "depInsCarrier": depInsCarrier,
@@ -1556,7 +1565,7 @@
             //    })
             //    .catch(error => console.error(error))
 
-            fetch('/GrpHealthInsurance/GrpHealthEnrollmentNew', {
+            fetch('Group_Health/GrpHealthEnrollmentNew', {
                 body: JSON.stringify(data), //must match 'Content-Type' header
                 cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', //include, same-origin, *omit
@@ -1575,45 +1584,6 @@
                 .catch(error => console.error('Error:', error));
         })
     })
-
-    //function FirstStep(ins) {
-    //    document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-    //    Employee_id = ins.data;
-    //    //document.querySelector("#MECmonthlyEO").value = ins.MECmonthlyEO;
-    //    //document.querySelector("#MECmonthlyEmpSp").value = ins.MECmonthlyEmpSp;
-    //    //document.querySelector("#MECmonthlyEmpDep").value = ins.MECmonthlyEmpDep;
-    //    //document.querySelector("#MECmonthlyEmpFam").value = ins.MECmonthlyEmpFam;
-    //    //document.querySelector("#MECbiweeklyEO").value = ins.MECbiweeklyEO;
-    //    //document.querySelector("#MECbiweeklyEmpSp").value = ins.MECbiweeklyEmpSp;
-    //    //document.querySelector("#MECbiweeklyEmpDep").value = ins.MECbiweeklyEmpDep;
-    //    //document.querySelector("#MECbiweeklyEmpFam").value = ins.MECbiweeklyEmpFam;
-    //    //document.querySelector("#StndmonthlyEO").value = ins.StndmonthlyEO;
-    //    //document.querySelector("#StndmonthlyEmpSp").value = ins.StndmonthlyEmpSp;
-    //    //document.querySelector("#StndmonthlyEmpDep").value = ins.StndmonthlyEmpDep;
-    //    //document.querySelector("#StndmonthlyEmpFam").value = ins.StndmonthlyEmpFam;
-    //    //document.querySelector("#StndbiweeklyEO").value = ins.StndbiweeklyEO;
-    //    //document.querySelector("#StndbiweeklyEmpSp").value = ins.StndbiweeklyEmpSp;
-    //    //document.querySelector("#StndbiweeklyEmpDep").value = ins.StndbiweeklyEmpDep;
-    //    //document.querySelector("#StndbiweeklyEmpFam").value = ins.StndbiweeklyEmpFam;
-    //    //document.querySelector("#BuyUpmonthlyEO").value = ins.BuyUpmonthlyEO;
-    //    //document.querySelector("#BuyUpmonthlyEmpSp").value = ins.BuyUpmonthlyEmpSp;
-    //    //document.querySelector("#BuyUpmonthlyEmpDep").value = ins.BuyUpmonthlyEmpDep;
-    //    //document.querySelector("#BuyUpmonthlyEmpFam").value = ins.BuyUpmonthlyEmpFam;
-    //    //document.querySelector("#BuyUpbiweeklyEO").value = ins.BuyUpbiweeklyEO;
-    //    //document.querySelector("#BuyUpbiweeklyEmpSp").value = ins.BuyUpbiweeklyEmpSp;
-    //    //document.querySelector("#BuyUpbiweeklyEmpDep").value = ins.BuyUpbiweeklyEmpDep;
-    //    //document.querySelector("#BuyUpbiweeklyEmpFam").value = ins.BuyUpbiweeklyEmpFam;
-    //    //document.querySelector("#MECMnthyearlyPremiumCost").value = ins.MECMnthyearlyPremiumCost;
-    //    //document.querySelector("#MECBiWkyearlyPremiumCost").value = ins.MECBiWkyearlyPremiumCost;
-    //    //document.querySelector("#StndMnthyearlyPremiumCost").value = ins.StndMnthyearlyPremiumCost;
-    //    //document.querySelector("#StndBiWkyearlyPremiumCost").value = ins.StndBiWkyearlyPremiumCost;
-    //    //document.querySelector("#BuyUpMnthyearlyPremiumCost").value = ins.BuyUpMnthyearlyPremiumCost;
-    //    //document.querySelector("#BuyUpBiWkyearlyPremiumCost").value = ins.BuyUpBiWkyearlyPremiumCost;
-    //}
-
-    //function SecondStep(ins) {
-    //    document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-    //}
 
     function ThirdStep(ins) {
         document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
