@@ -275,21 +275,19 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult GrpHealthEnrollment(int? Employee_id, int? FamilyMember_id, int? OtherInsurance_id, int? InsurancePlan_id, string RelationshipToInsured)
+        public ActionResult GrpHealthEnrollment(int? Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured)
         {
-            //Employee e = db.Employees.Find(Employee_id);
-            //Family_Info f = db.Family_Info.Find(FamilyMember_id);
-            //Other_Insurance otherIns = db.Other_Insurance.Find(OtherInsurance_id);
-
-            //ViewBag.e = e;
-            //ViewBag.FamilyMember_id = f;
-            //ViewBag.otherIns = otherIns;
-
+            Employee e = db.Employees.Find(Employee_id);
+            Family_Info f = db.Family_Info.Find(FamilyMember_id);
+     
+            ViewBag.e = e;
+            ViewBag.FamilyMember_id = f;
             ViewBag.Employee_id = Employee_id;
             ViewBag.FamilyMember_id = FamilyMember_id;
-            ViewBag.OtherInsurance_id = OtherInsurance_id;
-            ViewBag.InsurancePlan_id = InsurancePlan_id;
+
+            ViewBag.MaritalStatus = MaritalStatus;
             ViewBag.RelationshipToInsured = RelationshipToInsured;
+
 
             return View();
         }

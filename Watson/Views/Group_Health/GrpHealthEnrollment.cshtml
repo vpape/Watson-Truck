@@ -1,7 +1,5 @@
-﻿@model Watson.Models.Group_Health
-@{
-    ViewBag.Title = "GrpHealthEnrollment";
-}
+﻿
+
 <h2>Employee-Health Insurance Premiums</h2>
 <h5>Employee- Medical (includes 15K Life Insurance)</h5>
 <!DOCTYPE html>
@@ -715,7 +713,7 @@
             <div>
                 <div class="form-control">
                     <label>Are you covered by any other insurance, including Medicare?</label>
-                    <label class="radio-inline"><input type="radio" id="empOtherInsCoverage" class="radio-inline" onclick="ShowempOtherInsCoverage()" name="OtherInsuranceCoverage" value="yes" checked/>Yes</label>
+                    <label class="radio-inline"><input type="radio" id="empOtherInsCoverage" class="radio-inline" onclick="ShowempOtherInsCoverage()" name="OtherInsuranceCoverage" value="yes" checked />Yes</label>
                     <label class="radio-inline"><input type="radio" id="empOtherInsCoverage" class="radio-inline" onclick="HideempOtherInsCoverage()" name="OtherInsuranceCoverage" value="no" />No</label>
                 </div>
                 <div id="empInsInfo">
@@ -1008,7 +1006,7 @@
                     </div>
                 </form>
                 <p></p>
-                <div class="form-group" >
+                <div class="form-group">
                     <div class="col-md-11">
                         <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
                     </div>
@@ -1318,19 +1316,19 @@
 </head>
 <body>
     @*<div id="dependentSelectForm" action="\Home\DependentPoster" method="post">
-        <input type="text" name="fname1" id="fname1" />
-        <input type="text" name="lname1" id="lname1" />
-        <input type="text" name="ssn1" id="ssn1" />
-        <input type="text" name="relation1" id="relation1" />
-        <input type="date" name="dob1" id="dob1" />
-        <input type="text" name="gender1" id="gender1" />
+            <input type="text" name="fname1" id="fname1" />
+            <input type="text" name="lname1" id="lname1" />
+            <input type="text" name="ssn1" id="ssn1" />
+            <input type="text" name="relation1" id="relation1" />
+            <input type="date" name="dob1" id="dob1" />
+            <input type="text" name="gender1" id="gender1" />
 
-        <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
-        <br id="br1" />
+            <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
+            <br id="br1" />
 
-        <input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
-        <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">
-    </div>*@
+            <input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
+            <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">
+        </div>*@
 </body>
 </html>
 
@@ -1354,7 +1352,7 @@
         });
     }
 
-    
+
     function ShowempOtherInsCoverage() {
         document.getElementById("empInsInfo").style.display = "block";
     }
@@ -1461,7 +1459,7 @@
             //EmailAddress = document.getElementById("EmailAddress").value;
             //PhoneNumber = document.getElementById("PhoneNumber").value;
             //DateOfBirth = document.getElementById("DateOfBirth").value;
- 
+
             NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
             empOnlyGroupHealthOption = document.getElementById("empOnlyGroupHealthOption").value;
             empSpGroupHealthOption = document.getElementById("empSpGroupHealthOption").value;
@@ -1528,7 +1526,7 @@
                 //"EmailAddress": EmailAddress,
                 //"PhoneNumber": PhoneNumber,
                 //"DateOfBirth": DateOfBirth,
-         
+
                 "spOtherInsCoverage": spOtherInsCoverage,
                 "spInsCarrier": spInsCarrier,
                 "spInsMailingAddress": spInsMailingAddress,
@@ -1648,4 +1646,5 @@
         //}) //parses response to JSON
     }
 </script>
+
 
