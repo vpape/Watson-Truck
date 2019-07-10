@@ -277,13 +277,13 @@ namespace Watson.Controllers
 
         public ActionResult GrpHealthEnrollment(int? Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured)
         {
-            Employee e = db.Employees.Find(Employee_id);
-            Family_Info f = db.Family_Info.Find(FamilyMember_id);
-     
-            ViewBag.Employee_id = e;
-            ViewBag.FamilyMember_id = f;
-            ViewBag.Employee_id = Employee_id;
-            ViewBag.FamilyMember_id = FamilyMember_id;
+            //Employee e = db.Employees.Find(Employee_id);
+            //Family_Info f = db.Family_Info.Find(FamilyMember_id);
+
+            //ViewBag.Employee_id = e;
+            //ViewBag.FamilyMember_id = f;
+            //ViewBag.Employee_id = Employee_id;
+            //ViewBag.FamilyMember_id = FamilyMember_id;
 
             ViewBag.MaritalStatus = MaritalStatus;
             ViewBag.RelationshipToInsured = RelationshipToInsured;
@@ -403,10 +403,10 @@ namespace Watson.Controllers
 
             if (ModelState.IsValid)
             {
+                db.Group_Health.Add(g);
                 db.InsurancePlans.Add(insPlan);
                 db.Other_Insurance.Add(o);
-                db.Group_Health.Add(g);
-
+                
                 db.SaveChanges();
             }
 
