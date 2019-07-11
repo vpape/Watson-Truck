@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Dynamic;
+using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -275,22 +279,97 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult GrpHealthEnrollment(int? Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured)
+        public ActionResult GrpHealthEnrollment()
         {
-            //Employee e = db.Employees.Find(Employee_id);
-            //Family_Info f = db.Family_Info.Find(FamilyMember_id);
-
-            //ViewBag.Employee_id = e;
-            //ViewBag.FamilyMember_id = f;
-            //ViewBag.Employee_id = Employee_id;
-            //ViewBag.FamilyMember_id = FamilyMember_id;
-
-            ViewBag.MaritalStatus = MaritalStatus;
-            ViewBag.RelationshipToInsured = RelationshipToInsured;
+            dynamic model = new ExpandoObject();
+            //model.employee = GetEmployee();
+            //model.family = GetFamilyMember();
 
 
-            return View();
+            return View(model);
         }
+
+        //private static List<Employee> GetEmployee()
+        //{
+
+        //    List<Employee> employees = new List<Employee>();
+        //    var connectionString = ConfigurationManager.ConnectionStrings["WatsonTruckEntities"].ConnectionString;
+        //    string queryString = "SELECT SSN, FirstName, LastName, MaritalStatus, MailingAddress, PObox, City, State, ZipCode, Gender, " +
+        //        "EmailAddress, PhoneNumber FROM Employee";
+           
+        //    using ( var connection = new SqlConnection(connectionString))
+        //    {
+        //        var command = new SqlCommand(queryString, connection);
+        //        connection.Open();
+                
+        //        using (var reader =command.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                employees.Add(new Employee
+        //                {
+        //                    SSN = reader["SSN"].ToString(),
+        //                    FirstName = reader["FirstName"].ToString(),
+        //                    LastName = reader["LastName"].ToString(),
+        //                    MaritalStatus = reader["MaritalStatus"].ToString(),
+        //                    MailingAddress = reader["MailingAddress"].ToString(),
+        //                    PObox = reader["PObox"].ToString(),
+        //                    City = reader["City"].ToString(),
+        //                    State = reader["State"].ToString(),
+        //                    ZipCode = reader["ZipCode"].ToString(),
+        //                    Gender = reader["Gender"].ToString(),
+        //                    EmailAddress = reader["EmailAddress"].ToString(),
+        //                    PhoneNumber = reader["PhoneNumber"].ToString(),
+        //                });
+        //            }
+        //        }
+        //        connection.Close();
+        //        return employees;
+                
+        //    }
+
+        //}
+
+        //private static List<Family_Info> GetFamilyMember()
+        //{
+
+        //    List<Family_Info> family = new List<Family_Info>();
+        //    string query = "SELECT SSN, FirstName, LastName, MaritalStatus, MailingAddress, PObox, City, State, ZipCode, Gender, " +
+        //        "EmailAddress, PhoneNumber FROM Employee";
+        //    string constr = ConfigurationManager.ConnectionStrings["Constring"].ConnectionString;
+        //    using (SqlConnection con = new SqlConnection(constr))
+        //    {
+        //        using (SqlCommand cmd = new SqlCommand(query))
+        //        {
+        //            cmd.Connection = con;
+        //            con.Open();
+        //            using (SqlDataReader sdr = cmd.ExecuteReader())
+        //            {
+        //                while (sdr.Read())
+        //                {
+        //                    family.Add(new Family_Info
+        //                    {
+        //                        SSN = sdr["SSN"].ToString(),
+        //                        FirstName = sdr["FirstName"].ToString(),
+        //                        LastName = sdr["LastName"].ToString(),
+
+        //                        MailingAddress = sdr["MailingAddress"].ToString(),
+        //                        PObox = sdr["PObox"].ToString(),
+        //                        City = sdr["City"].ToString(),
+        //                        State = sdr["State"].ToString(),
+        //                        ZipCode = sdr["ZipCode"].ToString(),
+        //                        Gender = sdr["Gender"].ToString(),
+        //                        EmailAddress = sdr["EmailAddress"].ToString(),
+        //                        PhoneNumber = sdr["PhoneNumber"].ToString(),
+        //                    });
+        //                }
+        //            }
+        //            con.Close();
+        //            return family;
+        //        }
+        //    }
+
+        //}
 
         //Create-GrpHealthEnrollment
         public JsonResult GrpHealthEnrollmentNew(int GrpHealth_id, int Employee_id, int InsurancePlan_id, int FamilyMember_id,
