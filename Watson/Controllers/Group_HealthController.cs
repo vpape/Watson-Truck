@@ -21,7 +21,7 @@ namespace Watson.Controllers
         private static List<Employee> employee = new List<Employee>();
         private static List<Family_Info> family = new List<Family_Info>();
         private static List<Other_Insurance> otherins = new List<Other_Insurance>();
-        private static List<GrpHealthMasterList> grpHMasterList = new List<GrpHealthMasterList>();
+        private static List<GrpHealthVM> grpHMasterList = new List<GrpHealthVM>();
 
         public Group_HealthController()
         {
@@ -281,12 +281,26 @@ namespace Watson.Controllers
 
         public ActionResult GrpHealthEnrollment()
         {
-            dynamic model = new ExpandoObject();
-            //model.employee = GetEmployee();
-            //model.family = GetFamilyMember();
+
+            GrpHealthVM grpHealth = new GrpHealthVM();
+            grpHealth.Employees = GetEmployee();
+          
+            return View(grpHealth);
+        }
+
+        private Employee GetEmployee(int Employee_id, string SSN, string FirstName, string LastName, DateTime DateOfBirth)
+        {
+            var e = db.Employees.Find(Employee_id);
+                //.Where(i => i.Employee_id == Employee_id)
+                //.Single();
+
+            e.SSN = SSN;
+            e.FirstName = FirstName;
+            e.LastName = LastName;
+            e.DateOfBirth = DateOfBirth;
 
 
-            return View(model);
+            return e;
         }
 
         //private static List<Employee> GetEmployee()
@@ -296,12 +310,12 @@ namespace Watson.Controllers
         //    var connectionString = ConfigurationManager.ConnectionStrings["WatsonTruckEntities"].ConnectionString;
         //    string queryString = "SELECT SSN, FirstName, LastName, MaritalStatus, MailingAddress, PObox, City, State, ZipCode, Gender, " +
         //        "EmailAddress, PhoneNumber FROM Employee";
-           
+
         //    using ( var connection = new SqlConnection(connectionString))
         //    {
         //        var command = new SqlCommand(queryString, connection);
         //        connection.Open();
-                
+
         //        using (var reader =command.ExecuteReader())
         //        {
         //            while (reader.Read())
@@ -325,51 +339,11 @@ namespace Watson.Controllers
         //        }
         //        connection.Close();
         //        return employees;
-                
+
         //    }
 
         //}
 
-        //private static List<Family_Info> GetFamilyMember()
-        //{
-
-        //    List<Family_Info> family = new List<Family_Info>();
-        //    string query = "SELECT SSN, FirstName, LastName, MaritalStatus, MailingAddress, PObox, City, State, ZipCode, Gender, " +
-        //        "EmailAddress, PhoneNumber FROM Employee";
-        //    string constr = ConfigurationManager.ConnectionStrings["Constring"].ConnectionString;
-        //    using (SqlConnection con = new SqlConnection(constr))
-        //    {
-        //        using (SqlCommand cmd = new SqlCommand(query))
-        //        {
-        //            cmd.Connection = con;
-        //            con.Open();
-        //            using (SqlDataReader sdr = cmd.ExecuteReader())
-        //            {
-        //                while (sdr.Read())
-        //                {
-        //                    family.Add(new Family_Info
-        //                    {
-        //                        SSN = sdr["SSN"].ToString(),
-        //                        FirstName = sdr["FirstName"].ToString(),
-        //                        LastName = sdr["LastName"].ToString(),
-
-        //                        MailingAddress = sdr["MailingAddress"].ToString(),
-        //                        PObox = sdr["PObox"].ToString(),
-        //                        City = sdr["City"].ToString(),
-        //                        State = sdr["State"].ToString(),
-        //                        ZipCode = sdr["ZipCode"].ToString(),
-        //                        Gender = sdr["Gender"].ToString(),
-        //                        EmailAddress = sdr["EmailAddress"].ToString(),
-        //                        PhoneNumber = sdr["PhoneNumber"].ToString(),
-        //                    });
-        //                }
-        //            }
-        //            con.Close();
-        //            return family;
-        //        }
-        //    }
-
-        //}
 
         //Create-GrpHealthEnrollment
         public JsonResult GrpHealthEnrollmentNew(int GrpHealth_id, int Employee_id, int InsurancePlan_id, int FamilyMember_id,
