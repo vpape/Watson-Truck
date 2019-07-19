@@ -279,26 +279,25 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult GrpHealthEnrollment()
+        public ActionResult GrpHealthEnrollment(int Employee_id)
         {
 
-            GrpHealthVM grpHealth = new GrpHealthVM();
-            grpHealth.Employees = GetEmployee();
+            GrpHealthVM grpHealth = new GrpHealthVM(); 
+            //DateTime d = new DateTime();
+            grpHealth.Employees.Add(GetEmployee(Employee_id));
           
             return View(grpHealth);
         }
 
-        private Employee GetEmployee(int Employee_id, string SSN, string FirstName, string LastName, DateTime DateOfBirth)
+        private Employee GetEmployee(int Employee_id)
         {
+            //var e = db.Employees
+            //    .Where(i => i.Employee_id == Employee_id)
+            //    .Single();
+
             var e = db.Employees.Find(Employee_id);
-                //.Where(i => i.Employee_id == Employee_id)
-                //.Single();
 
-            e.SSN = SSN;
-            e.FirstName = FirstName;
-            e.LastName = LastName;
-            e.DateOfBirth = DateOfBirth;
-
+            e.Employee_id = Employee_id;
 
             return e;
         }
