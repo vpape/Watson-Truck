@@ -279,12 +279,14 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult GrpHealthEnrollment(int Employee_id)
+        public ActionResult GrpHealthEnrollment(int Employee_id, int FamilyMember_id)
         {
 
             GrpHealthVM grpHealth = new GrpHealthVM(); 
             //DateTime d = new DateTime();
             grpHealth.Employees.Add(GetEmployee(Employee_id));
+            grpHealth.FamilyMembers.Add(GetFamilyMembers(FamilyMember_id));
+           
           
             return View(grpHealth);
         }
@@ -297,9 +299,21 @@ namespace Watson.Controllers
 
             var e = db.Employees.Find(Employee_id);
 
-            e.Employee_id = Employee_id;
+
+            ViewBag.Employee_id = Employee_id;
+         
 
             return e;
+        }
+
+        private Family_Info GetFamilyMembers(int FamilyMember_id)
+        {
+            var f = db.Family_Info.Find(FamilyMember_id);
+
+            ViewBag.FamilyMember_id = FamilyMember_id;
+
+
+            return f;
         }
 
         //private static List<Employee> GetEmployee()
