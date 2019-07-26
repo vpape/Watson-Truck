@@ -281,44 +281,23 @@ namespace Watson.Controllers
         List<GrpHealthVM> grphealthVM= new List<GrpHealthVM>();
         public ActionResult GrpHealthEnrollment(int? Employee_id)
         {
-      
             GrpHealthVM grphealthvm = new GrpHealthVM();
             //grphealthvm.employeeVM.Add(GetEmployee(Employee_id));
 
-            var grpHealth = from e in db.Employees
-                              join f in family on e.Employee_id equals f.FamilyMember_id into f2
-                              from f in f2.DefaultIfEmpty()
-                              where e.Employee_id == Employee_id
-                              select new GrpHealthVM { employeeVM = e, familyVM = f};
-
-            var familyInfo = (from fi in db.Family_Info
-                              where fi.Employee_id == Employee_id
-                              select fi).ToList();
+            var grpHealth = from g in db.Group_Health
+                            join e in employee on g.Employee_id equals e.Employee_id into e2
+                            join f in family on g.Employee_id equals f.FamilyMember_id
+                            from e in e2.DefaultIfEmpty()
+                            select new GrpHealthVM { employeeVM = e, familyVM = f, groupHealthVM = g };
 
             return View(grpHealth);
         }
 
-        //public JsonResult GetEmployee(int Employee_id, string empNumber, string FirstName, string LastName, string EmailAddress)
-        //{
-        //    var e = db.Employees.Find();
-
-        //    e.Employee_id = Employee_id;
-        //    e.SSN = empNumber;
-        //    e.FirstName = FirstName;
-        //    e.LastName = LastName;
-        //    e.EmailAddress = EmailAddress;
-
-        //    int result = e.Employee_id;
-
-        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-
-        //}
-
-
         public void GetEmployee(int Employee_id, string empNumber, string FirstName, string LastName)
         {
-
-            ViewBag.Employee_id = Employee_id;
+            //var e = db.Employees
+            //   .Where(i => i.Employee_id == Employee_id)
+            //   .Single();
 
             var e = db.Employees.Find(Employee_id);
 
@@ -328,6 +307,22 @@ namespace Watson.Controllers
             e.LastName = LastName;
 
         }
+
+        //public JsonResult GetEmployee(int Employee_id, string empNumber, string FirstName, string LastName)
+        //{
+        //    var e = db.Employees.Find();
+
+        //    e.Employee_id = Employee_id;
+        //    e.SSN = empNumber;
+        //    e.FirstName = FirstName;
+        //    e.LastName = LastName;
+
+        //    int result = e.Employee_id;
+
+        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+
+        //}
+
 
         //public JsonResult GetEmployee(int Employee_id)
         //{
