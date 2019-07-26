@@ -17,11 +17,11 @@ namespace Watson.Controllers
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        private static List<Group_Health> groupIns = new List<Group_Health>();
+        private static List<Group_Health> grouphealth = new List<Group_Health>();
         private static List<Employee> employee = new List<Employee>();
         private static List<Family_Info> family = new List<Family_Info>();
         private static List<Other_Insurance> otherins = new List<Other_Insurance>();
-        private static List<GrpHealthVM> grpHMasterList = new List<GrpHealthVM>();
+        private static List<GrpHealthVM> grouphealthVM = new List<GrpHealthVM>();
 
         public Group_HealthController()
         {
@@ -279,83 +279,32 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult GrpHealthEnrollment(int Employee_id, int FamilyMember_id)
+        public ActionResult GrpHealthEnrollment(int? Employee_id)
         {
+            List<GrpHealthVM> grphealthVM = new List<GrpHealthVM>();
+            //GrpHealthVM grphealthVM = new GrpHealthVM();
+            //grphealthVM.employeeVM.Add(GetEmployee(Employee_id));
 
-            GrpHealthVM grpHealth = new GrpHealthVM(); 
-            //DateTime d = new DateTime();
-            grpHealth.Employees.Add(GetEmployee(Employee_id));
-            grpHealth.FamilyMembers.Add(GetFamilyMembers(FamilyMember_id));
-           
-          
-            return View(grpHealth);
+            var grpHealthVM = from e in employee
+                              join f in family on e.Employee_id equals f.FamilyMember_id
+                              join g in grouphealth on e.Employee_id equals g.GroupHealthInsurance_id                          
+                              select new GrpHealthVM { employeeVM = e, familyVM = f, groupHealthVM = g };
+
+            
+            return View(grpHealthVM);
         }
 
         private Employee GetEmployee(int Employee_id)
         {
-            //var e = db.Employees
-            //    .Where(i => i.Employee_id == Employee_id)
-            //    .Single();
 
             var e = db.Employees.Find(Employee_id);
 
 
             ViewBag.Employee_id = Employee_id;
-         
+
 
             return e;
         }
-
-        private Family_Info GetFamilyMembers(int FamilyMember_id)
-        {
-            var f = db.Family_Info.Find(FamilyMember_id);
-
-            ViewBag.FamilyMember_id = FamilyMember_id;
-
-
-            return f;
-        }
-
-        //private static List<Employee> GetEmployee()
-        //{
-
-        //    List<Employee> employees = new List<Employee>();
-        //    var connectionString = ConfigurationManager.ConnectionStrings["WatsonTruckEntities"].ConnectionString;
-        //    string queryString = "SELECT SSN, FirstName, LastName, MaritalStatus, MailingAddress, PObox, City, State, ZipCode, Gender, " +
-        //        "EmailAddress, PhoneNumber FROM Employee";
-
-        //    using ( var connection = new SqlConnection(connectionString))
-        //    {
-        //        var command = new SqlCommand(queryString, connection);
-        //        connection.Open();
-
-        //        using (var reader =command.ExecuteReader())
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                employees.Add(new Employee
-        //                {
-        //                    SSN = reader["SSN"].ToString(),
-        //                    FirstName = reader["FirstName"].ToString(),
-        //                    LastName = reader["LastName"].ToString(),
-        //                    MaritalStatus = reader["MaritalStatus"].ToString(),
-        //                    MailingAddress = reader["MailingAddress"].ToString(),
-        //                    PObox = reader["PObox"].ToString(),
-        //                    City = reader["City"].ToString(),
-        //                    State = reader["State"].ToString(),
-        //                    ZipCode = reader["ZipCode"].ToString(),
-        //                    Gender = reader["Gender"].ToString(),
-        //                    EmailAddress = reader["EmailAddress"].ToString(),
-        //                    PhoneNumber = reader["PhoneNumber"].ToString(),
-        //                });
-        //            }
-        //        }
-        //        connection.Close();
-        //        return employees;
-
-        //    }
-
-        //}
 
 
         //Create-GrpHealthEnrollment

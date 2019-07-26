@@ -7,9 +7,9 @@ namespace Watson.Models
 {
     public class GrpHealthVM
     {
-        public List<Group_Health> GroupHealth { get; set; }
-        public List<Employee> Employees { get; set; }
-        public List<Family_Info> FamilyMembers { get; set; }
+        public Group_Health groupHealthVM { get; set; }
+        public Employee employeeVM { get; set; }
+        public Family_Info familyVM { get; set; }
 
     }
 }

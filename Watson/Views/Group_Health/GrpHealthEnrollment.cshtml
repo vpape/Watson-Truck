@@ -1,5 +1,5 @@
 ﻿@*@using Waston.Models*@
-@model Watson.Models.GrpHealthVM
+@model IEnumerable<Watson.Models.GrpHealthVM>
 
 <h2>emp-Health Insurance Premiums</h2>
 <h5>emp- Medical (includes 15K Life Insurance)</h5>
@@ -667,62 +667,55 @@
                     <input type="number" class="form-control" name="HoursWorkedPerWeek" id="empHrsWrkPerWk" placeholder="Min. Hrs. Worked/Wk" value="" />
                 </div>
             </div>
-
-            @*@foreach (var item in Model.Employees)*@
-            {
-
-                <div id="empInfo">
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Employee Number" id="empNumber" name="SSN" value="" disabled />
-                    </div>
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" disabled />
-                    </div>
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="" disabled />
-                    </div>
-                    <div>
-                        <select id="MaritalStatus" class="form-control" disabled>
-                            <option value="">Marital Status:</option>
-                            <option value="MarriedwDep" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Married with Dependents</option>
-                            <option value="Married" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>Married</option>
-                            <option value="SinglewDep" @*@((ViewBag.MaritalStatus) == "SinglewDep"  ? "selected": "")*@>Single with Dependents</option>
-                            <option value="Single" @*@((ViewBag.MaritalStatus) == "Single"      ? "selected": "")*@>Single</option>
-                        </select>
-                    </div>
-                    <p></p>
-                    <div class="form-group col-md-6">
-                        <label>Street Address:</label>
-                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" disabled />
-                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" disabled />
-                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" disabled />
-                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" disabled />
-                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" disabled />
-                    </div>
-                    <div>
-                        <select id="Gender" class="form-control" disabled>
-                            <option value="">Gender:</option>
-                            @*<option value="Male"   @((ViewBag.Employee.Gender) == "Male"   ? "selected" : "")>Male</option>
-                        <option value="Female" @((ViewBag.Employee.Gender) == "Female" ? "selected" : "")>Female</option>*@
-                        </select>
-                    </div>
-                    <p></p>
-                    <div>
-                        <input type="text" class="form-control" placeholder="Email Address" id="EmailAddress" name="EmailAddress" value="" disabled />
-                    </div>
-                    <p></p>
-                    <div>
-                        <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" disabled />
-                    </div>
-                    <p></p>
-                    <div>
-                        <label>Birth Date:</label>
-                        <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="" disabled />
-                    </div>
+            <div id="empInfo">
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="Employee Number" id="empNumber" name="SSN" value="" disabled />
                 </div>
-            }
-
-
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" disabled />
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="" disabled />
+                </div>
+                <div>
+                    <select id="MaritalStatus" class="form-control" disabled>
+                        <option value="">Marital Status:</option>
+                        <option value="MarriedwDep" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Married with Dependents</option>
+                        <option value="Married" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>Married</option>
+                        <option value="SinglewDep" @*@((ViewBag.MaritalStatus) == "SinglewDep"  ? "selected": "")*@>Single with Dependents</option>
+                        <option value="Single" @*@((ViewBag.MaritalStatus) == "Single"      ? "selected": "")*@>Single</option>
+                    </select>
+                </div>
+                <p></p>
+                <div class="form-group col-md-6">
+                    <label>Street Address:</label>
+                    <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" disabled />
+                    <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" disabled />
+                    <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" disabled />
+                    <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" disabled />
+                    <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" disabled />
+                </div>
+                <div>
+                    <select id="Gender" class="form-control" disabled>
+                        <option value="">Gender:</option>
+                        @*<option value="Male"   @((ViewBag.Employee.Gender) == "Male"   ? "selected" : "")>Male</option>
+                    <option value="Female" @((ViewBag.Employee.Gender) == "Female" ? "selected" : "")>Female</option>*@
+                    </select>
+                </div>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" placeholder="Email Address" id="EmailAddress" name="EmailAddress" value="" disabled />
+                </div>
+                <p></p>
+                <div>
+                    <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" disabled />
+                </div>
+                <p></p>
+                <div>
+                    <label>Birth Date:</label>
+                    <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="" disabled />
+                </div>
+            </div>
             <hr />
             <div>
                 <div class="form-control">
