@@ -1,4 +1,5 @@
 ﻿@*@using Waston.Models*@
+@*@model Watson.Models.GrpHealthVM*@
 @model IEnumerable<Watson.Models.GrpHealthVM>
 
 <h2>emp-Health Insurance Premiums</h2>
@@ -17,9 +18,9 @@
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
     <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
     @*<input type="hidden" id="OtherInsurance_id" class="form-control" name="OtherInsurance_id" value="@ViewBag.OtherInsurance_id" />
-    <input type="hidden" id="InsurancePlan_id" class="form-control" name="InsurancePlan_id" value="@ViewBag.InsurancePlan_id" />
-    <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
-    <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />*@
+        <input type="hidden" id="InsurancePlan_id" class="form-control" name="InsurancePlan_id" value="@ViewBag.InsurancePlan_id" />
+        <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
+        <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />*@
     <p></p>
     <p><embed id="2019InsCost" src="/App_Files/pdfFiles/2019-Insurance-Cost.pdf" type="application/pdf" style="width:100%; height:1122px;" frameborder="0" /></p>
     <p><embed id="2019Dental&VisionBenefits" src="/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf" type="application/pdf" style="width:100%; height:1000px; transform:rotate()" frameborder="0" /></p>
@@ -699,7 +700,7 @@
                     <select id="Gender" class="form-control" disabled>
                         <option value="">Gender:</option>
                         @*<option value="Male"   @((ViewBag.Employee.Gender) == "Male"   ? "selected" : "")>Male</option>
-                    <option value="Female" @((ViewBag.Employee.Gender) == "Female" ? "selected" : "")>Female</option>*@
+                            <option value="Female" @((ViewBag.Employee.Gender) == "Female" ? "selected" : "")>Female</option>*@
                     </select>
                 </div>
                 <p></p>

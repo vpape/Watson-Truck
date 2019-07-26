@@ -278,33 +278,69 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-
+        List<GrpHealthVM> grphealthVM= new List<GrpHealthVM>();
         public ActionResult GrpHealthEnrollment(int? Employee_id)
         {
-            List<GrpHealthVM> grphealthVM = new List<GrpHealthVM>();
-            //GrpHealthVM grphealthVM = new GrpHealthVM();
-            //grphealthVM.employeeVM.Add(GetEmployee(Employee_id));
+      
+            GrpHealthVM grphealthvm = new GrpHealthVM();
+            //grphealthvm.employeeVM.Add(GetEmployee(Employee_id));
 
-            var grpHealthVM = from e in employee
-                              join f in family on e.Employee_id equals f.FamilyMember_id
-                              join g in grouphealth on e.Employee_id equals g.GroupHealthInsurance_id                          
-                              select new GrpHealthVM { employeeVM = e, familyVM = f, groupHealthVM = g };
+            var grpHealth = from e in db.Employees
+                              join f in family on e.Employee_id equals f.FamilyMember_id into f2
+                              from f in f2.DefaultIfEmpty()
+                              where e.Employee_id == Employee_id
+                              select new GrpHealthVM { employeeVM = e, familyVM = f};
 
-            
-            return View(grpHealthVM);
+            var familyInfo = (from fi in db.Family_Info
+                              where fi.Employee_id == Employee_id
+                              select fi).ToList();
+
+            return View(grpHealth);
         }
 
-        private Employee GetEmployee(int Employee_id)
+        //public JsonResult GetEmployee(int Employee_id, string empNumber, string FirstName, string LastName, string EmailAddress)
+        //{
+        //    var e = db.Employees.Find();
+
+        //    e.Employee_id = Employee_id;
+        //    e.SSN = empNumber;
+        //    e.FirstName = FirstName;
+        //    e.LastName = LastName;
+        //    e.EmailAddress = EmailAddress;
+
+        //    int result = e.Employee_id;
+
+        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+
+        //}
+
+
+        public void GetEmployee(int Employee_id, string empNumber, string FirstName, string LastName)
         {
-
-            var e = db.Employees.Find(Employee_id);
-
 
             ViewBag.Employee_id = Employee_id;
 
+            var e = db.Employees.Find(Employee_id);
 
-            return e;
+            e.Employee_id = Employee_id;
+            e.SSN = empNumber;
+            e.FirstName = FirstName;
+            e.LastName = LastName;
+
         }
+
+        //public JsonResult GetEmployee(int Employee_id)
+        //{
+        //    var e = db.Employees
+        //         .Where(i => i.Employee_id == Employee_id)
+        //         .Single();
+
+        //    ViewBag.Employee_id = e.Employee_id;
+
+        //    int result = e.Employee_id;
+
+        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        //}
 
 
         //Create-GrpHealthEnrollment
