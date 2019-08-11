@@ -286,6 +286,72 @@
           <Property Name="MonthlyPremiumCost" Type="decimal" Precision="6" Scale="2" />
           <Property Name="BiWeeklyPremiumCost" Type="decimal" Precision="6" Scale="2" />
         </EntityType>
+        <EntityType Name="JobApplicant">
+          <Key>
+            <PropertyRef Name="JobApplicant_id" />
+          </Key>
+          <Property Name="JobApplicant_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employee_id" Type="int" Nullable="false" />
+          <Property Name="PositionApplyingFor" Type="varchar" MaxLength="50" />
+          <Property Name="StartDateAvailability" Type="date" />
+          <Property Name="Date" Type="date" />
+          <Property Name="ApplicantSignature" Type="varchar" MaxLength="50" />
+          <Property Name="ApplicantFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="ApplicantLastName" Type="varchar" MaxLength="50" />
+          <Property Name="ApplicantSSN" Type="varchar" MaxLength="50" />
+          <Property Name="ApplicantPresentAddress" Type="varchar" MaxLength="200" />
+          <Property Name="ApplicantPresentPObox" Type="varchar" MaxLength="10" />
+          <Property Name="ApplicantCity" Type="varchar" MaxLength="30" />
+          <Property Name="ApplicantState" Type="varchar" MaxLength="30" />
+          <Property Name="ApplicantZipCode" Type="varchar" MaxLength="15" />
+          <Property Name="YearsResidedAtPresentAddr" Type="varchar" MaxLength="2" />
+          <Property Name="ApplicantPreviouseAddress" Type="varchar" MaxLength="200" />
+          <Property Name="ApplicantPreviousPObox" Type="varchar" MaxLength="10" />
+          <Property Name="ApplicantCityTwo" Type="varchar" MaxLength="30" />
+          <Property Name="ApplicantStateTwo" Type="varchar" MaxLength="30" />
+          <Property Name="ApplicantZipCodeTwo" Type="varchar" MaxLength="15" />
+          <Property Name="ApplicantPhoneNumber" Type="varchar" MaxLength="30" />
+          <Property Name="ApplicantAge" Type="varchar" MaxLength="3" />
+          <Property Name="PreviouslyEmployedAtWatson" Type="varchar" MaxLength="3" />
+          <Property Name="EmploymentDatesAtWatson" Type="date" />
+          <Property Name="DriversLicense" Type="varchar" MaxLength="3" />
+          <Property Name="DriversLicenseState" Type="varchar" MaxLength="30" />
+          <Property Name="DriversLicenseNumber" Type="varchar" MaxLength="30" />
+          <Property Name="DriversLicenseExpirationDate" Type="date" />
+          <Property Name="InstitutionName" Type="varchar" MaxLength="30" />
+          <Property Name="YearsCompleted" Type="varchar" MaxLength="2" />
+          <Property Name="FieldOfStudy" Type="varchar" MaxLength="30" />
+          <Property Name="GraduateOrDegree" Type="varchar" MaxLength="15" />
+          <Property Name="Veteran" Type="varchar" MaxLength="3" />
+          <Property Name="MOSorSpecializedTraining" Type="varchar" MaxLength="30" />
+          <Property Name="PresentOrCurrentEmployer" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerPhoneNumber" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerAddress" Type="varchar" MaxLength="200" />
+          <Property Name="EmployerPObox" Type="varchar" MaxLength="10" />
+          <Property Name="EmployerCity" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerState" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerZipCode" Type="varchar" MaxLength="30" />
+          <Property Name="EmployedFromDate" Type="date" />
+          <Property Name="EmployedToDate" Type="date" />
+          <Property Name="TitleOfPositionHeld" Type="varchar" MaxLength="20" />
+          <Property Name="TypeOfWorkedPerformed" Type="varchar" MaxLength="30" />
+          <Property Name="NameOfSupervisor" Type="varchar" MaxLength="60" />
+          <Property Name="TerminatedOrResiged" Type="varchar" MaxLength="15" />
+          <Property Name="ReasonForTerminationOrResignation" Type="varchar" MaxLength="150" />
+          <Property Name="ReasonForEmploymentGaps" Type="varchar" MaxLength="150" />
+          <Property Name="ReferenceFirstName" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceLastName" Type="varchar" MaxLength="30" />
+          <Property Name="ReferencePhoneNumber" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceAddress" Type="varchar" MaxLength="200" />
+          <Property Name="ReferencePObox" Type="varchar" MaxLength="10" />
+          <Property Name="ReferenceCity" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceState" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceZipCode" Type="varchar" MaxLength="15" />
+          <Property Name="ReferenceOccupation" Type="varchar" MaxLength="30" />
+          <Property Name="YearsKnownReference" Type="varchar" MaxLength="2" />
+          <Property Name="Experience" Type="varchar" MaxLength="30" />
+          <Property Name="ListOtherExperience" Type="varchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="Life_Insurance">
           <Key>
             <PropertyRef Name="LifeInsurance_id" />
@@ -544,6 +610,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_JobApplicant_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="JobApplicant" Type="Self.JobApplicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_id" />
+            </Principal>
+            <Dependent Role="JobApplicant">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Life Insurance_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Life_Insurance" Type="Self.Life_Insurance" Multiplicity="*" />
@@ -611,6 +689,7 @@
           <EntitySet Name="InsurancePlan" EntityType="Self.InsurancePlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InsurancePlanDetail" EntityType="Self.InsurancePlanDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InsurancePremium" EntityType="Self.InsurancePremium" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobApplicant" EntityType="Self.JobApplicant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Life_Insurance" EntityType="Self.Life_Insurance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Other_Insurance" EntityType="Self.Other_Insurance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vacation" EntityType="Self.Vacation" Schema="dbo" store:Type="Tables" />
@@ -661,6 +740,10 @@
           <AssociationSet Name="FK_InsurancePremium_InsurancePlan" Association="Self.FK_InsurancePremium_InsurancePlan">
             <End Role="InsurancePlan" EntitySet="InsurancePlan" />
             <End Role="InsurancePremium" EntitySet="InsurancePremium" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobApplicant_Employee" Association="Self.FK_JobApplicant_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="JobApplicant" EntitySet="JobApplicant" />
           </AssociationSet>
           <AssociationSet Name="FK_Life Insurance_Employee" Association="Self.FK_Life Insurance_Employee">
             <End Role="Employee" EntitySet="Employee" />
@@ -763,6 +846,11 @@
           <AssociationSet Name="AspNetUserRoles" Association="WatsonTruckModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="JobApplicants" EntityType="WatsonTruckModel.JobApplicant" />
+          <AssociationSet Name="FK_JobApplicant_Employee" Association="WatsonTruckModel.FK_JobApplicant_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="JobApplicant" EntitySet="JobApplicants" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Address">
@@ -928,6 +1016,7 @@
           <Property Name="CityTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="StateTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="ZipCodeTwo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JobApplicants" Relationship="WatsonTruckModel.FK_JobApplicant_Employee" FromRole="Employee" ToRole="JobApplicant" />
         </EntityType>
         <EntityType Name="Family_Info">
           <Key>
@@ -1350,6 +1439,85 @@
           <End Type="WatsonTruckModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="WatsonTruckModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <EntityType Name="JobApplicant">
+          <Key>
+            <PropertyRef Name="JobApplicant_id" />
+          </Key>
+          <Property Name="JobApplicant_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee_id" Type="Int32" Nullable="false" />
+          <Property Name="PositionApplyingFor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StartDateAvailability" Type="DateTime" Precision="0" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="ApplicantSignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantSSN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantPresentAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantPresentPObox" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantCity" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantState" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantZipCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="YearsResidedAtPresentAddr" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantPreviouseAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantPreviousPObox" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantCityTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantStateTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantZipCodeTwo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantPhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantAge" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="PreviouslyEmployedAtWatson" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="EmploymentDatesAtWatson" Type="DateTime" Precision="0" />
+          <Property Name="DriversLicense" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="DriversLicenseState" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DriversLicenseNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DriversLicenseExpirationDate" Type="DateTime" Precision="0" />
+          <Property Name="InstitutionName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="YearsCompleted" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="FieldOfStudy" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="GraduateOrDegree" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Veteran" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="MOSorSpecializedTraining" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PresentOrCurrentEmployer" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerPhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerPObox" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerCity" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerState" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerZipCode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployedFromDate" Type="DateTime" Precision="0" />
+          <Property Name="EmployedToDate" Type="DateTime" Precision="0" />
+          <Property Name="TitleOfPositionHeld" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TypeOfWorkedPerformed" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NameOfSupervisor" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="TerminatedOrResiged" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ReasonForTerminationOrResignation" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ReasonForEmploymentGaps" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceFirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceLastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferencePhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ReferencePObox" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceCity" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceState" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceZipCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceOccupation" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="YearsKnownReference" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Experience" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ListOtherExperience" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_JobApplicant_Employee" FromRole="JobApplicant" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_JobApplicant_Employee">
+          <End Type="WatsonTruckModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="WatsonTruckModel.JobApplicant" Role="JobApplicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_id" />
+            </Principal>
+            <Dependent Role="JobApplicant">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1761,6 +1929,73 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="JobApplicants">
+            <EntityTypeMapping TypeName="WatsonTruckModel.JobApplicant">
+              <MappingFragment StoreEntitySet="JobApplicant">
+                <ScalarProperty Name="ListOtherExperience" ColumnName="ListOtherExperience" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="YearsKnownReference" ColumnName="YearsKnownReference" />
+                <ScalarProperty Name="ReferenceOccupation" ColumnName="ReferenceOccupation" />
+                <ScalarProperty Name="ReferenceZipCode" ColumnName="ReferenceZipCode" />
+                <ScalarProperty Name="ReferenceState" ColumnName="ReferenceState" />
+                <ScalarProperty Name="ReferenceCity" ColumnName="ReferenceCity" />
+                <ScalarProperty Name="ReferencePObox" ColumnName="ReferencePObox" />
+                <ScalarProperty Name="ReferenceAddress" ColumnName="ReferenceAddress" />
+                <ScalarProperty Name="ReferencePhoneNumber" ColumnName="ReferencePhoneNumber" />
+                <ScalarProperty Name="ReferenceLastName" ColumnName="ReferenceLastName" />
+                <ScalarProperty Name="ReferenceFirstName" ColumnName="ReferenceFirstName" />
+                <ScalarProperty Name="ReasonForEmploymentGaps" ColumnName="ReasonForEmploymentGaps" />
+                <ScalarProperty Name="ReasonForTerminationOrResignation" ColumnName="ReasonForTerminationOrResignation" />
+                <ScalarProperty Name="TerminatedOrResiged" ColumnName="TerminatedOrResiged" />
+                <ScalarProperty Name="NameOfSupervisor" ColumnName="NameOfSupervisor" />
+                <ScalarProperty Name="TypeOfWorkedPerformed" ColumnName="TypeOfWorkedPerformed" />
+                <ScalarProperty Name="TitleOfPositionHeld" ColumnName="TitleOfPositionHeld" />
+                <ScalarProperty Name="EmployedToDate" ColumnName="EmployedToDate" />
+                <ScalarProperty Name="EmployedFromDate" ColumnName="EmployedFromDate" />
+                <ScalarProperty Name="EmployerZipCode" ColumnName="EmployerZipCode" />
+                <ScalarProperty Name="EmployerState" ColumnName="EmployerState" />
+                <ScalarProperty Name="EmployerCity" ColumnName="EmployerCity" />
+                <ScalarProperty Name="EmployerPObox" ColumnName="EmployerPObox" />
+                <ScalarProperty Name="EmployerAddress" ColumnName="EmployerAddress" />
+                <ScalarProperty Name="EmployerPhoneNumber" ColumnName="EmployerPhoneNumber" />
+                <ScalarProperty Name="PresentOrCurrentEmployer" ColumnName="PresentOrCurrentEmployer" />
+                <ScalarProperty Name="MOSorSpecializedTraining" ColumnName="MOSorSpecializedTraining" />
+                <ScalarProperty Name="Veteran" ColumnName="Veteran" />
+                <ScalarProperty Name="GraduateOrDegree" ColumnName="GraduateOrDegree" />
+                <ScalarProperty Name="FieldOfStudy" ColumnName="FieldOfStudy" />
+                <ScalarProperty Name="YearsCompleted" ColumnName="YearsCompleted" />
+                <ScalarProperty Name="InstitutionName" ColumnName="InstitutionName" />
+                <ScalarProperty Name="DriversLicenseExpirationDate" ColumnName="DriversLicenseExpirationDate" />
+                <ScalarProperty Name="DriversLicenseNumber" ColumnName="DriversLicenseNumber" />
+                <ScalarProperty Name="DriversLicenseState" ColumnName="DriversLicenseState" />
+                <ScalarProperty Name="DriversLicense" ColumnName="DriversLicense" />
+                <ScalarProperty Name="EmploymentDatesAtWatson" ColumnName="EmploymentDatesAtWatson" />
+                <ScalarProperty Name="PreviouslyEmployedAtWatson" ColumnName="PreviouslyEmployedAtWatson" />
+                <ScalarProperty Name="ApplicantAge" ColumnName="ApplicantAge" />
+                <ScalarProperty Name="ApplicantPhoneNumber" ColumnName="ApplicantPhoneNumber" />
+                <ScalarProperty Name="ApplicantZipCodeTwo" ColumnName="ApplicantZipCodeTwo" />
+                <ScalarProperty Name="ApplicantStateTwo" ColumnName="ApplicantStateTwo" />
+                <ScalarProperty Name="ApplicantCityTwo" ColumnName="ApplicantCityTwo" />
+                <ScalarProperty Name="ApplicantPreviousPObox" ColumnName="ApplicantPreviousPObox" />
+                <ScalarProperty Name="ApplicantPreviouseAddress" ColumnName="ApplicantPreviouseAddress" />
+                <ScalarProperty Name="YearsResidedAtPresentAddr" ColumnName="YearsResidedAtPresentAddr" />
+                <ScalarProperty Name="ApplicantZipCode" ColumnName="ApplicantZipCode" />
+                <ScalarProperty Name="ApplicantState" ColumnName="ApplicantState" />
+                <ScalarProperty Name="ApplicantCity" ColumnName="ApplicantCity" />
+                <ScalarProperty Name="ApplicantPresentPObox" ColumnName="ApplicantPresentPObox" />
+                <ScalarProperty Name="ApplicantPresentAddress" ColumnName="ApplicantPresentAddress" />
+                <ScalarProperty Name="ApplicantSSN" ColumnName="ApplicantSSN" />
+                <ScalarProperty Name="ApplicantLastName" ColumnName="ApplicantLastName" />
+                <ScalarProperty Name="ApplicantFirstName" ColumnName="ApplicantFirstName" />
+                <ScalarProperty Name="ApplicantSignature" ColumnName="ApplicantSignature" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="StartDateAvailability" ColumnName="StartDateAvailability" />
+                <ScalarProperty Name="PositionApplyingFor" ColumnName="PositionApplyingFor" />
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="JobApplicant_id" ColumnName="JobApplicant_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

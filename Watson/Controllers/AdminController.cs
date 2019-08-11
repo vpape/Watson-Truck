@@ -21,7 +21,6 @@ namespace Watson.Controllers
         private static List<Family_Info> family = new List<Family_Info>();
         private static List<Other_Insurance> otherins = new List<Other_Insurance>();
         private static List<Group_Health> groupIns = new List<Group_Health>();
-        private static List<GrpHealthVM> grpHMasterList = new List<GrpHealthVM>();
 
         public AdminController()
         {

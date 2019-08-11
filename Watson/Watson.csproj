@@ -238,6 +238,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CareerCenterController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\Family_InfoController.cs" />
     <Compile Include="Controllers\FileUploadingController.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Life_InsuranceController.cs" />
     <Compile Include="Controllers\Other_InsuranceController.cs" />
+    <Compile Include="Controllers\testController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -284,8 +286,8 @@
     <Compile Include="Models\Group_Health.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GrpHealthVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IEmployeeRepository.cs" />
     <Compile Include="Models\InsurancePlan.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
@@ -295,9 +297,13 @@
     <Compile Include="Models\InsurancePremium.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\JobApplicant.cs">
+      <DependentUpon>WatsonTruck.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Life_Insurance.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MockEmployeeRepository.cs" />
     <Compile Include="Models\Other_Insurance.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
@@ -323,6 +329,8 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\GroupHealthGrpHEnrollmentVM.cs" />
+    <Compile Include="ViewModels\JobApplicantVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -484,9 +492,16 @@
     <Content Include="Views\Employee\InsuranceOverview.cshtml" />
     <Content Include="Views\Admin\EmpGrpHealthEnrollment.cshtml" />
     <Content Include="Views\Group_Health\GrpHealthEnrollment.cshtml" />
+    <Content Include="Views\Application.cshtml" />
+    <Content Include="Views\CareerCenter\Index.cshtml" />
+    <Content Include="Views\CareerCenter\JobApplicantDetails.cshtml" />
+    <Content Include="Views\CareerCenter\CreateJobApplicant.cshtml" />
+    <Content Include="Views\CareerCenter\EditJobApplicant.cshtml" />
+    <Content Include="Views\CareerCenter\DeleteJobApplicant.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

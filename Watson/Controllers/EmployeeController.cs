@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Dynamic;
+using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
 using Watson.Models;
+using Watson.ViewModels;
 
 
 namespace Watson.Controllers
@@ -14,10 +19,16 @@ namespace Watson.Controllers
     public class EmployeeController : System.Web.Mvc.Controller
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
-        
         private static List<Employee> employee = new List<Employee>();
         private static List<Family_Info> family = new List<Family_Info>();
         private static List<Other_Insurance> otherins = new List<Other_Insurance>();
+
+        private IEmployeeRepository _employeeRepository;
+
+        public EmployeeController(IEmployeeRepository employeeRepository)
+        {
+            _employeeRepository = employeeRepository;
+        }
 
         public EmployeeController()
         {
@@ -81,7 +92,7 @@ namespace Watson.Controllers
 
             int result = e.Employee_id;
 
-            return Json( new { data = result }, JsonRequestBehavior.DenyGet );
+            return Json( new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
         //EmpContact Method

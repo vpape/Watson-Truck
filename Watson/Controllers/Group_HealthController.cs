@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
 using Watson.Models;
+using Watson.ViewModels;
 
 namespace Watson.Controllers
 {
@@ -17,11 +18,18 @@ namespace Watson.Controllers
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        private static List<Group_Health> grouphealth = new List<Group_Health>();
+        private static List<Group_Health> grpHealth = new List<Group_Health>();
         private static List<Employee> employee = new List<Employee>();
         private static List<Family_Info> family = new List<Family_Info>();
-        private static List<Other_Insurance> otherins = new List<Other_Insurance>();
-        private static List<GrpHealthVM> grouphealthVM = new List<GrpHealthVM>();
+        private static List<Other_Insurance> otherIns = new List<Other_Insurance>();
+
+        //use for dependency injection
+        private IEmployeeRepository _employeeRepository;
+
+        public Group_HealthController(IEmployeeRepository employeeRepository)
+        {
+            _employeeRepository = employeeRepository;
+        }
 
         public Group_HealthController()
         {
@@ -278,64 +286,65 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-        List<GrpHealthVM> grphealthVM= new List<GrpHealthVM>();
+
+
+        //public string GrpHealthEnrollment()
+        //{
+        //    return _employeeRepository.GetEmployee(1).FirstName;
+        //}
+
+
         public ActionResult GrpHealthEnrollment(int? Employee_id)
         {
-            GrpHealthVM grphealthvm = new GrpHealthVM();
-            //grphealthvm.employeeVM.Add(GetEmployee(Employee_id));
+            GroupHealthGrpHEnrollmentVM groupHealthGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
 
-            var grpHealth = from g in db.Group_Health
-                            join e in employee on g.Employee_id equals e.Employee_id into e2
-                            join f in family on g.Employee_id equals f.FamilyMember_id
+            //var GrpHealth = (from grpH in db.Group_Health
+            //              where grpH.GroupHealthInsurance_id == GroupHealthInsurance_id
+            //              select grpH).SingleOrDefault();
+
+            var GrpHealth = from grpH in db.Group_Health
+                            from emp in db.Employees
+                            from fam in db.Family_Info
+                            join e in employee on grpH.Employee_id equals e.Employee_id into e2
+                            join f in family on grpH.Employee_id equals f.FamilyMember_id
+                            join g in grpHealth on grpH.Employee_id equals g.GroupHealthInsurance_id
                             from e in e2.DefaultIfEmpty()
-                            select new GrpHealthVM { employeeVM = e, familyVM = f, groupHealthVM = g };
+                            select new GroupHealthGrpHEnrollmentVM { employee = e, family = f, grpHealth = g };
 
-            return View(grpHealth);
-        }
+            return View(groupHealthGrpHEnrollmentVM);
 
-        public void GetEmployee(int Employee_id, string empNumber, string FirstName, string LastName)
-        {
-            //var e = db.Employees
-            //   .Where(i => i.Employee_id == Employee_id)
-            //   .Single();
+            
 
-            var e = db.Employees.Find(Employee_id);
+            //Employee model = _employeeRepository.GetEmployee(1);
 
-            e.Employee_id = Employee_id;
-            e.SSN = empNumber;
-            e.FirstName = FirstName;
-            e.LastName = LastName;
+            //return _employeeRepository.GetEmployee(1).FirstName
 
         }
 
-        //public JsonResult GetEmployee(int Employee_id, string empNumber, string FirstName, string LastName)
+        //public JSONResult GetEmployee()
+        //public void GetEmployee(int Employee_id, string empNumber, string FirstName, string LastName)
         //{
         //    var e = db.Employees.Find();
+
+        //    //var e = db.Employees
+        //    //   .Where(i => i.Employee_id == Employee_id)
+        //    //   .Single();
+
+        //    var e = db.Employees.Find(Employee_id);
 
         //    e.Employee_id = Employee_id;
         //    e.SSN = empNumber;
         //    e.FirstName = FirstName;
         //    e.LastName = LastName;
 
+
         //    int result = e.Employee_id;
 
+        //    return View(e);
         //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
 
         //}
 
-
-        //public JsonResult GetEmployee(int Employee_id)
-        //{
-        //    var e = db.Employees
-        //         .Where(i => i.Employee_id == Employee_id)
-        //         .Single();
-
-        //    ViewBag.Employee_id = e.Employee_id;
-
-        //    int result = e.Employee_id;
-
-        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-        //}
 
 
         //Create-GrpHealthEnrollment

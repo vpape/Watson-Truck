@@ -44,6 +44,7 @@ namespace Watson.Models
         public virtual DbSet<Life_Insurance> Life_Insurance { get; set; }
         public virtual DbSet<Other_Insurance> Other_Insurance { get; set; }
         public virtual DbSet<Vacation> Vacations { get; set; }
+        public virtual DbSet<JobApplicant> JobApplicants { get; set; }
     
         public virtual int DeleteEmployeeAndDependents(Nullable<int> empid)
         {
