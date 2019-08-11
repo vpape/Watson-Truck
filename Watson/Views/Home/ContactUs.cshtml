@@ -4,11 +4,130 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>ContactUs</title>
+    <title>Contact Us</title>
 </head>
 <body>
-    <div> 
-        <h3>@ViewBag.Message</h3>
+    <h3>@ViewBag.Message</h3>
+    <div class="mapouter">
+        <div class="gmap_canvas">
+            <iframe width="560" height="400" id="gmap_canvas"
+                    src="https://maps.google.com/maps?q=1501%20n%20grimes%20hobbs%20new%20mexico&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>Google Maps Generator by <a href="https://www.embedgooglemap.net"></a>
+        </div>
     </div>
+    <p></p>
+    <p></p>
+    <div class="form-horizontal">
+        <div class="col-md-3">
+            <div id="divFirstName" class="form-group">
+                <input type="text" class="form-control" id="txtFirstName" name="FirstName" placeholder="First Name" />
+            </div>
+            <div id="divLastName" class="form-group">
+                <input type="text" class="form-control" id="txtLastName" name="LastName" placeholder="Last Name" />
+            </div>
+            <div id="divEmail" class="form-group">
+                <input type="text" class="form-control" id="txtEmail" name="Email" placeholder="Email" />
+            </div>
+            <div id="divPhoneNumber" class="form-group">
+                <input type="text" class="form-control" id="txtPhoneNumber" name="PhoneNumber" placeholder="Phone Number" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div id="divSubject" class="form-group">
+                <input type="text" class="form-control" id="txtSubject" name="Subject" placeholder="Subject" />
+            </div>
+            <div id="divCommentBox" class="form-group">
+                <textarea class="form-control" id="txtComment" name="Comment" placeholder="Please leave comment here!"></textarea>
+            </div>
+            <div class="divSubmit">
+                <input type="submit" @*onclick="Submit()"*@ value="Submit" class="btn">
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
+
+<style>
+    .mapouter {
+        position: relative;
+        text-align: right;
+        height: 400px;
+        width: 560px;
+    }
+
+    .gmap_canvas {
+        overflow: hidden;
+        background: none !important;
+        height: 400px;
+        width: 560px;
+    }
+
+    .btn {
+        background-color: #333;
+        color: white;
+    }
+</style>
+
+<script>
+
+    var JobApplicant_id;
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#divSubmit").addEventListener("click", function () {
+            FirstName = document.getElementById("txtFirstName").value;
+            LastName = document.getElementById("txtLastName").value;
+            Email = document.getElementById("txtEmail").value;
+            PhoneNumber = document.getElementById("txtPhoneNumber").value;
+            Subject = document.getElementById("txtSubject").value;
+            Comments = document.getElementById("txtComment").value;
+
+            var data = {
+                "JobApplicant_id": JobApplicant_id,
+                "FirstName": FirstName,
+                "LastName": LastName,
+                "Email": Email,
+                "PhoneNumber": PhoneNumber,
+                "Subject": Subject,
+                "Comments": Comments,
+            }
+
+            var ret = postData('ContactUs', data)
+                .then(data => {
+                    console.log(data);
+                    FirstStep(data);
+                })
+                .catch(error => console.error(error))
+
+        })
+    })
+
+    function postData(url, data) {
+        //Default options are marked with *
+        console.log(data);
+        console.log(JSON.stringify(data));
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'Accept': 'application/json',
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'same-origin', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+        //.then(Response => {
+        //    console.log(Response);
+        //    Response.json();
+        //})
+    }
+
+    function FirstStep(emp) {
+        JobApplicant_id = emp.data;
+    }
+</script>
