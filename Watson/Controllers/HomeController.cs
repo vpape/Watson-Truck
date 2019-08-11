@@ -27,8 +27,7 @@ namespace Watson.Controllers
         {
             ViewBag.Title = "Home Page";
 
-            return View();
-            
+            return View();  
         }
 
         public ActionResult About()
@@ -38,16 +37,16 @@ namespace Watson.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult ContactUs()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contact Watson Truck & Supply";
 
             return View();
         }
 
-        public ActionResult CareerCenter()
+        public ActionResult Leadership()
         {
-            ViewBag.Message = "Redirect to Career Cetner to apply for positions.";
+            ViewBag.Message = "View Leadership and descriptions.";
 
             return View();
         }

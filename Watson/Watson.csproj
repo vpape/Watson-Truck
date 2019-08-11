@@ -435,7 +435,6 @@
     <Content Include="Views\Life_Insurance\DeleteLifeInsurance.cshtml" />
     <Content Include="Views\Employee\EmployeeInsurance.cshtml" />
     <Content Include="Views\Admin\Employees.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Dependent\DepEnrollment.cshtml" />
     <Content Include="Views\Dependent\EditDep.cshtml" />
     <Content Include="Views\Dependent\DepDetail.cshtml" />
@@ -492,12 +491,14 @@
     <Content Include="Views\Employee\InsuranceOverview.cshtml" />
     <Content Include="Views\Admin\EmpGrpHealthEnrollment.cshtml" />
     <Content Include="Views\Group_Health\GrpHealthEnrollment.cshtml" />
-    <Content Include="Views\Application.cshtml" />
     <Content Include="Views\CareerCenter\Index.cshtml" />
     <Content Include="Views\CareerCenter\JobApplicantDetails.cshtml" />
     <Content Include="Views\CareerCenter\CreateJobApplicant.cshtml" />
     <Content Include="Views\CareerCenter\EditJobApplicant.cshtml" />
     <Content Include="Views\CareerCenter\DeleteJobApplicant.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Home\Leadership.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

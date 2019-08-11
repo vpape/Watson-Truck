@@ -22,21 +22,14 @@ namespace Watson.Controllers
         private static List<JobApplicant> applicant = new List<JobApplicant>();
 
         // GET: CareerCenter
-        public ActionResult Index(int? JobApplicant_id)
+        public ActionResult Index()
         {
-           
-                ViewBag.JobApplicant_id = JobApplicant_id;
+            return View();
+        }
 
-                if (JobApplicant_id == null)
-                {
-                    //return View(db.Employees.Find(Employee_id));
-                    return View(db.JobApplicants.ToList());
-                }
-                else
-                {
-                    return View(db.JobApplicants.Find(JobApplicant_id));
-                }
-            
+        public ActionResult OpenPositions()
+        {
+            return View();
         }
 
         // GET: CareerCenter/JobApplicantDetails/id
