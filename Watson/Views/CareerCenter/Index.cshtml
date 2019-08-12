@@ -9,8 +9,14 @@
 <body>
     <div> 
         <h3>Career Center</h3>
-        <button>Careers</button>
-        <button>View Open Positions</button>
+        <button onclick="return Career()" class="btn">Careers</button>
+        <button onclick="return ListJobs()" class="btn">View Open Positions</button>
     </div>
 </body>
 </html>
+
+<script>
+    function ListJobs() {
+        window.location.href = "/CareerCenter/ListJobs";
+    }
+</script>

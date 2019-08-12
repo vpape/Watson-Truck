@@ -27,7 +27,12 @@ namespace Watson.Controllers
             return View();
         }
 
-        public ActionResult OpenPositions()
+        public ActionResult ListJobs()
+        {
+            return View();
+        }
+
+        public ActionResult JobDescription()
         {
             return View();
         }

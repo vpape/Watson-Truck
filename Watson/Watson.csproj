@@ -496,9 +496,11 @@
     <Content Include="Views\CareerCenter\CreateJobApplicant.cshtml" />
     <Content Include="Views\CareerCenter\EditJobApplicant.cshtml" />
     <Content Include="Views\CareerCenter\DeleteJobApplicant.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Home\Leadership.cshtml" />
+    <Content Include="Views\CareerCenter\ListJobs.cshtml" />
+    <Content Include="Views\CareerCenter\JobDescription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
