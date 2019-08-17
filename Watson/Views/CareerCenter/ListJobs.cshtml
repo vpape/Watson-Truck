@@ -13,71 +13,80 @@
 </head>
 <body>
     <input type="hidden" id="JobApplicant_id" class="form-control" name="JobApplicant_id" value="@ViewBag.JobApplicant_id" />
-    <table>
-        <tbody>
-            <tr>
-                <td>
-                    <div class="jobHeader col-md-12">
-                        <h3 class="jobsHeaderTitle"><b>Available Positions</b></h3>
-                    </div>
-                    <div class="department col-md-12">
-                        <h4 class="departmentTite">Diesel Shop</h4>
-                    </div>
-                    <div class="row jobListing">
-                        <div class="col-md-12 col-md-8 va-middle">
-                            <div class="jobInfo" style="padding-left: 8px;">
-                                <h4 class="jobTitle">
-                                    <a href="#" onclick="return JobDescription()">Diesel Technician - Hobbs, NM • Full-time • 90k-130k</a>
-                                </h4>
-                                <p class="details inline">
+    <div class="form-horizontal">
+        <div id="divListJobs">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="jobHeader col-md-12">
+                                <h3 class="jobsHeaderTitle"><b>Available Positions</b></h3>
+                            </div>
+                            <div class="department col-md-12">
+                                <h4 class="departmentTite">Diesel Shop</h4>
+                            </div>
+                            <div class="row jobListing">
+                                <div class="col-md-12 col-md-8 va-middle">
+                                    <div class="jobInfo" style="padding-left: 8px;">
+                                        <h4 class="jobTitle">
+                                            <a href="#" onclick="return JobDescription()">Diesel Technician - Hobbs, NM • Full-time • 90k-130k</a>
+                                        </h4>
+                                        <p class="details inline">
 
-                                </p>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-md-4 text-right va-middle">
+                                    <div class="more-info" id="0">
+                                        <button class="btn" id="moreInfo" onclick="return JobDescription()">
+                                            More Info
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12 col-md-4 text-right va-middle">
-                            <div class="more-info" id="0">
-                                <button class="btn" id="moreInfo" onclick="return JobDescription()">
-                                    More Info
-                                </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="department col-md-12">
+                                <h4 class="departmentTite">Unit Shop</h4>
                             </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="department col-md-12">
-                        <h4 class="departmentTite">Unit Shop</h4>
-                    </div>
-                    <div class="row jobListing">
-                        <div class="col-md-12 col-md-8 va-middle">
-                            <div class="jobInfo" style="padding-left: 8px;">
-                                <h4 class="jobTitle">
-                                    <a href="#" onclick="return JobDescription()">Shop Foreman - Hobbs, NM • Full-time • 90k-130k</a>
-                                </h4>
-                                <p class="details inline">
+                            <div class="row jobListing">
+                                <div class="col-md-12 col-md-8 va-middle">
+                                    <div class="jobInfo" style="padding-left: 8px;">
+                                        <h4 class="jobTitle">
+                                            <a href="#" onclick="return JobDescription()">Shop Foreman - Hobbs, NM • Full-time • 90k-130k</a>
+                                        </h4>
+                                        <p class="details inline">
 
-                                </p>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-md-4 text-right va-middle">
+                                    <div class="more-info" id="0">
+                                        <button class="btn" id="moreInfo" onclick="return JobDescription()">
+                                            More Info
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12 col-md-4 text-right va-middle">
-                            <div class="more-info" id="0">
-                                <button class="btn" id="moreInfo" onclick="return JobDescription()">
-                                    More Info
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <div class="col-md-offset-11">
+            <input type="submit" onclick="addInputSelection()" id="addPos" value="Add Position" class="btn">
+        </div>
+    </div>
     <p>
         @Html.ActionLink("Back to Home", "Index", "Home")
     </p>
 </body>
 </html>
-
 
 <style>
     .btn:hover {
@@ -112,7 +121,9 @@
         window.location.href = "/CareerCenter/JobDescription";
     }
 
+    function addInputSelection() {
 
+    }
 </script>
 
 

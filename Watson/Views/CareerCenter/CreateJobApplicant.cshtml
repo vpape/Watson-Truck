@@ -1,18 +1,627 @@
 ﻿
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>CreateJobApplicant</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <input type="hidden" id="JobApplicant_id" class="form-control" name="JobApplicant_id" value="@ViewBag.JobApplicant_id" />
+    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
+    <div class="form-horizontal">
+        <div>
+            <h2 class="text-center">
+                Application for Employment
+            </h2>
+            <div>
+                <label>Position:</label>
+                <input type="text" class="form-control" placeholder="Position Applying for:" id="PositionApplyingFor" name="PositionApplyingFor" value="" />
+            </div>
+            <p></p>
+            <div>
+                <label>Start Date:</label>
+                <input type="date" class="form-control" id="AvailableStartDate" name="AvailableStartDate" value="" />
+            </div>
+            <hr />
+            <div class="text-center">
+                <label></label>
+                <p>
+                    <b>
+                        WE ARE AN EQUAL EMPLOYMENT OPPORTUNITY EMPLOYER AND DO NOT DISCRIMINATE ON THE BASIS<br />
+                        OF RACE, COLOR, RELIGION, SEX, NATIONAL ORIGIN, AGE, OR HANDICAP
+                    </b>
+                </p>
+            </div>
+        </div>
+        <hr />
+        <form>
+            <fieldset id="applicantStatement">
+                <h3 class="text-center"><label>Applicant's Statment</label></h3>
+                <p class="text-justify">
+                    I understand that this application will be given consideration, but it is not a promise of employment.<br />
+                    <br />
+                    I understand that if hired, my employment will be for no definite period, regardless of the period of payment of my wages<br />
+                    I further understand that I have the right to terminate my employment at any time with or without notice, and the Company has the same right.<br />
+                    <br />
+                    I understand that the Company reserves the right to require me to submit to a medical examination, including a drug/alcohol test, to the <br />
+                    extend permitted by law, after a conditional offer of employment and at any time during my employment if I am hired.<br />
+                    <br />
+                    I understand that the Company reserves the right to require me to submit to a polygraph examination, to the extent permitted by law,<br />
+                    prior to employment and at any time during my employment if I am hired.<br />
+                    <br />
+                    I understand that the Company may investigate my driving record, credit record, and my criminal record, to the extend permitted by law.<br />
+                    I further understand that the Company may contact my previous employers, and I authorize and release those employers to disclose<br />
+                    to the Company all records pertinent to my employment with them.<br />
+                    <br />
+                    I hereby state that all the information that I provide on the this application and in any interview is true and accurate.<br />
+                    I understand that if I am employed and any such information is later found to be false in any respect, I may be dismissed.<br />
+                    <br />
+                </p>
+            </fieldset>
+            <fieldset>
+                <hr />
+                <div>
+                    <label>
+                        Applicant Signature:
+                    </label>
+                    <input type="text" class="form-control" id="appSignature1" name="ApplicantSignature" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <label>
+                        Date:
+                    </label>
+                    <input type="date" class="form-control" id="appSignatureDate1" name="ApplicantSignatureDate" value="" />
+                    <hr />
+                </div>
+            </fieldset>
+        </form>
+        <h4><label>Personal Information:</label></h4>
+        <hr />
+        <div id="applicantInfo">
+            <div>
+                <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" />
+            </div>
+            <div>
+                <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="" />
+            </div>
+            <div>
+                <select id="MaritalStatus" class="form-control">
+                    <option value="">Marital Status:</option>
+                    <option value="MarriedwDep" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Married with Dependents</option>
+                    <option value="Married" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>Married</option>
+                    <option value="SinglewDep" @*@((ViewBag.MaritalStatus) == "SinglewDep"  ? "selected": "")*@>Single with Dependents</option>
+                    <option value="Single" @*@((ViewBag.MaritalStatus) == "Single"      ? "selected": "")*@>Single</option>
+                </select>
+            </div>
+            <p></p>
+            <div>
+                <label>Street Address:</label>
+                <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
+                <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" />
+                <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
+                <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
+                <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+            </div>
+            <div>
+                <select id="Gender" class="form-control">
+                    <option value="">Gender:</option>
+                    <option value="Male" @*@((ViewBag.Employee.Gender) == "Male"   ? "selected" : "")*@>Male</option>
+                    <option value="Female" @*@((ViewBag.Employee.Gender) == "Female" ? "selected" : "")*@>Female</option>
+                </select>
+            </div>
+            <p></p>
+            <div>
+                <input type="text" class="form-control" placeholder="Email Address" id="EmailAddress" name="EmailAddress" value="" />
+            </div>
+            <p></p>
+            <div>
+                <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" />
+            </div>
+            <p></p>
+            <div>
+                <label>Birth Date:</label>
+                <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="" />
+            </div>
+        </div>
+        <hr />
+        <div>
+            <div class="form-control">
+                <label>Are you covered by any other insurance, including Medicare?</label>
+                <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="ShowempOtherInsCoverage()" name="OtherInsuranceCoverage" value="yes" checked />Yes</label>
+                <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="HideempOtherInsCoverage()" name="OtherInsuranceCoverage" value="no" />No</label>
+            </div>
+            <div id="empInsInfo">
+                <div class="form-group col-md-3">
+                    <input type="text" id="empInsCarrier" class="form-control" placeholder="Insurance Company" name="InsuranceCarrier" value="" />
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" id="empInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="tel" id="empInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                </div>
+            </div>
+        </div>
+        <p></p>
+        <div id="GrpHealthCoverageOptions" class="control-label">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>None</th>
+                        <th>Employee Only</th>
+                        <th>Employee & Spouse</th>
+                        <th>Employee & Child(ren)</th>
+                        <th>Employee & Family</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Medical Plan:</td>
+                    <td>
+                        <select id="NoneGroupHealthOption" class="form-control">
+                            <option value="">Choose Option:</option>
+                            <option value="N/A" name="NoMedicalPlan"></option>
+                            <option value="No Medical Plan" name="NoMedicalPlan">No Medical Plan</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="empOnlyGroupHealthOption" class="form-control">
+                            <option value="">Choose Option:</option>
+                            <option value="N/A" name="EmployeeOnly"></option>
+                            <option value="MEC Plan" name="EmployeeOnly">MEC Plan</option>
+                            <option value="Standard Plan" name="EmployeeOnly">Standard Plan</option>
+                            <option value="Buy Up Plan" name="EmployeeOnly">Buy Up Plan</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="empSpGroupHealthOption" class="form-control">
+                            <option value="">Choose Option:</option>
+                            <option value="N/A" name="EmployeeAndSpouse"></option>
+                            <option value="MEC Plan" name="EmployeeAndSpouse">MEC Plan</option>
+                            <option value="Standard Plan" name="EmployeeAndSpouse">Standard Plan</option>
+                            <option value="Buy Up Plan" name="EmployeeAndSpouse">Buy Up Plan</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="empDepGroupHealthOption" class="form-control">
+                            <option value="">Choose Option:</option>
+                            <option value="N/A" name="EmployeeAndDependent"></option>
+                            <option value="MEC Plan" name="EmployeeAndDependent">MEC Plan</option>
+                            <option value="Standard Plan" name="EmployeeAndDependent">Standard Plan</option>
+                            <option value="Buy Up Plan" name="EmployeeAndDependent">Buy Up Plan</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="empFamGroupHealthOption" class="form-control">
+                            <option value="">Choose Option:</option>
+                            <option value="N/A" name="EmployeeAndFamily"></option>
+                            <option value="MEC Plan" name="EmployeeAndFamily">MEC Plan</option>
+                            <option value="Standard Plan" name="EmployeeAndFamily">Standard Plan</option>
+                            <option value="Buy Up Plan" name="EmployeeAnEmployeeAndFamilydDependent">Buy Up Plan</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="form-group col-md-12">
+            <div id="spGenInfo" class="floatLeft">
+                <table class="table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th colspan="2">Spouse's Information</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spFirstName" placeholder="First Name" value="" disabled />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spLastName" placeholder="Last Name" value="" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spAddress" placeholder="Street" value="" disabled />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spCity" placeholder="City" value="" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spState" placeholder="State" value="" disabled />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spZipCode" placeholder="Zip Code" value="" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <input type="tel" class="form-control" id="spPhoneNumber" placeholder="Phone Number" value="" disabled />
+                        </td>
+                        <td class="text">
+                            <input type="date" class="form-control" id="spDateOfBirth" placeholder="Birth Date" value="" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text" colspan="1">
+                            <select id="spGender" class="form-control" disabled>
+                                <option>Gender:</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </td>
+                        <td class="text" colspan="1">
+                            <input type="text" class="form-control" placeholder="SSN#- Call HR" id="spSSN" name="SSN" value="" disabled />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="spEmploymentInfo" class="floatCenter">
+                <table class="table-bordered" border="1">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th colspan="2">Spouse's Employer</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spEmployer" placeholder="Employer" value="" disabled />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="" placeholder="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spEmployerAddress" placeholder="Street" value="" disabled />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spEmployerCity" placeholder="City" value="" disabled />
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spEmployerState" placeholder="State" value="" disabled />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spEmployerZipCode" placeholder="Zip Code" value="" disabled />
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spEmployerPhoneNumber" placeholder="Phone Number" value="" disabled />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="" placeholder="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <select id="spOtherInsCoverage" class="form-control">
+                                <option>Other Ins. Coverage:</option>
+                                <option value="Medical">Medical</option>
+                                <option value="Dental">Dental</option>
+                                <option value="Vision">Vision</option>
+                                <option value="Indemnity">Indemnity</option>
+                            </select>
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="" placeholder="" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="spInsInfo" class="floatRight">
+                <table class="table-bordered" border="1">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th colspan="2">Spouse's Insurance</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spInsCarrier" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="" placeholder="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spInsMailingAddress" placeholder="Street" name="MailingAddress" value="" />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spInsCity" placeholder="City" name="City" value="" />
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spInsState" placeholder="State" name="State" value="" />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spInsZipCode" placeholder="Zip Code" name="ZipCode" value="" />
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spInsPhoneNumber" placeholder="Phone Number" name="PhoneNumber" value="" />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="" placeholder="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="spInsPolicyNumber" placeholder="Policy #" name="PolicyNumber" value="" />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="" placeholder="" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr />
+        <div>
+            @* retrieve dep info from DepEnrollment page *@
+            <form id="depGen&InsInfo" method="post" action="#" class="repeatingSection" enctype="multipart/form-data">
+                <div id="depGenInfo">
+                    <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
+                    <div id="depInfo">
+                        <div class="form-group col-md-2">
+                            <input type="text" id="depFirstName" class="form-control" placeholder="First Name" name="FirstName" value="" disabled />
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="text" id="depLastName" class="form-control" placeholder="Last Name" name="LastName" value="" disabled />
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="text" id="depSSN" class="form-control" placeholder="SSN #" name="SSN" value="" disabled />
+                        </div>
+                        <div class="form-group col-md-3" id="depRelationshipToInsured">
+                            <input type="text" id="depRelationToInsured" class="form-control" placeholder="Relationship to Insured" name="RelationShipToInsured" value="" disabled>
+                            @*<input id="Child" name="RelationshipToInsured" class="form-control" value="Child" @((ViewBag.RelationshipToInsured.ToLower() == "Child") ? "selected" : "")/>*@
+                            @*<input id="StepChild" name="RelationshipToInsured" class="form-control" value="StepChild" @((ViewBag.RelationshipToInsured.ToLower() == "StepChild") ? "selected" : "")/>*@
+                            @*<input id="Other" name="RelationshipToInsured" class="form-control" value="Other" @((ViewBag.RelationshipToInsured.ToLower() == "Other") ? "selected" : "")/>*@
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="date" class="form-control" id="depDateOfBirth" name="DateOfBirth" value="" disabled />
+                        </div>
+                        <div class="form-group col-md-2">
+                            <select id="depGender" class="form-control" disabled>
+                                <option value="">Gender:</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
+                        <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="ShowdepOtherInsCoverage()" name="CoveredByOtherInsurance" value="yes" checked />Yes</label>
+                        <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="HidedepOtherInsCoverage()" name="CoveredByOtherInsurance" value="no" />No</label>
+                        <div id="depInsInfo">
+                            <div class="form-group col-md-2">
+                                <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <p></p>
+            <div class="form-group">
+                <div class="col-md-11">
+                    <input type="submit" onclick="addInputSelection()" id="addDep" value="Add Dependent" class="btn">
+                </div>
+            </div>
+            <div id="dependentSelectForm" @*action="\Home\DependentPoster" method="post"*@>
+                <input type="text" name="fname1" id="fname1" />
+                <input type="text" name="lname1" id="lname1" />
+                <input type="text" name="ssn1" id="ssn1" />
+                <input type="text" name="relation1" id="relation1" />
+                <input type="date" name="dob1" id="dob1" />
+                <input type="text" name="gender1" id="gender1" />
+
+                <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
+                <br id="br1" />
+            </div>
+
+            <hr />
+
+            <hr />
+            <div>
+                <table class="table-bordered">
+                    <tr>
+                        <td>
+                            <div>
+                                <h4><b>Refusal of Group Health Coverage</b></h4>
+                                <h6>This is to certify I have been given an opportunity to apply for group health coverage available to me through my Employer, and I have decided to not apply coverage for:</h6>
+                                <label class="radio-inline"><input type="radio" id="Myself" class="radio-inline" @*onclick="return RefusalOfGrpHealthCoverage()"*@ name="Myself" value="Myself" />Myself</label>
+                                <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" name="Spouse" value="Spouse" />Spouse</label>
+                                <label class="radio-inline"><input type="radio" id="Dependent" class="radio-inline" name="Dependent" value="Child(ren)" />Child(ren)</label>
+                                <p></p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td>
+                            <div>
+                                <h4><b>Reason for Refusal</b></h4>
+                                <div>
+                                    <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="OtherCoverage" onclick="return hideReasonForRefusal()" value="OtherCoverage" />OtherCoverage</label>
+                                    <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="OtherCoverage" onclick="return showReasonForRefusal()" value="OtherReason" checked />OtherReason</label>
+                                    <p></p>
+                                    <input type="text" id="OtherReason" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="" />
+                                </div>
+                                <hr />
+                                <div>
+                                    <label style="padding-left: 10px;">
+                                        Employee Signature:
+                                    </label>
+                                    <input type="text" id="empSignature2" name="EmployeeSignature" value="" />
+                                    <label style="padding-left: 10px;">
+                                        Date:
+                                    </label>
+                                    <input type="date" id="empSignatureDate2" name="EmployeeSignatureDate" value="" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <hr />
+                <div class="text-justify">
+                    <h4><b>Special Enrollment Rules</b></h4>
+                    <p>
+                        If you aredeclining enrollment for yourself or your dependents (including your spouse) because of other health insurance coverage, you may in the future
+                        be able to enroll yourself or your dependent in this Plan, provided that you request enrollment within 30 days after your coverage ends. In addition, if
+                        you have a new dependent as a result of marriage, birth, adoption, or placement for adoption, you may be able to enroll yourself and your dependents,
+                        provided that you request enrollment within 30 days after the marriage, birth, adoption, or placement for adoption.
+                    </p>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-offset-11">
+                    <button type="submit" id="GrpHealthInsUpdateStepThree" class="btn" @*onclick="return function()"*@>Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div>
-        <h4>Create Job Application</h4>
+        <p>
+            @Html.ActionLink("Edit Group Insurance", "EditGrpHealthIns", new { Employee_id = ViewBag.Employee_id }, null)
+        </p>
     </div>
 </body>
 </html>
+
+
+<style>
+    .collapsible {
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    .btn {
+        background-color: #333;
+        color: white;
+    }
+
+    .button {
+        text-align: right;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+    #label {
+        font-weight: bold;
+        text-align: left;
+        font-size: 100%;
+    }
+
+    #signature {
+        width: 100%;
+        border: 0px;
+        border-bottom: 1px solid black;
+        height: 20px;
+    }
+
+    #signatureDate {
+        width: 15%;
+        border: 0px;
+        border-bottom: 1px solid black;
+        height: 20px;
+    }
+
+    .aside {
+        float: right;
+    }
+
+    .floatLeft {
+        width: 33%;
+        display: inline-block;
+    }
+
+    .floatCenter {
+        width: 33%;
+        display: inline-block;
+    }
+
+    .floatRight {
+        width: 33%;
+        display: inline-block;
+    }
+
+    .container-fluid {
+        overflow: hidden;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td:empty {
+        width: 10px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 0px;
+    }
+
+    th {
+        border-bottom: 5px solid black;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+
+
+
