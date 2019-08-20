@@ -126,13 +126,12 @@
                 </select>
             </div>
             <p></p>
-            <div class="form-inline">
+            <div class="form-inline" id="PreviouslyEmployedAtWatson">
                 <label>Have you ever worked for this company before?</label>
-                <select id="appPrvEmploymentAtWTS" class="form-control" name="PreviouslyEmployedAtWatson">
-                    <option value=""></option>
-                    <option value="Yes" id="YesWorkedforWTSBefore" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Yes</option>
-                    <option value="No" id="NotWorkedforWTSBefore" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>No</option>
-                </select>
+                <div>
+                    <label class="radio-inline"><input type="radio" id="YesWorkedforWTSBefore" class="radio-inline" onclick="ShowEmploymentDatesAtWatson()" name="PreviouslyEmployedAtWatson" value="yes" checked />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="NotWorkedforWTSBefore" class="radio-inline" onclick="HideEmploymentDatesAtWatson()" name="PreviouslyEmployedAtWatson" value="no" />No</label>
+                </div>
             </div>
             <p></p>
             <div id="divFromToEmploymentDates">
@@ -142,34 +141,26 @@
                 <input type="date" class="form-control" name="EmploymentDatesAtWatsonTo" />
             </div>
             <p></p>
-            <div>
-                <label>Phone Number</label>
-                <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" />
-            </div>
-            <p></p>
-            <div class="form-inline">
+            <div class="form-inline" id="VeteranStatus">
                 <label>Are you a Veteran?</label>
-                <select id="VeteranStatus" class="form-control"name="Veteran">
-                    <option value=""></option>
-                    <option value="Yes" id="yesVeteran" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Yes</option>
-                    <option value="No" id="notVeteran" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>No</option>
-                </select>
+                <div>
+                    <label class="radio-inline"><input type="radio" id="yesVeteran" class="radio-inline" onclick="ShowMOS()" name="Veteran" value="yes" checked />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="notVeteran" class="radio-inline" onclick="HideMOS()" name="Veteran" value="no" />No</label>
+                </div>
                 <p></p>
                 <input type="text" id="VeteranMOS" class="form-control" placeholder="MOS/Specialized Training " name="MOSorSpecializedTraining" value="" />
             </div>
             <p></p>
-            <div class="form-inline">
+            <div id="DriversLicense">
                 <label>Do you have a valid drivers license?</label>
-                <select id="DriversLicense" class="form-control" name="DriversLicense">
-                    <option value=""></option>
-                    <option value="Yes" id="yesValidLicense" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Yes</option>
-                    <option value="No" id="noValidLicense" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>No</option>
-                </select>
-            </div>
+                <div>
+                    <label class="radio-inline"><input type="radio" id="yesValidLicense" class="radio-inline" onclick="ShowDriversLicenseInfo()" name="DriversLicense" value="yes" checked />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="noValidLicense" class="radio-inline" onclick="HideDriversLicenseInfo()" name="DriversLicense" value="no" />No</label>
+                </div>
             <p></p>
             <div id="divDriversLicenseInfo">
                 <div>
-                    <input type="text" class="form-control" placeholder="State" id="LicenseState" name="DriversLicenseState" value="" />
+                    <input type="text" class="form-control" placeholder="License State" id="LicenseState" name="DriversLicenseState" value="" />
                 </div>
                 <p></p>
                 <div>
@@ -179,6 +170,11 @@
                 <div>
                     <label>Expiration Date</label>
                     <input type="date" class="form-control" id="ExpirationDate" name="DriversLicenseExpirationDate" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <label>Phone Number</label>
+                    <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" />
                 </div>
             </div>
         </div>
@@ -950,6 +946,33 @@
     }
 </style>
 
+<script>
+    function ShowEmploymentDatesAtWatson() {
+        document.getElementById("divFromToEmploymentDates").style.display = "block";
+    }
+    function HideEmploymentDatesAtWatson() {
+        document.getElementById("divFromToEmploymentDates").style.display = "none";
+    }
 
+    function ShowMOS() {
+        document.getElementById("VeteranMOS").style.display = "block";
+    }
+
+    function HideMOS() {
+        document.getElementById("VeteranMOS").style.display = "none";
+    }
+
+    function ShowDriversLicenseInfo() {
+        document.getElementById("divDriversLicenseInfo").style.display = "block";
+    }
+
+    function HideDriversLicenseInfo() {
+        document.getElementById("divDriversLicenseInfo").style.display = "none";
+    }
+
+
+    
+
+</script>
 
 
