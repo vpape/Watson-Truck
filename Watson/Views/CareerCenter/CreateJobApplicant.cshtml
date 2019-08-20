@@ -67,14 +67,14 @@
                     <label>
                         Applicant's Signature:
                     </label>
-                    <input type="text" class="form-control" id="appSignature1" name="ApplicantSignatureOne" value="" />
+                    <input type="text" class="form-control" id="ApplicantSignature1" name="ApplicantSignature" value="" />
                 </div>
                 <p></p>
                 <div>
                     <label>
                         Date:
                     </label>
-                    <input type="text" class="form-control" id="appSignatureDate1" name="ApplicantSignatureDateOne" value="" />
+                    <input type="text" class="form-control" id="ApplicantSignatureDate1" name="ApplicantSignatureDate" value="" />
                 </div>
             </div>
         </form>
@@ -92,34 +92,34 @@
             <div>
                 <div>
                     <label>Present Address:</label>
-                    <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="PresentAddress" value="" />
-                    <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" />
-                    <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
-                    <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
-                    <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                    <input type="text" id="PresentAddress" class="form-control" placeholder="Street" name="ApplicantPresentAddress" value="" />
+                    <input type="text" id="PresentPObox" class="form-control" placeholder="PO Box" name="ApplicantPresentPObox" value="" />
+                    <input type="text" id="PresentCity" class="form-control" placeholder="City" name="ApplicantCity" value="" />
+                    <input type="text" id="PresentState" class="form-control" placeholder="State" name="ApplicantState" value="" />
+                    <input type="text" id="PresentZipCode" class="form-control" placeholder="Zip Code" name="ApplicantZipCode" value="" />
                 </div>
                 <p></p>
-                <div>How long have you resided there?</div>
-                <input type="number" class="form-control">
+                <div><label>How long have you resided there?</label></div>
+                <input type="number" class="form-control" name="YearsResidedAtPresentAddr" value="">
             </div>
             <p></p>
             <div>
                 <div>
                     <label>Previous Address:</label>
-                    <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="PreviousAddress" value="" />
-                    <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" />
-                    <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
-                    <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
-                    <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                    <input type="text" id="PreviousAddress" class="form-control" placeholder="Street" name="ApplicantPreviousAddress" value="" />
+                    <input type="text" id="PreviousPObox" class="form-control" placeholder="PO Box" name="ApplicantPreviousPObox" value="" />
+                    <input type="text" id="PreviousCity" class="form-control" placeholder="City" name="ApplicantCityTwo" value="" />
+                    <input type="text" id="PreviousState" class="form-control" placeholder="State" name="ApplicantStateTwo" value="" />
+                    <input type="text" id="PreviousZipCode" class="form-control" placeholder="Zip Code" name="ApplicantZipCodeTwo" value="" />
                 </div>
                 <p></p>
-                <div>How long have you resided there?</div>
-                <input type="number" class="form-control">
+                <div><label>How long have you resided there?</label></div>
+                <input type="number" class="form-control" name="YearsResidedAtPreviousAddr" value="">
             </div>
             <p></p>
             <div class="form-inline">
                 <label>Are you over 18 or over?</label>
-                <select id="applicantAge" class="form-control">
+                <select id="applicantAge" name="OverEighteen" class="form-control">
                     <option value=""></option>
                     <option value="Yes" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Yes</option>
                     <option value="No" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>No</option>
@@ -128,7 +128,7 @@
             <p></p>
             <div class="form-inline">
                 <label>Have you ever worked for this company before?</label>
-                <select id="appPrvEmploymentAtWTS" class="form-control">
+                <select id="appPrvEmploymentAtWTS" class="form-control" name="PreviouslyEmployedAtWatson">
                     <option value=""></option>
                     <option value="Yes" id="YesWorkedforWTSBefore" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Yes</option>
                     <option value="No" id="NotWorkedforWTSBefore" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>No</option>
@@ -137,9 +137,9 @@
             <p></p>
             <div id="divFromToEmploymentDates">
                 <label>If yes, give dates</label>
-                <input type="date" class="form-control" />
+                <input type="date" class="form-control" name="EmploymentDatesAtWatsonFrom" />
                 <label>to</label>
-                <input type="date" class="form-control" />
+                <input type="date" class="form-control" name="EmploymentDatesAtWatsonTo" />
             </div>
             <p></p>
             <div>
@@ -149,18 +149,18 @@
             <p></p>
             <div class="form-inline">
                 <label>Are you a Veteran?</label>
-                <select id="VeteranStatus" class="form-control">
+                <select id="VeteranStatus" class="form-control"name="Veteran">
                     <option value=""></option>
                     <option value="Yes" id="yesVeteran" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Yes</option>
                     <option value="No" id="notVeteran" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>No</option>
                 </select>
                 <p></p>
-                <input type="text" id="VeteranMOS" class="form-control" placeholder="MOS/Specialized Training " name="VeteranMOS" value="" />
+                <input type="text" id="VeteranMOS" class="form-control" placeholder="MOS/Specialized Training " name="MOSorSpecializedTraining" value="" />
             </div>
             <p></p>
             <div class="form-inline">
                 <label>Do you have a valid drivers license?</label>
-                <select id="DriversLicense" class="form-control">
+                <select id="DriversLicense" class="form-control" name="DriversLicense">
                     <option value=""></option>
                     <option value="Yes" id="yesValidLicense" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Yes</option>
                     <option value="No" id="noValidLicense" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>No</option>
@@ -169,16 +169,16 @@
             <p></p>
             <div id="divDriversLicenseInfo">
                 <div>
-                    <input type="text" class="form-control" placeholder="State" id="LicenseState" name="LicenseState" value="" />
+                    <input type="text" class="form-control" placeholder="State" id="LicenseState" name="DriversLicenseState" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" placeholder="License Number" id="LicenseNumber" name="LicenseNumber" value="" />
+                    <input type="text" class="form-control" placeholder="License Number" id="LicenseNumber" name="DriversLicenseNumber" value="" />
                 </div>
                 <p></p>
                 <div>
                     <label>Expiration Date</label>
-                    <input type="date" class="form-control" id="ExpirationDate" name="ExpirationDate" value="" />
+                    <input type="date" class="form-control" id="ExpirationDate" name="DriversLicenseExpirationDate" value="" />
                 </div>
             </div>
         </div>
@@ -327,26 +327,26 @@
                     </thead>
                     <tr>
                         <td class="text">
-                            <input type="text" class="form-control" id="PresentOrLastEmployer1" placeholder="Present or Last Employer" name="PresentOrLastEmployerOne" value="" />
+                            <input type="text" class="form-control" id="PresentOrLastEmployer1" placeholder="Present or Last Employer" name="PresentOrCurrentEmployer" value="" />
                         </td>
                         <td class="text">
-                            <input type="text" class="form-control" id="EmployerPhoneNumber1" placeholder="Employer Phone Number" name="EmployerPhoneNumberOne" value="" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text">
-                            <input type="text" class="form-control" id="EmployerAddress1" placeholder="Street" name="EmployerAddressOne" value="" />
-                        </td>
-                        <td class="text">
-                            <input type="text" class="form-control" id="EmployerCity1" placeholder="City" name="EmployerCityOne" value="" />
+                            <input type="text" class="form-control" id="EmployerPhoneNumber1" placeholder="Employer Phone Number" name="EmployerPhoneNumber" value="" />
                         </td>
                     </tr>
                     <tr>
                         <td class="text">
-                            <input type="text" class="form-control" id="EmployerState1" placeholder="State" name="EmployerStateOne" value="" />
+                            <input type="text" class="form-control" id="EmployerAddress1" placeholder="Street" name="EmployerAddress" value="" />
                         </td>
                         <td class="text">
-                            <input type="text" class="form-control" id="EmployerZipCode1" placeholder="Zip Code" name="EmployerZipCodeOne" value="" />
+                            <input type="text" class="form-control" id="EmployerCity1" placeholder="City" name="EmployerCity" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="EmployerState1" placeholder="State" name="EmployerState" value="" />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="EmployerZipCode1" placeholder="Zip Code" name="EmployerZipCode" value="" />
                         </td>
                     </tr>
                     <tr>
@@ -359,23 +359,23 @@
                     </tr>
                     <tr>
                         <td class="text">
-                            <input type="date" class="form-control" id="EmploymentDateFrom" name="EmploymentDateFromOne" />
+                            <input type="date" class="form-control" id="EmployedFromDate" name="EmployedFromDate" />
                         </td>
                         <td class="text">
-                            <input type="date" class="form-control" id="EmploymentDateTo" name="EmploymentDateToOne" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text">
-                            <input type="text" class="form-control" id="TitleOrPosition1" placeholder="Title or Position" name="TitleOrPositionOne" value="" />
-                        </td>
-                        <td class="text">
-                            <input type="text" class="form-control" id="WorkedPerformed1" placeholder="Work Performed" name="WorkedPerformedOne" value="" />
+                            <input type="date" class="form-control" id="EmployedToDate" name="EmployedToDate" />
                         </td>
                     </tr>
                     <tr>
                         <td class="text">
-                            <input type="text" class="form-control" id="Supervisor1" placeholder="Supervisor(s)" name="SupervisorOne" value="" />
+                            <input type="text" class="form-control" id="TitleOrPosition1" placeholder="Title or Position" name="TitleOfPositionHeld" value="" />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="WorkedPerformed1" placeholder="Work Performed" name="TypeOfWorkedPerformed" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="Supervisor1" placeholder="Supervisor(s)" name="NameOfSupervisor" value="" />
                         </td>
                         <td class="text">
                             <input type="text" class="form-control" id="" name="" value="" disabled />
@@ -416,31 +416,31 @@
                     </tr>
                     <tr>
                         <td class="text">
-                            <input class="form-control" placeholder="Employment Date From:" disabled />
+                            <input class="form-control" placeholder="Employment Date From:" name="EmployedFromDateTwo" disabled />
                         </td>
                         <td class="text">
-                            <input class="form-control" placeholder="Employment Date To:" disabled />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text">
-                            <input type="date" class="form-control" id="EmploymentDateFrom2" name="EmploymentDateFromTwo" />
-                        </td>
-                        <td class="text">
-                            <input type="date" class="form-control" id="EmploymentDateTo2" name="EmploymentDateToTwo" />
+                            <input class="form-control" placeholder="Employment Date To:" name="" disabled />
                         </td>
                     </tr>
                     <tr>
                         <td class="text">
-                            <input type="text" class="form-control" id="TitleOrPosition2" placeholder="Title or Position" name="TitleOrPositionTwo" value="" />
+                            <input type="date" class="form-control" id="EmploymentDateFrom2" name="EmployedFromDateTwo" />
                         </td>
                         <td class="text">
-                            <input type="text" class="form-control" id="WorkedPerformed2" placeholder="Work Performed" name="WorkedPerformedTwo" value="" />
+                            <input type="date" class="form-control" id="EmploymentDateTo2" name="EmployedToDateTwo" />
                         </td>
                     </tr>
                     <tr>
                         <td class="text">
-                            <input type="text" class="form-control" id="Supervisor2" placeholder="Supervisor(s)" name="SupervisorTwo" value="" />
+                            <input type="text" class="form-control" id="TitleOrPosition2" placeholder="Title or Position" name="TitleOfPositionHeldTwo" value="" />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="WorkedPerformed2" placeholder="Work Performed" name="TypeOfWorkedPerformedTwo" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="Supervisor2" placeholder="Supervisor(s)" name="NameOfSupervisorTwo" value="" />
                         </td>
                         <td class="text">
                             <input type="text" class="form-control" id="" name="" value="" disabled />
@@ -489,23 +489,23 @@
                     </tr>
                     <tr>
                         <td class="text">
-                            <input type="date" class="form-control" id="EmploymentDateFrom3" name="EmploymentDateFromThree" />
+                            <input type="date" class="form-control" id="EmploymentDateFrom3" name="EmployedFromDateThree" />
                         </td>
                         <td class="text">
-                            <input type="date" class="form-control" id="EmploymentDateTo3" name="EmploymentDateToThree" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text">
-                            <input type="text" class="form-control" id="TitleOrPosition3" placeholder="Title or Position" name="TitleOrPositionThree" value="" />
-                        </td>
-                        <td class="text">
-                            <input type="text" class="form-control" id="WorkedPerformed3" placeholder="Work Performed" name="WorkedPerformedThree" value="" />
+                            <input type="date" class="form-control" id="EmploymentDateTo3" name="EmployedToDateThree" />
                         </td>
                     </tr>
                     <tr>
                         <td class="text">
-                            <input type="text" class="form-control" id="Supervisor3" placeholder="Supervisor(s)" name="SupervisorThree" value="" />
+                            <input type="text" class="form-control" id="TitleOrPosition3" placeholder="Title or Position" name="TitleOfPositionHeldThree" value="" />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="WorkedPerformed3" placeholder="Work Performed" name="TypeOfWorkedPerformedThree" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="Supervisor3" placeholder="Supervisor(s)" name="NameOfSupervisorThree" value="" />
                         </td>
                         <td class="text">
                             <input type="text" class="form-control" id="" name="" value="" disabled />
@@ -521,13 +521,13 @@
                     <td>
                         <div>
                             <label>Have you ever been terminated or asked to resign?</label>
-                            <select id="TerminationOrResigned" class="" name="">
+                            <select id="TerminationOrResigned" class="" name="TerminatedOrResiged">
                                 <option value=""></option>
                                 <option value="Yes">Yes</option>
                                 <option value="No" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>No</option>
                             </select>
                             <p></p>
-                            <textarea class="form-control">If yes, please explain circumstances:</textarea>
+                            <textarea class="form-control" name="ReasonForTerminationOrResignation">If yes, please explain circumstances:</textarea>
                         </div>
                     </td>
                 </tr>
@@ -547,34 +547,42 @@
                                     </thead>
                                     <tr>
                                         <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceFirstName1" placeholder="First Name" name="ReferenceFirstNameOne" value="" />
+                                            <input type="text" class="form-control" id="ReferenceFirstName1" placeholder="First Name" name="ReferenceFirstName" value="" />
                                         </td>
                                         <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceLastName1" placeholder="Last Name" name="ReferenceLastNameOne" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceAddress1" placeholder="Street" name="ReferenceAddressOne" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceCity1" placeholder="City" name="ReferenceCityOne" value="" />
+                                            <input type="text" class="form-control" id="ReferenceLastName1" placeholder="Last Name" name="ReferenceLastName" value="" />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceState1" placeholder="State" name="ReferenceStateOne" value="" />
+                                            <input type="text" class="form-control" id="ReferenceAddress1" placeholder="Street" name="ReferenceAddress" value="" />
                                         </td>
                                         <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceZipCode1" placeholder="Zip Code" name="ReferenceZipCodeOne" value="" />
+                                            <input type="text" class="form-control" id="ReferenceCity1" placeholder="City" name="ReferenceCity" value="" />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceOccupation1" placeholder="Reference Occupation" name="ReferenceOccupationOne" value="" />
+                                            <input type="text" class="form-control" id="ReferenceState1" placeholder="State" name="ReferenceState" value="" />
                                         </td>
                                         <td class="text">
-                                            <input type="text" class="form-control" id="YearsKnownReference1" placeholder="Years Known" name="YearsKnownReferenceOne" value="" />
+                                            <input type="text" class="form-control" id="ReferenceZipCode1" placeholder="Zip Code" name="ReferenceZipCode" value="" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text">
+                                            <input type="text" class="form-control" id="ReferenceOccupation1" placeholder="Reference Occupation" name="ReferenceOccupation" value="" />
+                                        </td>
+                                        <td class="text">
+                                            <input type="text" class="form-control" id="YearsKnownReference1" placeholder="Years Known" name="YearsKnownReference" value="" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text">
+                                            <input type="text" class="form-control" id="ReferencePhoneNumber1" placeholder="Phone Number" name="ReferencePhoneNumber" value="" />
+                                        </td>
+                                        <td class="text">
+                                            <input type="text" class="form-control" id="" placeholder="" name="" value="" disabled />
                                         </td>
                                     </tr>
                                 </table>
@@ -618,6 +626,14 @@
                                             <input type="text" class="form-control" id="YearsKnownReference2" placeholder="Years Known" name="YearsKnownReferenceTwo" value="" />
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td class="text">
+                                            <input type="text" class="form-control" id="ReferencePhoneNumber2" placeholder="Phone Number" name="ReferencePhoneNumberTwo" value="" />
+                                        </td>
+                                        <td class="text">
+                                            <input type="text" class="form-control" id="" placeholder="" name="" value="" disabled />
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
                             <div id="ReferenceInfo3" class="floatRight">
@@ -657,6 +673,14 @@
                                         </td>
                                         <td class="text">
                                             <input type="text" class="form-control" id="YearsKnownReference3" placeholder="Years Known" name="YearsKnownReferenceThree" value="" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text">
+                                            <input type="text" class="form-control" id="ReferencePhoneNumber3" placeholder="Phone Number" name="ReferencePhoneNumberThree" value="" />
+                                        </td>
+                                        <td class="text">
+                                            <input type="text" class="form-control" id="" placeholder="" name="" value="" disabled />
                                         </td>
                                     </tr>
                                 </table>
@@ -782,12 +806,12 @@
                     <fieldset>
                         <label>Other Experience</label>
                         <div id="divOtherExperience">
-                            <textarea class="form-control">Please list any other experience:</textarea>
+                            <textarea class="form-control" name="ListOtherExperience">Please list any other experience:</textarea>
                         </div>
                         <p></p>
                         <label>Certification</label>
                         <div id="divCertificates">
-                            <textarea class="form-control">Please list any Certifications you may have:</textarea>
+                            <textarea class="form-control" name="Certification">Please list any Certifications you may have:</textarea>
                         </div>
                     </fieldset>
                 </form>
@@ -804,14 +828,14 @@
                     <label>
                         Applicant's Signature:
                     </label>
-                    <input type="text" class="form-control" id="appSignature2" name="ApplicantSignatureTwo" value="" />
+                    <input type="text" class="form-control" id="ApplicantSignature2" name="ApplicantSignatureTwo" value="" />
                 </div>
                 <p></p>
                 <div>
                     <label>
                         Date:
                     </label>
-                    <input type="text" class="form-control" id="appSignatureDate2" name="ApplicantSignatureDateTwo" value="" />
+                    <input type="text" class="form-control" id="ApplicantSignatureDate2" name="ApplicantSignatureDateTwo" value="" />
                     <hr />
                 </div>
             </div>
