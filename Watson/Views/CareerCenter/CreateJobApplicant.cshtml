@@ -12,7 +12,7 @@
     <input type="hidden" id="JobApplicant_id" class="form-control" name="JobApplicant_id" value="@ViewBag.JobApplicant_id" />
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
     <div class="form-horizontal">
-        <div>
+        <div id="divApplicantStatement">
             <h2 class="text-center">
                 Application for Employment
             </h2>
@@ -24,7 +24,7 @@
                 <p></p>
                 <div>
                     <label>Start Date:</label>
-                    <input type="date" class="form-control" id="AvailableStartDate" name="AvailableStartDate" value="" />
+                    <input type="date" class="form-control" id="StartDateAvailability" name="StartDateAvailability" value="" />
                 </div>
             </div>
             <hr />
@@ -36,60 +36,59 @@
                     </b>
                 </p>
             </div>
+            <form>
+                <fieldset id="applicantStatement">
+                    <h3 class="text-center"><label>Applicant's Statment</label></h3>
+                    <p class="text-justify">
+                        I understand that this application will be given consideration, but it is not a promise of employment.<br />
+                        <br />
+                        I understand that if hired, my employment will be for no definite period, regardless of the period of payment of my wages<br />
+                        I further understand that I have the right to terminate my employment at any time with or without notice, and the Company has the same right.<br />
+                        <br />
+                        I understand that the Company reserves the right to require me to submit to a medical examination, including a drug/alcohol test, to the <br />
+                        extend permitted by law, after a conditional offer of employment and at any time during my employment if I am hired.<br />
+                        <br />
+                        I understand that the Company reserves the right to require me to submit to a polygraph examination, to the extent permitted by law,<br />
+                        prior to employment and at any time during my employment if I am hired.<br />
+                        <br />
+                        I understand that the Company may investigate my driving record, credit record, and my criminal record, to the extend permitted by law.<br />
+                        I further understand that the Company may contact my previous employers, and I authorize and release those employers to disclose<br />
+                        to the Company all records pertinent to my employment with them.<br />
+                        <br />
+                        I hereby state that all the information that I provide on the this application and in any interview is true and accurate.<br />
+                        I understand that if I am employed and any such information is later found to be false in any respect, I may be dismissed.<br />
+                        <br />
+                    </p>
+                </fieldset>
+                <div>
+                    <div>
+                        <label>
+                            Applicant's Signature:
+                        </label>
+                        <input type="text" class="form-control" id="ApplicantSignature1" name="ApplicantSignature" value="" />
+                    </div>
+                    <p></p>
+                    <div>
+                        <label>
+                            Date:
+                        </label>
+                        <input type="text" class="form-control" id="ApplicantSignatureDate1" name="ApplicantSignatureDate" value="" />
+                    </div>
+                </div>
+            </form>
         </div>
-        <hr />
-        <form>
-            <fieldset id="applicantStatement">
-                <h3 class="text-center"><label>Applicant's Statment</label></h3>
-                <p class="text-justify">
-                    I understand that this application will be given consideration, but it is not a promise of employment.<br />
-                    <br />
-                    I understand that if hired, my employment will be for no definite period, regardless of the period of payment of my wages<br />
-                    I further understand that I have the right to terminate my employment at any time with or without notice, and the Company has the same right.<br />
-                    <br />
-                    I understand that the Company reserves the right to require me to submit to a medical examination, including a drug/alcohol test, to the <br />
-                    extend permitted by law, after a conditional offer of employment and at any time during my employment if I am hired.<br />
-                    <br />
-                    I understand that the Company reserves the right to require me to submit to a polygraph examination, to the extent permitted by law,<br />
-                    prior to employment and at any time during my employment if I am hired.<br />
-                    <br />
-                    I understand that the Company may investigate my driving record, credit record, and my criminal record, to the extend permitted by law.<br />
-                    I further understand that the Company may contact my previous employers, and I authorize and release those employers to disclose<br />
-                    to the Company all records pertinent to my employment with them.<br />
-                    <br />
-                    I hereby state that all the information that I provide on the this application and in any interview is true and accurate.<br />
-                    I understand that if I am employed and any such information is later found to be false in any respect, I may be dismissed.<br />
-                    <br />
-                </p>
-            </fieldset>
-            <div>
-                <div>
-                    <label>
-                        Applicant's Signature:
-                    </label>
-                    <input type="text" class="form-control" id="ApplicantSignature1" name="ApplicantSignature" value="" />
-                </div>
-                <p></p>
-                <div>
-                    <label>
-                        Date:
-                    </label>
-                    <input type="text" class="form-control" id="ApplicantSignatureDate1" name="ApplicantSignatureDate" value="" />
-                </div>
-            </div>
-        </form>
         <hr />
         <h4><label>Personal Information:</label></h4>
         <div id="divPersonalInfo">
             <div>
-                <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" />
+                <input type="text" class="form-control" placeholder="First Name" id="ApplicantFirstName" name="ApplicantFirstName" value="" />
             </div>
             <p></p>
             <div>
-                <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="" />
+                <input type="text" class="form-control" placeholder="Last Name" id="ApplicantLastName" name="ApplicantLastName" value="" />
             </div>
             <p></p>
-            <div>
+            <div id="divPresentAddr">
                 <div>
                     <label>Present Address:</label>
                     <input type="text" id="PresentAddress" class="form-control" placeholder="Street" name="ApplicantPresentAddress" value="" />
@@ -103,7 +102,7 @@
                 <input type="number" class="form-control" name="YearsResidedAtPresentAddr" value="">
             </div>
             <p></p>
-            <div>
+            <div id="divPrevAddr">
                 <div>
                     <label>Previous Address:</label>
                     <input type="text" id="PreviousAddress" class="form-control" placeholder="Street" name="ApplicantPreviousAddress" value="" />
@@ -121,8 +120,8 @@
                 <label>Are you over 18 or over?</label>
                 <select id="applicantAge" name="OverEighteen" class="form-control">
                     <option value=""></option>
-                    <option value="Yes" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Yes</option>
-                    <option value="No" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>No</option>
+                    <option id="yesOverEighteen" value="Yes" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Yes</option>
+                    <option id="notOverEighteen" value="No" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>No</option>
                 </select>
             </div>
             <p></p>
@@ -136,12 +135,12 @@
             <p></p>
             <div id="divFromToEmploymentDates">
                 <label>If yes, give dates</label>
-                <input type="date" class="form-control" name="EmploymentDatesAtWatsonFrom" />
+                <input type="date" class="form-control" id="EmploymentDatesAtWatsonFrom" name="EmploymentDatesAtWatsonFrom" value="" />
                 <label>to</label>
-                <input type="date" class="form-control" name="EmploymentDatesAtWatsonTo" />
+                <input type="date" class="form-control" id="EmploymentDatesAtWatsonTo" name="EmploymentDatesAtWatsonTo" value="" />
             </div>
             <p></p>
-            <div class="form-inline" id="VeteranStatus">
+            <div class="form-inline" id="divVeteranStatus">
                 <label>Are you a Veteran?</label>
                 <div>
                     <label class="radio-inline"><input type="radio" id="yesVeteran" class="radio-inline" onclick="ShowMOS()" name="Veteran" value="yes" checked />Yes</label>
@@ -151,36 +150,37 @@
                 <input type="text" id="VeteranMOS" class="form-control" placeholder="MOS/Specialized Training " name="MOSorSpecializedTraining" value="" />
             </div>
             <p></p>
-            <div id="DriversLicense">
+            <div id="divDriversLicense">
                 <label>Do you have a valid drivers license?</label>
                 <div>
                     <label class="radio-inline"><input type="radio" id="yesValidLicense" class="radio-inline" onclick="ShowDriversLicenseInfo()" name="DriversLicense" value="yes" checked />Yes</label>
                     <label class="radio-inline"><input type="radio" id="noValidLicense" class="radio-inline" onclick="HideDriversLicenseInfo()" name="DriversLicense" value="no" />No</label>
                 </div>
-            <p></p>
-            <div id="divDriversLicenseInfo">
-                <div>
-                    <input type="text" class="form-control" placeholder="License State" id="LicenseState" name="DriversLicenseState" value="" />
-                </div>
                 <p></p>
-                <div>
-                    <input type="text" class="form-control" placeholder="License Number" id="LicenseNumber" name="DriversLicenseNumber" value="" />
-                </div>
-                <p></p>
-                <div>
-                    <label>Expiration Date</label>
-                    <input type="date" class="form-control" id="ExpirationDate" name="DriversLicenseExpirationDate" value="" />
-                </div>
-                <p></p>
-                <div>
-                    <label>Phone Number</label>
-                    <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" />
+                <div id="divDriversLicenseInfo">
+                    <div>
+                        <input type="text" class="form-control" placeholder="License State" id="LicenseState" name="DriversLicenseState" value="" />
+                    </div>
+                    <p></p>
+                    <div>
+                        <input type="text" class="form-control" placeholder="License Number" id="LicenseNumber" name="DriversLicenseNumber" value="" />
+                    </div>
+                    <p></p>
+                    <div>
+                        <label>Expiration Date</label>
+                        <input type="date" class="form-control" id="ExpirationDate" name="DriversLicenseExpirationDate" value="" />
+                    </div>
+                    <p></p>
+                    <div>
+                        <label>Phone Number</label>
+                        <input type="text" class="form-control" placeholder="Phone Number" id="ApplicantPhoneNumber" name="ApplicantPhoneNumber" value="" />
+                    </div>
                 </div>
             </div>
         </div>
         <hr />
         <h4><label>Education:</label></h4>
-        <div id="divEducation" class="control-label">
+        <div class="control-label" id="divEducationInfo">
             <table class="table table-condensed" id="educationTable">
                 <thead>
                     <tr>
@@ -192,128 +192,124 @@
                     </tr>
                 </thead>
                 <tr>
-                    <td>Elementary</td>
+                    <td><label>Elementary</label></td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" name="ElementaryInstitution" value="" />
+                            <input type="text" class="form-control" id="ElementaryInstitution" name="ElementaryInstitution" value="" />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" name="YearsCompletedElementary" value="" />
+                            <input type="text" class="form-control" id="YearsCompletedElementary" name="YearsCompletedElementary" value="" />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" name="FieldOfStudyElementary" value="" />
+                            <input type="text" class="form-control" id="FieldOfStudyElementary" name="FieldOfStudyElementary" value="" />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" name="GraduateElementary" value="" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>High School</td>
-                    <td>
-                        <div>
-                            <input type="text" class="form-control" name="HighSchoolInstitution" value="" />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <input type="text" class="form-control" name="YearsCompletedHighSchool" value="" />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <input type="text" class="form-control" name="FieldOfStudyHighSchool" value="" />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <input type="text" class="form-control" name="GraduateHighSchool" value="" />
+                            <input type="text" class="form-control" id="GraduateElementary" name="GraduateElementary" value="" />
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td>College</td>
+                    <td><label>High School</label></td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" name="CollegeInstitution" value="" />
+                            <input type="text" class="form-control" id="HighSchoolInstitution" name="HighSchoolInstitution" value="" />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" name="YearsCompletedCollege" value="" />
+                            <input type="text" class="form-control" id="YearsCompletedHighSchool" name="YearsCompletedHighSchool" value="" />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" name="FieldOfStudyCollege" value="" />
+                            <input type="text" class="form-control" id="FieldOfStudyHighSchool" name="FieldOfStudyHighSchool" value="" />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" name="GraduateOrDegreeCollege" value="" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Technical School</td>
-                    <td>
-                        <div>
-                            <input type="text" class="form-control" name="TechnicalInstitution" value="" />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <input type="text" class="form-control" name="YearsCompletedTechnical" value="" />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <input type="text" class="form-control" name="FieldOfStudyTechnical" value="" />
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <input type="text" class="form-control" name="GraduateOrDegreeTechnical" value="" />
+                            <input type="text" class="form-control" id="GraduateHighSchool" name="GraduateHighSchool" value="" />
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        Additional
-                    </td>
+                    <td><label>College</label></td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" name="AdditionalInstitution" value="" />
+                            <input type="text" class="form-control" id="CollegeInstitution" name="CollegeInstitution" value="" />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" name="YearsCompletedAtAdditional" value="" />
+                            <input type="text" class="form-control" id="YearsCompletedCollege" name="YearsCompletedCollege" value="" />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" name="FieldOfStudyAtAdditional" value="" />
+                            <input type="text" class="form-control" id="FieldOfStudyCollege" name="FieldOfStudyCollege" value="" />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" name="GraduateOrDegreeAtAdditional" value="" />
+                            <input type="text" class="form-control" id="GraduateOrDegreeCollege" name="GraduateOrDegreeCollege" value="" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Technical School</label></td>
+                    <td>
+                        <div>
+                            <input type="text" class="form-control" id="TechnicalInstitution" name="TechnicalInstitution" value="" />
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input type="text" class="form-control" id="YearsCompletedTechnical" name="YearsCompletedTechnical" value="" />
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input type="text" class="form-control" id="FieldOfStudyTechnical" name="FieldOfStudyTechnical" value="" />
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input type="text" class="form-control" id="GraduateOrDegreeTechnical" name="GraduateOrDegreeTechnical" value="" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Additional</label></td>                  
+                    <td>
+                        <div>
+                            <input type="text" class="form-control" id="AdditionalInstitution" name="AdditionalInstitution" value="" />
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input type="text" class="form-control" id="YearsCompletedAtAdditional" name="YearsCompletedAtAdditional" value="" />
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input type="text" class="form-control" id="FieldOfStudyAtAdditional" name="FieldOfStudyAtAdditional" value="" />
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input type="text" class="form-control" id="GraduateOrDegreeAtAdditional" name="GraduateOrDegreeAtAdditional" value="" />
                         </div>
                     </td>
                 </tr>
             </table>
         </div>
-
         <hr />
-
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-12" id="divPrevEmploymentInfo">
             <div id="PrevEmploymentInfo1" class="floatLeft">
                 <table class="table-bordered">
                     <thead class="thead-dark">
@@ -412,10 +408,10 @@
                     </tr>
                     <tr>
                         <td class="text">
-                            <input class="form-control" placeholder="Employment Date From:" name="EmployedFromDateTwo" disabled />
+                            <input class="form-control" placeholder="Employment Date From:" disabled />
                         </td>
                         <td class="text">
-                            <input class="form-control" placeholder="Employment Date To:" name="" disabled />
+                            <input class="form-control" placeholder="Employment Date To:" disabled />
                         </td>
                     </tr>
                     <tr>
@@ -511,335 +507,342 @@
             </div>
         </div>
         <hr />
-        <div>
-            <table class="table-bordered">
+        <table class="table-condensed">
+            <tr>
+                <td>
+                    <div>
+                        <label>Have you ever been terminated or asked to resign?</label>
+                        <select id="TerminationOrResigned" class="" name="TerminatedOrResiged">
+                            <option value=""></option>
+                            <option value="Yes">Yes</option>
+                            <option value="No" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>No</option>
+                        </select>
+                        <p></p>
+                        <textarea class="form-control" name="ReasonForTerminationOrResignation">If yes, please explain circumstances:</textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <label>Please explain any gaps in your employment history?</label>
+                        <p></p>
+                        <textarea class="form-control" name="ReasonForEmploymentGaps">If yes, please explain circumstances:</textarea>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <p></p>
+        <table class="table-bordered" id="ReferenceTable">
+            <tr>
+                <td>
+                    <h4><label>References:</label></h4>
+                    <div class="form-group col-md-12" id="divReferences">
+                        <div id="ReferenceInfo1" class="floatLeft">
+                            <table class="table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th colspan="2">Reference</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceFirstName1" placeholder="First Name" name="ReferenceFirstName" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceLastName1" placeholder="Last Name" name="ReferenceLastName" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceAddress1" placeholder="Street" name="ReferenceAddress" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceCity1" placeholder="City" name="ReferenceCity" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceState1" placeholder="State" name="ReferenceState" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceZipCode1" placeholder="Zip Code" name="ReferenceZipCode" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceOccupation1" placeholder="Reference Occupation" name="ReferenceOccupation" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="YearsKnownReference1" placeholder="Years Known" name="YearsKnownReference" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferencePhoneNumber1" placeholder="Phone Number" name="ReferencePhoneNumber" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="" placeholder="" name="" value="" disabled />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="ReferenceInfo2" class="floatCenter">
+                            <table class="table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th colspan="2">Reference</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceFirstName2" placeholder="First Name" name="ReferenceFirstNameTwo" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceLastName2" placeholder="Last Name" name="ReferenceLastNameTwo" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceAddress2" placeholder="Street" name="ReferenceAddressTwo" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceCity2" placeholder="City" name="ReferenceCityTwo" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceState2" placeholder="State" name="ReferenceStateTwo" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceZipCode2" placeholder="Zip Code" name="ReferenceZipCodeTwo" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceOccupation2" placeholder="Reference Occupation" name="ReferenceOccupationTwo" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="YearsKnownReference2" placeholder="Years Known" name="YearsKnownReferenceTwo" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferencePhoneNumber2" placeholder="Phone Number" name="ReferencePhoneNumberTwo" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="" placeholder="" name="" value="" disabled />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="ReferenceInfo3" class="floatRight">
+                            <table class="table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th colspan="2">Reference</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceFirstName3" placeholder="First Name" name="ReferenceFirstNameThree" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceLastName3" placeholder="Last Name" name="ReferenceLastNameThree" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceAddress3" placeholder="Street" name="ReferenceAddressThree" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceCity3" placeholder="City" name="ReferenceCityThree" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceState3" placeholder="State" name="ReferenceStateThree" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceZipCode3" placeholder="Zip Code" name="ReferenceZipCodeThree" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferenceOccupation3" placeholder="Reference Occupation" name="ReferenceOccupationThree" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="YearsKnownReference3" placeholder="Years Known" name="YearsKnownReferenceThree" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="ReferencePhoneNumber3" placeholder="Phone Number" name="ReferencePhoneNumberThree" value="" />
+                                    </td>
+                                    <td class="text">
+                                        <input type="text" class="form-control" id="" placeholder="" name="" value="" disabled />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <hr />
+        <h4><label>General Information:</label></h4>
+        <div id="divGeneralInfo">
+            <table id="GeneralInfoTable" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th colspan="3"><label>Please indicate actual experience in any of the following positions:</label></th>
+                    </tr>
+                </thead>
                 <tr>
                     <td>
                         <div>
-                            <label>Have you ever been terminated or asked to resign?</label>
-                            <select id="TerminationOrResigned" class="" name="TerminatedOrResiged">
-                                <option value=""></option>
-                                <option value="Yes">Yes</option>
-                                <option value="No" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>No</option>
-                            </select>
-                            <p></p>
-                            <textarea class="form-control" name="ReasonForTerminationOrResignation">If yes, please explain circumstances:</textarea>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Service Writer" />Service Writer</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Painter" />Painter</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Accounts Receivable" />Accounts Receivable</label>
                         </div>
                     </td>
                 </tr>
-            </table>
-            <p></p>
-            <table class="table-bordered">
                 <tr>
                     <td>
-                        <h4><label>References:</label></h4>
-                        <div class="form-group col-md-12">
-                            <div id="ReferenceInfo1" class="floatLeft">
-                                <table class="table-bordered">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th colspan="2">Reference</th>
-                                        </tr>
-                                    </thead>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceFirstName1" placeholder="First Name" name="ReferenceFirstName" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceLastName1" placeholder="Last Name" name="ReferenceLastName" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceAddress1" placeholder="Street" name="ReferenceAddress" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceCity1" placeholder="City" name="ReferenceCity" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceState1" placeholder="State" name="ReferenceState" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceZipCode1" placeholder="Zip Code" name="ReferenceZipCode" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceOccupation1" placeholder="Reference Occupation" name="ReferenceOccupation" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="YearsKnownReference1" placeholder="Years Known" name="YearsKnownReference" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferencePhoneNumber1" placeholder="Phone Number" name="ReferencePhoneNumber" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="" placeholder="" name="" value="" disabled />
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div id="ReferenceInfo2" class="floatCenter">
-                                <table class="table-bordered">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th colspan="2">Reference</th>
-                                        </tr>
-                                    </thead>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceFirstName2" placeholder="First Name" name="ReferenceFirstNameTwo" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceLastName2" placeholder="Last Name" name="ReferenceLastNameTwo" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceAddress2" placeholder="Street" name="ReferenceAddressTwo" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceCity2" placeholder="City" name="ReferenceCityTwo" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceState2" placeholder="State" name="ReferenceStateTwo" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceZipCode2" placeholder="Zip Code" name="ReferenceZipCodeTwo" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceOccupation2" placeholder="Reference Occupation" name="ReferenceOccupationTwo" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="YearsKnownReference2" placeholder="Years Known" name="YearsKnownReferenceTwo" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferencePhoneNumber2" placeholder="Phone Number" name="ReferencePhoneNumberTwo" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="" placeholder="" name="" value="" disabled />
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div id="ReferenceInfo3" class="floatRight">
-                                <table class="table-bordered">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th colspan="2">Reference</th>
-                                        </tr>
-                                    </thead>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceFirstName3" placeholder="First Name" name="ReferenceFirstNameThree" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceLastName3" placeholder="Last Name" name="ReferenceLastNameThree" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceAddress3" placeholder="Street" name="ReferenceAddressThree" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceCity3" placeholder="City" name="ReferenceCityThree" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceState3" placeholder="State" name="ReferenceStateThree" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceZipCode3" placeholder="Zip Code" name="ReferenceZipCodeThree" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferenceOccupation3" placeholder="Reference Occupation" name="ReferenceOccupationThree" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="YearsKnownReference3" placeholder="Years Known" name="YearsKnownReferenceThree" value="" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="ReferencePhoneNumber3" placeholder="Phone Number" name="ReferencePhoneNumberThree" value="" />
-                                        </td>
-                                        <td class="text">
-                                            <input type="text" class="form-control" id="" placeholder="" name="" value="" disabled />
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Machinist" />Machinist</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Porter" />Porter</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Accounts Payable" />Accounts Payable</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Mechanic" />Mechanic</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Janitor" />Janitor</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Clerk" />Clerk</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Mechanic Helper" />Mechanic Helper</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Parts Clerk" />Parts Clerk</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Receptionist" />Receptionist</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Welder" />Welder</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Parts Delivery" />Parts Delivery</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Secretary" />Secretary</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Welder Helper" />Welder Helper</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Truck Sales" />Truck Sales</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Other" />Other</label>
                         </div>
                     </td>
                 </tr>
             </table>
             <hr />
-            <h4><label>General Information:</label></h4>
-            <div id="divGeneralInfo">
-                <table id="GeneralInfoTable" class="table table-condensed">
-                    <thead>
-                        <tr>
-                            <th colspan="3"><label>Please indicate actual experience in any of the following positions:</label></th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Service Writer" />Service Writer</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Painter" />Painter</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Accounts Receivable" />Accounts Receivable</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Machinist" />Machinist</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Porter" />Porter</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Accounts Payable" />Accounts Payable</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Mechanic" />Mechanic</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Janitor" />Janitor</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Clerk" />Clerk</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Mechanic Helper" />Mechanic Helper</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Parts Clerk" />Parts Clerk</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Receptionist" />Receptionist</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Welder" />Welder</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Parts Delivery" />Parts Delivery</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Secretary" />Secretary</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Welder Helper" />Welder Helper</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Truck Sales" />Truck Sales</label>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Other" />Other</label>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <hr />
-                <form id="divCertiExperience">
-                    <fieldset>
-                        <label>Other Experience</label>
-                        <div id="divOtherExperience">
-                            <textarea class="form-control" name="ListOtherExperience">Please list any other experience:</textarea>
-                        </div>
-                        <p></p>
-                        <label>Certification</label>
-                        <div id="divCertificates">
-                            <textarea class="form-control" name="Certification">Please list any Certifications you may have:</textarea>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-            <hr />
-            <div class="text-center">
-                <p>
-                    <b>I CERTIFY THAT ALL OF THE INFORMATION THAT I HAVE PROVIDED ON THIS APPLICATION IS TRUE AND ACCURATE</b>
-                </p>
-            </div>
-            <hr />
+            <form id="divCertiExperience">
+                <fieldset>
+                    <label>Other Experience</label>
+                    <div id="divOtherExperience">
+                        <textarea class="form-control" name="ListOtherExperience">Please list any other experience:</textarea>
+                    </div>
+                    <p></p>
+                    <label>Certification</label>
+                    <div id="divCertificate">
+                        <textarea class="form-control" name="Certification">Please list any Certifications you may have:</textarea>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <hr />
+        <div class="text-center">
+            <p>
+                <b>I CERTIFY THAT ALL OF THE INFORMATION THAT I HAVE PROVIDED ON THIS APPLICATION IS TRUE AND ACCURATE</b>
+            </p>
+        </div>
+        <hr />
+        <div>
             <div>
-                <div>
-                    <label>
-                        Applicant's Signature:
-                    </label>
-                    <input type="text" class="form-control" id="ApplicantSignature2" name="ApplicantSignatureTwo" value="" />
-                </div>
-                <p></p>
-                <div>
-                    <label>
-                        Date:
-                    </label>
-                    <input type="text" class="form-control" id="ApplicantSignatureDate2" name="ApplicantSignatureDateTwo" value="" />
-                    <hr />
-                </div>
+                <label>
+                    Applicant's Signature:
+                </label>
+                <input type="text" class="form-control" id="ApplicantSignature2" name="ApplicantSignatureTwo" value="" />
             </div>
-            <hr />
-            <div class="form-group">
-                <div class="col-md-offset-11">
-                    <button type="submit" id="JobApplicantUpdateStepThree" class="btn" @*onclick="return function()"*@>Submit</button>
-                </div>
+            <p></p>
+            <div>
+                <label>
+                    Date:
+                </label>
+                <input type="text" class="form-control" id="ApplicantSignatureDate2" name="ApplicantSignatureDateTwo" value="" />
+                <hr />
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-11">
+                <button type="submit" id="JobApplicationSubmit" class="btn" @*onclick="return function()"*@>Submit</button>
             </div>
         </div>
     </div>
@@ -947,6 +950,23 @@
 </style>
 
 <script>
+    //var col = document.querySelectorAll(".collapsible");
+    //var i;
+    var JobApplciant_id;
+
+    //for (i = 0; i < col.length; i++) {
+    //    col[i].addEventListener("click", function () {
+    //        this.classList.toggle("active");
+    //        var content = this.nextElementSibling;
+    //        if (content.style.display === "block") {
+    //            content.style.display = "none";
+    //        } else {
+    //            content.style.display = "block";
+    //        }
+
+    //    });
+    //}
+
     function ShowEmploymentDatesAtWatson() {
         document.getElementById("divFromToEmploymentDates").style.display = "block";
     }
@@ -970,9 +990,321 @@
         document.getElementById("divDriversLicenseInfo").style.display = "none";
     }
 
+</script>
 
-    
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#JobApplicationSubmit").addEventListener("click", function () {
+            PositionApplyingFor = document.getElementById("PositionApplyingFor").value;
+            StartDateAvailability
+            ApplicantSignature
+            ApplicantSignatureDate
+            ApplicantFirstName
+            ApplicantLastName
+            //ApplicantSSN
+            ApplicantPresentAddress
+            ApplicantPresentPObox
+            ApplicantCity
+            ApplicantState
+            ApplicantZipCode
+            YearsResidedAtPresentAddr
+            ApplicantPreviouseAddress
+            ApplicantPreviousPObox
+            ApplicantCityTwo
+            ApplicantStateTwo
+            ApplicantZipCodeTwo
+            YearsResidedAtPreviousAddr
+            ApplicantPhoneNumber
+            ApplicantAge
+            OverEighteen
+            PreviouslyEmployedAtWatson
+            EmploymentDatesAtWatsonFrom
+            EmploymentDatesAtWatsonTo
+            DriversLicense
+            DriversLicenseState
+            DriversLicenseNumber
+            DriversLicenseExpirationDate
+            ElementaryInstitution
+            YearsCompletedElementary
+            FieldOfStudyElementary
+            GraduateElementary
+            HighSchoolInstitution
+            YearsCompletedHighSchool
+            FieldOfStudyHighSchool
+            GraduateHighSchool
+            CollegeInstitution
+            YearsCompletedCollege
+            FieldOfStudyCollege
+            GraduateOrDegreeCollege
+            TechnicalInstitution
+            YearsCompletedTechnical
+            FieldOfStudyTechnical
+            GraduateOrDegreeTechnical
+            AdditionalInstitution
+            YearsCompletedAtAdditional
+            FieldOfStudyAtAdditional
+            GraduateOrDegreeAtAdditional
+            Veteran
+            MOSorSpecializedTraining
+            PresentOrCurrentEmployer
+            EmployerPhoneNumber
+            EmployerAddress
+            //EmployerPObox
+            EmployerCity
+            EmployerState
+            EmployerZipCode
+            EmployedFromDate
+            EmployedToDate
+            TitleOfPositionHeld
+            TypeOfWorkedPerformed
+            NameOfSupervisor
+            PresentOrLastEmployerTwo
+            EmployerPhoneNumberTwo
+            EmployerAddressTwo
+            //EmployerPOboxTwo
+            EmployerCityTwo
+            EmployerStateTwo
+            EmployerZipCodeTwo
+            EmployedFromDateTwo
+            EmployedToDateTwo
+            TitleOfPositionHeldTwo
+            TypeOfWorkedPerformedTwo
+            NameOfSupervisorTwo
+            PresentOrLastEmployerThree
+            EmployerPhoneNumberThree
+            EmployerAddressThree
+            //EmployerPOboxThree
+            EmployerCityThree
+            EmployerStateThree
+            EmployerZipCodeThree
+            EmployedFromDateThree
+            EmployedToDateThree
+            TitleOfPositionHeldThree
+            TypeOfWorkedPerformedThree
+            NameOfSupervisorThree
+            TerminatedOrResigned
+            ReasonForTerminationOrResignation
+            ReasonForEmploymentGaps
+            ReferenceFirstName
+            ReferenceLastName
+            ReferencePhoneNumber
+            ReferenceAddress
+            //ReferencePObox
+            ReferenceCity
+            ReferenceState
+            ReferenceZipCode
+            ReferenceOccupation
+            YearsKnownReference
+            ReferenceFirstNameTwo
+            ReferenceLastNameTwo
+            ReferenceAddressTwo
+            //ReferencePOboxTwo
+            ReferenceCityTwo
+            ReferenceStateTwo
+            ReferenceZipCodeTwo
+            ReferenceOccupationTwo
+            YearsKnownReferenceTwo
+            ReferencePhoneNumberTwo
+            ReferenceFirstNameThree
+            ReferenceLastNameThree
+            ReferenceAddressThree
+            //ReferencePOboxThree
+            ReferenceCityThree
+            ReferenceStateThree
+            ReferenceZipCodeThree
+            ReferenceOccupationThree
+            YearsKnownReferenceThree
+            ReferencePhoneNumberThree
+            Experience
+            ListOtherExperience
+            Certification
+            ApplicantSignatureTwo
+            ApplicantSignatureDateTwo
 
+            var data = {
+
+                "PositionApplyingFor": PositionApplyingFor,
+                "StartDateAvailability": StartDateAvailability,
+                "ApplicantSignature": ApplicantSignature,
+                "ApplicantSignatureDate": ApplicantSignatureDate,
+                "ApplicantFirstName": ApplicantFirstName,
+                "ApplicantLastName": ApplicantLastName,
+                //"ApplicantSSN": ApplicantSSN,
+                "ApplicantPresentAddress": ApplicantPresentAddress,
+                "ApplicantPresentPObox": ApplicantPresentPObox,
+                "ApplicantCity": ApplicantCity,
+                "ApplicantState": ApplicantState,
+                "ApplicantZipCode": ApplicantZipCode,
+                "YearsResidedAtPresentAddr": YearsResidedAtPresentAddr,
+                "ApplicantPreviouseAddress": ApplicantPreviouseAddress,
+                "ApplicantPreviousPObox": ApplicantPreviousPObox,
+                "ApplicantCityTwo": ApplicantCityTwo,
+                "ApplicantStateTwo": ApplicantStateTwo,
+                "ApplicantZipCodeTwo": ApplicantZipCodeTwo,
+                "YearsResidedAtPreviousAddr": YearsResidedAtPreviousAddr,
+                "ApplicantPhoneNumber": ApplicantPhoneNumber,
+                "ApplicantAge": ApplicantAge,
+                "OverEighteen": OverEighteen,
+                "PreviouslyEmployedAtWatson": PreviouslyEmployedAtWatson,
+                "EmploymentDatesAtWatsonFrom": EmploymentDatesAtWatsonFrom,
+                "EmploymentDatesAtWatsonTo": EmploymentDatesAtWatsonTo,
+                "DriversLicense": DriversLicense,
+                "DriversLicenseState": DriversLicenseState,
+                "DriversLicenseNumber": DriversLicenseNumber,
+                "DriversLicenseExpirationDate": DriversLicenseExpirationDate,
+                "ElementaryInstitution": ElementaryInstitution,
+                "YearsCompletedElementary": YearsCompletedElementary,
+                "FieldOfStudyElementary": FieldOfStudyElementary,
+                "GraduateElementary": GraduateElementary,
+                "HighSchoolInstitution": HighSchoolInstitution,
+                "YearsCompletedHighSchool": YearsCompletedHighSchool,
+                "FieldOfStudyHighSchool": FieldOfStudyHighSchool,
+                "GraduateHighSchool": GraduateHighSchool,
+                "CollegeInstitution": CollegeInstitution,
+                "YearsCompletedCollege": YearsCompletedCollege,
+                "FieldOfStudyCollege": FieldOfStudyCollege,
+                "GraduateOrDegreeCollege": GraduateOrDegreeCollege,
+                "TechnicalInstitution": TechnicalInstitution,
+                "YearsCompletedTechnical": YearsCompletedTechnical,
+                "FieldOfStudyTechnical": FieldOfStudyTechnical,
+                "GraduateOrDegreeTechnical": GraduateOrDegreeTechnical,
+                "AdditionalInstitution": AdditionalInstitution,
+                "YearsCompletedAtAdditional": YearsCompletedAtAdditional,
+                "FieldOfStudyAtAdditional": FieldOfStudyAtAdditional,
+                "GraduateOrDegreeAtAdditional": GraduateOrDegreeAtAdditional,
+                "Veteran": Veteran,
+                "MOSorSpecializedTraining": MOSorSpecializedTraining,
+                "PresentOrCurrentEmployer": PresentOrCurrentEmployer,
+                "EmployerPhoneNumber": EmployerPhoneNumber,
+                "EmployerAddress": EmployerAddress,
+                //"EmployerPObox": EmployerPObox,
+                "EmployerCity": EmployerCity,
+                "EmployerState": EmployerState,
+                "EmployerZipCode": EmployerZipCode,
+                "EmployedFromDate": EmployedFromDate,
+                "EmployedToDate": EmployedToDate,
+                "TitleOfPositionHeld": TitleOfPositionHeld,
+                "TypeOfWorkedPerformed": TypeOfWorkedPerformed,
+                "NameOfSupervisor": NameOfSupervisor,
+                "PresentOrLastEmployerTwo": PresentOrLastEmployerTwo,
+                "EmployerPhoneNumberTwo": EmployerPhoneNumberTwo,
+                "EmployerAddressTwo": EmployerAddressTwo,
+                //"EmployerPOboxTwo": EmployerPOboxTwo,
+                "EmployerCityTwo": EmployerCityTwo,
+                "EmployerStateTwo": EmployerStateTwo,
+                "EmployerZipCodeTwo": EmployerZipCodeTwo,
+                "EmployedFromDateTwo": EmployedFromDateTwo,
+                "EmployedToDateTwo": EmployedToDateTwo,
+                "TitleOfPositionHeldTwo": TitleOfPositionHeldTwo,
+                "TypeOfWorkedPerformedTwo": TypeOfWorkedPerformedTwo,
+                "NameOfSupervisorTwo": NameOfSupervisorTwo,
+                "PresentOrLastEmployerThree": PresentOrLastEmployerThree,
+                "EmployerPhoneNumberThree": EmployerPhoneNumberThree,
+                "EmployerAddressThree": EmployerAddressThree,
+                //"EmployerPOboxThree": EmployerPOboxThree,
+                "EmployerCityThree": EmployerCityThree,
+                "EmployerStateThree": EmployerStateThree,
+                "EmployerZipCodeThree": EmployerZipCodeThree,
+                "EmployedFromDateThree": EmployedFromDateThree,
+                "EmployedToDateThree": EmployedToDateThree,
+                "TitleOfPositionHeldThree": TitleOfPositionHeldThree,
+                "TypeOfWorkedPerformedThree": TypeOfWorkedPerformedThree,
+                "NameOfSupervisorThree": NameOfSupervisorThree,
+                "TerminatedOrResigned": TerminatedOrResigned,
+                "ReasonForTerminationOrResignation": ReasonForTerminationOrResignation,
+                "ReasonForEmploymentGaps": ReasonForEmploymentGaps,
+                "ReferenceFirstName": ReferenceFirstName,
+                "ReferenceLastName": ReferenceLastName,
+                "ReferencePhoneNumber": ReferencePhoneNumber,
+                "ReferenceAddress": ReferenceAddress,
+                //"ReferencePObox": ReferencePObox,
+                "ReferenceCity": ReferenceCity,
+                "ReferenceState": ReferenceState,
+                "ReferenceZipCode": ReferenceZipCode,
+                "ReferenceOccupation": ReferenceOccupation,
+                "YearsKnownReference": YearsKnownReference,
+                "ReferenceFirstNameTwo": ReferenceFirstNameTwo,
+                "ReferenceLastNameTwo": ReferenceLastNameTwo,
+                "ReferenceAddressTwo": ReferenceAddressTwo,
+                //"ReferencePOboxTwo": ReferencePOboxTwo,
+                "ReferenceCityTwo": ReferenceCityTwo,
+                "ReferenceStateTwo": ReferenceStateTwo,
+                "ReferenceZipCodeTwo": ReferenceZipCodeTwo,
+                "ReferenceOccupationTwo": ReferenceOccupationTwo,
+                "YearsKnownReferenceTwo": YearsKnownReferenceTwo,
+                "ReferencePhoneNumberTwo": ReferencePhoneNumberTwo,
+                "ReferenceFirstNameThree": ReferenceFirstNameThree,
+                "ReferenceLastNameThree": ReferenceLastNameThree,
+                "ReferenceAddressThree": ReferenceAddressThree,
+                //"ReferencePOboxThree": ReferencePOboxThree,
+                "ReferenceCityThree": ReferenceCityThree,
+                "ReferenceStateThree": ReferenceStateThree,
+                "ReferenceZipCodeThree": ReferenceZipCodeThree,
+                "ReferenceOccupationThree": ReferenceOccupationThree,
+                "YearsKnownReferenceThree": YearsKnownReferenceThree,
+                "ReferencePhoneNumberThree": ReferencePhoneNumberThree,
+                "Experience": Experience,
+                "ListOtherExperience": ListOtherExperience,
+                "Certification": Certification,
+                "ApplicantSignatureTwo": ApplicantSignatureTwo,
+                "ApplicantSignatureDateTwo": ApplicantSignatureDateTwo,
+
+            }
+
+            var ret = postData('CreateJobApplicant', data)
+                .then(data => {
+                    console.log(data);
+                    Submit(data); })
+                .catch(error => console.error(error))
+
+            //fetch('CreateJobApplicant', {
+            //    body: JSON.stringify(data), //must match 'Content-Type' header
+            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            //    credentials: 'same-origin', //include, same-origin, *omit
+            //    headers: {
+            //        'Accept': 'application/json',
+            //        'user-agent': 'Mozilla/4.0 MDN Example',
+            //        'content-type': 'application/json'
+            //    },
+            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            //    mode: 'same-origin', //no-cors, cors, *same-origin
+            //    redirect: 'follow', //manual, *follow, error
+            //    referrer: 'no-referrer', //*client, no-referrer
+            //}).then(res => res.json())
+            //    .then(response => Submit(response))
+            //    .catch(error => console.error('Error:', error));
+        })
+
+        function Submit(app) {
+            JobApplciant_id = app.data;
+        }
+
+        function postData(url, data) {
+            //Default options are marked with *
+            console.log(data);
+            console.log(JSON.stringify(data));
+            return fetch(url, {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => console.log('Success:', JSON.stringify(response)))
+                .catch(error => console.error('Error:', error));
+            //.then(Response => {
+            //    console.log(Response);
+            //    Response.json();
+            //}) //parses response to JSON
+        }
+    }   
 </script>
 
 
