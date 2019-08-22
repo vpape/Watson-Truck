@@ -351,6 +351,78 @@
           <Property Name="YearsKnownReference" Type="varchar" MaxLength="2" />
           <Property Name="Experience" Type="varchar" MaxLength="30" />
           <Property Name="ListOtherExperience" Type="varchar" MaxLength="250" />
+          <Property Name="YearsResidedAtPreviousAddr" Type="varchar" MaxLength="2" />
+          <Property Name="OverEighteen" Type="varchar" MaxLength="3" />
+          <Property Name="ElementaryInstitution" Type="varchar" MaxLength="30" />
+          <Property Name="YearsCompletedElementary" Type="varchar" MaxLength="2" />
+          <Property Name="FieldOfStudyElementary" Type="varchar" MaxLength="30" />
+          <Property Name="GraduateElementary" Type="varchar" MaxLength="30" />
+          <Property Name="HighSchoolInstitution" Type="varchar" MaxLength="30" />
+          <Property Name="YearsCompletedHighSchool" Type="varchar" MaxLength="2" />
+          <Property Name="FieldOfStudyHighSchool" Type="varchar" MaxLength="30" />
+          <Property Name="GraduateHighSchool" Type="varchar" MaxLength="30" />
+          <Property Name="CollegeInstitution" Type="varchar" MaxLength="30" />
+          <Property Name="YearsCompletedCollege" Type="varchar" MaxLength="2" />
+          <Property Name="FieldOfStudyCollege" Type="varchar" MaxLength="30" />
+          <Property Name="GraduateOrDegreeCollege" Type="varchar" MaxLength="30" />
+          <Property Name="TechnicalInstitution" Type="varchar" MaxLength="30" />
+          <Property Name="YearsCompletedTechnical" Type="varchar" MaxLength="2" />
+          <Property Name="FieldOfStudyTechnical" Type="varchar" MaxLength="30" />
+          <Property Name="GraduateOrDegreeTechnical" Type="varchar" MaxLength="30" />
+          <Property Name="AdditionalInstitution" Type="varchar" MaxLength="30" />
+          <Property Name="YearsCompletedAtAdditional" Type="varchar" MaxLength="2" />
+          <Property Name="FieldOfStudyAtAdditional" Type="varchar" MaxLength="30" />
+          <Property Name="GraduateOrDegreeAtAdditional" Type="varchar" MaxLength="30" />
+          <Property Name="EmploymentDatesAtWatsonFrom" Type="date" />
+          <Property Name="EmploymentDatesAtWatsonTo" Type="date" />
+          <Property Name="PresentOrLastEmployerTwo" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerPhoneNumberTwo" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerAddressTwo" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerPOboxTwo" Type="varchar" MaxLength="10" />
+          <Property Name="EmployerCityTwo" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerStateTwo" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerZipCodeTwo" Type="varchar" MaxLength="30" />
+          <Property Name="EmployedFromDateTwo" Type="date" />
+          <Property Name="EmployedToDateTwo" Type="date" />
+          <Property Name="TitleOfPositionHeldTwo" Type="varchar" MaxLength="30" />
+          <Property Name="TypeOfWorkedPerformedTwo" Type="varchar" MaxLength="30" />
+          <Property Name="NameOfSupervisorTwo" Type="varchar" MaxLength="30" />
+          <Property Name="PresentOrLastEmployerThree" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerPhoneNumberThree" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerAddressThree" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerPOboxThree" Type="varchar" MaxLength="10" />
+          <Property Name="EmployerCityThree" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerStateThree" Type="varchar" MaxLength="30" />
+          <Property Name="EmployerZipCodeThree" Type="varchar" MaxLength="30" />
+          <Property Name="EmployedFromDateThree" Type="date" />
+          <Property Name="EmployedToDateThree" Type="date" />
+          <Property Name="TitleOfPositionHeldThree" Type="varchar" MaxLength="30" />
+          <Property Name="TypeOfWorkedPerformedThree" Type="varchar" MaxLength="30" />
+          <Property Name="NameOfSupervisorThree" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceFirstNameTwo" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceLastNameTwo" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceAddressTwo" Type="varchar" MaxLength="30" />
+          <Property Name="ReferencePOboxTwo" Type="varchar" MaxLength="10" />
+          <Property Name="ReferenceCityTwo" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceStateTwo" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceZipCodeTwo" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceOccupationTwo" Type="varchar" MaxLength="30" />
+          <Property Name="YearsKnownReferenceTwo" Type="varchar" MaxLength="2" />
+          <Property Name="ReferencePhoneNumberTwo" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceFirstNameThree" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceLastNameThree" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceAddressThree" Type="varchar" MaxLength="30" />
+          <Property Name="ReferencePOboxThree" Type="varchar" MaxLength="10" />
+          <Property Name="ReferenceCityThree" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceStateThree" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceZipCodeThree" Type="varchar" MaxLength="30" />
+          <Property Name="ReferenceOccupationThree" Type="varchar" MaxLength="30" />
+          <Property Name="YearsKnownReferenceThree" Type="varchar" MaxLength="2" />
+          <Property Name="ReferencePhoneNumberThree" Type="varchar" MaxLength="30" />
+          <Property Name="Certification" Type="varchar" MaxLength="100" />
+          <Property Name="ApplicantSignatureDate" Type="date" />
+          <Property Name="ApplicantSignatureTwo" Type="varchar" MaxLength="75" />
+          <Property Name="ApplicantSignatureDateTwo" Type="date" />
         </EntityType>
         <EntityType Name="Life_Insurance">
           <Key>
@@ -1505,6 +1577,78 @@
           <Property Name="Experience" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="ListOtherExperience" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_JobApplicant_Employee" FromRole="JobApplicant" ToRole="Employee" />
+          <Property Name="YearsResidedAtPreviousAddr" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="OverEighteen" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="ElementaryInstitution" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="YearsCompletedElementary" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="FieldOfStudyElementary" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="GraduateElementary" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="HighSchoolInstitution" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="YearsCompletedHighSchool" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="FieldOfStudyHighSchool" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="GraduateHighSchool" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CollegeInstitution" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="YearsCompletedCollege" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="FieldOfStudyCollege" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="GraduateOrDegreeCollege" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TechnicalInstitution" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="YearsCompletedTechnical" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="FieldOfStudyTechnical" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="GraduateOrDegreeTechnical" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalInstitution" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="YearsCompletedAtAdditional" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="FieldOfStudyAtAdditional" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="GraduateOrDegreeAtAdditional" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmploymentDatesAtWatsonFrom" Type="DateTime" Precision="0" />
+          <Property Name="EmploymentDatesAtWatsonTo" Type="DateTime" Precision="0" />
+          <Property Name="PresentOrLastEmployerTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerPhoneNumberTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerAddressTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerPOboxTwo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerCityTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerStateTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerZipCodeTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployedFromDateTwo" Type="DateTime" Precision="0" />
+          <Property Name="EmployedToDateTwo" Type="DateTime" Precision="0" />
+          <Property Name="TitleOfPositionHeldTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TypeOfWorkedPerformedTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NameOfSupervisorTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PresentOrLastEmployerThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerPhoneNumberThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerAddressThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerPOboxThree" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerCityThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerStateThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployerZipCodeThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployedFromDateThree" Type="DateTime" Precision="0" />
+          <Property Name="EmployedToDateThree" Type="DateTime" Precision="0" />
+          <Property Name="TitleOfPositionHeldThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TypeOfWorkedPerformedThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NameOfSupervisorThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceFirstNameTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceLastNameTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceAddressTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferencePOboxTwo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceCityTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceStateTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceZipCodeTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceOccupationTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="YearsKnownReferenceTwo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ReferencePhoneNumberTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceFirstNameThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceLastNameThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceAddressThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferencePOboxThree" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceCityThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceStateThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceZipCodeThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceOccupationThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="YearsKnownReferenceThree" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ReferencePhoneNumberThree" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Certification" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantSignatureDate" Type="DateTime" Precision="0" />
+          <Property Name="ApplicantSignatureTwo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantSignatureDateTwo" Type="DateTime" Precision="0" />
         </EntityType>
         <Association Name="FK_JobApplicant_Employee">
           <End Type="WatsonTruckModel.Employee" Role="Employee" Multiplicity="1" />
@@ -1932,6 +2076,78 @@
           <EntitySetMapping Name="JobApplicants">
             <EntityTypeMapping TypeName="WatsonTruckModel.JobApplicant">
               <MappingFragment StoreEntitySet="JobApplicant">
+                <ScalarProperty Name="ApplicantSignatureDateTwo" ColumnName="ApplicantSignatureDateTwo" />
+                <ScalarProperty Name="ApplicantSignatureTwo" ColumnName="ApplicantSignatureTwo" />
+                <ScalarProperty Name="ApplicantSignatureDate" ColumnName="ApplicantSignatureDate" />
+                <ScalarProperty Name="Certification" ColumnName="Certification" />
+                <ScalarProperty Name="ReferencePhoneNumberThree" ColumnName="ReferencePhoneNumberThree" />
+                <ScalarProperty Name="YearsKnownReferenceThree" ColumnName="YearsKnownReferenceThree" />
+                <ScalarProperty Name="ReferenceOccupationThree" ColumnName="ReferenceOccupationThree" />
+                <ScalarProperty Name="ReferenceZipCodeThree" ColumnName="ReferenceZipCodeThree" />
+                <ScalarProperty Name="ReferenceStateThree" ColumnName="ReferenceStateThree" />
+                <ScalarProperty Name="ReferenceCityThree" ColumnName="ReferenceCityThree" />
+                <ScalarProperty Name="ReferencePOboxThree" ColumnName="ReferencePOboxThree" />
+                <ScalarProperty Name="ReferenceAddressThree" ColumnName="ReferenceAddressThree" />
+                <ScalarProperty Name="ReferenceLastNameThree" ColumnName="ReferenceLastNameThree" />
+                <ScalarProperty Name="ReferenceFirstNameThree" ColumnName="ReferenceFirstNameThree" />
+                <ScalarProperty Name="ReferencePhoneNumberTwo" ColumnName="ReferencePhoneNumberTwo" />
+                <ScalarProperty Name="YearsKnownReferenceTwo" ColumnName="YearsKnownReferenceTwo" />
+                <ScalarProperty Name="ReferenceOccupationTwo" ColumnName="ReferenceOccupationTwo" />
+                <ScalarProperty Name="ReferenceZipCodeTwo" ColumnName="ReferenceZipCodeTwo" />
+                <ScalarProperty Name="ReferenceStateTwo" ColumnName="ReferenceStateTwo" />
+                <ScalarProperty Name="ReferenceCityTwo" ColumnName="ReferenceCityTwo" />
+                <ScalarProperty Name="ReferencePOboxTwo" ColumnName="ReferencePOboxTwo" />
+                <ScalarProperty Name="ReferenceAddressTwo" ColumnName="ReferenceAddressTwo" />
+                <ScalarProperty Name="ReferenceLastNameTwo" ColumnName="ReferenceLastNameTwo" />
+                <ScalarProperty Name="ReferenceFirstNameTwo" ColumnName="ReferenceFirstNameTwo" />
+                <ScalarProperty Name="NameOfSupervisorThree" ColumnName="NameOfSupervisorThree" />
+                <ScalarProperty Name="TypeOfWorkedPerformedThree" ColumnName="TypeOfWorkedPerformedThree" />
+                <ScalarProperty Name="TitleOfPositionHeldThree" ColumnName="TitleOfPositionHeldThree" />
+                <ScalarProperty Name="EmployedToDateThree" ColumnName="EmployedToDateThree" />
+                <ScalarProperty Name="EmployedFromDateThree" ColumnName="EmployedFromDateThree" />
+                <ScalarProperty Name="EmployerZipCodeThree" ColumnName="EmployerZipCodeThree" />
+                <ScalarProperty Name="EmployerStateThree" ColumnName="EmployerStateThree" />
+                <ScalarProperty Name="EmployerCityThree" ColumnName="EmployerCityThree" />
+                <ScalarProperty Name="EmployerPOboxThree" ColumnName="EmployerPOboxThree" />
+                <ScalarProperty Name="EmployerAddressThree" ColumnName="EmployerAddressThree" />
+                <ScalarProperty Name="EmployerPhoneNumberThree" ColumnName="EmployerPhoneNumberThree" />
+                <ScalarProperty Name="PresentOrLastEmployerThree" ColumnName="PresentOrLastEmployerThree" />
+                <ScalarProperty Name="NameOfSupervisorTwo" ColumnName="NameOfSupervisorTwo" />
+                <ScalarProperty Name="TypeOfWorkedPerformedTwo" ColumnName="TypeOfWorkedPerformedTwo" />
+                <ScalarProperty Name="TitleOfPositionHeldTwo" ColumnName="TitleOfPositionHeldTwo" />
+                <ScalarProperty Name="EmployedToDateTwo" ColumnName="EmployedToDateTwo" />
+                <ScalarProperty Name="EmployedFromDateTwo" ColumnName="EmployedFromDateTwo" />
+                <ScalarProperty Name="EmployerZipCodeTwo" ColumnName="EmployerZipCodeTwo" />
+                <ScalarProperty Name="EmployerStateTwo" ColumnName="EmployerStateTwo" />
+                <ScalarProperty Name="EmployerCityTwo" ColumnName="EmployerCityTwo" />
+                <ScalarProperty Name="EmployerPOboxTwo" ColumnName="EmployerPOboxTwo" />
+                <ScalarProperty Name="EmployerAddressTwo" ColumnName="EmployerAddressTwo" />
+                <ScalarProperty Name="EmployerPhoneNumberTwo" ColumnName="EmployerPhoneNumberTwo" />
+                <ScalarProperty Name="PresentOrLastEmployerTwo" ColumnName="PresentOrLastEmployerTwo" />
+                <ScalarProperty Name="EmploymentDatesAtWatsonTo" ColumnName="EmploymentDatesAtWatsonTo" />
+                <ScalarProperty Name="EmploymentDatesAtWatsonFrom" ColumnName="EmploymentDatesAtWatsonFrom" />
+                <ScalarProperty Name="GraduateOrDegreeAtAdditional" ColumnName="GraduateOrDegreeAtAdditional" />
+                <ScalarProperty Name="FieldOfStudyAtAdditional" ColumnName="FieldOfStudyAtAdditional" />
+                <ScalarProperty Name="YearsCompletedAtAdditional" ColumnName="YearsCompletedAtAdditional" />
+                <ScalarProperty Name="AdditionalInstitution" ColumnName="AdditionalInstitution" />
+                <ScalarProperty Name="GraduateOrDegreeTechnical" ColumnName="GraduateOrDegreeTechnical" />
+                <ScalarProperty Name="FieldOfStudyTechnical" ColumnName="FieldOfStudyTechnical" />
+                <ScalarProperty Name="YearsCompletedTechnical" ColumnName="YearsCompletedTechnical" />
+                <ScalarProperty Name="TechnicalInstitution" ColumnName="TechnicalInstitution" />
+                <ScalarProperty Name="GraduateOrDegreeCollege" ColumnName="GraduateOrDegreeCollege" />
+                <ScalarProperty Name="FieldOfStudyCollege" ColumnName="FieldOfStudyCollege" />
+                <ScalarProperty Name="YearsCompletedCollege" ColumnName="YearsCompletedCollege" />
+                <ScalarProperty Name="CollegeInstitution" ColumnName="CollegeInstitution" />
+                <ScalarProperty Name="GraduateHighSchool" ColumnName="GraduateHighSchool" />
+                <ScalarProperty Name="FieldOfStudyHighSchool" ColumnName="FieldOfStudyHighSchool" />
+                <ScalarProperty Name="YearsCompletedHighSchool" ColumnName="YearsCompletedHighSchool" />
+                <ScalarProperty Name="HighSchoolInstitution" ColumnName="HighSchoolInstitution" />
+                <ScalarProperty Name="GraduateElementary" ColumnName="GraduateElementary" />
+                <ScalarProperty Name="FieldOfStudyElementary" ColumnName="FieldOfStudyElementary" />
+                <ScalarProperty Name="YearsCompletedElementary" ColumnName="YearsCompletedElementary" />
+                <ScalarProperty Name="ElementaryInstitution" ColumnName="ElementaryInstitution" />
+                <ScalarProperty Name="OverEighteen" ColumnName="OverEighteen" />
+                <ScalarProperty Name="YearsResidedAtPreviousAddr" ColumnName="YearsResidedAtPreviousAddr" />
                 <ScalarProperty Name="ListOtherExperience" ColumnName="ListOtherExperience" />
                 <ScalarProperty Name="Experience" ColumnName="Experience" />
                 <ScalarProperty Name="YearsKnownReference" ColumnName="YearsKnownReference" />

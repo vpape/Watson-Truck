@@ -37,7 +37,7 @@
         <AssociationConnector Association="WatsonTruckModel.FK_InsurancePlanDetail_InsurancePlan" />
         <AssociationConnector Association="WatsonTruckModel.FK_InsurancePremium_InsurancePlan" />
         <AssociationConnector Association="WatsonTruckModel.AspNetUserRoles" />
-        <EntityTypeShape EntityType="WatsonTruckModel.JobApplicant" Width="2.5" PointX="12.125" PointY="8.375" />
+        <EntityTypeShape EntityType="WatsonTruckModel.JobApplicant" Width="2.5" PointX="12" PointY="6.375" />
         <AssociationConnector Association="WatsonTruckModel.FK_JobApplicant_Employee" />
       </Diagram>
     </edmx:Diagrams>
