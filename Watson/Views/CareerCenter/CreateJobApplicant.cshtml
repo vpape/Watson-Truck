@@ -1,4 +1,4 @@
-﻿
+﻿@model Watson.ViewModels.JobApplicantVM
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,6 @@
 </head>
 <body>
     <input type="hidden" id="JobApplicant_id" class="form-control" name="JobApplicant_id" value="@ViewBag.JobApplicant_id" />
-    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
     <div class="form-horizontal">
         <div id="divApplicantStatement">
             <h2 class="text-center">
@@ -72,7 +71,7 @@
                         <label>
                             Date:
                         </label>
-                        <input type="text" class="form-control" id="ApplicantSignatureDate1" name="ApplicantSignatureDate" value="" />
+                        <input type="date" class="form-control" id="ApplicantSignatureDate1" name="ApplicantSignatureDate" value="" />
                     </div>
                 </div>
             </form>
@@ -81,55 +80,58 @@
         <h4><label>Personal Information:</label></h4>
         <div id="divPersonalInfo">
             <div>
-                <input type="text" class="form-control" placeholder="First Name" id="ApplicantFirstName" name="ApplicantFirstName" value="" />
+                <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" />
             </div>
             <p></p>
             <div>
-                <input type="text" class="form-control" placeholder="Last Name" id="ApplicantLastName" name="ApplicantLastName" value="" />
+                <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="" />
             </div>
             <p></p>
             <div id="divPresentAddr">
                 <div>
                     <label>Present Address:</label>
-                    <input type="text" id="PresentAddress" class="form-control" placeholder="Street" name="ApplicantPresentAddress" value="" />
-                    <input type="text" id="PresentPObox" class="form-control" placeholder="PO Box" name="ApplicantPresentPObox" value="" />
-                    <input type="text" id="PresentCity" class="form-control" placeholder="City" name="ApplicantCity" value="" />
-                    <input type="text" id="PresentState" class="form-control" placeholder="State" name="ApplicantState" value="" />
-                    <input type="text" id="PresentZipCode" class="form-control" placeholder="Zip Code" name="ApplicantZipCode" value="" />
+                    <input type="text" id="Address" class="form-control" placeholder="Street" name="Address" value="" />
+                    <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" />
+                    <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
+                    <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
+                    <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
                 </div>
                 <p></p>
                 <div><label>How long have you resided there?</label></div>
-                <input type="number" class="form-control" name="YearsResidedAtPresentAddr" value="">
+                <input type="number" class="form-control" id="YrsResidedAtPresentAddr" name="YearsResidedAtPresentAddr" value="">
             </div>
-            <p></p>
+            <hr />
             <div id="divPrevAddr">
                 <div>
                     <label>Previous Address:</label>
-                    <input type="text" id="PreviousAddress" class="form-control" placeholder="Street" name="ApplicantPreviousAddress" value="" />
-                    <input type="text" id="PreviousPObox" class="form-control" placeholder="PO Box" name="ApplicantPreviousPObox" value="" />
-                    <input type="text" id="PreviousCity" class="form-control" placeholder="City" name="ApplicantCityTwo" value="" />
-                    <input type="text" id="PreviousState" class="form-control" placeholder="State" name="ApplicantStateTwo" value="" />
-                    <input type="text" id="PreviousZipCode" class="form-control" placeholder="Zip Code" name="ApplicantZipCodeTwo" value="" />
+                    <input type="text" id="PreviousAddress" class="form-control" placeholder="Street" name="PreviousAddress" value="" />
+                    <input type="text" id="PreviousPObox" class="form-control" placeholder="PO Box" name="PreviousPObox" value="" />
+                    <input type="text" id="PreviousCity" class="form-control" placeholder="City" name="PreviousCity" value="" />
+                    <input type="text" id="PreviousState" class="form-control" placeholder="State" name="PreviousState" value="" />
+                    <input type="text" id="PreviousZipCode" class="form-control" placeholder="Zip Code" name="PreviousZipCode" value="" />
                 </div>
                 <p></p>
                 <div><label>How long have you resided there?</label></div>
-                <input type="number" class="form-control" name="YearsResidedAtPreviousAddr" value="">
+                <input type="number" class="form-control" id="YrsResidedAtPreviousAddr" name="YearsResidedAtPreviousAddr" value="">
             </div>
-            <p></p>
+            <hr />
             <div class="form-inline">
                 <label>Are you over 18 or over?</label>
-                <select id="applicantAge" name="OverEighteen" class="form-control">
-                    <option value=""></option>
-                    <option id="yesOverEighteen" value="Yes" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@>Yes</option>
-                    <option id="notOverEighteen" value="No" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>No</option>
-                </select>
+                <div id="divOverEighteen">
+                    <input type="radio" class="radio-inline" id="OverEighteen" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@ name="OverEighteen" value="true" />
+                    <label>Yes</label>
+                    <input type="radio" class="radio-inline" id="OverEighteen" @*@((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")*@ name="OverEighteen" value="false" />
+                    <label>No</label>
+                </div>
             </div>
-            <p></p>
-            <div class="form-inline" id="PreviouslyEmployedAtWatson">
+            <hr />
+            <div class="form-inline">
                 <label>Have you ever worked for this company before?</label>
-                <div>
-                    <label class="radio-inline"><input type="radio" id="YesWorkedforWTSBefore" class="radio-inline" onclick="ShowEmploymentDatesAtWatson()" name="PreviouslyEmployedAtWatson" value="yes" checked />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="NotWorkedforWTSBefore" class="radio-inline" onclick="HideEmploymentDatesAtWatson()" name="PreviouslyEmployedAtWatson" value="no" />No</label>
+                <div id="divPreviouslyEmployedAtWatson">
+                    <input type="radio" class="radio-inline" id="WorkedforWTSBefore" name="PreviouslyEmployedAtWatson" onclick="ShowHideEmploymentDatesAtWatson()" value="true" />
+                    <label>Yes</label>
+                    <input type="radio" class="radio-inline" id="WorkedforWTSBefore" name="PreviouslyEmployedAtWatson" onclick="ShowHideEmploymentDatesAtWatson()" value="false" />
+                    <label>No</label>
                 </div>
             </div>
             <p></p>
@@ -139,44 +141,61 @@
                 <label>to</label>
                 <input type="date" class="form-control" id="EmploymentDatesAtWatsonTo" name="EmploymentDatesAtWatsonTo" value="" />
             </div>
-            <p></p>
-            <div class="form-inline" id="divVeteranStatus">
+            <hr />
+            <div id="divVeteranStatus" class="form-inline">
                 <label>Are you a Veteran?</label>
                 <div>
-                    <label class="radio-inline"><input type="radio" id="yesVeteran" class="radio-inline" onclick="ShowMOS()" name="Veteran" value="yes" checked />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="notVeteran" class="radio-inline" onclick="HideMOS()" name="Veteran" value="no" />No</label>
+                    <input type="radio" class="radio-inline" id="VeteranStatus" onclick="ShowHideMOS()" name="Veteran" value="true" />
+                    <label>Yes</label>
+                    <input type="radio" class="radio-inline" id="VeteranStatus" onclick="ShowHideMOS()" name="Veteran" value="false" />
+                    <label>No</label>
                 </div>
-                <p></p>
                 <input type="text" id="VeteranMOS" class="form-control" placeholder="MOS/Specialized Training " name="MOSorSpecializedTraining" value="" />
             </div>
-            <p></p>
+
+            @*<button id="btnVeteranStatus">Get Value</button>*@
+
+            @*<div>
+    <div id="divVeteranStatus">
+        <label>Are you a Veteran?</label>
+        <select class="form-inline">
+            <option type="text" id="VeteranStatus" name="Veteran" onclick="ShowHideMOS()" value="yes">Yes</option>
+            <option type="text" id="VeteranStatus" name="Veteran" onclick="ShowHideMOS()" value="yes">No</option>
+        </select>
+    </div>
+    <p></p>
+    <input type="text" id="VeteranMOS" class="form-control" placeholder="MOS/Specialized Training " name="MOSorSpecializedTraining" value="" />
+    <div id="divResult"></div>
+    </div>*@
+            <hr />
             <div id="divDriversLicense">
                 <label>Do you have a valid drivers license?</label>
+                <input type="radio" class="radio-inline" id="DriversLicense" onclick="ShowHideDriversLicenseInfo()" name="DriversLicense" value="true" />
+                <label>Yes</label>
+                <input type="radio" class="radio-inline" id="DriversLicense" onclick="ShowHideDriversLicenseInfo()" name="DriversLicense" value="false" />
+                <label>No</label>
+            </div>
+            <p></p>
+            <div id="divDriversLicenseInfo">
                 <div>
-                    <label class="radio-inline"><input type="radio" id="yesValidLicense" class="radio-inline" onclick="ShowDriversLicenseInfo()" name="DriversLicense" value="yes" checked />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="noValidLicense" class="radio-inline" onclick="HideDriversLicenseInfo()" name="DriversLicense" value="no" />No</label>
+                    <input type="text" class="form-control" placeholder="License State" id="LicenseState" name="LicenseState" value="" />
                 </div>
                 <p></p>
-                <div id="divDriversLicenseInfo">
-                    <div>
-                        <input type="text" class="form-control" placeholder="License State" id="LicenseState" name="DriversLicenseState" value="" />
-                    </div>
-                    <p></p>
-                    <div>
-                        <input type="text" class="form-control" placeholder="License Number" id="LicenseNumber" name="DriversLicenseNumber" value="" />
-                    </div>
-                    <p></p>
-                    <div>
-                        <label>Expiration Date</label>
-                        <input type="date" class="form-control" id="ExpirationDate" name="DriversLicenseExpirationDate" value="" />
-                    </div>
-                    <p></p>
-                    <div>
-                        <label>Phone Number</label>
-                        <input type="text" class="form-control" placeholder="Phone Number" id="ApplicantPhoneNumber" name="ApplicantPhoneNumber" value="" />
-                    </div>
+                <div>
+                    <input type="text" class="form-control" placeholder="License Number" id="LicenseNumber" name="LicenseNumber" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <label>Expiration Date</label>
+                    <input type="date" class="form-control" id="LicenseExpirationDate" name="LicenseExpirationDate" value="" />
+                </div>
+                <p></p>
+                <div>
+                    <label>Phone Number</label>
+                    <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" />
                 </div>
             </div>
+         
         </div>
         <hr />
         <h4><label>Education:</label></h4>
@@ -284,7 +303,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Additional</label></td>                  
+                    <td><label>Additional</label></td>
                     <td>
                         <div>
                             <input type="text" class="form-control" id="AdditionalInstitution" name="AdditionalInstitution" value="" />
@@ -314,12 +333,12 @@
                 <table class="table-bordered">
                     <thead class="thead-dark">
                         <tr>
-                            <th colspan="2">Record of Pervious Employment</th>
+                            <th colspan="2">Record of Previous Employment</th>
                         </tr>
                     </thead>
                     <tr>
                         <td class="text">
-                            <input type="text" class="form-control" id="PresentOrLastEmployer1" placeholder="Present or Last Employer" name="PresentOrCurrentEmployer" value="" />
+                            <input type="text" class="form-control" id="PresentOrLastEmployer1" placeholder="Present or Last Employer" name="PresentOrLastEmployer" value="" />
                         </td>
                         <td class="text">
                             <input type="text" class="form-control" id="EmployerPhoneNumber1" placeholder="Employer Phone Number" name="EmployerPhoneNumber" value="" />
@@ -351,23 +370,23 @@
                     </tr>
                     <tr>
                         <td class="text">
-                            <input type="date" class="form-control" id="EmployedFromDate" name="EmployedFromDate" />
+                            <input type="date" class="form-control" id="EmployedFromDate1" name="EmployedFromDate" />
                         </td>
                         <td class="text">
-                            <input type="date" class="form-control" id="EmployedToDate" name="EmployedToDate" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text">
-                            <input type="text" class="form-control" id="TitleOrPosition1" placeholder="Title or Position" name="TitleOfPositionHeld" value="" />
-                        </td>
-                        <td class="text">
-                            <input type="text" class="form-control" id="WorkedPerformed1" placeholder="Work Performed" name="TypeOfWorkedPerformed" value="" />
+                            <input type="date" class="form-control" id="EmployedToDate1" name="EmployedToDate" />
                         </td>
                     </tr>
                     <tr>
                         <td class="text">
-                            <input type="text" class="form-control" id="Supervisor1" placeholder="Supervisor(s)" name="NameOfSupervisor" value="" />
+                            <input type="text" class="form-control" id="TitleOrPositionHeld1" placeholder="Title or Position" name="TitleOfPositionHeld" value="" />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="TypeOfWorkedPerformed1" placeholder="Work Performed" name="TypeOfWorkedPerformed" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="NameOfSupervisor1" placeholder="Supervisor(s)" name="NameOfSupervisor" value="" />
                         </td>
                         <td class="text">
                             <input type="text" class="form-control" id="" name="" value="" disabled />
@@ -379,7 +398,7 @@
                 <table class="table-bordered">
                     <thead class="thead-dark">
                         <tr>
-                            <th colspan="2">Record of Pervious Employment</th>
+                            <th colspan="2">Record of Previous Employment</th>
                         </tr>
                     </thead>
                     <tr>
@@ -416,23 +435,23 @@
                     </tr>
                     <tr>
                         <td class="text">
-                            <input type="date" class="form-control" id="EmploymentDateFrom2" name="EmployedFromDateTwo" />
+                            <input type="date" class="form-control" id="EmployedFromDate2" name="EmployedFromDateTwo" />
                         </td>
                         <td class="text">
-                            <input type="date" class="form-control" id="EmploymentDateTo2" name="EmployedToDateTwo" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text">
-                            <input type="text" class="form-control" id="TitleOrPosition2" placeholder="Title or Position" name="TitleOfPositionHeldTwo" value="" />
-                        </td>
-                        <td class="text">
-                            <input type="text" class="form-control" id="WorkedPerformed2" placeholder="Work Performed" name="TypeOfWorkedPerformedTwo" value="" />
+                            <input type="date" class="form-control" id="EmployedToDate2" name="EmployedToDateTwo" />
                         </td>
                     </tr>
                     <tr>
                         <td class="text">
-                            <input type="text" class="form-control" id="Supervisor2" placeholder="Supervisor(s)" name="NameOfSupervisorTwo" value="" />
+                            <input type="text" class="form-control" id="TitleOrPositionHeld2" placeholder="Title or Position" name="TitleOfPositionHeldTwo" value="" />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="TypeOfWorkedPerformed2" placeholder="Work Performed" name="TypeOfWorkedPerformedTwo" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="NameOfSupervisor2" placeholder="Supervisor(s)" name="NameOfSupervisorTwo" value="" />
                         </td>
                         <td class="text">
                             <input type="text" class="form-control" id="" name="" value="" disabled />
@@ -444,7 +463,7 @@
                 <table class="table-bordered">
                     <thead class="thead-dark">
                         <tr>
-                            <th colspan="2">Record of Pervious Employment</th>
+                            <th colspan="2">Record of Previous Employment</th>
                         </tr>
                     </thead>
                     <tr>
@@ -481,23 +500,23 @@
                     </tr>
                     <tr>
                         <td class="text">
-                            <input type="date" class="form-control" id="EmploymentDateFrom3" name="EmployedFromDateThree" />
+                            <input type="date" class="form-control" id="EmployedFromDate3" name="EmployedFromDateThree" />
                         </td>
                         <td class="text">
-                            <input type="date" class="form-control" id="EmploymentDateTo3" name="EmployedToDateThree" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text">
-                            <input type="text" class="form-control" id="TitleOrPosition3" placeholder="Title or Position" name="TitleOfPositionHeldThree" value="" />
-                        </td>
-                        <td class="text">
-                            <input type="text" class="form-control" id="WorkedPerformed3" placeholder="Work Performed" name="TypeOfWorkedPerformedThree" value="" />
+                            <input type="date" class="form-control" id="EmployedToDate3" name="EmployedToDateThree" />
                         </td>
                     </tr>
                     <tr>
                         <td class="text">
-                            <input type="text" class="form-control" id="Supervisor3" placeholder="Supervisor(s)" name="NameOfSupervisorThree" value="" />
+                            <input type="text" class="form-control" id="TitleOrPositionHeld3" placeholder="Title or Position" name="TitleOfPositionHeldThree" value="" />
+                        </td>
+                        <td class="text">
+                            <input type="text" class="form-control" id="TypeOfWorkedPerformed3" placeholder="Work Performed" name="TypeOfWorkedPerformedThree" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text">
+                            <input type="text" class="form-control" id="NameOfSupervisor3" placeholder="Supervisor(s)" name="NameOfSupervisorThree" value="" />
                         </td>
                         <td class="text">
                             <input type="text" class="form-control" id="" name="" value="" disabled />
@@ -512,13 +531,16 @@
                 <td>
                     <div>
                         <label>Have you ever been terminated or asked to resign?</label>
-                        <select id="TerminationOrResigned" class="" name="TerminatedOrResiged">
-                            <option value=""></option>
-                            <option value="Yes">Yes</option>
-                            <option value="No" @*@((ViewBag.MaritalStatus) == "Married"     ? "selected": "")*@>No</option>
-                        </select>
-                        <p></p>
-                        <textarea class="form-control" name="ReasonForTerminationOrResignation">If yes, please explain circumstances:</textarea>
+                        <input type="radio" class="radio-inline" id="TerminatedOrResigned" onclick="ShowHideTermination()" name="TerminatedOrResigned" value="true" />
+                        <label>Yes</label>
+                        <input type="radio" class="radio-inline" id="TerminatedOrResigned" onclick="ShowHideTermination()" name="TerminatedOrResigned" value="false" />
+                        <label>No</label>
+                        <p class="content">
+                            <div id="divReasonForTerm">
+                                <textarea class="form-control" id="ReasonForTerm" name="ReasonForTerminationOrResignation">If yes, please explain circumstances:</textarea>
+                            </div>
+                        </p>
+                        
                     </div>
                 </td>
             </tr>
@@ -526,13 +548,14 @@
                 <td>
                     <div>
                         <label>Please explain any gaps in your employment history?</label>
-                        <p></p>
-                        <textarea class="form-control" name="ReasonForEmploymentGaps">If yes, please explain circumstances:</textarea>
+                        <p>
+                            <textarea class="form-control" id="ReasonForEmploymentGaps" name="ReasonForEmploymentGaps">If yes, please explain circumstances:</textarea>
+                        </p>
                     </div>
                 </td>
             </tr>
         </table>
-        <p></p>
+        <hr />
         <table class="table-bordered" id="ReferenceTable">
             <tr>
                 <td>
@@ -691,7 +714,7 @@
         </table>
         <hr />
         <h4><label>General Information:</label></h4>
-        <div id="divGeneralInfo">
+        <div id="divExperience">
             <table id="GeneralInfoTable" class="table table-condensed">
                 <thead>
                     <tr>
@@ -701,117 +724,140 @@
                 <tr>
                     <td>
                         <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Service Writer" />Service Writer</label>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" onclick="experience()" value="Service Writer" />
+                            <label for="cb-Service Writer">Service Writer</label>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Painter" />Painter</label>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" onclick="experience()" value="Painter" />
+                            <label for="cb-Painter">Painter</label>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Accounts Receivable" />Accounts Receivable</label>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Machinist" />Machinist</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Porter" />Porter</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Accounts Payable" />Accounts Payable</label>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Accounts Receivable" />
+                            <label for="cb-Accounts Receivable">Accounts Receivable</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Mechanic" />Mechanic</label>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Machinist" />
+                            <label>Machinist</label>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Janitor" />Janitor</label>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Porter" />
+                            <label>Porter</label>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Clerk" />Clerk</label>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Mechanic Helper" />Mechanic Helper</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Parts Clerk" />Parts Clerk</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Receptionist" />Receptionist</label>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Accounts Payable" />
+                            <label>Accounts Payable</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Welder" />Welder</label>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Mechanic" />
+                            <label>Mechanic</label>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Parts Delivery" />Parts Delivery</label>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Janitor" />
+                            <label>Janitor</label>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Secretary" />Secretary</label>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Clerk" />
+                            <label>Clerk</label>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Welder Helper" />Welder Helper</label>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Mechanic Helper" />
+                            <label>Mechanic Helper</label>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Truck Sales" />Truck Sales</label>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Parts Clerk" />
+                            <label>Parts Clerk</label>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <label><input type="checkbox" class="checkbox-inline" name="Experience" value="Other" />Other</label>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Receptionist" />
+                            <label>Receptionist</label>
                         </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Welder" />
+                            <label>Welder</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Parts Delivery" />
+                            <label>Parts Delivery</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Secretary" />
+                            <label>Secretary</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Welder Helper" />
+                            <label>Welder Helper</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Truck Sales" />
+                            <label>Truck Sales</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input type="checkbox" class="checkbox-inline" name="Experience" value="Other" />
+                            <label>Other</label>
+                        </div>
+
                     </td>
                 </tr>
             </table>
+            <button type="button">Get Values</button>
+            <script>
+             
+            </script>
             <hr />
             <form id="divCertiExperience">
                 <fieldset>
                     <label>Other Experience</label>
                     <div id="divOtherExperience">
-                        <textarea class="form-control" name="ListOtherExperience">Please list any other experience:</textarea>
+                        <textarea class="form-control" id="ListOtherExperience" name="ListOtherExperience">Please list any other experience:</textarea>
                     </div>
                     <p></p>
                     <label>Certification</label>
                     <div id="divCertificate">
-                        <textarea class="form-control" name="Certification">Please list any Certifications you may have:</textarea>
+                        <textarea class="form-control" id="Certification" name="Certification">Please list any Certifications you may have:</textarea>
                     </div>
                 </fieldset>
             </form>
@@ -828,21 +874,21 @@
                 <label>
                     Applicant's Signature:
                 </label>
-                <input type="text" class="form-control" id="ApplicantSignature2" name="ApplicantSignatureTwo" value="" />
+                <input type="text" class="form-control" id="ApplicantSignatureTwo" name="ApplicantSignatureTwo" value="" />
             </div>
             <p></p>
             <div>
                 <label>
                     Date:
                 </label>
-                <input type="text" class="form-control" id="ApplicantSignatureDate2" name="ApplicantSignatureDateTwo" value="" />
+                <input type="date" class="form-control" id="ApplicantSignatureDateTwo" name="ApplicantSignatureDateTwo" value="" />
                 <hr />
             </div>
         </div>
         <hr />
         <div class="form-group">
             <div class="col-md-offset-11">
-                <button type="submit" id="JobApplicationSubmit" class="btn" @*onclick="return function()"*@>Submit</button>
+                <button type="submit" id="btnJobApplicationSubmit" class="btn">Submit</button>
             </div>
         </div>
     </div>
@@ -851,7 +897,7 @@
 
 
 <style>
-    #labelPosStartDt{
+    #labelPosStartDt {
         display: flex;
         justify-content: space-between;
     }
@@ -950,176 +996,289 @@
 </style>
 
 <script>
-    //var col = document.querySelectorAll(".collapsible");
-    //var i;
     var JobApplciant_id;
 
-    //for (i = 0; i < col.length; i++) {
-    //    col[i].addEventListener("click", function () {
-    //        this.classList.toggle("active");
-    //        var content = this.nextElementSibling;
-    //        if (content.style.display === "block") {
-    //            content.style.display = "none";
-    //        } else {
-    //            content.style.display = "block";
-    //        }
+    function ShowHideEmploymentDatesAtWatson() {
+        document.addEventListener("click", function () {
 
-    //    });
-    //}
+            var employment = document.getElementById("WorkedforWTSBefore");
 
-    function ShowEmploymentDatesAtWatson() {
-        document.getElementById("divFromToEmploymentDates").style.display = "block";
-    }
-    function HideEmploymentDatesAtWatson() {
-        document.getElementById("divFromToEmploymentDates").style.display = "none";
+            if (employment.checked == true) {
+                document.getElementById("divFromToEmploymentDates").style.display = "block";
+            }
+            else {
+                document.getElementById("divFromToEmploymentDates").style.display = "none";
+            }
+        });
     }
 
-    function ShowMOS() {
-        document.getElementById("VeteranMOS").style.display = "block";
+    function ShowHideMOS() {
+        document.addEventListener("click", function () {
+
+            var veteran = document.getElementById("VeteranStatus");
+
+            if (veteran.checked == true) {
+                document.getElementById("VeteranMOS").style.display = "block"
+            }
+            else {
+                document.getElementById("VeteranMOS").style.display = "none"
+            }
+        });
+    }
+        
+    function ShowHideDriversLicenseInfo() {
+        document.addEventListener("click", function () {
+
+            var driversLicense = document.getElementById("DriversLicense");
+
+            if (driversLicense.checked == true) {
+                document.getElementById("divDriversLicenseInfo").style.display = "block";
+            }
+            else {
+                document.getElementById("divDriversLicenseInfo").style.display = "none";
+            }
+        });
     }
 
-    function HideMOS() {
-        document.getElementById("VeteranMOS").style.display = "none";
-    }
+    function ShowHideTermination() {
 
-    function ShowDriversLicenseInfo() {
-        document.getElementById("divDriversLicenseInfo").style.display = "block";
-    }
+        document.addEventListener("click", function () {
 
-    function HideDriversLicenseInfo() {
-        document.getElementById("divDriversLicenseInfo").style.display = "none";
+            var terminated = document.getElementById("TerminatedOrResigned");
+
+            if (terminated.checked == true) {
+                document.getElementById("divReasonForTerm").style.display = "block";
+            }
+            else {
+                document.getElementById("divReasonForTerm").style.display = "none";
+            }
+        });
     }
 
 </script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#JobApplicationSubmit").addEventListener("click", function () {
-            PositionApplyingFor
-            StartDateAvailability
-            ApplicantSignature
-            ApplicantSignatureDate
-            ApplicantFirstName
-            ApplicantLastName
-            //ApplicantSSN
-            ApplicantPresentAddress
-            ApplicantPresentPObox
-            ApplicantCity
-            ApplicantState
-            ApplicantZipCode
-            YearsResidedAtPresentAddr
-            ApplicantPreviousAddress
-            ApplicantPreviousPObox
-            ApplicantCityTwo
-            ApplicantStateTwo
-            ApplicantZipCodeTwo
-            YearsResidedAtPreviousAddr
-            ApplicantPhoneNumber
-            ApplicantAge
-            OverEighteen
-            PreviouslyEmployedAtWatson
-            EmploymentDatesAtWatsonFrom
-            EmploymentDatesAtWatsonTo
-            DriversLicense
-            DriversLicenseState
-            DriversLicenseNumber
-            DriversLicenseExpirationDate
-            ElementaryInstitution
-            YearsCompletedElementary
-            FieldOfStudyElementary
-            GraduateElementary
-            HighSchoolInstitution
-            YearsCompletedHighSchool
-            FieldOfStudyHighSchool
-            GraduateHighSchool
-            CollegeInstitution
-            YearsCompletedCollege
-            FieldOfStudyCollege
-            GraduateOrDegreeCollege
-            TechnicalInstitution
-            YearsCompletedTechnical
-            FieldOfStudyTechnical
-            GraduateOrDegreeTechnical
-            AdditionalInstitution
-            YearsCompletedAtAdditional
-            FieldOfStudyAtAdditional
-            GraduateOrDegreeAtAdditional
-            Veteran
-            MOSorSpecializedTraining
-            PresentOrCurrentEmployer
-            EmployerPhoneNumber
-            EmployerAddress
-            //EmployerPObox
-            EmployerCity
-            EmployerState
-            EmployerZipCode
-            EmployedFromDate
-            EmployedToDate
-            TitleOfPositionHeld
-            TypeOfWorkedPerformed
-            NameOfSupervisor
-            PresentOrLastEmployerTwo
-            EmployerPhoneNumberTwo
-            EmployerAddressTwo
-            //EmployerPOboxTwo
-            EmployerCityTwo
-            EmployerStateTwo
-            EmployerZipCodeTwo
-            EmployedFromDateTwo
-            EmployedToDateTwo
-            TitleOfPositionHeldTwo
-            TypeOfWorkedPerformedTwo
-            NameOfSupervisorTwo
-            PresentOrLastEmployerThree
-            EmployerPhoneNumberThree
-            EmployerAddressThree
-            //EmployerPOboxThree
-            EmployerCityThree
-            EmployerStateThree
-            EmployerZipCodeThree
-            EmployedFromDateThree
-            EmployedToDateThree
-            TitleOfPositionHeldThree
-            TypeOfWorkedPerformedThree
-            NameOfSupervisorThree
-            TerminatedOrResigned
-            ReasonForTerminationOrResignation
-            ReasonForEmploymentGaps
-            ReferenceFirstName
-            ReferenceLastName
-            ReferencePhoneNumber
-            ReferenceAddress
-            //ReferencePObox
-            ReferenceCity
-            ReferenceState
-            ReferenceZipCode
-            ReferenceOccupation
-            YearsKnownReference
-            ReferenceFirstNameTwo
-            ReferenceLastNameTwo
-            ReferenceAddressTwo
-            //ReferencePOboxTwo
-            ReferenceCityTwo
-            ReferenceStateTwo
-            ReferenceZipCodeTwo
-            ReferenceOccupationTwo
-            YearsKnownReferenceTwo
-            ReferencePhoneNumberTwo
-            ReferenceFirstNameThree
-            ReferenceLastNameThree
-            ReferenceAddressThree
-            //ReferencePOboxThree
-            ReferenceCityThree
-            ReferenceStateThree
-            ReferenceZipCodeThree
-            ReferenceOccupationThree
-            YearsKnownReferenceThree
-            ReferencePhoneNumberThree
-            Experience
-            ListOtherExperience
-            Certification
-            ApplicantSignatureTwo
-            ApplicantSignatureDateTwo
+        document.querySelector("#btnJobApplicationSubmit").addEventListener("click", function () {
+            PositionApplyingFor = document.getElementById("PositionApplyingFor").value;
+            StartDateAvailability = document.getElementById("StartDateAvailability").value;
+            ApplicantSignature = document.getElementById("ApplicantSignature1").value;
+            ApplicantSignatureDate = document.getElementById("ApplicantSignatureDate1").value;
+            FirstName = document.getElementById("FirstName").value;
+            LastName = document.getElementById("LastName").value;
+            //ApplicantSSN = document.getElementById("").value;
+            Address = document.getElementById("Address").value;
+            //ApplicantPresentPObox = document.getElementById("PresentPObox").value;
+            City = document.getElementById("City").value;
+            State = document.getElementById("State").value;
+            ZipCode = document.getElementById("ZipCode").value;
+            YearsResidedAtPresentAddr = document.getElementById("YrsResidedAtPresentAddr").value;
+            PreviousAddress = document.getElementById("PreviousAddress").value;
+            PreviousPObox = document.getElementById("PreviousPObox").value;
+            PreviousCity = document.getElementById("PreviousCity").value;
+            PreviousState = document.getElementById("PreviousState").value;
+            PreviousZipCode = document.getElementById("PreviousZipCode").value;
+            YearsResidedAtPreviousAddr = document.getElementById("YrsResidedAtPreviousAddr").value;
+            PhoneNumber = document.getElementById("PhoneNumber").value;
+
+
+            $(document).ready(function () {
+                $('#btnJobApplicationSubmit').click(function () {
+                    var result = $('input[type="radio"]:checked');
+                    if (result.length > 0) {
+                        $('#OverEighteen').html(result.val() + " is checked");
+                    }
+                    else {
+                        $('#OverEighteen').html("No radio buttion checked");
+                    }
+                    alert("OverEighteen: " + result)
+                });
+                OverEighteen = document.getElementByID("OverEighteen").value;
+            });
+
+            $(document).ready(function () {
+                $('#btnJobApplicationSubmit').click(function () {
+                    var result = $('input[type="radio"]:checked');
+                    if (result.length > 0) {
+                        $('#WorkedforWTSBefore').html(result.val() + " is checked");
+                    }
+                    else {
+                        $('#WorkedforWTSBefore').html("No radio buttion checked");
+                    }
+                    alert("Worked previously at Watson: " + result)
+
+                });
+                PreviouslyEmployedAtWatson = document.getElementById("WorkedforWTSBefore").value;
+            });
+
+            EmploymentDatesAtWatsonFrom = document.getElementsByName("EmploymentDatesAtWatsonFrom").value;
+            EmploymentDatesAtWatsonTo = document.getElementsByName("EmploymentDatesAtWatsonTo").value;
+            DriversLicense = document.getElementsByName("DriversLicense").value;
+            DriversLicenseState = document.getElementById("LicenseState").value;
+            DriversLicenseNumber = document.getElementById("LicenseNumber").value;
+            DriversLicenseExpirationDate = document.getElementById("LicenseExpirationDate").value;
+            ElementaryInstitution = document.getElementById("ElementaryInstitution").value;
+            YearsCompletedElementary = document.getElementById("YearsCompletedElementary").value;
+            FieldOfStudyElementary = document.getElementById("FieldOfStudyElementary").value;
+            GraduateElementary = document.getElementById("GraduateElementary").value;
+            HighSchoolInstitution = document.getElementById("HighSchoolInstitution").value;
+            YearsCompletedHighSchool = document.getElementById("YearsCompletedHighSchool").value;
+            FieldOfStudyHighSchool = document.getElementById("FieldOfStudyHighSchool").value;
+            GraduateHighSchool = document.getElementById("GraduateHighSchool").value;
+            CollegeInstitution = document.getElementById("CollegeInstitution").value;
+            YearsCompletedCollege = document.getElementById("YearsCompletedCollege").value;
+            FieldOfStudyCollege = document.getElementById("FieldOfStudyCollege").value;
+            GraduateOrDegreeCollege = document.getElementById("GraduateOrDegreeCollege").value;
+            TechnicalInstitution = document.getElementById("TechnicalInstitution").value;
+            YearsCompletedTechnical = document.getElementById("YearsCompletedTechnical").value;
+            FieldOfStudyTechnical = document.getElementById("FieldOfStudyTechnical").value;
+            GraduateOrDegreeTechnical = document.getElementById("GraduateOrDegreeTechnical").value;
+            AdditionalInstitution = document.getElementById("AdditionalInstitution").value;
+            YearsCompletedAtAdditional = document.getElementById("YearsCompletedAtAdditional").value;
+            FieldOfStudyAtAdditional = document.getElementById("FieldOfStudyAtAdditional").value;
+            GraduateOrDegreeAtAdditional = document.getElementById("GraduateOrDegreeAtAdditional").value;
+
+            //<div id="divVeteranStatus" class="form-inline">
+            //    <label>Are you a Veteran?</label>
+            //    <div>
+            //        <input type="radio" class="radio-inline" id="VeteranStatus" onclick="ShowHideMOS()" name="Veteran" value="yes" />
+            //        <label>Yes</label>
+            //        <input type="radio" class="radio-inline" id="VeteranStatus" onclick="ShowHideMOS()" name="Veteran" value="no" />
+            //        <label>No</label>
+            //    </div>
+            //    <input type="text" id="VeteranMOS" class="form-control" placeholder="MOS/Specialized Training " name="MOSorSpecializedTraining" value="" />
+            //</div>
+
+            document.querySelector("#VeteranStatus").addEventListener("click", function vetStatus() {
+               
+                var status = document.getElementById("VeteranStatus");
+
+                for (i = 0; i < status.length; i++) {
+                    if (status[i].checked) {
+                        document.getElementById("VeteranStatus").value
+                        += status[i].value;
+                    }
+                }
+                alert(status);
+            })         
+           
+            //Veteran Status JQuery
+            //$(document).ready(function () {
+            //    $('#btnJobApplicationSubmit').click(function () {
+            //        var result = $('input[type="radio"]:checked');
+            //        if (result.length > 0) {
+            //            $('#VeteranStatus').html(result.val());
+            //        }
+            //        if (document.getElementById("VeteranStatus").checked) {
+
+            //            var result = document.getElementById("VeteranStatus").value = Veteran;
+            //        }
+            //        else {
+            //            $('#VeteranStatus').html("No radio buttion checked");
+            //        }
+            //        alert("Veteran: " + result)
+            //    });
+            //});
+
+            MOSorSpecializedTraining = document.getElementById("VeteranMOS").value;
+            PresentOrLastEmployer = document.getElementById("PresentOrLastEmployer1").value;
+            EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber1").value;
+            EmployerAddress = document.getElementById("EmployerAddress1").value;
+            //EmployerPObox = document.getElementById("").value;
+            EmployerCity = document.getElementById("EmployerCity1").value;
+            EmployerState = document.getElementById("EmployerState1").value;
+            EmployerZipCode = document.getElementById("EmployerZipCode1").value;
+            EmployedFromDate = document.getElementById("EmployedFromDate1").value;
+            EmployedToDate = document.getElementById("EmployedToDate1").value;
+            TitleOfPositionHeld = document.getElementById("TitleOrPositionHeld1").value;
+            TypeOfWorkedPerformed = document.getElementById("TypeOfWorkedPerformed1").value;
+            NameOfSupervisor = document.getElementById("NameOfSupervisor1").value;
+            PresentOrLastEmployerTwo = document.getElementById("PresentOrLastEmployer2").value;
+            EmployerPhoneNumberTwo = document.getElementById("EmployerPhoneNumber2").value;
+            EmployerAddressTwo = document.getElementById("EmployerAddress2").value;
+            //EmployerPOboxTwo = document.getElementById("").value;
+            EmployerCityTwo = document.getElementById("EmployerCity2").value;
+            EmployerStateTwo = document.getElementById("EmployerState2").value;
+            EmployerZipCodeTwo = document.getElementById("EmployerZipCode2").value;
+            EmployedFromDateTwo = document.getElementById("EmployedFromDate2").value;
+            EmployedToDateTwo = document.getElementById("EmployedToDate2").value;
+            TitleOfPositionHeldTwo = document.getElementById("TitleOrPositionHeld2").value;
+            TypeOfWorkedPerformedTwo = document.getElementById("TypeOfWorkedPerformed2").value;
+            NameOfSupervisorTwo = document.getElementById("NameOfSupervisor2").value;
+            PresentOrLastEmployerThree = document.getElementById("PresentOrLastEmployer3").value;
+            EmployerPhoneNumberThree = document.getElementById("EmployerPhoneNumber3").value;
+            EmployerAddressThree = document.getElementById("EmployerAddress3").value;
+            //EmployerPOboxThree = document.getElementById("").value;
+            EmployerCityThree = document.getElementById("EmployerCity3").value;
+            EmployerStateThree = document.getElementById("EmployerState3").value;
+            EmployerZipCodeThree = document.getElementById("EmployerZipCode3").value;
+            EmployedFromDateThree = document.getElementById("EmployedFromDate3").value;
+            EmployedToDateThree = document.getElementById("EmployedToDate3").value;
+            TitleOfPositionHeldThree = document.getElementById("TitleOrPositionHeld3").value;
+            TypeOfWorkedPerformedThree = document.getElementById("TypeOfWorkedPerformed3").value;
+            NameOfSupervisorThree = document.getElementById("NameOfSupervisor3").value;
+            TerminatedOrResigned = document.getElementById("TerminatedOrResigned").value;
+            ReasonForTerminationOrResignation = document.getElementById("ReasonForTerminationOrResignation").value;
+            ReasonForEmploymentGaps = document.getElementById("ReasonForEmploymentGaps").value;
+            ReferenceFirstName = document.getElementById("ReferenceFirstName1").value;
+            ReferenceLastName = document.getElementById("ReferenceLastName1").value;
+            ReferencePhoneNumber = document.getElementById("ReferencePhoneNumber1").value;
+            ReferenceAddress = document.getElementById("ReferenceAddress1").value;
+            //ReferencePObox = document.getElementById("").value;
+            ReferenceCity = document.getElementById("ReferenceCity1").value;
+            ReferenceState = document.getElementById("ReferenceState1").value;
+            ReferenceZipCode = document.getElementById("ReferenceZipCode1").value;
+            ReferenceOccupation = document.getElementById("ReferenceOccupation1").value;
+            YearsKnownReference = document.getElementById("YearsKnownReference1").value;
+            ReferenceFirstNameTwo = document.getElementById("ReferenceFirstName2").value;
+            ReferenceLastNameTwo = document.getElementById("ReferenceLastName2").value;
+            ReferenceAddressTwo = document.getElementById("ReferenceAddress2").value;
+            //ReferencePOboxTwo = document.getElementById("").value;
+            ReferenceCityTwo = document.getElementById("ReferenceCity2").value;
+            ReferenceStateTwo = document.getElementById("ReferenceState2").value;
+            ReferenceZipCodeTwo = document.getElementById("ReferenceZipCode2").value;
+            ReferenceOccupationTwo = document.getElementById("ReferenceOccupation2").value;
+            YearsKnownReferenceTwo = document.getElementById("YearsKnownReference2").value;
+            ReferencePhoneNumberTwo = document.getElementById("ReferencePhoneNumber2").value;
+            ReferenceFirstNameThree = document.getElementById("ReferenceFirstName3").value;
+            ReferenceLastNameThree = document.getElementById("ReferenceLastName3").value;
+            ReferenceAddressThree = document.getElementById("ReferenceAddress3").value;
+            //ReferencePOboxThree = document.getElementById("").value;
+            ReferenceCityThree = document.getElementById("ReferenceCity3").value;
+            ReferenceStateThree = document.getElementById("ReferenceState3").value;
+            ReferenceZipCodeThree = document.getElementById("ReferenceZipCode3").value;
+            ReferenceOccupationThree = document.getElementById("ReferenceOccupation3").value;
+            YearsKnownReferenceThree = document.getElementById("YearsKnownReference3").value;
+            ReferencePhoneNumberThree = document.getElementById("ReferencePhoneNumber3").value;
+ 
+            $(document).ready(function experience() {
+                $("#btnJobApplicationSubmit").click(function () {
+                    var result = "";
+                    $.each($("input[name='Experience']:checked"), function () {
+                        result.push($(this).val());
+                    });
+                    alert("Experience:" + result.join(", "));
+                });
+                Experience = document.getElementsByName("Experience").value;
+            });
+
+            //function Experience() {
+            //    var checkboxes = document.querySelectorAll('.checkbox-inline');
+            //    var selectedbox = "";
+
+            //    for (i = 0; i < checkboxes.length; i++) {
+            //        if (checkboxes[i].checked === true) {
+            //            selectedbox += checkboxes[i].value + " ";
+            //        }
+            //    }
+            //    alert(selectedbox);
+            //}        
+
+
+            ListOtherExperience = document.getElementById("ListOtherExperience").value;
+            Certification = document.getElementById("Certification").value;
+            ApplicantSignatureTwo = document.getElementById("ApplicantSignatureTwo").value;
+            ApplicantSignatureDateTwo = document.getElementById("ApplicantSignatureDateTwo").value;
 
             var data = {
 
@@ -1127,31 +1286,31 @@
                 "StartDateAvailability": StartDateAvailability,
                 "ApplicantSignature": ApplicantSignature,
                 "ApplicantSignatureDate": ApplicantSignatureDate,
-                "ApplicantFirstName": ApplicantFirstName,
-                "ApplicantLastName": ApplicantLastName,
+                "FirstName": FirstName,
+                "LastName": LastName,
                 //"ApplicantSSN": ApplicantSSN,
-                "ApplicantPresentAddress": ApplicantPresentAddress,
-                "ApplicantPresentPObox": ApplicantPresentPObox,
-                "ApplicantCity": ApplicantCity,
-                "ApplicantState": ApplicantState,
-                "ApplicantZipCode": ApplicantZipCode,
+                "Address": Address,
+                "PObox": PObox,
+                "City": City,
+                "State": State,
+                "ZipCode": ZipCode,
                 "YearsResidedAtPresentAddr": YearsResidedAtPresentAddr,
-                "ApplicantPreviousAddress": ApplicantPreviousAddress,
-                "ApplicantPreviousPObox": ApplicantPreviousPObox,
-                "ApplicantCityTwo": ApplicantCityTwo,
-                "ApplicantStateTwo": ApplicantStateTwo,
-                "ApplicantZipCodeTwo": ApplicantZipCodeTwo,
+                "PreviousAddress": PreviousAddress,
+                "PreviousPObox": PreviousPObox,
+                "PreviousCity": PreviousCity,
+                "PreviousState": PreviousState,
+                "PreviousZipCode": PreviousZipCode,
                 "YearsResidedAtPreviousAddr": YearsResidedAtPreviousAddr,
-                "ApplicantPhoneNumber": ApplicantPhoneNumber,
-                "ApplicantAge": ApplicantAge,
+                "PhoneNumber": PhoneNumber,
+                //"Age": ApplicantAge,
                 "OverEighteen": OverEighteen,
                 "PreviouslyEmployedAtWatson": PreviouslyEmployedAtWatson,
                 "EmploymentDatesAtWatsonFrom": EmploymentDatesAtWatsonFrom,
                 "EmploymentDatesAtWatsonTo": EmploymentDatesAtWatsonTo,
                 "DriversLicense": DriversLicense,
-                "DriversLicenseState": DriversLicenseState,
-                "DriversLicenseNumber": DriversLicenseNumber,
-                "DriversLicenseExpirationDate": DriversLicenseExpirationDate,
+                "LicenseState": LicenseState,
+                "LicenseNumber": LicenseNumber,
+                "LicenseExpirationDate": LicenseExpirationDate,
                 "ElementaryInstitution": ElementaryInstitution,
                 "YearsCompletedElementary": YearsCompletedElementary,
                 "FieldOfStudyElementary": FieldOfStudyElementary,
@@ -1174,7 +1333,7 @@
                 "GraduateOrDegreeAtAdditional": GraduateOrDegreeAtAdditional,
                 "Veteran": Veteran,
                 "MOSorSpecializedTraining": MOSorSpecializedTraining,
-                "PresentOrCurrentEmployer": PresentOrCurrentEmployer,
+                "PresentOrLastEmployer": PresentOrLastEmployer,
                 "EmployerPhoneNumber": EmployerPhoneNumber,
                 "EmployerAddress": EmployerAddress,
                 //"EmployerPObox": EmployerPObox,
@@ -1254,7 +1413,8 @@
             var ret = postData('CreateJobApplicant', data)
                 .then(data => {
                     console.log(data);
-                    Submit(data); })
+                    Submit(data);
+                })
                 .catch(error => console.error(error))
 
             //fetch('CreateJobApplicant', {
@@ -1273,38 +1433,39 @@
             //}).then(res => res.json())
             //    .then(response => Submit(response))
             //    .catch(error => console.error('Error:', error));
-        })
+        });     
+    })
 
-        function Submit(app) {
-            JobApplciant_id = app.data;
-        }
+    function Submit(app) {
+        console.log(app);
+        JobApplciant_id = app.data;
+    }
 
-        function postData(url, data) {
-            //Default options are marked with *
-            console.log(data);
-            console.log(JSON.stringify(data));
-            return fetch(url, {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => console.log('Success:', JSON.stringify(response)))
-                .catch(error => console.error('Error:', error));
-            //.then(Response => {
-            //    console.log(Response);
-            //    Response.json();
-            //}) //parses response to JSON
-        }
-    }   
+    function postData(url, data) {
+        //Default options are marked with *
+        console.log(data);
+        console.log(JSON.stringify(data));
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'Accept': 'application/json',
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'same-origin', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+        //.then(Response => {
+        //    console.log(Response);
+        //    Response.json();
+        //}) //parses response to JSON
+    }
 </script>
 
 

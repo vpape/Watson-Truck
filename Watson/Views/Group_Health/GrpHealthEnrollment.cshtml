@@ -716,8 +716,8 @@
             <div>
                 <div class="form-control">
                     <label>Are you covered by any other insurance, including Medicare?</label>
-                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="ShowempOtherInsCoverage()" name="OtherInsuranceCoverage" value="yes" checked />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="HideempOtherInsCoverage()" name="OtherInsuranceCoverage" value="no" />No</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="true" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="false" />No</label>
                 </div>
                 <div id="empInsInfo">
                     <div class="form-group col-md-3">
@@ -992,8 +992,8 @@
                     <div>
                         <div>
                             <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="ShowdepOtherInsCoverage()" name="CoveredByOtherInsurance" value="yes" checked />Yes</label>
-                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="HidedepOtherInsCoverage()" name="CoveredByOtherInsurance" value="no" />No</label>
+                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="showHideDepOtherInsCoverage()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
+                            <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="showHideDepOtherInsCoverage()" name="CoveredByOtherInsurance" value="no" />No</label>
                             <div id="depInsInfo">
                                 <div class="form-group col-md-2">
                                     <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
@@ -1056,12 +1056,20 @@
                     <table class="table-bordered">
                         <tr>
                             <td>
-                                <div>
+                                <div id="divGrpHRefusal">
                                     <h4><b>Refusal of Group Health Coverage</b></h4>
                                     <h6>This is to certify I have been given an opportunity to apply for group health coverage available to me through my Employer, and I have decided to not apply coverage for:</h6>
-                                    <label class="radio-inline"><input type="radio" id="Myself" class="radio-inline" @*onclick="return RefusalOfGrpHealthCoverage()"*@ name="Myself" value="Myself" />Myself</label>
+                                    <div id="divGrpHRefusalSelection">
+                                        <input type="checkbox" class="checkbox-inline" id="Myself" name="Myself" onclick="RefusalOfGrpHealthCoverage()" value="Myself" />
+                                        <label for="cb-Myself">Myself</label>
+                                        <input type="checkbox" class="checkbox-inline" id="Spouse" name="Spouse" onclick="RefusalOfGrpHealthCoverage()" value="Spouse" />
+                                        <label for="cb-Service Writer">Spouse</label>
+                                        <input type="checkbox" class="checkbox-inline" id="Dependent" name="Child(ren)" onclick="RefusalOfGrpHealthCoverage()" value="Child(ren)" />
+                                        <label for="cb-Service Writer">Child(ren)</label>
+                                    </div>
+                                    @*<label class="radio-inline"><input type="radio" id="Myself" class="radio-inline" onclick="return RefusalOfGrpHealthCoverage()" name="Myself" value="Myself" />Myself</label>
                                     <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" name="Spouse" value="Spouse" />Spouse</label>
-                                    <label class="radio-inline"><input type="radio" id="Dependent" class="radio-inline" name="Dependent" value="Child(ren)" />Child(ren)</label>
+                                    <label class="radio-inline"><input type="radio" id="Dependent" class="radio-inline" name="Dependent" value="Child(ren)" />Child(ren)</label>*@
                                     <p></p>
                                 </div>
                             </td>
@@ -1069,13 +1077,13 @@
                         <tr></tr>
                         <tr>
                             <td>
-                                <div>
+                                <div id="divReasonForRefusal">
                                     <h4><b>Reason for Refusal</b></h4>
-                                    <div>
-                                        <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="OtherCoverage" onclick="return hideReasonForRefusal()" value="OtherCoverage" />OtherCoverage</label>
-                                        <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="OtherCoverage" onclick="return showReasonForRefusal()" value="OtherReason" checked />OtherReason</label>
+                                    <div id="divReasonForRefusalSelection">
+                                        <label class="radio-inline" for="r-OtherCoverage"><input type="radio" id="OtherCoverageSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" />OtherCoverage</label>
+                                        <label class="radio-inline" for="r-OtherReason"><input type="radio" id="OtherReasonSelection" class="radio-inline" name="OtherCoverage" onclick="return showReasonForRefusal()" value="OtherReason" checked />OtherReason</label>
                                         <p></p>
-                                        <input type="text" id="OtherReason" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="" />
+                                        <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="" />
                                     </div>
                                     <hr />
                                     <div>
@@ -1356,77 +1364,54 @@
     }
 
 
-    function ShowempOtherInsCoverage() {
-        document.getElementById("empInsInfo").style.display = "block";
-    }
+    function showHidEmpOtherInsCoverage() {
 
-    function HideempOtherInsCoverage() {
-        document.getElementById("empInsInfo").style.display = "none";
-    }
+        document.addEventListener("click", function () {
+            var selection = document.getElementById("empCoveredByOtherIns");
 
-    function ShowdepOtherInsCoverage() {
-        document.getElementById("depInsInfo").style.display = "block";
-    }
-
-    function HidedepOtherInsCoverage() {
-        document.getElementById("depInsInfo").style.display = "none";
-    }
-
-
-    //create a for loop i=8
-    function depOtherInsCoverage() {
-
-        var div = document.querySelectorAll("depOtherInsCoverage").value;
-        var divDepHide = document.querySelector("depInsInfo")
-        var divDepShow = document.querySelector("depInsInfo")
-
-        div.addEventListener('click', function () {
-
-            if (div.checked == "no") {
-
-                divDepHide.style.display = "none";
-                //divDepHide.style.visibility = "hidden";
-
+            if (selection.checked == true) {
+                document.getElementById("empInsInfo").style.display = "block";
             }
             else {
+                document.getElementById("empInsInfo").style.display = "none";
+            }
+        })
+    }
 
-                divDepShow.style.display = "block";
-                //divDepShow.style.visibility = "visible";
+    //add a forloop, adding up to 8 dependents; i=8 
+    //    document.querySelectorAll("depOtherInsCoverage");
+    //    document.querySelector("depInsInfo")
+    //    document.querySelector("depInsInfo")
+    function showHideDepOtherInsCoverage() {
+        document.addEventListener("click", function () {
+            var selection = document.getElementById("depOtherInsCoverage");
 
+            var selection = document.getElementById("depOtherInsCoverage");
+
+            if (selection.checked == true) {
+                depOtherInsCoverage
+                document.getElementById("depInsInfo").style.display = "block";
+            }
+            else {
+                document.getElementById("depInsInfo").style.display = "none";
             }
         });
-
     }
 
-    //function empOtherInsCoverage() {
+    function showHideReasonForRefusal() {
 
-    //    var div = document.querySelector("empOtherInsCoverage").value;
-    //    var divEmpHide = document.getElementById("empInsInfo")
-    //    var divEmpShow = document.getElementById("empInsInfo")
+        document.addEventListener("click", function () {
 
-    //    div.addEventListener('click', function () {
+            var refusal = document.getElementById("OtherReasonSelection");
 
-    //        if (div.value = "no") {
-
-    //            divEmpHide.style.display = "none";
-    //        }
-    //        else {
-    //            divEmpShow.style.display = "block";
-    //        }
-    //    });
-    //}
-
-    function showReasonForRefusal() {
-
-        document.getElementById("OtherReason").style.visibility = "visible";
-
+            if (refusal.checked == true) {
+                document.getElementById("OtherReasonComment").style.display = "block";
+            }
+            else {
+                document.getElementById("OtherReasonComment").style.display = "none";
+            }
+        });
     }
-
-    function hideReasonForRefusal() {
-
-        document.getElementById("OtherReason").style.visibility = "hidden";
-    }
-
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#GrpHealthInsUpdateStepThree").addEventListener("click", function () {

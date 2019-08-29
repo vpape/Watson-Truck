@@ -52,19 +52,17 @@ namespace Watson.Controllers
         // POST: Create
         [System.Web.Mvc.HttpPost]
         public JsonResult JobApplication(int JobApplicant_id, int Employee_id, string PositionApplyingFor, DateTime StartDateAvailability,
-            string ApplicantSignature, string ApplicantSignatureDate, string ApplicantFirstName, string ApplicantLastName, 
-            string ApplicantPresentAddress, string ApplicantPresentPObox, string ApplicantCity, string ApplicantState, 
-            string ApplicantZipCode, string YearsResidedAtPresentAddress, string ApplicantPreviousAddress, string ApplicantPreviousPObox,
-            string ApplicantCityTwo, string ApplicantStateTwo, string ApplicantZipCodeTwo, string YearsResidedAtPreviousAddr,
-            string ApplicantPhoneNumber, string ApplicantAge, string OverEighteen, string PreviouslyEmployedAtWatson,
-            DateTime EmploymentDatesAtWatsonFrom, DateTime EmploymentDatesAtWatsonTo, string DriversLicense, string DriversLicenseState,
-            string DriversLicenseNumber, DateTime DriversLicenseExpirationDate, string ElementaryInstitution, string YearsCompletedElementary,
+            string ApplicantSignature, string ApplicantSignatureDate, string FirstName, string LastName, string Address, string PObox,
+            string City, string State, string ZipCode, string YearsResidedAtPresentAddress, string PreviousAddress, string PreviousPObox,
+            string PreviousCity, string PreviousState, string PreviousZipCode, string YearsResidedAtPreviousAddr, string PhoneNumber, string OverEighteen,
+            string PreviouslyEmployedAtWatson, DateTime EmploymentDatesAtWatsonFrom, DateTime EmploymentDatesAtWatsonTo, string DriversLicense,
+            string LicenseState, string LicenseNumber, DateTime LicenseExpirationDate, string ElementaryInstitution, string YearsCompletedElementary,
             string FieldOfStudyElementary, string GraduateElementary, string HighSchoolInstitution, string YearsCompletedHighSchool,
             string FieldOfStudyHighSchool, string GraduateHighSchool, string CollegeInstitution, string YearsCompletedCollege,
             string FieldOfStudyCollege, string GraduateOrDegreeCollege, string TechnicalInstitution, string YearsCompletedTechnical,
             string FieldOfStudyTechnical, string GraduateOrDegreeTechnical, string AdditionalInstitution, string YearsCompletedAtAdditional,
             string FieldOfStudyAtAdditional, string GraduateOrDegreeAtAdditional, string Veteran, string MOSorSpecializedTraining,
-            string PresentOrCurrentEmployer, string EmployerPhoneNumber, string EmployerAddress, string EmployerCity, string EmployerState,
+            string PresentOrLastEmployer, string EmployerPhoneNumber, string EmployerAddress, string EmployerCity, string EmployerState,
             string EmployerZipCode, DateTime EmployedFromDate, DateTime EmployedToDate, string TitleOfPositionHeld, string TypeOfWorkedPerformed,
             string NameOfSupervisor, string PresentOrLastEmployerTwo, string EmployerPhoneNumberTwo, string EmployerAddressTwo,
             string EmployerCityTwo, string EmployerStateTwo, string EmployerZipCodeTwo, DateTime EmployedFromDateTwo, DateTime EmployedToDateTwo,
@@ -88,28 +86,28 @@ namespace Watson.Controllers
             a.PositionApplyingFor = PositionApplyingFor;
             a.StartDateAvailability = StartDateAvailability;
             a.ApplicantSignature = ApplicantSignature;
-            a.ApplicantFirstName = ApplicantFirstName;
-            a.ApplicantLastName = ApplicantLastName;
-            a.ApplicantPresentAddress = ApplicantPresentAddress;
-            a.ApplicantCity = ApplicantCity;
-            a.ApplicantState = ApplicantState;
-            a.ApplicantZipCode = ApplicantZipCode;
+            a.FirstName = FirstName;
+            a.LastName = LastName;
+            a.Address = Address;
+            a.City = City;
+            a.State = State;
+            a.ZipCode = ZipCode;
             a.YearsResidedAtPresentAddr = YearsResidedAtPresentAddress;
-            a.ApplicantPreviouseAddress = ApplicantPreviousAddress;
-            a.ApplicantCityTwo = ApplicantCityTwo;
-            a.ApplicantStateTwo = ApplicantStateTwo;
-            a.ApplicantZipCodeTwo = ApplicantZipCodeTwo;
+            a.PreviousAddress = PreviousAddress;
+            a.PreviousCity = PreviousCity;
+            a.PreviousState = PreviousState;
+            a.PreviousZipCode = PreviousZipCode;
             a.YearsResidedAtPreviousAddr = YearsResidedAtPreviousAddr;
-            a.ApplicantPhoneNumber = ApplicantPhoneNumber;
-            a.ApplicantAge = ApplicantAge;
+            a.PhoneNumber = PhoneNumber;
+            //a.Age = Age;
             a.OverEighteen = OverEighteen;
             a.PreviouslyEmployedAtWatson = PreviouslyEmployedAtWatson;
             a.EmploymentDatesAtWatsonFrom = EmploymentDatesAtWatsonFrom;
             a.EmploymentDatesAtWatsonTo = EmploymentDatesAtWatsonTo;
             a.DriversLicense = DriversLicense;
-            a.DriversLicenseState = DriversLicenseState;
-            a.DriversLicenseNumber = DriversLicenseNumber;
-            a.DriversLicenseExpirationDate = DriversLicenseExpirationDate;
+            a.LicenseState = LicenseState;
+            a.LicenseNumber = LicenseNumber;
+            a.LicenseExpirationDate = LicenseExpirationDate;
             a.ElementaryInstitution = ElementaryInstitution;
             a.YearsCompletedElementary = YearsCompletedElementary;
             a.FieldOfStudyElementary = FieldOfStudyElementary;
@@ -132,7 +130,7 @@ namespace Watson.Controllers
             a.GraduateOrDegreeAtAdditional = GraduateOrDegreeAtAdditional;
             a.Veteran = Veteran;
             a.MOSorSpecializedTraining = MOSorSpecializedTraining;
-            a.PresentOrCurrentEmployer = PresentOrCurrentEmployer;
+            a.PresentOrLastEmployer = PresentOrLastEmployer;
             a.EmployerPhoneNumber = EmployerPhoneNumber;
             a.EmployerAddress = EmployerAddress;
             a.EmployerCity = EmployerCity;
@@ -165,7 +163,7 @@ namespace Watson.Controllers
             a.TitleOfPositionHeldThree = TitleOfPositionHeldThree;
             a.TypeOfWorkedPerformedThree = TypeOfWorkedPerformedThree;
             a.NameOfSupervisorThree = NameOfSupervisorThree;
-            a.TerminatedOrResiged = TerminatedOrResigned;
+            a.TerminatedOrResigned = TerminatedOrResigned;
             a.ReasonForTerminationOrResignation = ReasonForTerminationOrResignation;
             a.ReasonForEmploymentGaps = ReasonForEmploymentGaps;
             a.ReferenceFirstName = ReferenceFirstName;
