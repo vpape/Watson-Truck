@@ -14,6 +14,7 @@
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
     <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
+    <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value="@ViewBag.GroupHealthInsurance_id" />
     @*<input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
         <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />*@
     <p></p>
@@ -244,7 +245,7 @@
             </tr>
         </table>
         <p>
-            @Html.ActionLink("Edit Insurance Premium", "", new { Employee_id = ViewBag.Employee_id }, null)
+            @Html.ActionLink("Edit Insurance Premium", "", new { Employee_id = @ViewBag.Employee_id }, null)
         </p>
     </div>
     @* db.InsurancePlanDetail- col- Item, Detail - InsurancePlanDetail_id as primary and InsurancePlan_id as foreign *@
@@ -1068,8 +1069,8 @@
                                         <label for="cb-Service Writer">Child(ren)</label>
                                     </div>
                                     @*<label class="radio-inline"><input type="radio" id="Myself" class="radio-inline" onclick="return RefusalOfGrpHealthCoverage()" name="Myself" value="Myself" />Myself</label>
-                                    <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" name="Spouse" value="Spouse" />Spouse</label>
-                                    <label class="radio-inline"><input type="radio" id="Dependent" class="radio-inline" name="Dependent" value="Child(ren)" />Child(ren)</label>*@
+                                        <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" name="Spouse" value="Spouse" />Spouse</label>
+                                        <label class="radio-inline"><input type="radio" id="Dependent" class="radio-inline" name="Dependent" value="Child(ren)" />Child(ren)</label>*@
                                     <p></p>
                                 </div>
                             </td>
