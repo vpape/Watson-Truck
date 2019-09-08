@@ -458,7 +458,6 @@
     <Content Include="Views\Employee\NewEmployeeEnrollment.cshtml" />
     <Content Include="Views\Employee\EditDep.cshtml" />
     <Content Include="Views\Employee\SpDetail.cshtml" />
-    <Content Include="Views\Employee\DepDetail.cshtml" />
     <Content Include="Views\Employee\DeleteSp.cshtml" />
     <Content Include="Views\Employee\DeleteDep.cshtml" />
     <Content Include="Views\Employee\EmpInsurance.cshtml" />
@@ -500,6 +499,7 @@
     <Content Include="Views\Other_Insurance\EditOtherInsurance.cshtml" />
     <Content Include="Views\Other_Insurance\DeleteOtherInsurance.cshtml" />
     <Content Include="Views\Other_Insurance\OtherInsuranceDetail.cshtml" />
+    <Content Include="Views\Employee\DepDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

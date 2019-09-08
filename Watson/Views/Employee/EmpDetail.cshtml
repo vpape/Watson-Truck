@@ -28,6 +28,12 @@
                     <input type="text" id="Role" class="form-control" name="CurrentEmployer" value="@Html.DisplayFor(model => model.EmployeeRole)" disabled>
                 </dd>
                 <dt>
+                    <label class="col-md-2 control-label">Hire Date:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="HireDate" class="form-control" name="HireDate" value="@Html.DisplayFor(model => model.HireDate)" disabled>
+                </dd>
+                <dt>
                     <label class="col-md-2 control-label">Current Employer:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
@@ -69,7 +75,7 @@
                 <dd class="col-md-10 form-group" id="Gender">
                     <input type="text" id="Gender" class="form-control" name="Gender" value="@Html.DisplayFor(m => Model.Gender)" disabled />
                     @*<label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((ViewBag.Gender == "Male") ? "selected" : "") />Male</label>
-                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((ViewBag.Gender == "Female") ? "selected" : "") />Female</label>*@
+            <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((ViewBag.Gender == "Female") ? "selected" : "") />Female</label>*@
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Marital Status:</label>
@@ -111,9 +117,9 @@
                     <label class="col-md-2 control-label">Within City Limits?</label>
                 </dt>
                 <dd class="col-md-10 form-group" id="CityLimits">
-                    <input type="text" id="CityLimits" class="form-control" name="CityLimits" value="@Html.DisplayFor(m => Model.CityLimits)" disabled/>
+                    <input type="text" id="CityLimits" class="form-control" name="CityLimits" value="@Html.DisplayFor(m => Model.CityLimits)" disabled />
                     @*<label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.CityLimits == "Yes") ? "selected" : "") />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="NoCityLimits"  class="radio-inline" name="CityLimits" value="No"  @((ViewBag.CityLimits == "No" ) ? "selected" : "") />No</label>*@
+            <label class="radio-inline"><input type="radio" id="NoCityLimits"  class="radio-inline" name="CityLimits" value="No"  @((ViewBag.CityLimits == "No" ) ? "selected" : "") />No</label>*@
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Physical Address:</label>
@@ -251,6 +257,7 @@
         var data = {
             "Employee_id": Employee_id,
             "CurrentEmployer": CurrentEmployer,
+            "HireDate": HireDate,
             "JobTitle": JobTitle,
             "EmpNumber": EmpNumber,
             "MaritalStatus": MaritalStatus,

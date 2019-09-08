@@ -23,13 +23,19 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
                 <div class="col-md-10">
-                    <input type="text" id="Role" class="form-control" value="@Html.DisplayFor(model => model.EmployeeRole)" disabled>                    
+                    <input type="text" id="Role" class="form-control" value="@Html.DisplayFor(model => model.EmployeeRole)" disabled>
                 </div>
             </div>
             <div class="form-group">
                 <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
                 <div class="col-md-10">
                     <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@Html.DisplayFor(model => model.CurrentEmployer)" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="HireDate" class="col-md-2 control-label">Hire Date:</label>
+                <div class="col-md-10">
+                    <input type="text" id="HireDate" class="form-control" name="HireDate" value="@Html.DisplayFor(model => model.HireDate)" />
                 </div>
             </div>
             <div class="form-group">
@@ -293,6 +299,7 @@
         document.querySelector("#EditEmpUpdate").addEventListener("click", function () {
             Role = document.getElementById("Role").value;
             CurrentEmployer = document.getElementById("CurrentEmployer").value;
+            HireDate = document.getElementById("HireDate").value;
             JobTitle = document.getElementById("JobTitle").value;
             EmpNumber = document.getElementById("EmpNumber").value;
             FirstName = document.getElementById("FirstName").value;
@@ -304,6 +311,7 @@
             var data = {
                 "Role": Role,
                 "CurrentEmployer": CurrentEmployer,
+                "HireDate": HireDate,
                 "JobTitle": JobTitle,
                 "EmpNumber": EmpNumber,
                 "FirstName": FirstName,

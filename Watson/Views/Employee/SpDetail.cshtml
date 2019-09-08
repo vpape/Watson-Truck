@@ -17,7 +17,7 @@
         <hr />
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
         <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.FamilyMember_id />
-        <div class="collapsible" id="FirstStep"><h4>Spouse Detail</h4></div>
+        <div class="collapsible" id="SpDetail">Spouse Detail</div>
         <div class="content">
             <p></p>
             <p></p>
@@ -25,102 +25,162 @@
                 <dt>
                     <label class="col-md-2 control-label">Employee Number:</label>
                 </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.DisplayFor(Model => Model.SSN)">
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="SSN" class="form-control" name="SSN" value="" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">First Name:</label>
                 </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="">
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Last Name:</label>
                 </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="LastName" class="form-control" name="LastName" value="">
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="LastName" class="form-control" name="LastName" value="" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Date of Birth:</label>
                 </dt>
-                <dd class="col-md-10">
-                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="">
+                <dd class="col-md-10 form-group">
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Gender:</label>
                 </dt>
-                <dd class="col-md-10">
+                <dd class="col-md-10 form-group">
                     <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @*@(ViewBag.Family_Info.Gender == "Male" ? "checked" : "" )*@ @*@((Model.Gender == "Male") ? "checked" : "")*@ />Male</label>
                     <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @*@(ViewBag.Family_Info.Gender == "Female" ? "checked" : "" )*@ @*@((Model.Gender == "Female") ? "checked" : "")*@ />Female</label>
                 </dd>
                 <dt>
-                    <label class="col-md-2 control-label">Mailing Address:</label>
+                    <label class="col-md-2 control-label">MailingAddress:</label>
                 </dt>
-                <dd class="col-md-10">
-                    <text type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="" />
-                    <text type="text" id="PObox" class="form-control" name="PObox" value="" />
-                    <text type="text" id="City" class="form-control" name="City" value="" />
-                    <text type="text" id="State" class="form-control" name="State" value="" />
-                    <text type="text" id="ZipCode" class="form-control" name="ZipCode" value="" />
-                    <text type="text" id="County" class="form-control" name="County" value="" />
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">P.O. box:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="PObox" class="form-control" name="PObox" value="" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">City:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="City" class="form-control" name="City" value="" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">State:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="State" class="form-control" name="State" value="" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Zip Code:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Within City Limits?</label>
+                </dt>
+                <dd class="col-md-10 form-group" id="CityLimits">
+                    <input type="text" id="CityLimits" class="form-control" name="CityLimits" value="" disabled />
+                    @*<label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.CityLimits == "Yes") ? "selected" : "") />Yes</label>
+            <label class="radio-inline"><input type="radio" id="NoCityLimits"  class="radio-inline" name="CityLimits" value="No"  @((ViewBag.CityLimits == "No" ) ? "selected" : "") />No</label>*@
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Physical Address:</label>
                 </dt>
-                <dd class="col-md-10">
-                    <text type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="" />
-                    <text type="text" id="PObox2" class="form-control" name="PObox" value="" />
-                    <text type="text" id="City2" class="form-control" name="City" value="" />
-                    <text type="text" id="State2" class="form-control" name="State" value="" />
-                    <text type="text" id="ZipCode2" class="form-control" name="ZipCode" value="" />
-                    <text type="text" id="County2" class="form-control" name="County" value="" />
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">City:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="City2" class="form-control" name="CityTwo" value="" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">State:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="State2" class="form-control" name="StateTwo" value="" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">ZipCode:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="ZipCode2" class="form-control" name="ZipCodeTwo" value="" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Email:</label>
                 </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="">
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Phone Number:</label>
                 </dt>
-                <dd class="col-md-10">
-                    <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="">
+                <dd class="col-md-10 form-group">
+                    <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Cell Phone:</label>
                 </dt>
-                <dd class="col-md-10">
-                    <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="">
+                <dd class="col-md-10 form-group">
+                    <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Current Employer:</label>
                 </dt>
-                <dd class="col-md-10">
-                    <input type="text" id="Employer" class="form-control" name="Employer" value="">
+                <dd class="col-md-10 form-group">
+                    <input type="tel" id="Employer" class="form-control" name="Employer" value="" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Employer Address:</label>
                 </dt>
-                <dd class="col-md-10">
-                    <text type="text" id="EmployerMailingAddress" class="form-control" name="EmployerMailingAddress" value="" />
-                    <text type="text" id="EmployerPObox" class="form-control" name="PObox" value="" />
-                    <text type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="" />
-                    <text type="text" id="EmployerState" class="form-control" name="EmployerState" value="" />
-                    <text type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="" />
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="EmployerMailingAddress" class="form-control" name="EmployerMailingAddress" value="" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">P.O. box:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="EmployerPObox" class="form-control" name="EmployerPObox" value="" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">City:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">State:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="EmployerState" class="form-control" name="EmployerState" value="" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Zip Code:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Phone Number:</label>
                 </dt>
-                <dd class="col-md-10">
-                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" value="">
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" value="" disabled>
                 </dd>
             </dl>
         </div>
     </div>
     <p>
         @Html.ActionLink("Edit", "EditSp", new { FamilyMember_id = Model.FamilyMember_id }, null) |
-        @Html.ActionLink("Back to List", "FamilyOverview", new { Employee_id = Model.Employee_id}, null)
+        @Html.ActionLink("Back to List", "FamilyOverview", new { Employee_id = Model.Employee_id }, null)
     </p>
 </body>
 </html>
@@ -139,7 +199,7 @@
     }
 
         .active, .collapsible:hover {
-            background-color: #555;
+            background-color: blue;
         }
 
     .content {
@@ -147,6 +207,21 @@
         display: none;
         overflow: hidden;
         background-color: #f1f1f1;
+    }
+
+    .button {
+        text-align: right;
+    }
+
+    .btn:hover {
+        background-color: blue;
+        color: white;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-flex;
+        padding: 8px 8px;
     }
 </style>
 
@@ -184,7 +259,7 @@
         County = document.getElementById("County").value;
         PhysicalAddress = document.getElementById("PhysicalAddress").value
         PObox2 = document.getElementById("PObox2").value,
-            City2 = document.getElementById("City2").value
+        City2 = document.getElementById("City2").value
         State2 = document.getElementById("State2").value
         ZipCode2 = document.getElementById("ZipCode2").value
         County2 = document.getElementById("County2").value
@@ -235,35 +310,39 @@
 
         var ret = postData('GetSpDetail', data)
             .then(data => FirstStep(data))
-            .error(error => console.error(error))
+            .catch(error => console.error(error))
 
     })
 
-    function FirstStep(sp) {
-        document.querySelector("#FirstStep").nextElementSibling.style.display = "block";
-        document.querySelector("#Employee_id").value = sp.Employee_id;
-        document.querySelector("#EmpNumber").value = sp.EmpNumber;
-        document.querySelector("#FirstName").value = sp.FirstName;
-        document.querySelector("#DateOfBirth").value = sp.DateOfBirth;
-        Employee_id = sp.data;
+    function FirstStep(emp) {
+        document.querySelector("#SpDetail").nextElementSibling.style.display = "none";
+        Employee_id = emp.data;
+
     }
 
     function postData(url, data) {
         //Default options are marked with *
+        console.log(data);
+        console.log(JSON.stringify(data));
         return fetch(url, {
             body: JSON.stringify(data), //must match 'Content-Type' header
             cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', //include, same-origin, *omit
             headers: {
+                'Accept': 'application/json',
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
             method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            mode: 'cors', //no-cors, cors, *same-origin
+            mode: 'same-origin', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer
-        })
-            .then(Response => Response.json()) //parses response to JSON
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+        //.then(Response => {
+        //    console.log(Response);
+        //    Response.json();
+        //}) //parses response to JSON
     }
-
 </script>

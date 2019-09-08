@@ -39,7 +39,7 @@
                         </span>
                     </td>
                     <td>
-                        <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.Raw(ViewBag.RelationshipToInsured)" readonly />
+                        <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.Raw(item.RelationshipToInsured)" readonly />
                     </td>
                     <td>
                         <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.Raw(item.FirstName)" readonly />
@@ -54,9 +54,11 @@
                         <input type="text" id="EmpFirstName" class="form-control" name="FirstName" value="@Html.Raw(item.Employee.FirstName)" readonly />
                     </td>
                     <td>
-                        @Html.ActionLink("View Detail", "EditDep", "Employee", new { FamilyMember_id = item.FamilyMember_id }, null)  |
-                        @Html.ActionLink("Edit Spouse", "EditSp", "Employee", new { FamilyMember_id = item.FamilyMember_id }, null)  |
-                        @Html.ActionLink("Edit Dependent", "EditDep", "Employee", new { FamilyMember_id = item.FamilyMember_id }, null)  |
+                        @Html.ActionLink("Spouse Detail", "SpDetail", "Employee", new { FamilyMember_id = item.FamilyMember_id }, null)|
+                        @Html.ActionLink("Edit Spouse", "EditSp", "Employee", new { FamilyMember_id = item.FamilyMember_id }, null)|
+                        @Html.ActionLink("Dependent Detail", "DepDetail", "Employee", new { FamilyMember_id = item.FamilyMember_id }, null)|
+                        @Html.ActionLink("Edit Dependent", "EditDep", "Employee", new { FamilyMember_id = item.FamilyMember_id }, null)|
+
                     </td>
                 </tr>
             }
@@ -64,7 +66,7 @@
     </table>
     <div class="form-group">
         <p class="col-md-2">
-            <button id="FamilyEnrollmentUpdate" onclick="FamilyEnrollment(@ViewBag.FamilyMember_id)" class="btn">Add Family Member</button>
+            <button id="FamilyEnrollmentUpdate" onclick="FamilyEnrollment()" class="btn">Add Family Member</button>
         </p>
     </div>
     <p>

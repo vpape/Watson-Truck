@@ -1,6 +1,5 @@
-﻿@{
-    ViewBag.Title = "DepDetail";
-}
+﻿@model Watson.Models.Family_Info
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,84 +12,104 @@
 </head>
 <body>
     <div class="form-horizontal">
-        <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Family_Info.Employee_id />
-        @*<input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.Family_Info.FamilyMember_id />*@
-        <div class="collapsible" id="dependentSelectForm">Dependent Detail</div>
-        <div class="content">
-            <p></p>
-            <p></p>
-            <dl class="dl-horizontal">
-                <dt>
-                    <label class="col-md-2 control-label">Employee Number:</label>
-                </dt>
-                <dd>
-                    <input type="number" id="EmpNumber" class="form-control" name="SSN" value="@ViewBag.Employee.SSN">
-                </dd>
-                <dt>
-                    <label class="col-md-offset-2 control-label">Relationship to Employee:</label>
-                </dt>
-                <dd>
-                    <input type="number" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.Family_Info.RelationshipToInsured">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">First Name:</label>
-                </dt>
-                <dd>
-                    <input type="number" id="DepFirstName" class="form-control" name="FirstName" value="@ViewBag.Family_Info.FirstName">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Last Name:</label>
-                </dt>
-                <dd>
-                    <input type="number" id="DepLastName" class="form-control" name="LastName" value="@ViewBag.Family_Info.LastName">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Birth Date:</label>
-                </dt>
-                <dd>
-                    <input type="number" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@ViewBag.Family_Info.DateOfBirth">
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Gender:</label>
-                </dt>
-                <dd class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @((ViewBag.Family_Info.Gender == "Male") ? "checked" : "") disabled />Male</label>
-                    <label class="radio-inline"><input type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @((ViewBag.Family_Info.Gender == "Female") ? "checked" : "") disabled />Female</label>
-                </dd>
-                <dd class="form-group" id="depOtherIns">
-                    <label class="col-md-4 control-label">Is your dependent covered by other insurance, including Medicare/Medicaid? If so, we need the following information:</label>
-                    <div class="form-group">
-                        
-                        <label class="radio-inline"><input type="radio" id="YesOtherIns" class="radio-inline" @((ViewBag.Other_Insurance.CoverByOtherInsurance == "Yes") ? "checked" : "") onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" disabled />Yes</label>
-                        <label class="radio-inline"><input type="radio" id="NoOtherIns" class="radio-inline"  @((ViewBag.Other_Insurance.CoverByOtherInsurance == "No") ? "checked" : "") onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" disabled />No</label>
-                        
+        <div id="divDepDetail">
+            <hr />
+            <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
+            <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
+            <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
+            <div class="collapsible" id="DepDetail">Dependent Detail</div>
+            <div class="content">
+                <p></p>
+                <p></p>
+                <div class="form-group" id="divRelationshipToInsured">
+                    <label for="RelationshipToInsured" class="col-md-2 control-label">Relation To Employee:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
                     </div>
-                </dd>
-                <dt>
-                    <label class="col-md-2 control-label">Insurance Information:</label>
-                </dt>
-                <dd id="divCoveredByOtherIns">
-                    <label class="col-md-2 control-label">Insurance Company:</label>
-                    <input type="text" id="InsuranceCompany" class="form-control" name="InsuranceCompany" value="@ViewBag.Other_Insurance.InsuranceCompany" />
-                    <label class="col-md-2 control-label">Policy Number:</label>
-                    <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="@ViewBag.Other_Insurance.PolicyNumber" />
-                    <label class="col-md-2 control-label">Phone Number:</label>
-                    <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="@ViewBag.Other_Insurance.PhoneNumber" />
+                </div>
+                <div class="form-group">
+                    <label for="SSN" class="col-md-2 control-label">SSN:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="" disabled/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="DepFirstName" class="col-md-2 control-label">First Name:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="DepFirstName" class="form-control" placeholder="First Name" name="FirstName" value="" disabled/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="DepLastName" class="col-md-2 control-label">Last Name:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="DepLastName" class="form-control" placeholder="Last Name" name="LastName" value="" disabled/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
+                    <div class="col-md-10">
+                        <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" disabled/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Gender:</label>
+                    @*<label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" (ViewBag.Family_Info.Gender == "Male" ? "checked" : "" ) ((Model.Gender == "Male") ? "checked" : "") />Male</label>
+            <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" (ViewBag.Family_Info.Gender == "Female" ? "checked" : "" ) ((Model.Gender == "Female") ? "checked" : "") />Female</label>*@
+                    <div class="col-md-10" >
+                        <select id="Gender" class="form-control" >
+                            <option value="">Select Option</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+                <hr />
+                <div class="collapsible" id="SecondStep">Dependent Insurance</div>
+                <div id="divDepInsDetail" class="content">
                     <p></p>
-                    <label class="col-md-2 control-label">Mailing Address:</label>
-                    <input type="text" id="InsMailingAddress" class="form-control" name="MailingAddress" value="@ViewBag.Other_Insurance.MailingAddress" disabled />
-                    <input type="text" id="InsPObox" class="form-control" name="PObox" value="@ViewBag.Other_Insurance.PObox" disabled />
-                    <input type="text" id="InsCity" class="form-control" name="City" value="@ViewBag.Other_Insurance.City" disabled />
-                    <input type="text" id="InsState" class="form-control" name="State" value="@ViewBag.Other_Insurance.State" disabled />
-                    <input type="text" id="InsZipCode" class="form-control" name="ZipCode" value="@ViewBag.Other_Insurance.ZipCode" disabled />
-                </dd>
-            </dl>
+                    <div id="DepOtherInsCoverage">
+                        <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
+                        @*@((ViewBag.Other_Insurance.CoverByOtherInsurance == "Yes") ? "checked" : "")*@ @*onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" disabled />Yes</label>*@
+                        @*@((ViewBag.Other_Insurance.CoverByOtherInsurance == "No") ? "checked" : "")*@ @*onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" disabled />No</label>*@
+                        <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="yes" disabled/>Yes</label>
+                        <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="no"  disabled/>No</label>
+                        <div id="depInsInfo">
+                            <div class="form-group col-md-2">
+                                <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" disabled />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" disabled />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" disabled />
+                            </div>
+                            <div class="">
+                                <div class="col-md-10 form-group">
+                                    <input type="text" id="InsMailingAddress" class="form-control" placeholder="Insurance Mailing Address" name="MailingAddress" value="" disabled>
+                                </div>
+                                <div class="col-md-10 form-group">
+                                    <input type="text" id="InsPObox" class="form-control" placeholder="Insurance PO box" name="PObox" value="" disabled>
+                                </div>
+                                <div class="col-md-10 form-group">
+                                    <input type="text" id="InsCity" class="form-control" placeholder="Insurance City" name="City" value="" disabled>
+                                </div>
+                                <div class="col-md-10 form-group">
+                                    <input type="text" id="InsState" class="form-control" placeholder="Insurance State" name="State" value="" disabled>
+                                </div>
+                                <div class="col-md-10 form-group">
+                                    <input type="text" id="InsZipCode" class="form-control" placeholder="Insurance Zip Code" name="ZipCode" value="" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditDep", new { dep = Model.Employee_id }) |
-        @Html.ActionLink("Back to List", "EmpOverview")
+        @Html.ActionLink("Edit", "EditDep", new { FamilyMember_id = Model.FamilyMember_id })|
+        @Html.ActionLink("Back to List", "FamilyOverview", new { Employee_id = Model.Employee_id }, null)
     </p>
 </body>
 </html>
@@ -206,35 +225,33 @@
 </script>
 
 <script>
-    //function SpouseOrDependent() {
-    //    var choice = document.getElementById("RelationToInsured")
-    //    var dependent = document.getElementById("divDependentInfo")
-    //    var spouse = document.getElementById("divSpouseInfo")
-    //    if (choice.value == "Spouse")
-    //    {
-    //        spouse.style.display = 'block';
-    //        dependent.style.display = 'none';
-    //    }
-    //    else
-    //    {
-    //        spouse.style.display = 'none';
-    //        dependent.style.display = 'block';
+    function showHideDepInsCoverage() {
+        document.addEventListener("click", function () {
+            var selection = document.getElementById("DepOtherIns");
 
-    //    }
-    //}
-
-    function CoveredByOtherIns() {
-        var div = document.getElementById("depOtherIns")
-        var otherIns = document.getElementById('divCoveredByOtherIns')
-
-        if (div.value == "Yes") {
-            otherIns.style.display = 'block';
-        }
-        else (div.value == "No")
-        {
-            div.style.display = 'none';
-        }
+            if (selection.checked == true) {
+                document.getElementById("depInsInfo").style.visibility = "visible";
+            }
+            else {
+                document.getElementById("depInsInfo").style.visibility = "hidden";
+            }
+        })
+    
     }
+
+    //function showHideDepInsCoverage() {
+    //    document.addEventListener("click", function () {
+    //        var selection = document.getElementById("DepOtherIns");
+
+    //        if (selection.checked == true) {
+
+    //            document.getElementById("depInsInfo").style.visibility = "visible";
+    //        }
+    //        else {
+    //            document.getElementById("depInsInfo").style.visibility = "hidden";
+    //        }
+    //    });
+
 </script>
 
 <script>
@@ -318,6 +335,7 @@
             .then(Response => Response.json()) //parses response to JSON
     }
 </script>
+
 
 
 

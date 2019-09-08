@@ -569,7 +569,7 @@ namespace Watson.Controllers
         }
 
         //Get-SpDetail
-        public ActionResult SpDetail(int Employee_id, int? FamilyMember_id, string MaritalStatus)
+        public ActionResult SpDetail(int? Employee_id, int? FamilyMember_id, string MaritalStatus)
         {
             ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
 
@@ -776,7 +776,7 @@ namespace Watson.Controllers
         }
 
         //Get-DepDetail
-        public ActionResult DepDetail(int? FamilyMember_id)
+        public ActionResult DepDetail(int? Employee_id, int? FamilyMember_id, string MaritalStatus)
         {
             //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
 
@@ -785,26 +785,31 @@ namespace Watson.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Family_Info dep = db.Family_Info.Find(FamilyMember_id);
-            if (dep == null)
+            Family_Info f = db.Family_Info.Find(FamilyMember_id);
+            if (family == null)
             {
                 return HttpNotFound();
             }
 
-            return View(dep);
+            ViewBag.FamilyMember_id = f.FamilyMember_id;
+
+            return View(f);
         }
 
         //Get-DepDetail
         public JsonResult GetDepDetail(int FamilyMember_id)
         {
-            var dep = db.Family_Info
+            var sp = db.Family_Info
                  .Where(i => i.FamilyMember_id == FamilyMember_id)
                  .Single();
 
-            int result = dep.Employee_id;
+            ViewBag.FamilyMember_id = sp.FamilyMember_id;
+
+            int result = sp.FamilyMember_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
+
         //----------------------------------------------------------------------------------------
 
         //DeleteDep Method
