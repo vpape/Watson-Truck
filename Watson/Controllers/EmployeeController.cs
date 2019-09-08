@@ -53,11 +53,6 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult NewEnrollmentSelection()
-        {
-            return View();
-        }
-
         public ActionResult EnrollmentSelection()
         {
             return View();
@@ -94,12 +89,6 @@ namespace Watson.Controllers
 
             return Json( new { data = result }, JsonRequestBehavior.AllowGet);
         }
-
-        //EmpContact Method
-        //public ActionResult EmpContact()
-        //{
-        //    return View();
-        //}
 
         //Create-EmpContact
         public JsonResult EmpEnrollmentContact(int Employee_id, string MaritalStatus, string MailingAddress, string PObox, 
@@ -315,7 +304,7 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult FamilyOverview(int? Employee_id)
+        public ActionResult FamilyOverview(int Employee_id)
         {
             ViewBag.Employee_id = Employee_id;
 
@@ -326,16 +315,15 @@ namespace Watson.Controllers
             return View(familyInfo);
         }
 
-        public ActionResult NewFamilyEnrollment()
-        {
-            return View();
-        }
-
+        //show/hide family enrollment code block based on martial status
         public ActionResult FamilyEnrollment(int? Employee_id, string MaritalStatus)
         {
-            ViewBag.Employee_id = Employee_id;
-
+            
             Employee e = db.Employees.Find(Employee_id);
+
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.MaritalStatus = e.MaritalStatus;
+
             //if (e.MaritalStatus == "Single")
             //{
             //    ViewBag.spouseExist = false;
@@ -363,26 +351,20 @@ namespace Watson.Controllers
         
         //----------------------------------------------------------------------------------------
 
-        public ActionResult NewSpouseEnrollment(int? Employee_id)
-        {
-            ViewBag.Employee_id = Employee_id;
-
-            return View();
-        }
-
         //SpEnrollment Method
-        public ActionResult SpEnrollment(int Employee_id, string MaritalStatus, string RelationshipToInsured)
+        public ActionResult SpEnrollment(int? Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured)
         {
             ViewBag.Employee_id = Employee_id;
+            ViewBag.FamilyMember_id = FamilyMember_id;
             ViewBag.MaritalStatus = MaritalStatus;
-            ViewBag.RelationshipToInsured = RelationshipToInsured= "Spouse";
+            ViewBag.RelationshipToInsured = RelationshipToInsured = "Spouse";
 
             return View();
         }
 
         //Create-SpouseEnrollment
-        public JsonResult SpEnrollmentNew(int Employee_id, string RelationshipToInsured, string FirstName, string LastName, 
-            DateTime DateOfBirth, string Gender)
+        public JsonResult SpEnrollmentNew(int Employee_id, string RelationshipToInsured, string SSN, string FirstName, 
+            string LastName, DateTime DateOfBirth, string Gender)
         {
             //Create an if statement that checks to see if there's already a record
 
@@ -390,31 +372,28 @@ namespace Watson.Controllers
             //              where fi.FamilyMember_id == FamilyMember_id
             //              select fi).SingleOrDefault();
 
-            //if(output != null)
+            //if (output != null)
             //{
-
+            //    ViewBag.Message = "Record already exists.";
             //}
 
-            Employee e = db.Employees.Find(Employee_id);
-            ViewBag.MaritalStatus = e.MaritalStatus;
-
-            ViewBag.Employee_id = Employee_id;
+            //Employee e = db.Employees.Find(Employee_id);
+            //ViewBag.MaritalStatus = e.MaritalStatus;
 
             Family_Info sp = new Family_Info();
 
             sp.Employee_id = Employee_id;
             sp.RelationshipToInsured = RelationshipToInsured;
+            sp.SSN = SSN;
             sp.FirstName = FirstName;
             sp.LastName = LastName;
             sp.DateOfBirth = DateOfBirth;
             sp.Gender = Gender;
-            
 
-            if (ModelState.IsValid)
-            {
-                db.Family_Info.Add(sp);
-                db.SaveChanges();
-            }
+            ViewBag.FamilyMember_id = sp.FamilyMember_id;
+
+            db.Family_Info.Add(sp);
+            db.SaveChanges();
 
             int result = sp.FamilyMember_id;
 
@@ -422,21 +401,15 @@ namespace Watson.Controllers
 
         }
 
-        //SpContact Method
-        //public ActionResult SpContact(int Employee_id)
-
         //Create-SpouseContact
-        public JsonResult SpEnrollmentContact(int FamilyMember_id, int Employee_id, string MailingAddress, string PObox, string City,
+        public JsonResult SpEnrollmentContact(int Employee_id, int FamilyMember_id, string MailingAddress, string PObox, string City,
             string State, string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, 
             string EmailAddress, string PhoneNumber, string CellPhone)
         {
-            //Family_Info sp = new Family_Info();
+            Family_Info sp = db.Family_Info
+                .Where(i => i.FamilyMember_id == FamilyMember_id)
+                .Single();
 
-            var sp = (from fi in db.Family_Info
-                     where fi.FamilyMember_id == FamilyMember_id
-                     select fi).SingleOrDefault();
-
-            //sp.Employee_id = Employee_id;
             sp.MailingAddress = MailingAddress;
             sp.PObox = PObox;
             sp.City = City;
@@ -451,7 +424,6 @@ namespace Watson.Controllers
             sp.PhoneNumber = PhoneNumber;
             sp.CellPhone = CellPhone;
 
-            //db.Family_Info.Add(sp);
             db.SaveChanges();
             
             int result = sp.FamilyMember_id;
@@ -459,22 +431,16 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        //SpEmployment Method
-        //public ActionResult SpEmployment(int? Employee_id, string MaritalStatus)
-
-
         //Create-SpouseEmployment
         public JsonResult SpEnrollmentEmployment(int? FamilyMember_id, int Employee_id, string MaritalStatus, string Employer, string EmployerAddress,
             string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
-            //Family_Info sp = new Family_Info();
-
-            ViewBag.Employee_id = Employee_id;
-            ViewBag.MaritalStatus = MaritalStatus;
-
+            
             var sp = (from fi in db.Family_Info
                       where fi.FamilyMember_id == FamilyMember_id
                       select fi).SingleOrDefault();
+
+            ViewBag.Employee_id = Employee_id;
 
             sp.Employee_id = Employee_id;
             sp.Employer = Employer;
@@ -485,12 +451,8 @@ namespace Watson.Controllers
             sp.EmployerZipCode = EmployerZipCode;
             sp.EmployerPhoneNumber = EmployerPhoneNumber;
 
-            if (ModelState.IsValid)
-            {
-                //db.Family_Info.Add(sp);
-                db.SaveChanges();
-            }
-
+            db.SaveChanges();
+           
             int result = sp.FamilyMember_id;
 
             //if (MaritalStatus == "MarriedwDep")
@@ -504,7 +466,7 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //EditSp Method
-        public ActionResult EditSp(int Employee_id, int? FamilyMember_id)
+        public ActionResult EditSp(int? FamilyMember_id)
         {
             if (FamilyMember_id == null)
             {
@@ -517,7 +479,7 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.Employee_id = f.Employee_id;
+            ViewBag.FamilyMember_id = f.FamilyMember_id;
 
             return View(f);
         }
@@ -677,12 +639,13 @@ namespace Watson.Controllers
         }
         //----------------------------------------------------------------------------------------
 
-        public ActionResult NewDependentEnrollment()
+        public ActionResult NewDependentEnrollment(string RelationshipToInsured)
         {
+            ViewBag.RelationshipToInsured = RelationshipToInsured = "Dependent";
             return View();
         }
 
-        public ActionResult DepEnrollment(int Employee_id, string RelationshipToInsured)
+        public ActionResult DepEnrollment(int? Employee_id, string RelationshipToInsured)
         {
             ViewBag.Employee_id = Employee_id;
             ViewBag.RelationshipToInsured = RelationshipToInsured = "Dependent";
@@ -691,13 +654,14 @@ namespace Watson.Controllers
         }
 
         //Create-DepEnrollment
-        public JsonResult DepEnrollmentNew(int Employee_id, string RelationshipToInsured,
+        public JsonResult DepEnrollmentNew(int Employee_id, string RelationshipToInsured, string SSN,
             string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender, string EmpNumber)
         {
             Family_Info dep = new Family_Info();
 
             dep.Employee_id = Employee_id;
             dep.RelationshipToInsured = RelationshipToInsured;
+            dep.SSN = SSN;
             dep.FirstName = DepFirstName;
             dep.LastName = DepLastName;
             dep.DateOfBirth = DateOfBirth;

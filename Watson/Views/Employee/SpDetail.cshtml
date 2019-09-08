@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Watson.Models.Family_Info
+@{
     ViewBag.Title = "SpDetail";
 }
 <!DOCTYPE html>
@@ -14,8 +15,8 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Family_Info.Employee_id />
-        <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.Family_Info.FamilyMember_id />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+        <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.FamilyMember_id />
         <div class="collapsible" id="FirstStep"><h4>Spouse Detail</h4></div>
         <div class="content">
             <p></p>
@@ -25,101 +26,101 @@
                     <label class="col-md-2 control-label">Employee Number:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@ViewBag.Family_Info.SSN">
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.DisplayFor(Model => Model.SSN)">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">First Name:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@ViewBag.Family_Info.FirstName">
+                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Last Name:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <input type="text" id="LastName" class="form-control" name="LastName" value="@ViewBag.Family_Info.LastName">
+                    <input type="text" id="LastName" class="form-control" name="LastName" value="">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Date of Birth:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@ViewBag.Family_Info.DateOfBirth">
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Gender:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @(ViewBag.Family_Info.Gender == "Male" ? "checked" : "" ) @*@((Model.Gender == "Male") ? "checked" : "")*@ />Male</label>
-                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @(ViewBag.Family_Info.Gender == "Female" ? "checked" : "" ) @*@((Model.Gender == "Female") ? "checked" : "")*@ />Female</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" @*@(ViewBag.Family_Info.Gender == "Male" ? "checked" : "" )*@ @*@((Model.Gender == "Male") ? "checked" : "")*@ />Male</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" @*@(ViewBag.Family_Info.Gender == "Female" ? "checked" : "" )*@ @*@((Model.Gender == "Female") ? "checked" : "")*@ />Female</label>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Mailing Address:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <text type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@ViewBag.Family_Info.MailingAddress" />
-                    <text type="text" id="PObox" class="form-control" name="PObox" value="@ViewBag.Family_Info.PObox" />
-                    <text type="text" id="City" class="form-control" name="City" value="@ViewBag.Family_Info.City" />
-                    <text type="text" id="State" class="form-control" name="State" value="@ViewBag.Family_Info.State" />
-                    <text type="text" id="ZipCode" class="form-control" name="ZipCode" value="@ViewBag.Family_Info.ZipCode" />
-                    <text type="text" id="County" class="form-control" name="County" value="@ViewBag.Family_Info.County" />
+                    <text type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="" />
+                    <text type="text" id="PObox" class="form-control" name="PObox" value="" />
+                    <text type="text" id="City" class="form-control" name="City" value="" />
+                    <text type="text" id="State" class="form-control" name="State" value="" />
+                    <text type="text" id="ZipCode" class="form-control" name="ZipCode" value="" />
+                    <text type="text" id="County" class="form-control" name="County" value="" />
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Physical Address:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <text type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@ViewBag.Family_Info.PhysicalAddress" />
-                    <text type="text" id="PObox2" class="form-control" name="PObox" value="@ViewBag.Family_Info.PObox" />
-                    <text type="text" id="City2" class="form-control" name="City" value="@ViewBag.Family_Info.City" />
-                    <text type="text" id="State2" class="form-control" name="State" value="@ViewBag.Family_Info.State" />
-                    <text type="text" id="ZipCode2" class="form-control" name="ZipCode" value="@ViewBag.Family_Info.ZipCode" />
-                    <text type="text" id="County2" class="form-control" name="County" value="@ViewBag.Family_Info.County" />
+                    <text type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="" />
+                    <text type="text" id="PObox2" class="form-control" name="PObox" value="" />
+                    <text type="text" id="City2" class="form-control" name="City" value="" />
+                    <text type="text" id="State2" class="form-control" name="State" value="" />
+                    <text type="text" id="ZipCode2" class="form-control" name="ZipCode" value="" />
+                    <text type="text" id="County2" class="form-control" name="County" value="" />
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Email:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@ViewBag.Family_Info.EmailAddress">
+                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Phone Number:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@ViewBag.Family_Info.PhoneNumber">
+                    <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Cell Phone:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="@ViewBag.Family_Info.CellPhone">
+                    <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Current Employer:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <input type="text" id="Employer" class="form-control" name="Employer" value="@ViewBag.Family_Info.Employer">
+                    <input type="text" id="Employer" class="form-control" name="Employer" value="">
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Employer Address:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <text type="text" id="EmployerMailingAddress" class="form-control" name="EmployerMailingAddress" value="@ViewBag.Family_Info.EmployerMailingAddress" />
-                    <text type="text" id="EmployerPObox" class="form-control" name="PObox" value="@ViewBag.Family_Info.EmployerPObox" />
-                    <text type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="@ViewBag.Family_Info.EmployerCity" />
-                    <text type="text" id="EmployerState" class="form-control" name="EmployerState" value="@ViewBag.Family_Info.EmployerState" />
-                    <text type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="@ViewBag.Family_Info.EmployerZipCode" />
+                    <text type="text" id="EmployerMailingAddress" class="form-control" name="EmployerMailingAddress" value="" />
+                    <text type="text" id="EmployerPObox" class="form-control" name="PObox" value="" />
+                    <text type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="" />
+                    <text type="text" id="EmployerState" class="form-control" name="EmployerState" value="" />
+                    <text type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="" />
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Phone Number:</label>
                 </dt>
                 <dd class="col-md-10">
-                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" value="@ViewBag.Family_Info.EmployerPhoneNumber">
+                    <input type="tel" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" value="">
                 </dd>
             </dl>
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditSp", new { sp = Model.Family_Info.Employee_id }) |
-        @Html.ActionLink("Back to List", "FamilyOverview")
+        @Html.ActionLink("Edit", "EditSp", new { FamilyMember_id = Model.FamilyMember_id }, null) |
+        @Html.ActionLink("Back to List", "FamilyOverview", new { Employee_id = Model.Employee_id}, null)
     </p>
 </body>
 </html>
@@ -183,7 +184,7 @@
         County = document.getElementById("County").value;
         PhysicalAddress = document.getElementById("PhysicalAddress").value
         PObox2 = document.getElementById("PObox2").value,
-        City2 = document.getElementById("City2").value
+            City2 = document.getElementById("City2").value
         State2 = document.getElementById("State2").value
         ZipCode2 = document.getElementById("ZipCode2").value
         County2 = document.getElementById("County2").value

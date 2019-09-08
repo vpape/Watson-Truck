@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Dynamic;
+using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
 using Watson.Models;
+using Watson.ViewModels;
 
 namespace Watson.Controllers
 {
@@ -13,40 +18,69 @@ namespace Watson.Controllers
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        private static Other_Insurance otherIns = new Other_Insurance();
+        private static List<Family_Info> family = new List<Family_Info>();
+        private static List<Other_Insurance> otherIns = new List<Other_Insurance>();
 
         public Other_InsuranceController()
         {
 
         }
 
-
-
-        // GET: api/Other_Insurance
-        public IEnumerable<string> Get()
+        public ActionResult AddOtherInsurance()
         {
-            return new string[] { "value1", "value2" };
+            return View();
         }
 
-        // GET: api/Other_Insurance/5
-        public string Get(int id)
+
+        public ActionResult EditOtherInsurance()
         {
-            return "value";
+            return View();
         }
 
-        // POST: api/Other_Insurance
-        public void Post([FromBody]string value)
+        //public JsonResult OtherInsuranceEditUpdate()
+        //{
+            
+        //}
+
+        public ActionResult OtherInsuranceDetail()
         {
+            return View();
         }
 
-        // PUT: api/Other_Insurance/5
-        public void Put(int id, [FromBody]string value)
+        public ActionResult GetOtherInsuranceDetail()
         {
+            return View();
         }
 
-        // DELETE: api/Other_Insurance/5
-        public void Delete(int id)
+        //DeleteOtherInsurance Method
+        public ActionResult DeleteOtherInsurance(int? Employee_id)
         {
+            if (Employee_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Other_Insurance o = db.Other_Insurance.Find(Employee_id);
+            if (o == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(o);
+        }
+
+        //DeleteOtherInsurance Method
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteOtherInsurance")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int Employee_id)
+        {
+            Other_Insurance o = db.Other_Insurance.Find(Employee_id);
+            db.Other_Insurance.Remove(o);
+            db.SaveChanges();
+
+            db.DeleteEmployeeAndDependents(Employee_id);
+
+            return RedirectToAction("EmpOverview", new { o.Employee_id });
         }
     }
 }

@@ -1,7 +1,10 @@
 ﻿@model Watson.Models.Family_Info
 @{
     ViewBag.Title = "SpEnrollment";
+
+
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +19,7 @@
     <div class="form-horizontal">
         <hr />
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
-        <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
+        <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
         <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
         <div class="collapsible" id="FirstStep">Spouse Enrollment</div>
         <div id="divSpEnrollment" class="content">
@@ -28,19 +31,24 @@
                     <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
                 </div>
                 @*<div class="col-md-10 col-md-offset-2">
-                    <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                        @if (ViewBag.spouseExist == false)
-                        {
-                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                        }
-                        else
-                        {
-                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                        }
-                    </select>
-                </div>*@
+                <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                    @if (ViewBag.spouseExist == false)
+                    {
+                        <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                    }
+                    else
+                    {
+                        <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                    }
+                </select>
+            </div>*@
             </div>
-
+            <div class="form-group">
+                <label for="SSN" class="col-md-2 control-label">SSN:</label>
+                <div class="col-md-10">
+                    <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="" />
+                </div>
+            </div>
             <div class="form-group">
                 <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
@@ -104,8 +112,8 @@
             <div class="form-group" id="divMailingAddress">
                 <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
                 <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="addressSame" class="radio-inline" onclick="HidePhysicalAddress()" name="Address" value="true" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="addressNotSame" class="radio-inline" onclick="ShowPhysicalAddress()" name="Address" value="false" checked />No</label>
+                    <label class="radio-inline"><input type="radio" id="mailingAddr" class="radio-inline" onclick="showHidePhysicalAddress()" name="Address" value="true" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="mailingAddr" class="radio-inline" onclick="showHidePhysicalAddress()" name="Address" value="false" checked />No</label>
                 </div>
             </div>
             <div id="divPhysicalAddress">
@@ -235,7 +243,7 @@
     var col = document.querySelectorAll(".collapsible");
     var i;
     var Employee_id;
-    var familyinfo_id;
+    var FamilyMember_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -270,18 +278,24 @@
     //    }
     //}
 
-    function HidePhysicalAddress() {
-        document.getElementById("divPhysicalAddress").style.display = "none";
-    }
+    function showHidePhysicalAddress() {
+        document.addEventListener("click", function () {
+            var selection = document.getElementById("mailingAddr");
 
-    function ShowPhysicalAddress() {
-        document.getElementById("divPhysicalAddress").style.display = "block";
+            if (selection.checked == false) {
+                document.getElementById("divPhysicalAddress").style.display = "block";
+            }
+            else {
+                document.getElementById("divPhysicalAddress").style.display = "none";
+            }
+        });
     }
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
             RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
+            SSN = document.getElementById("SSN").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DateOfBirth").value;
@@ -290,6 +304,7 @@
             var data = {
                 "Employee_id": Employee_id,
                 "RelationshipToInsured": RelationshipToInsured,
+                "SSN": SSN,
                 "FirstName": FirstName,
                 "LastName": LastName,
                 "DateOfBirth": DateOfBirth,
@@ -317,11 +332,8 @@
                 redirect: 'follow', //manual, *follow, error
                 referrer: 'no-referrer', //*client, no-referrer
             }).then(res => res.json())
-                //.then(response => console.log('Success:', JSON.stringify(response)))
                 .then(response => FirstStep(response))
                 .catch(error => console.error('Error:', error));
-
-     
         })
 
         document.querySelector("#SpouseEnrollmentUpdateStepTwo").addEventListener("click", function () {
@@ -340,7 +352,7 @@
             CellPhone = document.getElementById("CellPhone").value;
 
             var data = {
-                "FamilyMember_id": familyinfo_id,
+                "FamilyMember_id": FamilyMember_id,
                 "Employee_id": Employee_id,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
@@ -393,7 +405,7 @@
 
 
             var data = {
-                "FamilyMember_id": familyinfo_id,
+                "FamilyMember_id": FamilyMember_id,
                 "Employee_id": Employee_id,
                 "Employer": Employer,
                 "EmployerAddress": EmployerAddress,
@@ -436,7 +448,7 @@
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
         //Employee_id = sp.data;
         console.log(sp);
-        familyinfo_id = sp.data;
+        FamilyMember_id = sp.data;
     }
 
     function SecondStep(sp) {

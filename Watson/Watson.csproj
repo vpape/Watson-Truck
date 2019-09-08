@@ -423,9 +423,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Dependent\DependentEnrollment.cshtml" />
     <Content Include="Views\Dependent\DeleteDependent.cshtml" />
-    <Content Include="Views\Dependent\EditDependent.cshtml" />
     <Content Include="Views\Dependent\DependentDetail.cshtml" />
     <Content Include="Views\Spouse\EditSpouse.cshtml" />
     <Content Include="Views\Employee\EnrollmentSelection.cshtml" />
@@ -484,10 +482,7 @@
     <Content Include="Views\Admin\EmpDepDetail.cshtml" />
     <Content Include="Views\Admin\DeleteDep.cshtml" />
     <Content Include="Views\Employee\EmpOverview.cshtml" />
-    <Content Include="Views\Employee\NewSpouseEnrollment.cshtml" />
     <Content Include="Views\Employee\NewDependentEnrollment.cshtml" />
-    <Content Include="Views\Employee\NewFamilyEnrollment.cshtml" />
-    <Content Include="Views\Employee\NewEnrollmentSelection.cshtml" />
     <Content Include="Views\Employee\InsuranceOverview.cshtml" />
     <Content Include="Views\Admin\EmpGrpHealthEnrollment.cshtml" />
     <Content Include="Views\Group_Health\GrpHealthEnrollment.cshtml" />
@@ -501,6 +496,10 @@
     <Content Include="Views\Home\Leadership.cshtml" />
     <Content Include="Views\CareerCenter\ListJobs.cshtml" />
     <Content Include="Views\CareerCenter\JobDescription.cshtml" />
+    <Content Include="Views\Other_Insurance\AddOtherInsurance.cshtml" />
+    <Content Include="Views\Other_Insurance\EditOtherInsurance.cshtml" />
+    <Content Include="Views\Other_Insurance\DeleteOtherInsurance.cshtml" />
+    <Content Include="Views\Other_Insurance\OtherInsuranceDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

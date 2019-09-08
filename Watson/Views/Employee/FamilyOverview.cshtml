@@ -16,6 +16,7 @@
 <body>
     <h4>Family Overview</h4>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
+    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
     <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
     <table class="table table-hover">
         <thead class="thead-dark">
@@ -53,8 +54,9 @@
                         <input type="text" id="EmpFirstName" class="form-control" name="FirstName" value="@Html.Raw(item.Employee.FirstName)" readonly />
                     </td>
                     <td>
-                        @Html.ActionLink("Edit Spouse", "EditSp", "Employee", new { Employee_id = item.FamilyMember_id }, null)  |
-                        @Html.ActionLink("Edit Dependent", "EditDep", "Employee", new { Employee_id = item.FamilyMember_id }, null)  |
+                        @Html.ActionLink("View Detail", "EditDep", "Employee", new { FamilyMember_id = item.FamilyMember_id }, null)  |
+                        @Html.ActionLink("Edit Spouse", "EditSp", "Employee", new { FamilyMember_id = item.FamilyMember_id }, null)  |
+                        @Html.ActionLink("Edit Dependent", "EditDep", "Employee", new { FamilyMember_id = item.FamilyMember_id }, null)  |
                     </td>
                 </tr>
             }
@@ -62,7 +64,7 @@
     </table>
     <div class="form-group">
         <p class="col-md-2">
-            <button id="FamilyEnrollmentUpdate" onclick="FamilyEnrollment()" class="btn">Add Family Member</button>
+            <button id="FamilyEnrollmentUpdate" onclick="FamilyEnrollment(@ViewBag.FamilyMember_id)" class="btn">Add Family Member</button>
         </p>
     </div>
     <p>
@@ -116,72 +118,17 @@
 <script>
     function FamilyInsurance() {
 
-        window.location.href = "/Employee/FamilyInsurance?Employee_id=@ViewBag.Employee_id"
+        window.location.href = "/Employee/FamilyInsurance?Employee_id=@ViewBag.Employee_id"; /* + "&FamilyMember_id="+ FamilyMember_id*/
         
     }
 
     function FamilyEnrollment() {
 
-        window.location.href = "/Employee/FamilyEnrollment?Employee_id=@ViewBag.Employee_id"
+        window.location.href = "/Employee/FamilyEnrollment?Employee_id=@ViewBag.Employee_id";
+        @*window.location.href = "/Employee/FamilyEnrollment?Employee_id=@ViewBag.Employee_id";*@ 
     }
+    /* + "&FamilyMember_id="+ FamilyMember_id*/;
 
-    //var Employee_id;
-
-    //document.addEventListener("DOMContentLoaded", function () {
-    //    Employee_id = document.getElementById("Employee_id").value;
-    //    RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
-    //    FirstName = document.getElementById("FirstName").value;
-    //    LastName = document.getElementById("LastName").value;
-    //    EmpNumber = document.getElementById("EmpNumber").value;
-    //    EmpFirstName = document.getElementById("EmpFirstName").value;
-        
-    //    var data = {
-    //        "Employee_id": Employee_id,
-    //        "RelationshipToInsured": RelationshipToInsured,
-    //        "FirstName": FirstName,
-    //        "LastName": LastName,
-    //        "EmpNumber": EmpNumber,
-    //        "EmpFirstName": EmpFirstName,
-    //    }
-
-    //    var ret = postData('GetFamilyMember', data)
-    //        .then(data => {
-    //            console.log(data);
-    //            FirstStep(data);
-    //        })
-    //        .catch(error => console.error(error))
-    //})
-
-    //function FirstStep(f) {
-    //    Employee_id = f.data;
-    //}
-
-
-    //function postData(url, data) {
-    //    //Default options are marked with *
-    //    console.log(data);
-    //    console.log(JSON.stringify(data));
-    //    return fetch(url, {
-    //        body: JSON.stringify(data), //must match 'Content-Type' header
-    //        cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-    //        credentials: 'same-origin', //include, same-origin, *omit
-    //        headers: {
-    //            'Accept': 'application/json',
-    //            'user-agent': 'Mozilla/4.0 MDN Example',
-    //            'content-type': 'application/json'
-    //        },
-    //        method: 'Post', //*GET, POST, PUT, DELETE, etc...
-    //        mode: 'same-origin', //no-cors, cors, *same-origin
-    //        redirect: 'follow', //manual, *follow, error
-    //        referrer: 'no-referrer', //*client, no-referrer
-    //    }).then(res => res.json())
-    //        .then(response => console.log('Success:', JSON.stringify(response)))
-    //        .catch(error => console.error('Error:', error));
-    //        //.then(Response => {
-    //        //    console.log(Response);
-    //        //    Response.json();
-    //        //}) //parses response to JSON
-    //}
 </script>
 
 

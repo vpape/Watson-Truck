@@ -18,8 +18,8 @@ namespace Watson.Controllers
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
 
-        private static List<Group_Health> grpHealth = new List<Group_Health>();
-        private static List<Employee> employee = new List<Employee>();
+        private static Group_Health grpHealth = new Group_Health();
+        private static Employee employee = new Employee();
         private static List<Family_Info> family = new List<Family_Info>();
         private static List<Other_Insurance> otherIns = new List<Other_Insurance>();
 
@@ -287,208 +287,20 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-
-        //public string GrpHealthEnrollment()
-        //{
-        //    return _employeeRepository.GetEmployee(1).FirstName;
-        //}
-
-
+            //show name of dependents, using foreach loop, include add insurance button where you can view and delete insurance
         public ActionResult GrpHealthEnrollment(int? Employee_id, int? FamilyMember_id, int? GroupHealthInsurance_id, int? OtherInsurance_id)
         {
             
-            List<GroupHealthGrpHEnrollmentVM> groupHGrpHEnrollmentVMList = new List<GroupHealthGrpHEnrollmentVM>();
+            GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
 
-            //var grphLista = (from Emp in db.Employees
-            //                from Fam in db.Family_Info
-            //                from GrpH in db.Group_Health
-            //                 join emp in db.Employees on Emp.Employee_id equals emp.Employee_id
-            //                 join fam in db.Family_Info on Fam.FamilyMember_id equals fam.Employee_id
-            //                 join grp in db.Group_Health on GrpH.GroupHealthInsurance_id equals grp.Employee_id
-            //                 select new {Emp.FirstName, Emp.LastName, Emp.MailingAddress, Emp.PObox, Emp.City, Emp.State, Emp.ZipCode, Emp.DateOfBirth, Emp.MaritalStatus,
-            //                 Emp.SSN, Emp.Gender, Emp.EmailAddress, Emp.PhoneNumber, Emp.CellPhone}).ToList();
+            groupHGrpHEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);   
+            groupHGrpHEnrollmentVM.family = db.Family_Info.Where(i=> i.FamilyMember_id == FamilyMember_id).ToList();
+            groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.GroupHealthInsurance_id == GroupHealthInsurance_id);
+            groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.OtherInsurance_id == OtherInsurance_id).ToList();
 
-            var grphLista = (from Emp in db.Employees
-                             .Where(i => i.Employee_id == Employee_id)
-                              //join emp in db.Employees on Emp.Employee_id equals emp.Employee_id
-                             select new
-                             {
-                                 Emp.Employee_id,
-                                 Emp.FirstName,
-                                 Emp.LastName,
-                                 Emp.MailingAddress,
-                                 Emp.PObox,
-                                 Emp.City,
-                                 Emp.State,
-                                 Emp.ZipCode,
-                                 Emp.DateOfBirth,
-                                 Emp.MaritalStatus,
-                                 Emp.SSN,
-                                 Emp.Gender,
-                                 Emp.EmailAddress,
-                                 Emp.PhoneNumber,
-                                 Emp.CellPhone,
-                                 Emp.Department,
-                                 Emp.EnrollmentType,
-                                 Emp.Payroll_id,
-                                 Emp.Class,
-                                 Emp.AnnualSalary,
-                                 Emp.JobTitle,
-                                 Emp.HireDate,
-                                 Emp.EffectiveDate,
-                                 Emp.HoursWorkedPerWeek,
-                             }).ToList();
+            return View(groupHGrpHEnrollmentVM);
 
-            var grphListb = (from Fam in db.Family_Info
-                             .Where(i=> i.FamilyMember_id == FamilyMember_id)
-                            //join fam in db.Family_Info on Fam.FamilyMember_id equals fam.Employee_id
-                            select new
-                            {
-                                Fam.FamilyMember_id,
-                                Fam.FirstName,
-                                Fam.LastName,
-                                Fam.MailingAddress,
-                                Fam.PObox,
-                                Fam.City,
-                                Fam.State,
-                                Fam.ZipCode,
-                                Fam.DateOfBirth,
-                                Fam.SSN,
-                                Fam.Gender,
-                                Fam.PhoneNumber,
-                                Fam.Employer,
-                                Fam.EmployerCity,
-                                Fam.EmployerState,
-                                Fam.EmployerZipCode,
-                                Fam.EmployerPhoneNumber,
-                                Fam.Other_Insurance,
-                                Fam.RelationshipToInsured,
-                                
-                            }).ToList();
-
-
-            var grphListc = (from GrpH in db.Group_Health
-                             from Ins in db.Other_Insurance
-                             join grp in db.Group_Health on GrpH.GroupHealthInsurance_id equals grp.Employee_id
-                             join ins in db.Other_Insurance on Ins.OtherInsurance_id equals ins.Employee_id
-                             select new
-                             {
-                                 GrpH.GroupHealthInsurance_id,
-                                 Ins.OtherInsurance_id,
-                                 GrpH.GroupName,
-                                 GrpH.IMSGroupNumber,
-                                 GrpH.NoMedicalPlan,
-                                 GrpH.EmployeeOnly,
-                                 GrpH.EmployeeAndDependent,
-                                 GrpH.EmployeeAndSpouse,
-                                 GrpH.EmployeeAndFamily,
-                                 GrpH.Myself,
-                                 GrpH.Spouse,
-                                 GrpH.Dependent,
-                                 GrpH.OtherCoverage,
-                                 GrpH.OtherReason,
-                                 GrpH.ReasonForGrpCoverageRefusal,
-                                 GrpH.EmployeeSignature,
-                                 GrpH.EmployeeSignatureDate,
-                                 Ins.InsuranceCarrier,
-                                 Ins.MailingAddress,
-                                 Ins.PObox,
-                                 Ins.City,
-                                 Ins.State,
-                                 Ins.ZipCode,
-                                 Ins.PolicyNumber,
-                                 Ins.PhoneNumber,
-                                 Ins.CoveredByOtherInsurance,
-                                 Ins.Medical,
-                                 Ins.Dental,
-                                 Ins.Vision,
-                                 Ins.Indemnity,
-                             }).ToList();
-
-
-            foreach (var item in grphLista)
-            {
-                GroupHealthGrpHEnrollmentVM grpHEmpVm = new GroupHealthGrpHEnrollmentVM();
-
-                grpHEmpVm.FirstName = item.FirstName;
-                grpHEmpVm.LastName = item.LastName;
-                grpHEmpVm.MailingAddress = item.MailingAddress;
-                grpHEmpVm.PObox = item.PObox;
-                grpHEmpVm.City = item.City;
-                grpHEmpVm.State = item.State;
-                grpHEmpVm.ZipCode = item.ZipCode;
-                grpHEmpVm.DateOfBirth = item.DateOfBirth;
-                grpHEmpVm.MaritalStatus = item.MaritalStatus;
-                grpHEmpVm.SSN = item.SSN;
-                grpHEmpVm.Gender = item.Gender;
-                grpHEmpVm.EmailAddress = item.EmailAddress;
-                grpHEmpVm.PhoneNumber = item.PhoneNumber;
-                grpHEmpVm.CellPhone = item.CellPhone;
-                grpHEmpVm.Department = item.Department;
-                grpHEmpVm.EnrollmentType = item.EnrollmentType;
-                grpHEmpVm.Payroll_id = item.Payroll_id;
-                grpHEmpVm.Class = item.Class;
-                grpHEmpVm.AnnualSalary = item.AnnualSalary;
-                grpHEmpVm.JobTitle = item.JobTitle;
-                grpHEmpVm.HireDate = item.HireDate;
-                grpHEmpVm.EffectiveDate = item.EffectiveDate;
-                grpHEmpVm.HoursWorkedPerWeek = item.HoursWorkedPerWeek;
-                grpHEmpVm.AnnualSalary = item.AnnualSalary;
-
-                groupHGrpHEnrollmentVMList.Add(grpHEmpVm);
-            }
-            foreach (var item in grphListb)
-            {
-                GroupHealthGrpHEnrollmentVM grpHFamVm = new GroupHealthGrpHEnrollmentVM();
-
-                grpHFamVm.FirstName = item.FirstName;
-                grpHFamVm.LastName = item.LastName;
-                grpHFamVm.MailingAddress = item.MailingAddress;
-                grpHFamVm.PObox = item.PObox;
-                grpHFamVm.City = item.City;
-                grpHFamVm.State = item.State;
-                grpHFamVm.ZipCode = item.ZipCode;
-                grpHFamVm.DateOfBirth = item.DateOfBirth;
-                grpHFamVm.SSN = item.SSN;
-                grpHFamVm.Gender = item.Gender;
-                grpHFamVm.PhoneNumber = item.PhoneNumber;
-                grpHFamVm.Employer = item.Employer;
-                grpHFamVm.EmployerCity = item.EmployerCity;
-                grpHFamVm.EmployerState = item.EmployerState;
-                grpHFamVm.EmployerZipCode = item.EmployerZipCode;
-                grpHFamVm.EmployerPhoneNumber = item.EmployerPhoneNumber;
-                grpHFamVm.RelationshipToInsured = item.RelationshipToInsured;
-
-                groupHGrpHEnrollmentVMList.Add(grpHFamVm);
-            }
-            foreach (var item in grphListc)
-            {
-                GroupHealthGrpHEnrollmentVM grpHOtherInsVm = new GroupHealthGrpHEnrollmentVM();
-
-                grpHOtherInsVm.InsuranceCarrier = item.InsuranceCarrier;
-                grpHOtherInsVm.MailingAddress = item.MailingAddress;
-                grpHOtherInsVm.PObox = item.PObox;
-                grpHOtherInsVm.City = item.City;
-                grpHOtherInsVm.State = item.State;
-                grpHOtherInsVm.ZipCode = item.ZipCode;
-                grpHOtherInsVm.PolicyNumber = item.PolicyNumber;
-                grpHOtherInsVm.PhoneNumber = item.PhoneNumber;
-                grpHOtherInsVm.CoveredByOtherInsurance = item.CoveredByOtherInsurance;
-                grpHOtherInsVm.Medical = item.Medical;
-                grpHOtherInsVm.Dental = item.Dental;
-                grpHOtherInsVm.Vision = item.Vision;
-                grpHOtherInsVm.Indemnity = item.Indemnity;
-
-                groupHGrpHEnrollmentVMList.Add(grpHOtherInsVm);
-            }
-         
-            return View(groupHGrpHEnrollmentVMList);
-
-
-
-            //Employee model = _employeeRepository.GetEmployee(1);
-
-            //return _employeeRepository.GetEmployee(1).FirstName
+            //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -515,8 +327,6 @@ namespace Watson.Controllers
         //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
 
         //}
-
-
 
         //Create-GrpHealthEnrollment
         public JsonResult GrpHealthEnrollmentNew(int GrpHealth_id, int Employee_id, int InsurancePlan_id, int FamilyMember_id,
