@@ -26,9 +26,32 @@ namespace Watson.Controllers
 
         }
 
-        public ActionResult AddOtherInsurance()
+        public ActionResult AddOtherInsurance(int Employee_id, int OtherInsurance_id, string RelationshipToInsured)
         {
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.OtherInsurance_id = OtherInsurance_id;
+            ViewBag.RelationshipToInsured = RelationshipToInsured;
+
             return View();
+        }
+
+        //Post:
+        public JsonResult OtherInsuranceNew(int Employee_id, int OtherInsurance_id, string RelationshipToInsured, string CoveredByOtherInsurance,
+            string InsuranceCarrier, string PolicyNumber, string InsPhoneNumber)
+        {
+            Other_Insurance other = new Other_Insurance();
+
+            other.CoveredByOtherInsurance = CoveredByOtherInsurance;
+            other.InsuranceCarrier = InsuranceCarrier;
+            other.PolicyNumber = PolicyNumber;
+            other.PhoneNumber = InsPhoneNumber;
+
+            int result = other.Employee_id;
+
+            db.Other_Insurance.Add(other);
+            db.SaveChanges();
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -37,12 +60,13 @@ namespace Watson.Controllers
             return View();
         }
 
-        //public JsonResult OtherInsuranceEditUpdate()
-        //{
-            
-        //}
+        //Post:
+        public ActionResult OtherInsuranceEditUpdate()
+        {
+            return View();
+        }
 
-        public ActionResult OtherInsuranceDetail()
+    public ActionResult OtherInsuranceDetail()
         {
             return View();
         }

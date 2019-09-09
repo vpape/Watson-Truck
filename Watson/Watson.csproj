@@ -481,7 +481,6 @@
     <Content Include="Views\Admin\EmpDepDetail.cshtml" />
     <Content Include="Views\Admin\DeleteDep.cshtml" />
     <Content Include="Views\Employee\EmpOverview.cshtml" />
-    <Content Include="Views\Employee\NewDependentEnrollment.cshtml" />
     <Content Include="Views\Employee\InsuranceOverview.cshtml" />
     <Content Include="Views\Admin\EmpGrpHealthEnrollment.cshtml" />
     <Content Include="Views\Group_Health\GrpHealthEnrollment.cshtml" />
@@ -500,6 +499,7 @@
     <Content Include="Views\Other_Insurance\DeleteOtherInsurance.cshtml" />
     <Content Include="Views\Other_Insurance\OtherInsuranceDetail.cshtml" />
     <Content Include="Views\Employee\DepDetail.cshtml" />
+    <Content Include="Views\Employee\AddDependent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

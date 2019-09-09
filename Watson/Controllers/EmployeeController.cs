@@ -123,25 +123,25 @@ namespace Watson.Controllers
                 {
                     db.SaveChanges();
 
-                    //if (e.MaritalStatus == "Married")
-                    //{
-                    //     RedirectToAction("SpEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
-                    //     RedirectToAction("SpEnrollment");
-                    //}
-                    //else if (e.MaritalStatus == "MarriedwDep")
-                    //{
-                    //     RedirectToAction("SpEnrollment", new { Employee_id = e.Employee_id, MaritalStatus = e.MaritalStatus });
-                    //     RedirectToAction("SpEnrollment", "Employee", new { Employee_id = e.Employee_id, MaritalStatus = e.MaritalStatus });
-                    //}
-                    //else if (e.MaritalStatus == "SinglewDep")
-                    //{
-                    //     RedirectToAction("SpEnrollment", "Employee");
-                    //     RedirectToAction("DepEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
-                    //}
-                    //else
-                    //{
-                    //     RedirectToAction("EnrollmentSelection", "Employee", new { e.Employee_id, e.MaritalStatus });
-                    //}
+                    if (e.MaritalStatus == "Married")
+                    {
+                        RedirectToAction("SpEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
+                        RedirectToAction("SpEnrollment");
+                    }
+                    else if (e.MaritalStatus == "MarriedwDep")
+                    {
+                        RedirectToAction("SpEnrollment", new { e.Employee_id, e.MaritalStatus });
+                        RedirectToAction("SpEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
+                    }
+                    else if (e.MaritalStatus == "SinglewDep")
+                    {
+                        RedirectToAction("SpEnrollment", "Employee");
+                        RedirectToAction("DepEnrollment", "Employee", new { e.Employee_id, e.MaritalStatus });
+                    }
+                    else
+                    {
+                        RedirectToAction("EnrollmentSelection", "Employee", new { e.Employee_id, e.MaritalStatus });
+                    }
                 }
 
                 catch (Exception emp)
@@ -322,7 +322,7 @@ namespace Watson.Controllers
             Employee e = db.Employees.Find(Employee_id);
 
             ViewBag.Employee_id = Employee_id;
-            ViewBag.MaritalStatus = e.MaritalStatus;
+            //ViewBag.MaritalStatus = e.MaritalStatus;
 
             //if (e.MaritalStatus == "Single")
             //{
@@ -442,6 +442,10 @@ namespace Watson.Controllers
 
             ViewBag.Employee_id = Employee_id;
 
+            Employee e = db.Employees.Find(Employee_id);
+            ViewBag.MaritalStatus = e.MaritalStatus;
+
+            e.MaritalStatus = MaritalStatus;
             sp.Employee_id = Employee_id;
             sp.Employer = Employer;
             sp.EmployerMailingAddress = EmployerAddress;
@@ -455,10 +459,10 @@ namespace Watson.Controllers
            
             int result = sp.FamilyMember_id;
 
-            //if (MaritalStatus == "MarriedwDep")
-            //{
-            //    return RedirectToAction("DepEnrollment", "Family_info", new { sp.Employee_id, sp.MaritalStatus });
-            //}
+            if (MaritalStatus == "MarriedwDep")
+            {
+                RedirectToAction("DepEnrollment", "Family_info", new { sp.Employee_id, e.MaritalStatus  });
+            }
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
@@ -639,12 +643,11 @@ namespace Watson.Controllers
         }
         //----------------------------------------------------------------------------------------
 
-        public ActionResult NewDependentEnrollment(string RelationshipToInsured)
+        public ActionResult AddDependent()
         {
-            ViewBag.RelationshipToInsured = RelationshipToInsured = "Dependent";
             return View();
         }
-
+        
         public ActionResult DepEnrollment(int? Employee_id, string RelationshipToInsured)
         {
             ViewBag.Employee_id = Employee_id;
@@ -691,6 +694,8 @@ namespace Watson.Controllers
             db.Family_Info.Add(dep);
            
             db.SaveChanges();
+
+            
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
