@@ -36,7 +36,7 @@ namespace Watson.Controllers
         }
 
         //Post:
-        public JsonResult OtherInsuranceNew(int Employee_id, int OtherInsurance_id, string RelationshipToInsured, string CoveredByOtherInsurance,
+        public JsonResult OtherInsuranceNew(int Employee_id, int OtherInsurance_id, string CoveredByOtherInsurance,
             string InsuranceCarrier, string PolicyNumber, string InsPhoneNumber)
         {
             Other_Insurance other = new Other_Insurance();

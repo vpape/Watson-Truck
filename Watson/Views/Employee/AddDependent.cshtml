@@ -192,7 +192,7 @@
             var depSubmit = document.getElementById("AddDep");
 
             var message;
-            var alert = confirm("Would you like to add other Dependents, If yes, click OK button to continue.")
+            var alert = confirm("Would you like to add Dependents, If yes, click OK button to continue.")
 
             if (depSubmit) {
                 if (alert == true) {
@@ -216,7 +216,7 @@
         var depSubmit = document.getElementById("DepInsEnrollmentUpdateStepTwo");
 
         var message;
-        var alert = confirm("Would you like to add other dependents? If yes, click the OK button to continue.")
+        var alert = confirm("Would you like to add Dependents? If yes, click the OK button to continue.")
 
         if (depSubmit.onclick) {
             if (alert == true) {
@@ -250,7 +250,7 @@
                 }
                 else {
 
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
                 }
 
             }
@@ -325,7 +325,7 @@
 
         document.querySelector("DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            CoveredByOtherInsurance = document.getElementsById("DepOtherIns").value
+            CoveredByOtherInsurance = document.getElementsById("CoveredByOtherInsurance").value
             InsuranceCarrier = document.getElementById("depInsCarrier").value
             PolicyNumber = document.getElementById("depInsPolicyNumber").value
             InsPhoneNumber = document.getElementById("depInsPhoneNumber").value

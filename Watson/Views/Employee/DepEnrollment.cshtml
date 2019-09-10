@@ -44,7 +44,7 @@
                 <div class="form-group">
                     <label for="SSN" class="col-md-2 control-label">SSN:</label>
                     <div class="col-md-10">
-                        <input type="text" id="DepSSN" class="form-control" placeholder="SSN" name="SSN" value="" />
+                        <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -77,7 +77,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-11">
-                        <input type="submit" id="DepEnrollmentUpdate" value="Save" onclick="DependentEnrollmentUpdate()" class="btn" />
+                        <input type="submit" id="DepEnrollmentUpdate" value="Save" @*onclick="DependentEnrollmentUpdate()"*@ class="btn" />
                         @*<button type="submit" id="DepEnrollmentUpdate" onclick="DependentEnrollmentUpdate()" class="btn">Save</button>*@
                     </div>
                 </div>
@@ -109,19 +109,11 @@
             <div class="form-group">
                 <div class="col-md-offset-10">
                     <button type="submit" id="DepInsEnrollmentUpdateStepTwo" class="btn">Save</button>
-                    <button type="submit" @*onclick="addInputSelection()"*@ onclick="AddDependent()" id="addDep" class="btn">Add Dependent</button>
+                    <button type="submit" onclick="AddDependent()" id="addDep" class="btn">Add Dependent</button>
                     @*<button type="submit" id="DepEnrollmentUpdate" onclick="DependentEnrollmentUpdate()" class="btn">Save</button>*@
-
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-4">
-                    @*<button type="submit" onclick="AddInsurance()" id="addIns" class="btn">Add Insurance</button>*@
-                    
                 </div>
             </div>
         </div>
-       
     </div>
     @*<p>
             @Html.ActionLink("Back to Family Overview", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
@@ -145,9 +137,9 @@
         font-size: 15px;
     }
 
-    .active, .collapsible:hover {
-        background-color: #555;
-    }
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
 
     .content {
         padding: 0 18px;
@@ -255,16 +247,16 @@
 </head>
 <body>
     @*<form id="dependentSelectForm" action="\Home\DependentPoster" method="post">
-        <input type="text" name="fname1" id="fname1" />
-        <input type="text" name="lname1" id="lname1" />
-        <input type="date" name="dob1" id="dob1" />
+            <input type="text" name="fname1" id="fname1" />
+            <input type="text" name="lname1" id="lname1" />
+            <input type="date" name="dob1" id="dob1" />
 
-        <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
-        <br id="br1" />
+            <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
+            <br id="br1" />
 
-        <input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
-        <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">
-    </form>*@
+            <input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
+            <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">
+        </form>*@
 </body>
 </html>
 
@@ -313,8 +305,8 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#DepEnrollmentUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            RelationshipToInsured = document.getElementById("RelationToInsured").value
-            DepSSN = document.getElementById("DepSSN").value
+            RelationshipToInsured = document.getElementById("RelationshipToInsured").value
+            SSN = document.getElementById("SSN").value
             DepFirstName = document.getElementById("DepFirstName").value
             DepLastName = document.getElementById("DepLastName").value
             DateOfBirth = document.getElementById("DateOfBirth").value
@@ -322,20 +314,19 @@
 
             var data = {
                 "Employee_id": Employee_id,
-                "FamilyMember_id": FamilyMember_id,
                 "RelationshipToInsured": RelationshipToInsured,
-                "DepSSN": DepSSN,
+                "SSN": SSN,
                 "DepFirstName": DepFirstName,
                 "DepLastName": DepLastName,
                 "DateOfBirth": DateOfBirth,
                 "Gender": Gender,
+
             }
 
             //var ret = postData('DepEnrollmentNew', data)
-            //    .then(data => {
-            //        console.log(data);
-            //        FirstStep(data);
-            //    })
+            //    .then(data => { console.log(data);
+            //                  FirstStep(data);
+            //                  })
             //    .catch(error => console.error(error))
 
             fetch('DepEnrollmentNew', {
@@ -352,29 +343,28 @@
                 redirect: 'follow', //manual, *follow, error
                 referrer: 'no-referrer', //*client, no-referrer
             }).then(res => res.json())
-                //.then(response => console.log('Success:', JSON.stringify(response)))
+                //.then(res => res.text())
+                //.then(text => console.log(text))
                 .then(response => FirstStep(response))
                 .catch(error => console.error('Error:', error));
-
         })
 
-        document.querySelector("DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            Employee_id = document.getElementById("Employee_id").value;
-            CoveredByOtherInsurance = document.getElementsById("DepOtherIns").value
+        document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
+            CoveredByOtherInsurance = document.getElementsById("CoveredByOtherInsurance").value
             InsuranceCarrier = document.getElementById("depInsCarrier").value
             PolicyNumber = document.getElementById("depInsPolicyNumber").value
-            InsPhoneNumber = document.getElementById("depInsPhoneNumber").value      
+            InsPhoneNumber = document.getElementById("depInsPhoneNumber").value 
 
             var data = {
-                "Employee_id": Employee_id,
                 "FamilyMember_id": FamilyMember_id,
+                "Employee_id": Employee_id,
                 "RelationshipToInsured": RelationshipToInsured,
                 "CoveredByOtherInsurance": CoveredByOtherInsurance,
                 "InsuranceCarrier": InsuranceCarrier,
                 "PolicyNumber": PolicyNumber,
                 "InsPhoneNumber": InsPhoneNumber,
             }
-          
+
             //var ret = postData('OtherInsuranceNew', data)
             //    .then(data => {
             //        console.log(data);
@@ -398,16 +388,17 @@
             }).then(res => res.json())
                 .then(response => SecondStep(response))
                 .catch(error => console.error('Error:', error));
-        })      
+        })
     })
 
     function FirstStep(dep) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
         console.log(dep);
         FamilyMember_id = dep.data;
     }
 
-    function SecondStep() {
+    function SecondStep(dep) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
     }
@@ -438,7 +429,5 @@
         //}) //parses response to JSON
     }
 </script>
-
-
 
 

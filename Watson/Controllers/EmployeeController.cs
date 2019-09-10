@@ -352,13 +352,15 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //SpEnrollment Method
-        public ActionResult SpEnrollment(int? Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured)
+        public ActionResult SpEnrollment(int Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured)
         {
             ViewBag.Employee_id = Employee_id;
             ViewBag.FamilyMember_id = FamilyMember_id;
-            ViewBag.MaritalStatus = MaritalStatus;
             ViewBag.RelationshipToInsured = RelationshipToInsured = "Spouse";
 
+            Employee e = db.Employees.Find(Employee_id);
+            ViewBag.MaritalStatus = e.MaritalStatus;
+            
             return View();
         }
 
@@ -432,7 +434,7 @@ namespace Watson.Controllers
         }
 
         //Create-SpouseEmployment
-        public JsonResult SpEnrollmentEmployment(int? FamilyMember_id, int Employee_id, string MaritalStatus, string Employer, string EmployerAddress,
+        public JsonResult SpEnrollmentEmployment(int? FamilyMember_id, int Employee_id, string Employer, string EmployerAddress,
             string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
         {
             
@@ -441,11 +443,7 @@ namespace Watson.Controllers
                       select fi).SingleOrDefault();
 
             ViewBag.Employee_id = Employee_id;
-
-            Employee e = db.Employees.Find(Employee_id);
-            ViewBag.MaritalStatus = e.MaritalStatus;
-
-            e.MaritalStatus = MaritalStatus;
+            
             sp.Employee_id = Employee_id;
             sp.Employer = Employer;
             sp.EmployerMailingAddress = EmployerAddress;
@@ -459,10 +457,11 @@ namespace Watson.Controllers
            
             int result = sp.FamilyMember_id;
 
-            if (MaritalStatus == "MarriedwDep")
-            {
-                RedirectToAction("DepEnrollment", "Family_info", new { sp.Employee_id, e.MaritalStatus  });
-            }
+            //redirection is not working
+            //if (MaritalStatus == "MarriedwDep")
+            //{
+            //    RedirectToAction("DepEnrollment", "Family_info", new { sp.Employee_id, e.MaritalStatus  });
+            //}
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
@@ -470,8 +469,11 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //EditSp Method
-        public ActionResult EditSp(int? FamilyMember_id)
+        public ActionResult EditSp(int? FamilyMember_id, int Employee_id, string MaritalStatus)
         {
+            Employee e = db.Employees.Find(Employee_id);
+            ViewBag.MaritalStatus = e.MaritalStatus;
+
             if (FamilyMember_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -575,7 +577,7 @@ namespace Watson.Controllers
         //Get-SpDetail
         public ActionResult SpDetail(int? Employee_id, int? FamilyMember_id, string MaritalStatus)
         {
-            ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
+            //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
 
             if (FamilyMember_id == null)
             {
@@ -648,16 +650,17 @@ namespace Watson.Controllers
             return View();
         }
         
-        public ActionResult DepEnrollment(int? Employee_id, string RelationshipToInsured)
+        public ActionResult DepEnrollment(int Employee_id, int? FamilyMember_id, string RelationshipToInsured)
         {
             ViewBag.Employee_id = Employee_id;
+            ViewBag.FamilyMember_id = FamilyMember_id;
             ViewBag.RelationshipToInsured = RelationshipToInsured = "Dependent";
 
             return View();
         }
 
         //Create-DepEnrollment
-        public JsonResult DepEnrollmentNew(int Employee_id, string RelationshipToInsured, string SSN,
+        public JsonResult DepEnrollmentNew(int Employee_id, int FamilyMember_id, string RelationshipToInsured, string SSN,
             string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender, string EmpNumber)
         {
             Family_Info dep = new Family_Info();
