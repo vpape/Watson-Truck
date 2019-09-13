@@ -13,10 +13,9 @@
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
-    @*<input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
-        <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value="@ViewBag.GroupHealthInsurance_id" />
-        <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
-            <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />*@
+    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
+    <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value="@ViewBag.GroupHealthInsurance_id" />
+    <input type="hidden" id="OtherInsurance_id" class="form-control" name="OtherInsurance_id" value="@ViewBag.OtherInsurance_id" />
     <p></p>
     <p><embed id="2019InsCost" src="/App_Files/pdfFiles/2019-Insurance-Cost.pdf" type="application/pdf" style="width:100%; height:1122px;" frameborder="0" /></p>
     <p><embed id="2019Dental&VisionBenefits" src="/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf" type="application/pdf" style="width:100%; height:1000px; transform:rotate()" frameborder="0" /></p>
@@ -663,6 +662,11 @@
                 <div>
                     <input type="number" class="form-control" name="HoursWorkedPerWeek" id="empHrsWrkPerWk" placeholder="Min. Hrs. Worked/Wk" value="" />
                 </div>
+                <div class="form-group">
+                    <div class="col-md-offset-9">
+                        <button type="submit" id="EmploymentInfoUpdate" class="btn">Save</button>
+                    </div>
+                </div>
             </div>
 
             <div id="empInfo">
@@ -676,13 +680,14 @@
                     <input type="text" class="form-control" placeholder="Last Name" id="LastName" name="LastName" value="@Html.DisplayFor(Model => Model.employee.LastName)" disabled />
                 </div>
                 <div>
-                    <select id="MaritalStatus" class="form-control" disabled>
-                        <option value="@Html.DisplayFor(Model => Model.employee.MaritalStatus)">Marital Status:</option>
-                        @*<option value="MarriedwDep" @((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")>Married with Dependents</option>*@
-                        @*<option value="Married" @((ViewBag.MaritalStatus) == "Married"     ? "selected": "")>Married</option>*@
-                        @*<option value="SinglewDep" @((ViewBag.MaritalStatus) == "SinglewDep"  ? "selected": "")>Single with Dependents</option>*@
-                        @*<option value="Single" @((ViewBag.MaritalStatus) == "Single"      ? "selected": "")>Single</option>*@
-                    </select>
+                    <input type="text" id="MaritalStatus" class="form-control" placeholder="" name="MaritalStatus" value="@Html.DisplayFor(model => model.employee.MaritalStatus)" disabled />
+                    @*<select id="MaritalStatus" class="form-control" disabled>*@
+                    @*<option value="@Html.DisplayFor(Model => Model.employee.MaritalStatus)">Marital Status:</option>*@
+                    @*<option value="MarriedwDep" @((ViewBag.MaritalStatus) == "MarriedwDep" ? "selected": "")>Married with Dependents</option>*@
+                    @*<option value="Married" @((ViewBag.MaritalStatus) == "Married"     ? "selected": "")>Married</option>*@
+                    @*<option value="SinglewDep" @((ViewBag.MaritalStatus) == "SinglewDep"  ? "selected": "")>Single with Dependents</option>*@
+                    @*<option value="Single" @((ViewBag.MaritalStatus) == "Single"      ? "selected": "")>Single</option>*@
+                    @*</select>*@
                 </div>
                 <p></p>
                 <div class="form-group col-md-6">
@@ -694,11 +699,12 @@
                     <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.DisplayFor(model => model.employee.ZipCode)" disabled />
                 </div>
                 <div>
-                    <select id="Gender" class="form-control" disabled>
-                        <option value="">Gender:</option>
-                        @*<option value="Male"   @((ViewBag.Employee.Gender) == "Male"   ? "selected" : "")>Male</option>
-                    <option value="Female" @((ViewBag.Employee.Gender) == "Female" ? "selected" : "")>Female</option>*@
-                    </select>
+                    <input type="text" id="Gender" class="form-control" placeholder="" name="Gender" value="@Html.DisplayFor(model => model.employee.Gender)" disabled />
+                    @*<select id="Gender" class="form-control" disabled>*@
+                    @*<option value="">Gender:</option>*@
+                    @*<option value="Male"   @((ViewBag.Employee.Gender) == "Male"   ? "selected" : "")>Male</option>*@
+                    @*<option value="Female" @((ViewBag.Employee.Gender) == "Female" ? "selected" : "")>Female</option>*@
+                    @*</select>*@
                 </div>
                 <p></p>
                 <div>
@@ -711,27 +717,25 @@
                 <p></p>
                 <div>
                     <label>Birth Date:</label>
-                    <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="@Html.DisplayFor(Model => Model.employee.DateOfBirth)" disabled />
+                    <input type="text" class="form-control" id="DateOfBirth" name="DateOfBirth" value="@Convert.ToDateTime(Model.employee.DateOfBirth).ToString("MM/dd/yyyy")" disabled />
                 </div>
             </div>
-
-
             <hr />
             <div>
                 <div class="form-control">
                     <label>Are you covered by any other insurance, including Medicare?</label>
-                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="true" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="false" />No</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="true" disabled />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="false" disabled/>No</label>
                 </div>
-                <div id="empInsInfo">
+                <div id="empInsInfo"disabled>
                     <div class="form-group col-md-3">
-                        <input type="text" id="empInsCarrier" class="form-control" placeholder="Insurance Company" name="InsuranceCarrier" value="" />
+                        <input type="text" id="empInsCarrier" class="form-control" placeholder="Insurance Company" name="InsuranceCarrier" value="" disabled/>
                     </div>
                     <div class="form-group col-md-3">
-                        <input type="text" id="empInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                        <input type="text" id="empInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" disabled/>
                     </div>
                     <div class="form-group col-md-3">
-                        <input type="tel" id="empInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                        <input type="tel" id="empInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" disabled/>
                     </div>
                 </div>
             </div>
@@ -796,177 +800,177 @@
                     </tr>
                 </table>
             </div>
-        
-            @*@foreach (var familyMember in Model.family)
-            {*@
             <div class="form-group col-md-12">
-                <div id="spGenInfo" class="floatLeft">
-                    <table class="table-bordered">
-                        <thead class="thead-dark">
+                @foreach (var sp in Model.family)
+                {
+                    <div id="spGenInfo" class="floatLeft">
+                        <table class="table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th colspan="2">Spouse's Information</th>
+                                </tr>
+                            </thead>
                             <tr>
-                                <th colspan="2">Spouse's Information</th>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spFirstName" placeholder="First Name" value="@Html.Raw(sp.LastName)" disabled />
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spLastName" placeholder="Last Name" value="@Html.Raw(sp.LastName)" disabled />
+                                </td>
                             </tr>
-                        </thead>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spFirstName" placeholder="First Name" value="" disabled />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spLastName" placeholder="Last Name" value="" disabled />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spAddress" placeholder="Street" value="" disabled />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spCity" placeholder="City" value="" disabled />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spState" placeholder="State" value="" disabled />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spZipCode" placeholder="Zip Code" value="" disabled />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="tel" class="form-control" id="spPhoneNumber" placeholder="Phone Number" value="" disabled />
-                            </td>
-                            <td class="text">
-                                <input type="date" class="form-control" id="spDateOfBirth" placeholder="Birth Date" value="" disabled />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text" colspan="1">
-                                <select id="spGender" class="form-control" disabled>
-                                    <option>Gender:</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                            </td>
-                            <td class="text" colspan="1">
-                                <input type="text" class="form-control" placeholder="SSN#- Call HR" id="spSSN" name="SSN" value="" disabled />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div id="spEmploymentInfo" class="floatCenter">
-                    <table class="table-bordered" border="1">
-                        <thead class="thead-dark">
                             <tr>
-                                <th colspan="2">Spouse's Employer</th>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spAddress" placeholder="Street" value="@Html.Raw(sp.MailingAddress)" disabled />
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spCity" placeholder="City" value="@Html.Raw(sp.City)" disabled />
+                                </td>
                             </tr>
-                        </thead>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spEmployer" placeholder="Employer" value="" disabled />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="" placeholder="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spEmployerAddress" placeholder="Street" value="" disabled />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spEmployerCity" placeholder="City" value="" disabled />
-                            </td>
-                        </tr>
-                        <tr></tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spEmployerState" placeholder="State" value="" disabled />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spEmployerZipCode" placeholder="Zip Code" value="" disabled />
-                            </td>
-                        </tr>
-                        <tr></tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spEmployerPhoneNumber" placeholder="Phone Number" value="" disabled />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="" placeholder="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <select id="spOtherInsCoverage" class="form-control">
-                                    <option>Other Ins. Coverage:</option>
-                                    <option value="Medical">Medical</option>
-                                    <option value="Dental">Dental</option>
-                                    <option value="Vision">Vision</option>
-                                    <option value="Indemnity">Indemnity</option>
-                                </select>
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="" placeholder="" />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div id="spInsInfo" class="floatRight">
-                    <table class="table-bordered" border="1">
-                        <thead class="thead-dark">
                             <tr>
-                                <th colspan="2">Spouse's Insurance</th>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spState" placeholder="State" value="@Html.Raw(sp.State)" disabled />
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spZipCode" placeholder="Zip Code" value="@Html.Raw(sp.ZipCode)" disabled />
+                                </td>
                             </tr>
-                        </thead>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spInsCarrier" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="" placeholder="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spInsMailingAddress" placeholder="Street" name="MailingAddress" value="" />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spInsCity" placeholder="City" name="City" value="" />
-                            </td>
-                        </tr>
-                        <tr></tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spInsState" placeholder="State" name="State" value="" />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spInsZipCode" placeholder="Zip Code" name="ZipCode" value="" />
-                            </td>
-                        </tr>
-                        <tr></tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spInsPhoneNumber" placeholder="Phone Number" name="PhoneNumber" value="" />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="" placeholder="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text">
-                                <input type="text" class="form-control" id="spInsPolicyNumber" placeholder="Policy #" name="PolicyNumber" value="" />
-                            </td>
-                            <td class="text">
-                                <input type="text" class="form-control" id="" placeholder="" />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            @*}*@
-            <hr />
-            <div>
-                @*@foreach (var familyMember in Model.family)
+                            <tr>
+                                <td class="text">
+                                    <input type="tel" class="form-control" id="spPhoneNumber" placeholder="Phone Number" value="@Html.Raw(sp.PhoneNumber)" disabled />
+                                </td>
+                                <td class="text">
+                                    <input type="date" class="form-control" id="spDateOfBirth" placeholder="Birth Date" value="@Html.Raw(sp.DateOfBirth)" disabled />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text" colspan="1">
+                                    <input type="text" class="form-control" placeholder="" id="spGender" name="Gender" value="@Html.Raw(sp.Gender)" disabled />
+                                </td>
+                                <td class="text" colspan="1">
+                                    <input type="text" class="form-control" placeholder="SSN#- Call HR" id="spSSN" name="SSN" value="@Html.Raw(sp.SSN)" disabled />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="spEmploymentInfo" class="floatCenter">
+                        <table class="table-bordered" border="1">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th colspan="2">Spouse's Employer</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spEmployer" placeholder="Employer" value="@Html.Raw(sp.Employer)" disabled />
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="" placeholder="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spEmployerAddress" placeholder="Street" value="@Html.Raw(sp.EmployerMailingAddress)" disabled />
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spEmployerCity" placeholder="City" value="@Html.Raw(sp.EmployerCity)" disabled />
+                                </td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spEmployerState" placeholder="State" value="@Html.Raw(sp.EmployerState)" disabled />
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spEmployerZipCode" placeholder="Zip Code" value="@Html.Raw(sp.EmployerZipCode)" disabled />
+                                </td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spEmployerPhoneNumber" placeholder="Phone Number" value="@Html.Raw(sp.MailingAddress)" disabled />
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="" placeholder="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    @*<input type="text" class="form-control" id="" placeholder="" value=""/>*@
+                                    <select id="spOtherInsCoverage" class="form-control">
+                                        <option>Other Ins. Coverage:</option>
+                                        <option value="Medical">Medical</option>
+                                        <option value="Dental">Dental</option>
+                                        <option value="Vision">Vision</option>
+                                        <option value="Indemnity">Indemnity</option>
+                                    </select>
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="" placeholder="" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+                @*@foreach (var spOtherIns in Model.otherIns)
                 {*@
+                    <div id="spInsInfo" class="floatRight">
+                        <table class="table-bordered" border="1">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th colspan="2">Spouse's Insurance</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spInsCarrier" placeholder="Insurance Carrier" name="InsuranceCarrier" @*value="@Html.Raw(spOtherIns.InsuranceCarrier)"*@ />
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="" placeholder="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spInsMailingAddress" placeholder="Street" name="MailingAddress" @*value="@Html.Raw(spOtherIns.MailingAddress)"*@ />
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spInsCity" placeholder="City" name="City" @*value="@Html.Raw(spOtherIns.City)"*@ />
+                                </td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spInsState" placeholder="State" name="State" @*value="@Html.Raw(spOtherIns.State)"*@ />
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spInsZipCode" placeholder="Zip Code" name="ZipCode" @*value="@Html.Raw(spOtherIns.ZipCode)"*@ />
+                                </td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spInsPhoneNumber" placeholder="Phone Number" name="PhoneNumber" @*value="@Html.Raw(spOtherIns.PhoneNumber)"*@ />
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="" placeholder="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="spInsPolicyNumber" placeholder="Policy #" name="PolicyNumber" @*value="@Html.Raw(spOtherIns.PolicyNumber)"*@ />
+                                </td>
+                                <td class="text">
+                                    <input type="text" class="form-control" id="" placeholder="" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                @*}*@
+            </div>
+
+            
+            <div>
+                @*@foreach (var familyMember in Model.family){*@
+
                 <form id="depGen&InsInfo" method="post" action="#" class="repeatingSection" enctype="multipart/form-data">
                     <div id="depGenInfo">
                         <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
@@ -999,32 +1003,32 @@
                         </div>
                     </div>
                     <div id="DepOtherIns">
-                        <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                        <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="showHideDepOtherInsCoverage()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
-                        <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="showHideDepOtherInsCoverage()" name="CoveredByOtherInsurance" value="no" />No</label>
+                        <label><u>Dependent Insurance Information</u></label>
                         <div id="depInsInfo">
                             <div class="form-group col-md-2">
-                                <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
+                                <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" disabled />
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                                <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" disabled />
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                                <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" disabled />
                             </div>
                         </div>
                     </div>
+
                     <p></p>
                     <div class="form-group">
                         <div class="col-md-11">
-                            <input type="submit" onclick="AddInsurance()" id="addDep" value="Add Insurance" class="btn">
+                            @Html.ActionLink("Add Dependent", "AddDependent", "Employee", new { FamilyMember_id = @ViewBag.FamilyMember_id }, null)|
+                            @Html.ActionLink("Edit Insurance", "EditOtherInsurance", "Other_Insurance", new { FamilyMember_id = @ViewBag.FamilyMember_id }, null)
                         </div>
                     </div>
-                    @*@Html.ActionLink("Add Insurance", "Other_Insurance", "Other_Insurance", new { FamilyMember_id = familyMember.FamilyMember_id }, null)|*@
+
                 </form>
+                <hr />
             </div>
-                @*}*@
-            @* retrieve dep info from DepEnrollment page *@
+            @*}*@
             <hr />
             <div class="text-justify">
                 <label style="padding-left: 10px;"></label>
@@ -1066,8 +1070,8 @@
                                 <label for="cb-Service Writer">Child(ren)</label>
                             </div>
                             @*<label class="radio-inline"><input type="radio" id="Myself" class="radio-inline" onclick="return RefusalOfGrpHealthCoverage()" name="Myself" value="Myself" />Myself</label>
-            <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" name="Spouse" value="Spouse" />Spouse</label>
-            <label class="radio-inline"><input type="radio" id="Dependent" class="radio-inline" name="Dependent" value="Child(ren)" />Child(ren)</label>*@
+                                <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" name="Spouse" value="Spouse" />Spouse</label>
+                                <label class="radio-inline"><input type="radio" id="Dependent" class="radio-inline" name="Dependent" value="Child(ren)" />Child(ren)</label>*@
                             <p></p>
                         </div>
                     </form>
@@ -1269,10 +1273,6 @@
         })
     }
 
-    //add a forloop, adding up to 8 dependents; i=8 
-    //    document.querySelectorAll("depOtherInsCoverage");
-    //    document.querySelector("depInsInfo")
-    //    document.querySelector("depInsInfo")
     function showHideDepOtherInsCoverage() {
         document.addEventListener("click", function () {
             var selection = document.getElementById("depOtherInsCoverage");
@@ -1307,6 +1307,79 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#EmploymentInfoUpdate").addEventListener("click", function () {
+            GroupName = document.getElementById("GroupName").value;
+            IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
+            empDepartment = document.getElementById("empDepartment").value;
+            empEnrollmentType = document.getElementById("empEnrollmentType").value;
+            empPayroll_id = document.getElementById("empPayroll_id").value;
+            empClass = document.getElementById("empClass").value;
+            empAnnualSalary = document.getElementById("empAnnualSalary").value;
+            empJobTitle = document.getElementById("empJobTitle").value;
+            empHireDate = document.getElementById("empHireDate").value;
+            empEffectiveDate = document.getElementById("empEffectiveDate").value;
+            empHrsWrkPerWk = document.getElementById("empHrsWrkPerWk").value;
+
+            var data = {
+                "GroupName": GroupName,
+                "IMSGroupNumber": IMSGroupNumber,
+            }
+            fetch('GrpHealthEnrollmentNew', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => ThirdStep(response))
+                .catch(error => console.error('Error:', error));
+
+            var data = {
+               
+                "empDepartment": empDepartment,
+                "empEnrollmentType": empEnrollmentType,
+                "empPayroll_id": empPayroll_id,
+                "empClass": empClass,
+                "empAnnualSalary": empAnnualSalary,
+                "empJobTitle": empJobTitle,
+                "empHireDate": empHireDate,
+                "empEffectiveDate": empEffectiveDate,
+                "empHrsWrkPerWk": empHrsWrkPerWk,
+     
+            }
+
+            //var ret = postData('EmployeeEnrollmentNew', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        FirstStep(data); })
+            //    .catch(error => console.error(error))
+
+            fetch('EmployeeEnrollmentNew', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => ThirdStep(response))
+                .catch(error => console.error('Error:', error));
+        })
+
+
         document.querySelector("#GrpHealthInsUpdateStepThree").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
             GroupName = document.getElementById("GroupName").value;
@@ -1320,9 +1393,9 @@
             empHireDate = document.getElementById("empHireDate").value;
             empEffectiveDate = document.getElementById("empEffectiveDate").value;
             empHrsWrkPerWk = document.getElementById("empHrsWrkPerWk").value;
-            empOtherInsCoverage = document.getElementById("empCoveredByOtherIns").value;
-            empInsuranceCarrier = document.getElementById("empInsCarrier").value;
-            empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value;
+            //empOtherInsCoverage = document.getElementById("empCoveredByOtherIns").value;
+            //empInsuranceCarrier = document.getElementById("empInsCarrier").value;
+            //empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value;
             empInsPhoneNumber = document.getElementById("empInsPhoneNumber").value;
             empSignature1 = document.getElementById("empSignature1").value;
             empSignatureDate1 = document.getElementById("empSignatureDate1").value;
@@ -1370,13 +1443,13 @@
             depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value;
             depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value;
 
-            data = {
+           var  data = {
                 "GrpHealth_id": GrpHealth_id,
                 "Employee_id": Employee_id,
                 "FamilyMember_id": FamilyMember_id,
                 "OtherInsurance_id": OtherInsurance_id,
-                "GroupName": GroupName,
-                "IMSGroupNumber": IMSGroupNumber,
+                //"GroupName": GroupName,
+                //"IMSGroupNumber": IMSGroupNumber,
                 "empDepartment": empDepartment,
                 "empEnrollmentType": empEnrollmentType,
                 "empPayroll_id": empPayroll_id,
@@ -1384,10 +1457,10 @@
                 "empAnnualSalary": empAnnualSalary,
                 "empEffectiveDate": empEffectiveDate,
                 "empHrsWrkPerWk": empHrsWrkPerWk,
-                "empOtherInsCoverage": empOtherInsCoverage,
-                "empInsCarrier": empInsCarrier,
-                "empInsPolicyNumber": empInsPolicyNumber,
-                "empInsPhoneNumber": empInsPhoneNumber,
+                //"empOtherInsCoverage": empOtherInsCoverage,
+                //"empInsCarrier": empInsCarrier,
+                //"empInsPolicyNumber": empInsPolicyNumber,
+                //"empInsPhoneNumber": empInsPhoneNumber,
                 "NoneGroupHealthOption": NoneGroupHealthOption,
                 "empOnlyGroupHealthOption": empOnlyGroupHealthOption,
                 "empSpGroupHealthOption": empSpGroupHealthOption,
@@ -1413,25 +1486,25 @@
                 "DateOfBirth": DateOfBirth,
 
                 "spOtherInsCoverage": spOtherInsCoverage,
-                "spInsCarrier": spInsCarrier,
-                "spInsMailingAddress": spInsMailingAddress,
-                "spInsCity": spInsCity,
-                "spInsState": spInsState,
-                "spInsZipCode": spInsZipCode,
-                "spInsPhoneNumber": spInsPhoneNumber,
-                "spInsPolicyNumber": spInsPolicyNumber,
+                //"spInsCarrier": spInsCarrier,
+                //"spInsMailingAddress": spInsMailingAddress,
+                //"spInsCity": spInsCity,
+                //"spInsState": spInsState,
+                //"spInsZipCode": spInsZipCode,
+                //"spInsPhoneNumber": spInsPhoneNumber,
+                //"spInsPolicyNumber": spInsPolicyNumber,
 
-                "depFirstName": depFirstName,
-                "depLastName": depLastName,
-                "depSSN": depSSN,
-                "depRelationToInsured": depRelationToInsured,
-                "depDateOfBirth": depDateOfBirth,
-                "depGender": depGender,
+                //"depFirstName": depFirstName,
+                //"depLastName": depLastName,
+                //"depSSN": depSSN,
+                //"depRelationToInsured": depRelationToInsured,
+                //"depDateOfBirth": depDateOfBirth,
+                //"depGender": depGender,
 
-                "depOtherInsCoverage": depOtherInsCoverage,
-                "depInsCarrier": depInsCarrier,
-                "depInsPolicyNumber": depInsPolicyNumber,
-                "depInsPhoneNumber": depInsPhoneNumber,
+                //"depOtherInsCoverage": depOtherInsCoverage,
+                //"depInsCarrier": depInsCarrier,
+                //"depInsPolicyNumber": depInsPolicyNumber,
+                //"depInsPhoneNumber": depInsPhoneNumber,
             }
 
             //var ret = postData('/GrpHealthInsurance/GrpHealthEnrollmentNew', data)

@@ -30,17 +30,17 @@
                     <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
                 </div>
                 @*<div class="col-md-10 col-md-offset-2">
-                <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                    @if (ViewBag.spouseExist == false)
-                    {
-                        <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                    }
-                    else
-                    {
-                        <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                    }
-                </select>
-            </div>*@
+                        <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                            @if (ViewBag.spouseExist == false)
+                            {
+                                <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                            }
+                            else
+                            {
+                                <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                            }
+                        </select>
+                    </div>*@
             </div>
             <div class="form-group">
                 <label for="MaritalStatus" class="col-md-2 control-label">Marital Status:</label>
@@ -197,10 +197,55 @@
             </div>
         </div>
     </div>
+    @* Spouse Insurance *@
+    <div class="form-horizontal">
+        <hr />
+        <div class="collapsible" id="FourthStep">Spouse Insurance</div>
+        <div class="content">
+            <p></p>
+            <p></p>
+            <div id="divSpInsurance">
+                <div class="form-group">
+                    <label for="Employer" class="col-md-2 control-label">Spouse Insurance:</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="spInsCarrier" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
+                    </div>
+                </div>
+                <div id="divInsAddress">
+                    <div class="form-group">
+                        <label for="InsAddress" class="col-md-2 control-label">Insurance Address:</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="spInsMailingAddress" placeholder="Street" name="MailingAddress" value="" />
+                            <input type="text" class="form-control" id="spInsCity" placeholder="City" name="City" value="" />
+                            <input type="text" class="form-control" id="spInsState" placeholder="State" name="State" value="" />
+                            <input type="text" class="form-control" id="spInsZipCode" placeholder="Zip Code" name="ZipCode" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="InsPhoneNumber" class="col-md-2 control-label">Insurance Number:</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="spInsPhoneNumber" placeholder="Phone Number" name="PhoneNumber" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="PolicyNumber" class="col-md-2 control-label">Policy Number:</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="spInsPolicyNumber" placeholder="Policy #" name="PolicyNumber" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-11">
+                    <input type="submit" id="SpouseEnrollmentUpdateStepFour" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
+                </div>
+            </div>
+        </div>
+    </div>
     <p>
         @Html.ActionLink("Back to Family Overview", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
     </p>
-   
+
 </body>
 </html>
 
@@ -277,7 +322,7 @@
     }
 
    
-    document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener("click", function () {
+    document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
         var maritalStatus = document.querySelector("#MaritalStatus").value;
 
         var message;
@@ -317,14 +362,10 @@
 
                     window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
                 }
-
             }
-
         }
-
     })
       
-   
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
@@ -475,6 +516,54 @@
             //    .catch(error => console.error('Error:', error));
         })
 
+        
+        document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
+            spInsCarrier = document.getElementById("spInsCarrier").value;
+            spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
+            spInsCity = document.getElementById("spInsCity").value;
+            spInsState = document.getElementById("spInsState").value;
+            spInsZipCode = document.getElementById("spInsZipCode").value;
+            spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value;
+            spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value;
+
+            var data = {
+                "FamilyMember_id": FamilyMember_id,
+                "Employee_id": Employee_id,
+                "OtherInsurance_id": OtherInsurance_id,
+                "spInsCarrier": spInsCarrier,
+                "spInsMailingAddress": spInsMailingAddress,
+                "spInsCity": spInsCity,
+                "spInsState": spInsState,
+                "spInsZipCode": spInsZipCode,
+                "spInsPhoneNumber": spInsPhoneNumber,
+                "spInsPolicyNumber": spInsPolicyNumber,
+            }
+
+            //var ret = postData('SpOtherInsuranceNew', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        FourthStep(data);
+            //    })
+            //    .catch(error => console.error(error))
+
+            fetch('SpOtherInsuranceNew', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => ThirdStep(response))
+                .catch(error => console.error('Error:', error));
+        })
+
     })
 
     function FirstStep(sp) {
@@ -492,8 +581,14 @@
     }
 
     function ThirdStep(sp) {
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
+        document.querySelector("#FourthStep").nextElementSibling.style.display = "block";
     }
+
+
+
 
     function postData(url, data) {
         //Default options are marked with *

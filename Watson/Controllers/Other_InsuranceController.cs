@@ -26,7 +26,7 @@ namespace Watson.Controllers
 
         }
 
-        public ActionResult AddOtherInsurance(int Employee_id, int OtherInsurance_id, string RelationshipToInsured)
+        public ActionResult AddOtherInsurance(int? Employee_id, int? OtherInsurance_id, string RelationshipToInsured)
         {
             ViewBag.Employee_id = Employee_id;
             ViewBag.OtherInsurance_id = OtherInsurance_id;

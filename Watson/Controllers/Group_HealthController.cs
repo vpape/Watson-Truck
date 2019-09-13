@@ -288,15 +288,15 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
             //show name of dependents, using foreach loop, include add insurance button where you can view and delete insurance
-        public ActionResult GrpHealthEnrollment(int? Employee_id, int? FamilyMember_id, int? GroupHealthInsurance_id, int? OtherInsurance_id)
+        public ActionResult GrpHealthEnrollment(int? Employee_id)
         {
             
             GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
 
             groupHGrpHEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);   
-            groupHGrpHEnrollmentVM.family = db.Family_Info.Where(i=> i.FamilyMember_id == FamilyMember_id).ToList();
-            groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.GroupHealthInsurance_id == GroupHealthInsurance_id);
-            groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.OtherInsurance_id == OtherInsurance_id).ToList();
+            groupHGrpHEnrollmentVM.family = db.Family_Info.Where(i=> i.Employee_id == Employee_id).ToList();
+            groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
+            groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id).ToList();
 
             return View(groupHGrpHEnrollmentVM);
 
@@ -304,53 +304,29 @@ namespace Watson.Controllers
 
         }
 
-        //public JSONResult GetEmployee()
-        //public void GetEmployee(int Employee_id, string empNumber, string FirstName, string LastName)
-        //{
-        //    var e = db.Employees.Find();
-
-        //    //var e = db.Employees
-        //    //   .Where(i => i.Employee_id == Employee_id)
-        //    //   .Single();
-
-        //    var e = db.Employees.Find(Employee_id);
-
-        //    e.Employee_id = Employee_id;
-        //    e.SSN = empNumber;
-        //    e.FirstName = FirstName;
-        //    e.LastName = LastName;
-
-
-        //    int result = e.Employee_id;
-
-        //    return View(e);
-        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-
-        //}
-
         //Create-GrpHealthEnrollment
         public JsonResult GrpHealthEnrollmentNew(int GrpHealth_id, int Employee_id, int InsurancePlan_id, int FamilyMember_id,
             int OtherInsurance_id, string GroupName, string IMSGroupNumber, string empInsuranceCarrier, string empInsPolicyNumber, 
-            string PhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
+            string empInsPhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
             string Myself, string Spouse, string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear,
             string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption,
             string empDepGroupHealthOption, string empFamGroupHealthOption, string empSignature1, DateTime empSignatureDate1,
             string empSignature2, DateTime empSignatureDate2, string empDepartment, string empEnrollmentType,
             int empPayroll_id, string empClass, string empJobTitle, DateTime empHireDate, decimal empAnnualSalary, 
             DateTime empEffectiveDate, int empHrsWkPerWk, string InsMECPlan, string InsStndPlan, string InsBuyUpPlan,
-            string DentalPlan, string VisionPlan, string spOtherInsCoverage, string spInsCarrier, string spInsPolicyNumber,
-            string spInsPhoneNumber, string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState, string spInsZipCode,
-            string spMedical, string spDental, string spVision, string spIndemnity, string depOtherInsCoverage,
-            string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
+            string DentalPlan, string VisionPlan, string spOtherInsCoverage, /*string spInsCarrier, string spInsPolicyNumber,*/
+            //string spInsPhoneNumber, string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState, string spInsZipCode,
+            string spMedical, string spDental, string spVision, string spIndemnity /*string depOtherInsCoverage,*/
+            /*string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber*/)
         {
             Group_Health g = new Group_Health();
 
             g.GroupHealthInsurance_id = GrpHealth_id;
             g.GroupName = GroupName;
             g.IMSGroupNumber = IMSGroupNumber;
-            g.InsuranceCarrier = empInsuranceCarrier;
-            g.PolicyNumber = empInsPolicyNumber;
-            g.PhoneNumber = PhoneNumber;
+            //g.InsuranceCarrier = empInsuranceCarrier;
+            //g.PolicyNumber = empInsPolicyNumber;
+            //g.PhoneNumber = PhoneNumber;
             g.ReasonForGrpCoverageRefusal = ReasonForGrpCoverageRefusal;
             g.OtherCoverage = OtherCoverage;
             g.OtherReason = OtherReason;
@@ -400,22 +376,22 @@ namespace Watson.Controllers
 
             o.OtherInsurance_id = OtherInsurance_id;
             o.CoveredByOtherInsurance = spOtherInsCoverage;
-            o.InsuranceCarrier = spInsCarrier;
-            o.PolicyNumber = spInsPolicyNumber;
-            o.PhoneNumber = spInsPhoneNumber;
-            o.MailingAddress = spInsMailingAddress;
-            o.PObox = spInsPObox;
-            o.City = spInsCity;
-            o.State = spInsState;
-            o.ZipCode = spInsZipCode;
+            //o.InsuranceCarrier = spInsCarrier;
+            //o.PolicyNumber = spInsPolicyNumber;
+            //o.PhoneNumber = spInsPhoneNumber;
+            //o.MailingAddress = spInsMailingAddress;
+            //o.PObox = spInsPObox;
+            //o.City = spInsCity;
+            //o.State = spInsState;
+            //o.ZipCode = spInsZipCode;
             o.Medical = spMedical;
             o.Vision = spVision;
             o.Dental = spDental;
             o.Indemnity = spIndemnity;
-            o.CoveredByOtherInsurance = depOtherInsCoverage;
-            o.InsuranceCarrier = depInsCarrier;
-            o.PolicyNumber = depInsPolicyNumber;
-            o.PhoneNumber = depInsPhoneNumber;
+            //o.CoveredByOtherInsurance = depOtherInsCoverage;
+            //o.InsuranceCarrier = depInsCarrier;
+            //o.PolicyNumber = depInsPolicyNumber;
+            //o.PhoneNumber = depInsPhoneNumber;
 
             ViewBag.OtherInsurance_id = OtherInsurance_id;
 

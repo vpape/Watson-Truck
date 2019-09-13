@@ -162,7 +162,41 @@
             </div>
             <div class="form-group" id="divRedirect">
                 <div class="col-md-offset-11">
-                    <button id="EmployeeEnrollmentUpdateStepTwo" onclick="return redirect()" class="btn">Save</button>
+                    <button id="EmployeeEnrollmentUpdateStepTwo" class="btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-horizontal">
+        <p></p>
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
+        <input type="hidden" id="OtherInsurance_id" class="form-control" name="OtherInsurance_id" />
+        <div class="collapsible" id="ThirdStep">Employee Insurance</div>
+        <div id="divEmpIns" class="content">
+            <p></p>
+            <div id="empCovered">
+                <div class="form-group">
+                    <label>Are you covered by any other insurance, including Medicare?</label>
+                    @*@Html.RadioButtonFor(model => model.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.Gender, "female", false) Female*@
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="true" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="false" />No</label>
+                </div>
+                <p></p>
+                <div id="empInsInfo">
+                    <div class="form-group col-md-3">
+                        <input type="text" id="empInsCarrier" class="form-control" placeholder="Insurance Company" name="InsuranceCarrier" value="" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input type="text" id="empInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input type="tel" id="empInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="divRedirect">
+                <div class="col-md-offset-11">
+                    <button id="EmployeeInsEnrollmentStepThree" onclick="return redirect()" class="btn">Save</button>
                 </div>
             </div>
         </div>
@@ -251,6 +285,20 @@
                 document.getElementById("divPhysicalAddress").style.display = "none";
             }
         });
+    }
+
+    //use for radio button
+    function showHidEmpOtherInsCoverage() {
+        document.addEventListener("click", function () {
+            var selection = document.getElementById("empCoveredByOtherIns");
+
+            if (selection.checked == true) {
+                document.getElementById("empInsInfo").style.display = "block";
+            }
+            else {
+                document.getElementById("empInsInfo").style.display = "none";
+            }
+        })
     }
 
     function redirect() {
@@ -363,7 +411,6 @@
             PhoneNumber = document.getElementById("PhoneNumber").value;
             CellPhone = document.getElementById("CellPhone").value;
             CityLimits = document.getElementById("CityLimits").value;
-            //MaritalStatus = document.getElementById("MaritalStatus").value;
 
             var data = {
                 "Employee_id": Employee_id,
@@ -388,6 +435,63 @@
                     SecondStep(data);
                 })
                 .catch(error => console.error(error))
+
+            //fetch('EmpEnrollmentContact', {
+            //    body: JSON.stringify(data), //must match 'Content-Type' header
+            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            //    credentials: 'same-origin', //include, same-origin, *omit
+            //    headers: {
+            //        'Accept': 'application/json',
+            //        'user-agent': 'Mozilla/4.0 MDN Example',
+            //        'content-type': 'application/json'
+            //    },
+            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            //    mode: 'same-origin', //no-cors, cors, *same-origin
+            //    redirect: 'follow', //manual, *follow, error
+            //    referrer: 'no-referrer', //*client, no-referrer
+            //}).then(res => res.json())
+            //    .then(response => SecondStep(response))
+            //    .catch(error => console.error('Error:', error));
+        })
+
+        document.querySelector("#EmployeeInsEnrollmentStepThree").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
+            //empOtherInsuranceCoverage = document.getElementById("empCoveredByOtherIns").value
+            empInsuranceCarrier = document.getElementById("empInsCarrier").value
+            empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value
+            empInsPhoneNumber = document.getElementById("empInsPhoneNumber").value
+
+            var data = {
+                "Employee_id": Employee_id,
+                "CoveredByOtherInsurance": empOtherInsuranceCoverage,
+                "InsuranceCarrier": empInsuranceCarrier,
+                "PolicyNumber": empInsPolicyNumber,
+                "InsPhoneNumber": empInsPhoneNumber,
+            }
+
+            var ret = postData('OtherInsuranceNew', data)
+                .then(data => {
+                    console.log(data);
+                    ThirdStep(data);
+                })
+                .catch(error => console.error(error))
+
+            //fetch('GrpHealthEnrollmentNew', {
+            //    body: JSON.stringify(data), //must match 'Content-Type' header
+            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            //    credentials: 'same-origin', //include, same-origin, *omit
+            //    headers: {
+            //        'Accept': 'application/json',
+            //        'user-agent': 'Mozilla/4.0 MDN Example',
+            //        'content-type': 'application/json'
+            //    },
+            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            //    mode: 'same-origin', //no-cors, cors, *same-origin
+            //    redirect: 'follow', //manual, *follow, error
+            //    referrer: 'no-referrer', //*client, no-referrer
+            //}).then(res => res.json())
+            //    .then(response => ThirdStep(response))
+            //    .catch(error => console.error('Error:', error));
         })
     })
 
@@ -400,7 +504,15 @@
     function SecondStep(emp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
        
+    }
+
+    function ThirdStep(emp) {
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
+
     }
 
     function postData(url, data) {

@@ -86,8 +86,9 @@
                         <option value="Male" @(ViewBag.Gender == "Male" ? "selected" : "")>Male</option>
                         <option value="Female" @(ViewBag.Gender == "Female" ? "selected" : "")>Female</option>
                     </select>
-                </div>
+                </div> 
             </div>
+            @*@Html.RadioButtonFor(model => model.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.Gender, "female", false) Female*@
             <div class="form-group">
                 <div class="col-md-offset-11">
                     <button id="EditEmpUpdate" class="btn">Save</button>

@@ -283,7 +283,11 @@
 
 
     function AddDependent() {
-        //add eventlistner to redirect to add dependent/add insurance single page app
+        document.addEventListener("click", function () {
+
+            window.location.href = "/Employee/AddDependent?Employee_id=@ViewBag.Employee_id" + "&FamilyMember_id=@ViewBag.FamilyMember_id";
+
+        });
     }
 
     function showHideDepInsCoverage() {
@@ -348,31 +352,32 @@
                 .then(response => FirstStep(response))
                 .catch(error => console.error('Error:', error));
         })
-
+    
         document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            CoveredByOtherInsurance = document.getElementsById("CoveredByOtherInsurance").value
-            InsuranceCarrier = document.getElementById("depInsCarrier").value
-            PolicyNumber = document.getElementById("depInsPolicyNumber").value
-            InsPhoneNumber = document.getElementById("depInsPhoneNumber").value 
+            depCoveredByOtherInsurance = document.getElementsById("CoveredByOtherInsurance").value
+            depInsCarrier = document.getElementById("depInsCarrier").value
+            depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
+            depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value 
 
             var data = {
                 "FamilyMember_id": FamilyMember_id,
+                "OtherInsurance_id": OtherInsurance_id,
                 "Employee_id": Employee_id,
                 "RelationshipToInsured": RelationshipToInsured,
-                "CoveredByOtherInsurance": CoveredByOtherInsurance,
-                "InsuranceCarrier": InsuranceCarrier,
-                "PolicyNumber": PolicyNumber,
-                "InsPhoneNumber": InsPhoneNumber,
+                "CoveredByOtherInsurance": depCoveredByOtherInsurance,
+                "InsuranceCarrier": depInsCarrier,
+                "PolicyNumber": depInsPolicyNumber,
+                "InsPhoneNumber": depInsPhoneNumber,
             }
 
-            //var ret = postData('OtherInsuranceNew', data)
+            //var ret = postData('DepOtherInsuranceNew', data)
             //    .then(data => {
             //        console.log(data);
             //        SecondStep(data);
             //    })
             //    .catch(error => console.error(error))
 
-            fetch('OtherInsuranceNew', {
+            fetch('DepOtherInsuranceNew', {
                 body: JSON.stringify(data), //must match 'Content-Type' header
                 cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', //include, same-origin, *omit
