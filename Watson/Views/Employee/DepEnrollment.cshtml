@@ -109,7 +109,7 @@
             <div class="form-group">
                 <div class="col-md-offset-10">
                     <button type="submit" id="DepInsEnrollmentUpdateStepTwo" class="btn">Save</button>
-                    <button type="submit" onclick="AddDependent()" id="addDep" class="btn">Add Dependent</button>
+                    <button type="submit" @*onclick="AddDependent()"*@ id="addDep" class="btn">Add Dependent</button>
                     @*<button type="submit" id="DepEnrollmentUpdate" onclick="DependentEnrollmentUpdate()" class="btn">Save</button>*@
                 </div>
             </div>
@@ -282,13 +282,86 @@
 
 
 
-    function AddDependent() {
+    @*function AddDependent() {
         document.addEventListener("click", function () {
 
             window.location.href = "/Employee/AddDependent?Employee_id=@ViewBag.Employee_id" + "&FamilyMember_id=@ViewBag.FamilyMember_id";
 
         });
-    }
+    }*@
+
+    //Redirects to Add Dependent Page
+    document.querySelector("#addDep").addEventListener("click", function () {
+        var depSubmit = document.getElementById("addDep");
+
+        var message;
+        var alert = confirm("Would you like to add another Dependent? If yes, select OK to add another Dependent.")
+
+        if (depSubmit.onclick) {
+            if (alert == true) {
+
+                message = "Please proceed to add Dependent, Thank you!!";
+                var alert = confirm(message)
+                if (alert == true) {
+
+                    window.location.href = "/Employee/AddDependent/?Employee_id=" + Employee_id;
+
+                }
+                else {
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
+                }
+            }
+        }
+        else {
+            if (alert == false) {
+
+                window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id;
+            }
+            else {
+
+                message = "Please proceed to the Group Health Insurance Enrollment, Thank you!!";
+                var alert = confirm(message)
+
+                if (alert == true) {
+
+                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id;
+
+                }
+                else {
+
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
+                }
+
+            }
+
+        }
+    })
+
+
+
+    //function AddDependent() {
+    //    document.querySelector("#AddDep").addEventListener("click", function () {
+    //        var depSubmit = document.getElementById("AddDep");
+
+    //        var message;
+    //        var alert = confirm("Would you like to add Dependents, If yes, click OK button to continue.")
+
+    //        if (depSubmit) {
+    //            if (alert == true) {
+
+    //                message = "Please proceed to Add Dependents, Thank you!!"
+    //                var alert = confirm(message)
+    //                if (alert == true) {
+
+    //                    window.location.href = "/Employee/AddDependent/?Employee_id=" + Employee_id;
+    //                }
+    //                else {
+    //                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
+    //                }
+    //            }
+    //        }
+    //    });
+    //}
 
     function showHideDepInsCoverage() {
         document.addEventListener("click", function () {

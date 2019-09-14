@@ -104,26 +104,18 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-10">
+                <div class="col-md-offset-11">
                     <button type="submit" id="DepInsEnrollmentUpdateStepTwo" class="btn">Save</button>
-                    <button type="submit" onclick="AddDependent()" id="AddDep" class="btn">Add Dependent</button>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-4">
-                    @*<button type="submit" onclick="AddInsurance()" id="addIns" class="btn">Add Insurance</button>*@
-
                 </div>
             </div>
         </div>
-
     </div>
-    @*<p>
-            @Html.ActionLink("Back to Family Overview", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
-        </p>*@
     <p>
-        @Html.ActionLink("Back to Enrollment Selection", "EnrollmentSelection")
+        @Html.ActionLink("Back to Family Overview", "FamilyOverview", "Employee", new { FamilyMember_id = ViewBag.FamilyMember_id }, null)
     </p>
+    @*<p>
+        @Html.ActionLink("Back to Enrollment Selection", "EnrollmentSelection")
+    </p>*@
 </body>
 </html>
 
@@ -187,77 +179,30 @@
         });
     }
 
-    function AddDependent() {
-        document.querySelector("#AddDep").addEventListener("click", function () {
-            var depSubmit = document.getElementById("AddDep");
-
-            var message;
-            var alert = confirm("Would you like to add Dependents, If yes, click OK button to continue.")
-
-            if (depSubmit) {
-                if (alert == true) {
-
-                    message = "Please proceed to Add Dependents, Thank you!!"
-                    var alert = confirm(message)
-                    if (alert == true) {
-
-                        window.location.href = "/Employee/AddDependent/?Employee_id=" + Employee_id;
-                    }
-                    else {
-                        window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
-                    }
-                }
-            }
-        });
-    }
-
-    //add eventlistner to redirect to add dependent/add insurance single page app
-    document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function() {
-        var depSubmit = document.getElementById("DepInsEnrollmentUpdateStepTwo");
+  
+    document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
+        var save = document.getElementById("DepInsEnrollmentUpdateStepTwo");
 
         var message;
-        var alert = confirm("Would you like to add Dependents? If yes, click the OK button to continue.")
+        var alert = confirm("Would you like to save your progress?")
 
-        if (depSubmit.onclick) {
+        if (save) {
             if (alert == true) {
 
-                message = "Please proceed to the next page to Add Dependent, Thank you!!";
+                message = "Progress has been saved! Would you like to add another Dependent? If yes, select OK to add another Dependent."
                 var alert = confirm(message)
                 if (alert == true) {
 
                     window.location.href = "/Employee/AddDependent/?Employee_id=" + Employee_id;
-
                 }
                 else {
-                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
+                    message = "Returning back to Group Health Enrollment page. Thank you!!"
+                    window.location.href = "/Group_Health/GrphealthEnrollment/?Employee_id=" + Employee_id;
                 }
+
             }
         }
-        else {
-            if (alert == false) {
-
-                window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id;
-            }
-            else {
-
-                message = "Please proceed to the Group Health Insurance Enrollment, Thank you!!";
-                var alert = confirm(message)
-
-                if (alert == true) {
-
-                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id;
-
-                }
-                else {
-
-                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
-                }
-
-            }
-
-        }
-    })    
-    
+    })
 
     function showHideDepInsCoverage() {
         document.addEventListener("click", function () {

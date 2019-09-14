@@ -605,9 +605,9 @@
                 </td>
             </tr>
         </table>
-        <p>
+        @*<p>
             @Html.ActionLink("Edit Insurance Supplement", "", new { Employee_id = ViewBag.Employee_id }, null)
-        </p>
+        </p>*@
     </div>
     <hr />
     @* db.Group_Healh- GroupHealthInsurance_id as primary and Employee_id as foreign *@
@@ -996,11 +996,9 @@
                         <td>
                             <input type="text" id="Gender" class="form-control" placeholder="Gender" name="Gender" value="" readonly />
                         </td>
-                 
                     </tr>
                 </table>
                 <p></p>
-                <label><u>Dependent Insurance Information</u></label>
                 <table class="table" id="DepOtherInsTable">
                     <tr id="depInsInfo">
                         <td>
@@ -1303,6 +1301,7 @@
             }
         });
     }
+
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmploymentInfoUpdate").addEventListener("click", function () {
