@@ -98,7 +98,6 @@
     @* Contact Info *@
     <div class="form-horizontal">
         <p></p>
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
         <div class="collapsible" id="SecondStep">Employee Contact</div>
         <div id="divEmpEnrollment" class="content">
             <p></p>
@@ -169,8 +168,6 @@
     </div>
     <div class="form-horizontal">
         <p></p>
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
-        <input type="hidden" id="OtherInsurance_id" class="form-control" name="OtherInsurance_id" />
         <div class="collapsible" id="ThirdStep">Employee Insurance</div>
         <div id="divEmpIns" class="content">
             <p></p>
@@ -455,7 +452,7 @@
         })
 
         document.querySelector("#EmployeeInsEnrollmentStepThree").addEventListener("click", function () {
-            Employee_id = document.getElementById("Employee_id").value;
+            //Employee_id = document.getElementById("Employee_id").value;
             //empOtherInsuranceCoverage = document.getElementById("empCoveredByOtherIns").value
             empInsuranceCarrier = document.getElementById("empInsCarrier").value
             empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value
@@ -463,7 +460,7 @@
 
             var data = {
                 "Employee_id": Employee_id,
-                "CoveredByOtherInsurance": empOtherInsuranceCoverage,
+                //"CoveredByOtherInsurance": empOtherInsuranceCoverage,
                 "InsuranceCarrier": empInsuranceCarrier,
                 "PolicyNumber": empInsPolicyNumber,
                 "InsPhoneNumber": empInsPhoneNumber,
@@ -476,7 +473,7 @@
                 })
                 .catch(error => console.error(error))
 
-            //fetch('GrpHealthEnrollmentNew', {
+            //fetch('OtherInsuranceNew', {
             //    body: JSON.stringify(data), //must match 'Content-Type' header
             //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
             //    credentials: 'same-origin', //include, same-origin, *omit

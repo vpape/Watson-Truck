@@ -967,10 +967,10 @@
                 </div>
                 @*}*@
             </div>
-            <div>
+            <form id="depForm">
                 <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
                 @*@foreach (var familyMember in Model.family){*@
-                <table class="table">
+                <table class="table" id="depInfoTable">
                     <tr>
                         <td>
                             <span>
@@ -1000,7 +1000,7 @@
                 </table>
                 <p></p>
                 <table class="table" id="DepOtherInsTable">
-                    <tr id="depInsInfo">
+                    <tr>
                         <td>
                             <span>
                                 @* redirects to to view family insurance *@
@@ -1025,7 +1025,7 @@
                         </td>
                     </tr>
                 </table>
-            </div>
+            </form>
             @*}*@
             <div class="text-justify">
                 <label style="padding-left: 10px;"></label>

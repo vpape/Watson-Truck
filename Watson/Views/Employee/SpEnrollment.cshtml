@@ -18,6 +18,7 @@
         <hr />
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
         <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
+        <input type="hidden" id="OtherInsurance_id" class="form-control" name="OtherInsurance_id" value="@ViewBag.OtherInsurance_id" />
         <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
         <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
         <div class="collapsible" id="FirstStep">Spouse Enrollment</div>
@@ -30,17 +31,17 @@
                     <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
                 </div>
                 @*<div class="col-md-10 col-md-offset-2">
-                        <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                            @if (ViewBag.spouseExist == false)
-                            {
-                                <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                            }
-                            else
-                            {
-                                <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                            }
-                        </select>
-                    </div>*@
+                    <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                        @if (ViewBag.spouseExist == false)
+                        {
+                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                        }
+                        else
+                        {
+                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                        }
+                    </select>
+                </div>*@
             </div>
             <div class="form-group">
                 <label for="MaritalStatus" class="col-md-2 control-label">Marital Status:</label>
@@ -322,49 +323,49 @@
     }
 
    
-    document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
-        var maritalStatus = document.querySelector("#MaritalStatus").value;
+    //document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
+    //    var maritalStatus = document.querySelector("#MaritalStatus").value;
 
-        var message;
-        var alert = confirm("Would you like to proceed ? If yes, click the OK button to continue")
+    //    var message;
+    //    var alert = confirm("Would you like to proceed ? If yes, click the OK button to continue")
 
-        if (maritalStatus == "SinglewDep" || maritalStatus == "MarriedwDep") {
-            if (alert == true) {
+    //    if (maritalStatus == "SinglewDep" || maritalStatus == "MarriedwDep") {
+    //        if (alert == true) {
 
-                message = "Please proceed to the Dependent Enrollment, Thank you!!";
-                var alert = confirm(message)
-                if (alert == true) {
+    //            message = "Please proceed to the Dependent Enrollment, Thank you!!";
+    //            var alert = confirm(message)
+    //            if (alert == true) {
 
-                    window.location.href = "/Employee/DepEnrollment/?Employee_id=" + Employee_id;
+    //                window.location.href = "/Employee/DepEnrollment/?Employee_id=" + Employee_id;
 
-                }
-                else {
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
-                }
-            }
-        }
-        else {
-            if (alert == false) {
+    //            }
+    //            else {
+    //                window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+    //            }
+    //        }
+    //    }
+    //    else {
+    //        if (alert == false) {
 
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
-            }
-            else {
+    //            window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+    //        }
+    //        else {
 
-                message = "Please proceed to the to the GroupHealth Enrollment, Thank you!!";
-                var alert = confirm(message)
+    //            message = "Please proceed to the to the GroupHealth Enrollment, Thank you!!";
+    //            var alert = confirm(message)
 
-                if (alert == true) {
+    //            if (alert == true) {
 
-                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id
+    //                window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id
 
-                }
-                else {
+    //            }
+    //            else {
 
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
-                }
-            }
-        }
-    })
+    //                window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+    //            }
+    //        }
+    //    }
+    //})
       
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
@@ -491,62 +492,14 @@
                 "EmployerPhoneNumber": EmployerPhoneNumber,
             }
 
-            var ret = postData('SpEnrollmentEmployment', data)
-                .then(data => {
-                    console.log(data);
-                    ThirdStep(data);
-                })
-                .catch(error => console.error(error))
-
-            //fetch('SpEnrollmentEmployment', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    .then(response => ThirdStep(response))
-            //    .catch(error => console.error('Error:', error));
-        })
-
-        
-        document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
-            spInsCarrier = document.getElementById("spInsCarrier").value;
-            spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
-            spInsCity = document.getElementById("spInsCity").value;
-            spInsState = document.getElementById("spInsState").value;
-            spInsZipCode = document.getElementById("spInsZipCode").value;
-            spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value;
-            spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value;
-
-            var data = {
-                "FamilyMember_id": FamilyMember_id,
-                "Employee_id": Employee_id,
-                "OtherInsurance_id": OtherInsurance_id,
-                "spInsCarrier": spInsCarrier,
-                "spInsMailingAddress": spInsMailingAddress,
-                "spInsCity": spInsCity,
-                "spInsState": spInsState,
-                "spInsZipCode": spInsZipCode,
-                "spInsPhoneNumber": spInsPhoneNumber,
-                "spInsPolicyNumber": spInsPolicyNumber,
-            }
-
-            //var ret = postData('SpOtherInsuranceNew', data)
+            //var ret = postData('SpEnrollmentEmployment', data)
             //    .then(data => {
             //        console.log(data);
-            //        FourthStep(data);
+            //        ThirdStep(data);
             //    })
             //    .catch(error => console.error(error))
 
-            fetch('SpOtherInsuranceNew', {
+            fetch('SpEnrollmentEmployment', {
                 body: JSON.stringify(data), //must match 'Content-Type' header
                 cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', //include, same-origin, *omit
@@ -562,6 +515,54 @@
             }).then(res => res.json())
                 .then(response => ThirdStep(response))
                 .catch(error => console.error('Error:', error));
+        })
+
+        
+        document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
+            spInsCarrier = document.getElementById("spInsCarrier").value;
+            spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
+            spInsCity = document.getElementById("spInsCity").value;
+            spInsState = document.getElementById("spInsState").value;
+            spInsZipCode = document.getElementById("spInsZipCode").value;
+            spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value;
+            spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value;
+
+            var data = {
+                "FamilyMember_id": FamilyMember_id,
+                "Employee_id": Employee_id,
+                //"CoveredByOtherInsurance": CoveredByOtherInsurance,
+                "spInsCarrier": spInsCarrier,
+                "spInsMailingAddress": spInsMailingAddress,
+                "spInsCity": spInsCity,
+                "spInsState": spInsState,
+                "spInsZipCode": spInsZipCode,
+                "spInsPhoneNumber": spInsPhoneNumber,
+                "spInsPolicyNumber": spInsPolicyNumber,
+            }
+
+            var ret = postData('SpOtherInsuranceNew', data)
+                .then(data => {
+                    console.log(data);
+                    ThirdStep(data);
+                })
+                .catch(error => console.error(error))
+
+            //fetch('SpOtherInsuranceNew', {
+            //    body: JSON.stringify(data), //must match 'Content-Type' header
+            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            //    credentials: 'same-origin', //include, same-origin, *omit
+            //    headers: {
+            //        'Accept': 'application/json',
+            //        'user-agent': 'Mozilla/4.0 MDN Example',
+            //        'content-type': 'application/json'
+            //    },
+            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            //    mode: 'same-origin', //no-cors, cors, *same-origin
+            //    redirect: 'follow', //manual, *follow, error
+            //    referrer: 'no-referrer', //*client, no-referrer
+            //}).then(res => res.json())
+            //    .then(response => ThirdStep(response))
+            //    .catch(error => console.error('Error:', error));
         })
 
     })

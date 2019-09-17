@@ -39,7 +39,6 @@
         <AssociationConnector Association="WatsonTruckModel.AspNetUserRoles" />
         <EntityTypeShape EntityType="WatsonTruckModel.JobApplicant" Width="1.5" PointX="8.5" PointY="25.75" />
         <AssociationConnector Association="WatsonTruckModel.FK_JobApplicant_Employee" />
-        <AssociationConnector Association="WatsonTruckModel.FK_JobApplicant_Employee" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

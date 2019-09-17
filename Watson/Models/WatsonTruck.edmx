@@ -497,8 +497,8 @@
           <Key>
             <PropertyRef Name="OtherInsurance_id" />
           </Key>
-          <Property Name="FamilyMember_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OtherInsurance_id" Type="int" Nullable="false" />
+          <Property Name="FamilyMember_id" Type="int" Nullable="false" StoreGeneratedPattern="None" />
+          <Property Name="OtherInsurance_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Employee_id" Type="int" Nullable="false" />
           <Property Name="InsuranceCarrier" Type="varchar" MaxLength="30" />
           <Property Name="PolicyNumber" Type="varchar" MaxLength="30" />
@@ -1299,7 +1299,7 @@
           <Key>
             <PropertyRef Name="OtherInsurance_id" />
           </Key>
-          <Property Name="FamilyMember_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FamilyMember_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="OtherInsurance_id" Type="Int32" Nullable="false" />
           <Property Name="Employee_id" Type="Int32" Nullable="false" />
           <Property Name="PolicyNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
