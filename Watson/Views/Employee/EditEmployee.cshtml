@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model Watson.ViewModels.EmployeeAndInsuranceVM
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -6,91 +7,89 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Employee Enrollment</title>
+    <title>Edit Employee</title>
 </head>
 <body>
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible" id="FirstStep">Employee Enrollment</div>
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
+        <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value="@ViewBag.GroupHealthInsurance_id" />
+        <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
+        <div class="collapsible" id="FirstStep">Edit Info</div>
         <div id="divEmpEnrollment" class="content">
             <p></p>
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
                 <div class="col-md-10">
-                    <select id="Role" class="form-control">
-                        <option value="">Select Option</option>
-                        <option id="ManagerRole" value="Manager">Manger</option>
-                        <option id="EmployeeRole" value="Employee">Employee</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-2 control-label">Hire Date:</label>
-                <div class="col-md-10">
-                    <input type="date" id="HireDate" class="form-control" name="HireDate" value="" />
+                    <input type="text" id="Role" class="form-control" name="EmployeeRole" value="@Html.DisplayFor(model => model.employee.EmployeeRole)">
                 </div>
             </div>
             <div class="form-group">
                 <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
                 <div class="col-md-10">
-                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="" />
+                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@Html.DisplayFor(model => model.employee.CurrentEmployer)" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Hire Date:</label>
+                <div class="col-md-10">
+                    <input type="datetime" id="HireDate" class="form-control" name="HireDate" value="@Convert.ToDateTime(Model.employee.HireDate).ToString("MM/dd/yyyy")" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
                 <div class="col-md-10">
-                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="" />
+                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@Html.DisplayFor(model => model.employee.JobTitle)" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="" />
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.employee.SSN)" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Marital Status:</label>
                 <div class="col-md-10">
                     <select id="MaritalStatus" class="form-control">
-                        <option value="">Select Option</option>
-                        <option value="MarriedwDep">Married with Dependents</option>
-                        <option value="Married">Married</option>
-                        <option value="SinglewDep">Single with Dependents</option>
-                        <option value="Single">Single</option>
+                        <option value="">Choose Option:</option>
+                        <option value="MarriedwDep" @((Model.employee.MaritalStatus) == "MarriedwDep" ? "selected" : "")>Married with Dependents</option>
+                        <option value="Married" @((Model.employee.MaritalStatus) == "Married" ? "selected" : "")>Married</option>
+                        <option value="SinglewDep" @((Model.employee.MaritalStatus) == "SinglewDep" ? "selected" : "")>Single with Dependents</option>
+                        <option value="Single" @((Model.employee.MaritalStatus) == "Single" ? "selected" : "")>Single</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="" />
+                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(model => model.employee.FirstName)" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="LastName" class="col-md-2 control-label">Last Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="LastName" class="form-control" name="LastName" value="" />
+                    <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(model => model.employee.LastName)" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Date of Birth:</label>
                 <div class="col-md-10">
-                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                    <input type="datetime" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Convert.ToDateTime(Model.employee.DateOfBirth).ToString("MM/dd/yyyy")" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Gender:</label>
                 <div class="col-md-10">
                     <select id="Gender" class="form-control">
-                        <option value="">Select Option</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <option value="Male" @((Model.employee.Gender) == "Male" ? "selected" : "")>Male</option>
+                        <option value="Female" @((Model.employee.Gender) == "Female" ? "selected" : "")>Female</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <button id="EmployeeEnrollmentUpdate" class="btn">Save</button>
+                    <button id="EditEmployeeEnrollment" class="btn">Save</button>
                 </div>
             </div>
         </div>
@@ -98,18 +97,18 @@
     @* Contact Info *@
     <div class="form-horizontal">
         <p></p>
-        <div class="collapsible" id="SecondStep">Employee Contact</div>
+        <div class="collapsible" id="SecondStep">Edit Contact</div>
         <div id="divEmpEnrollment" class="content">
             <p></p>
             <div id="divMailingAddress">
                 <div class="form-group">
                     <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
-                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" />
-                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
-                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
-                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(model => model.employee.MailingAddress)" />
+                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="@Html.DisplayFor(model => model.employee.PObox)" />
+                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@Html.DisplayFor(model => model.employee.City)" />
+                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@Html.DisplayFor(model => model.employee.State)" />
+                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.DisplayFor(model => model.employee.ZipCode)" />
                     </div>
                 </div>
             </div>
@@ -134,72 +133,72 @@
                 <div class="form-group">
                     <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="" />
-                        <input type="text" id="City2" class="form-control" placeholder="City" name="CityTwo" value="" />
-                        <input type="text" id="State2" class="form-control" placeholder="State" name="StateTwo" value="" />
-                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCodeTwo" value="" />
+                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="@Html.DisplayFor(model => model.employee.PhysicalAddress)" />
+                        <input type="text" id="City2" class="form-control" placeholder="City" name="CityTwo" value="@Html.DisplayFor(model => model.employee.CityTwo)" />
+                        <input type="text" id="State2" class="form-control" placeholder="State" name="StateTwo" value="@Html.DisplayFor(model => model.employee.StateTwo)" />
+                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCodeTwo" value="@Html.DisplayFor(model => model.employee.ZipCodeTwo)" />
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="EmailAddress" class="col-md-2 control-label">Email Address:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="" />
+                    <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="@Html.DisplayFor(model => model.employee.EmailAddress)" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
                 <div class="col-md-10">
-                    <input type="text" id="PhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" maxlength="14" value="" />
+                    <input type="text" id="PhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" maxlength="14" value="@Html.DisplayFor(model => model.employee.PhoneNumber)" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
                 <div class="col-md-10">
-                    <input type="text" id="CellPhone" class="form-control" placeholder="Cell Phone #" name="CellPhone" maxlength="14" value="" />
+                    <input type="text" id="CellPhone" class="form-control" placeholder="Cell Phone #" name="CellPhone" maxlength="14" value="@Html.DisplayFor(model => model.employee.CellPhone)" />
                 </div>
             </div>
             <div class="form-group" id="divRedirect">
                 <div class="col-md-offset-11">
-                    <button id="EmployeeEnrollmentUpdateStepTwo" class="btn">Save</button>
+                    <button id="EditEmployeeEnrollmentStepTwo" class="btn">Save</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="form-horizontal">
         <p></p>
-        <div class="collapsible" id="ThirdStep">Employee Insurance</div>
+        <div class="collapsible" id="ThirdStep">Edit Insurance</div>
         <div id="divEmpIns" class="content">
             <p></p>
             <div id="empCovered">
                 <div class="form-group">
                     <label>Are you covered by any other insurance, including Medicare?</label>
-                    @*@Html.RadioButtonFor(model => model.CoveredByOtherInsurance, "Yes", true) Yes @Html.RadioButtonFor(model => model.CoveredByOtherInsurance, "No", false) No*@
+                    @*@Html.RadioButtonFor(model => model.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.Gender, "female", false) Female*@
                     <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="true" />Yes</label>
                     <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="false" />No</label>
                 </div>
                 <p></p>
                 <div id="empInsInfo">
                     <div class="form-group col-md-3">
-                        <input type="text" id="empInsCarrier" class="form-control" placeholder="Insurance Company" name="InsuranceCarrier" value="" />
+                        <input type="text" id="empInsCarrier" class="form-control" placeholder="Insurance Company" name="InsuranceCarrier" value="@Html.DisplayFor(model => model.grpHealth.InsuranceCarrier)" />
                     </div>
                     <div class="form-group col-md-3">
-                        <input type="text" id="empInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                        <input type="text" id="empInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="@Html.DisplayFor(model => model.grpHealth.PolicyNumber)" />
                     </div>
                     <div class="form-group col-md-3">
-                        <input type="tel" id="empInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                        <input type="tel" id="empInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="@Html.DisplayFor(model => model.grpHealth.PhoneNumber)" />
                     </div>
                 </div>
             </div>
             <div class="form-group" id="divRedirect">
                 <div class="col-md-offset-11">
-                    <button id="EmployeeInsEnrollmentStepThree" onclick="return redirect()" class="btn">Save</button>
+                    <button id="EditEmployeeInsStepThree" class="btn">Save</button>
                 </div>
             </div>
         </div>
     </div>
     <p>
-        @Html.ActionLink("Back to Enrollment Selection", "EnrollmentSelection")
+        @Html.ActionLink("Back to List", "EmpOverview")
     </p>
 </body>
 </html>
@@ -217,9 +216,9 @@
         font-size: 15px;
     }
 
-    .active, .collapsible:hover {
-        background-color: blue;
-    }
+        .active, .collapsible:hover {
+            background-color: blue;
+        }
 
     .content {
         padding: 0 18px;
@@ -298,54 +297,8 @@
         })
     }
 
-    function redirect() {
-        var maritalStatus = document.querySelector("#MaritalStatus").value;
-
-        var message;
-        var alert = confirm("Would you like to proceed ? If yes, click the OK button to continue")
-
-        if (maritalStatus == "Single") {
-            if (alert == true) {
-
-                message = "Please proceed to the Group Health Enrollment, Thank you!!";
-                var alert = confirm(message)
-                if (alert == true) {
-
-                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id;
-
-                }
-                else {
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
-                }
-            }
-        }
-        else {
-            if (alert == false) {
-
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
-            }
-            else {
-
-                message = "Please proceed to the Family Enrollment, Thank you!!";
-                var alert = confirm(message)
-
-                if (alert == true) {
-               
-                    window.location.href = "/Employee/FamilyEnrollment/?Employee_id=" + Employee_id
-                    
-                }
-                else {
-
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
-                }
-
-            }
-
-        }
-    }
-    
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#EmployeeEnrollmentUpdate").addEventListener("click", function () {
+        document.querySelector("#EditEmployeeEnrollment").addEventListener("click", function () {
             Role = document.getElementById("Role").value;
             CurrentEmployer = document.getElementById("CurrentEmployer").value;
             JobTitle = document.getElementById("JobTitle").value;
@@ -370,13 +323,13 @@
                 "Gender": Gender,
             }
 
-            //var ret = postData('EmployeeEnrollmentNew', data)
+            //var ret = postData('EmployeeEditUpdate', data)
             //    .then(data => {
             //        console.log(data);
             //        FirstStep(data); })
             //    .catch(error => console.error(error))
 
-            fetch('EmployeeEnrollmentNew', {
+            fetch('EmployeeEditUpdate', {
                 body: JSON.stringify(data), //must match 'Content-Type' header
                 cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', //include, same-origin, *omit
@@ -394,7 +347,7 @@
                 .catch(error => console.error('Error:', error));
         })
 
-        document.querySelector("#EmployeeEnrollmentUpdateStepTwo").addEventListener("click", function () {
+        document.querySelector("#EditEmployeeEnrollmentStepTwo").addEventListener("click", function () {
             MailingAddress = document.getElementById("MailingAddress").value;
             PObox = document.getElementById("PObox").value;
             City = document.getElementById("City").value;
@@ -426,14 +379,14 @@
                 "CellPhone": CellPhone,
             }
 
-            //var ret = postData('EmpEnrollmentContact', data)
+            //var ret = postData('EmployeeEditUpdate', data)
             //    .then(data => {
             //        console.log(data);
             //        SecondStep(data);
             //    })
             //    .catch(error => console.error(error))
 
-            fetch('EmpEnrollmentContact', {
+            fetch('EmployeeEditUpdate', {
                 body: JSON.stringify(data), //must match 'Content-Type' header
                 cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', //include, same-origin, *omit
@@ -451,7 +404,7 @@
                 .catch(error => console.error('Error:', error));
         })
 
-        document.querySelector("#EmployeeInsEnrollmentStepThree").addEventListener("click", function () {
+        document.querySelector("#EditEmployeeInsStepThree").addEventListener("click", function () {
             //empOtherGrpHinsCoverage = document.getElementById("empOtherGrpHinsCoverage").value
             empInsuranceCarrier = document.getElementById("empInsCarrier").value
             empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value
@@ -465,14 +418,14 @@
                 "empInsPhoneNumber": empInsPhoneNumber,
             }
 
-            var ret = postData('OtherInsuranceNew', data)
+            var ret = postData('EmployeeEditUpdate', data)
                 .then(data => {
                     console.log(data);
                     ThirdStep(data);
                 })
                 .catch(error => console.error(error))
 
-            //fetch('OtherInsuranceNew', {
+            //fetch('EmployeeEditUpdate', {
             //    body: JSON.stringify(data), //must match 'Content-Type' header
             //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
             //    credentials: 'same-origin', //include, same-origin, *omit
@@ -501,7 +454,7 @@
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
-       
+
     }
 
     function ThirdStep(emp) {
@@ -531,10 +484,11 @@
         }).then(res => res.json())
             .then(response => console.log('Success:', JSON.stringify(response)))
             .catch(error => console.error('Error:', error));
-            //.then(Response => {
-            //    console.log(Response);
-            //    Response.json();
-            //}) //parses response to JSON
+        //.then(Response => {
+        //    console.log(Response);
+        //    Response.json();
+        //}) //parses response to JSON
     }
 </script>
+
 

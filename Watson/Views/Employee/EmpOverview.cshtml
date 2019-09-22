@@ -13,7 +13,7 @@
 </head>
 <body>
     <h4>Employee Overview</h4>
-    <table class="table table-hover">
+    <table class="table table-condensed">
         <thead class="thead-dark">
             <tr>
                 <th></th>
@@ -45,9 +45,9 @@
                         <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.Raw(item.EmailAddress)" readonly />
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "EditEmp", "Employee", new { Employee_id = item.Employee_id }, null)|
-                        @Html.ActionLink("Detail", "EmpDetail", "Employee", new { Employee_id = item.Employee_id }, null)|
+                        @Html.ActionLink("Detail", "EmployeeDetail", "Employee", new { Employee_id = item.Employee_id }, null)
                         @Html.ActionLink("Insurance", "GrpHealthEnrollment", "Group_Health", new { Employee_id = item.Employee_id }, null)
+                        @Html.ActionLink("Delete", "DeleteEmp", "Employee", new { Employee_id = item.Employee_id }, null)
                     </td>
                 </tr>
             }

@@ -392,7 +392,6 @@
 
             var data = {
                 "Employee_id": Employee_id,
-                "FamilyMember_id": FamilyMember_id,
                 "RelationshipToInsured": RelationshipToInsured,
                 "SSN": SSN,
                 "DepFirstName": DepFirstName,
@@ -471,7 +470,6 @@
     function FirstStep(dep) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        //Employee_id = dep.data;
         console.log(dep);
         FamilyMember_id = dep.data;
     }

@@ -333,7 +333,7 @@ namespace Watson.Controllers
             g.Myself = Myself;
             g.Spouse = Spouse;
             g.Dependent = Dependent;
-            g.OtherInsuranceCoverage = empOtherInsuranceCoverage;
+            //g.OtherInsuranceCoverage = empOtherInsuranceCoverage;
             g.CafeteriaPlanYear = CafeteriaPlanYear;
             g.NoMedicalPlan = NoneGroupHealthOption;
             g.EmployeeOnly = empOnlyGroupHealthOption;

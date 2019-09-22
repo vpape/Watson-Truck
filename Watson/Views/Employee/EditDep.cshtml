@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Watson.Models.Family_Info
+@{
     ViewBag.Title = "EditDep";
 }
 <!DOCTYPE html>
@@ -16,7 +17,7 @@
         <hr />
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee.Employee_id />
         @*<input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.Family_Info.FamilyMember_id />
-        <input type="hidden" id="OtherInsurance_id" class="form-control" name="OtherInsurance_id" value=@ViewBag.Other_Insurance_id.OtherInsurance_id />*@
+            <input type="hidden" id="OtherInsurance_id" class="form-control" name="OtherInsurance_id" value=@ViewBag.Other_Insurance_id.OtherInsurance_id />*@
         <div class="collapsible" id="FirstStep">Edit Dependent</div>
         <div class="content" id="dependentSelectForm">
             <p></p>
@@ -24,17 +25,17 @@
             <div class="form-group">
                 <label for="RelationToInsured" class="col-md-2 control-label">Relationship to Employee:</label>
                 @*<div class="col-md-10 col-md-offset-2">
-                    <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                        @if (ViewBag.spouseExist == false)
-                        {
-                            <option id="Spouse"  name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                        }
-                        else
-                        {
-                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                        }
-                    </select>
-                </div>*@
+                        <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                            @if (ViewBag.spouseExist == false)
+                            {
+                                <option id="Spouse"  name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                            }
+                            else
+                            {
+                                <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                            }
+                        </select>
+                    </div>*@
             </div>
             <div class="form-group">
                 <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
@@ -72,40 +73,40 @@
                 <label>Is your dependent covered by other insurance, including Medicare/Medicaid? If so, we need the following information:</label>
                 <div class="form-group" id="CoveredByOtherIns">
                     @*@foreach (var dep in Model.Other_Insurance)
-                    {*@
-                        <label class="radio-inline">
-                            <input type="radio" id="YesOtherIns" class="radio-inline" @*onclick="CoveredByOtherIns()"*@ name="CoveredByOtherInsurance" value="Yes" @((ViewBag.Family_Info.CoveredByOtherInsurance == "Yes") ? "checked" : "") />Yes
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" id="NoOtherIns" class="radio-inline" @*onclick="CoveredByOtherIns()"*@ name="CoveredByOtherInsurance" value="No"   @((ViewBag.Family_Info.CoveredByOtherInsurance == "No")  ? "checked" : "") />No
-                        </label>
+                        {*@
+                    <label class="radio-inline">
+                        <input type="radio" id="YesOtherIns" class="radio-inline" @*onclick="CoveredByOtherIns()"*@ name="CoveredByOtherInsurance" value="Yes" @((ViewBag.Family_Info.CoveredByOtherInsurance == "Yes") ? "checked" : "") />Yes
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" id="NoOtherIns" class="radio-inline" @*onclick="CoveredByOtherIns()"*@ name="CoveredByOtherInsurance" value="No" @((ViewBag.Family_Info.CoveredByOtherInsurance == "No") ? "checked" : "") />No
+                    </label>
                     @*}*@
                 </div>
                 <div class="form-group" id="divCoveredByOtherIns">
                     @*@foreach (var dep in Model.Other_Insurance)
-                    {*@
-                        <div class="form-group">
-                            <label for="InsCarrier">Insurance Company:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="InsuranceCompany" class="form-control" name="InsuranceCompany" value="@ViewBag.Other_Insurance.InsuranceCompany" />
-                            </div>
-                            <label for="PolicyNumber" id="divPolicyNumber">Policy Number:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="@ViewBag.Other_Insurance.PolicyNumber" />
-                            </div>
-                            <label for="InsPhoneNumber" id="divPhoneNumber">Phone Number:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="@ViewBag.Other_Insurance.PhoneNumber" />
-                            </div>
-                            <label for="InsMailingAddress" id="divInsMailingAddress">Mailing Address:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="InsMailingAddress" class="form-control" name="MailingAddress" value="@ViewBag.Other_Insurance.MailingAddress" />
-                                <input type="text" id="InsPObox" class="form-control" placeholder="PO Box" name="PObox" value="@ViewBag.Other_Insurance.PObox" />
-                                <input type="text" id="InsCity" class="form-control" name="City" value="@ViewBag.Other_Insurance.City" />
-                                <input type="text" id="InsState" class="form-control" name="State" value="@ViewBag.Other_Insurance.State" />
-                                <input type="text" id="InsZipCode" class="form-control" name="ZipCode" value="@ViewBag.Other_Insurance.ZipCode" />
-                            </div>
+                        {*@
+                    <div class="form-group">
+                        <label for="InsCarrier">Insurance Company:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="InsuranceCompany" class="form-control" name="InsuranceCompany" value="@ViewBag.Other_Insurance.InsuranceCompany" />
                         </div>
+                        <label for="PolicyNumber" id="divPolicyNumber">Policy Number:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="@ViewBag.Other_Insurance.PolicyNumber" />
+                        </div>
+                        <label for="InsPhoneNumber" id="divPhoneNumber">Phone Number:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="InsPhoneNumber" class="form-control" name="PhoneNumber" value="@ViewBag.Other_Insurance.PhoneNumber" />
+                        </div>
+                        <label for="InsMailingAddress" id="divInsMailingAddress">Mailing Address:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="InsMailingAddress" class="form-control" name="MailingAddress" value="@ViewBag.Other_Insurance.MailingAddress" />
+                            <input type="text" id="InsPObox" class="form-control" placeholder="PO Box" name="PObox" value="@ViewBag.Other_Insurance.PObox" />
+                            <input type="text" id="InsCity" class="form-control" name="City" value="@ViewBag.Other_Insurance.City" />
+                            <input type="text" id="InsState" class="form-control" name="State" value="@ViewBag.Other_Insurance.State" />
+                            <input type="text" id="InsZipCode" class="form-control" name="ZipCode" value="@ViewBag.Other_Insurance.ZipCode" />
+                        </div>
+                    </div>
                     @*}*@
                 </div>
                 <div class="form-group">
@@ -279,16 +280,16 @@
 </head>
 <body>
     @*<form id="dependentSelectForm" action="\Home\DependentPoster" method="post">
-        <input type="text" name="fname1" id="fname1" />
-        <input type="text" name="lname1" id="lname1" />
-        <input type="date" name="dob1" id="dob1" />
+            <input type="text" name="fname1" id="fname1" />
+            <input type="text" name="lname1" id="lname1" />
+            <input type="date" name="dob1" id="dob1" />
 
-        <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
-        <br id="br1" />
+            <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
+            <br id="br1" />
 
-        <input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
-        <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">
-    </form>*@
+            <input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
+            <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">
+        </form>*@
 </body>
 </html>
 
@@ -312,7 +313,7 @@
         });
     }
 
-          //function SpouseOrDependent() {
+    //function SpouseOrDependent() {
 
     //    var choice = document.getElementById("RelationshipToInsured")
     //    var spouse = document.getElementById("Spouse")

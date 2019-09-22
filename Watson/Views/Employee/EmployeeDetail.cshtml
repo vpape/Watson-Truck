@@ -1,0 +1,374 @@
+﻿@model Watson.ViewModels.EmployeeAndInsuranceVM
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Employee Detail</title>
+</head>
+<body>
+    <div class="form-horizontal">
+        <hr />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
+        <div class="collapsible" id="EmpDetail">Employee Detail</div>
+        <div class="content">
+            <p></p>
+            <p></p>
+            <dl class="dl-horizontal">
+                <dt>
+                    <label class="col-md-2 control-label">Employee Role:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="Role" class="form-control" name="EmployeeRole" value="@Html.DisplayFor(model => model.employee.EmployeeRole)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Current Employer:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@Html.DisplayFor(Model => Model.employee.CurrentEmployer)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Hire Date:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="HireDate" class="form-control" name="HireDate" value="@Convert.ToDateTime(Model.employee.HireDate).ToString("MM/dd/yyyy")" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Job Title:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@Html.DisplayFor(Model => Model.employee.JobTitle)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Employee Number:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.DisplayFor(Model => Model.employee.SSN)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">First Name:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(Model => Model.employee.FirstName)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Last Name:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(Model => Model.employee.LastName)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Date of Birth:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Convert.ToDateTime(Model.employee.DateOfBirth).ToString("yyyy-MM-dd")" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Gender:</label>
+                </dt>
+                <dd class="col-md-10 form-group" id="Gender">
+                    <input type="text" id="Gender" class="form-control" name="Gender" value="@Html.DisplayFor(m => Model.employee.Gender)" disabled />
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Marital Status:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@Html.DisplayFor(Model => Model.employee.MaritalStatus)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">MailingAddress:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(Model => Model.employee.MailingAddress)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">P.O. box:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="PObox" class="form-control" name="PObox" value="@Html.DisplayFor(Model => Model.employee.PObox)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">City:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="City" class="form-control" name="City" value="@Html.DisplayFor(Model => Model.employee.City)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">State:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="State" class="form-control" name="State" value="@Html.DisplayFor(Model => Model.employee.State)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">ZipCode:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(Model => Model.employee.ZipCode)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Within City Limits?</label>
+                </dt>
+                <dd class="col-md-10 form-group" id="CityLimits">
+                    <input type="text" id="CityLimits" class="form-control" name="CityLimits" value="@Html.DisplayFor(m => Model.employee.CityLimits)" disabled />
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Physical Address:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@Html.DisplayFor(Model => Model.employee.PhysicalAddress)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">City:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="CityTwo" class="form-control" name="CityTwo" value="@Html.DisplayFor(Model => Model.employee.CityTwo)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">State:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="StateTwo" class="form-control" name="StateTwo" value="@Html.DisplayFor(Model => Model.employee.StateTwo)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">ZipCode:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="ZipCodeTwo" class="form-control" name="ZipCodeTwo" value="@Html.DisplayFor(Model => Model.employee.ZipCodeTwo)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Email:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(Model => Model.employee.EmailAddress)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Phone Number:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(Model => Model.employee.PhoneNumber)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Cell Phone:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="@Html.DisplayFor(Model => Model.employee.CellPhone)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Other Insurance:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="empOtherGrpHinsCoverage" class="form-control" name="CoveredByOtherInsurance" value="@Html.DisplayFor(Model => Model.grpHealth.OtherInsuranceCoverage)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Insurance Carrier:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="empInsCarrier" class="form-control" name="InsuranceCarrier" value="@Html.DisplayFor(Model => Model.grpHealth.InsuranceCarrier)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Policy Number:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="tel" id="empInsPolicyNumber" class="form-control" name="PolicyNumber" value="@Html.DisplayFor(Model => Model.grpHealth.PolicyNumber)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Phone Number:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="tel" id="empInsPhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(Model => Model.grpHealth.PhoneNumber)" disabled>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "EditEmployee", "Employee", new { Employee_id = Model.employee.Employee_id }, null)|
+        @Html.ActionLink("Back to List", "EmpOverview")
+    </p>
+</body>
+</html>
+
+<style>
+    .collapsible {
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: blue;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    .button {
+        text-align: right;
+    }
+
+    .btn:hover {
+        background-color: blue;
+        color: white;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-flex;
+        padding: 8px 8px;
+    }
+</style>
+
+<script>
+    var col = document.querySelectorAll(".collapsible");
+    var i;
+    var Employee_id;
+
+    for (i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#EmpDetail").addEventListener("click", function () {
+            Role = document.getElementById("Role").value;
+            CurrentEmployer = document.getElementById("CurrentEmployer").value;
+            JobTitle = document.getElementById("JobTitle").value;
+            EmpNumber = document.getElementById("EmpNumber").value;
+            HireDate = document.getElementById("HireDate").value;
+            FirstName = document.getElementById("FirstName").value;
+            LastName = document.getElementById("LastName").value;
+            DateOfBirth = document.getElementById("DateOfBirth").value;
+            MaritalStatus = document.getElementById("MaritalStatus").value;
+            Gender = document.getElementById("Gender").value;
+
+            MailingAddress = document.getElementById("MailingAddress").value;
+            PObox = document.getElementById("PObox").value;
+            City = document.getElementById("City").value;
+            State = document.getElementById("State").value;
+            ZipCode = document.getElementById("ZipCode").value;
+            PhysicalAddress = document.getElementById("PhysicalAddress").value;
+            CityTwo = document.getElementById("CityTwo").value;
+            StateTwo = document.getElementById("StateTwo").value;
+            ZipCodeTwo = document.getElementById("ZipCodeTwo").value;
+            EmailAddress = document.getElementById("EmailAddress").value;
+            PhoneNumber = document.getElementById("PhoneNumber").value;
+            CellPhone = document.getElementById("CellPhone").value;
+            CityLimits = document.getElementById("CityLimits").value;
+
+            //empOtherGrpHinsCoverage = document.getElementById("empOtherGrpHinsCoverage").value
+            empInsuranceCarrier = document.getElementById("empInsCarrier").value
+            empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value
+            empInsPhoneNumber = document.getElementById("empInsPhoneNumber").value
+
+            var data = {
+                "Employee_id": Employee_id,
+                "Role": Role,
+                "CurrentEmployer": CurrentEmployer,
+                "JobTitle": JobTitle,
+                "EmpNumber": EmpNumber,
+                "HireDate": HireDate,
+                "MaritalStatus": MaritalStatus,
+                "FirstName": FirstName,
+                "LastName": LastName,
+                "DateOfBirth": DateOfBirth,
+                "Gender": Gender,
+
+                "MailingAddress": MailingAddress,
+                "PObox": PObox,
+                "City": City,
+                "State": State,
+                "ZipCode": ZipCode,
+                "PhysicalAddress": PhysicalAddress,
+                "City2": CityTwo,
+                "State2": StateTwo,
+                "ZipCode2": ZipCodeTwo,
+                "CityLimits": CityLimits,
+                "EmailAddress": EmailAddress,
+                "PhoneNumber": PhoneNumber,
+                "CellPhone": CellPhone,
+
+                //"empOtherGrpHinsCoverage": empOtherGrpHinsCoverage,
+                "empInsCarrier": empInsuranceCarrier,
+                "empInsPolicyNumber": empInsPolicyNumber,
+                "empInsPhoneNumber": empInsPhoneNumber,
+            }
+
+            //var ret = postData('GetEmpDetail', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        FirstStep(data); })
+            //    .catch(error => console.error(error))
+
+            fetch('GetEmpDetail', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Get', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
+        })
+
+    })
+
+    function FirstStep(emp) {
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
+        Employee_id = emp.data;
+    }
+
+
+    function postData(url, data) {
+        //Default options are marked with *
+        console.log(data);
+        console.log(JSON.stringify(data));
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'Accept': 'application/json',
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Get', //*GET, POST, PUT, DELETE, etc...
+            mode: 'same-origin', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+        //.then(Response => {
+        //    console.log(Response);
+        //    Response.json();
+        //}) //parses response to JSON
+    }
+</script>

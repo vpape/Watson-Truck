@@ -323,49 +323,49 @@
     }
 
    
-    //document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
-    //    var maritalStatus = document.querySelector("#MaritalStatus").value;
+    document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
+        var maritalStatus = document.querySelector("#MaritalStatus").value;
 
-    //    var message;
-    //    var alert = confirm("Would you like to proceed ? If yes, click the OK button to continue")
+        var message;
+        var alert = confirm("Would you like to proceed ? If yes, click the OK button to continue")
 
-    //    if (maritalStatus == "SinglewDep" || maritalStatus == "MarriedwDep") {
-    //        if (alert == true) {
+        if (maritalStatus == "SinglewDep" || maritalStatus == "MarriedwDep") {
+            if (alert == true) {
 
-    //            message = "Please proceed to the Dependent Enrollment, Thank you!!";
-    //            var alert = confirm(message)
-    //            if (alert == true) {
+                message = "Please proceed to the Dependent Enrollment, Thank you!!";
+                var alert = confirm(message)
+                if (alert == true) {
 
-    //                window.location.href = "/Employee/DepEnrollment/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/DepEnrollment/?Employee_id=" + Employee_id;
 
-    //            }
-    //            else {
-    //                window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
-    //            }
-    //        }
-    //    }
-    //    else {
-    //        if (alert == false) {
+                }
+                else {
+                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+                }
+            }
+        }
+        else {
+            if (alert == false) {
 
-    //            window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
-    //        }
-    //        else {
+                window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+            }
+            else {
 
-    //            message = "Please proceed to the to the GroupHealth Enrollment, Thank you!!";
-    //            var alert = confirm(message)
+                message = "Please proceed to the to the GroupHealth Enrollment, Thank you!!";
+                var alert = confirm(message)
 
-    //            if (alert == true) {
+                if (alert == true) {
 
-    //                window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id
+                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id
 
-    //            }
-    //            else {
+                }
+                else {
 
-    //                window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
-    //            }
-    //        }
-    //    }
-    //})
+                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+                }
+            }
+        }
+    })
       
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
