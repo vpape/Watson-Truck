@@ -895,7 +895,7 @@ namespace Watson.Controllers
         }
 
         //Get-DepDetail
-        public ActionResult DepDetail(int? Employee_id, int? FamilyMember_id, string MaritalStatus)
+        public ActionResult DependentDetail(int? Employee_id, int? FamilyMember_id, string MaritalStatus)
         {
             //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
 
