@@ -56,10 +56,10 @@
                 @if (item.RelationshipToInsured == "Spouse")
                 {
                     <td>
-                        @Html.ActionLink("Detail", "SpDetail", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                        @Html.ActionLink("Detail", "SpouseDetail", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "EditSp", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                        @Html.ActionLink("Edit", "EditSpouse", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
                     </td>
                     <td>
                         @Html.ActionLink("Delete", "DeleteSp", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
@@ -71,7 +71,7 @@
                         @Html.ActionLink("Detail", "DepDetail", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "EditDep", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                        @Html.ActionLink("Edit", "EditDependent", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
 
                     </td>
                     <td>

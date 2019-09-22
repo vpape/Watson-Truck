@@ -1,7 +1,4 @@
 ﻿@model Watson.Models.Family_Info
-@{
-    ViewBag.Title = "SpDetail";
-}
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,13 +82,13 @@
                     <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(Model => Model.ZipCode)" disabled>
                 </dd>
                 @*<dt>
-                        <label class="col-md-2 control-label">Within City Limits?</label>
-                    </dt>
-                    <dd class="col-md-10 form-group" id="CityLimits">
-                        <input type="text" id="CityLimits" class="form-control" name="CityLimits" value="@Html.DisplayFor(Model => Model.)" disabled />
-                        <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.CityLimits == "Yes") ? "selected" : "") />Yes</label>
-                <label class="radio-inline"><input type="radio" id="NoCityLimits"  class="radio-inline" name="CityLimits" value="No"  @((ViewBag.CityLimits == "No" ) ? "selected" : "") />No</label>
-                    </dd>*@
+                            <label class="col-md-2 control-label">Within City Limits?</label>
+                        </dt>
+                        <dd class="col-md-10 form-group" id="CityLimits">
+                            <input type="text" id="CityLimits" class="form-control" name="CityLimits" value="@Html.DisplayFor(Model => Model.)" disabled />
+                            <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.CityLimits == "Yes") ? "selected" : "") />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="NoCityLimits"  class="radio-inline" name="CityLimits" value="No"  @((ViewBag.CityLimits == "No" ) ? "selected" : "") />No</label>
+                        </dd>*@
                 <dt>
                     <label class="col-md-2 control-label">Physical Address:</label>
                 </dt>
@@ -176,11 +173,36 @@
                 <dd class="col-md-10 form-group">
                     <input type="text" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" value="@Html.DisplayFor(Model => Model.EmployerPhoneNumber)" disabled>
                 </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Other Insurance:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    @*@Html.RadioButtonFor(model => model.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.Gender, "female", false) Female*@
+                    <input type="text" id="spOtherInsCoverage" class="form-control" name="CoveredByOtherInsurance" value="@Html.DisplayFor(Model => Model.FirstName)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Insurance Carrier:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="spInsCarrier" class="form-control" name="InsuranceCarrier" @*value="@Html.DisplayFor(Model => Model.InsuranceCarrier)"*@ disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Policy Number:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="tel" id="spInsPolicyNumber" class="form-control" name="PolicyNumber" @*value="@Html.DisplayFor(Model => Model.PolicyNumber)"*@ disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Phone Number:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="tel" id="spInsPhoneNumber" class="form-control" name="PhoneNumber" @*value="@Html.DisplayFor(Model => Model.PhoneNumber)"*@ disabled>
+                </dd>
             </dl>
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditSp", new { FamilyMember_id = Model.FamilyMember_id }, null) |
+        @Html.ActionLink("Edit", "EditSpouse", new { FamilyMember_id = Model.FamilyMember_id }, null) |
         @Html.ActionLink("Back to List", "FamilyOverview", new { Employee_id = Model.Employee_id }, null)
     </p>
 </body>
@@ -277,12 +299,18 @@
         EmployerZipCode = document.getElementById("EmployerZipCode").value;
         EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
 
+        //spOtherInsCoverage = document.getElementById("spOtherInsCoverage").value
+        spInsuranceCarrier = document.getElementById("spInsCarrier").value
+        spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value
+        spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value
+
         var data = {
             "Employee_id": Employee_id,
             "EmpNumber": EmpNumber,
             "FirstName": FirstName,
             "DateOfBirth": DateOfBirth,
             "Gender": Gender,
+
             "MailingAddress": MailingAddress,
             "PObox": PObox,
             "City": City,
@@ -299,6 +327,7 @@
             "PhoneNumber": PhoneNumber,
             "CellPhone": CellPhone,
             "CityLimits": CityLimits,
+
             "Employer": Employer,
             "EmployerMailingAddress": EmployerMailingAddress,
             "EmployerPObox": EmployerPObox,
@@ -307,12 +336,33 @@
             "EmployerZipCode": EmployerZipCode,
             "EmployerPhoneNumber": EmployerPhoneNumber,
 
+            //"spOtherInsCoverage": spOtherInsCoverage,
+            "spInsCarrier": spInsCarrier,
+            "spInsPolicyNumber": spInsPolicyNumber,
+            "spInsPhoneNumber": spInsPhoneNumber,
+
         }
 
-        var ret = postData('GetSpDetail', data)
-            .then(data => FirstStep(data))
-            .catch(error => console.error(error))
+        //var ret = postData('GetSpDetail', data)
+        //    .then(data => FirstStep(data))
+        //    .catch(error => console.error(error))
 
+        fetch('GetSpDetail', {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'Accept': 'application/json',
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Get', //*GET, POST, PUT, DELETE, etc...
+            mode: 'same-origin', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        }).then(res => res.json())
+            .then(response => FirstStep(response))
+            .catch(error => console.error('Error:', error));
     })
 
     function FirstStep(emp) {
@@ -334,7 +384,7 @@
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
-            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            method: 'Get', //*GET, POST, PUT, DELETE, etc...
             mode: 'same-origin', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer

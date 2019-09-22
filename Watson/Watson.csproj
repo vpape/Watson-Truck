@@ -332,6 +332,7 @@
     <Compile Include="ViewModels\EmployeeAndInsuranceVM.cs" />
     <Compile Include="ViewModels\GroupHealthGrpHEnrollmentVM.cs" />
     <Compile Include="ViewModels\JobApplicantVM.cs" />
+    <Compile Include="ViewModels\SpouseAndDependentInsVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -452,11 +453,9 @@
     <Content Include="Views\Employee\FamilyOverview.cshtml" />
     <Content Include="Views\Employee\FamilyEnrollment.cshtml" />
     <Content Include="Views\Employee\DepEnrollment.cshtml" />
-    <Content Include="Views\Employee\EditSp.cshtml" />
     <Content Include="Views\Admin\EmpOverview.cshtml" />
     <Content Include="Views\Employee\NewEmployeeEnrollment.cshtml" />
     <Content Include="Views\Employee\EditDep.cshtml" />
-    <Content Include="Views\Employee\SpDetail.cshtml" />
     <Content Include="Views\Employee\DeleteSp.cshtml" />
     <Content Include="Views\Employee\DeleteDep.cshtml" />
     <Content Include="Views\Employee\EmpInsurance.cshtml" />
@@ -497,10 +496,13 @@
     <Content Include="Views\Other_Insurance\EditOtherInsurance.cshtml" />
     <Content Include="Views\Other_Insurance\DeleteOtherInsurance.cshtml" />
     <Content Include="Views\Other_Insurance\OtherInsuranceDetail.cshtml" />
-    <Content Include="Views\Employee\DepDetail.cshtml" />
     <Content Include="Views\Employee\AddDependent.cshtml" />
     <Content Include="Views\Employee\EditEmployee.cshtml" />
     <Content Include="Views\Employee\EmployeeDetail.cshtml" />
+    <Content Include="Views\Employee\SpouseDetail.cshtml" />
+    <Content Include="Views\Employee\EditSpouse.cshtml" />
+    <Content Include="Views\Employee\EditDependent.cshtml" />
+    <Content Include="Views\Employee\DependentDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

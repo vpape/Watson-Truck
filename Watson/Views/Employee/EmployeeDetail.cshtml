@@ -160,6 +160,7 @@
                     <label class="col-md-2 control-label">Other Insurance:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
+                    @*@Html.RadioButtonFor(model => model.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.Gender, "female", false) Female*@
                     <input type="text" id="empOtherGrpHinsCoverage" class="form-control" name="CoveredByOtherInsurance" value="@Html.DisplayFor(Model => Model.grpHealth.OtherInsuranceCoverage)" disabled>
                 </dd>
                 <dt>
@@ -249,94 +250,92 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#EmpDetail").addEventListener("click", function () {
-            Role = document.getElementById("Role").value;
-            CurrentEmployer = document.getElementById("CurrentEmployer").value;
-            JobTitle = document.getElementById("JobTitle").value;
-            EmpNumber = document.getElementById("EmpNumber").value;
-            HireDate = document.getElementById("HireDate").value;
-            FirstName = document.getElementById("FirstName").value;
-            LastName = document.getElementById("LastName").value;
-            DateOfBirth = document.getElementById("DateOfBirth").value;
-            MaritalStatus = document.getElementById("MaritalStatus").value;
-            Gender = document.getElementById("Gender").value;
+        Role = document.getElementById("Role").value;
+        CurrentEmployer = document.getElementById("CurrentEmployer").value;
+        JobTitle = document.getElementById("JobTitle").value;
+        EmpNumber = document.getElementById("EmpNumber").value;
+        HireDate = document.getElementById("HireDate").value;
+        FirstName = document.getElementById("FirstName").value;
+        LastName = document.getElementById("LastName").value;
+        DateOfBirth = document.getElementById("DateOfBirth").value;
+        MaritalStatus = document.getElementById("MaritalStatus").value;
+        Gender = document.getElementById("Gender").value;
 
-            MailingAddress = document.getElementById("MailingAddress").value;
-            PObox = document.getElementById("PObox").value;
-            City = document.getElementById("City").value;
-            State = document.getElementById("State").value;
-            ZipCode = document.getElementById("ZipCode").value;
-            PhysicalAddress = document.getElementById("PhysicalAddress").value;
-            CityTwo = document.getElementById("CityTwo").value;
-            StateTwo = document.getElementById("StateTwo").value;
-            ZipCodeTwo = document.getElementById("ZipCodeTwo").value;
-            EmailAddress = document.getElementById("EmailAddress").value;
-            PhoneNumber = document.getElementById("PhoneNumber").value;
-            CellPhone = document.getElementById("CellPhone").value;
-            CityLimits = document.getElementById("CityLimits").value;
+        MailingAddress = document.getElementById("MailingAddress").value;
+        PObox = document.getElementById("PObox").value;
+        City = document.getElementById("City").value;
+        State = document.getElementById("State").value;
+        ZipCode = document.getElementById("ZipCode").value;
+        PhysicalAddress = document.getElementById("PhysicalAddress").value;
+        CityTwo = document.getElementById("CityTwo").value;
+        StateTwo = document.getElementById("StateTwo").value;
+        ZipCodeTwo = document.getElementById("ZipCodeTwo").value;
+        EmailAddress = document.getElementById("EmailAddress").value;
+        PhoneNumber = document.getElementById("PhoneNumber").value;
+        CellPhone = document.getElementById("CellPhone").value;
+        CityLimits = document.getElementById("CityLimits").value;
 
-            //empOtherGrpHinsCoverage = document.getElementById("empOtherGrpHinsCoverage").value
-            empInsuranceCarrier = document.getElementById("empInsCarrier").value
-            empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value
-            empInsPhoneNumber = document.getElementById("empInsPhoneNumber").value
+        //empOtherGrpHinsCoverage = document.getElementById("empOtherGrpHinsCoverage").value
+        empInsuranceCarrier = document.getElementById("empInsCarrier").value
+        empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value
+        empInsPhoneNumber = document.getElementById("empInsPhoneNumber").value
 
-            var data = {
-                "Employee_id": Employee_id,
-                "Role": Role,
-                "CurrentEmployer": CurrentEmployer,
-                "JobTitle": JobTitle,
-                "EmpNumber": EmpNumber,
-                "HireDate": HireDate,
-                "MaritalStatus": MaritalStatus,
-                "FirstName": FirstName,
-                "LastName": LastName,
-                "DateOfBirth": DateOfBirth,
-                "Gender": Gender,
+        var data = {
+            "Employee_id": Employee_id,
+            "Role": Role,
+            "CurrentEmployer": CurrentEmployer,
+            "JobTitle": JobTitle,
+            "EmpNumber": EmpNumber,
+            "HireDate": HireDate,
+            "MaritalStatus": MaritalStatus,
+            "FirstName": FirstName,
+            "LastName": LastName,
+            "DateOfBirth": DateOfBirth,
+            "Gender": Gender,
 
-                "MailingAddress": MailingAddress,
-                "PObox": PObox,
-                "City": City,
-                "State": State,
-                "ZipCode": ZipCode,
-                "PhysicalAddress": PhysicalAddress,
-                "City2": CityTwo,
-                "State2": StateTwo,
-                "ZipCode2": ZipCodeTwo,
-                "CityLimits": CityLimits,
-                "EmailAddress": EmailAddress,
-                "PhoneNumber": PhoneNumber,
-                "CellPhone": CellPhone,
+            "MailingAddress": MailingAddress,
+            "PObox": PObox,
+            "City": City,
+            "State": State,
+            "ZipCode": ZipCode,
+            "PhysicalAddress": PhysicalAddress,
+            "City2": CityTwo,
+            "State2": StateTwo,
+            "ZipCode2": ZipCodeTwo,
+            "CityLimits": CityLimits,
+            "EmailAddress": EmailAddress,
+            "PhoneNumber": PhoneNumber,
+            "CellPhone": CellPhone,
 
-                //"empOtherGrpHinsCoverage": empOtherGrpHinsCoverage,
-                "empInsCarrier": empInsuranceCarrier,
-                "empInsPolicyNumber": empInsPolicyNumber,
-                "empInsPhoneNumber": empInsPhoneNumber,
-            }
+            //"empOtherGrpHinsCoverage": empOtherGrpHinsCoverage,
+            "empInsCarrier": empInsuranceCarrier,
+            "empInsPolicyNumber": empInsPolicyNumber,
+            "empInsPhoneNumber": empInsPhoneNumber,
+        }
 
-            //var ret = postData('GetEmpDetail', data)
-            //    .then(data => {
-            //        console.log(data);
-            //        FirstStep(data); })
-            //    .catch(error => console.error(error))
+        //var ret = postData('GetEmpDetail', data)
+        //    .then(data => {
+        //        console.log(data);
+        //        FirstStep(data); })
+        //    .catch(error => console.error(error))
 
-            fetch('GetEmpDetail', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Get', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => FirstStep(response))
-                .catch(error => console.error('Error:', error));
-        })
-
+        fetch('GetEmpDetail', {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'Accept': 'application/json',
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Get', //*GET, POST, PUT, DELETE, etc...
+            mode: 'same-origin', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        }).then(res => res.json())
+            .then(response => FirstStep(response))
+            .catch(error => console.error('Error:', error));
+   
     })
 
     function FirstStep(emp) {

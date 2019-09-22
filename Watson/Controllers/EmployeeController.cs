@@ -371,7 +371,7 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult FamilyOverview(int Employee_id)
+        public ActionResult FamilyOverview(int? Employee_id)
         {
             ViewBag.Employee_id = Employee_id;
            
@@ -563,7 +563,7 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //EditSp Method
-        public ActionResult EditSp(int? FamilyMember_id, int? Employee_id, string MaritalStatus)
+        public ActionResult EditSpouse(int? FamilyMember_id, int? Employee_id, string MaritalStatus)
         {
             Employee e = db.Employees.Find(Employee_id);
             //ViewBag.MaritalStatus = e.MaritalStatus;
@@ -669,7 +669,7 @@ namespace Watson.Controllers
         }
 
         //Get-SpDetail
-        public ActionResult SpDetail(int? Employee_id, int? FamilyMember_id, string MaritalStatus)
+        public ActionResult SpouseDetail(int? Employee_id, int? FamilyMember_id, string MaritalStatus)
         {
             //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
 
@@ -815,7 +815,7 @@ namespace Watson.Controllers
         }
 
         //EditDep Method
-        public ActionResult EditDep(int? Employee_id, int? FamilyMember_id)
+        public ActionResult EditDependent(int? Employee_id, int? FamilyMember_id)
         {
             if (FamilyMember_id == null)
             {

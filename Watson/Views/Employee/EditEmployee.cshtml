@@ -173,9 +173,8 @@
             <div id="empCovered">
                 <div class="form-group">
                     <label>Are you covered by any other insurance, including Medicare?</label>
-                    @*@Html.RadioButtonFor(model => model.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.Gender, "female", false) Female*@
-                    <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="true" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="false" />No</label>
+                    <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="@Html.DisplayFor(model => model.grpHealth.OtherInsuranceCoverage, "Yes", true)"  />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="@Html.DisplayFor(model => model.grpHealth.OtherInsuranceCoverage, "No", false)"  />No</label>
                 </div>
                 <p></p>
                 <div id="empInsInfo">

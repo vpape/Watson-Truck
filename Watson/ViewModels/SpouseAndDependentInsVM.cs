@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Watson.ViewModels
 {
-    public class GroupHealthGrpHEnrollmentVM
+    public class SpouseAndDependentInsVM
     {
         public Employee employee { get; set; }
-        public List<Family_Info> family { get; set; }
-        public Group_Health grpHealth { get; set; }
-        public List<Other_Insurance> otherIns { get; set; }
-
+        public Family_Info spouse { get; set; }
+        public Family_Info dependent { get; set; }
+        public Other_Insurance otherIns { get; set; }
     }
 }

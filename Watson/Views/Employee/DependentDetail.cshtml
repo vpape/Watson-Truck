@@ -30,33 +30,33 @@
                 <div class="form-group">
                     <label for="SSN" class="col-md-2 control-label">SSN:</label>
                     <div class="col-md-10">
-                        <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="" disabled/>
+                        <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="" disabled />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="DepFirstName" class="col-md-2 control-label">First Name:</label>
                     <div class="col-md-10">
-                        <input type="text" id="DepFirstName" class="form-control" placeholder="First Name" name="FirstName" value="" disabled/>
+                        <input type="text" id="DepFirstName" class="form-control" placeholder="First Name" name="FirstName" value="" disabled />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="DepLastName" class="col-md-2 control-label">Last Name:</label>
                     <div class="col-md-10">
-                        <input type="text" id="DepLastName" class="form-control" placeholder="Last Name" name="LastName" value="" disabled/>
+                        <input type="text" id="DepLastName" class="form-control" placeholder="Last Name" name="LastName" value="" disabled />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
                     <div class="col-md-10">
-                        <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" disabled/>
+                        <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" disabled />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">Gender:</label>
                     @*<label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" (ViewBag.Family_Info.Gender == "Male" ? "checked" : "" ) ((Model.Gender == "Male") ? "checked" : "") />Male</label>
-            <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" (ViewBag.Family_Info.Gender == "Female" ? "checked" : "" ) ((Model.Gender == "Female") ? "checked" : "") />Female</label>*@
-                    <div class="col-md-10" >
-                        <select id="Gender" class="form-control" >
+                        <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" (ViewBag.Family_Info.Gender == "Female" ? "checked" : "" ) ((Model.Gender == "Female") ? "checked" : "") />Female</label>*@
+                    <div class="col-md-10">
+                        <select id="Gender" class="form-control">
                             <option value="">Select Option</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -64,15 +64,15 @@
                     </div>
                 </div>
                 <hr />
-                <div class="collapsible" id="SecondStep">Dependent Insurance</div>
+                <div class="collapsible" id="SecondStep">Dependent Insurance Detail</div>
                 <div id="divDepInsDetail" class="content">
                     <p></p>
                     <div id="DepOtherInsCoverage">
                         <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
                         @*@((ViewBag.Other_Insurance.CoverByOtherInsurance == "Yes") ? "checked" : "")*@ @*onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" disabled />Yes</label>*@
                         @*@((ViewBag.Other_Insurance.CoverByOtherInsurance == "No") ? "checked" : "")*@ @*onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" disabled />No</label>*@
-                        <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="yes" disabled/>Yes</label>
-                        <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="no"  disabled/>No</label>
+                        <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="yes" disabled />Yes</label>
+                        <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="no" disabled />No</label>
                         <div id="depInsInfo">
                             <div class="form-group col-md-2">
                                 <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" disabled />
@@ -83,32 +83,14 @@
                             <div class="form-group col-md-2">
                                 <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" disabled />
                             </div>
-                            <div class="">
-                                <div class="col-md-10 form-group">
-                                    <input type="text" id="InsMailingAddress" class="form-control" placeholder="Insurance Mailing Address" name="MailingAddress" value="" disabled>
-                                </div>
-                                <div class="col-md-10 form-group">
-                                    <input type="text" id="InsPObox" class="form-control" placeholder="Insurance PO box" name="PObox" value="" disabled>
-                                </div>
-                                <div class="col-md-10 form-group">
-                                    <input type="text" id="InsCity" class="form-control" placeholder="Insurance City" name="City" value="" disabled>
-                                </div>
-                                <div class="col-md-10 form-group">
-                                    <input type="text" id="InsState" class="form-control" placeholder="Insurance State" name="State" value="" disabled>
-                                </div>
-                                <div class="col-md-10 form-group">
-                                    <input type="text" id="InsZipCode" class="form-control" placeholder="Insurance Zip Code" name="ZipCode" value="" disabled>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditDep", new { FamilyMember_id = Model.FamilyMember_id })|
+        @Html.ActionLink("Edit", "EditDependent", new { FamilyMember_id = Model.FamilyMember_id })|
         @Html.ActionLink("Back to List", "FamilyOverview", new { Employee_id = Model.Employee_id }, null)
     </p>
 </body>
@@ -224,119 +206,96 @@
     }
 </script>
 
-<script>
-    function showHideDepInsCoverage() {
-        document.addEventListener("click", function () {
-            var selection = document.getElementById("DepOtherIns");
 
-            if (selection.checked == true) {
-                document.getElementById("depInsInfo").style.visibility = "visible";
-            }
-            else {
-                document.getElementById("depInsInfo").style.visibility = "hidden";
-            }
-        })
-    
-    }
-
-    //function showHideDepInsCoverage() {
-    //    document.addEventListener("click", function () {
-    //        var selection = document.getElementById("DepOtherIns");
-
-    //        if (selection.checked == true) {
-
-    //            document.getElementById("depInsInfo").style.visibility = "visible";
-    //        }
-    //        else {
-    //            document.getElementById("depInsInfo").style.visibility = "hidden";
-    //        }
-    //    });
-
-</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         Employee_id = document.getElementById("Employee_id").value;
-        RelationshipToInsured = document.getElementsByName("RelationshipToInsured").value;
-        EmpNumber = document.getElementById("EmpNumber").value;
-        DepFirstName = document.getElementById("DepFirstName").value;
-        DepLastName = document.getElementById("DepLastName").value;
-        DateOfBirth = document.getElementById("DateOfBirth").value;
-        Gender = document.getElementById("Gender").value;
+        FamilyMember_id = document.getElementById("FamilyMember_id").value;
+        RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
+        SSN = document.getElementById("SSN").value;
+        DepFirstName = document.getElementById("DepFirstName").value
+        DepLastName = document.getElementById("DepLastName").value
+        DateOfBirth = document.getElementById("DateOfBirth").value
+        Gender = document.getElementById("Gender").value
 
-        CoveredByOtherIns = document.getElementsByName("CoveredByOtherIns").value;
-        InsuranceCompany = document.getElementById("InsuranceCompany").value;
-        PolicyNumber = document.getElementById("PolicyNumber").value;
-        InsPhoneNumber = document.getElementById("InsPhoneNumber").value;
-        InsMailingAddress = document.getElementById("InsMailingAddress").value;
-        InsCity = document.getElementById("InsCity").value;
-        InsState = document.getElementById("InsState").value;
-        InsZipCode = document.getElementById("InsZipCode").value;
+        //depOtherInsCoverage = document.getElementsById("depOtherInsCoverage").value
+        depInsCarrier = document.getElementById("depInsCarrier").value
+        depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
+        depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value
 
         var data = {
             "Employee_id": Employee_id,
+            "FamilyMember_id": FamilyMember_id,
             "RelationshipToInsured": RelationshipToInsured,
-            "EmpNumber": EmpNumber,
+            "SSN": SSN,
             "DepFirstName": DepFirstName,
             "DepLastName": DepLastName,
             "DateOfBirth": DateOfBirth,
             "Gender": Gender,
-            "CoveredByOtherIns": CoveredByOtherIns,
-            "InsuranceCompany": InsuranceCompany,
-            "PolicyNumber": PolicyNumber,
-            "InsPhoneNumber": InsPhoneNumber,
-            "InsMailingAddress": InsMailingAddress,
-            "InsCity": InsCity,
-            "InsState": InsState,
-            "InsZipCode": InsZipCode,
+
+            //"depOtherInsCoverage": depOtherInsCoverage,
+            "depInsCarrier": depInsCarrier,
+            "depInsPolicyNumber": depInsPolicyNumber,
+            "depInsPhoneNumber": depInsPhoneNumber,
 
         }
 
-        var ret = postData('GetDepDetail', data)
-            .then(data => FirstStep(data))
-            .catch(error => console.error(error))
+        //var ret = postData('GetDepDetail', data)
+        //    .then(data => { console.log(data);
+        //                  FirstStep(data);
+        //                  })
+        //    .catch(error => console.error(error))
+
+        fetch('GetDepDetail', {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'Accept': 'application/json',
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'same-origin', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        }).then(res => res.json())
+            .then(response => FirstStep(response))
+            .catch(error => console.error('Error:', error));
 
     })
 
     function FirstStep(dep) {
-        document.querySelector("#dependentSelectForm").nextElementSibling.style.display = "block";
-        document.querySelector("#Employee_id").value = dep.Employee_id;
-        document.querySelector("#EmpNumber").value = dep.EmpNumber;
-        document.querySelector("#DepFirstName").value = dep.DepFirstName;
-        document.querySelector("#DepLastName").value = dep.DepLastName;
-        document.querySelector("#DateOfBirth").value = dep.DateOfBirth;
-        document.querySelector("#Gender").value = dep.Gender;
-        document.querySelector("#CoveredByOtherIns").value = dep.CoveredByOtherIns;
-        document.querySelector("#InsuranceCompany").value = dep.InsuranceCompany;
-        document.querySelector("#PolicyNumber").value = dep.PolicyNumber;
-        document.querySelector("InsPhoneNumber").value = dep.InsPhoneNumber;
-        document.querySelector("#InsMailingAddress").value = dep.InsMailingAddress;
-        document.querySelector("#InsCity").value = dep.InsCity;
-        document.querySelector("#InsState").value = dep.InsState;
-        document.querySelector("#InsZipCode").value = dep.InsZipCode;
-        Employee_id = dep.data;
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
+        console.log(dep);
+        FamilyMember_id = dep.data;
     }
 
     function postData(url, data) {
         //Default options are marked with *
+        console.log(data);
+        console.log(JSON.stringify(data));
         return fetch(url, {
             body: JSON.stringify(data), //must match 'Content-Type' header
             cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', //include, same-origin, *omit
             headers: {
+                'Accept': 'application/json',
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
-            method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            mode: 'cors', //no-cors, cors, *same-origin
+            method: 'Get', //*GET, POST, PUT, DELETE, etc...
+            mode: 'same-origin', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer
-        })
-            .then(Response => Response.json()) //parses response to JSON
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+        //.then(Response => {
+        //    console.log(Response);
+        //    Response.json();
+        //}) //parses response to JSON
     }
 </script>
-
-
-
-
-
