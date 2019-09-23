@@ -10,8 +10,7 @@ namespace Watson.ViewModels
     public class SpouseAndDependentInsVM
     {
         public Employee employee { get; set; }
-        public Family_Info spouse { get; set; }
-        public Family_Info dependent { get; set; }
+        public Family_Info family { get; set; }
         public Other_Insurance otherIns { get; set; }
     }
 }

@@ -895,9 +895,13 @@ namespace Watson.Controllers
         }
 
         //Get-DepDetail
-        public ActionResult DependentDetail(int? Employee_id, int? FamilyMember_id, string MaritalStatus)
+        public ActionResult DependentDetail(int? Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured)
         {
             //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
+            SpouseAndDependentInsVM spAndDepInsVM = new SpouseAndDependentInsVM();
+
+            spAndDepInsVM.family = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id);
+            spAndDepInsVM.otherIns = db.Other_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id);
 
             if (FamilyMember_id == null)
             {
@@ -911,8 +915,10 @@ namespace Watson.Controllers
             }
 
             ViewBag.FamilyMember_id = f.FamilyMember_id;
+            ViewBag.Employee_id = f.Employee_id;
+            ViewBag.RelationshipToInsured = f.RelationshipToInsured;
 
-            return View(f);
+            return View(spAndDepInsVM);
         }
 
         //Get-DepDetail

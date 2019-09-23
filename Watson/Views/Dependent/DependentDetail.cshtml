@@ -78,7 +78,7 @@
                             @foreach (var item in Model.Other_Insurance)
                             {
                                 <label class="col-md-2 control-label">Insurance Company:</label>
-                                <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="@Html.DisplayFor(model => item.InsuranceCompany)" />
+                                <input type="text" id="InsCompany" class="form-control" name="InsuranceCompany" value="@Html.DisplayFor(model => item.InsuranceCarrier)" />
                                 <label class="col-md-2 control-label">Policy Number:</label>
                                 <input type="text" id="PolicyNumber" class="form-control" name="PolicyNumber" value="@Html.DisplayFor(model => item.PolicyNumber)" />
                                 <label class="col-md-2 control-label">Phone Number:</label>

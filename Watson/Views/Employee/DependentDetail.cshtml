@@ -1,5 +1,4 @@
-﻿@model Watson.Models.Family_Info
-
+﻿@model Watson.ViewModels.SpouseAndDependentInsVM
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,25 +29,25 @@
                 <div class="form-group">
                     <label for="SSN" class="col-md-2 control-label">SSN:</label>
                     <div class="col-md-10">
-                        <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="" disabled />
+                        <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="@Html.DisplayFor(Model => Model.family.SSN)" disabled />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="DepFirstName" class="col-md-2 control-label">First Name:</label>
                     <div class="col-md-10">
-                        <input type="text" id="DepFirstName" class="form-control" placeholder="First Name" name="FirstName" value="" disabled />
+                        <input type="text" id="DepFirstName" class="form-control" placeholder="First Name" name="FirstName" value="@Html.DisplayFor(Model => Model.family.FirstName)" disabled />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="DepLastName" class="col-md-2 control-label">Last Name:</label>
                     <div class="col-md-10">
-                        <input type="text" id="DepLastName" class="form-control" placeholder="Last Name" name="LastName" value="" disabled />
+                        <input type="text" id="DepLastName" class="form-control" placeholder="Last Name" name="LastName" value="@Html.DisplayFor(Model => Model.family.LastName)" disabled />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
                     <div class="col-md-10">
-                        <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" disabled />
+                        <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Html.DisplayFor(Model => Model.family.DateOfBirth)" disabled />
                     </div>
                 </div>
                 <div class="form-group">
@@ -75,13 +74,13 @@
                         <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="no" disabled />No</label>
                         <div id="depInsInfo">
                             <div class="form-group col-md-2">
-                                <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" disabled />
+                                <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.DisplayFor(Model => Model.otherIns.InsuranceCarrier)" disabled />
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" disabled />
+                                <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="@Html.DisplayFor(Model => Model.otherIns.PolicyNumber)" disabled />
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" disabled />
+                                <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="@Html.DisplayFor(Model => Model.otherIns.PhoneNumber)" disabled />
                             </div>
                         </div>
                     </div>
@@ -90,8 +89,8 @@
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditDependent", new { FamilyMember_id = Model.FamilyMember_id })|
-        @Html.ActionLink("Back to List", "FamilyOverview", new { Employee_id = Model.Employee_id }, null)
+        @Html.ActionLink("Edit", "EditDependent", new { FamilyMember_id = ViewBag.FamilyMember_id }, null)|
+        @Html.ActionLink("Back to List", "FamilyOverview", new { Employee_id = ViewBag.Employee_id }, null)
     </p>
 </body>
 </html>

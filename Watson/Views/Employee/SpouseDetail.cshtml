@@ -178,31 +178,31 @@
                 </dt>
                 <dd class="col-md-10 form-group">
                     @*@Html.RadioButtonFor(model => model.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.Gender, "female", false) Female*@
-                    <input type="text" id="spOtherInsCoverage" class="form-control" name="CoveredByOtherInsurance" value="@Html.DisplayFor(Model => Model.FirstName)" disabled>
+                    <input type="text" id="spOtherInsCoverage" class="form-control" name="CoveredByOtherInsurance" @*value="@Html.DisplayFor(Model => Model.otherIns.CoveredByOtherInsurance)"*@ disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Insurance Carrier:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="spInsCarrier" class="form-control" name="InsuranceCarrier" @*value="@Html.DisplayFor(Model => Model.InsuranceCarrier)"*@ disabled>
+                    <input type="text" id="spInsCarrier" class="form-control" name="InsuranceCarrier" @*value="@Html.DisplayFor(Model => Model.otherIns.InsuranceCarrier)"*@ disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Policy Number:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="tel" id="spInsPolicyNumber" class="form-control" name="PolicyNumber" @*value="@Html.DisplayFor(Model => Model.PolicyNumber)"*@ disabled>
+                    <input type="tel" id="spInsPolicyNumber" class="form-control" name="PolicyNumber" @*value="@Html.DisplayFor(Model => Model.otherIns.PolicyNumber)"*@ disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Phone Number:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="tel" id="spInsPhoneNumber" class="form-control" name="PhoneNumber" @*value="@Html.DisplayFor(Model => Model.PhoneNumber)"*@ disabled>
+                    <input type="tel" id="spInsPhoneNumber" class="form-control" name="PhoneNumber" @*value="@Html.DisplayFor(Model => Model.otherIns.PhoneNumber)"*@ disabled>
                 </dd>
             </dl>
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditSpouse", new { FamilyMember_id = Model.FamilyMember_id }, null) |
+        @Html.ActionLink("Edit", "EditSpouse", new { FamilyMember_id = Model.FamilyMember_id }, null)|
         @Html.ActionLink("Back to List", "FamilyOverview", new { Employee_id = Model.Employee_id }, null)
     </p>
 </body>
@@ -282,7 +282,7 @@
         County = document.getElementById("County").value;
         PhysicalAddress = document.getElementById("PhysicalAddress").value
         PObox2 = document.getElementById("PObox2").value,
-        City2 = document.getElementById("City2").value
+            City2 = document.getElementById("City2").value
         State2 = document.getElementById("State2").value
         ZipCode2 = document.getElementById("ZipCode2").value
         County2 = document.getElementById("County2").value
