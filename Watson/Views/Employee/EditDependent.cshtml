@@ -1,4 +1,4 @@
-﻿@model Watson.Models.Family_Info
+﻿@model Watson.ViewModels.SpouseAndDependentInsVM
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +24,7 @@
                 <div class="form-group" id="divRelationshipToInsured">
                     <label for="RelationshipToInsured" class="col-md-2 control-label">Relation To Employee:</label>
                     <div class="col-md-10">
-                        <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
+                        <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.DisplayFor(Model => Model.family.RelationshipToInsured)" disabled />
                     </div>
                     @*<div class="col-md-10 col-md-offset-2">
                             <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
@@ -42,25 +42,25 @@
                 <div class="form-group">
                     <label for="SSN" class="col-md-2 control-label">SSN:</label>
                     <div class="col-md-10">
-                        <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="" />
+                        <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="@Html.DisplayFor(Model => Model.family.SSN)" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="DepFirstName" class="col-md-2 control-label">First Name:</label>
                     <div class="col-md-10">
-                        <input type="text" id="DepFirstName" class="form-control" placeholder="First Name" name="FirstName" value="" />
+                        <input type="text" id="DepFirstName" class="form-control" placeholder="First Name" name="FirstName" value="@Html.DisplayFor(Model => Model.family.FirstName)" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="DepLastName" class="col-md-2 control-label">Last Name:</label>
                     <div class="col-md-10">
-                        <input type="text" id="DepLastName" class="form-control" placeholder="Last Name" name="LastName" value="" />
+                        <input type="text" id="DepLastName" class="form-control" placeholder="Last Name" name="LastName" value="@Html.DisplayFor(Model => Model.family.LastName)" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
                     <div class="col-md-10">
-                        <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="" />
+                        <input type="datetime" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Html.DisplayFor(Model => Model.family.DateOfBirth)" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -75,7 +75,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-11">
-                        <input type="submit" id="DepEnrollmentUpdate" value="Save" @*onclick="DependentEnrollmentUpdate()"*@ class="btn" />
+                        <input type="submit" id="DepEnrollmentUpdate" value="Save" class="btn" />
                         @*<button type="submit" id="DepEnrollmentUpdate" onclick="DependentEnrollmentUpdate()" class="btn">Save</button>*@
                     </div>
                 </div>
@@ -94,13 +94,13 @@
                 <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="no" />No</label>
                 <div id="depInsInfo">
                     <div class="form-group col-md-2">
-                        <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
+                        <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.DisplayFor(Model => Model.otherIns.InsuranceCarrier)" />
                     </div>
                     <div class="form-group col-md-2">
-                        <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                        <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="@Html.DisplayFor(Model => Model.otherIns.PolicyNumber)" />
                     </div>
                     <div class="form-group col-md-2">
-                        <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                        <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="@Html.DisplayFor(Model => Model.otherIns.PhoneNumber)" />
                     </div>
                 </div>
             </div>
@@ -113,11 +113,8 @@
             </div>
         </div>
     </div>
-    @*<p>
-            @Html.ActionLink("Back to Family Overview", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
-        </p>*@
     <p>
-        @Html.ActionLink("Back to Family Overview", "FamilyOverview", new { Employee_id = Model.Employee_id})
+        @Html.ActionLink("Back to Family Overview", "FamilyOverview", new { Employee_id = ViewBag.Employee_id})
     </p>
 </body>
 </html>

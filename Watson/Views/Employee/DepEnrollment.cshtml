@@ -78,7 +78,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-11">
-                        <input type="submit" id="DepEnrollmentUpdate" value="Save" @*onclick="DependentEnrollmentUpdate()"*@ class="btn" />
+                        <input type="submit" id="DepEnrollmentUpdate" value="Save" class="btn" />
                         @*<button type="submit" id="DepEnrollmentUpdate" onclick="DependentEnrollmentUpdate()" class="btn">Save</button>*@
                     </div>
                 </div>
@@ -116,9 +116,6 @@
             </div>
         </div>
     </div>
-    @*<p>
-            @Html.ActionLink("Back to Family Overview", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
-        </p>*@
     <p>
         @Html.ActionLink("Back to Enrollment Selection", "EnrollmentSelection")
     </p>
@@ -279,8 +276,6 @@
             }
         });
     }
-
-
 
     @*function AddDependent() {
         document.addEventListener("click", function () {

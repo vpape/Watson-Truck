@@ -1,4 +1,4 @@
-﻿@model Watson.Models.Family_Info
+﻿@model Watson.ViewModels.SpouseAndDependentInsVM
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,157 +21,151 @@
             <p></p>
             <dl class="dl-horizontal">
                 <dt>
-                    <label class="col-md-2 control-label">Employee Number:</label>
-                </dt>
-                <dd class="col-md-10 form-group">
-                    <input type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(Model => Model.SSN)" disabled>
-                </dd>
-                <dt>
                     <label class="col-md-2 control-label">First Name:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(Model => Model.FirstName)" disabled>
+                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(Model => Model.family.FirstName)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Last Name:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(Model => Model.LastName)" disabled>
+                    <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(Model => Model.family.LastName)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Date of Birth:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@(((DateTime)Model.DateOfBirth).ToString("yyyy-MM-dd"))" disabled>
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@(((DateTime)Model.family.DateOfBirth).ToString("yyyy-MM-dd"))" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Gender:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="@((Model.Gender == "Male" ? "checked" : ""))" @*@(ViewBag.Family_Info.Gender == "Male" ? "checked" : "" )*@ @*@((Model.Gender == "Male") ? "checked" : "")*@ />Male</label>
-                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="@((Model.Gender == "Female" ? "checked" : ""))" @*@(ViewBag.Family_Info.Gender == "Female" ? "checked" : "" )*@ @*@((Model.Gender == "Female") ? "checked" : "")*@ />Female</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="@((Model.family.Gender == "Male" ? "checked" : ""))" @*@(ViewBag.Family_Info.Gender == "Male" ? "checked" : "" )*@ @*@((Model.Gender == "Male") ? "checked" : "")*@ />Male</label>
+                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="@((Model.family.Gender == "Female" ? "checked" : ""))" @*@(ViewBag.Family_Info.Gender == "Female" ? "checked" : "" )*@ @*@((Model.Gender == "Female") ? "checked" : "")*@ />Female</label>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">MailingAddress:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(Model => Model.MailingAddress)" disabled>
+                    <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(Model => Model.family.MailingAddress)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">P.O. box:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="PObox" class="form-control" name="PObox" value="@Html.DisplayFor(Model => Model.PObox)" disabled>
+                    <input type="text" id="PObox" class="form-control" name="PObox" value="@Html.DisplayFor(Model => Model.family.PObox)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">City:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="City" class="form-control" name="City" value="@Html.DisplayFor(Model => Model.City)" disabled>
+                    <input type="text" id="City" class="form-control" name="City" value="@Html.DisplayFor(Model => Model.family.City)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">State:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="State" class="form-control" name="State" value="@Html.DisplayFor(Model => Model.State)" disabled>
+                    <input type="text" id="State" class="form-control" name="State" value="@Html.DisplayFor(Model => Model.family.State)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Zip Code:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(Model => Model.ZipCode)" disabled>
+                    <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(Model => Model.family.ZipCode)" disabled>
                 </dd>
                 @*<dt>
-                            <label class="col-md-2 control-label">Within City Limits?</label>
-                        </dt>
-                        <dd class="col-md-10 form-group" id="CityLimits">
-                            <input type="text" id="CityLimits" class="form-control" name="CityLimits" value="@Html.DisplayFor(Model => Model.)" disabled />
-                            <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.CityLimits == "Yes") ? "selected" : "") />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="NoCityLimits"  class="radio-inline" name="CityLimits" value="No"  @((ViewBag.CityLimits == "No" ) ? "selected" : "") />No</label>
-                        </dd>*@
+                        <label class="col-md-2 control-label">Within City Limits?</label>
+                    </dt>
+                    <dd class="col-md-10 form-group" id="CityLimits">
+                        <input type="text" id="CityLimits" class="form-control" name="CityLimits" value="@Html.DisplayFor(Model => Model.)" disabled />
+                        <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.CityLimits == "Yes") ? "selected" : "") />Yes</label>
+                <label class="radio-inline"><input type="radio" id="NoCityLimits"  class="radio-inline" name="CityLimits" value="No"  @((ViewBag.CityLimits == "No" ) ? "selected" : "") />No</label>
+                    </dd>*@
                 <dt>
                     <label class="col-md-2 control-label">Physical Address:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@Html.DisplayFor(Model => Model.PhysicalAddress)" disabled>
+                    <input type="text" id="PhysicalAddress" class="form-control" name="PhysicalAddress" value="@Html.DisplayFor(Model => Model.family.PhysicalAddress)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">City:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="City2" class="form-control" name="CityTwo" value="@Html.DisplayFor(Model => Model.CityTwo)" disabled>
+                    <input type="text" id="City2" class="form-control" name="CityTwo" value="@Html.DisplayFor(Model => Model.family.CityTwo)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">State:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="State2" class="form-control" name="StateTwo" value="@Html.DisplayFor(Model => Model.StateTwo)" disabled>
+                    <input type="text" id="State2" class="form-control" name="StateTwo" value="@Html.DisplayFor(Model => Model.family.StateTwo)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">ZipCode:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="ZipCode2" class="form-control" name="ZipCodeTwo" value="@Html.DisplayFor(Model => Model.ZipCodeTwo)" disabled>
+                    <input type="text" id="ZipCode2" class="form-control" name="ZipCodeTwo" value="@Html.DisplayFor(Model => Model.family.ZipCodeTwo)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Email:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(Model => Model.EmailAddress)" disabled>
+                    <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(Model => Model.family.EmailAddress)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Phone Number:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(Model => Model.PhoneNumber)" disabled>
+                    <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(Model => Model.family.PhoneNumber)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Cell Phone:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="@Html.DisplayFor(Model => Model.CellPhone)" disabled>
+                    <input type="tel" id="CellPhone" class="form-control" name="CellPhone" value="@Html.DisplayFor(Model => Model.family.CellPhone)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Current Employer:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="tel" id="Employer" class="form-control" name="Employer" value="@Html.DisplayFor(Model => Model.Employer)" disabled>
+                    <input type="tel" id="Employer" class="form-control" name="Employer" value="@Html.DisplayFor(Model => Model.family.Employer)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Employer Address:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="EmployerMailingAddress" class="form-control" name="EmployerMailingAddress" value="@Html.DisplayFor(Model => Model.EmployerMailingAddress)" disabled>
+                    <input type="text" id="EmployerMailingAddress" class="form-control" name="EmployerMailingAddress" value="@Html.DisplayFor(Model => Model.family.EmployerMailingAddress)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">P.O. box:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="EmployerPObox" class="form-control" name="EmployerPObox" value="@Html.DisplayFor(Model => Model.EmployerPObox)" disabled>
+                    <input type="text" id="EmployerPObox" class="form-control" name="EmployerPObox" value="@Html.DisplayFor(Model => Model.family.EmployerPObox)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">City:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="@Html.DisplayFor(Model => Model.EmployerCity)" disabled>
+                    <input type="text" id="EmployerCity" class="form-control" name="EmployerCity" value="@Html.DisplayFor(Model => Model.family.EmployerCity)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">State:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="EmployerState" class="form-control" name="EmployerState" value="@Html.DisplayFor(Model => Model.EmployerState)" disabled>
+                    <input type="text" id="EmployerState" class="form-control" name="EmployerState" value="@Html.DisplayFor(Model => Model.family.EmployerState)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Zip Code:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="@Html.DisplayFor(Model => Model.EmployerZipCode)" disabled>
+                    <input type="text" id="EmployerZipCode" class="form-control" name="EmployerZipCode" value="@Html.DisplayFor(Model => Model.family.EmployerZipCode)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Phone Number:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" value="@Html.DisplayFor(Model => Model.EmployerPhoneNumber)" disabled>
+                    <input type="text" id="EmployerPhoneNumber" class="form-control" name="EmployerPhoneNumber" value="@Html.DisplayFor(Model => Model.family.EmployerPhoneNumber)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Other Insurance:</label>
@@ -202,8 +196,8 @@
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditSpouse", new { FamilyMember_id = Model.FamilyMember_id }, null)|
-        @Html.ActionLink("Back to List", "FamilyOverview", new { Employee_id = Model.Employee_id }, null)
+        @Html.ActionLink("Edit", "EditSpouse", new { FamilyMember_id = ViewBag.FamilyMember_id }, null)|
+        @Html.ActionLink("Back to List", "FamilyOverview", new { Employee_id = ViewBag.Employee_id }, null)
     </p>
 </body>
 </html>
