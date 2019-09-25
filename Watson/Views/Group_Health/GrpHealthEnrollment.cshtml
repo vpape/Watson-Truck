@@ -1,6 +1,6 @@
 ﻿@model Watson.ViewModels.GroupHealthGrpHEnrollmentVM
-<h2>emp-Health Insurance Premiums</h2>
-<h5>emp- Medical (includes 15K Life Insurance)</h5>
+<h3>Health Insurance Premiums</h3>
+<h5>Medical (includes 15K Life Insurance)</h5>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,14 @@
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
     <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
     <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value="@ViewBag.GroupHealthInsurance_id" />
-    <input type="hidden" id="OtherInsurance_id" class="form-control" name="OtherInsurance_id" value="@ViewBag.OtherInsurance_id" />
+    @*<input type="hidden" id="InsurancePremium_id" class="form-control" name="InsurancePremium_id" value="@ViewBag.InsurancePremium_id" />
+    <input type="hidden" id="InsurancePlan_id" class="form-control" name="InsurancePlan_id" value="@ViewBag.InsurancePlan_id" />
+    <input type="hidden" id="InsurancePlanDetail_id" class="form-control" name="InsurancePlanDetail_id" value="@ViewBag.InsurancePlanDetail_id" />*@
+    <div>
+        <button onclick="return AuthorizationForm(@ViewBag.Employee_id)" class="btn">Authorization Form</button>
+        <button onclick="return SalaryRedirectAgreement(@ViewBag.Employee_id)" class="btn">Salary Redirection Agreement</button>
+        <button onclick="return LifeInsurance(@ViewBag.Employee_id)" class="btn">Life Insurance</button>
+    </div>
     <p></p>
     <p><embed id="2019InsCost" src="/App_Files/pdfFiles/2019-Insurance-Cost.pdf" type="application/pdf" style="width:100%; height:1122px;" frameborder="0" /></p>
     <p><embed id="2019Dental&VisionBenefits" src="/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf" type="application/pdf" style="width:100%; height:1000px; transform:rotate()" frameborder="0" /></p>
@@ -233,8 +240,8 @@
                         *Note: a 2% Adminstration fee will be added to the COBRA rates listed<br />
                     </div>
                     @*<p>
-                    <button type="submit" class="btn" id="InsPremiumUpdateStepThree" @*onclick="InsPremiumUpdate()" value="Submit">Save</button>
-                </p>*@
+                            <button type="submit" class="btn" id="InsPremiumUpdateStepThree" @*onclick="InsPremiumUpdate()" value="Submit">Save</button>
+                        </p>*@
                     <div class="form-group">
                         <div class="col-md-offset-11">
                             <button id="InsPremiumUpdateStepOne" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>
@@ -243,8 +250,8 @@
                 </td>
             </tr>
             @*<p>
-            @Html.ActionLink("Edit Insurance Premium", "", new { Employee_id = @ViewBag.Employee_id }, null)
-        </p>*@
+                    @Html.ActionLink("Edit Insurance Premium", "", new { Employee_id = @ViewBag.Employee_id }, null)
+                </p>*@
         </table>
     </div>
     @* db.InsurancePlanDetail- col- Item, Detail - InsurancePlanDetail_id as primary and InsurancePlan_id as foreign *@
@@ -604,8 +611,8 @@
                 </td>
             </tr>
             @*<p>
-            @Html.ActionLink("Edit Insurance Supplement", "", new { Employee_id = ViewBag.Employee_id }, null)
-        </p>*@
+                    @Html.ActionLink("Edit Insurance Supplement", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
+                </p>*@
         </table>
     </div>
     <hr />
@@ -1056,8 +1063,8 @@
                                 <label for="cb-Service Writer">Child(ren)</label>
                             </div>
                             @*<label class="radio-inline"><input type="radio" id="Myself" class="radio-inline" onclick="return RefusalOfGrpHealthCoverage()" name="Myself" value="Myself" />Myself</label>
-                        <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" name="Spouse" value="Spouse" />Spouse</label>
-                        <label class="radio-inline"><input type="radio" id="Dependent" class="radio-inline" name="Dependent" value="Child(ren)" />Child(ren)</label>*@
+                                <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" name="Spouse" value="Spouse" />Spouse</label>
+                                <label class="radio-inline"><input type="radio" id="Dependent" class="radio-inline" name="Dependent" value="Child(ren)" />Child(ren)</label>*@
                             <p></p>
                         </div>
                     </form>
@@ -1161,18 +1168,19 @@
         font-size: 100%;
     }
 
-    #signature {
+    #empSignature1,
+    #empSignature2 {
         width: 100%;
         border: 0px;
         border-bottom: 1px solid black;
-        height: 20px;
+        height: 30px;
     }
-
-    #signatureDate {
+    #empSignatureDate1,
+    #empSignatureDate2{
         width: 15%;
         border: 0px;
         border-bottom: 1px solid black;
-        height: 20px;
+        height: 30px;
     }
 
     .aside {
@@ -1240,9 +1248,26 @@
         });
     }
 
-    function AddInsurance() {
+    function GroupHealthInsurance() {
 
+       window.location.href = "/Group_Health/GrpHealthEnrollment?Employee_id=@ViewBag.Employee_id" + "&FamilyMember_id=@ViewBag.FamilyMember_id";
     }
+
+    function AuthorizationForm() {
+
+        window.location.href = "/Group_Health/AuthorizationForm?Employee_id=@ViewBag.Employee_id";
+    }
+
+    function SalaryRedirectAgreement() {
+
+        window.location.href = "/Group_Health/SalaryRedirectAgreement?Employee_id=@ViewBag.Employee_id";
+    }
+
+    function LifeInsurance() {
+
+        window.location.href = "/Life_Insurance/LifeInsuranceEnrollment?Employee_id=@ViewBag.Employee_id";
+    }
+
 
     function showHidEmpOtherInsCoverage() {
 
@@ -1291,6 +1316,9 @@
         });
     }
 
+    function AddInsurance() {
+
+    }
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmploymentInfoUpdate").addEventListener("click", function () {
@@ -1554,35 +1582,3 @@
     }
 </script>
 
-@* previous code for dependent insurance information- located after spouse information-employer, other ins..etc *@
-@*<form id="depGen&InsInfo" method="post" action="#" class="repeatingSection" enctype="multipart/form-data">
-    <div id="depGenInfo">
-        <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
-        <div id="depInfo">
-            <div class="form-group col-md-2">
-                <input type="text" id="depFirstName" class="form-control" placeholder="First Name" name="FirstName" value="" disabled />
-            </div>
-            <div class="form-group col-md-2">
-                <input type="text" id="depLastName" class="form-control" placeholder="Last Name" name="LastName" value="" disabled />
-            </div>
-            <div class="form-group col-md-2">
-                <input type="text" id="depSSN" class="form-control" placeholder="SSN #" name="SSN" value="" disabled />
-            </div>
-            <div class="form-group col-md-3" id="depRelationshipToInsured">
-                <input type="text" id="depRelationToInsured" class="form-control" placeholder="Relationship to Insured" name="RelationShipToInsured" value="" disabled>
-                @*<input id="Child" name="RelationshipToInsured" class="form-control" value="Child" @((ViewBag.RelationshipToInsured.ToLower() == "Child") ? "selected" : "")/>*@
-@*<input id="StepChild" name="RelationshipToInsured" class="form-control" value="StepChild" @((ViewBag.RelationshipToInsured.ToLower() == "StepChild") ? "selected" : "")/>*@
-@*<input id="Other" name="RelationshipToInsured" class="form-control" value="Other" @((ViewBag.RelationshipToInsured.ToLower() == "Other") ? "selected" : "")/>*@
-@*</div>
-            <div class="form-group col-md-2">
-                <input type="date" class="form-control" id="depDateOfBirth" name="DateOfBirth" value="" disabled />
-            </div>
-            <div class="form-group col-md-2">
-                <select id="depGender" class="form-control" disabled>
-                    <option value="">Gender:</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-            </div>
-        </div>
-    </div>*@

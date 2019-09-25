@@ -51,14 +51,6 @@ namespace Watson.Controllers
             }
         }
 
-        public ActionResult InsuranceOverview(int Employee_id)
-        {
-            Employee e = db.Employees.Find(Employee_id);
-            ViewBag.Employee_id = Employee_id;
-
-            return View(e);
-        }
-
         //----------------------------------------------------------------------------------------
 
         public ActionResult EnrollmentSelection()

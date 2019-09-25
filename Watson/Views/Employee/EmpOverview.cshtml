@@ -45,8 +45,7 @@
                     </td>
                     <td>
                         @Html.ActionLink("Detail", "EmployeeDetail", "Employee", new { Employee_id = item.Employee_id }, null)
-                        @Html.ActionLink("Insurance", "InsuranceOverview", "Employee", new { Employee_id = item.Employee_id }, null)
-                        @Html.ActionLink("GrpHealth", "GrpHealthEnrollment", "Group_Health", new { Employee_id = item.Employee_id }, null)
+                        @Html.ActionLink("Insurance", "GrpHealthEnrollment", "Group_Health", new { Employee_id = item.Employee_id }, null)
                         @Html.ActionLink("Delete", "DeleteEmp", "Employee", new { Employee_id = item.Employee_id }, null)
                     </td>
                 </tr>

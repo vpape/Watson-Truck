@@ -287,7 +287,7 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-            //show name of dependents, using foreach loop, include add insurance button where you can view and delete insurance
+        //show name of dependents, using foreach loop, include add insurance button where you can view and delete insurance
         public ActionResult GrpHealthEnrollment(int? Employee_id)
         {
             
@@ -314,10 +314,8 @@ namespace Watson.Controllers
             string empSignature2, DateTime empSignatureDate2, string empDepartment, string empEnrollmentType,
             int empPayroll_id, string empClass, string empJobTitle, DateTime empHireDate, decimal empAnnualSalary, 
             DateTime empEffectiveDate, int empHrsWkPerWk, string InsMECPlan, string InsStndPlan, string InsBuyUpPlan,
-            string DentalPlan, string VisionPlan, string spOtherInsCoverage, /*string spInsCarrier, string spInsPolicyNumber,*/
-            //string spInsPhoneNumber, string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState, string spInsZipCode,
-            string spMedical, string spDental, string spVision, string spIndemnity /*string depOtherInsCoverage,*/
-            /*string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber*/)
+            string DentalPlan, string VisionPlan, string spOtherInsCoverage, string spMedical, string spDental, 
+            string spVision, string spIndemnity)
         {
             Group_Health g = new Group_Health();
 
