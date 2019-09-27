@@ -36,14 +36,15 @@
                     <label class="col-md-2 control-label">Date of Birth:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@(((DateTime)Model.family.DateOfBirth).ToString("yyyy-MM-dd"))" disabled>
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Convert.ToDateTime(Model.family.DateOfBirth).ToString("yyyy-MM-dd")" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Gender:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="@((Model.family.Gender == "Male" ? "checked" : ""))" @*@(ViewBag.Family_Info.Gender == "Male" ? "checked" : "" )*@ @*@((Model.Gender == "Male") ? "checked" : "")*@ />Male</label>
-                    <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="@((Model.family.Gender == "Female" ? "checked" : ""))" @*@(ViewBag.Family_Info.Gender == "Female" ? "checked" : "" )*@ @*@((Model.Gender == "Female") ? "checked" : "")*@ />Female</label>
+                    @Html.RadioButtonFor(model => model.family.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.family.Gender, "female", false) Female
+                    @*<label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="@((Model.family.Gender == "Male" ? "selected" : ""))" />Male</label>*@
+                    @*<label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="@((Model.family.Gender == "Female" ? "selected" : ""))" />Female</label>*@
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">MailingAddress:</label>
@@ -75,14 +76,6 @@
                 <dd class="col-md-10 form-group">
                     <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(Model => Model.family.ZipCode)" disabled>
                 </dd>
-                @*<dt>
-                        <label class="col-md-2 control-label">Within City Limits?</label>
-                    </dt>
-                    <dd class="col-md-10 form-group" id="CityLimits">
-                        <input type="text" id="CityLimits" class="form-control" name="CityLimits" value="@Html.DisplayFor(Model => Model.)" disabled />
-                        <label class="radio-inline"><input type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="Yes" @((ViewBag.CityLimits == "Yes") ? "selected" : "") />Yes</label>
-                <label class="radio-inline"><input type="radio" id="NoCityLimits"  class="radio-inline" name="CityLimits" value="No"  @((ViewBag.CityLimits == "No" ) ? "selected" : "") />No</label>
-                    </dd>*@
                 <dt>
                     <label class="col-md-2 control-label">Physical Address:</label>
                 </dt>
@@ -172,7 +165,7 @@
                 </dt>
                 <dd class="col-md-10 form-group">
                     @*@Html.RadioButtonFor(model => model.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.Gender, "female", false) Female*@
-                    <input type="text" id="spOtherInsCoverage" class="form-control" name="CoveredByOtherInsurance" @*value="@Html.DisplayFor(Model => Model.otherIns.CoveredByOtherInsurance)"*@ disabled>
+                    <input type="text" id="spOtherInsCoverage" class="form-control" name="CoveredByOtherInsurance" value="@Html.DisplayFor(Model => Model.otherIns.CoveredByOtherInsurance)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Insurance Carrier:</label>

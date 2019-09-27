@@ -34,7 +34,7 @@
                     <label class="col-md-2 control-label">Hire Date:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="HireDate" class="form-control" name="HireDate" value="@Convert.ToDateTime(Model.employee.HireDate).ToString("MM/dd/yyyy")" disabled>
+                    <input type="date" id="HireDate" class="form-control" name="HireDate" value="@Convert.ToDateTime(Model.employee.HireDate).ToString("yyyy-MM-dd")" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Job Title:</label>

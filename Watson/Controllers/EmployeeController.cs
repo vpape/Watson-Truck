@@ -161,7 +161,6 @@ namespace Watson.Controllers
             Group_Health grp = new Group_Health();
 
             grp.Employee_id = Employee_id;
-            //grp.GroupHealthInsurance_id = GroupHealthInsurance_id;
             grp.OtherInsuranceCoverage = empOtherGrpHinsCoverage;
             grp.InsuranceCarrier = empInsuranceCarrier;
             grp.PolicyNumber = empInsPolicyNumber;

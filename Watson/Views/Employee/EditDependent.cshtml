@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
                     <div class="col-md-10">
-                        <input type="datetime" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Html.DisplayFor(Model => Model.family.DateOfBirth)" />
+                        <input type="datetime" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Convert.ToDateTime(Model.family.DateOfBirth).ToString("yyyy-MM-dd")" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -68,8 +68,8 @@
                     <div class="col-md-10">
                         <select id="Gender" class="form-control">
                             <option value="">Select Option</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
+                            <option value="Male" @((Model.family.Gender) == "Male"   ? "selected" : "")>Male</option>
+                            <option value="Female" @((Model.family.Gender) == "Female"   ? "selected" : "")>Female</option>
                         </select>
                     </div>
                 </div>

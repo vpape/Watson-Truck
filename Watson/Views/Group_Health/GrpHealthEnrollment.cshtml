@@ -19,9 +19,9 @@
     <input type="hidden" id="InsurancePlan_id" class="form-control" name="InsurancePlan_id" value="@ViewBag.InsurancePlan_id" />
     <input type="hidden" id="InsurancePlanDetail_id" class="form-control" name="InsurancePlanDetail_id" value="@ViewBag.InsurancePlanDetail_id" />*@
     <div>
-        <button onclick="return AuthorizationForm(@ViewBag.Employee_id)" class="btn">Authorization Form</button>
-        <button onclick="return SalaryRedirectAgreement(@ViewBag.Employee_id)" class="btn">Salary Redirection Agreement</button>
-        <button onclick="return LifeInsurance(@ViewBag.Employee_id)" class="btn">Life Insurance</button>
+        <button onclick="return AuthorizationForm(@Model.employee.Employee_id)" class="btn">Authorization Form</button>
+        <button onclick="return SalaryRedirectAgreement(@Model.employee.Employee_id)" class="btn">Salary Redirection Agreement</button>
+        <button onclick="return LifeInsurance(@Model.employee.Employee_id)" class="btn">Life Insurance</button>
     </div>
     <p></p>
     <p><embed id="2019InsCost" src="/App_Files/pdfFiles/2019-Insurance-Cost.pdf" type="application/pdf" style="width:100%; height:1122px;" frameborder="0" /></p>
@@ -716,8 +716,9 @@
             </div>
             <hr />
             <div>
-                <div class="form-control">
+                <div class="">
                     <label>Are you covered by any other insurance, including Medicare?</label>
+                    @*<label>@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Male", true) Yes</label> <label>@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Female", false) No</label>*@
                     <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="true" />Yes</label>
                     <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="false" />No</label>
                 </div>
@@ -833,7 +834,7 @@
                                     <input type="tel" class="form-control" id="spPhoneNumber" placeholder="Phone Number" value="@Html.Raw(sp.PhoneNumber)" disabled />
                                 </td>
                                 <td class="text">
-                                    <input type="date" class="form-control" id="spDateOfBirth" placeholder="Birth Date" value="@Html.Raw(sp.DateOfBirth)" disabled />
+                                    <input type="date" class="form-control" id="spDateOfBirth" placeholder="Birth Date" value="@Convert.ToDateTime(sp.DateOfBirth).ToString("yyyy-MM-dd")" disabled />
                                 </td>
                             </tr>
                             <tr>
@@ -960,40 +961,45 @@
                     </div>
                 }
             </div>
-            @foreach (var depInfo in Model.family)
-            {
-                <form id="depForm">
-                    <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
-
-                    <table class="table" id="depInfoTable">
-                        <tr>
-                            <td>
-                                <span>
-                                    @* redirects to to view family insurance *@
-                                    <i class="fa fa-arrow-circle-o-right" style="font-size:24px" onclick="DependentInfo()"></i>
-                                </span>
-                            </td>
-                            <td>
-                                <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="" readonly />
-                            </td>
-                            <td>
-                                <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="" readonly />
-                            </td>
-                            <td>
-                                <input type="text" id="LastName" class="form-control" placeholder="Last Name" name="LastName" value="" readonly />
-                            </td>
-                            <td>
-                                <input type="text" id="RelationshipToInsured" class="form-control" placeholder="Relation to Insured" name="RelationshipToInsured" value="" readonly />
-                            </td>
-                            <td>
-                                <input type="text" id="DateOfBirth" class="form-control" placeholder="Date of Birth" name="DateOfBirth" value="" readonly />
-                            </td>
-                            <td>
-                                <input type="text" id="Gender" class="form-control" placeholder="Gender" name="Gender" value="" readonly />
-                            </td>
-                        </tr>
-                    </table>
-                    <p></p>
+            <form id="depForm">
+                <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
+                @foreach (var dep in Model.family)
+                {
+                    <div>
+                        <table class="table" id="depInfoTable">
+                            <tr>
+                                <td>
+                                    <span>
+                                        @* redirects to to view family insurance *@
+                                        <i class="fa fa-arrow-circle-o-right" style="font-size:24px" onclick="DependentInfo()"></i>
+                                    </span>
+                                </td>
+                                <td>
+                                    <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="@Html.Raw(dep.SSN)" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="@Html.Raw(dep.SSN)" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" id="LastName" class="form-control" placeholder="Last Name" name="LastName" value="@Html.Raw(dep.SSN)" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" id="RelationshipToInsured" class="form-control" placeholder="Relation to Insured" name="RelationshipToInsured" value="@Html.Raw(dep.SSN)" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" id="DateOfBirth" class="form-control" placeholder="Date of Birth" name="DateOfBirth" value="@Html.Raw(dep.SSN)" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" id="Gender" class="form-control" placeholder="Gender" name="Gender" value="@Html.Raw(dep.SSN)" readonly />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+                <p></p>
+                @foreach (var depOtherIns in Model.family)
+                {
+                <div>
                     <table class="table" id="DepOtherInsTable">
                         <tr>
                             <td>
@@ -1004,15 +1010,15 @@
                             </td>
                             <td></td>
                             <td>
-                                <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" disabled />
+                                <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.Raw(depOtherIns.SSN)" disabled />
                             </td>
                             <td></td>
                             <td>
-                                <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" disabled />
+                                <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="@Html.Raw(depOtherIns.SSN)" disabled />
                             </td>
                             <td></td>
                             <td>
-                                <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" value="" disabled />
+                                <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" value="@Html.Raw(depOtherIns.PhoneNumber)" disabled />
                             </td>
                             <td>
                                 @Html.ActionLink("Add Dependent", "AddDependent", "Employee", new { FamilyMember_id = @ViewBag.FamilyMember_id }, null)|
@@ -1020,8 +1026,10 @@
                             </td>
                         </tr>
                     </table>
+                </div>
+                }
                 </form>
-            }
+            
 
             <div class="text-justify">
                 <label style="padding-left: 10px;"></label>
@@ -1250,22 +1258,22 @@
 
     function GroupHealthInsurance() {
 
-       window.location.href = "/Group_Health/GrpHealthEnrollment?Employee_id=@ViewBag.Employee_id" + "&FamilyMember_id=@ViewBag.FamilyMember_id";
+       window.location.href = "/Group_Health/GrpHealthEnrollment?Employee_id=@Model.employee.Employee_id" + "&FamilyMember_id=@ViewBag.FamilyMember_id";
     }
 
     function AuthorizationForm() {
 
-        window.location.href = "/Group_Health/AuthorizationForm?Employee_id=@ViewBag.Employee_id";
+        window.location.href = "/Group_Health/AuthorizationForm?Employee_id=@Model.employee.Employee_id";
     }
 
     function SalaryRedirectAgreement() {
 
-        window.location.href = "/Group_Health/SalaryRedirectAgreement?Employee_id=@ViewBag.Employee_id";
+        window.location.href = "/Group_Health/SalaryRedirectAgreement?Employee_id=@Model.employee.Employee_id";
     }
 
     function LifeInsurance() {
 
-        window.location.href = "/Life_Insurance/LifeInsuranceEnrollment?Employee_id=@ViewBag.Employee_id";
+        window.location.href = "/Life_Insurance/LifeInsuranceEnrollment?Employee_id=@Model.employee.Employee_id";
     }
 
 

@@ -52,8 +52,9 @@
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">Gender:</label>
-                    @*<label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="Male" (ViewBag.Family_Info.Gender == "Male" ? "checked" : "" ) ((Model.Gender == "Male") ? "checked" : "") />Male</label>
-                        <label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="Female" (ViewBag.Family_Info.Gender == "Female" ? "checked" : "" ) ((Model.Gender == "Female") ? "checked" : "") />Female</label>*@
+                    @Html.RadioButtonFor(model => model.family.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.family.Gender, "Female", false) Female
+                    @*<label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="@((Model.family.Gender == "Male" ? "selected" : ""))" />Male</label>*@
+                    @*<label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="@((Model.family.Gender == "Female" ? "selected" : ""))" />Female</label>*@
                     <div class="col-md-10">
                         <select id="Gender" class="form-control">
                             <option value="">Select Option</option>

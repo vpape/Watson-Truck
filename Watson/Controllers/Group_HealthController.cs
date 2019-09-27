@@ -745,21 +745,22 @@ namespace Watson.Controllers
 
         //AuthorizationForm-Start-----------------------------------------------------------------------------
 
-        public ActionResult AuthorizationForm()
+        public ActionResult AuthorizationForm(int Employee_id)
         {
-            return View();
+            EmployeeAndInsuranceVM employeeAndInsVM = new EmployeeAndInsuranceVM();
+
+            employeeAndInsVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
+            employeeAndInsVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
+
+
+            return View(employeeAndInsVM);
         }
 
         //Create-AuthorizationForm
-        public JsonResult AuthorizationFormNew(int Employee_id, string NameOfPerson1, string NameOfPerson1Relationship, string NameOfPerson2,
-            string NameOfPerson2Relationship, string EmpSignature, DateTime EmpSignatureDate, string NameOfPerson1Signature, 
-            DateTime NameOfPerson1SignatureDate, string NameOfPerson2Signature, DateTime NameOfPerson2SignatureDate)
+        public JsonResult AuthorizationFormNew(int? GroupHealthInsurance_id, string NameOfPerson1, string NameOfPerson1Relationship,
+            string NameOfPerson2, string NameOfPerson2Relationship, string EmpSignature, /*DateTime EmpSignatureDate,*/ string NameOfPerson1Signature, 
+            /*DateTime NameOfPerson1SignatureDate,*/ string NameOfPerson2Signature/*, DateTime NameOfPerson2SignatureDate*/)
         {
-            Employee e = db.Employees
-                .Where(i => i.Employee_id == Employee_id)
-                .Single();
-
-            ViewBag.e = e;
 
             Group_Health g = new Group_Health();
 
@@ -768,18 +769,16 @@ namespace Watson.Controllers
             g.NameOfPersonToReleaseInfoTo = NameOfPerson2;
             g.Relationship = NameOfPerson2Relationship;
             g.EmployeeSignature = EmpSignature;
-            g.EmployeeSignatureDate = EmpSignatureDate;
+            //g.EmployeeSignatureDate = EmpSignatureDate;
             g.OtherSignature = NameOfPerson1Signature;
-            g.OtherSignatureDate = NameOfPerson1SignatureDate;
+            //g.OtherSignatureDate = NameOfPerson1SignatureDate;
             g.OtherSignature = NameOfPerson2Signature;
-            g.OtherSignatureDate = NameOfPerson2SignatureDate;
-
-            ViewBag.g = g;
+            //g.OtherSignatureDate = NameOfPerson2SignatureDate;
 
             db.Group_Health.Add(g);
             db.SaveChanges();
 
-            int result = g.Employee_id;
+            int result = g.GroupHealthInsurance_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
