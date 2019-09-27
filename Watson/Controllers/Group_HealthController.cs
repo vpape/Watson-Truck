@@ -600,9 +600,17 @@ namespace Watson.Controllers
 
         //SalaryRedirect-Start----------------------------------------------------------------------------------
 
-        public ActionResult SalaryRedirectAgreement()
+        public ActionResult SalaryRedirection(int Employee_id)
         {
-            return View();
+
+            GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
+
+            groupHGrpHEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
+            groupHGrpHEnrollmentVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id).ToList();
+            groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
+            groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id).ToList();
+
+            return View(groupHGrpHEnrollmentVM);
         }
 
         //Create-SalaryRedirect

@@ -20,7 +20,7 @@
     <input type="hidden" id="InsurancePlanDetail_id" class="form-control" name="InsurancePlanDetail_id" value="@ViewBag.InsurancePlanDetail_id" />*@
     <div>
         <button onclick="return AuthorizationForm(@Model.employee.Employee_id)" class="btn">Authorization Form</button>
-        <button onclick="return SalaryRedirectAgreement(@Model.employee.Employee_id)" class="btn">Salary Redirection Agreement</button>
+        <button onclick="return SalaryRedirection(@Model.employee.Employee_id)" class="btn">Salary Redirection Agreement</button>
         <button onclick="return LifeInsurance(@Model.employee.Employee_id)" class="btn">Life Insurance</button>
     </div>
     <p></p>
@@ -657,7 +657,7 @@
                 <p></p>
                 <div>
                     <label>Hire Date:</label>
-                    <input type="text" class="form-control" name="HireDate" id="empHireDate" placeholder="Employment Date" value="@Convert.ToDateTime(Model.employee.HireDate).ToString("MM/dd/yyyy")" disabled />
+                    <input type="date" class="form-control" name="HireDate" id="empHireDate" placeholder="Employment Date" value="@Convert.ToDateTime(Model.employee.HireDate).ToString("yyyy-MM-dd")" disabled />
                 </div>
                 <p></p>
                 <div>
@@ -711,7 +711,7 @@
                 <p></p>
                 <div>
                     <label>Birth Date:</label>
-                    <input type="text" class="form-control" id="DateOfBirth" name="DateOfBirth" value="@Convert.ToDateTime(Model.employee.DateOfBirth).ToString("MM/dd/yyyy")" disabled />
+                    <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="@Convert.ToDateTime(Model.employee.DateOfBirth).ToString("yyyy-MM-dd")" disabled />
                 </div>
             </div>
             <hr />
@@ -987,7 +987,7 @@
                                     <input type="text" id="RelationshipToInsured" class="form-control" placeholder="Relation to Insured" name="RelationshipToInsured" value="@Html.Raw(dep.SSN)" readonly />
                                 </td>
                                 <td>
-                                    <input type="text" id="DateOfBirth" class="form-control" placeholder="Date of Birth" name="DateOfBirth" value="@Html.Raw(dep.SSN)" readonly />
+                                    <input type="date" id="DateOfBirth" class="form-control" placeholder="Date of Birth" name="DateOfBirth" value="@Convert.ToDateTime(dep.DateOfBirth).ToString("yyyy-MM-dd")" readonly />
                                 </td>
                                 <td>
                                     <input type="text" id="Gender" class="form-control" placeholder="Gender" name="Gender" value="@Html.Raw(dep.SSN)" readonly />
@@ -1266,9 +1266,9 @@
         window.location.href = "/Group_Health/AuthorizationForm?Employee_id=@Model.employee.Employee_id";
     }
 
-    function SalaryRedirectAgreement() {
+    function SalaryRedirection() {
 
-        window.location.href = "/Group_Health/SalaryRedirectAgreement?Employee_id=@Model.employee.Employee_id";
+        window.location.href = "/Group_Health/SalaryRedirection?Employee_id=@Model.employee.Employee_id";
     }
 
     function LifeInsurance() {
