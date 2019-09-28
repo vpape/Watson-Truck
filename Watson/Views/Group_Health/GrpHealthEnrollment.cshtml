@@ -1263,7 +1263,7 @@
 
     function AuthorizationForm() {
 
-        window.location.href = "/Group_Health/AuthorizationForm?Employee_id=@Model.employee.Employee_id" + "&GroupHealthInsurance_id=@Model.grpHealth.GroupHealthInsurance_id";
+        window.location.href = "/Group_Health/AuthorizationForm?Employee_id=@Model.employee.Employee_id" + "&GroupHealthInsurance_id=@ViewBag.GroupHealthInsurance_id";
     }
 
     function SalaryRedirection() {

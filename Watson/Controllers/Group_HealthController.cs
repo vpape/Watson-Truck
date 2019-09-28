@@ -288,9 +288,10 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //show name of dependents, using foreach loop, include add insurance button where you can view and delete insurance
-        public ActionResult GrpHealthEnrollment(int? Employee_id)
+        public ActionResult GrpHealthEnrollment(int? Employee_id, int? GroupHealthInsurance_id)
         {
-            
+            ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
+
             GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
 
             groupHGrpHEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);   
@@ -298,6 +299,7 @@ namespace Watson.Controllers
             groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
             groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id).ToList();
 
+            
             return View(groupHGrpHEnrollmentVM);
 
             //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
