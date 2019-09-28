@@ -606,20 +606,30 @@ namespace Watson.Controllers
             GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
 
             groupHGrpHEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
-            groupHGrpHEnrollmentVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id).ToList();
-            groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
-            groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id).ToList();
+
+            ViewBag.Employee_id = groupHGrpHEnrollmentVM.employee.Employee_id;
 
             return View(groupHGrpHEnrollmentVM);
         }
 
         //Create-SalaryRedirect
-        public JsonResult SalaryRedirectionUpdate(int Employee_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
-            decimal PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, decimal PremiumPostTaxMedIns, string DentalInsProvider,
-            string EEelectionPreTaxDentalIns, decimal PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns,
-            decimal PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns, 
-            decimal PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, decimal PremiumPostTaxVisionIns,
-            decimal TotalPreTax, decimal TotalPostTax, string empSignature, DateTime empSignatureDate, string empInitials1)
+        public JsonResult SalaryRedirectionUpdate(int Employee_id, string MedicalCoverage, string MedicalInsProvider, string EEelectionPreTaxMedIns,
+            decimal PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, decimal PremiumPostTaxMedIns, string DentalCoverage, string DentalInsProvider,
+            string EEelectionPreTaxDentalIns, decimal PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns, decimal PremiumPostTaxDentalIns,
+            string VisionCoverage, string VisionInsProvider, string EEelectionPreTaxVisionIns, decimal PremiumPreTaxVisionIns,
+            string EEelectionPostTaxVisionIns, decimal PremiumPostTaxVisionIns, string AccidentCoverage, string AccidentInsProvider,
+            string EEelectionPreTaxAccidentIns, decimal PremiumPreTaxAccidentIns, string EEelectionPostTaxAccidentIns, 
+            decimal PremiumPostTaxAccidentIns, string CancerCoverage, string CancerInsProvider, string EEelectionPreTaxCancerIns,
+            decimal PremiumPreTaxCancerIns, string EEelectionPostTaxCancerIns, decimal PremiumPostTaxCancerIns, string ShortTermDisabilityCoverage, 
+            string StDisabilityProvider, string EEelectionPreTaxStDisability, decimal PremiumPreTaxStDisability, string EEelectionPostTaxStDisability,
+            decimal PremiumPostTaxStDisability, string HospitalIndemnityCoverage, string HospitalIndemProvider, string EEelectionPreTaxHospitalIndem,
+            decimal PremiumPreTaxHospitalIndem, string EEelectionPostTaxHospitalIndem, decimal PremiumPostTaxHospitalIndem, string TermLifeCoverage, 
+            string TermLifeInsProvider, string EEelectionPreTaxTermLifeIns, decimal PremiumPreTaxTermLifeIns, string EEelectionPostTaxTermLifeIns,
+            decimal PremiumPostTaxTermLifeIns, string WholeLifeCoverage, string WholeLifeInsProvider, string EEelectionPreTaxWholeLifeIns,
+            decimal PremiumPreTaxWholeLifeIns, string EEelectionPostTaxWholeLifeIns, decimal PremiumPostTaxWholeLifeIns, string OtherCoverage,
+            string OtherInsProvider, string EEelectionPreTaxOtherIns, decimal PremiumPreTaxOtherIns, string EEelectionPostTaxOtherIns,
+            decimal PremiumPostTaxOtherIns, decimal TotalPreTax, decimal TotalPostTax, string empInitials1, string empInitials2, 
+            string empInitials3, string empInitials4, string empInitials5, string empSignature, DateTime empSignatureDate)
         {
             Employee e = db.Employees
             .Where(i => i.Employee_id == Employee_id)
@@ -668,6 +678,12 @@ namespace Watson.Controllers
         //Edit-SalaryRedirect
         public ActionResult EditSalaryRedirection(int? Employee_id)
         {
+            GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
+
+            groupHGrpHEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
+
+            ViewBag.Employee_id = groupHGrpHEnrollmentVM.employee.Employee_id;
+
             if (Employee_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -681,16 +697,28 @@ namespace Watson.Controllers
 
             ViewBag.g = g.Employee_id;
 
-            return View(g);
+            return View(groupHGrpHEnrollmentVM);
         }
 
         //EditUpdate-SalaryRedirect
-        public JsonResult SalaryRedirectionEditUpdate(int Employee_id, int Deductions_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
-            decimal PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, decimal PremiumPostTaxMedIns, string DentalInsProvider,
-            string EEelectionPreTaxDentalIns, decimal PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns,
-            decimal PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
-            decimal PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, decimal PremiumPostTaxVisionIns,
-            decimal TotalPreTax, decimal TotalPostTax, string empSignature, DateTime empSignatureDate, string empInitials1)
+        public JsonResult SalaryRedirectionEditUpdate(int Employee_id, int Deductions_id, string MedicalCoverage, string MedicalInsProvider,
+            string EEelectionPreTaxMedIns, decimal PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, decimal PremiumPostTaxMedIns,
+            string DentalCoverage, string DentalInsProvider, string EEelectionPreTaxDentalIns, decimal PremiumPreTaxDentalIns,
+            string EEelectionPostTaxDentalIns, decimal PremiumPostTaxDentalIns, string VisionCoverage, string VisionInsProvider, 
+            string EEelectionPreTaxVisionIns, decimal PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, decimal PremiumPostTaxVisionIns, 
+            string AccidentCoverage, string AccidentInsProvider, string EEelectionPreTaxAccidentIns, decimal PremiumPreTaxAccidentIns, 
+            string EEelectionPostTaxAccidentIns, decimal PremiumPostTaxAccidentIns, string CancerCoverage, string CancerInsProvider,
+            string EEelectionPreTaxCancerIns, decimal PremiumPreTaxCancerIns, string EEelectionPostTaxCancerIns, decimal PremiumPostTaxCancerIns,
+            string ShortTermDisabilityCoverage, string StDisabilityProvider, string EEelectionPreTaxStDisability, decimal PremiumPreTaxStDisability, 
+            string EEelectionPostTaxStDisability, decimal PremiumPostTaxStDisability, string HospitalIndemnityCoverage, string HospitalIndemProvider, 
+            string EEelectionPreTaxHospitalIndem, decimal PremiumPreTaxHospitalIndem, string EEelectionPostTaxHospitalIndem, 
+            decimal PremiumPostTaxHospitalIndem, string TermLifeCoverage, string TermLifeInsProvider, string EEelectionPreTaxTermLifeIns, 
+            decimal PremiumPreTaxTermLifeIns, string EEelectionPostTaxTermLifeIns, decimal PremiumPostTaxTermLifeIns, string WholeLifeCoverage, 
+            string WholeLifeInsProvider, string EEelectionPreTaxWholeLifeIns, decimal PremiumPreTaxWholeLifeIns, string EEelectionPostTaxWholeLifeIns,
+            decimal PremiumPostTaxWholeLifeIns, string OtherCoverage, string OtherInsProvider, string EEelectionPreTaxOtherIns,
+            decimal PremiumPreTaxOtherIns, string EEelectionPostTaxOtherIns, decimal PremiumPostTaxOtherIns, decimal TotalPreTax, 
+            decimal TotalPostTax, string empInitials1, string empInitials2, string empInitials3, string empInitials4, 
+            string empInitials5, string empSignature, DateTime empSignatureDate)
         {
             Employee e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)
@@ -753,8 +781,11 @@ namespace Watson.Controllers
 
         //AuthorizationForm-Start-----------------------------------------------------------------------------
 
-        public ActionResult AuthorizationForm(int Employee_id)
+        public ActionResult AuthorizationForm(int? Employee_id, int? GroupHealthInsurance_id)
         {
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
+
             EmployeeAndInsuranceVM employeeAndInsVM = new EmployeeAndInsuranceVM();
 
             employeeAndInsVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
@@ -765,13 +796,15 @@ namespace Watson.Controllers
         }
 
         //Create-AuthorizationForm
-        public JsonResult AuthorizationFormNew(int? GroupHealthInsurance_id, string NameOfPerson1, string NameOfPerson1Relationship,
+        public JsonResult AuthorizationFormNew(int? GroupHealthInsurance_id, int Employee_id, string NameOfPerson1, string NameOfPerson1Relationship,
             string NameOfPerson2, string NameOfPerson2Relationship, string EmpSignature, /*DateTime EmpSignatureDate,*/ string NameOfPerson1Signature, 
             /*DateTime NameOfPerson1SignatureDate,*/ string NameOfPerson2Signature/*, DateTime NameOfPerson2SignatureDate*/)
         {
 
             Group_Health g = new Group_Health();
 
+            g.Employee_id = Employee_id;
+            g.GroupHealthInsurance_id = g.GroupHealthInsurance_id;
             g.NameOfPersonToReleaseInfoTo = NameOfPerson1;
             g.Relationship = NameOfPerson1Relationship;
             g.NameOfPersonToReleaseInfoTo = NameOfPerson2;
@@ -783,7 +816,6 @@ namespace Watson.Controllers
             g.OtherSignature = NameOfPerson2Signature;
             //g.OtherSignatureDate = NameOfPerson2SignatureDate;
 
-            db.Group_Health.Add(g);
             db.SaveChanges();
 
             int result = g.GroupHealthInsurance_id;

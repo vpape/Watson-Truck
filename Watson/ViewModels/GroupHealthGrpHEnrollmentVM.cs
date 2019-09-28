@@ -13,6 +13,7 @@ namespace Watson.ViewModels
         public List<Family_Info> family { get; set; }
         public Group_Health grpHealth { get; set; }
         public List<Other_Insurance> otherIns { get; set; }
+        public Deduction deduction { get; set; }
 
     }
 }

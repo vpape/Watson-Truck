@@ -148,7 +148,7 @@
                         <hr />
                         <div class="form-group">
                             <div class="col-md-offset-11">
-                                <button id="AuthorizationFormUpdate" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
+                                <button id="AuthorizationFormUpdate" class="btn">Save</button>
                             </div>
                         </div>
                     </td>
@@ -156,9 +156,9 @@
             </table>
         </div>
     </div>
-    <p>
+    @*<p>
         @Html.ActionLink("Edit Authorization Form", "EditAuthorizationForm", new { Employee_id = ViewBag.Employee_id }, null)
-    </p>
+    </p>*@
 </body>
 </html>
 
@@ -292,14 +292,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#AuthorizationFormUpdate").addEventListener("click", function () {
-            //FirstName = document.getElementById("FirstName").value;
-            //LastName = document.getElementById("LastName").value;
-            //CurrentEmployer = document.getElementById("CurrentEmployer").value;
-            //SSN = document.getElementById("SSN").value;
-            //MailingAddress = document.getElementById("MailingAddress").value;
-            //PObox = document.getElementById("PObox").value;
-            //City = document.getElementById("City").value;
-            //State = document.getElementById("State").value;
+            Employee_id = document.getElementById("Employee_id").value;
             NameOfPerson1 = document.getElementById("NameOfPerson1").value;
             NameOfPerson2 = document.getElementById("NameOfPerson2").value;
             NameOfPerson1Relationship = document.getElementById("NameOfPerson1Relationship").value;
@@ -314,16 +307,6 @@
 
             var data = {
                 "Employee_id": Employee_id,
-                //"FirstName": FirstName,
-                //"LastName": LastName,
-                //"CurrentEmployer": CurrentEmployer,
-                //"SSN": SSN,
-                //"DateOfBirth": DateOfBirth,
-                //"MailingAddress": MailingAddress,
-                //"PObox": PObox,
-                //"City": City,
-                //"State": State,
-                //"ZipCode": ZipCode,
                 "NameOfPerson1": NameOfPerson1,
                 "NameOfPerson1Relationship": NameOfPerson1Relationship,
                 "NameOfPerson2": NameOfPerson2,
@@ -361,6 +344,7 @@
                 .catch(error => console.error('Error:', error));
 
         })
+
         function FirstStep(emp) {
             document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
             Employee_id = emp.data;

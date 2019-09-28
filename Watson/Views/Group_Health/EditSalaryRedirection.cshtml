@@ -1,7 +1,4 @@
-﻿@model Watson.Models.Group_Health
-@{
-    ViewBag.Title = "EditSalaryRedirection";
-}
+﻿@model Watson.ViewModels.GroupHealthGrpHEnrollmentVM
 <h2></h2>
 <!DOCTYPE html>
 <html>
@@ -11,13 +8,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Edit Salary Redirection Agreement</title>
+    <title>Salary Redirection</title>
 </head>
 <body>
     @* Salary Redirect *@
-    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
+    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
     <div class="form-horizontal">
-        <div class="collapsible" id="FourthStep">Edit Salary Redirection Agreement</div>
+        <div class="collapsible" id="FourthStep">Salary Redirection Agreement</div>
         <div class="table table-bordered">
             <table class="table table-condensed" id="SalaryRedirectTable">
                 <tr>
@@ -30,40 +27,40 @@
                 <tr>
                     <td>
                         <div>
-                            <input type="text" class="form-control" placeholder="First Name" value="" disabled />
+                            <input type="text" class="form-control" placeholder="First Name" value="@Html.DisplayFor(Model => Model.employee.FirstName)" disabled />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" placeholder="Last Name" value="" disabled />
+                            <input type="text" class="form-control" placeholder="Last Name" value="@Html.DisplayFor(Model => Model.employee.LastName)" disabled />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" placeholder="Middle Initial" value="" disabled />
+                            <input type="text" class="form-control" placeholder="Middle Initial" value="@Html.DisplayFor(Model => Model.employee.MiddleName)" disabled />
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div>
-                            <input type="text" class="form-control" placeholder="Mailing Address" value="" disabled />
-                            <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="" disabled />
+                            <input type="text" class="form-control" placeholder="Mailing Address" value="@Html.DisplayFor(Model => Model.employee.MailingAddress)" disabled />
+                            <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="@Html.DisplayFor(Model => Model.employee.PObox)" disabled />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" placeholder="City" value="" disabled />
+                            <input type="text" class="form-control" placeholder="City" value="@Html.DisplayFor(Model => Model.employee.City)" disabled />
 
                         </div>
                         <div>
-                            <input type="text" class="form-control" placeholder="State" value="" disabled />
+                            <input type="text" class="form-control" placeholder="State" value="@Html.DisplayFor(Model => Model.employee.State)" disabled />
 
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" placeholder="Zip Code" value="" disabled />
+                            <input type="text" class="form-control" placeholder="Zip Code" value="@Html.DisplayFor(Model => Model.employee.ZipCode)" disabled />
 
                         </div>
                         <div>
@@ -76,21 +73,21 @@
                     <td>
                         <label>Social Security Number:</label>
                         <div>
-                            <input type="text" class="form-control" placeholder="SSN #" value="" disabled />
+                            <input type="text" class="form-control" placeholder="SSN #" value="@Html.DisplayFor(Model => Model.employee.SSN)" disabled />
 
                         </div>
                     </td>
                     <td>
                         <label>Hire Date:</label>
                         <div>
-                            <input type="date" class="form-control" placeholder="Hire Date" value="" disabled />
+                            <input type="date" class="form-control" placeholder="Hire Date" value="@Convert.ToDateTime(Model.employee.HireDate).ToString("yyyy-MM-dd")" disabled />
 
                         </div>
                     </td>
                     <td>
                         <label>Effective Date:</label>
                         <div>
-                            <input type="date" class="form-control" placeholder="Effective Date" value="" disabled />
+                            <input type="date" class="form-control" placeholder="Effective Date" value="@Convert.ToDateTime(Model.employee.EffectiveDate).ToString("yyyy-MM-dd")" disabled />
 
                         </div>
                     </td>
@@ -277,7 +274,7 @@
                                         <input type="text" class="form-control" id="PremiumPostTaxVisionIns" name="PremiumPostTax" value="" />
                                     </td>
                                 </tr>
-                                <tr class="hidden">
+                                <tr class="">
                                     <td>
                                         <label>Accident Insurance:</label>
                                     </td>
@@ -322,7 +319,7 @@
                                         <input type="text" class="form-control" id="PremiumPostTaxAccidentIns" name="PremiumPostTax" value="" />
                                     </td>
                                 </tr>
-                                <tr class="hidden">
+                                <tr class="">
                                     <td>
                                         <label>Cancer Insurance:</label>
                                     </td>
@@ -367,7 +364,7 @@
                                         <input type="text" class="form-control" id="PremiumPostTaxCancerIns" name="PremiumPostTax" value="" />
                                     </td>
                                 </tr>
-                                <tr class="hidden">
+                                <tr class="">
                                     <td>
                                         <label>Short-Term Disability:</label>
                                     </td>
@@ -412,7 +409,7 @@
                                         <input type="text" class="form-control" id="PremiumPostTaxStDisability" name="PremiumPostTax" value="" />
                                     </td>
                                 </tr>
-                                <tr class="hidden">
+                                <tr class="">
                                     <td>
                                         <label>Hospital Indemnity:</label>
                                     </td>
@@ -457,7 +454,7 @@
                                         <input type="text" class="form-control" id="PremiumPostTaxHospitalIndem" name="PremiumPostTax" value="" />
                                     </td>
                                 </tr>
-                                <tr class="hidden">
+                                <tr class="">
                                     <td>
                                         <label>Term Life Insurance:</label>
                                     </td>
@@ -502,7 +499,7 @@
                                         <input type="text" class="form-control" id="PremiumPostTaxTermLifeIns" name="PremiumPostTax" value="" />
                                     </td>
                                 </tr>
-                                <tr class="hidden">
+                                <tr class="">
                                     <td>
                                         <label>Whole Life Insurance:</label>
                                     </td>
@@ -547,7 +544,7 @@
                                         <input type="text" class="form-control" id="PremiumPostTaxWholeLifeIns" name="PremiumPostTax" value="" />
                                     </td>
                                 </tr>
-                                <tr class="hidden">
+                                <tr class="">
                                     <td>
                                         <label>Other:</label>
                                     </td>
@@ -598,11 +595,11 @@
                             <tr>
                                 <td>
                                     <label class="col-md-offset-4">Total Pre-Tax $</label>
-                                    <input type="text" id="TotalPostTax" value="" disabled />
+                                    <input type="text" id="TotalPostTax" value="" />
                                 </td>
                                 <td>
                                     <label class="col-md-offset-3">Total Post-Tax $</label>
-                                    <input type="text" id="TotalPostTax" value="" disabled/>
+                                    <input type="text" id="TotalPostTax" value="" />
                                 </td>
                             </tr>
                         </table>
@@ -610,32 +607,32 @@
                         <div class="text-justify">
                             <label style="padding-left: 10px;"><u>I understand and agree to the following (inital all):</u></label>
                             <p>
-                                <input type="text" id="empInitials1" name="EmployeeInitials" value="" disabled/>
+                                <input type="text" id="empInitials1" name="EmployeeInitials" value="" />
                                 On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                                 insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                                 or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                             </p>
                             <p>
-                                <input type="text" id="empInitials2" name="EmployeeInitials" value="" disabled/>
+                                <input type="text" id="empInitials2" name="EmployeeInitials" value="" />
                                 On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                                 insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                                 or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                             </p>
                             <p>
-                                <input type="text" id="empInitials3" name="EmployeeInitials" value="" disabled/>
+                                <input type="text" id="empInitials3" name="EmployeeInitials" value="" />
                                 On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                                 insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                                 or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                             </p>
                             <p>
-                                <input type="text" id="empInitials4" name="EmployeeInitials" value="" disabled/>
+                                <input type="text" id="empInitials4" name="EmployeeInitials" value="" />
                                 On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                                 insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                                 or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                             </p>
                             <label style="padding-left: 10px;"><u>Waiver of Pre-Tax Benefits Under the Benefits Plan:</u></label>
                             <p>
-                                <input type="text" id="empInitials5" name="EmployeeInitials" value="" disabled/>
+                                <input type="text" id="empInitials5" name="EmployeeInitials" value="" />
                                 On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                                 insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                                 or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
@@ -645,22 +642,27 @@
                                 <label style="padding-left: 10px;">
                                     Employee Signature:
                                 </label>
-                                <input type="text" id="signature" name="EmployeeSignature" value="" disabled/>
+                                <input type="text" id="signature" name="EmployeeSignature" value="" />
                                 <label style="padding-left: 10px;">
                                     Date:
                                 </label>
-                                <input type="date" id="signatureDate" name="EmployeeSignatureDate" value="" disabled/>
+                                <input type="date" id="signatureDate" name="EmployeeSignatureDate" value="" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-11">
-                                <button id="EditSalaryRedirectUpdate" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
+                                <button id="SalaryRedirectUpdateStepOne" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
                             </div>
                         </div>
                     </td>
                 </tr>
             </table>
+            <p>
+                @*<button type="button" class="button" onclick="return EditSalaryRedirection()">Employee Enrollment</button>*@
+                @*@Html.ActionLink("Back to Salary Redirect", "SalaryRedirection", "Group_Health", new { Employee_id = Model.employee.Employee_id }, null)*@
+            </p>
         </div>
+
     </div>
 
 </body>
@@ -784,7 +786,7 @@
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
-    var emp_id;
+    var Employee_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -799,8 +801,13 @@
         });
     }
 
+    function EditSalaryRedirection() {
+
+        window.location.href = "/Group_Health/"
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#EditSalaryRedirectUpdate").addEventListener("click", function () {
+        document.querySelector("#SalaryRedirectUpdateStepOne").addEventListener("click", function () {
             MedicalInsProvider = document.getElementById("MedicalInsProvider").value;
             EEelectionPreTaxMedIns = document.getElementById("EEelectionPreTaxMedIns").value;
             PremiumPreTaxMedIns = document.getElementById("PremiumPreTaxMedIns").value;
@@ -866,15 +873,15 @@
             empSignature = document.getElementById("signature").value;
             empSignatureDate = document.getElementById("signatureDate").value;
             empInitials1 = document.getElementById("EmpInitials1").value;
-            //empInitials2 = document.getElementById("EmpInitials2").value;
-            //empInitials3 = document.getElementById("EmpInitials3").value;
-            //empInitials4 = document.getElementById("EmpInitials4").value;
-            //empInitials5 = document.getElementById("EmpInitials5").value;
+            empInitials2 = document.getElementById("EmpInitials2").value;
+            empInitials3 = document.getElementById("EmpInitials3").value;
+            empInitials4 = document.getElementById("EmpInitials4").value;
+            empInitials5 = document.getElementById("EmpInitials5").value;
 
 
 
             var data = {
-                "Employee_id": emp_id,
+                "Employee_id": Employee_id,
                 "MedicalInsProvider": MedicalInsProvider,
                 "EEelectionPreTaxMedIns": EEelectionPreTaxMedIns,
                 "PremiumPreTaxMedIns": PremiumPreTaxMedIns,
@@ -898,10 +905,10 @@
                 "empSignature": empSignature,
                 "empSignatureDate": empSignatureDate,
                 "empInitials1": empInitials1,
-                //"empInitials2": empInitials2,
-                //"empInitials3": empInitials3,
-                //"empInitials4": empInitials4,
-                //"empInitials5": empInitials5,
+                "empInitials2": empInitials2,
+                "empInitials3": empInitials3,
+                "empInitials4": empInitials4,
+                "empInitials5": empInitials5,
 
                 //"AccidentInsProvider ": AccidentInsProvider ,
                 //"EEelectionPreTaxAccidentIns": EEelectionPreTaxAccidentIns,
@@ -946,7 +953,7 @@
                 //"PremiumPostTaxOtherIns": PremiumPostTaxOtherIns,
             }
 
-            var ret = postData('/GroupHealth/SalaryRedirectionEditUpdate', data)
+            var ret = postData('SalaryRedirectionUpdate', data)
                 .then(data => {
                     console.log(data);
                     FourthStep(data);
@@ -954,9 +961,9 @@
                 .catch(error => console.error(error))
 
         })
-        function FourthStep(salaryRedirect) {
+        function FourthStep(emp) {
             document.querySelector("#FourthStep").nextElementSibling.style.display = "block";
-            emp_id = salaryRedirect.data;
+            Employee_id = emp.data;
 
         }
 

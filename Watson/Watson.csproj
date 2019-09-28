@@ -444,7 +444,6 @@
     <Content Include="Views\Employee\DeleteEmp.cshtml" />
     <Content Include="Views\Group_Health\GrpHealthInsPremiums.cshtml" />
     <Content Include="Views\Group_Health\GrpHealthInsSupplement.cshtml" />
-    <Content Include="Views\Group_Health\SalaryRedirectAgreement.cshtml" />
     <Content Include="Views\Group_Health\EditGrpHealthIns.cshtml" />
     <Content Include="Views\Group_Health\GrpHealthInsDetail.cshtml" />
     <Content Include="Views\Group_Health\DeleteGrpHealthIns.cshtml" />
@@ -457,8 +456,6 @@
     <Content Include="Views\Employee\DeleteDep.cshtml" />
     <Content Include="Views\Admin\GrpHealthInsPremiums.cshtml" />
     <Content Include="Views\Employee\SpEnrollment.cshtml" />
-    <Content Include="Views\Group_Health\EditAuthorizationForm.cshtml" />
-    <Content Include="Views\Group_Health\EditSalaryRedirection.cshtml" />
     <Content Include="Views\Admin\GrpHealthEnrollment.cshtml" />
     <Content Include="Views\Admin\NewEmployeeEnrollment.cshtml" />
     <Content Include="Views\Admin\EditEmp.cshtml" />
@@ -499,6 +496,8 @@
     <Content Include="Views\Employee\DependentDetail.cshtml" />
     <Content Include="Views\Group_Health\AuthorizationForm.cshtml" />
     <Content Include="Views\Group_Health\SalaryRedirection.cshtml" />
+    <Content Include="Views\Group_Health\EditAuthorizationForm.cshtml" />
+    <Content Include="Views\Group_Health\EditSalaryRedirection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

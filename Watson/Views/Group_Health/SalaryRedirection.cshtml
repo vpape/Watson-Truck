@@ -12,9 +12,9 @@
 </head>
 <body>
     @* Salary Redirect *@
-    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" @*value=@ViewBag.Employee_id*@ />
+    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
     <div class="form-horizontal">
-        <div class="collapsible" id="FourthStep">Salary Redirection Agreement</div>
+        <div class="collapsible" id="FirstStep">Salary Redirection Agreement</div>
         <div class="table table-bordered">
             <table class="table table-condensed" id="SalaryRedirectTable">
                 <tr>
@@ -27,17 +27,17 @@
                 <tr>
                     <td>
                         <div>
-                            <input type="text" class="form-control" placeholder="First Name" value="@Html.DisplayFor(Model => Model.employee.FirstName)" disabled/>
+                            <input type="text" class="form-control" placeholder="First Name" value="@Html.DisplayFor(Model => Model.employee.FirstName)" disabled />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" placeholder="Last Name" value="@Html.DisplayFor(Model => Model.employee.LastName)" disabled/>
+                            <input type="text" class="form-control" placeholder="Last Name" value="@Html.DisplayFor(Model => Model.employee.LastName)" disabled />
                         </div>
                     </td>
                     <td>
                         <div>
-                            <input type="text" class="form-control" placeholder="Middle Initial" value="@Html.DisplayFor(Model => Model.employee.MiddleName)" disabled/>
+                            <input type="text" class="form-control" placeholder="Middle Initial" value="@Html.DisplayFor(Model => Model.employee.MiddleName)" disabled />
                         </div>
                     </td>
                 </tr>
@@ -129,7 +129,7 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <label>Medical Health Insurance:</label>
+                                        <input type="text" class="form-control" id="MedicalHIns" name="Coverage" value="Medical Health Insurance:" disabled />
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" id="MedicalInsProvider" name="Provider" value="" />
@@ -186,7 +186,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label>Dental Insurance:</label>
+                                        <input type="text" class="form-control" id="DentalIns" name="Coverage" value="Dental Insurance:" disabled />
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" id="DentalInsProvider" name="Provider" value="" />
@@ -231,7 +231,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label>Vision Insurance:</label>
+                                        <input type="text" class="form-control" id="VisionIns" name="Coverage" value="Vision Insurance:" disabled />
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" id="VisionInsProvider" name="Provider" value="" />
@@ -276,7 +276,7 @@
                                 </tr>
                                 <tr class="">
                                     <td>
-                                        <label>Accident Insurance:</label>
+                                        <input type="text" class="form-control" id="AccidentIns" name="Coverage" value="Accident Insurance:" disabled />
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" id="AccidentInsProvider" name="Provider" value="" />
@@ -321,7 +321,7 @@
                                 </tr>
                                 <tr class="">
                                     <td>
-                                        <label>Cancer Insurance:</label>
+                                        <input type="text" class="form-control" id="CancerIns" name="Coverage" value="Cancer Insurance:" disabled />
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" id="CancerInsProvider" name="Provider" value="" />
@@ -366,7 +366,7 @@
                                 </tr>
                                 <tr class="">
                                     <td>
-                                        <label>Short-Term Disability:</label>
+                                        <input type="text" class="form-control" id="Short-termDisability" name="Coverage" value="Short-term Disability:" disabled />
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" id="StDisabilityProvider" name="Provider" value="" />
@@ -411,7 +411,7 @@
                                 </tr>
                                 <tr class="">
                                     <td>
-                                        <label>Hospital Indemnity:</label>
+                                        <input type="text" class="form-control" id="HospitalIndemnity" name="Coverage" value="Hospital Indemnity:" disabled />
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" id="HospitalIndemProvider" name="Provider" value="" />
@@ -456,7 +456,7 @@
                                 </tr>
                                 <tr class="">
                                     <td>
-                                        <label>Term Life Insurance:</label>
+                                        <input type="text" class="form-control" id="TermLifeIns" name="Coverage" value="Term Life Insurance:" disabled />
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" id="TermLifeInsProvider" name="Provider" value="" />
@@ -501,7 +501,7 @@
                                 </tr>
                                 <tr class="">
                                     <td>
-                                        <label>Whole Life Insurance:</label>
+                                        <input type="text" class="form-control" id="WholeLifeIns" name="Coverage" value="Whole Life Insurance:" disabled />
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" id="WholeLifeInsProvider" name="Provider" value="" />
@@ -546,7 +546,7 @@
                                 </tr>
                                 <tr class="">
                                     <td>
-                                        <label>Other:</label>
+                                        <input type="text" class="form-control" id="OtherIns" name="Coverage" value="Other Insurance:" disabled />
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" id="OtherInsProvider" name="Provider" value="" />
@@ -651,14 +651,18 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-11">
-                                <button id="SalaryRedirectUpdateStepOne" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
+                                <button id="SalaryRedirectStepOne" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
                             </div>
+                        </div>
+                        <div>
+                            <button class="btn" onclick="return EditSalaryRedirection(@ViewBag.Employee_id)">Edit Salary Redirection</button>
                         </div>
                     </td>
                 </tr>
             </table>
             <p>
-                @Html.ActionLink("Edit Salary Redirect", "EditSalaryRedirection", new { Employee_id = ViewBag.Employee_id }, null)
+                
+                @*@Html.ActionLink("Edit Salary Redirect", "EditSalaryRedirection", "Group_Health", new { Employee_id = ViewBag.Employee_id }, null)*@
             </p>
         </div>
     </div>
@@ -784,7 +788,7 @@
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
-    var emp_id;
+    var Employee_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -799,62 +803,77 @@
         });
     }
 
+    function EditSalaryRedirection() {
+
+        window.location.href = "/Group_Health/EditSalaryRedirection?Employee_id=@ViewBag.Employee_id";
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#SalaryRedirectUpdateStepOne").addEventListener("click", function () {
+        document.querySelector("#SalaryRedirectStepOne").addEventListener("click", function () {
+            MedicalCoverage = document.getElementById("MedicalHIns").value;
             MedicalInsProvider = document.getElementById("MedicalInsProvider").value;
             EEelectionPreTaxMedIns = document.getElementById("EEelectionPreTaxMedIns").value;
             PremiumPreTaxMedIns = document.getElementById("PremiumPreTaxMedIns").value;
             EEelectionPostTaxMedIns = document.getElementById("EEelectionPostTaxMedIns").value;
             PremiumPostTaxMedIns = document.getElementById("PremiumPostTaxMedIns").value;
 
+            DentalCoverage = document.getElementById("DentalIns").value;
             DentalInsProvider = document.getElementById("DentalInsProvider").value;
             EEelectionPreTaxDentalIns = document.getElementById("EEelectionPreTaxDentalIns")
             PremiumPreTaxDentalIns = document.getElementById("PremiumPreTaxDentalIns").value;
             EEelectionPostTaxDentalIns = document.getElementById("EEelectionPostTaxDentalIns").value;
             PremiumPostTaxDentalIns = document.getElementById("PremiumPostTaxDentalIns").value;
 
+            VisionCoverage = document.getElementById("VisionIns").value;
             VisionInsProvider = document.getElementById("VisionInsProvider").value;
             EEelectionPreTaxVisionIns = document.getElementById("EEelectionPreTaxVisionIns").value;
             PremiumPreTaxVisionIns = document.get("PremiumPreTaxVisionIns").value;
             EEelectionPostTaxVisionIns = document.getElementById("EEelectionPostTaxVisionIns").Value;
             PremiumPostTaxVisionIns = document.getElementById("PremiumPostTaxVisionIns").value;
 
-            //AccidentInsProvider = document.get("AccidentInsProvider").value;
+            AccidentCoverage = document.getElementById("AccidentIns").value;
+            //AccidentInsProvider = document.getElementById("AccidentInsProvider").value;
             //EEelectionPreTaxAccidentIns = document.getElementById("EEelectionPreTaxAccidentIns").value;
             //PremiumPreTaxAccidentIns = document.getElementById("PremiumPreTaxAccidentIns").value;
             //EEelectionPostTaxAccidentIns = document.getElementById("EEelectionPostTaxAccidentIns").value;
             //PremiumPostTaxAccidentIns = document.getElementById("PremiumPostTaxAccidentIns").value;
 
+            CancerCoverage = document.getElementById("CancerIns").value;
             //CancerInsProvider = document.getElementById("CancerInsProvider").value;
             //EEelectionPreTaxCancerIns = document.getElementById("EEelectionPreTaxCancerIns").value;
             //PremiumPreTaxCancerIns = document.getElementById("PremiumPreTaxCancerIns").value;
             //EEelectionPostTaxCancerIns = document.getElementById("EEelectionPostTaxCancerIns").value;
             //PremiumPostTaxCancerIns = document.getElementById("PremiumPostTaxCancerIns").value;
 
+            ShortTermDisabilityCoverage = document.getElementById("Short-termDisability").value;
             //StDisabilityProvider = document.getElementById("StDisabilityProvider").value;
             //EEelectionPreTaxStDisability = document.getElementById("EEelectionPreTaxStDisability").value;
             //PremiumPreTaxStDisability = document.getElementById("PremiumPreTaxStDisability").value;
             //EEelectionPostTaxStDisability = document.getElementById("EEelectionPostTaxStDisability").value;
             //PremiumPostTaxStDisability = document.getElementById("PremiumPostTaxStDisability").value;
 
+            HospitalIndemnityCoverage = document.getElementById("HospitalIndemnity").value;
             //HospitalIndemProvider = document.getElementById("HospitalIndemProvider").value;
             //EEelectionPreTaxHospitalIndemn = document.getElementById("EEelectionPreTaxHospitalIndemn").value;
             //PremiumPreTaxHospitalIndem = document.getElementById("PremiumPreTaxHospitalIndem").value;
             //EEelectionPostTaxHospitalIndem = document.getElementById("EEelectionPostTaxHospitalIndem").value;
             //PremiumPostTaxHospitalIndem = document.getElementById("PremiumPostTaxHospitalIndem").value;
 
+            TermLifeCoverage = document.getElementById("TermLifeIns").value;
             //TermLifeInsProvider = document.getElementById("TermLifeInsProvider").value;
             //EEelectionPreTaxTermLifeIns = document.getElementById("EEelectionPreTaxTermLifeIns").value;
             //PremiumPreTaxTermLifeIns = document.getElementById("PremiumPreTaxTermLifeIns").value;
             //EEelectionPostTaxTermLifeIns = document.getElementById("EEelectionPostTaxTermLifeIns").value;
             //PremiumPostTaxTermLifeIns = document.getElementById("PremiumPostTaxTermLifeIns").value;
 
+            WholeLifeCoverage = document.getElementById("WholeLifeIns").value;
             //WholeLifeInsProvider = document.getElementById("WholeLifeInsProvider").value;
             //EEelectionPreTaxWholeLifeIns = document.getElementById("EEelectionPreTaxWholeLifeIns").value;
             //PremiumPreTaxWholeLifeIns = document.getElementById("PremiumPreTaxWholeLifeIns").value;
             //EEelectionPostTaxWholeLifeIns = document.getElementById("EEelectionPostTaxWholeLifeIns").value;
             //PremiumPostTaxWholeLifeIns = document.getElementById("PremiumPostTaxWholeLifeIns").value;
 
+            OtherCoverage = document.getElementById("OtherIns").value;
             //OtherInsProvider = document.getElementById("OtherInsProvider").value;
             //EEelectionPreTaxOtherIns = document.getElementById("EEelectionPreTaxOtherIns").value;
             //PremiumPreTaxOtherIns = document.getElementById("PremiumPreTaxOtherIns").value;
@@ -874,24 +893,77 @@
 
 
             var data = {
-                "Employee_id": emp_id,
+                "Employee_id": Employee_id,
+                "Deductions_id": Deductions_id,
+                "MedicalCoverage": MedicalCoverage,
                 "MedicalInsProvider": MedicalInsProvider,
                 "EEelectionPreTaxMedIns": EEelectionPreTaxMedIns,
                 "PremiumPreTaxMedIns": PremiumPreTaxMedIns,
                 "EEelectionPostTaxMedIns": EEelectionPostTaxMedIns,
                 "PremiumPostTaxMedIns": PremiumPostTaxMedIns,
 
+                "DentalCoverage": DentalCoverage,
                 "DentalInsProvider": DentalInsProvider,
                 "EEelectionPreTaxDentalIns": EEelectionPreTaxDentalIns,
                 "PremiumPreTaxDentalIns": PremiumPreTaxDentalIns,
                 "EEelectionPostTaxDentalIns": EEelectionPostTaxDentalIns,
                 "PremiumPostTaxDentalIns": PremiumPostTaxDentalIns,
 
+                "VisionCoverage": VisionCoverage,
                 "VisionInsProvider": VisionInsProvider,
                 "EEelectionPreTaxVisionIns": EEelectionPreTaxVisionIns,
                 "PremiumPreTaxVisionIns": PremiumPreTaxVisionIns,
                 "EEelectionPostTaxVisionIns": EEelectionPostTaxVisionIns,
                 "PremiumPostTaxVisionIns": PremiumPostTaxVisionIns,
+
+                "AccidentCoverage": AccidentCoverage,
+                //"AccidentInsProvider ": AccidentInsProvider ,
+                //"EEelectionPreTaxAccidentIns": EEelectionPreTaxAccidentIns,
+                //"PremiumPreTaxAccidentIns": PremiumPreTaxAccidentIns,
+                //"EEelectionPostTaxAccidentIns": EEelectionPostTaxAccidentIns,
+                //"PremiumPostTaxAccidentIns": PremiumPostTaxAccidentIns,
+
+                "CancerCoverage": CancerCoverage,
+                //"CancerInsProvider ": CancerInsProvider,
+                //"EEelectionPreTaxCancerIns": EEelectionPreTaxCancerIns,
+                //"PremiumPreTaxCancerIns": PremiumPreTaxCancerIns,
+                //"EEelectionPostTaxCancerIns": EEelectionPostTaxCancerIns,
+                //"PremiumPostTaxCancerIns": PremiumPostTaxCancerIns,
+
+                "ShortTermDisabilityCoverage": ShortTermDisabilityCoverage,
+                //"StDisabilityProvider": StDisabilityProvider,
+                //"EEelectionPreTaxStDisability": EEelectionPreTaxStDisability,
+                //"PremiumPreTaxStDisability": PremiumPreTaxStDisability,
+                //"EEelectionPostTaxStDisability": EEelectionPostTaxStDisability,
+                //"PremiumPostTaxStDisability": PremiumPostTaxStDisability,
+
+                "HospitalIndemnityCoverage": HospitalIndemnityCoverage,
+                //"HospitalIndemProvider": HospitalIndemProvider,
+                //"EEelectionPreTaxHospitalIndem": EEelectionPreTaxHospitalIndem,
+                //"PremiumPreTaxHospitalIndem": PremiumPreTaxHospitalIndem,
+                //"EEelectionPostTaxHospitalIndem": EEelectionPostTaxHospitalIndem,
+                //"PremiumPostTaxHospitalIndem": PremiumPostTaxHospitalIndem,
+
+                "TermLifeCoverage": TermLifeCoverage,
+                //"TermLifeInsProvider": TermLifeInsProvider,
+                //"EEelectionPreTaxTermLifeIns": EEelectionPreTaxTermLifeIns,
+                //"PremiumPreTaxTermLifeIns": PremiumPreTaxTermLifeIns,
+                //"EEelectionPostTaxTermLifeIns": EEelectionPostTaxTermLifeIns,
+                //"PremiumPostTaxTermLifeIns": PremiumPostTaxTermLifeIns,
+
+                "WholeLifeCoverage": WholeLifeCoverage,
+                //"WholeLifeInsProvider": WholeLifeInsProvider,
+                //"EEelectionPreTaxWholeLifeIns": EEelectionPreTaxWholeLifeIns,
+                //"PremiumPreTaxWholeLifeIns": PremiumPreTaxWholeLifeIns,
+                //"EEelectionPostTaxWholeLifeIns": EEelectionPostTaxWholeLifeIns,
+                //"PremiumPostTaxWholeLifeIns": PremiumPostTaxWholeLifeIns,
+
+                "OtherCoverage": OtherCoverage,
+                //"OtherInsProvider": OtherInsProvider,
+                //"EEelectionPreTaxOtherIns": EEelectionPreTaxOtherIns,
+                //"PremiumPreTaxOtherIns": PremiumPreTaxOtherIns,
+                //"EEelectionPostTaxOtherIns": EEelectionPostTaxOtherIns,
+                //"PremiumPostTaxOtherIns": PremiumPostTaxOtherIns,
 
                 "TotalPreTax": TotalPreTax,
                 "TotalPostTax": TotalPostTax,
@@ -902,61 +974,19 @@
                 "empInitials3": empInitials3,
                 "empInitials4": empInitials4,
                 "empInitials5": empInitials5,
-
-                //"AccidentInsProvider ": AccidentInsProvider ,
-                //"EEelectionPreTaxAccidentIns": EEelectionPreTaxAccidentIns,
-                //"PremiumPreTaxAccidentIns": PremiumPreTaxAccidentIns,
-                //"EEelectionPostTaxAccidentIns": EEelectionPostTaxAccidentIns,
-                //"PremiumPostTaxAccidentIns": PremiumPostTaxAccidentIns,
-
-                //"CancerInsProvider ": CancerInsProvider,
-                //"EEelectionPreTaxCancerIns": EEelectionPreTaxCancerIns,
-                //"PremiumPreTaxCancerIns": PremiumPreTaxCancerIns,
-                //"EEelectionPostTaxCancerIns": EEelectionPostTaxCancerIns,
-                //"PremiumPostTaxCancerIns": PremiumPostTaxCancerIns,
-
-                //"StDisabilityProvider": StDisabilityProvider,
-                //"EEelectionPreTaxStDisability": EEelectionPreTaxStDisability,
-                //"PremiumPreTaxStDisability": PremiumPreTaxStDisability,
-                //"EEelectionPostTaxStDisability": EEelectionPostTaxStDisability,
-                //"PremiumPostTaxStDisability": PremiumPostTaxStDisability,
-
-                //"HospitalIndemProvider": HospitalIndemProvider,
-                //"EEelectionPreTaxHospitalIndem": EEelectionPreTaxHospitalIndem,
-                //"PremiumPreTaxHospitalIndem": PremiumPreTaxHospitalIndem,
-                //"EEelectionPostTaxHospitalIndem": EEelectionPostTaxHospitalIndem,
-                //"PremiumPostTaxHospitalIndem": PremiumPostTaxHospitalIndem,
-
-                //"TermLifeInsProvider": TermLifeInsProvider,
-                //"EEelectionPreTaxTermLifeIns": EEelectionPreTaxTermLifeIns,
-                //"PremiumPreTaxTermLifeIns": PremiumPreTaxTermLifeIns,
-                //"EEelectionPostTaxTermLifeIns": EEelectionPostTaxTermLifeIns,
-                //"PremiumPostTaxTermLifeIns": PremiumPostTaxTermLifeIns,
-
-                //"WholeLifeInsProvider": WholeLifeInsProvider,
-                //"EEelectionPreTaxWholeLifeIns": EEelectionPreTaxWholeLifeIns,
-                //"PremiumPreTaxWholeLifeIns": PremiumPreTaxWholeLifeIns,
-                //"EEelectionPostTaxWholeLifeIns": EEelectionPostTaxWholeLifeIns,
-                //"PremiumPostTaxWholeLifeIns": PremiumPostTaxWholeLifeIns,
-
-                //"OtherInsProvider": OtherInsProvider,
-                //"EEelectionPreTaxOtherIns": EEelectionPreTaxOtherIns,
-                //"PremiumPreTaxOtherIns": PremiumPreTaxOtherIns,
-                //"EEelectionPostTaxOtherIns": EEelectionPostTaxOtherIns,
-                //"PremiumPostTaxOtherIns": PremiumPostTaxOtherIns,
             }
 
-            var ret = postData('/GroupHealth/SalaryRedirectionUpdate', data)
+            var ret = postData('SalaryRedirectionUpdate', data)
                 .then(data => {
                     console.log(data);
-                    FourthStep(data);
+                    FirstStep(data);
                 })
                 .catch(error => console.error(error))
 
         })
-        function FourthStep(salaryRedirect) {
-            document.querySelector("#FourthStep").nextElementSibling.style.display = "block";
-            emp_id = salaryRedirect.data;
+        function FirstStep(emp) {
+            document.querySelector("#FirstStep").nextElementSibling.style.display = "block";
+            Employee_id = emp.data;
 
         }
 

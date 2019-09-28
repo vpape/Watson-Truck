@@ -1,7 +1,5 @@
-﻿@model Watson.Models.Group_Health
-@{
-    ViewBag.Title = "EditAuthorizationForm";
-}
+﻿@model Watson.ViewModels.EmployeeAndInsuranceVM
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,18 +11,19 @@
     <title>Edit Authorization Form</title>
 </head>
 <body>
-    @* Edit Authorization Form *@
+    @* Authorization Form *@
     <div class="form-horizontal">
         <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" @*value=@ViewBag.e.Employee_id*@ />
-        <div class="collapsible" id="FirstStep">Edit Authorization Form</div>
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
+        <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value="@ViewBag.GroupHealthInsurance_id" />
+        <div class="collapsible" id="FirstStep">Authorization Form</div>
         <div class="table table-bordered">
             <table class="table table-condensed" id="AuthorizationFormTable">
                 <tr>
                     <td>
                         <div id="label">
                             1.<label class="" style="padding-left: 10px;">Policyholder's First Name:</label>
-                            <input type="text" class="form-control" id="FirstName" placeholder="First Name" name="FirstName" value="" />
+                            <input type="text" class="form-control" id="FirstName" placeholder="First Name" name="FirstName" value="@Html.DisplayFor(Model => Model.employee.FirstName)" disabled />
                         </div>
                     </td>
                 </tr>
@@ -32,7 +31,7 @@
                     <td>
                         <div id="label">
                             2.<label class="" style="padding-left: 10px;">Policyholder's Last Name:</label>
-                            <input type="text" class="form-control" id="LastName" placeholder="Last Name" name="LastName" value="" />
+                            <input type="text" class="form-control" id="LastName" placeholder="Last Name" name="LastName" value="@Html.DisplayFor(Model => Model.employee.LastName)" disabled />
                         </div>
                     </td>
                 </tr>
@@ -40,7 +39,7 @@
                     <td>
                         <div id="label">
                             3.<label class="" style="padding-left: 10px;">Policyholder's Employers Name:</label>
-                            <input type="text" class="form-control" id="Employer" placeholder="Employer" name="CurrentEmployer" value="" />
+                            <input type="text" class="form-control" id="Employer" placeholder="Employer" name="CurrentEmployer" value="@Html.DisplayFor(Model => Model.employee.CurrentEmployer)" disabled />
                         </div>
                     </td>
                 </tr>
@@ -48,7 +47,7 @@
                     <td>
                         <div id="label">
                             4.<label class="" style="padding-left: 10px;">Policyholder's SSN:</label>
-                            <input type="text" class="form-control" id="SSN" placeholder="SSN#" name="SSN" value="" />
+                            <input type="text" class="form-control" id="SSN" placeholder="SSN#" name="SSN" value="@Html.DisplayFor(Model => Model.employee.SSN)" disabled />
                         </div>
                     </td>
                 </tr>
@@ -56,7 +55,7 @@
                     <td>
                         <div id="label">
                             5.<label class="" style="padding-left: 10px;">Policyholder's Date of Birth:</label>
-                            <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="" />
+                            <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="@Convert.ToDateTime(Model.employee.DateOfBirth).ToString("yyyy-MM-dd")" disabled />
                         </div>
                     </td>
                 </tr>
@@ -64,11 +63,11 @@
                     <td>
                         <div id="label">
                             6.<label class="" style="padding-left: 10px;">Policyholder's Mailing Address:</label>
-                            <input type="text" class="form-control" id="MailingAddress" placeholder="Street" name="MailingAddress" value="" />
-                            <input type="text" class="form-control" id="PObox" placeholder="PO Box" name="PObox" value="" />
-                            <input type="text" class="form-control" id="City" placeholder="City" name="City" value="" />
-                            <input type="text" class="form-control" id="State" placeholder="State" name="State" value="" />
-                            <input type="text" class="form-control" id="ZipCode" placeholder="ZipCode" name="ZipCode" value="" />
+                            <input type="text" class="form-control" id="MailingAddress" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(Model => Model.employee.MailingAddress)" disabled />
+                            <input type="text" class="form-control" id="PObox" placeholder="PO Box" name="PObox" value="@Html.DisplayFor(Model => Model.employee.PObox)" disabled />
+                            <input type="text" class="form-control" id="City" placeholder="City" name="City" value="@Html.DisplayFor(Model => Model.employee.City)" disabled />
+                            <input type="text" class="form-control" id="State" placeholder="State" name="State" value="@Html.DisplayFor(Model => Model.employee.State)" disabled />
+                            <input type="text" class="form-control" id="ZipCode" placeholder="ZipCode" name="ZipCode" value="@Html.DisplayFor(Model => Model.employee.ZipCode)" disabled />
                         </div>
                     </td>
                 </tr>
@@ -81,20 +80,20 @@
                     <label style="padding-left: 10px;">
                         Name:
                     </label>
-                    <input type="text" id="NameOfPerson1" name="NameOfPersonToReleaseInfoTo" value="" />
+                    <input type="text" id="NameOfPerson1" name="NameOfPersonToReleaseInfoTo" value="@Html.DisplayFor(Model => Model.grpHealth.NameOfPersonToReleaseInfoTo)" disabled" />
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
-                    <input type="text" id="NameOfPerson1Relationship" name="Relationship" value="" />
+                    <input type="text" id="NameOfPerson1Relationship" name="Relationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
                     <hr />
                     <label style="padding-left: 10px;">
                         Name:
                     </label>
-                    <input type="text" id="NameOfPerson2" name="NameOfPersonToReleaseInfoTo" value="" />
+                    <input type="text" id="NameOfPerson2" name="NameOfPersonToReleaseInfoTo" value="@Html.DisplayFor(Model => Model.grpHealth.NameOfPersonToReleaseInfoTo)" disabled" />
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
-                    <input type="text" id="NameOfPerson2Relationship" name="Relationship" value="" />
+                    <input type="text" id="NameOfPerson2Relationship" name="Relationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
                 </div>
             </div>
             <hr />
@@ -122,34 +121,34 @@
                             <label style="padding-left: 10px;">
                                 Policyholder's Signature:
                             </label>
-                            <input type="text" id="EmpSignature" name="EmployeeSignature" value="" />
+                            <input type="text" id="EmpSignature" name="EmployeeSignature" value="@Html.DisplayFor(Model => Model.grpHealth.EmployeeSignature)" disabled" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="EmpSignatureDate" name="EmployeeSignatureDate" value="" />
+                            <input type="date" id="EmpSignatureDate" name="EmployeeSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.EmployeeSignatureDate)" disabled" />
                             <hr />
                             <label style="padding-left: 10px;">
                                 Signature of person to release information to:
                             </label>
-                            <input type="text" id="NameOfPerson1Signature" name="OtherSignature" value="" />
+                            <input type="text" id="NameOfPerson1Signature" name="OtherSignature" value="@Html.DisplayFor(Model => Model.grpHealth.OtherSignature)" disabled" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="NameOfPerson1SignatureDate" name="OtherSignatureDate" value="" />
+                            <input type="date" id="NameOfPerson1SignatureDate" name="OtherSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.OtherSignatureDate)" disabled" />
                             <hr />
                             <label style="padding-left: 10px;">
                                 Signature of person to release information to:
                             </label>
-                            <input type="text" id="NameOfPerson2Signature" name="OtherSignature" value="" />
+                            <input type="text" id="NameOfPerson2Signature" name="OtherSignature" value="@Html.DisplayFor(Model => Model.grpHealth.OtherSignature)" disabled" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="NameOfPerson2SignatureDate" name="OtherSignatureDate" value="" />
+                            <input type="date" id="NameOfPerson2SignatureDate" name="OtherSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.OtherSignatureDate)" />
                         </div>
                         <hr />
                         <div class="form-group">
                             <div class="col-md-offset-11">
-                                <button id="EditAuthorizationFormUpdate" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
+                                <button id="EditAuthorizationFormUpdate" class="btn">Save</button>
                             </div>
                         </div>
                     </td>
@@ -157,6 +156,9 @@
             </table>
         </div>
     </div>
+    <p>
+        @Html.ActionLink("Return to Authorization Form", "AuthorizationForm", new { Employee_id = ViewBag.Employee_id }, null)
+    </p>
 </body>
 </html>
 
@@ -273,7 +275,7 @@
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
-    var emp_id;
+    var Employee_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -290,14 +292,6 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EditAuthorizationFormUpdate").addEventListener("click", function () {
-            FirstName = document.getElementById("FirstName").value;
-            LastName = document.getElementById("LastName").value;
-            CurrentEmployer = document.getElementById("CurrentEmployer").value;
-            SSN = document.getElementById("SSN").value;
-            MailingAddress = document.getElementById("MailingAddress").value;
-            PObox = document.getElementById("PObox").value;
-            City = document.getElementById("City").value;
-            State = document.getElementById("State").value;
             NameOfPerson1 = document.getElementById("NameOfPerson1").value;
             NameOfPerson2 = document.getElementById("NameOfPerson2").value;
             NameOfPerson1Relationship = document.getElementById("NameOfPerson1Relationship").value;
@@ -311,17 +305,7 @@
 
 
             var data = {
-                "Employee_id": emp_id,
-                "FirstName": FirstName,
-                "LastName": LastName,
-                "CurrentEmployer": CurrentEmployer,
-                "SSN": SSN,
-                "DateOfBirth": DateOfBirth,
-                "MailingAddress": MailingAddress,
-                "PObox": PObox,
-                "City": City,
-                "State": State,
-                "ZipCode": ZipCode,
+                "Employee_id": Employee_id,
                 "NameOfPerson1": NameOfPerson1,
                 "NameOfPerson1Relationship": NameOfPerson1Relationship,
                 "NameOfPerson2": NameOfPerson2,
@@ -334,22 +318,34 @@
                 "NameOfPerson2SignatureDate": NameOfPerson2SignatureDate
             }
 
-            var ret = postData('/GroupHealth/AuthorizationFormEditUpdate', data)
-                .then(data => {
-                    console.log(data);
-                    FifthStep(data);
-                })
-                .catch(error => console.error(error))
+            //var ret = postData('AuthorizationFormEditUpdate', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        FirstStep(data);
+            //    })
+            //    .catch(error => console.error(error))
 
+            fetch('AuthorizationFormEditUpdate', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
 
         })
-        function FifthStep(authoriztionForm) {
-            //document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-            //document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
-            //document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
-            //document.querySelector("#FourthStep").nextElementSibling.style.display = "none";
-            document.querySelector("#FifthStep").nextElementSibling.style.display = "block";
-            emp_id = authoriztionForm.data;
+        function FirstStep(emp) {
+            document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+            Employee_id = emp.data;
 
         }
 

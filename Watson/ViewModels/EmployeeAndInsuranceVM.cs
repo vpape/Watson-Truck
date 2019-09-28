@@ -14,5 +14,6 @@ namespace Watson.ViewModels
 
         //Group_Health class
         public Group_Health grpHealth { get; set; }
+
     }
 }
