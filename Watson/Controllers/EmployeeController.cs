@@ -155,14 +155,14 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);             
         }
 
-        public JsonResult OtherInsuranceNew(int Employee_id, int? GroupHealthInsurance_id, string empOtherGrpHinsCoverage, string empInsuranceCarrier,
+        public JsonResult OtherInsuranceNew(int Employee_id, int? GroupHealthInsurance_id, string empOtherGrpHinsCoverage, string empInsCarrier,
            string empInsPolicyNumber, string empInsPhoneNumber)
         {
             Group_Health grp = new Group_Health();
 
             grp.Employee_id = Employee_id;
             grp.OtherInsuranceCoverage = empOtherGrpHinsCoverage;
-            grp.InsuranceCarrier = empInsuranceCarrier;
+            grp.InsuranceCarrier = empInsCarrier;
             grp.PolicyNumber = empInsPolicyNumber;
             grp.PhoneNumber = empInsPhoneNumber;
 
@@ -370,10 +370,10 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult FamilyOverview(int? Employee_id)
+        public ActionResult FamilyOverview(int? Employee_id, int? FamilyMember_id)
         {
             ViewBag.Employee_id = Employee_id;
-           
+            ViewBag.FamilyMember_id = FamilyMember_id;
 
             var familyInfo = (from fi in db.Family_Info
                               where fi.Employee_id == Employee_id
@@ -432,21 +432,27 @@ namespace Watson.Controllers
         }
 
         //Create-SpouseEnrollment
-        public JsonResult SpEnrollmentNew(int Employee_id, string RelationshipToInsured, string SSN, string FirstName, 
+        public JsonResult SpEnrollmentNew(int Employee_id, int FamilyMember_id, string RelationshipToInsured, string SSN, string FirstName, 
             string LastName, DateTime DateOfBirth, string Gender)
         {
-            //Create an if statement that checks to see if there's already a record
-
-            //var output = (from fi in db.Family_Info
-            //              where fi.FamilyMember_id == FamilyMember_id
-            //              select fi).SingleOrDefault();
-
-            //if (output != null)
-            //{
-            //    ViewBag.Message = "Record already exists.";
-            //}
 
             Family_Info sp = new Family_Info();
+
+            int record = (from fi in db.Family_Info
+                            where fi.FamilyMember_id == FamilyMember_id
+                            where fi.RelationshipToInsured == "Spouse"
+                            select fi).Count();
+
+            if (record > 0)
+            {
+                ViewBag.Message = "Record already exists.";
+                RedirectToAction("FamilyOverview", new { sp.Employee_id });
+            }
+            else
+            {
+                RedirectToAction("DepEnrollment", new { sp.Employee_id });
+
+            }
 
             sp.Employee_id = Employee_id;
             sp.RelationshipToInsured = RelationshipToInsured;
@@ -528,15 +534,13 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SpOtherInsuranceNew(int Employee_id, int FamilyMember_id, string CoveredByOtherInsurance,
-           string spInsCarrier, string spInsMailingAddress, string spInsCity, string spInsState, string spInsZipCode,
-           string spInsPhoneNumber, string spInsPolicyNumber)
+        public JsonResult SpOtherInsuranceNew(int Employee_id, int FamilyMember_id, string spInsCarrier, string spInsMailingAddress, 
+           string spInsCity, string spInsState, string spInsZipCode, string spInsPhoneNumber, string spInsPolicyNumber)
         {
             Other_Insurance other = new Other_Insurance();
 
             other.Employee_id = Employee_id;
             other.FamilyMember_id = FamilyMember_id;
-            //other.CoveredByOtherInsurance = CoveredByOtherInsurance;
             other.InsuranceCarrier = spInsCarrier;
             other.MailingAddress = spInsMailingAddress;
             other.City = spInsCity;
@@ -559,7 +563,7 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //EditSp Method
-        public ActionResult EditSpouse(int? FamilyMember_id, int? Employee_id)
+        public ActionResult EditSpouse(int? FamilyMember_id, int? Employee_id, int? OtherInsurance_id)
         {
             SpouseAndDependentInsVM spAndDepInsVM = new SpouseAndDependentInsVM();
 
@@ -577,8 +581,10 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.FamilyMember_id = f.FamilyMember_id;
+
             ViewBag.Employee_id = f.Employee_id;
+            ViewBag.FamilyMember_id = f.FamilyMember_id;
+
 
             return View(spAndDepInsVM);
         }
@@ -595,6 +601,22 @@ namespace Watson.Controllers
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
                 .Where(i => i.RelationshipToInsured == "Spouse")
                 .Single();
+
+            int record = (from fi in db.Family_Info
+                          where fi.FamilyMember_id == FamilyMember_id
+                          where fi.RelationshipToInsured == "Spouse"
+                          select fi).Count();
+
+            if (record > 0)
+            {
+                ViewBag.Message = "Record already exists.";
+                RedirectToAction("FamilyOverview", new { sp.Employee_id });
+            }
+            else
+            {
+                RedirectToAction("DepEnrollment", new { sp.Employee_id });
+
+            }
 
             sp.RelationshipToInsured = RelationshipToInsured;
             sp.SSN = EmpNumber;
@@ -666,6 +688,48 @@ namespace Watson.Controllers
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult SpOtherInsuranceUpdate(int Employee_id, int FamilyMember_id, int? OtherInsurance_id, string spInsCarrier,
+           string spInsMailingAddress, string spInsCity, string spInsState, string spInsZipCode, string spInsPhoneNumber, string spInsPolicyNumber)
+        {
+            var other = db.Other_Insurance
+                .Where(i => i.FamilyMember_id == FamilyMember_id)
+                .Single();
+
+            ViewBag.FamilyMember_id = other.FamilyMember_id;
+            ViewBag.RelationshipToInsured = "Spouse";
+
+            other.Employee_id = Employee_id;
+            other.FamilyMember_id = FamilyMember_id;
+            other.InsuranceCarrier = spInsCarrier;
+            other.InsuranceCarrier = spInsMailingAddress;
+            other.InsuranceCarrier = spInsCity;
+            other.InsuranceCarrier = spInsState;
+            other.InsuranceCarrier = spInsZipCode;
+            other.InsuranceCarrier = spInsPhoneNumber;
+            other.InsuranceCarrier = spInsPolicyNumber;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(other).State = System.Data.Entity.EntityState.Modified;
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err);
+                }
+
+                RedirectToAction("FamilyOverview", new { other.Employee_id });
+            }
+
+            int result = other.OtherInsurance_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+   
 
         //Get-SpDetail
         public ActionResult SpouseDetail(int? Employee_id, int? FamilyMember_id, string MaritalStatus)

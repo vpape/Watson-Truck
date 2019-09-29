@@ -13,8 +13,8 @@
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
-    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
     <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value="@ViewBag.GroupHealthInsurance_id" />
+    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
     <input type="hidden" id="InsurancePlan_id" class="form-control" name="InsurancePlan_id" value="@ViewBag.InsurancePlan_id" />
     @*<input type="hidden" id="InsurancePremium_id" class="form-control" name="InsurancePremium_id" value="@ViewBag.InsurancePremium_id" />*@
     @*<<input type="hidden" id="InsurancePlanDetail_id" class="form-control" name="InsurancePlanDetail_id" value="@ViewBag.InsurancePlanDetail_id" />*@
@@ -617,7 +617,7 @@
     </div>
     <hr />
     <div class="form-horizontal">
-        <div class="collapsible" id="ThirdStep">Group Health Insurance Enrollment</div>
+        <div class="collapsible" id="ThirdStep">Edit Group Health Insurance</div>
         <div>
             <p></p>
             <div style="border:solid" class="aside">
@@ -668,13 +668,13 @@
                 <div>
                     <input type="text" class="form-control" name="HoursWorkedPerWeek" id="empHrsWrkPerWk" placeholder="Min. Hrs. Worked/Wk" value="" />
                 </div>
-                <p></p>
                 <div class="form-group">
-                    <div style="margin-left:15px;">
-                        <button type="submit" id="EmploymentInfoUpdate" class="btn">Save</button>
+                    <div class="col-md-offset-9">
+                        <button type="submit" id="EditEmploymentInfoUpdate" class="btn">Save</button>
                     </div>
                 </div>
             </div>
+
             <div id="empInfo">
                 <div class="form-group col-md-6">
                     <input type="text" class="form-control" placeholder="Employee Number" id="empNumber" name="SSN" value="@Html.DisplayFor(Model => Model.employee.SSN)" disabled />
@@ -807,7 +807,7 @@
                             </thead>
                             <tr>
                                 <td class="text">
-                                    <input type="text" class="form-control" id="spFirstName" placeholder="First Name" value="@Html.Raw(sp.FirstName)" disabled />
+                                    <input type="text" class="form-control" id="spFirstName" placeholder="First Name" value="@Html.Raw(sp.LastName)" disabled />
                                 </td>
                                 <td class="text">
                                     <input type="text" class="form-control" id="spLastName" placeholder="Last Name" value="@Html.Raw(sp.LastName)" disabled />
@@ -978,26 +978,26 @@
                                     <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="@Html.Raw(dep.SSN)" readonly />
                                 </td>
                                 <td>
-                                    <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="@Html.Raw(dep.FirstName)" readonly />
+                                    <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="@Html.Raw(dep.SSN)" readonly />
                                 </td>
                                 <td>
-                                    <input type="text" id="LastName" class="form-control" placeholder="Last Name" name="LastName" value="@Html.Raw(dep.LastName)" readonly />
+                                    <input type="text" id="LastName" class="form-control" placeholder="Last Name" name="LastName" value="@Html.Raw(dep.SSN)" readonly />
                                 </td>
                                 <td>
-                                    <input type="text" id="RelationshipToInsured" class="form-control" placeholder="Relation to Insured" name="RelationshipToInsured" value="@Html.Raw(dep.RelationshipToInsured)" readonly />
+                                    <input type="text" id="RelationshipToInsured" class="form-control" placeholder="Relation to Insured" name="RelationshipToInsured" value="@Html.Raw(dep.SSN)" readonly />
                                 </td>
                                 <td>
                                     <input type="date" id="DateOfBirth" class="form-control" placeholder="Date of Birth" name="DateOfBirth" value="@Convert.ToDateTime(dep.DateOfBirth).ToString("yyyy-MM-dd")" readonly />
                                 </td>
                                 <td>
-                                    <input type="text" id="Gender" class="form-control" placeholder="Gender" name="Gender" value="@Html.Raw(dep.Gender)" readonly />
+                                    <input type="text" id="Gender" class="form-control" placeholder="Gender" name="Gender" value="@Html.Raw(dep.SSN)" readonly />
                                 </td>
                             </tr>
                         </table>
                     </div>
                 }
                 <p></p>
-                @foreach (var depOtherIns in Model.otherIns)
+                @foreach (var depOtherIns in Model.family)
                 {
                     <div>
                         <table class="table" id="DepOtherInsTable">
@@ -1010,11 +1010,11 @@
                                 </td>
                                 <td></td>
                                 <td>
-                                    <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.Raw(depOtherIns.InsuranceCarrier)" disabled />
+                                    <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.Raw(depOtherIns.SSN)" disabled />
                                 </td>
                                 <td></td>
                                 <td>
-                                    <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="@Html.Raw(depOtherIns.PolicyNumber)" disabled />
+                                    <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="@Html.Raw(depOtherIns.SSN)" disabled />
                                 </td>
                                 <td></td>
                                 <td>
@@ -1071,8 +1071,8 @@
                                 <label for="cb-Service Writer">Child(ren)</label>
                             </div>
                             @*<label class="radio-inline"><input type="radio" id="Myself" class="radio-inline" onclick="return RefusalOfGrpHealthCoverage()" name="Myself" value="Myself" />Myself</label>
-                        <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" name="Spouse" value="Spouse" />Spouse</label>
-                        <label class="radio-inline"><input type="radio" id="Dependent" class="radio-inline" name="Dependent" value="Child(ren)" />Child(ren)</label>*@
+                                <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" name="Spouse" value="Spouse" />Spouse</label>
+                                <label class="radio-inline"><input type="radio" id="Dependent" class="radio-inline" name="Dependent" value="Child(ren)" />Child(ren)</label>*@
                             <p></p>
                         </div>
                     </form>
@@ -1113,16 +1113,11 @@
                 <hr />
                 <div class="form-group">
                     <div class="col-md-offset-11">
-                        <button type="submit" id="GrpHealthInsStepTwo" class="btn">Save</button>
+                        <button type="submit" id="EditGrpHealthInsUpdateStepTwo" class="btn">Save</button>
                     </div>
                 </div>
             </div>
         </div>
-       <p>
-            @Html.ActionLink("Edit Group Health", "EditGroupHealthIns", "Group_Health", new { Employee_id = ViewBag.Employee_id }, null)
-        </p>
-        
-
     </div>
 </body>
 </html>
@@ -1185,8 +1180,9 @@
         border-bottom: 1px solid black;
         height: 30px;
     }
+
     #empSignatureDate1,
-    #empSignatureDate2{
+    #empSignatureDate2 {
         width: 15%;
         border: 0px;
         border-bottom: 1px solid black;
@@ -1257,32 +1253,6 @@
         });
     }
 
-    function GroupHealthInsurance() {
-
-       window.location.href = "/Group_Health/GrpHealthEnrollment?Employee_id=@Model.employee.Employee_id" + "&FamilyMember_id=@ViewBag.FamilyMember_id";
-    }
-
-    function EditGroupHealthIns() {
-
-        window.location.href = "/Group_Health/EditGroupHealthIns?Employee_id=@Model.employee.Employee_id" + "&GroupHealthInsurance_id=@ViewBag.GroupHealthInsurance_id";
-    }
-
-    function AuthorizationForm() {
-
-        window.location.href = "/Group_Health/AuthorizationForm?Employee_id=@Model.employee.Employee_id" + "&GroupHealthInsurance_id=@ViewBag.GroupHealthInsurance_id";
-    }
-
-    function SalaryRedirection() {
-
-        window.location.href = "/Group_Health/SalaryRedirection?Employee_id=@Model.employee.Employee_id";
-    }
-
-    function LifeInsurance() {
-
-        window.location.href = "/Life_Insurance/LifeInsuranceEnrollment?Employee_id=@Model.employee.Employee_id";
-    }
-
-
     function showHidEmpOtherInsCoverage() {
 
         document.addEventListener("click", function () {
@@ -1335,9 +1305,32 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#EmploymentInfoUpdate").addEventListener("click", function () {
+        document.querySelector("#EditEmploymentInfoUpdate").addEventListener("click", function () {
             GroupName = document.getElementById("GroupName").value;
             IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
+
+            var data = {
+                "Employee_id": Employee_id,
+                "GroupName": GroupName,
+                "IMSGroupNumber": IMSGroupNumber,
+            }
+
+            fetch('GrpHealthInsEditUpdate', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => ThirdStep(response))
+                .catch(error => console.error('Error:', error));
 
             empDepartment = document.getElementById("empDepartment").value;
             empEnrollmentType = document.getElementById("empEnrollmentType").value;
@@ -1348,12 +1341,9 @@
             empHireDate = document.getElementById("empHireDate").value;
             empEffectiveDate = document.getElementById("empEffectiveDate").value;
             empHrsWrkPerWk = document.getElementById("empHrsWrkPerWk").value;
-           
+
             var data = {
                 "Employee_id": Employee_id,
-                "GroupName": GroupName,
-                "IMSGroupNumber": IMSGroupNumber,
-
                 "empDepartment": empDepartment,
                 "empEnrollmentType": empEnrollmentType,
                 "empPayroll_id": empPayroll_id,
@@ -1366,35 +1356,35 @@
 
             }
 
-            var ret = postData('GrpHealthEnrollmentNew', data)
-                .then(data => {
-                    console.log(data);
-                    FirstStep(data); })
-                .catch(error => console.error(error))
+            //var ret = postData('GrpHealthInsEditUpdate', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        FirstStep(data); })
+            //    .catch(error => console.error(error))
 
-            //fetch('GrpHealthEnrollmentNew', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    .then(response => FirstStep(response))
-            //    .catch(error => console.error('Error:', error));
-
+            fetch('GrpHealthInsEditUpdate', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
         })
 
 
         document.querySelector("#GrpHealthInsStepTwo").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-     
+
+
             NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
             empOnlyGroupHealthOption = document.getElementById("empOnlyGroupHealthOption").value;
             empSpGroupHealthOption = document.getElementById("empSpGroupHealthOption").value;
@@ -1428,7 +1418,7 @@
             empSignatureDate2 = document.getElementById("empSignatureDate2").value;
 
             var data = {
-                "GrpHealth_id": GroupHealthInsurance_id,
+                "GrpHealth_id": GrpHealth_id,
                 "Employee_id": Employee_id,
                 "FamilyMember_id": FamilyMember_id,
 
@@ -1437,7 +1427,8 @@
                 "empSpGroupHealthOption": empSpGroupHealthOption,
                 "empDepGroupHealthOption": empDepGroupHealthOption,
                 "empFamGroupHealthOption": empFamGroupHealthOption,
-    
+
+
                 "spOtherInsCoverage": spOtherInsCoverage,
                 //"spInsCarrier": spInsCarrier,
                 //"spInsMailingAddress": spInsMailingAddress,
@@ -1465,14 +1456,14 @@
                 "empSignatureDate2": empSignatureDate2,
             }
 
-            //var ret = postData('GrpHealthEnrollmentNew', data)
+            //var ret = postData('GrpHealthInsEditUpdate', data)
             //    .then(data => {
             //        console.log(data);
-            //        FirstStep(data);
+            //        ThirdStep(data);
             //    })
             //    .catch(error => console.error(error))
 
-            fetch('GrpHealthEnrollmentNew', {
+            fetch('GrpHealthInsEditUpdate', {
                 body: JSON.stringify(data), //must match 'Content-Type' header
                 cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', //include, same-origin, *omit
@@ -1487,18 +1478,14 @@
                 referrer: 'no-referrer', //*client, no-referrer
             }).then(res => res.json())
                 //.then(response => console.log('Success:', JSON.stringify(response)))
-                .then(response => FirstStep(response))
+                .then(response => SecondStep(response))
                 .catch(error => console.error('Error:', error));
         })
     })
 
-    function FirstStep(emp) {
-        Employee_id = emp.data;
-    }
-
     function SecondStep(emp) {
-        
- 
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "block";
+        Employee_id = emp.data;
     }
 
     function postData(url, data) {
@@ -1527,4 +1514,5 @@
         //}) //parses response to JSON
     }
 </script>
+
 

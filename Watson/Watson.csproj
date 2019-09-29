@@ -498,6 +498,7 @@
     <Content Include="Views\Group_Health\SalaryRedirection.cshtml" />
     <Content Include="Views\Group_Health\EditAuthorizationForm.cshtml" />
     <Content Include="Views\Group_Health\EditSalaryRedirection.cshtml" />
+    <Content Include="Views\Group_Health\EditGroupHealthIns.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -65,11 +65,12 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Gender:</label>
                 <div class="col-md-10">
-                    <select id="Gender" class="form-control">
+                    @Html.RadioButtonFor(model => model.family.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.family.Gender, "female", false) Female
+                    @*<select id="Gender" class="form-control">
                         <option value="">Select Option</option>
-                        <option value="Male @((Model.family.Gender) == "Male"   ? "selected" : "")">Male</option>
-                        <option value="Female" @((Model.family.Gender) == "Female"   ? "selected" : "")>Female</option>
-                    </select>
+                        <option value="Male @((Model.family.Gender) == "Male"   ? "selected" : ""))">Male</option>
+                        <option value="Female" @((Model.family.Gender) == "Female" ? "selected" : "") )>Female</option>
+                    </select>*@
                 </div>
             </div>
             <div class="form-group">
@@ -519,7 +520,6 @@
             var data = {
                 "FamilyMember_id": FamilyMember_id,
                 "Employee_id": Employee_id,
-                //"CoveredByOtherInsurance": CoveredByOtherInsurance,
                 "spInsCarrier": spInsCarrier,
                 "spInsMailingAddress": spInsMailingAddress,
                 "spInsCity": spInsCity,
