@@ -1063,16 +1063,13 @@
                             <h4><b>Refusal of Group Health Coverage</b></h4>
                             <h6>This is to certify I have been given an opportunity to apply for group health coverage available to me through my Employer, and I have decided to not apply coverage for:</h6>
                             <div id="divGrpHRefusalSelection">
-                                <input type="checkbox" class="checkbox-inline" id="Myself" name="Myself" onclick="RefusalOfGrpHealthCoverage()" value="Myself" />
-                                <label for="cb-Myself">Myself</label>
-                                <input type="checkbox" class="checkbox-inline" id="Spouse" name="Spouse" onclick="RefusalOfGrpHealthCoverage()" value="Spouse" />
-                                <label for="cb-Service Writer">Spouse</label>
-                                <input type="checkbox" class="checkbox-inline" id="Dependent" name="Child(ren)" onclick="RefusalOfGrpHealthCoverage()" value="Child(ren)" />
-                                <label for="cb-Service Writer">Child(ren)</label>
+                                <input type="checkbox" class="checkbox-inline" id="Myself" name="Myself" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="Myself" />
+                                <label for="Myself">Myself</label>
+                                <input type="checkbox" class="checkbox-inline" id="Spouse" name="Spouse" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="Spouse" />
+                                <label for="Spouse">Spouse</label>
+                                <input type="checkbox" class="checkbox-inline" id="Dependent" name="Dependent" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="Dependent" />
+                                <label for="Child(ren)">Child(ren)</label>
                             </div>
-                            @*<label class="radio-inline"><input type="radio" id="Myself" class="radio-inline" onclick="return RefusalOfGrpHealthCoverage()" name="Myself" value="Myself" />Myself</label>
-                                <label class="radio-inline"><input type="radio" id="Spouse" class="radio-inline" name="Spouse" value="Spouse" />Spouse</label>
-                                <label class="radio-inline"><input type="radio" id="Dependent" class="radio-inline" name="Dependent" value="Child(ren)" />Child(ren)</label>*@
                             <p></p>
                         </div>
                     </form>
@@ -1081,8 +1078,8 @@
                         <div id="divReasonForRefusal">
                             <h4><b>Reason for Refusal</b></h4>
                             <div id="divReasonForRefusalSelection">
-                                <label class="radio-inline" for="r-OtherCoverage"><input type="radio" id="OtherCoverageSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" />OtherCoverage</label>
-                                <label class="radio-inline" for="r-OtherReason"><input type="radio" id="OtherReasonSelection" class="radio-inline" name="OtherCoverage" onclick="return showReasonForRefusal()" value="OtherReason" checked />OtherReason</label>
+                                <label class="radio-inline" for="OtherCoverage"><input type="radio" id="OtherCoverageSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" />OtherCoverage</label>
+                                <label class="radio-inline" for="OtherReason"><input type="radio" id="OtherReasonSelection" class="radio-inline" name="OtherCoverage" onclick="return showReasonForRefusal()" value="OtherReason" checked />OtherReason</label>
                                 <p></p>
                                 <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="" />
                             </div>
