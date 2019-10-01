@@ -80,20 +80,20 @@
                     <label style="padding-left: 10px;">
                         Name:
                     </label>
-                    <input type="text" id="NameOfPerson1" name="NameOfPersonToReleaseInfoTo" value="" />
+                    <input type="text" id="NameOfPersonOne" name="PersonOneReleaseInfoTo" value="" />
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
-                    <input type="text" id="NameOfPerson1Relationship" name="Relationship" value="" />
+                    <input type="text" id="PersonOneRelationship" name="PersonOneRelationship" value="" />
                     <hr />
                     <label style="padding-left: 10px;">
                         Name:
                     </label>
-                    <input type="text" id="NameOfPerson2" name="NameOfPersonToReleaseInfoTo" value="" />
+                    <input type="text" id="NameOfPersonTwo" name="PersonTwoReleaseInfoTo" value="" />
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
-                    <input type="text" id="NameOfPerson2Relationship" name="Relationship" value="" />
+                    <input type="text" id="PersonTwoRelationship" name="PersonTwoRelationship" value="" />
                 </div>
             </div>
             <hr />
@@ -121,29 +121,29 @@
                             <label style="padding-left: 10px;">
                                 Policyholder's Signature:
                             </label>
-                            <input type="text" id="EmpSignature" name="EmployeeSignature" value="" />
+                            <input type="text" id="PolicyHolderSignature" name="PolicyHolderSignature" value="" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="EmpSignatureDate" name="EmployeeSignatureDate" value="" />
+                            <input type="date" id="PolicyHolderSignatureDate" name="PolicyHolderSignatureDate" value="" />
                             <hr />
                             <label style="padding-left: 10px;">
                                 Signature of person to release information to:
                             </label>
-                            <input type="text" id="NameOfPerson1Signature" name="OtherSignature" value="" />
+                            <input type="text" id="PersonOneSignature" name="PersonOneSignature" value="" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="NameOfPerson1SignatureDate" name="OtherSignatureDate" value="" />
+                            <input type="date" id="PersonOneSignatureDate" name="PersonOneSignatureDate" value="" />
                             <hr />
                             <label style="padding-left: 10px;">
                                 Signature of person to release information to:
                             </label>
-                            <input type="text" id="NameOfPerson2Signature" name="OtherSignature" value="" />
+                            <input type="text" id="PersonTwoSignature" name="PersonTwoSignature" value="" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="NameOfPerson2SignatureDate" name="OtherSignatureDate" value="" />
+                            <input type="date" id="PersonTwoSignatureDate" name="PersonTwoSignatureDate" value="" />
                         </div>
                         <hr />
                         <div class="form-group">
@@ -290,33 +290,37 @@
         });
     }
 
+    //replace NameOfPersonToReleaseInfoTo, Relationship, OtherSignaute form d
+    //with NameOfPersonOne-ReleaseInfoTo, NameOfPersonOne-Signature, NameOfPersonOne-SignatureDate
+    //add policyholder signature and policyholder signatureDate to db
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#AuthorizationFormUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            NameOfPerson1 = document.getElementById("NameOfPerson1").value;
-            NameOfPerson2 = document.getElementById("NameOfPerson2").value;
-            NameOfPerson1Relationship = document.getElementById("NameOfPerson1Relationship").value;
-            NameOfPerson2Relationship = document.getElementById("NameOfPerson2Relationship").value;
-            EmpSignature = document.getElementById("EmpSignature").value;
-            EmpSignatureDate = document.getElementById("EmpSignatureDate").value;
-            NameOfPerson1Signature = document.getElementById("NameOfPerson1Signature").value;
-            NameOfPerson1SignatureDate = document.getElementById("NameOfPerson1SignatureDate").value;
-            NameOfPerson2Signature = document.getElementById("NameOfPerson2Signature").value;
-            NameOfPerson2SignatureDate = document.getElementById("NameOfPerson2SignatureDate").value;
-
+            GroupHealthInsurance_id = document.getElementById("GroupHealthInsurance_id").value;
+            PersonOneReleaseInfoTo = document.getElementById("PersonOneReleaseInfoTo").value;
+            PersonOneRelationship = document.getElementById("PersonOneRelationship").value;
+            PersonTwoReleaseInfoTo = document.getElementById("PersonTwoReleaseInfoTo").value;
+            PersonTwoRelationship = document.getElementById("PersonTwoRelationship").value;
+            PolicyHolderSignature = document.getElementById("PolicyHolderSignature").value;
+            PolicyHolderSignatureDate = document.getElementById("PolicyHolderSignatureDate").value;
+            PersonOneSignature = document.getElementById("PersonOneSignature").value;
+            PersonOneSignatureDate = document.getElementById("PersonOneSignatureDate").value;
+            PersonTwoSignature = document.getElementById("PersonTwoSignature").value;
+            PersonTwoSignatureDate = document.getElementById("PersonTwoSignatureDate").value;
 
             var data = {
                 "Employee_id": Employee_id,
-                "NameOfPerson1": NameOfPerson1,
-                "NameOfPerson1Relationship": NameOfPerson1Relationship,
-                "NameOfPerson2": NameOfPerson2,
-                "NameOfPerson2Relationship": NameOfPerson2Relationship,
-                "EmpSignature": EmpSignature,
-                "EmpSignatureDate": EmpSignatureDate,
-                "NameOfPerson1Signature": NameOfPerson1Signature,
-                "NameOfPerson1SignatureDate": NameOfPerson1SignatureDate,
-                "NameOfPerson2Signature": NameOfPerson2Signature,
-                "NameOfPerson2SignatureDate": NameOfPerson2SignatureDate
+                "GroupHealthInsurance_id": GroupHealthInsurance_id,
+                "PersonOneReleaseInfoTo": PersonOneReleaseInfoTo,
+                "PersonOneRelationship": PersonOneRelationship,
+                "PersonTwoReleaseInfoTo": PersonTwoReleaseInfoTo,
+                "PersonTwoRelationship": PersonTwoRelationship,
+                "PolicyHolderSignature": PolicyHolderSignature,
+                "PolicyHolderSignatureDate": PolicyHolderSignatureDate,
+                "PersonOneSignature": PersonOneSignature,
+                "PersonOneSignatureDate": PersonOneSignatureDate,
+                "PersonTwoSignature": PersonTwoSignature,
+                "PersonTwoSignatureDate": PersonTwoSignatureDate,
             }
 
             //var ret = postData('AuthorizationFormNew', data)

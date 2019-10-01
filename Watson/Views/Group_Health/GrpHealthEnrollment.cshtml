@@ -1287,12 +1287,12 @@
 
     function EditGroupHealthIns() {
 
-        window.location.href = "/Group_Health/EditGroupHealthIns?Employee_id=@Model.employee.Employee_id" + "&GroupHealthInsurance_id=@ViewBag.GroupHealthInsurance_id";
+        window.location.href = "/Group_Health/EditGroupHealthIns?Employee_id=@Model.employee.Employee_id" + "&GroupHealthInsurance_id=@Model.grpHealth.GroupHealthInsurance_id";
     }
 
     function AuthorizationForm() {
 
-        window.location.href = "/Group_Health/AuthorizationForm?Employee_id=@Model.employee.Employee_id" + "&GroupHealthInsurance_id=@ViewBag.GroupHealthInsurance_id";
+        window.location.href = "/Group_Health/AuthorizationForm?Employee_id=@Model.employee.Employee_id" + "&GroupHealthInsurance_id=@Model.grpHealth.GroupHealthInsurance_id";
     }
 
     function SalaryRedirection() {
@@ -1459,7 +1459,7 @@
                 "empSpGroupHealthOption": empSpGroupHealthOption,
                 "empDepGroupHealthOption": empDepGroupHealthOption,
                 "empFamGroupHealthOption": empFamGroupHealthOption,
-    
+
                 "spOtherInsCoverage": spOtherInsCoverage,
                 //"spInsCarrier": spInsCarrier,
                 //"spInsMailingAddress": spInsMailingAddress,
@@ -1522,8 +1522,8 @@
     }
 
     function SecondStep(emp) {
-        
- 
+
+
     }
 
     function postData(url, data) {

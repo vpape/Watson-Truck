@@ -781,25 +781,28 @@ namespace Watson.Controllers
         }
 
         //Create-AuthorizationForm
-        public JsonResult AuthorizationFormNew(int? GroupHealthInsurance_id, int Employee_id, string NameOfPerson1, string NameOfPerson1Relationship,
-            string NameOfPerson2, string NameOfPerson2Relationship, string EmpSignature, /*DateTime EmpSignatureDate,*/ string NameOfPerson1Signature, 
-            /*DateTime NameOfPerson1SignatureDate,*/ string NameOfPerson2Signature/*, DateTime NameOfPerson2SignatureDate*/)
+        public JsonResult AuthorizationFormNew(int GroupHealthInsurance_id, int Employee_id, string PersonOneReleaseInfoTo, string PersonOneRelationship,
+            string PersonTwoReleaseInfoTo, string PersonTwoRelationship, string PolicyHolderSignature, /*DateTime PolicyHolderSignatureDate,*/ 
+            string PersonOneSignature, /*DateTime PersonOneSignatureDate,*/ string PersonTwoSignature/*, DateTime PersonTwoSignatureDate*/)
         {
 
-            Group_Health g = new Group_Health();
+            Group_Health g = db.Group_Health
+                .Where(i => i.GroupHealthInsurance_id == GroupHealthInsurance_id)
+                .SingleOrDefault();
 
+            //change naming convention in db-Group_Health
             g.Employee_id = Employee_id;
-            g.GroupHealthInsurance_id = g.GroupHealthInsurance_id;
-            g.NameOfPersonToReleaseInfoTo = NameOfPerson1;
-            g.Relationship = NameOfPerson1Relationship;
-            g.NameOfPersonToReleaseInfoTo = NameOfPerson2;
-            g.Relationship = NameOfPerson2Relationship;
-            g.EmployeeSignature = EmpSignature;
-            //g.EmployeeSignatureDate = EmpSignatureDate;
-            g.OtherSignature = NameOfPerson1Signature;
-            //g.OtherSignatureDate = NameOfPerson1SignatureDate;
-            g.OtherSignature = NameOfPerson2Signature;
-            //g.OtherSignatureDate = NameOfPerson2SignatureDate;
+            g.GroupHealthInsurance_id = GroupHealthInsurance_id;
+            g.NameOfPersonToReleaseInfoTo = PersonOneReleaseInfoTo;
+            g.Relationship = PersonOneRelationship;
+            g.NameOfPersonToReleaseInfoTo = PersonTwoReleaseInfoTo;
+            g.Relationship = PersonTwoRelationship;
+            g.EmployeeSignature = PolicyHolderSignature;
+            //g.EmployeeSignatureDate = PolicyHolderSignatureDate;
+            g.OtherSignature = PersonOneSignature;
+            //g.OtherSignatureDate = PersonOneSignatureDate;
+            g.OtherSignature = PersonTwoSignature;
+            //g.OtherSignatureDate = PersonTwoSignatureDate;
 
             db.SaveChanges();
 
