@@ -311,8 +311,8 @@ namespace Watson.Controllers
             int? OtherInsurance_id, string GroupName, string IMSGroupNumber, string ReasonForGrpCoverageRefusal,
             string OtherCoverage, string OtherReason, string Myself, string Spouse, string Dependent, DateTime CafeteriaPlanYear,
             string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption,
-            string empDepGroupHealthOption, string empFamGroupHealthOption, string empSignature1, DateTime empSignatureDate1,
-            string empSignature2, DateTime empSignatureDate2, string empDepartment, string empEnrollmentType,
+            string empDepGroupHealthOption, string empFamGroupHealthOption, string GrpHRefusalEmpSignature, DateTime GrpHRefusalEmpSignatureDate,
+            string GrpHEnrollmentEmpSignature, DateTime GrpHEnrollmentEmpSignatureDate, string empDepartment, string empEnrollmentType,
             int empPayroll_id, string empClass, string empJobTitle, DateTime empHireDate, decimal empAnnualSalary, 
             DateTime empEffectiveDate, int empHrsWkPerWk, string InsMECPlan, string InsStndPlan, string InsBuyUpPlan, string DentalPlan, 
             string VisionPlan, string spOtherInsCoverage, string spMedical, string spDental, string spVision, string spIndemnity)
@@ -349,10 +349,10 @@ namespace Watson.Controllers
             g.EmployeeAndSpouse = empSpGroupHealthOption;
             g.EmployeeAndDependent = empDepGroupHealthOption;
             g.EmployeeAndFamily = empFamGroupHealthOption;
-            g.EmployeeSignature = empSignature1;
-            g.EmployeeSignatureDate = empSignatureDate1;
-            g.EmployeeSignature = empSignature2;
-            g.EmployeeSignatureDate = empSignatureDate2;
+            g.GrpHRefusalEmpSignature = GrpHRefusalEmpSignature;
+            g.GrpHRefusalEmpSignatureDate = GrpHRefusalEmpSignatureDate;
+            g.GrpHEnrollmentEmpSignature = GrpHEnrollmentEmpSignature;
+            g.GrpHEnrollmentEmpSignatureDate = GrpHEnrollmentEmpSignatureDate;
 
             ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
 
@@ -435,15 +435,14 @@ namespace Watson.Controllers
             int OtherInsurance_id, string empInsuranceCarrier, string empInsPolicyNumber, string GroupName, string IMSGroupNumber, 
             string PhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
             string Myself, string Spouse, string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear,
-            string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption,
-            string empDepGroupHealthOption, string empFamGroupHealthOption, string empSignature, DateTime empSignatureDate,
-            string empDepartment, string empEnrollmentType, int empPayroll_id, string empClass, string empJobTitle,
-            DateTime empHireDate, decimal empAnnualSalary, DateTime empEffectiveDate, int empHrsWkPerWk,
-            string InsMECPlan, string InsStndPlan, string InsBuyUpPlan, string DentalPlan, string VisionPlan,
-            string spOtherInsCoverage, string spInsCarrier, string spInsPolicyNumber, string spInsPhoneNumber,
-            string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState, string spInsZipCode,
-            string spMedical, string spDental, string spVision, string spIndemnity, string depOtherInsCoverage, 
-            string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
+            string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption,
+            string empFamGroupHealthOption, string GrpHRefusalEmpSignature, DateTime GrpHRefusalEmpSignatureDate, string GrpHEnrollmentEmpSignature,
+            DateTime GrpHEnrollmentEmpSignatureDate, string empDepartment, string empEnrollmentType, int empPayroll_id, string empClass,
+            string empJobTitle, DateTime empHireDate, decimal empAnnualSalary, DateTime empEffectiveDate, int empHrsWkPerWk, string InsMECPlan,
+            string InsStndPlan, string InsBuyUpPlan, string DentalPlan, string VisionPlan, string spOtherInsCoverage, string spInsCarrier,
+            string spInsPolicyNumber, string spInsPhoneNumber, string spInsMailingAddress, string spInsPObox, string spInsCity, 
+            string spInsState, string spInsZipCode, string spMedical, string spDental, string spVision, string spIndemnity,
+            string depOtherInsCoverage, string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
         {
             var g = db.Group_Health
                 .Where(i => i.GroupHealthInsurance_id == GroupHealthInsurance_id)
@@ -467,8 +466,10 @@ namespace Watson.Controllers
             g.EmployeeAndSpouse = empSpGroupHealthOption;
             g.EmployeeAndDependent = empDepGroupHealthOption;
             g.EmployeeAndFamily = empFamGroupHealthOption;
-            g.EmployeeSignature = empSignature;
-            g.EmployeeSignatureDate = empSignatureDate;
+            g.GrpHRefusalEmpSignature = GrpHRefusalEmpSignature;
+            g.GrpHRefusalEmpSignatureDate = GrpHRefusalEmpSignatureDate;
+            g.GrpHEnrollmentEmpSignature = GrpHEnrollmentEmpSignature;
+            g.GrpHEnrollmentEmpSignatureDate = GrpHEnrollmentEmpSignatureDate;
 
             ViewBag.g = g;
 
@@ -781,28 +782,27 @@ namespace Watson.Controllers
         }
 
         //Create-AuthorizationForm
-        public JsonResult AuthorizationFormNew(int GroupHealthInsurance_id, int Employee_id, string PersonOneReleaseInfoTo, string PersonOneRelationship,
-            string PersonTwoReleaseInfoTo, string PersonTwoRelationship, string PolicyHolderSignature, /*DateTime PolicyHolderSignatureDate,*/ 
-            string PersonOneSignature, /*DateTime PersonOneSignatureDate,*/ string PersonTwoSignature/*, DateTime PersonTwoSignatureDate*/)
+        public JsonResult AuthorizationFormNew(int GroupHealthInsurance_id, int Employee_id, string NameOfPersonOne, string PersonOneRelationship,
+            string NameOfPersonTwo, string PersonTwoRelationship, string PolicyHolderSignature, DateTime PolicyHolderSignatureDate,
+            string PersonOneSignature, DateTime PersonOneSignatureDate, string PersonTwoSignature, DateTime PersonTwoSignatureDate)
         {
 
             Group_Health g = db.Group_Health
                 .Where(i => i.GroupHealthInsurance_id == GroupHealthInsurance_id)
                 .SingleOrDefault();
 
-            //change naming convention in db-Group_Health
             g.Employee_id = Employee_id;
             g.GroupHealthInsurance_id = GroupHealthInsurance_id;
-            g.NameOfPersonToReleaseInfoTo = PersonOneReleaseInfoTo;
-            g.Relationship = PersonOneRelationship;
-            g.NameOfPersonToReleaseInfoTo = PersonTwoReleaseInfoTo;
-            g.Relationship = PersonTwoRelationship;
-            g.EmployeeSignature = PolicyHolderSignature;
-            //g.EmployeeSignatureDate = PolicyHolderSignatureDate;
-            g.OtherSignature = PersonOneSignature;
-            //g.OtherSignatureDate = PersonOneSignatureDate;
-            g.OtherSignature = PersonTwoSignature;
-            //g.OtherSignatureDate = PersonTwoSignatureDate;
+            g.NameOfPersonOneReleaseInfoTo = NameOfPersonOne;
+            g.PersonOneRelationship = PersonOneRelationship;
+            g.NameOfPersonTwoReleaseInfoTo = NameOfPersonTwo;
+            g.PersonTwoRelationship = PersonTwoRelationship;
+            g.AuthorizationFormPolicyHolderSignature = PolicyHolderSignature;
+            g.AuthorizationFormPolicyHolderSignatureDate = PolicyHolderSignatureDate;
+            g.PersonOneSignature = PersonOneSignature;
+            g.PersonOneSignatureDate = PersonOneSignatureDate;
+            g.PersonTwoSignature = PersonTwoSignature;
+            g.PersonTwoSignatureDate = PersonTwoSignatureDate;
 
             db.SaveChanges();
 
@@ -833,10 +833,9 @@ namespace Watson.Controllers
         }
 
         //EditUpdate-AuthorizationForm
-        public JsonResult AuthorizationFormEditUpdate(int Employee_id, int GrpHealthIns_id, string NameOfPerson1,
-            string NameOfPerson1Relationship, string NameOfPerson2, string NameOfPerson2Relationship, string EmpSignature,
-            DateTime EmpSignatureDate, string NameOfPerson1Signature, DateTime NameOfPerson1SignatureDate,
-            string NameOfPerson2Signature, DateTime NameOfPerson2SignatureDate)
+        public JsonResult AuthorizationFormEditUpdate(int Employee_id, int GrpHealthIns_id, string NameOfPersonOne, string PersonOneRelationship, 
+            string NameOfPersonTwo, string PersonTwoRelationship, string PolicyHolderSignature, DateTime PolicyHolderSignatureDate, 
+            string PersonOneSignature, DateTime PersonOneSignatureDate, string PersonTwoSignature, DateTime PersonTwoSignatureDate)
         {
             Employee e = db.Employees
                .Where(i => i.Employee_id == Employee_id)
@@ -848,16 +847,18 @@ namespace Watson.Controllers
                 .Where(i => i.GroupHealthInsurance_id == GrpHealthIns_id)
                 .Single();
 
-            g.NameOfPersonToReleaseInfoTo = NameOfPerson1;
-            g.Relationship = NameOfPerson1Relationship;
-            g.NameOfPersonToReleaseInfoTo = NameOfPerson2;
-            g.Relationship = NameOfPerson2Relationship;
-            g.EmployeeSignature = EmpSignature;
-            g.EmployeeSignatureDate = EmpSignatureDate;
-            g.OtherSignature = NameOfPerson1Signature;
-            g.OtherSignatureDate = NameOfPerson1SignatureDate;
-            g.OtherSignature = NameOfPerson2Signature;
-            g.OtherSignatureDate = NameOfPerson2SignatureDate;
+            g.NameOfPersonOneReleaseInfoTo = NameOfPersonOne;
+            g.PersonOneRelationship = PersonOneRelationship;
+            g.NameOfPersonTwoReleaseInfoTo = NameOfPersonTwo;
+            g.PersonTwoRelationship = PersonTwoRelationship;
+            g.AuthorizationFormPolicyHolderSignature = PolicyHolderSignature;
+            g.AuthorizationFormPolicyHolderSignatureDate = PolicyHolderSignatureDate;
+            g.PersonOneSignature = PersonOneSignature;
+            g.PersonOneSignatureDate = PersonOneSignatureDate;
+            g.PersonTwoSignature = PersonTwoSignature;
+            g.PersonTwoSignatureDate = PersonTwoSignatureDate;
+
+
 
             ViewBag.g = g;
 

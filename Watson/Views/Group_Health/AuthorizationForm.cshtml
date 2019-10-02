@@ -80,7 +80,7 @@
                     <label style="padding-left: 10px;">
                         Name:
                     </label>
-                    <input type="text" id="NameOfPersonOne" name="PersonOneReleaseInfoTo" value="" />
+                    <input type="text" id="PersonOneReleaseInfoTo" name="NameOfPersonOneReleaseInfoTo" value="" />
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
@@ -89,7 +89,7 @@
                     <label style="padding-left: 10px;">
                         Name:
                     </label>
-                    <input type="text" id="NameOfPersonTwo" name="PersonTwoReleaseInfoTo" value="" />
+                    <input type="text" id="PersonTwoReleaseInfoTo" name="NameOfPersonTwoReleaseInfoTo" value="" />
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
@@ -121,11 +121,11 @@
                             <label style="padding-left: 10px;">
                                 Policyholder's Signature:
                             </label>
-                            <input type="text" id="PolicyHolderSignature" name="PolicyHolderSignature" value="" />
+                            <input type="text" id="PolicyHolderSignature" name="AuthorizationFormPolicyHolderSignature" value="" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="PolicyHolderSignatureDate" name="PolicyHolderSignatureDate" value="" />
+                            <input type="date" id="PolicyHolderSignatureDate" name="AuthorizationFormPolicyHolderSignatureDate" value="" />
                             <hr />
                             <label style="padding-left: 10px;">
                                 Signature of person to release information to:
@@ -297,10 +297,10 @@
         document.querySelector("#AuthorizationFormUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
             GroupHealthInsurance_id = document.getElementById("GroupHealthInsurance_id").value;
-            PersonOneReleaseInfoTo = document.getElementById("PersonOneReleaseInfoTo").value;
-            PersonOneRelationship = document.getElementById("PersonOneRelationship").value;
-            PersonTwoReleaseInfoTo = document.getElementById("PersonTwoReleaseInfoTo").value;
-            PersonTwoRelationship = document.getElementById("PersonTwoRelationship").value;
+            NameOfPersonOne = document.getElementById("PersonOneReleaseInfoTo").value;
+            NameOfPersonOneRelationship = document.getElementById("PersonOneRelationship").value;
+            NameOfPersonTwo = document.getElementById("PersonTwoReleaseInfoTo").value;
+            NameOfPersonTwoRelationship = document.getElementById("PersonTwoRelationship").value;
             PolicyHolderSignature = document.getElementById("PolicyHolderSignature").value;
             PolicyHolderSignatureDate = document.getElementById("PolicyHolderSignatureDate").value;
             PersonOneSignature = document.getElementById("PersonOneSignature").value;
@@ -311,10 +311,10 @@
             var data = {
                 "Employee_id": Employee_id,
                 "GroupHealthInsurance_id": GroupHealthInsurance_id,
-                "PersonOneReleaseInfoTo": PersonOneReleaseInfoTo,
-                "PersonOneRelationship": PersonOneRelationship,
-                "PersonTwoReleaseInfoTo": PersonTwoReleaseInfoTo,
-                "PersonTwoRelationship": PersonTwoRelationship,
+                "PersonOneReleaseInfoTo": NameOfPersonOne,
+                "PersonOneRelationship": NameOfPersonOneRelationship,
+                "PersonTwoReleaseInfoTo": NameOfPersonTwo,
+                "PersonTwoRelationship": NameOfPersonTwoRelationship,
                 "PolicyHolderSignature": PolicyHolderSignature,
                 "PolicyHolderSignatureDate": PolicyHolderSignatureDate,
                 "PersonOneSignature": PersonOneSignature,

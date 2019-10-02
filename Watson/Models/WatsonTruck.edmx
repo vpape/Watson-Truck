@@ -218,13 +218,21 @@
           <Property Name="EmployeeAndSpouse" Type="varchar" MaxLength="25" />
           <Property Name="EmployeeAndDependent" Type="varchar" MaxLength="25" />
           <Property Name="EmployeeAndFamily" Type="varchar" MaxLength="25" />
-          <Property Name="EmployeeSignature" Type="varchar" MaxLength="50" />
-          <Property Name="EmployeeSignatureDate" Type="date" />
-          <Property Name="EmployeeInitials" Type="varchar" MaxLength="3" />
-          <Property Name="OtherSignature" Type="varchar" MaxLength="50" />
-          <Property Name="OtherSignatureDate" Type="date" />
-          <Property Name="NameOfPersonToReleaseInfoTo" Type="varchar" MaxLength="70" />
           <Property Name="Relationship" Type="varchar" MaxLength="20" />
+          <Property Name="GrpHRefusalEmpSignature" Type="varchar" MaxLength="75" />
+          <Property Name="GrpHRefusalEmpSignatureDate" Type="date" />
+          <Property Name="GrpHEnrollmentEmpSignature" Type="varchar" MaxLength="75" />
+          <Property Name="GrpHEnrollmentEmpSignatureDate" Type="date" />
+          <Property Name="AuthorizationFormPolicyHolderSignature" Type="varchar" MaxLength="75" />
+          <Property Name="AuthorizationFormPolicyHolderSignatureDate" Type="date" />
+          <Property Name="NameOfPersonOneReleaseInfoTo" Type="varchar" MaxLength="75" />
+          <Property Name="PersonOneRelationship" Type="varchar" MaxLength="15" />
+          <Property Name="PersonOneSignature" Type="varchar" MaxLength="75" />
+          <Property Name="PersonOneSignatureDate" Type="date" />
+          <Property Name="NameOfPersonTwoReleaseInfoTo" Type="varchar" MaxLength="75" />
+          <Property Name="PersonTwoRelationship" Type="varchar" MaxLength="15" />
+          <Property Name="PersonTwoSignature" Type="varchar" MaxLength="75" />
+          <Property Name="PersonTwoSignatureDate" Type="date" />
         </EntityType>
         <EntityType Name="InsurancePlan">
           <Key>
@@ -497,7 +505,7 @@
           <Key>
             <PropertyRef Name="OtherInsurance_id" />
           </Key>
-          <Property Name="FamilyMember_id" Type="int" Nullable="false" StoreGeneratedPattern="None" />
+          <Property Name="FamilyMember_id" Type="int" Nullable="false" />
           <Property Name="OtherInsurance_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Employee_id" Type="int" Nullable="false" />
           <Property Name="InsuranceCarrier" Type="varchar" MaxLength="30" />
@@ -1145,14 +1153,22 @@
           <Property Name="EmployeeAndSpouse" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
           <Property Name="EmployeeAndDependent" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
           <Property Name="EmployeeAndFamily" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
-          <Property Name="EmployeeSignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmployeeSignatureDate" Type="DateTime" Precision="0" />
-          <Property Name="EmployeeInitials" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="OtherSignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OtherSignatureDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Group_Health_Employee" FromRole="Group_Health" ToRole="Employee" />
-          <Property Name="NameOfPersonToReleaseInfoTo" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
           <Property Name="Relationship" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GrpHRefusalEmpSignature" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="GrpHRefusalEmpSignatureDate" Type="DateTime" Precision="0" />
+          <Property Name="GrpHEnrollmentEmpSignature" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="GrpHEnrollmentEmpSignatureDate" Type="DateTime" Precision="0" />
+          <Property Name="AuthorizationFormPolicyHolderSignature" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="AuthorizationFormPolicyHolderSignatureDate" Type="DateTime" Precision="0" />
+          <Property Name="NameOfPersonOneReleaseInfoTo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="NameOfPersonTwoReleaseInfoTo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="PersonOneRelationship" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PersonOneSignature" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="PersonOneSignatureDate" Type="DateTime" Precision="0" />
+          <Property Name="PersonTwoRelationship" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PersonTwoSignature" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="PersonTwoSignatureDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="InsurancePlan">
           <Key>
@@ -1851,13 +1867,21 @@
           <EntitySetMapping Name="Group_Health">
             <EntityTypeMapping TypeName="WatsonTruckModel.Group_Health">
               <MappingFragment StoreEntitySet="Group_Health">
+                <ScalarProperty Name="PersonTwoSignatureDate" ColumnName="PersonTwoSignatureDate" />
+                <ScalarProperty Name="PersonTwoSignature" ColumnName="PersonTwoSignature" />
+                <ScalarProperty Name="PersonTwoRelationship" ColumnName="PersonTwoRelationship" />
+                <ScalarProperty Name="PersonOneSignatureDate" ColumnName="PersonOneSignatureDate" />
+                <ScalarProperty Name="PersonOneSignature" ColumnName="PersonOneSignature" />
+                <ScalarProperty Name="PersonOneRelationship" ColumnName="PersonOneRelationship" />
+                <ScalarProperty Name="NameOfPersonTwoReleaseInfoTo" ColumnName="NameOfPersonTwoReleaseInfoTo" />
+                <ScalarProperty Name="NameOfPersonOneReleaseInfoTo" ColumnName="NameOfPersonOneReleaseInfoTo" />
+                <ScalarProperty Name="AuthorizationFormPolicyHolderSignatureDate" ColumnName="AuthorizationFormPolicyHolderSignatureDate" />
+                <ScalarProperty Name="AuthorizationFormPolicyHolderSignature" ColumnName="AuthorizationFormPolicyHolderSignature" />
+                <ScalarProperty Name="GrpHEnrollmentEmpSignatureDate" ColumnName="GrpHEnrollmentEmpSignatureDate" />
+                <ScalarProperty Name="GrpHEnrollmentEmpSignature" ColumnName="GrpHEnrollmentEmpSignature" />
+                <ScalarProperty Name="GrpHRefusalEmpSignatureDate" ColumnName="GrpHRefusalEmpSignatureDate" />
+                <ScalarProperty Name="GrpHRefusalEmpSignature" ColumnName="GrpHRefusalEmpSignature" />
                 <ScalarProperty Name="Relationship" ColumnName="Relationship" />
-                <ScalarProperty Name="NameOfPersonToReleaseInfoTo" ColumnName="NameOfPersonToReleaseInfoTo" />
-                <ScalarProperty Name="OtherSignatureDate" ColumnName="OtherSignatureDate" />
-                <ScalarProperty Name="OtherSignature" ColumnName="OtherSignature" />
-                <ScalarProperty Name="EmployeeInitials" ColumnName="EmployeeInitials" />
-                <ScalarProperty Name="EmployeeSignatureDate" ColumnName="EmployeeSignatureDate" />
-                <ScalarProperty Name="EmployeeSignature" ColumnName="EmployeeSignature" />
                 <ScalarProperty Name="EmployeeAndFamily" ColumnName="EmployeeAndFamily" />
                 <ScalarProperty Name="EmployeeAndDependent" ColumnName="EmployeeAndDependent" />
                 <ScalarProperty Name="EmployeeAndSpouse" ColumnName="EmployeeAndSpouse" />

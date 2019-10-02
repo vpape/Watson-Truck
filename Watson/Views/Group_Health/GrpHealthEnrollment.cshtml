@@ -1074,11 +1074,11 @@
                         <label style="padding-left: 10px;">
                             Employee Signature:
                         </label>
-                        <input type="text" id="empSignature1" name="EmployeeSignature" value="" />
+                        <input type="text" id="GrpHEnrollmentEmpSignature" name="GrpHEnrollmentEmpSignature" value="" />
                         <label style="padding-left: 10px;">
                             Date:
                         </label>
-                        <input type="date" id="empSignatureDate1" name="EmployeeSignatureDate" value="" />
+                        <input type="date" id="GrpHEnrollmentEmpSignatureDate" name="GrpHEnrollmentEmpSignatureDate" value="" />
                         <hr />
                     </div>
                 </div>
@@ -1114,11 +1114,11 @@
                                 <label style="padding-left: 10px;">
                                     Employee Signature:
                                 </label>
-                                <input type="text" id="empSignature2" name="EmployeeSignature" value="" />
+                                <input type="text" id="GrpHRefusalEmpSignature" name="GrpHRefusalEmpSignature" value="" />
                                 <label style="padding-left: 10px;">
                                     Date:
                                 </label>
-                                <input type="date" id="empSignatureDate2" name="EmployeeSignatureDate" value="" />
+                                <input type="date" id="GrpHRefusalEmpSignatureDate" name="GrpHRefusalEmpSignatureDate" value="" />
                             </div>
                         </div>
                     </form>
@@ -1287,12 +1287,12 @@
 
     function EditGroupHealthIns() {
 
-        window.location.href = "/Group_Health/EditGroupHealthIns?Employee_id=@Model.employee.Employee_id" + "&GroupHealthInsurance_id=@Model.grpHealth.GroupHealthInsurance_id";
+        window.location.href = "/Group_Health/EditGroupHealthIns?Employee_id=@Model.employee.Employee_id" @*+ "&GroupHealthInsurance_id=@Model.grpHealth.GroupHealthInsurance_id"*@;
     }
 
     function AuthorizationForm() {
 
-        window.location.href = "/Group_Health/AuthorizationForm?Employee_id=@Model.employee.Employee_id" + "&GroupHealthInsurance_id=@Model.grpHealth.GroupHealthInsurance_id";
+        window.location.href = "/Group_Health/AuthorizationForm?Employee_id=@Model.employee.Employee_id" @*+ "&GroupHealthInsurance_id=@Model.grpHealth.GroupHealthInsurance_id"*@;
     }
 
     function SalaryRedirection() {
@@ -1442,13 +1442,13 @@
             //depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value;
             //depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value;
 
-            empSignature1 = document.getElementById("empSignature1").value;
-            empSignatureDate1 = document.getElementById("empSignatureDate1").value;
+            GrpHEnrollmentEmpSignature = document.getElementById("GrpHEnrollmentEmpSignature").value;
+            GrpHEnrollmentEmpSignatureDate = document.getElementById("GrpHEnrollmentEmpSignatureDate").value;
             Myself = document.getElementById("Myself").value;
             Spouse = document.getElementById("Spouse").value;
             Dependent = document.getElementById("Dependent").value;
-            empSignature2 = document.getElementById("empSignature2").value;
-            empSignatureDate2 = document.getElementById("empSignatureDate2").value;
+            GrpHRefusalEmpSignature = document.getElementById("GrpHRefusalEmpSignature").value;
+            GrpHRefusalEmpSignatureDate = document.getElementById("GrpHRefusalEmpSignatureDate").value;
 
             var data = {
                 "GrpHealth_id": GroupHealthInsurance_id,
@@ -1481,13 +1481,13 @@
                 //"depInsPolicyNumber": depInsPolicyNumber,
                 //"depInsPhoneNumber": depInsPhoneNumber,
 
-                "empSignature1": empSignature1,
-                "empSignatureDate1": empSignatureDate1,
+                "GrpHEnrollmentEmpSignature": GrpHEnrollmentEmpSignature,
+                "GrpHEnrollmentEmpSignature": GrpHEnrollmentEmpSignatureDate,
                 "Myself": Myself,
                 "Spouse": Spouse,
                 "Dependent": Dependent,
-                "empSignature2": empSignature2,
-                "empSignatureDate2": empSignatureDate2,
+                "GrpHRefusalEmpSignature": GrpHRefusalEmpSignature,
+                "GrpHRefusalEmpSignatureDate": GrpHRefusalEmpSignatureDate,
             }
 
             var ret = postData('GrpHealthEnrollmentNew', data)

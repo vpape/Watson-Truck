@@ -34,13 +34,21 @@ namespace Watson.Models
         public string EmployeeAndSpouse { get; set; }
         public string EmployeeAndDependent { get; set; }
         public string EmployeeAndFamily { get; set; }
-        public string EmployeeSignature { get; set; }
-        public Nullable<System.DateTime> EmployeeSignatureDate { get; set; }
-        public string EmployeeInitials { get; set; }
-        public string OtherSignature { get; set; }
-        public Nullable<System.DateTime> OtherSignatureDate { get; set; }
-        public string NameOfPersonToReleaseInfoTo { get; set; }
         public string Relationship { get; set; }
+        public string GrpHRefusalEmpSignature { get; set; }
+        public Nullable<System.DateTime> GrpHRefusalEmpSignatureDate { get; set; }
+        public string GrpHEnrollmentEmpSignature { get; set; }
+        public Nullable<System.DateTime> GrpHEnrollmentEmpSignatureDate { get; set; }
+        public string AuthorizationFormPolicyHolderSignature { get; set; }
+        public Nullable<System.DateTime> AuthorizationFormPolicyHolderSignatureDate { get; set; }
+        public string NameOfPersonOneReleaseInfoTo { get; set; }
+        public string NameOfPersonTwoReleaseInfoTo { get; set; }
+        public string PersonOneRelationship { get; set; }
+        public string PersonOneSignature { get; set; }
+        public Nullable<System.DateTime> PersonOneSignatureDate { get; set; }
+        public string PersonTwoRelationship { get; set; }
+        public string PersonTwoSignature { get; set; }
+        public Nullable<System.DateTime> PersonTwoSignatureDate { get; set; }
     
         public virtual Employee Employee { get; set; }
     }
