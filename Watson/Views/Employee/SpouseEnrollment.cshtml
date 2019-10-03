@@ -1,7 +1,4 @@
 ﻿@model Watson.Models.Family_Info
-@{
-    ViewBag.Title = "SpEnrollment";
-}
 
 <!DOCTYPE html>
 <html>
@@ -31,17 +28,17 @@
                     <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
                 </div>
                 @*<div class="col-md-10 col-md-offset-2">
-                    <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                        @if (ViewBag.spouseExist == false)
-                        {
-                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                        }
-                        else
-                        {
-                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                        }
-                    </select>
-                </div>*@
+                        <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                            @if (ViewBag.spouseExist == false)
+                            {
+                                <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                            }
+                            else
+                            {
+                                <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                            }
+                        </select>
+                    </div>*@
             </div>
             <div class="form-group">
                 <label for="MaritalStatus" class="col-md-2 control-label">Marital Status:</label>
@@ -85,7 +82,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <button type="submit" id="SpouseEnrollmentUpdate" @*onclick="DependentEnrollmentUpdate()"*@ @*id="submit"*@ class="btn">Save</button>
+                    <button type="submit" id="SpouseEnrollmentUpdate" class="btn">Save</button>
                 </div>
             </div>
         </div>
@@ -263,9 +260,9 @@
         font-size: 15px;
     }
 
-    .active, .collapsible:hover {
-        background-color: blue;
-    }
+        .active, .collapsible:hover {
+            background-color: blue;
+        }
 
     .content {
         padding: 0 18px;
@@ -322,7 +319,7 @@
         });
     }
 
-   
+
     document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
         var maritalStatus = document.querySelector("#MaritalStatus").value;
 
@@ -336,18 +333,18 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Employee/DepEnrollment/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/DepEnrollment/?Employee_id=" + @ViewBag.Employee_id;
 
                 }
                 else {
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
                 }
             }
         }
         else {
             if (alert == false) {
 
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
             }
             else {
 
@@ -356,17 +353,17 @@
 
                 if (alert == true) {
 
-                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id
+                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + @ViewBag.Employee_id
 
                 }
                 else {
 
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
                 }
             }
         }
     })
-      
+
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
@@ -517,7 +514,7 @@
                 .catch(error => console.error('Error:', error));
         })
 
-        
+
         document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
             spInsCarrier = document.getElementById("spInsCarrier").value;
             spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
@@ -569,8 +566,6 @@
     function FirstStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        //Employee_id = sp.data;
-        console.log(sp);
         FamilyMember_id = sp.data;
     }
 
@@ -616,6 +611,7 @@
             //}) //parses response to JSON
     }
 </script>
+
 
 
 

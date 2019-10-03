@@ -33,7 +33,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Hire Date:</label>
                 <div class="col-md-10">
-                    <input type="datetime" id="HireDate" class="form-control" name="HireDate" value="@Convert.ToDateTime(Model.employee.HireDate).ToString("MM/dd/yyyy")" />
+                    <input type="date" id="HireDate" class="form-control" name="HireDate" value="@Convert.ToDateTime(Model.employee.HireDate).ToString("yyyy-MM-dd")" />
                 </div>
             </div>
             <div class="form-group">
@@ -75,7 +75,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Date of Birth:</label>
                 <div class="col-md-10">
-                    <input type="datetime" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Convert.ToDateTime(Model.employee.DateOfBirth).ToString("MM/dd/yyyy")" />
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Convert.ToDateTime(Model.employee.DateOfBirth).ToString("yyyy-MM-dd")" />
                 </div>
             </div>
             <div class="form-group">
@@ -404,42 +404,43 @@
         })
 
         document.querySelector("#EditEmployeeInsStepThree").addEventListener("click", function () {
-            //empOtherGrpHinsCoverage = document.getElementById("empOtherGrpHinsCoverage").value
-            empInsuranceCarrier = document.getElementById("empInsCarrier").value
-            empInsPolicyNumber = document.getElementById("empInsPolicyNumber").value
-            empInsPhoneNumber = document.getElementById("empInsPhoneNumber").value
+            Employee_id = document.getElementById("Employee_id").value
+            OtherGrpHinsCoverage = document.getElementById("empOtherGrpHinsCoverage").value
+            InsCarrier = document.getElementById("empInsCarrier").value
+            InsPolicyNumber = document.getElementById("empInsPolicyNumber").value
+            InsPhoneNumber = document.getElementById("empInsPhoneNumber").value
 
             var data = {
                 "Employee_id": Employee_id,
-                //"empOtherGrpHinsCoverage": empOtherGrpHinsCoverage,
-                "empInsCarrier": empInsuranceCarrier,
-                "empInsPolicyNumber": empInsPolicyNumber,
-                "empInsPhoneNumber": empInsPhoneNumber,
+                "OtherGrpHinsCoverage": OtherGrpHinsCoverage,
+                "InsCarrier": InsCarrier,
+                "InsPolicyNumber": InsPolicyNumber,
+                "InsPhoneNumber": InsPhoneNumber,
             }
 
-            var ret = postData('EmployeeEditUpdate', data)
-                .then(data => {
-                    console.log(data);
-                    ThirdStep(data);
-                })
-                .catch(error => console.error(error))
+            //var ret = postData('EmployeeEditUpdate', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        ThirdStep(data);
+            //    })
+            //    .catch(error => console.error(error))
 
-            //fetch('EmployeeEditUpdate', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    .then(response => ThirdStep(response))
-            //    .catch(error => console.error('Error:', error));
+            fetch('EmployeeEditUpdate', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => ThirdStep(response))
+                .catch(error => console.error('Error:', error));
         })
     })
 

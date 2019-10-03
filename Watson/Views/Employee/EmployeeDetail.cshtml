@@ -12,7 +12,7 @@
 <body>
     <div class="form-horizontal">
         <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
         <div class="collapsible" id="EmpDetail">Employee Detail</div>
         <div class="content">
             <p></p>
@@ -70,6 +70,7 @@
                     <label class="col-md-2 control-label">Gender:</label>
                 </dt>
                 <dd class="col-md-10 form-group" id="Gender">
+                    @*@Html.RadioButtonFor(model => model.employee.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.employee.Gender, "female", false) Female*@
                     <input type="text" id="Gender" class="form-control" name="Gender" value="@Html.DisplayFor(m => Model.employee.Gender)" disabled />
                 </dd>
                 <dt>
@@ -185,7 +186,7 @@
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditEmployee", "Employee", new { Employee_id = Model.employee.Employee_id }, null)|
+        @Html.ActionLink("Edit", "EditEmployee", "Employee", new { Employee_id = ViewBag.Employee_id }, null)|
         @Html.ActionLink("Back to List", "EmpOverview")
     </p>
 </body>
@@ -328,7 +329,7 @@
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
-            method: 'Get', //*GET, POST, PUT, DELETE, etc...
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
             mode: 'same-origin', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer

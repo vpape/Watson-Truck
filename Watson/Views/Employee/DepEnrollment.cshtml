@@ -285,6 +285,37 @@
         });
     }*@
 
+    
+    document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
+        var depSubmit = document.getElementById("DepInsEnrollmentUpdateStepTwo");
+
+        var message;
+        var alert = confirm("Dependent information has been saved. Click the OK button to proceed. Thank you!")
+
+        if (depSubmit.onclick) {
+            if (alert == true) {
+
+                message = "Please proceed to the Family Overview page, Thank you!!";
+                var alert = confirm(message)
+                if (alert == true) {
+
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
+
+                }
+                else {
+                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+                }
+            }
+        }
+        else {
+            if (alert == false) {
+
+                window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+            }
+        }
+    })
+
+
     //Redirects to Add Dependent Page
     document.querySelector("#addDep").addEventListener("click", function () {
         var depSubmit = document.getElementById("addDep");

@@ -204,11 +204,12 @@ namespace Watson.Controllers
         }
        
         //EditUpdate-Emp
-        public JsonResult EmployeeEditUpdate(int Employee_id,string EmpRole, string CurrentEmployer, string JobTitle, 
-            string EmpNumber, DateTime HireDate, string FirstName, string LastName, DateTime DateOfBirth, string Gender,
+        public JsonResult EmployeeEditUpdate(int? Employee_id, string EmpRole, string CurrentEmployer, string JobTitle, 
+            string EmpNumber, /*DateTime HireDate,*/ string FirstName, string LastName, /*DateTime DateOfBirth,*/ string Gender,
             string MaritalStatus, string MailingAddress, string PObox, string City, string State, string ZipCode, string County,
             string PhysicalAddress, string City2, string State2, string ZipCode2, string CityLimits, string EmailAddress, 
-            string PhoneNumber, string CellPhone)
+            string PhoneNumber, string CellPhone, string OtherGrpHinsCoverage, string InsCarrier,
+            string InsPolicyNumber, string InsPhoneNumber)
         {
             var e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)
@@ -218,10 +219,10 @@ namespace Watson.Controllers
             e.CurrentEmployer = CurrentEmployer;
             e.JobTitle = JobTitle;
             e.SSN = EmpNumber;
-            e.HireDate = HireDate;
+            //e.HireDate = HireDate;
             e.FirstName = FirstName;
             e.LastName = LastName;
-            e.DateOfBirth = DateOfBirth;
+            //e.DateOfBirth = DateOfBirth;
             e.Gender = Gender;
             e.MaritalStatus = MaritalStatus;
             e.MailingAddress = MailingAddress;
@@ -239,11 +240,21 @@ namespace Watson.Controllers
             e.PhoneNumber = PhoneNumber;
             e.CellPhone = CellPhone;
 
+            var grph = db.Group_Health
+              .Where(i => i.Employee_id == Employee_id)
+              .Single();
+
+            grph.OtherInsuranceCoverage = OtherGrpHinsCoverage;
+            grph.InsuranceCarrier = InsCarrier;
+            grph.PolicyNumber = InsPolicyNumber;
+            grph.PhoneNumber = InsPhoneNumber;
+
             ViewBag.Employee_id = e.Employee_id;
 
             if (ModelState.IsValid)
             {
                 db.Entry(e).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(grph).State = System.Data.Entity.EntityState.Modified;
 
                 try
                 {
@@ -287,49 +298,17 @@ namespace Watson.Controllers
         }
 
         //Get-EmpDetail
-        public JsonResult GetEmpDetail(int Employee_id, string CurrentEmployer, string JobTitle, string EmpNumber, DateTime HireDate,
+        public JsonResult GetEmpDetail(int? Employee_id, string CurrentEmployer, string JobTitle, string EmpNumber, DateTime HireDate,
             string FirstName, string LastName, DateTime DateOfBirth, string MaritalStatus, string Gender, string MailingAddress, string PObox,
             string City, string State, string ZipCode, string PhysicalAddress, string CityTwo, string StateTwo, string ZipCodeTwo,
             string EmailAddress, string PhoneNumber, string CellPhone, string CityLimits, string empOtherGrpHinsCoverage,
             string empInsuranceCarrier, string empInsPolicyNumber, string empInsPhoneNumber)
         {
-            EmployeeAndInsuranceVM employeeAndInsuranceVM = new EmployeeAndInsuranceVM();
-
-            employeeAndInsuranceVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
-            employeeAndInsuranceVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
-
-            ViewBag.Employee_id = Employee_id;
-
-            employeeAndInsuranceVM.employee.CurrentEmployer = CurrentEmployer;
-            employeeAndInsuranceVM.employee.JobTitle = JobTitle;
-            employeeAndInsuranceVM.employee.SSN = EmpNumber;
-            employeeAndInsuranceVM.employee.HireDate = HireDate;
-            employeeAndInsuranceVM.employee.FirstName = FirstName;
-            employeeAndInsuranceVM.employee.LastName = LastName;
-            employeeAndInsuranceVM.employee.DateOfBirth = DateOfBirth;
-            employeeAndInsuranceVM.employee.MaritalStatus = MaritalStatus;
-            employeeAndInsuranceVM.employee.Gender = Gender;
-            employeeAndInsuranceVM.employee.MailingAddress = MailingAddress;
-            employeeAndInsuranceVM.employee.PObox = PObox;
-            employeeAndInsuranceVM.employee.City = City;
-            employeeAndInsuranceVM.employee.State = State;
-            employeeAndInsuranceVM.employee.ZipCode = ZipCode;
-            employeeAndInsuranceVM.employee.PhysicalAddress = PhysicalAddress;
-            employeeAndInsuranceVM.employee.CityTwo = CityTwo;
-            employeeAndInsuranceVM.employee.StateTwo = StateTwo;
-            employeeAndInsuranceVM.employee.ZipCodeTwo = ZipCodeTwo;
-            employeeAndInsuranceVM.employee.EmailAddress = EmailAddress;
-            employeeAndInsuranceVM.employee.PhoneNumber = PhoneNumber;
-            employeeAndInsuranceVM.employee.CellPhone = CellPhone;
-            employeeAndInsuranceVM.employee.CityLimits = CityLimits;
-            employeeAndInsuranceVM.grpHealth.OtherInsuranceCoverage = empOtherGrpHinsCoverage;
-            employeeAndInsuranceVM.grpHealth.InsuranceCarrier = empInsuranceCarrier;
-            employeeAndInsuranceVM.grpHealth.PolicyNumber = empInsPolicyNumber;
-            employeeAndInsuranceVM.grpHealth.PhoneNumber = empInsPhoneNumber;
 
             var e = db.Employees
-                .Where(i => i.Employee_id == Employee_id)
-                .Single();
+           .Where(i => i.Employee_id == Employee_id)
+           .Single();
+      
 
             int result = e.Employee_id;
 
@@ -419,7 +398,7 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //SpEnrollment Method
-        public ActionResult SpEnrollment(int Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured)
+        public ActionResult SpouseEnrollment(int Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured)
         {
             ViewBag.Employee_id = Employee_id;
             ViewBag.FamilyMember_id = FamilyMember_id;
@@ -432,29 +411,30 @@ namespace Watson.Controllers
         }
 
         //Create-SpouseEnrollment
-        public JsonResult SpEnrollmentNew(int Employee_id, int FamilyMember_id, string RelationshipToInsured, string SSN, string FirstName, 
+        public JsonResult SpEnrollmentNew(int Employee_id, int? FamilyMember_id, string RelationshipToInsured, string SSN, string FirstName, 
             string LastName, DateTime DateOfBirth, string Gender)
         {
 
+            //int record = (from fi in db.Family_Info
+            //              where fi.FamilyMember_id == FamilyMember_id
+            //              where fi.RelationshipToInsured == "Spouse"
+            //              select fi).Count();
+
+            //if (record > 0)
+            //{
+            //    ViewBag.Message = "Record already exists.";
+            //    RedirectToAction("FamilyOverview", new { sp.Employee_id });
+            //}
+            //else
+            //{
+            //    RedirectToAction("DepEnrollment", new { sp.Employee_id });
+
+            //}
+
             Family_Info sp = new Family_Info();
 
-            int record = (from fi in db.Family_Info
-                            where fi.FamilyMember_id == FamilyMember_id
-                            where fi.RelationshipToInsured == "Spouse"
-                            select fi).Count();
-
-            if (record > 0)
-            {
-                ViewBag.Message = "Record already exists.";
-                RedirectToAction("FamilyOverview", new { sp.Employee_id });
-            }
-            else
-            {
-                RedirectToAction("DepEnrollment", new { sp.Employee_id });
-
-            }
-
             sp.Employee_id = Employee_id;
+            //sp.FamilyMember_id = FamilyMember_id;
             sp.RelationshipToInsured = RelationshipToInsured;
             sp.SSN = SSN;
             sp.FirstName = FirstName;
@@ -472,7 +452,7 @@ namespace Watson.Controllers
         }
 
         //Create-SpouseContact
-        public JsonResult SpEnrollmentContact(int Employee_id, int FamilyMember_id, string MailingAddress, string PObox, string City,
+        public JsonResult SpEnrollmentContact(int? Employee_id, int? FamilyMember_id, string MailingAddress, string PObox, string City,
             string State, string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, 
             string EmailAddress, string PhoneNumber, string CellPhone)
         {
