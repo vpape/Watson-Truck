@@ -90,8 +90,8 @@
             <p></p>
             <div id="DepOtherInsCoverage">
                 <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
-                <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="no" />No</label>
+                <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="yes" @((Model.otherIns.CoveredByOtherInsurance == "yes") ? "checked" : "") />Yes</label>
+                <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="no" @((Model.otherIns.CoveredByOtherInsurance == "no") ? "checked" : "") />No</label>
                 <div id="depInsInfo">
                     <div class="form-group col-md-2">
                         <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.DisplayFor(Model => Model.otherIns.InsuranceCarrier)" />

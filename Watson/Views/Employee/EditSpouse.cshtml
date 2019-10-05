@@ -212,8 +212,10 @@
             <div id="divSpInsurance">
                 <div id="SpOtherInsCoverage">
                     <label>Is your spouse covered by other insurance, including Medicare/Medicaid?</label>
-                    <label class="radio-inline"><input type="radio" id="SpOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="SpOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="no" />No</label>
+                    <label class="radio-inline"><input type="radio" id="SpOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="yes" @((Model.otherIns.CoveredByOtherInsurance == "yes") ? "checked" : "") />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="SpOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="no"@((Model.otherIns.CoveredByOtherInsurance == "no") ? "checked" : "") />No</label>
+                    @*<label class="radio-inline"><input type="radio" id="SpOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="yes" />Yes</label>*@
+                    @*<label class="radio-inline"><input type="radio" id="SpOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="no" />No</label>*@
                     <p></p>
                     <div id="spInsInfo">
                         <div class="form-group">

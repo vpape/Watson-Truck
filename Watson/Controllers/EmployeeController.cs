@@ -547,7 +547,7 @@ namespace Watson.Controllers
         {
             SpouseAndDependentInsVM spAndDepInsVM = new SpouseAndDependentInsVM();
 
-            ViewBag.MaritalStatus = spAndDepInsVM.employee.MaritalStatus;
+            //ViewBag.MaritalStatus = spAndDepInsVM.employee.MaritalStatus;
 
             spAndDepInsVM.family = db.Family_Info.FirstOrDefault(i => i.FamilyMember_id == FamilyMember_id);
             spAndDepInsVM.otherIns = db.Other_Insurance.FirstOrDefault(i => i.FamilyMember_id == FamilyMember_id);

@@ -799,7 +799,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="form-group col-md-12">
+            <form id="SpouseForm">
                 @foreach (var sp in Model.family)
                 {
                     <div id="spGenInfo" class="floatLeft">
@@ -809,7 +809,7 @@
                                     <th colspan="2">Spouse's Information</th>
                                 </tr>
                             </thead>
-                            <tr >
+                            <tr>
                                 <td>
                                     <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
                                 </td>
@@ -904,8 +904,8 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" placeholder="Other Ins. Coverage:" disabled/>
-                               
+                                    <input type="text" class="form-control" placeholder="Other Ins. Coverage:" disabled />
+
                                 </td>
                                 <td>
                                     <select id="spOtherInsCoverage" name="CoveredByOtherInsurance" class="form-control">
@@ -980,8 +980,8 @@
                         </table>
                     </div>
                 }
-            </div>
-            <form id="depForm">
+            </form>
+            <form id="DependentForm">
                 <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
                 @foreach (var dep in Model.family)
                 {

@@ -465,7 +465,7 @@
             var ret = postData('DepOtherInsuranceNew', data)
                 .then(data => {
                     console.log(data);
-                    SecondStep(data);
+                    FirstStep(data);
                 })
                 .catch(error => console.error(error))
 
@@ -483,7 +483,7 @@
             //    redirect: 'follow', //manual, *follow, error
             //    referrer: 'no-referrer', //*client, no-referrer
             //}).then(res => res.json())
-            //    .then(response => SecondStep(response))
+            //    .then(response => FirstStep(response))
             //    .catch(error => console.error('Error:', error));
         })
     })
