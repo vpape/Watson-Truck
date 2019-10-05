@@ -51,6 +51,11 @@ namespace Watson.Models
         public string StateTwo { get; set; }
         public string ZipCodeTwo { get; set; }
         public string MaritalStatus { get; set; }
+        public string OtherInsuranceCoverage { get; set; }
+        public string Medical { get; set; }
+        public string Dental { get; set; }
+        public string Vision { get; set; }
+        public string Indemnity { get; set; }
     
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

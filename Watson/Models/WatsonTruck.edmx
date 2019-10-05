@@ -194,6 +194,11 @@
           <Property Name="StateTwo" Type="varchar" MaxLength="30" />
           <Property Name="ZipCodeTwo" Type="varchar" MaxLength="15" />
           <Property Name="MaritalStatus" Type="varchar" MaxLength="30" />
+          <Property Name="OtherInsuranceCoverage" Type="varchar" MaxLength="50" />
+          <Property Name="Medical" Type="varchar" MaxLength="15" />
+          <Property Name="Dental" Type="varchar" MaxLength="15" />
+          <Property Name="Vision" Type="varchar" MaxLength="15" />
+          <Property Name="Indemnity" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Group_Health">
           <Key>
@@ -522,6 +527,7 @@
           <Property Name="Dental" Type="varchar" MaxLength="15" />
           <Property Name="Vision" Type="varchar" MaxLength="15" />
           <Property Name="Indemnity" Type="varchar" MaxLength="15" />
+          <Property Name="OtherInsuranceCoverage" Type="varchar" MaxLength="75" />
         </EntityType>
         <EntityType Name="Vacation">
           <Key>
@@ -1130,6 +1136,11 @@
           <Property Name="StateTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="ZipCodeTwo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="MaritalStatus" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="OtherInsuranceCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Medical" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Dental" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Vision" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Indemnity" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Group_Health">
           <Key>
@@ -1335,6 +1346,7 @@
           <Property Name="Dental" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Vision" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Indemnity" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="OtherInsuranceCoverage" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Vacation">
           <Key>
@@ -1833,6 +1845,11 @@
           <EntitySetMapping Name="Family_Info">
             <EntityTypeMapping TypeName="WatsonTruckModel.Family_Info">
               <MappingFragment StoreEntitySet="Family_Info">
+                <ScalarProperty Name="Indemnity" ColumnName="Indemnity" />
+                <ScalarProperty Name="Vision" ColumnName="Vision" />
+                <ScalarProperty Name="Dental" ColumnName="Dental" />
+                <ScalarProperty Name="Medical" ColumnName="Medical" />
+                <ScalarProperty Name="OtherInsuranceCoverage" ColumnName="OtherInsuranceCoverage" />
                 <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
                 <ScalarProperty Name="ZipCodeTwo" ColumnName="ZipCodeTwo" />
                 <ScalarProperty Name="StateTwo" ColumnName="StateTwo" />
@@ -2050,6 +2067,7 @@
           <EntitySetMapping Name="Other_Insurance">
             <EntityTypeMapping TypeName="WatsonTruckModel.Other_Insurance">
               <MappingFragment StoreEntitySet="Other_Insurance">
+                <ScalarProperty Name="OtherInsuranceCoverage" ColumnName="OtherInsuranceCoverage" />
                 <ScalarProperty Name="Indemnity" ColumnName="Indemnity" />
                 <ScalarProperty Name="Vision" ColumnName="Vision" />
                 <ScalarProperty Name="Dental" ColumnName="Dental" />

@@ -30,6 +30,7 @@ namespace Watson.Models
         public string Dental { get; set; }
         public string Vision { get; set; }
         public string Indemnity { get; set; }
+        public string OtherInsuranceCoverage { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual Family_Info Family_Info { get; set; }

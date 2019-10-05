@@ -205,6 +205,22 @@
                         <input type="text" id="EmployerPhoneNumber" class="form-control" placeholder="Phone #" name="EmployerPhoneNumber" maxlength="14" value="" />
                     </div>
                 </div>
+                <div id="SpOtherIns">
+                    <label>Other Insurance Coverage?</label>
+                    <label class="radio-inline"><input type="radio" id="SpOtherInsCoverage" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="yes" checked />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="SpOtherInsCoverage" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="no" />No</label>
+                    <div id="SpOtherInsCoverageSelection">
+                        <label for="OtherInsuranceCoverage" class="control-label">Coverage:</label>
+                        <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Medical) == "Medical" ? "selected" : "")*@ />
+                        <text for="Medical">Medical</text>
+                        <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Dental) == "Dental" ? "selected" : "")*@ />
+                        <text for="Dental">Dental</text>
+                        <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Vision) == "Vision" ? "selected" : "")*@ />
+                        <text for="Vision">Vision</text>
+                        <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Indemnity) == "Indemnity" ? "selected" : "")*@ />
+                        <text for="Indemnity">Indemnity</text>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
@@ -221,10 +237,10 @@
             <p></p>
             <p></p>
             <div id="divSpInsurance">
-                <div id="SpOtherInsCoverage">
+                <div id="SpInsuranceSelection">
                     <label>Is your spouse covered by other insurance, including Medicare/Medicaid?</label>
-                    <label class="radio-inline"><input type="radio" id="SpOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="SpOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="no" />No</label>
+                    <label class="radio-inline"><input type="radio" id="SpIns" class="radio-inline" onclick="showHideSpIns()" name="CoveredByOtherInsurance" value="yes" checked/>Yes</label>
+                    <label class="radio-inline"><input type="radio" id="SpIns" class="radio-inline" onclick="showHideSpIns()" name="CoveredByOtherInsurance" value="no" />No</label>
                     <p></p>
                     <div id="spInsInfo">
                         <div class="form-group">
@@ -256,6 +272,7 @@
                                 <input type="text" class="form-control" id="spInsPolicyNumber" placeholder="Policy #" name="PolicyNumber" value="" />
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -390,9 +407,23 @@
         }
     })
 
-    function showHideSpInsCoverage() {
+    function showHideSpOtherInsCoverage() {
         document.addEventListener("click", function () {
-            var selection = document.getElementById("SpOtherIns");
+            var selection = document.getElementById("SpOtherInsCoverage");
+
+            if (selection.checked == true) {
+
+                document.getElementById("SpOtherInsCoverageSelection").style.visibility = "visible";
+            }
+            else {
+                document.getElementById("SpOtherInsCoverageSelection").style.visibility = "hidden";
+            }
+        });
+    }
+
+    function showHideSpIns() {
+        document.addEventListener("click", function () {
+            var selection = document.getElementById("SpIns");
 
             if (selection.checked == true) {
 
@@ -517,6 +548,12 @@
             EmployerState = document.getElementById("EmployerState").value;
             EmployerZipCode = document.getElementById("EmployerZipCode").value;
             EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
+            spOtherInsuranceCoverage = document.getElementById("SpOtherInsCoverage").value;
+            spOtherMedicalCoverage = document.getElementById("Medical").value;
+            spOtherDentalCoverage = document.getElementById("Dental").value;
+            spOtherVisionCoverage = document.getElementById("Vision").value;
+            spIndemnityCoverage = document.getElementById("Indemnity").value;
+            
 
 
             var data = {
@@ -529,6 +566,11 @@
                 "EmployerState": EmployerState,
                 "EmployerZipCode": EmployerZipCode,
                 "EmployerPhoneNumber": EmployerPhoneNumber,
+                "spOtherInsuranceCoverage": spOtherInsuranceCoverage,
+                "spOtherMedicalCoverage": spOtherMedicalCoverage,
+                "spOtherDentalCoverage": spOtherDentalCoverage,
+                "spOtherVisionCoverage": spOtherVisionCoverage,
+                "spIndemnityCoverage": spIndemnityCoverage,
             }
 
             //var ret = postData('SpEnrollmentEmployment', data)
@@ -558,7 +600,7 @@
 
 
         document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
-            spCoveredByOtherIns = document.getElementById("SpOtherIns").value;
+            spOtherIns = document.getElementById("SpIns").value;
             spInsCarrier = document.getElementById("spInsCarrier").value;
             spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
             spInsCity = document.getElementById("spInsCity").value;
@@ -570,7 +612,7 @@
             var data = {
                 "FamilyMember_id": FamilyMember_id,
                 "Employee_id": Employee_id,
-                "spCoveredByOtherIns": spCoveredByOtherIns,
+                "spOtherIns": spOtherIns,
                 "spInsCarrier": spInsCarrier,
                 "spInsMailingAddress": spInsMailingAddress,
                 "spInsCity": spInsCity,
@@ -578,6 +620,7 @@
                 "spInsZipCode": spInsZipCode,
                 "spInsPhoneNumber": spInsPhoneNumber,
                 "spInsPolicyNumber": spInsPolicyNumber,
+
             }
 
             var ret = postData('SpOtherInsuranceNew', data)

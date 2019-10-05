@@ -632,27 +632,27 @@
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Department" id="empDepartment" placeholder="Department" value="@Html.DisplayFor(Model => Model.employee.Department)" />
+                    <input type="text" class="form-control" name="Department" id="empDepartment" placeholder="Department" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="EnrollmentType" id="empEnrollmentType" placeholder="Enrollment Type" value="@Html.DisplayFor(Model => Model.employee.EnrollmentType)" />
+                    <input type="text" class="form-control" name="EnrollmentType" id="empEnrollmentType" placeholder="Enrollment Type" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Payroll_id" id="empPayroll_id" placeholder="Payroll ID" value="@Html.DisplayFor(Model => Model.employee.Payroll_id)" />
+                    <input type="text" class="form-control" name="Payroll_id" id="empPayroll_id" placeholder="Payroll ID" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Class" id="empClass" placeholder="Class" value="@Html.DisplayFor(Model => Model.employee.Class)" />
+                    <input type="text" class="form-control" name="Class" id="empClass" placeholder="Class" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="AnnualSalary" id="empAnnualSalary" placeholder="Annual Salary" value="@Html.DisplayFor(Model => Model.employee.AnnualSalary)" />
+                    <input type="text" class="form-control" name="AnnualSalary" id="empAnnualSalary" placeholder="Annual Salary" value="" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="JobTitle" id="empJobTitle" placeholder="Occupation" value="@Html.DisplayFor(Model => Model.employee.JobTitle)" disabled />
+                    <input type="text" class="form-control" name="JobTitle" id="empJobTitle" placeholder="Occupation" value="" disabled />
                 </div>
                 <p></p>
                 <div>
@@ -662,7 +662,7 @@
                 <p></p>
                 <div>
                     <label>Effective Date:</label>
-                    <input type="date" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="@Convert.ToDateTime(Model.employee.EffectiveDate).ToString("yyyy-MM-dd")" />
+                    <input type="date" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="" />
                 </div>
                 <p></p>
                 <div>
@@ -903,19 +903,20 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <input type="text" class="form-control" placeholder="Other Ins. Coverage:" disabled />
-
+                                <td style="padding-left: 20px;">
+                                    <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Medical) == "Medical" ? "selected" : "")*@ disabled />
+                                    <text>Medical</text>
+                                    <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Dental) == "Dental" ? "selected" : "")*@ disabled />
+                                    <text>Dental</text>
+                                    <p></p>
                                 </td>
-                                <td>
-                                    <select id="spOtherInsCoverage" name="CoveredByOtherInsurance" class="form-control">
-                                        <option>Select Option:</option>
-                                        <option></option>
-                                        <option value="Medical">Medical</option>
-                                        <option value="Dental">Dental</option>
-                                        <option value="Vision">Vision</option>
-                                        <option value="Indemnity">Indemnity</option>
-                                    </select>
+                                @*<select id="spOtherInsCoverage" name="OtherInsuranceCoverage" class="form-control"></select>*@
+                                <td style="padding-left: 20px;">
+                                    <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Vision) == "Vision" ? "selected" : "")*@ disabled />
+                                    <text>Vision</text>
+                                    <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Indemnity) == "Indemnity" ? "selected" : "")*@ disabled />
+                                    <text>Indemnity</text>
+                                    <p></p>
                                 </td>
                             </tr>
                         </table>
@@ -1359,6 +1360,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmploymentInfoUpdate").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
             GroupName = document.getElementById("GroupName").value;
             IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
             empDepartment = document.getElementById("empDepartment").value;
@@ -1387,34 +1389,33 @@
 
             }
 
-            var ret = postData('GrpHealthEnrollmentNew', data)
-                .then(data => {
-                    console.log(data);
-                    FirstStep(data); })
-                .catch(error => console.error(error))
+            //var ret = postData('GrpHealthEnrollmentNew', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        FirstStep(data); })
+            //    .catch(error => console.error(error))
 
-            //fetch('GrpHealthEnrollmentNew', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    .then(response => FirstStep(response))
-            //    .catch(error => console.error('Error:', error));
+            fetch('GrpHealthEnrollmentNew', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
 
         })
 
 
         document.querySelector("#GrpHealthInsStepTwo").addEventListener("click", function () {
-            Employee_id = document.getElementById("Employee_id").value;
             NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
             empOnlyGroupHealthOption = document.getElementById("empOnlyGroupHealthOption").value;
             empSpGroupHealthOption = document.getElementById("empSpGroupHealthOption").value;

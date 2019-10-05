@@ -482,7 +482,9 @@ namespace Watson.Controllers
 
         //Create-SpouseEmployment
         public JsonResult SpEnrollmentEmployment(int? FamilyMember_id, int Employee_id, string Employer, string EmployerAddress,
-            string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber)
+            string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber,
+            string OtherInsuranceCoverage, string spOtherMedicalCoverage, string spOtherDentalCoverage, string spOtherVisionCoverage,
+            string spIndemnityCoverage)
         {
             
             var sp = (from fi in db.Family_Info
@@ -500,6 +502,12 @@ namespace Watson.Controllers
             sp.EmployerZipCode = EmployerZipCode;
             sp.EmployerPhoneNumber = EmployerPhoneNumber;
 
+            sp.OtherInsuranceCoverage = OtherInsuranceCoverage;
+            sp.Medical = spOtherMedicalCoverage;
+            sp.Dental = spOtherDentalCoverage;
+            sp.Vision = spOtherVisionCoverage;
+            sp.Indemnity = spIndemnityCoverage;
+
             db.SaveChanges();
            
             int result = sp.FamilyMember_id;
@@ -513,8 +521,9 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SpOtherInsuranceNew(int Employee_id, int FamilyMember_id, string spCoveredByOtherIns, string spInsCarrier, string spInsMailingAddress, 
-           string spInsCity, string spInsState, string spInsZipCode, string spInsPhoneNumber, string spInsPolicyNumber)
+        public JsonResult SpOtherInsuranceNew(int Employee_id, int FamilyMember_id, string spCoveredByOtherIns, string spInsCarrier, 
+            string spInsMailingAddress, string spInsCity, string spInsState, string spInsZipCode, string spInsPhoneNumber,
+            string spInsPolicyNumber)
         {
             Other_Insurance other = new Other_Insurance();
 
