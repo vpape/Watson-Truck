@@ -21,6 +21,18 @@
             <p></p>
             <dl class="dl-horizontal">
                 <dt>
+                    <label class="col-md-2 control-label">SSN:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(Model => Model.family.SSN)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Marital Status:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(Model => Model.family.MaritalStatus)" disabled>
+                </dd>
+                <dt>
                     <label class="col-md-2 control-label">First Name:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
@@ -75,6 +87,12 @@
                 </dt>
                 <dd class="col-md-10 form-group">
                     <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(Model => Model.family.ZipCode)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">County:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="County" class="form-control" name="County" value="@Html.DisplayFor(Model => Model.family.County)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Physical Address:</label>
@@ -171,19 +189,19 @@
                     <label class="col-md-2 control-label">Insurance Carrier:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="text" id="spInsCarrier" class="form-control" name="InsuranceCarrier" @*value="@Html.DisplayFor(Model => Model.otherIns.InsuranceCarrier)"*@ disabled>
+                    <input type="text" id="spInsCarrier" class="form-control" name="InsuranceCarrier" value="@Html.DisplayFor(Model => Model.otherIns.InsuranceCarrier)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Policy Number:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="tel" id="spInsPolicyNumber" class="form-control" name="PolicyNumber" @*value="@Html.DisplayFor(Model => Model.otherIns.PolicyNumber)"*@ disabled>
+                    <input type="tel" id="spInsPolicyNumber" class="form-control" name="PolicyNumber" value="@Html.DisplayFor(Model => Model.otherIns.PolicyNumber)" disabled>
                 </dd>
                 <dt>
                     <label class="col-md-2 control-label">Phone Number:</label>
                 </dt>
                 <dd class="col-md-10 form-group">
-                    <input type="tel" id="spInsPhoneNumber" class="form-control" name="PhoneNumber" @*value="@Html.DisplayFor(Model => Model.otherIns.PhoneNumber)"*@ disabled>
+                    <input type="tel" id="spInsPhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(Model => Model.otherIns.PhoneNumber)" disabled>
                 </dd>
             </dl>
         </div>
@@ -253,104 +271,99 @@
         });
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        Employee_id = document.getElementById("Employee_id").value;
-        EmpNumber = document.getElementById("EmpNumber").value;
-        FirstName = document.getElementById("FirstName").value;
-        LastName = document.getElementById("LastName").value;
-        DateOfBirth = document.getElementById("DateOfBirth").value;
-        Gender = document.getElementsByName("Gender").value;
+    //document.addEventListener("DOMContentLoaded", function () {
+    //    Employee_id = document.getElementById("Employee_id").value;
+    //    SSN = document.getElementById("SSN").value;
+    //    FirstName = document.getElementById("FirstName").value;
+    //    LastName = document.getElementById("LastName").value;
+    //    DateOfBirth = document.getElementById("DateOfBirth").value;
+    //    Gender = document.getElementsByName("Gender").value;
 
-        MailingAddress = document.getElementById("MailingAddress").value;
-        PObox = document.getElementById("PObox").value;
-        City = document.getElementById("City").value;
-        State = document.getElementById("State").value;
-        ZipCode = document.getElementById("ZipCode").value;
-        County = document.getElementById("County").value;
-        PhysicalAddress = document.getElementById("PhysicalAddress").value
-        PObox2 = document.getElementById("PObox2").value,
-            City2 = document.getElementById("City2").value
-        State2 = document.getElementById("State2").value
-        ZipCode2 = document.getElementById("ZipCode2").value
-        County2 = document.getElementById("County2").value
-        EmailAddress = document.getElementById("EmailAddress").value;
-        PhoneNumber = document.getElementById("PhoneNumber").value;
-        CellPhone = document.getElementById("CellPhone").value;
-        CityLimits = document.getElementById("CityLimits").value;
+    //    MailingAddress = document.getElementById("MailingAddress").value;
+    //    PObox = document.getElementById("PObox").value;
+    //    City = document.getElementById("City").value;
+    //    State = document.getElementById("State").value;
+    //    ZipCode = document.getElementById("ZipCode").value;
+    //    County = document.getElementById("County").value;
+    //    PhysicalAddress = document.getElementById("PhysicalAddress").value
+    //    City2 = document.getElementById("City2").value
+    //    State2 = document.getElementById("State2").value
+    //    ZipCode2 = document.getElementById("ZipCode2").value
+    //    EmailAddress = document.getElementById("EmailAddress").value;
+    //    PhoneNumber = document.getElementById("PhoneNumber").value;
+    //    CellPhone = document.getElementById("CellPhone").value;
 
-        Employer = document.getElementById("Employer").value;
-        EmployerMailingAddress = document.getElementById("EmployerMailingAddress").value;
-        EmployerPObox = document.getElementById("EmployerPObox").value;
-        EmployerCity = document.getElementById("EmployerCity").value;
-        EmployerState = document.getElementById("EmployerState").value;
-        EmployerZipCode = document.getElementById("EmployerZipCode").value;
-        EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
+    //    Employer = document.getElementById("Employer").value;
+    //    EmployerMailingAddress = document.getElementById("EmployerMailingAddress").value;
+    //    EmployerPObox = document.getElementById("EmployerPObox").value;
+    //    EmployerCity = document.getElementById("EmployerCity").value;
+    //    EmployerState = document.getElementById("EmployerState").value;
+    //    EmployerZipCode = document.getElementById("EmployerZipCode").value;
+    //    EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
 
-        //spOtherInsCoverage = document.getElementById("spOtherInsCoverage").value
-        spInsuranceCarrier = document.getElementById("spInsCarrier").value
-        spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value
-        spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value
+        
+    //    spOtherInsCoverage = document.getElementById("spOtherInsCoverage").value
+    //    spInsuranceCarrier = document.getElementById("spInsCarrier").value
+    //    spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value
+    //    spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value
 
-        var data = {
-            "Employee_id": Employee_id,
-            "EmpNumber": EmpNumber,
-            "FirstName": FirstName,
-            "DateOfBirth": DateOfBirth,
-            "Gender": Gender,
+    //    var data = {
+    //        "Employee_id": Employee_id,
+    //        "SSN": SSN,
+    //        "FirstName": FirstName,
+    //        "DateOfBirth": DateOfBirth,
+    //        "Gender": Gender,
 
-            "MailingAddress": MailingAddress,
-            "PObox": PObox,
-            "City": City,
-            "State": State,
-            "ZipCode": ZipCode,
-            "County": County,
-            "PhysicalAddress": PhysicalAddress,
-            "PObox2": PObox2,
-            "City2": City2,
-            "State2": State2,
-            "ZipCode2": ZipCode2,
-            "County2": County2,
-            "EmailAddress": EmailAddress,
-            "PhoneNumber": PhoneNumber,
-            "CellPhone": CellPhone,
-            "CityLimits": CityLimits,
+    //        "MailingAddress": MailingAddress,
+    //        "PObox": PObox,
+    //        "City": City,
+    //        "State": State,
+    //        "ZipCode": ZipCode,
+    //        "County": County,
+    //        "PhysicalAddress": PhysicalAddress,
+    //        "City2": City2,
+    //        "State2": State2,
+    //        "ZipCode2": ZipCode2,
+    //        "EmailAddress": EmailAddress,
+    //        "PhoneNumber": PhoneNumber,
+    //        "CellPhone": CellPhone,
 
-            "Employer": Employer,
-            "EmployerMailingAddress": EmployerMailingAddress,
-            "EmployerPObox": EmployerPObox,
-            "EmployerCity": EmployerCity,
-            "EmployerState": EmployerState,
-            "EmployerZipCode": EmployerZipCode,
-            "EmployerPhoneNumber": EmployerPhoneNumber,
+    //        "Employer": Employer,
+    //        "EmployerMailingAddress": EmployerMailingAddress,
+    //        "EmployerPObox": EmployerPObox,
+    //        "EmployerCity": EmployerCity,
+    //        "EmployerState": EmployerState,
+    //        "EmployerZipCode": EmployerZipCode,
+    //        "EmployerPhoneNumber": EmployerPhoneNumber,
 
-            //"spOtherInsCoverage": spOtherInsCoverage,
-            "spInsCarrier": spInsCarrier,
-            "spInsPolicyNumber": spInsPolicyNumber,
-            "spInsPhoneNumber": spInsPhoneNumber,
+    //        "spOtherInsCoverage": spOtherInsCoverage,
+    //        "spInsCarrier": spInsCarrier,
+    //        "spInsPolicyNumber": spInsPolicyNumber,
+    //        "spInsPhoneNumber": spInsPhoneNumber,
 
-        }
+    //    }
 
-        //var ret = postData('GetSpDetail', data)
-        //    .then(data => FirstStep(data))
-        //    .catch(error => console.error(error))
+    //    //var ret = postData('GetSpDetail', data)
+    //    //    .then(data => FirstStep(data))
+    //    //    .catch(error => console.error(error))
 
-        fetch('GetSpDetail', {
-            body: JSON.stringify(data), //must match 'Content-Type' header
-            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', //include, same-origin, *omit
-            headers: {
-                'Accept': 'application/json',
-                'user-agent': 'Mozilla/4.0 MDN Example',
-                'content-type': 'application/json'
-            },
-            method: 'Get', //*GET, POST, PUT, DELETE, etc...
-            mode: 'same-origin', //no-cors, cors, *same-origin
-            redirect: 'follow', //manual, *follow, error
-            referrer: 'no-referrer', //*client, no-referrer
-        }).then(res => res.json())
-            .then(response => FirstStep(response))
-            .catch(error => console.error('Error:', error));
-    })
+    //    fetch('GetSpDetail', {
+    //        body: JSON.stringify(data), //must match 'Content-Type' header
+    //        cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+    //        credentials: 'same-origin', //include, same-origin, *omit
+    //        headers: {
+    //            'Accept': 'application/json',
+    //            'user-agent': 'Mozilla/4.0 MDN Example',
+    //            'content-type': 'application/json'
+    //        },
+    //        method: 'Post', //*GET, POST, PUT, DELETE, etc...
+    //        mode: 'same-origin', //no-cors, cors, *same-origin
+    //        redirect: 'follow', //manual, *follow, error
+    //        referrer: 'no-referrer', //*client, no-referrer
+    //    }).then(res => res.json())
+    //        .then(response => FirstStep(response))
+    //        .catch(error => console.error('Error:', error));
+    //})
 
     function FirstStep(emp) {
         document.querySelector("#SpDetail").nextElementSibling.style.display = "none";

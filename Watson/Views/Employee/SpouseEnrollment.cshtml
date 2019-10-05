@@ -28,22 +28,40 @@
                     <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
                 </div>
                 @*<div class="col-md-10 col-md-offset-2">
-                        <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                            @if (ViewBag.spouseExist == false)
-                            {
-                                <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                            }
-                            else
-                            {
-                                <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                            }
-                        </select>
-                    </div>*@
+                <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                    @if (ViewBag.spouseExist == false)
+                    {
+                        <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                    }
+                    else
+                    {
+                        <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                    }
+                </select>
+            </div>*@
             </div>
-            <div class="form-group">
-                <label for="MaritalStatus" class="col-md-2 control-label">Marital Status:</label>
+            @*<div class="form-group">
+                <label class="col-md-2 control-label">Marital Status:</label>
                 <div class="col-md-10">
-                    <input type="text" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" disabled />
+                    <select id="MaritalStatus" class="form-control">
+                        <option value="">Choose Option:</option>
+                    <option value="MarriedwDep" @((Model.family.MaritalStatus) == "MarriedwDep" ? "selected" : "")>Married with Dependents</option>
+                    <option value="Married" @((Model.family.MaritalStatus) == "Married" ? "selected" : "")>Married</option>
+                    <option value="SinglewDep" @((Model.family.MaritalStatus) == "SinglewDep" ? "selected" : "")>Single with Dependents</option>
+                    <option value="Single" @((Model.family.MaritalStatus) == "Single" ? "selected" : "")>Single</option>
+                    </select>
+                </div>
+            </div>*@
+            <div class="form-group">
+                <label class="col-md-2 control-label">Marital Status:</label>
+                <div class="col-md-10">
+                    <select id="MaritalStatus" class="form-control">
+                        <option value="">Select Option</option>
+                        <option value="MarriedwDep">Married with Dependents</option>
+                        <option value="Married">Married</option>
+                        <option value="SinglewDep">Single with Dependents</option>
+                        <option value="Single">Single</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
@@ -203,33 +221,41 @@
             <p></p>
             <p></p>
             <div id="divSpInsurance">
-                <div class="form-group">
-                    <label for="Employer" class="col-md-2 control-label">Spouse Insurance:</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" id="spInsCarrier" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
-                    </div>
-                </div>
-                <div id="divInsAddress">
-                    <div class="form-group">
-                        <label for="InsAddress" class="col-md-2 control-label">Insurance Address:</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" id="spInsMailingAddress" placeholder="Street" name="MailingAddress" value="" />
-                            <input type="text" class="form-control" id="spInsCity" placeholder="City" name="City" value="" />
-                            <input type="text" class="form-control" id="spInsState" placeholder="State" name="State" value="" />
-                            <input type="text" class="form-control" id="spInsZipCode" placeholder="Zip Code" name="ZipCode" value="" />
+                <div id="SpOtherInsCoverage">
+                    <label>Is your spouse covered by other insurance, including Medicare/Medicaid?</label>
+                    <label class="radio-inline"><input type="radio" id="SpOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="SpOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="no" />No</label>
+                    <p></p>
+                    <div id="spInsInfo">
+                        <div class="form-group">
+                            <label for="Employer" class="col-md-2 control-label">Insurance Name:</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="spInsCarrier" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="InsPhoneNumber" class="col-md-2 control-label">Insurance Number:</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" id="spInsPhoneNumber" placeholder="Phone Number" name="PhoneNumber" value="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="PolicyNumber" class="col-md-2 control-label">Policy Number:</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" id="spInsPolicyNumber" placeholder="Policy #" name="PolicyNumber" value="" />
+                        <div id="divInsAddress">
+                            <div class="form-group">
+                                <label for="InsAddress" class="col-md-2 control-label">Insurance Address:</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="spInsMailingAddress" placeholder="Street" name="MailingAddress" value="" />
+                                    <input type="text" class="form-control" id="spInsCity" placeholder="City" name="City" value="" />
+                                    <input type="text" class="form-control" id="spInsState" placeholder="State" name="State" value="" />
+                                    <input type="text" class="form-control" id="spInsZipCode" placeholder="Zip Code" name="ZipCode" value="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="InsPhoneNumber" class="col-md-2 control-label">Insurance Number:</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="spInsPhoneNumber" placeholder="Phone Number" name="PhoneNumber" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="PolicyNumber" class="col-md-2 control-label">Policy Number:</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="spInsPolicyNumber" placeholder="Policy #" name="PolicyNumber" value="" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -353,7 +379,7 @@
 
                 if (alert == true) {
 
-                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + @ViewBag.Employee_id
+                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + @ViewBag.Employee_id;
 
                 }
                 else {
@@ -364,10 +390,25 @@
         }
     })
 
+    function showHideSpInsCoverage() {
+        document.addEventListener("click", function () {
+            var selection = document.getElementById("SpOtherIns");
+
+            if (selection.checked == true) {
+
+                document.getElementById("spInsInfo").style.visibility = "visible";
+            }
+            else {
+                document.getElementById("spInsInfo").style.visibility = "hidden";
+            }
+        });
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
             RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
+            MaritalStatus = document.getElementById("MaritalStatus").value;
             SSN = document.getElementById("SSN").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
@@ -377,6 +418,7 @@
             var data = {
                 "Employee_id": Employee_id,
                 "RelationshipToInsured": RelationshipToInsured,
+                "MaritalStatus": MaritalStatus,
                 "SSN": SSN,
                 "FirstName": FirstName,
                 "LastName": LastName,
@@ -516,6 +558,7 @@
 
 
         document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
+            spCoveredByOtherIns = document.getElementById("SpOtherIns").value;
             spInsCarrier = document.getElementById("spInsCarrier").value;
             spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
             spInsCity = document.getElementById("spInsCity").value;
@@ -527,6 +570,7 @@
             var data = {
                 "FamilyMember_id": FamilyMember_id,
                 "Employee_id": Employee_id,
+                "spCoveredByOtherIns": spCoveredByOtherIns,
                 "spInsCarrier": spInsCarrier,
                 "spInsMailingAddress": spInsMailingAddress,
                 "spInsCity": spInsCity,

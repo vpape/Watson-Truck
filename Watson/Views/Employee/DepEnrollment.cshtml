@@ -18,7 +18,6 @@
             <hr />
             <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
             <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
-            <input type="hidden" id="OtherInsurance_id" class="form-control" name="OtherInsurance_id" value="@ViewBag.OtherInsurance_id" />
             <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
             <div class="collapsible" id="FirstStep">Dependent Enrollment</div>
             <div class="content" id="dependentSelectForm">
@@ -85,7 +84,6 @@
             </div>
         </div>
     </div>
-    @* Add Dep Insurance *@
     <div class="form-horizontal">
         <hr />
         <div class="collapsible" id="SecondStep">Dependent Insurance</div>
@@ -262,8 +260,6 @@
     var col = document.querySelectorAll(".collapsible");
     var i;
     var Employee_id;
-    var FamilyMember_id;
-
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -408,7 +404,6 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#DepEnrollmentUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            FamilyMember_id = document.getElementById("FamilyMember_id").value;
             RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
             SSN = document.getElementById("SSN").value;
             DepFirstName = document.getElementById("DepFirstName").value
@@ -452,7 +447,7 @@
         })
 
         document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            //depCoveredByOtherInsurance = document.getElementsById("CoveredByOtherInsurance").value
+            depCoveredByOtherInsurance = document.getElementsById("CoveredByOtherInsurance").value
             depInsCarrier = document.getElementById("depInsCarrier").value
             depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
             depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value 
@@ -461,7 +456,7 @@
                 "FamilyMember_id": FamilyMember_id,
                 "Employee_id": Employee_id,
                 "RelationshipToInsured": RelationshipToInsured,
-                //"CoveredByOtherInsurance": depCoveredByOtherInsurance,
+                "CoveredByOtherInsurance": depCoveredByOtherInsurance,
                 "InsuranceCarrier": depInsCarrier,
                 "PolicyNumber": depInsPolicyNumber,
                 "InsPhoneNumber": depInsPhoneNumber,
@@ -496,8 +491,7 @@
     function FirstStep(dep) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        console.log(dep);
-        FamilyMember_id = dep.data;
+        Employee_id = dep.data;
     }
 
     function SecondStep() {
