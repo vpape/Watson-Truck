@@ -317,6 +317,11 @@ namespace Watson.Controllers
         //DeleteEmp Method
         public ActionResult DeleteEmp(int? Employee_id)
         {
+            EmployeeAndInsuranceVM employeeAndInsuranceVM = new EmployeeAndInsuranceVM();
+
+            employeeAndInsuranceVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
+            employeeAndInsuranceVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
+
             if (Employee_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -328,7 +333,7 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
 
-            return View(e);
+            return View(employeeAndInsuranceVM);
         }
 
         //DeleteEmp Method
@@ -337,10 +342,13 @@ namespace Watson.Controllers
         public ActionResult DeleteConfirmed(int Employee_id)
         {
             Employee e = db.Employees.Find(Employee_id);
+
+            db.DeleteEmployeeAndDependents(Employee_id);
+
             db.Employees.Remove(e);
             db.SaveChanges();
 
-            db.DeleteEmployeeAndDependents(Employee_id);
+            
 
             return RedirectToAction("EmpOverview", new { e.Employee_id });
         }
@@ -825,8 +833,8 @@ namespace Watson.Controllers
         {
             Family_Info dep = new Family_Info();
             //Family_Info dep = db.Family_Info
-            //    .Where(i => i.Employee_id == Employee_id)
-            //    .SingleOrDefault();
+                //.Where(i => i.Employee_id == Employee_id)
+                //.SingleOrDefault();
 
             dep.Employee_id = Employee_id;
             dep.RelationshipToInsured = RelationshipToInsured;
@@ -863,12 +871,15 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
       
-        public JsonResult DepOtherInsuranceNew(int FamilyMember_id, int Employee_id, string depCoveredByOtherInsurance,
+        public JsonResult DepOtherInsuranceNew(int? FamilyMember_id, int Employee_id, string depCoveredByOtherInsurance,
            string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
         {
             Other_Insurance depother = new Other_Insurance();
+            //Other_Insurance depother = db.Other_Insurance
+            //     .Where(i => i.FamilyMember_id == FamilyMember_id)
+            //     .SingleOrDefault();
 
-            depother.FamilyMember_id = FamilyMember_id;
+            //depother.FamilyMember_id = FamilyMember_id;
             depother.Employee_id = Employee_id;
             depother.CoveredByOtherInsurance = depCoveredByOtherInsurance;
             depother.InsuranceCarrier = depInsCarrier;
@@ -1041,6 +1052,16 @@ namespace Watson.Controllers
             db.SaveChanges();
 
             return RedirectToAction("FamilyOverview", new { dep.Employee_id });
+        }
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
         //----------------------------------------------------------------------------------------
     }

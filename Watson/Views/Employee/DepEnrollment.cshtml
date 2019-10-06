@@ -447,7 +447,7 @@
         })
 
         document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            depCoveredByOtherInsurance = document.getElementById("CoveredByOtherInsurance").value
+            //depCoveredByOtherInsurance = document.getElementById("CoveredByOtherInsurance").value
             depInsCarrier = document.getElementById("depInsCarrier").value
             depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
             depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value 
@@ -456,7 +456,7 @@
                 "FamilyMember_id": FamilyMember_id,
                 "Employee_id": Employee_id,
                 "RelationshipToInsured": RelationshipToInsured,
-                "CoveredByOtherInsurance": depCoveredByOtherInsurance,
+                //"CoveredByOtherInsurance": depCoveredByOtherInsurance,
                 "InsuranceCarrier": depInsCarrier,
                 "PolicyNumber": depInsPolicyNumber,
                 "InsPhoneNumber": depInsPhoneNumber,
@@ -465,7 +465,7 @@
             //var ret = postData('DepOtherInsuranceNew', data)
             //    .then(data => {
             //        console.log(data);
-            //        FirstStep(data);
+            //        SecondStep(data);
             //    })
             //    .catch(error => console.error(error))
 
@@ -483,7 +483,7 @@
                 redirect: 'follow', //manual, *follow, error
                 referrer: 'no-referrer', //*client, no-referrer
             }).then(res => res.json())
-                .then(response => FirstStep(response))
+                .then(response => SecondStep(response))
                 .catch(error => console.error('Error:', error));
         })
     })
