@@ -483,7 +483,7 @@ namespace Watson.Controllers
         //Create-SpouseEmployment
         public JsonResult SpEnrollmentEmployment(int? FamilyMember_id, int Employee_id, string Employer, string EmployerAddress,
             string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber,
-            string OtherInsuranceCoverage, string spOtherMedicalCoverage, string spOtherDentalCoverage, string spOtherVisionCoverage,
+            string spOtherInsuranceCoverage, string spOtherMedicalCoverage, string spOtherDentalCoverage, string spOtherVisionCoverage,
             string spIndemnityCoverage)
         {
             
@@ -502,12 +502,13 @@ namespace Watson.Controllers
             sp.EmployerZipCode = EmployerZipCode;
             sp.EmployerPhoneNumber = EmployerPhoneNumber;
 
-            sp.OtherInsuranceCoverage = OtherInsuranceCoverage;
+            sp.OtherInsuranceCoverage = spOtherInsuranceCoverage;
             sp.Medical = spOtherMedicalCoverage;
             sp.Dental = spOtherDentalCoverage;
             sp.Vision = spOtherVisionCoverage;
             sp.Indemnity = spIndemnityCoverage;
 
+      
             db.SaveChanges();
            
             int result = sp.FamilyMember_id;
@@ -819,13 +820,13 @@ namespace Watson.Controllers
         }
 
         //Create-DepEnrollment
-        public JsonResult DepEnrollmentNew(int Employee_id, string RelationshipToInsured, string SSN,
-            string DepFirstName, string DepLastName, DateTime DateOfBirth, string Gender)
+        public JsonResult DepEnrollmentNew(int Employee_id, string RelationshipToInsured, string SSN, string DepFirstName, 
+            string DepLastName, DateTime DateOfBirth, string Gender)
         {
-            //Family_Info dep = new Family_Info();
-            Family_Info dep = db.Family_Info
-                .Where(i => i.Employee_id == Employee_id)
-                .SingleOrDefault();
+            Family_Info dep = new Family_Info();
+            //Family_Info dep = db.Family_Info
+            //    .Where(i => i.Employee_id == Employee_id)
+            //    .SingleOrDefault();
 
             dep.Employee_id = Employee_id;
             dep.RelationshipToInsured = RelationshipToInsured;

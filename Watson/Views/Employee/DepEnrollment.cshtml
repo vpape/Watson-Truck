@@ -422,54 +422,13 @@
 
             }
 
-            //var ret = postData('DepEnrollmentNew', data)
-            //    .then(data => { console.log(data);
-            //                  FirstStep(data);
-            //                  })
-            //    .catch(error => console.error(error))
-
-            fetch('DepEnrollmentNew', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => FirstStep(response))
-                .catch(error => console.error('Error:', error));
-        })
-
-        document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            depCoveredByOtherInsurance = document.getElementsById("CoveredByOtherInsurance").value
-            depInsCarrier = document.getElementById("depInsCarrier").value
-            depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
-            depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value 
-
-            var data = {
-                "FamilyMember_id": FamilyMember_id,
-                "Employee_id": Employee_id,
-                "RelationshipToInsured": RelationshipToInsured,
-                "CoveredByOtherInsurance": depCoveredByOtherInsurance,
-                "InsuranceCarrier": depInsCarrier,
-                "PolicyNumber": depInsPolicyNumber,
-                "InsPhoneNumber": depInsPhoneNumber,
-            }
-
-            var ret = postData('DepOtherInsuranceNew', data)
-                .then(data => {
-                    console.log(data);
-                    FirstStep(data);
-                })
+            var ret = postData('DepEnrollmentNew', data)
+                .then(data => { console.log(data);
+                              FirstStep(data);
+                              })
                 .catch(error => console.error(error))
 
-            //fetch('DepOtherInsuranceNew', {
+            //fetch('DepEnrollmentNew', {
             //    body: JSON.stringify(data), //must match 'Content-Type' header
             //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
             //    credentials: 'same-origin', //include, same-origin, *omit
@@ -485,6 +444,47 @@
             //}).then(res => res.json())
             //    .then(response => FirstStep(response))
             //    .catch(error => console.error('Error:', error));
+        })
+
+        document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
+            depCoveredByOtherInsurance = document.getElementById("CoveredByOtherInsurance").value
+            depInsCarrier = document.getElementById("depInsCarrier").value
+            depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
+            depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value 
+
+            var data = {
+                "FamilyMember_id": FamilyMember_id,
+                "Employee_id": Employee_id,
+                "RelationshipToInsured": RelationshipToInsured,
+                "CoveredByOtherInsurance": depCoveredByOtherInsurance,
+                "InsuranceCarrier": depInsCarrier,
+                "PolicyNumber": depInsPolicyNumber,
+                "InsPhoneNumber": depInsPhoneNumber,
+            }
+
+            //var ret = postData('DepOtherInsuranceNew', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        FirstStep(data);
+            //    })
+            //    .catch(error => console.error(error))
+
+            fetch('DepOtherInsuranceNew', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
         })
     })
 

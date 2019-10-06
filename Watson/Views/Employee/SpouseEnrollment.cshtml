@@ -211,17 +211,29 @@
                     <label class="radio-inline"><input type="radio" id="SpOtherInsCoverage" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="no" />No</label>
                     <div id="SpOtherInsCoverageSelection">
                         <label for="OtherInsuranceCoverage" class="control-label">Coverage:</label>
-                        <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Medical) == "Medical" ? "selected" : "")*@ />
-                        <text for="Medical">Medical</text>
-                        <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Dental) == "Dental" ? "selected" : "")*@ />
-                        <text for="Dental">Dental</text>
-                        <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Vision) == "Vision" ? "selected" : "")*@ />
-                        <text for="Vision">Vision</text>
-                        <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Indemnity) == "Indemnity" ? "selected" : "")*@ />
-                        <text for="Indemnity">Indemnity</text>
+                        <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" onclick="OtherInsuranceCoverage()" value="" @*@(Model.Medical == "true" ? "checked" : "")*@ selected/><text for="Medical">Medical</text>
+                        <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" onclick="OtherInsuranceCoverage()" value="" @*@(Model.Medical == "true" ? "checked" : "")*@ selected/><text for="Dental">Dental</text>
+                        <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" onclick="OtherInsuranceCoverage()" value="" @*@(Model.Medical == "true" ? "checked" : "")*@ selected/><text for="Vision">Vision</text>
+                        <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" onclick="OtherInsuranceCoverage()" value="" @*@(Model.Medical == "true" ? "checked" : "")*@ selected/><text for="Indemnity">Indemnity</text>
                     </div>
                 </div>
             </div>
+            <script>
+                function OtherInsuranceCoverage() {
+                    document.addEventListener("click", function () {
+                        var checkboxes = document.querySelectorAll('.checkbox-inline');
+                        var selectedbox = "";
+
+                        for (i = 0; i < checkboxes.length; i++) {
+                            if (checkboxes[i].checked === true) {
+                                selectedbox += checkboxes[i].value + " ";
+                            }
+                        }
+                        alert(selectedbox);
+                    })
+                };
+            </script>
+        
             <div class="form-group">
                 <div class="col-md-offset-11">
                     <input type="submit" id="SpouseEnrollmentUpdateStepThree" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
@@ -421,6 +433,11 @@
         });
     }
 
+    function OtherInsuranceCoverage() {
+
+    }
+
+
     function showHideSpIns() {
         document.addEventListener("click", function () {
             var selection = document.getElementById("SpIns");
@@ -600,7 +617,7 @@
 
 
         document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
-            spOtherIns = document.getElementById("SpIns").value;
+            spCoveredByOtherIns = document.getElementById("SpIns").value;
             spInsCarrier = document.getElementById("spInsCarrier").value;
             spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
             spInsCity = document.getElementById("spInsCity").value;
@@ -612,7 +629,7 @@
             var data = {
                 "FamilyMember_id": FamilyMember_id,
                 "Employee_id": Employee_id,
-                "spOtherIns": spOtherIns,
+                "spOtherIns": spCoveredByOtherIns,
                 "spInsCarrier": spInsCarrier,
                 "spInsMailingAddress": spInsMailingAddress,
                 "spInsCity": spInsCity,
