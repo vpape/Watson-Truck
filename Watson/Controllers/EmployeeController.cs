@@ -368,12 +368,13 @@ namespace Watson.Controllers
         }
 
         //show/hide family enrollment code block based on martial status
-        public ActionResult FamilyEnrollment(int? Employee_id, string MaritalStatus)
+        public ActionResult FamilyEnrollment(int? Employee_id, int? FamilyMember_id, string MaritalStatus)
         {
             
             Employee e = db.Employees.Find(Employee_id);
 
             ViewBag.Employee_id = Employee_id;
+            ViewBag.FamilyMember_id = FamilyMember_id;
             //ViewBag.MaritalStatus = e.MaritalStatus;
 
             //if (e.MaritalStatus == "Single")
@@ -492,7 +493,7 @@ namespace Watson.Controllers
         public JsonResult SpEnrollmentEmployment(int? FamilyMember_id, int Employee_id, string Employer, string EmployerAddress,
             string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber,
             string spOtherInsuranceCoverage, string spOtherMedicalCoverage, string spOtherDentalCoverage, string spOtherVisionCoverage,
-            string spIndemnityCoverage)
+            string spIndemnityCoverage, string spOtherOtherCoverage)
         {
             
             var sp = (from fi in db.Family_Info
@@ -515,8 +516,9 @@ namespace Watson.Controllers
             sp.Dental = spOtherDentalCoverage;
             sp.Vision = spOtherVisionCoverage;
             sp.Indemnity = spIndemnityCoverage;
+            sp.OtherInsuranceCoverage = spOtherOtherCoverage;
 
-      
+
             db.SaveChanges();
            
             int result = sp.FamilyMember_id;
@@ -818,7 +820,7 @@ namespace Watson.Controllers
             return View();
         }
         
-        public ActionResult DepEnrollment(int? Employee_id, int? FamilyMember_id, string RelationshipToInsured)
+        public ActionResult DependentEnrollment(int? Employee_id, int? FamilyMember_id, string RelationshipToInsured)
         {
             ViewBag.Employee_id = Employee_id;
             ViewBag.FamilyMember_id = FamilyMember_id;
@@ -828,7 +830,7 @@ namespace Watson.Controllers
         }
 
         //Create-DepEnrollment
-        public JsonResult DepEnrollmentNew(int Employee_id, string RelationshipToInsured, string SSN, string DepFirstName, 
+        public JsonResult DepEnrollmentNew(int Employee_id, int FamilyMember_id, string RelationshipToInsured, string SSN, string DepFirstName, 
             string DepLastName, DateTime DateOfBirth, string Gender)
         {
             Family_Info dep = new Family_Info();
@@ -837,6 +839,7 @@ namespace Watson.Controllers
                 //.SingleOrDefault();
 
             dep.Employee_id = Employee_id;
+            dep.FamilyMember_id = FamilyMember_id;
             dep.RelationshipToInsured = RelationshipToInsured;
             dep.SSN = SSN;
             dep.FirstName = DepFirstName;

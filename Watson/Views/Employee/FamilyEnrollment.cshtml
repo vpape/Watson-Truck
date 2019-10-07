@@ -134,16 +134,11 @@
     })
 
     function SpouseEnrollment() {
-
-        window.location.href = "/Employee/SpouseEnrollment?Employee_id=@ViewBag.Employee_id";  + "&FamilyMember_id="+ FamilyMember_id;
-        @* window.location.href = "/Employee/SpouseEnrollment?Employee_id=@ViewBag.Employee_id";*@ /* + "&FamilyMember_id="+ FamilyMember_id*/;
+        window.location.href = "/Employee/SpouseEnrollment?Employee_id=@ViewBag.Employee_id" @*+ "&FamilyMember_id=@ViewBag.FamilyMember_id"*@;
     }
 
     function DependentEnrollment() {
-
-
-        window.location.href = "/Employee/DepEnrollment?Employee_id=@ViewBag.Employee_id";  /* + "&FamilyMember_id="+ FamilyMember_id*/;
-        @* window.location.href = "/Employee/NewDependentEnrollment?Employee_id=@ViewBag.Employee_id";*@ /* + "&FamilyMember_id="+ FamilyMember_id*/;
+        window.location.href = "/Employee/DependentEnrollment?Employee_id=@ViewBag.Employee_id" @*+ "&FamilyMember_id=@ViewBag.FamilyMember_id"*@;
     }
 
 </script>

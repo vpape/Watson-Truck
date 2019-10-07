@@ -1,7 +1,5 @@
 ﻿@model Watson.Models.Family_Info
-@{
-    ViewBag.Title = "DepEnrollment";
-}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,17 +27,17 @@
                         <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
                     </div>
                     @*<div class="col-md-10 col-md-offset-2">
-                    <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                        @if (ViewBag.spouseExist == false)
-                        {
-                            <option id="Spouse"  name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                        }
-                        else
-                        {
-                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                        }
-                    </select>
-                </div>*@
+                            <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                                @if (ViewBag.spouseExist == false)
+                                {
+                                    <option id="Spouse"  name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                                }
+                                else
+                                {
+                                    <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                                }
+                            </select>
+                        </div>*@
                 </div>
                 <div class="form-group">
                     <label for="SSN" class="col-md-2 control-label">SSN:</label>
@@ -119,46 +117,6 @@
     </p>
 </body>
 </html>
-
-<style>
-    .collapsible {
-        background-color: #333;
-        color: white;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: center;
-        outline: none;
-        font-size: 15px;
-    }
-
-        .active, .collapsible:hover {
-            background-color: #555;
-        }
-
-    .content {
-        padding: 0 18px;
-        display: none;
-        overflow: hidden;
-        background-color: #f1f1f1;
-    }
-
-    .btn {
-        background-color: #333;
-        color: white;
-    }
-
-    .button {
-        text-align: right;
-    }
-
-    a {
-        text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
-    }
-</style>
 
 <html>
 <head>
@@ -256,10 +214,51 @@
 </body>
 </html>
 
+<style>
+    .collapsible {
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: blue;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    .button {
+        text-align: right;
+    }
+
+    .btn:hover {
+        background-color: blue;
+        color: white;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-flex;
+        padding: 8px 8px;
+    }
+</style>
+
 <script>
     var col = document.querySelectorAll(".collapsible");
     var i;
-    var Employee_id;
+    var FamilyMember_id;
+    //var Employee_id;
 
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
@@ -281,7 +280,7 @@
         });
     }*@
 
-    
+
     document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
         var depSubmit = document.getElementById("DepInsEnrollmentUpdateStepTwo");
 
@@ -295,18 +294,18 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + @ViewBag.Employee_id;
 
                 }
                 else {
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
                 }
             }
         }
         else {
             if (alert == false) {
 
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
             }
         }
     })
@@ -326,18 +325,18 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Employee/AddDependent/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/AddDependent/?Employee_id=" + @ViewBag.Employee_id;
 
                 }
                 else {
-                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + @ViewBag.Employee_id;
                 }
             }
         }
         else {
             if (alert == false) {
 
-                window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id;
+                window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + @ViewBag.Employee_id;
             }
             else {
 
@@ -346,44 +345,18 @@
 
                 if (alert == true) {
 
-                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id;
+                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + @ViewBag.Employee_id;
 
                 }
                 else {
 
-                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + @ViewBag.Employee_id;
                 }
 
             }
 
         }
     })
-
-
-
-    //function AddDependent() {
-    //    document.querySelector("#AddDep").addEventListener("click", function () {
-    //        var depSubmit = document.getElementById("AddDep");
-
-    //        var message;
-    //        var alert = confirm("Would you like to add Dependents, If yes, click OK button to continue.")
-
-    //        if (depSubmit) {
-    //            if (alert == true) {
-
-    //                message = "Please proceed to Add Dependents, Thank you!!"
-    //                var alert = confirm(message)
-    //                if (alert == true) {
-
-    //                    window.location.href = "/Employee/AddDependent/?Employee_id=" + Employee_id;
-    //                }
-    //                else {
-    //                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
-    //                }
-    //            }
-    //        }
-    //    });
-    //}
 
     function showHideDepInsCoverage() {
         document.addEventListener("click", function () {
@@ -409,7 +382,7 @@
             DepFirstName = document.getElementById("DepFirstName").value
             DepLastName = document.getElementById("DepLastName").value
             DateOfBirth = document.getElementById("DateOfBirth").value
-            Gender = document.getElementById("Gender").value
+            Gender = document.getElementById("Gender").value;
 
             var data = {
                 "Employee_id": Employee_id,
@@ -446,11 +419,12 @@
             //    .catch(error => console.error('Error:', error));
         })
 
+
         document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
             //depCoveredByOtherInsurance = document.getElementById("CoveredByOtherInsurance").value
             depInsCarrier = document.getElementById("depInsCarrier").value
             depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
-            depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value 
+            depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value
 
             var data = {
                 "FamilyMember_id": FamilyMember_id,
@@ -486,18 +460,20 @@
                 .then(response => SecondStep(response))
                 .catch(error => console.error('Error:', error));
         })
+
     })
 
     function FirstStep(dep) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        Employee_id = dep.data;
+        FamilyMember_id = dep.data
     }
 
-    function SecondStep() {
+    function SecondStep(dep) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
+ 
     }
+
 
     function postData(url, data) {
         //Default options are marked with *
@@ -525,5 +501,6 @@
         //}) //parses response to JSON
     }
 </script>
+
 
 
