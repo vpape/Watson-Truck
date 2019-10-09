@@ -372,18 +372,18 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Employee/NewDependentEnrollment/?Employee_id=" + Employee_id @*+ "&FamilyMember_id=" + @ViewBag.FamilyMember_id*@;
+                    window.location.href = "/Employee/NewDependentEnrollment/?Employee_id=" + @ViewBag.Employee_id @*+ "&FamilyMember_id=" + @ViewBag.FamilyMember_id*@;
 
                 }
                 else {
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
                 }
             }
         }
         else {
             if (alert == false) {
 
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
             }
             else {
 
