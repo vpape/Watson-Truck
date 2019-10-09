@@ -1,4 +1,4 @@
-﻿@model Watson.Models.Family_Info
+﻿@model Watson.ViewModels.SpouseAndDependentInsVM
 
 <!DOCTYPE html>
 <html>
@@ -27,17 +27,17 @@
                         <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
                     </div>
                     @*<div class="col-md-10 col-md-offset-2">
-                    <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                        @if (ViewBag.spouseExist == false)
-                        {
-                            <option id="Spouse"  name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                        }
-                        else
-                        {
-                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                        }
-                    </select>
-                </div>*@
+                            <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                                @if (ViewBag.spouseExist == false)
+                                {
+                                    <option id="Spouse"  name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                                }
+                                else
+                                {
+                                    <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                                }
+                            </select>
+                        </div>*@
                 </div>
                 <div class="form-group">
                     <label for="SSN" class="col-md-2 control-label">SSN:</label>
@@ -198,18 +198,18 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
 
                 }
                 else {
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
                 }
             }
         }
         else {
             if (alert == false) {
 
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
             }
         }
     })
@@ -229,11 +229,11 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Employee/AddDependent/?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Employee/AddDependent/?Employee_id=" + Employee_id;
 
                 }
                 else {
-                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
                 }
             }
         }
@@ -299,28 +299,28 @@
 
             }
 
-            //var ret = postData('DepEnrollmentNew', data)
-            //    .then(data => { console.log(data);
-            //                  FirstStep(data);
-            //                  })
-            //    .catch(error => console.error(error))
+            var ret = postData('DepEnrollmentNew', data)
+                .then(data => { console.log(data);
+                              FirstStep(data);
+                              })
+                .catch(error => console.error(error))
 
-            fetch('DepEnrollmentNew', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => FirstStep(response))
-                .catch(error => console.error('Error:', error));
+            //fetch('DepEnrollmentNew', {
+            //    body: JSON.stringify(data), //must match 'Content-Type' header
+            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            //    credentials: 'same-origin', //include, same-origin, *omit
+            //    headers: {
+            //        'Accept': 'application/json',
+            //        'user-agent': 'Mozilla/4.0 MDN Example',
+            //        'content-type': 'application/json'
+            //    },
+            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            //    mode: 'same-origin', //no-cors, cors, *same-origin
+            //    redirect: 'follow', //manual, *follow, error
+            //    referrer: 'no-referrer', //*client, no-referrer
+            //}).then(res => res.json())
+            //    .then(response => FirstStep(response))
+            //    .catch(error => console.error('Error:', error));
         })
 
 
@@ -340,29 +340,29 @@
                 "depInsPhoneNumber": depInsPhoneNumber,
             }
 
-            //var ret = postData('DepOtherInsuranceNew', data)
-            //    .then(data => {
-            //        console.log(data);
-            //        SecondStep(data);
-            //    })
-            //    .catch(error => console.error(error))
+            var ret = postData('DepOtherInsuranceNew', data)
+                .then(data => {
+                    console.log(data);
+                    SecondStep(data);
+                })
+                .catch(error => console.error(error))
 
-            fetch('DepOtherInsuranceNew', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => SecondStep(response))
-                .catch(error => console.error('Error:', error));
+            //fetch('DepOtherInsuranceNew', {
+            //    body: JSON.stringify(data), //must match 'Content-Type' header
+            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            //    credentials: 'same-origin', //include, same-origin, *omit
+            //    headers: {
+            //        'Accept': 'application/json',
+            //        'user-agent': 'Mozilla/4.0 MDN Example',
+            //        'content-type': 'application/json'
+            //    },
+            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            //    mode: 'same-origin', //no-cors, cors, *same-origin
+            //    redirect: 'follow', //manual, *follow, error
+            //    referrer: 'no-referrer', //*client, no-referrer
+            //}).then(res => res.json())
+            //    .then(response => SecondStep(response))
+            //    .catch(error => console.error('Error:', error));
         })
 
     })
@@ -376,7 +376,7 @@
 
     function SecondStep(dep) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
- 
+
     }
 
 

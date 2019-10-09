@@ -26,7 +26,6 @@
     <p></p>
     <p><embed id="2019InsCost" src="/App_Files/pdfFiles/2019-Insurance-Cost.pdf" type="application/pdf" style="width:100%; height:1122px;" frameborder="0" /></p>
     <p><embed id="2019Dental&VisionBenefits" src="/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf" type="application/pdf" style="width:100%; height:1000px; transform:rotate()" frameborder="0" /></p>
-    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
     <div class="form-horizontal" hidden>
         <div class="collapsible" id="FirstStep">emp-Health Insurance Premiums</div>
         <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">
@@ -257,7 +256,6 @@
     @* db.InsurancePlanDetail- col- Item, Detail - InsurancePlanDetail_id as primary and InsurancePlan_id as foreign *@
     <div class="form-horizontal" hidden>
         <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
         <div class="collapsible" id="SecondStep">emp-Health Insurance Supplement</div>
         <table class="container-fluid table-bordered" id="InsSupplementTable" cellpadding="20" cellspacing="20">
             <tr>
@@ -808,15 +806,12 @@
                                 <tr>
                                     <th colspan="2">Spouse's Information</th>
                                 </tr>
-                            </thead>
-                            <tr>
-                                <td>
-                                    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
-                                </td>
-                            </tr>
+                            </thead>  
                             <tr>
                                 <td>
                                     <input type="text" class="form-control" id="spFirstName" placeholder="First Name" value="@Html.Raw(sp.FirstName)" disabled />
+                                    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@sp.FamilyMember_id" />
+                                    <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@sp.RelationshipToInsured" />
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" id="spLastName" placeholder="Last Name" value="@Html.Raw(sp.LastName)" disabled />
@@ -933,11 +928,6 @@
                             </thead>
                             <tr>
                                 <td>
-                                    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
                                     <input type="text" class="form-control" id="spInsCarrier" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.Raw(spOtherIns.InsuranceCarrier)" disabled />
                                 </td>
                                 <td>
@@ -990,9 +980,6 @@
                         <table class="table" id="depInfoTable">
                             <tr>
                                 <td>
-                                    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
-                                </td>
-                                <td>
                                     <span>
                                         @* redirects to to view family insurance *@
                                         <i class="fa fa-arrow-circle-o-right" style="font-size:24px" onclick="DependentInfo()"></i>
@@ -1000,6 +987,8 @@
                                 </td>
                                 <td>
                                     <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="@Html.Raw(dep.SSN)" readonly />
+                                    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@dep.FamilyMember_id" />
+                                    <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@dep.RelationshipToInsured" />
                                 </td>
                                 <td>
                                     <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="@Html.Raw(dep.FirstName)" readonly />

@@ -346,7 +346,7 @@ namespace Watson.Controllers
             db.DeleteEmployeeAndDependents(Employee_id);
 
             db.Employees.Remove(e);
-            db.SaveChanges();
+            //db.SaveChanges();
 
             
 
@@ -820,51 +820,33 @@ namespace Watson.Controllers
             return View();
         }
         
-        public ActionResult DependentEnrollment(int? Employee_id, int? FamilyMember_id, string RelationshipToInsured)
+        public ActionResult NewDependentEnrollment(int? Employee_id, string RelationshipToInsured)
         {
+            SpouseAndDependentInsVM spAndDepInsVM = new SpouseAndDependentInsVM();
+
+            spAndDepInsVM.family = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id);
+            spAndDepInsVM.otherIns = db.Other_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id);
+
             ViewBag.Employee_id = Employee_id;
-            ViewBag.FamilyMember_id = FamilyMember_id;
+            //ViewBag.FamilyMember_id = FamilyMember_id;
             ViewBag.RelationshipToInsured = RelationshipToInsured = "Dependent";
 
-            return View();
+            return View(spAndDepInsVM);
         }
 
         //Create-DepEnrollment
-        public JsonResult DepEnrollmentNew(int Employee_id, int FamilyMember_id, string RelationshipToInsured, string SSN, string DepFirstName, 
+        public JsonResult DepEnrollmentNew(int Employee_id, string RelationshipToInsured, string SSN, string DepFirstName, 
             string DepLastName, DateTime DateOfBirth, string Gender)
         {
             Family_Info dep = new Family_Info();
-            //Family_Info dep = db.Family_Info
-                //.Where(i => i.Employee_id == Employee_id)
-                //.SingleOrDefault();
 
             dep.Employee_id = Employee_id;
-            dep.FamilyMember_id = FamilyMember_id;
             dep.RelationshipToInsured = RelationshipToInsured;
             dep.SSN = SSN;
             dep.FirstName = DepFirstName;
             dep.LastName = DepLastName;
             dep.DateOfBirth = DateOfBirth;
             dep.Gender = Gender;
-
-            ViewBag.spouseExist = true;
-            ViewBag.RelationshipToInsured = "Dependent";
-
-            Employee e = db.Employees.Find(Employee_id);
-            if (e.MaritalStatus == "Single")
-            {
-                ViewBag.spouseExist = false;
-                ViewBag.RelationshipToInsured = "Single";
-            }
-            else if (e.MaritalStatus == "SinglewDep")
-            {
-                ViewBag.spouseExist = false;
-                ViewBag.RelationshipToInsured = "Spouse";
-            }
-            else
-            {
-                ViewBag.RelationshipToInsured = "Dependent";
-            }
 
             db.Family_Info.Add(dep);
             db.SaveChanges();
@@ -874,25 +856,22 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
       
-        public JsonResult DepOtherInsuranceNew(int? FamilyMember_id, int Employee_id, string depCoveredByOtherInsurance,
+        public JsonResult DepOtherInsuranceNew(int Employee_id, int FamilyMember_id, string depCoveredByOtherInsurance,
            string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
         {
-            Other_Insurance depother = new Other_Insurance();
-            //Other_Insurance depother = db.Other_Insurance
-            //     .Where(i => i.FamilyMember_id == FamilyMember_id)
-            //     .SingleOrDefault();
+            Other_Insurance other = new Other_Insurance();
 
-            //depother.FamilyMember_id = FamilyMember_id;
-            depother.Employee_id = Employee_id;
-            depother.CoveredByOtherInsurance = depCoveredByOtherInsurance;
-            depother.InsuranceCarrier = depInsCarrier;
-            depother.PolicyNumber = depInsPolicyNumber;
-            depother.PhoneNumber = depInsPhoneNumber;
+            other.FamilyMember_id = FamilyMember_id;
+            other.Employee_id = Employee_id;
+            other.CoveredByOtherInsurance = depCoveredByOtherInsurance;
+            other.InsuranceCarrier = depInsCarrier;
+            other.PolicyNumber = depInsPolicyNumber;
+            other.PhoneNumber = depInsPhoneNumber;
 
-            db.Other_Insurance.Add(depother);
+            db.Other_Insurance.Add(other);
             db.SaveChanges();
 
-            int result = depother.OtherInsurance_id;
+            int result = other.OtherInsurance_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }

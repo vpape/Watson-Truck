@@ -211,16 +211,16 @@
                     <label class="radio-inline"><input type="radio" id="SpOtherInsCoverage" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="no" />No</label>
                     <div id="SpOtherInsCoverageSelection">
                         <label for="OtherInsuranceCoverage" class="control-label">Coverage:</label>
-                        <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" onclick="OtherInsuranceCoverage(this)" value="Medical" @*@(Model.Medical == "true" ? "checked" : "")*@ /><text for="Medical">Medical</text>
-                        <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" onclick="OtherInsuranceCoverage(this)" value="Dental" @*@(Model.Medical == "true" ? "checked" : "")*@ /><text for="Dental">Dental</text>
-                        <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" onclick="OtherInsuranceCoverage(this)" value="Vision" @*@(Model.Medical == "true" ? "checked" : "")*@ /><text for="Vision">Vision</text>
-                        <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" onclick="OtherInsuranceCoverage(this)" value="Indemnity" @*@(Model.Medical == "true" ? "checked" : "")*@ /><text for="Indemnity">Indemnity</text>
+                        <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical"  value="Medical" @*@(Model.Medical == "true" ? "checked" : "")*@ /><text for="Medical">Medical</text>
+                        <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" value="Dental" @*@(Model.Medical == "true" ? "checked" : "")*@ /><text for="Dental">Dental</text>
+                        <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" value="Vision" @*@(Model.Medical == "true" ? "checked" : "")*@ /><text for="Vision">Vision</text>
+                        <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity"  value="Indemnity" @*@(Model.Medical == "true" ? "checked" : "")*@ /><text for="Indemnity">Indemnity</text>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <input type="submit" id="SpouseEnrollmentUpdateStepThree" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
+                    <input type="submit" id="SpouseEnrollmentUpdateStepThree" value="Save" class="btn" />
                 </div>
             </div>
         </div>
@@ -274,7 +274,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <input type="submit" id="SpouseEnrollmentUpdateStepFour" value="Save" @*onclick="SpouseEmploymentUpdate()"*@ class="btn" />
+                    <input type="submit" id="SpouseEnrollmentUpdateStepFour" value="Save" class="btn" />
                 </div>
             </div>
         </div>
@@ -372,18 +372,18 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Employee/DependentEnrollment/?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Employee/NewDependentEnrollment/?Employee_id=" + Employee_id @*+ "&FamilyMember_id=" + @ViewBag.FamilyMember_id*@;
 
                 }
                 else {
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
                 }
             }
         }
         else {
             if (alert == false) {
 
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
             }
             else {
 
@@ -417,23 +417,6 @@
         });
     }
 
-    function OtherInsuranceCoverage(checkboxes) {
-        
-        var checkboxes = document.querySelector("input[name=Medical]","input[name=Dental]","input[name=Vision]","input[name=Indemnity]");
-        //var checkboxes = document.querySelectorAll('.checkbox-inline');
-        var selectedbox = [];
-
-        for (i = 0; i < checkboxes.length; i++) {
-            checkboxes.addEventListener('change', function () {
-                if (checkboxes[i].checked === true) {
-                    selectedbox += checkboxes[i].value + " ";
-                    
-                }
-            })
-               
-        }            
-        alert("The following have been selected:" + selectedbox);
-    };
 
 
     function showHideSpIns() {
@@ -564,10 +547,10 @@
             EmployerZipCode = document.getElementById("EmployerZipCode").value;
             EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
             spOtherInsuranceCoverage = document.getElementById("SpOtherInsCoverage").value;
-            spOtherMedicalCoverage = document.getElementById("Medical").value = selectedbox;
-            spOtherDentalCoverage = document.getElementById("Dental").value = selectedbox;
-            spOtherVisionCoverage = document.getElementById("Vision").value = selectedbox;
-            spIndemnityCoverage = document.getElementById("Indemnity").value = selectedbox;            
+            spOtherMedicalCoverage = document.getElementById("Medical").checked;
+            spOtherDentalCoverage = document.getElementById("Dental").checked;
+            spOtherVisionCoverage = document.getElementById("Vision").checked;
+            spIndemnityCoverage = document.getElementById("Indemnity").checked;            
 
 
             var data = {
