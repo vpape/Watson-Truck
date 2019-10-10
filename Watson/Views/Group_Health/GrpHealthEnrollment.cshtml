@@ -748,7 +748,7 @@
                     </thead>
                     <tr>
                         <td>
-                            <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
+                            @*<input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />*@
                         </td>
                         <td>Medical Plan:</td>
                         <td>
@@ -809,9 +809,9 @@
                             </thead>  
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" id="spFirstName" placeholder="First Name" value="@Html.Raw(sp.FirstName)" disabled />
                                     <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@sp.FamilyMember_id" />
                                     <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@sp.RelationshipToInsured" />
+                                    <input type="text" class="form-control" id="spFirstName" placeholder="First Name" value="@Html.Raw(sp.FirstName)" disabled />
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" id="spLastName" placeholder="Last Name" value="@Html.Raw(sp.LastName)" disabled />
@@ -860,11 +860,12 @@
                             </thead>
                             <tr>
                                 <td>
-                                    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
+                                    
                                 </td>
                             </tr>
                             <tr>
                                 <td>
+                                    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@sp.FamilyMember_id" />
                                     <input type="text" class="form-control" id="spEmployer" placeholder="Employer" value="@Html.Raw(sp.Employer)" disabled />
                                 </td>
                                 <td>
@@ -899,17 +900,17 @@
                             </tr>
                             <tr>
                                 <td style="padding-left: 20px;">
-                                    <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Medical) == "Medical" ? "selected" : "")*@ disabled />
+                                    <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" value="Medical" @(sp.Medical == "Medical" ? "checked" : "") disabled />
                                     <text>Medical</text>
-                                    <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Dental) == "Dental" ? "selected" : "")*@ disabled />
+                                    <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" value="@((sp.Dental) == "Dental" ? "selected" : "")"  disabled />
                                     <text>Dental</text>
                                     <p></p>
                                 </td>
                                 @*<select id="spOtherInsCoverage" name="OtherInsuranceCoverage" class="form-control"></select>*@
                                 <td style="padding-left: 20px;">
-                                    <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Vision) == "Vision" ? "selected" : "")*@ disabled />
+                                    <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" value="Vision" @(sp.Vision == "Vision" ? "checked" : "") disabled />
                                     <text>Vision</text>
-                                    <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="true" @*@((Model.Indemnity) == "Indemnity" ? "selected" : "")*@ disabled />
+                                    <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" value="Indemnity" @(sp.Indemnity == "Indemnity" ? "checked" : "") disabled />
                                     <text>Indemnity</text>
                                     <p></p>
                                 </td>
@@ -928,6 +929,7 @@
                             </thead>
                             <tr>
                                 <td>
+                                    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@spOtherIns.FamilyMember_id" />
                                     <input type="text" class="form-control" id="spInsCarrier" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.Raw(spOtherIns.InsuranceCarrier)" disabled />
                                 </td>
                                 <td>
@@ -986,9 +988,10 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="@Html.Raw(dep.SSN)" readonly />
                                     <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@dep.FamilyMember_id" />
                                     <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@dep.RelationshipToInsured" />
+                                    <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="@Html.Raw(dep.SSN)" readonly />
+                                    @*<input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@dep.RelationshipToInsured" />*@
                                 </td>
                                 <td>
                                     <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="@Html.Raw(dep.FirstName)" readonly />
@@ -1016,9 +1019,6 @@
                         <table class="table" id="DepOtherInsTable">
                             <tr>
                                 <td>
-                                    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
-                                </td>
-                                <td>
                                     <span>
                                         @* redirects to to view family insurance *@
                                         <i class="fa fa-arrow-circle-o-right" style="font-size:24px" onclick="DependentInsInfo()"></i>
@@ -1026,6 +1026,7 @@
                                 </td>
                                 <td></td>
                                 <td>
+                                    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@depOtherIns.FamilyMember_id" />
                                     <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.Raw(depOtherIns.InsuranceCarrier)" disabled />
                                 </td>
                                 <td></td>
@@ -1037,7 +1038,7 @@
                                     <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" value="@Html.Raw(depOtherIns.PhoneNumber)" disabled />
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Add Dependent", "AddDependent", "Employee", new { FamilyMember_id = @ViewBag.FamilyMember_id }, null)|
+                                    @Html.ActionLink("Add Dependent", "AddDependent", "Employee", new { Employee_id = @ViewBag.Employee_id }, null)|
                                     @Html.ActionLink("Edit Insurance", "EditOtherInsurance", "Other_Insurance", new { FamilyMember_id = @ViewBag.FamilyMember_id }, null)
                                 </td>
                             </tr>
@@ -1079,11 +1080,11 @@
                             <h4><b>Refusal of Group Health Coverage</b></h4>
                             <h6>This is to certify I have been given an opportunity to apply for group health coverage available to me through my Employer, and I have decided to not apply coverage for:</h6>
                             <div id="divGrpHRefusalSelection">
-                                <input type="checkbox" class="checkbox-inline" id="Myself" name="Myself" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="Myself" />
+                                <input type="checkbox" class="checkbox-inline" id="Myself" name="Myself" value="Myself" />
                                 <label for="Myself">Myself</label>
-                                <input type="checkbox" class="checkbox-inline" id="Spouse" name="Spouse" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="Spouse" />
+                                <input type="checkbox" class="checkbox-inline" id="Spouse" name="Spouse" value="Spouse" />
                                 <label for="Spouse">Spouse</label>
-                                <input type="checkbox" class="checkbox-inline" id="Dependent" name="Dependent" @*onclick="RefusalOfGrpHealthCoverage()"*@ value="Child(ren)" />
+                                <input type="checkbox" class="checkbox-inline" id="Dependent" name="Dependent" value="Child(ren)" />
                                 <label for="Child(ren)">Child(ren)</label>
                             </div>
                             <p></p>

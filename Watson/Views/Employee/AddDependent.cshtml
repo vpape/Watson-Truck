@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <label for="SSN" class="col-md-2 control-label">SSN:</label>
                     <div class="col-md-10">
-                        <input type="text" id="DepSSN" class="form-control" placeholder="SSN" name="SSN" value="" />
+                        <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -74,7 +74,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-11">
-                        <input type="submit" id="DepEnrollmentUpdate" value="Save" onclick="DependentEnrollmentUpdate()" class="btn" />
+                        <input type="button" id="DepEnrollmentUpdate" value="Save" @*onclick="DependentEnrollmentUpdate()"*@ class="btn" />
                         @*<button type="submit" id="DepEnrollmentUpdate" onclick="DependentEnrollmentUpdate()" class="btn">Save</button>*@
                     </div>
                 </div>
@@ -84,7 +84,7 @@
     @* Add Dep Insurance *@
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible" id="SecondStep">Dependent Insurance</div>
+        <div class="collapsible" id="SecondStep">Add Dependent Insurance</div>
         <div id="divDepInsEnrollment" class="content">
             <p></p>
             <div id="DepOtherInsCoverage">
@@ -105,13 +105,13 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <button type="submit" id="DepInsEnrollmentUpdateStepTwo" class="btn">Save</button>
+                    <button type="button" id="DepInsEnrollmentUpdateStepTwo" class="btn">Save</button>
                 </div>
             </div>
         </div>
     </div>
     <p>
-        @Html.ActionLink("Back to Family Overview", "FamilyOverview", "Employee", new { FamilyMember_id = ViewBag.FamilyMember_id }, null)
+        @Html.ActionLink("Back to Family Overview", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
     </p>
     @*<p>
         @Html.ActionLink("Back to Enrollment Selection", "EnrollmentSelection")
@@ -189,15 +189,16 @@
         if (save) {
             if (alert == true) {
 
-                message = "Progress has been saved! Would you like to add another Dependent? If yes, select OK to add another Dependent."
+                message = "Progress has been saved! Click OK if you want to continue to Group Health Enrollment. Thank you!"
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Employee/AddDependent/?Employee_id=" + Employee_id;
+                     window.location.href = "/Group_Health/GrphealthEnrollment/?Employee_id=" + @ViewBag.Employee_id;
+
                 }
                 else {
-                    message = "Returning back to Group Health Enrollment page. Thank you!!"
-                    window.location.href = "/Group_Health/GrphealthEnrollment/?Employee_id=" + Employee_id;
+                    message = "Returning back to Family Overview. Thank you!!"
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + @ViewBag.Employee_id;
                 }
 
             }
@@ -223,18 +224,18 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#DepEnrollmentUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            RelationshipToInsured = document.getElementById("RelationToInsured").value
-            DepSSN = document.getElementById("DepSSN").value
+            RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
+            SSN = document.getElementById("SSN").value;
             DepFirstName = document.getElementById("DepFirstName").value
             DepLastName = document.getElementById("DepLastName").value
             DateOfBirth = document.getElementById("DateOfBirth").value
-            Gender = document.getElementById("Gender").value
+            Gender = document.getElementById("Gender").value;
 
             var data = {
+                //"FamilyMember_id": FamilyMember_id,
                 "Employee_id": Employee_id,
-                "FamilyMember_id": FamilyMember_id,
                 "RelationshipToInsured": RelationshipToInsured,
-                "DepSSN": DepSSN,
+                "SSN": SSN,
                 "DepFirstName": DepFirstName,
                 "DepLastName": DepLastName,
                 "DateOfBirth": DateOfBirth,
@@ -268,21 +269,21 @@
 
         })
 
-        document.querySelector("DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
+        document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            CoveredByOtherInsurance = document.getElementsById("CoveredByOtherInsurance").value
-            InsuranceCarrier = document.getElementById("depInsCarrier").value
-            PolicyNumber = document.getElementById("depInsPolicyNumber").value
-            InsPhoneNumber = document.getElementById("depInsPhoneNumber").value
+            //depCoveredByOtherInsurance = document.getElementById("CoveredByOtherInsurance").value
+            depInsCarrier = document.getElementById("depInsCarrier").value
+            depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
+            depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value
 
             var data = {
-                "Employee_id": Employee_id,
                 "FamilyMember_id": FamilyMember_id,
+                "Employee_id": Employee_id,
                 "RelationshipToInsured": RelationshipToInsured,
-                "CoveredByOtherInsurance": CoveredByOtherInsurance,
-                "InsuranceCarrier": InsuranceCarrier,
-                "PolicyNumber": PolicyNumber,
-                "InsPhoneNumber": InsPhoneNumber,
+                //"depCoveredByOtherInsurance": depCoveredByOtherInsurance,
+                "depInsCarrier": depInsCarrier,
+                "depInsPolicyNumber": depInsPolicyNumber,
+                "depInsPhoneNumber": depInsPhoneNumber,
             }
 
             //var ret = postData('OtherInsuranceNew', data)
@@ -292,7 +293,7 @@
             //    })
             //    .catch(error => console.error(error))
 
-            fetch('OtherInsuranceNew', {
+            fetch('DepOtherInsuranceNew', {
                 body: JSON.stringify(data), //must match 'Content-Type' header
                 cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', //include, same-origin, *omit
