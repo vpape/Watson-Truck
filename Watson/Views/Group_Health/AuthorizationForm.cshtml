@@ -80,20 +80,20 @@
                     <label style="padding-left: 10px;">
                         Name:
                     </label>
-                    <input type="text" id="PersonOneReleaseInfoTo" name="NameOfPersonOneReleaseInfoTo" value="@Html.DisplayFor(Model => Model.grpHealth.NameOfPersonOneReleaseInfoTo)" />
+                    <input type="text" id="PersonOneReleaseInfoTo" name="NameOfPersonOneReleaseInfoTo" value="" />
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
-                    <input type="text" id="PersonOneRelationship" name="PersonOneRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.PersonOneRelationship)" />
+                    <input type="text" id="PersonOneRelationship" name="PersonOneRelationship" value="" />
                     <hr />
                     <label style="padding-left: 10px;">
                         Name:
                     </label>
-                    <input type="text" id="PersonTwoReleaseInfoTo" name="NameOfPersonTwoReleaseInfoTo" value="@Html.DisplayFor(Model => Model.grpHealth.NameOfPersonTwoReleaseInfoTo)" />
+                    <input type="text" id="PersonTwoReleaseInfoTo" name="NameOfPersonTwoReleaseInfoTo" value="" />
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
-                    <input type="text" id="PersonTwoRelationship" name="PersonTwoRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.PersonTwoRelationship)" />
+                    <input type="text" id="PersonTwoRelationship" name="PersonTwoRelationship" value="" />
                 </div>
             </div>
             <hr />
@@ -121,25 +121,25 @@
                             <label style="padding-left: 10px;">
                                 Policyholder's Signature:
                             </label>
-                            <input type="text" id="PolicyHolderSignature" name="AuthorizationFormPolicyHolderSignature" value="@Html.DisplayFor(Model => Model.grpHealth.AuthorizationFormPolicyHolderSignature)" />
+                            <input type="text" id="PolicyHolderSignature" name="AuthorizationFormPolicyHolderSignature" value="" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="PolicyHolderSignatureDate" name="AuthorizationFormPolicyHolderSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.AuthorizationFormPolicyHolderSignatureDate)" />
+                            <input type="date" id="PolicyHolderSignatureDate" name="AuthorizationFormPolicyHolderSignatureDate" value="" />
                             <hr />
                             <label style="padding-left: 10px;">
                                 Signature of person to release information to:
                             </label>
-                            <input type="text" id="PersonOneSignature" name="PersonOneSignature" value="@Html.DisplayFor(Model => Model.grpHealth.PersonOneSignature)" />
+                            <input type="text" id="PersonOneSignature" name="PersonOneSignature" value="" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="PersonOneSignatureDate" name="PersonOneSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.PersonTwoSignatureDate)" />
+                            <input type="date" id="PersonOneSignatureDate" name="PersonOneSignatureDate" value="" />
                             <hr />
                             <label style="padding-left: 10px;">
                                 Signature of person to release information to:
                             </label>
-                            <input type="text" id="PersonTwoSignature" name="PersonTwoSignature" value="@Html.DisplayFor(Model => Model.grpHealth.PersonTwoSignature)" />
+                            <input type="text" id="PersonTwoSignature" name="PersonTwoSignature" value="" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
@@ -148,7 +148,7 @@
                         <hr />
                         <div class="form-group">
                             <div class="col-md-offset-11">
-                                <button id="AuthorizationFormUpdate" class="btn">Save</button>
+                                <button id="AuthorizationFormUpdate" onclick="return redirect()" class="btn">Save</button>
                             </div>
                         </div>
                     </td>
@@ -290,9 +290,33 @@
         });
     }
 
-    //replace NameOfPersonToReleaseInfoTo, Relationship, OtherSignaute form d
-    //with NameOfPersonOne-ReleaseInfoTo, NameOfPersonOne-Signature, NameOfPersonOne-SignatureDate
-    //add policyholder signature and policyholder signatureDate to db
+
+    function redirect() {
+        document.addEventListener("click", function () {
+            var message;
+            var alert = confirm("Would you like to save your progress?" + "Click OK to continue.")
+
+            if (alert == true) {
+
+                message = "Your progress has been saved. Thank you!"
+                var alert = confirm(message)
+
+                if (alert == true) {
+                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id="+  @ViewBag.Employee_id;
+                }
+            }
+            else {
+                if (alert == false) {
+                    
+                    window.location.href = "/Employee/EmpOverview/?Employee_id=" +  @ViewBag.Employee_id;
+
+                }
+            }
+        })
+    }
+
+ 
+
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#AuthorizationFormUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;

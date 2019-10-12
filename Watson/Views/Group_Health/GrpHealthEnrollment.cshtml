@@ -900,17 +900,17 @@
                             </tr>
                             <tr>
                                 <td style="padding-left: 20px;">
-                                    <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" value="Medical" @(sp.Medical == "Medical" ? "checked" : "") disabled />
+                                    <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" value="Medical" @((sp.Medical == "true") ? "checked" : "") disabled />
                                     <text>Medical</text>
-                                    <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" value="@((sp.Dental) == "Dental" ? "selected" : "")"  disabled />
+                                    <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" value="Dental" @((sp.Dental == "true") ? "checked" : "")  disabled />
                                     <text>Dental</text>
                                     <p></p>
                                 </td>
                                 @*<select id="spOtherInsCoverage" name="OtherInsuranceCoverage" class="form-control"></select>*@
                                 <td style="padding-left: 20px;">
-                                    <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" value="Vision" @(sp.Vision == "Vision" ? "checked" : "") disabled />
+                                    <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" value="Vision" @((sp.Vision == "true") ? "checked" : "") disabled />
                                     <text>Vision</text>
-                                    <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" value="Indemnity" @(sp.Indemnity == "Indemnity" ? "checked" : "") disabled />
+                                    <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" value="Indemnity" @((sp.Indemnity == "true") ? "checked" : "") disabled />
                                     <text>Indemnity</text>
                                     <p></p>
                                 </td>
@@ -1283,7 +1283,7 @@
 
     function AuthorizationForm() {
 
-        window.location.href = "/Group_Health/AuthorizationForm?Employee_id=@Model.employee.Employee_id" @*+ "&GroupHealthInsurance_id=@Model.grpHealth.GroupHealthInsurance_id"*@;
+        window.location.href = "/Group_Health/AuthorizationForm?Employee_id=@Model.employee.Employee_id" + "&GroupHealthInsurance_id=@Model.grpHealth.GroupHealthInsurance_id";
     }
 
     function SalaryRedirection() {

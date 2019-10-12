@@ -21,7 +21,6 @@ namespace Watson.Models
         }
     
         public int FamilyMember_id { get; set; }
-        public int OtherInsurance_id { get; set; }
         public int Employee_id { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

@@ -499,7 +499,6 @@
     <Content Include="Views\Group_Health\EditGroupHealthIns.cshtml" />
     <Content Include="Views\Employee\SpouseEnrollment.cshtml" />
     <Content Include="Views\Employee\DependentEnrollment.cshtml" />
-    <Content Include="Views\Employee\NewDependentEnrollment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

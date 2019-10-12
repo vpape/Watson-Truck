@@ -441,7 +441,6 @@ namespace Watson.Controllers
             Family_Info sp = new Family_Info();
 
             sp.Employee_id = Employee_id;
-            //sp.FamilyMember_id = FamilyMember_id;
             sp.RelationshipToInsured = RelationshipToInsured;
             sp.MaritalStatus = MaritalStatus;
             sp.SSN = SSN;
@@ -493,7 +492,7 @@ namespace Watson.Controllers
         public JsonResult SpEnrollmentEmployment(int? FamilyMember_id, int Employee_id, string Employer, string EmployerAddress,
             string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber,
             string spOtherInsuranceCoverage, string spOtherMedicalCoverage, string spOtherDentalCoverage, string spOtherVisionCoverage,
-            string spIndemnityCoverage, string spOtherOtherCoverage)
+            string spIndemnityCoverage)
         {
             
             var sp = (from fi in db.Family_Info
@@ -516,7 +515,6 @@ namespace Watson.Controllers
             sp.Dental = spOtherDentalCoverage;
             sp.Vision = spOtherVisionCoverage;
             sp.Indemnity = spIndemnityCoverage;
-            sp.OtherInsuranceCoverage = spOtherOtherCoverage;
 
 
             db.SaveChanges();
@@ -532,15 +530,14 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SpOtherInsuranceNew(int Employee_id, int FamilyMember_id, string spCoveredByOtherIns, string spInsCarrier, 
-            string spInsMailingAddress, string spInsCity, string spInsState, string spInsZipCode, string spInsPhoneNumber,
-            string spInsPolicyNumber)
+        public JsonResult SpOtherInsuranceNew(int Employee_id, int FamilyMember_id, string spOtherInsuranceCoverage, string spInsCarrier, 
+            string spInsMailingAddress, string spInsCity, string spInsState, string spInsZipCode, string spInsPhoneNumber, string spInsPolicyNumber)
         {
             Other_Insurance other = new Other_Insurance();
 
             other.Employee_id = Employee_id;
             other.FamilyMember_id = FamilyMember_id;
-            other.CoveredByOtherInsurance = spCoveredByOtherIns;
+            other.CoveredByOtherInsurance = spOtherInsuranceCoverage;
             other.InsuranceCarrier = spInsCarrier;
             other.MailingAddress = spInsMailingAddress;
             other.City = spInsCity;
@@ -693,7 +690,7 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult SpOtherInsuranceUpdate(int? Employee_id, int? FamilyMember_id, int? OtherInsurance_id, string spCoveredByOtherIns,
+        public ActionResult SpOtherInsuranceUpdate(int? Employee_id, int? FamilyMember_id, int? OtherInsurance_id, string spCoveredByOtherInsurance,
             string spInsCarrier, string spInsMailingAddress, string spInsCity, string spInsState, string spInsZipCode, string spInsPhoneNumber,
             string spInsPolicyNumber)
         {
@@ -706,7 +703,7 @@ namespace Watson.Controllers
 
             //other.Employee_id = Employee_id;
             //other.FamilyMember_id = FamilyMember_id;
-            other.CoveredByOtherInsurance = spCoveredByOtherIns;
+            other.CoveredByOtherInsurance = spCoveredByOtherInsurance;
             other.InsuranceCarrier = spInsCarrier;
             other.InsuranceCarrier = spInsMailingAddress;
             other.InsuranceCarrier = spInsCity;
@@ -853,20 +850,6 @@ namespace Watson.Controllers
             return View();
         }
         
-        //public ActionResult NewDependentEnrollment(int? Employee_id, string RelationshipToInsured)
-        //{
-        //    SpouseAndDependentInsVM spAndDepInsVM = new SpouseAndDependentInsVM();
-
-        //    spAndDepInsVM.family = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id);
-        //    spAndDepInsVM.otherIns = db.Other_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id);
-
-        //    ViewBag.Employee_id = Employee_id;
-        //    //ViewBag.FamilyMember_id = FamilyMember_id;
-        //    ViewBag.RelationshipToInsured = RelationshipToInsured = "Dependent";
-
-        //    return View(spAndDepInsVM);
-        //}
-
         public JsonResult DepOtherInsuranceNew(int Employee_id, int FamilyMember_id, string depCoveredByOtherInsurance,
            string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
         {

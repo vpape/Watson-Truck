@@ -80,20 +80,20 @@
                     <label style="padding-left: 10px;">
                         Name:
                     </label>
-                    <input type="text" id="NameOfPerson1" name="NameOfPersonToReleaseInfoTo" value="@Html.DisplayFor(Model => Model.grpHealth.NameOfPersonToReleaseInfoTo)" disabled" />
+                    <input type="text" id="PersonOneReleaseInfoTo" name="NameOfPersonOneReleaseInfoTo"  value="@Html.DisplayFor(Model => Model.grpHealth.NameOfPersonOneReleaseInfoTo)" disabled" />
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
-                    <input type="text" id="NameOfPerson1Relationship" name="Relationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
+                    <input type="text"id="PersonOneRelationship" name="PersonOneRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
                     <hr />
                     <label style="padding-left: 10px;">
                         Name:
                     </label>
-                    <input type="text" id="NameOfPerson2" name="NameOfPersonToReleaseInfoTo" value="@Html.DisplayFor(Model => Model.grpHealth.NameOfPersonToReleaseInfoTo)" disabled" />
+                    <input type="text" id="PersonTwoReleaseInfoTo" name="NameOfPersonTwoReleaseInfoTo" value="@Html.DisplayFor(Model => Model.grpHealth.NameOfPersonTwoReleaseInfoTo)" disabled" />
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
-                    <input type="text" id="NameOfPerson2Relationship" name="Relationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
+                    <input type="text"id="PersonTwoRelationship" name="PersonTwoRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
                 </div>
             </div>
             <hr />
@@ -121,29 +121,29 @@
                             <label style="padding-left: 10px;">
                                 Policyholder's Signature:
                             </label>
-                            <input type="text" id="EmpSignature" name="EmployeeSignature" value="@Html.DisplayFor(Model => Model.grpHealth.EmployeeSignature)" disabled" />
+                            <input type="text" id="PolicyHolderSignature" name="AuthorizationFormPolicyHolderSignature" value="@Html.DisplayFor(Model => Model.grpHealth.AuthorizationFormPolicyHolderSignature)" disabled" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="EmpSignatureDate" name="EmployeeSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.EmployeeSignatureDate)" disabled" />
+                            <input type="date" id="PolicyHolderSignatureDate" name="AuthorizationFormPolicyHolderSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.AuthorizationFormPolicyHolderSignatureDate)" disabled" />
                             <hr />
                             <label style="padding-left: 10px;">
                                 Signature of person to release information to:
                             </label>
-                            <input type="text" id="NameOfPerson1Signature" name="OtherSignature" value="@Html.DisplayFor(Model => Model.grpHealth.OtherSignature)" disabled" />
+                            <input type="text" id="PersonOneSignature" name="PersonOneSignature" value="@Html.DisplayFor(Model => Model.grpHealth.PersonOneSignature)" disabled" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="NameOfPerson1SignatureDate" name="OtherSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.OtherSignatureDate)" disabled" />
+                            <input type="date" id="PersonOneSignatureDate" name="PersonOneSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.PersonOneSignatureDate)" disabled" />
                             <hr />
                             <label style="padding-left: 10px;">
                                 Signature of person to release information to:
                             </label>
-                            <input type="text" id="NameOfPerson2Signature" name="OtherSignature" value="@Html.DisplayFor(Model => Model.grpHealth.OtherSignature)" disabled" />
+                            <input type="text" id="PersonTwoSignature" name="PersonTwoSignature" value="@Html.DisplayFor(Model => Model.grpHealth.PersonTwoSignature)" disabled" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="NameOfPerson2SignatureDate" name="OtherSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.OtherSignatureDate)" />
+                            <input type="date" id="PersonTwoSignatureDate" name="PersonTwoSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.PersonTwoSignatureDate)" />
                         </div>
                         <hr />
                         <div class="form-group">
@@ -292,30 +292,32 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EditAuthorizationFormUpdate").addEventListener("click", function () {
-            NameOfPerson1 = document.getElementById("NameOfPerson1").value;
-            NameOfPerson2 = document.getElementById("NameOfPerson2").value;
-            NameOfPerson1Relationship = document.getElementById("NameOfPerson1Relationship").value;
-            NameOfPerson2Relationship = document.getElementById("NameOfPerson2Relationship").value;
-            EmpSignature = document.getElementById("EmpSignature").value;
-            EmpSignatureDate = document.getElementById("EmpSignatureDate").value;
-            NameOfPerson1Signature = document.getElementById("NameOfPerson1Signature").value;
-            NameOfPerson1SignatureDate = document.getElementById("NameOfPerson1SignatureDate").value;
-            NameOfPerson2Signature = document.getElementById("NameOfPerson2Signature").value;
-            NameOfPerson2SignatureDate = document.getElementById("NameOfPerson2SignatureDate").value;
 
+            NameOfPersonOne = document.getElementById("PersonOneReleaseInfoTo").value;
+            NameOfPersonOneRelationship = document.getElementById("PersonOneRelationship").value;
+            NameOfPersonTwo = document.getElementById("PersonTwoReleaseInfoTo").value;
+            NameOfPersonTwoRelationship = document.getElementById("PersonTwoRelationship").value;
+            PolicyHolderSignature = document.getElementById("PolicyHolderSignature").value;
+            PolicyHolderSignatureDate = document.getElementById("PolicyHolderSignatureDate").value;
+            PersonOneSignature = document.getElementById("PersonOneSignature").value;
+            PersonOneSignatureDate = document.getElementById("PersonOneSignatureDate").value;
+            PersonTwoSignature = document.getElementById("PersonTwoSignature").value;
+            PersonTwoSignatureDate = document.getElementById("PersonTwoSignatureDate").value;
 
             var data = {
                 "Employee_id": Employee_id,
-                "NameOfPerson1": NameOfPerson1,
-                "NameOfPerson1Relationship": NameOfPerson1Relationship,
-                "NameOfPerson2": NameOfPerson2,
-                "NameOfPerson2Relationship": NameOfPerson2Relationship,
-                "EmpSignature": EmpSignature,
-                "EmpSignatureDate": EmpSignatureDate,
-                "NameOfPerson1Signature": NameOfPerson1Signature,
-                "NameOfPerson1SignatureDate": NameOfPerson1SignatureDate,
-                "NameOfPerson2Signature": NameOfPerson2Signature,
-                "NameOfPerson2SignatureDate": NameOfPerson2SignatureDate
+                "GroupHealthInsurance_id": GroupHealthInsurance_id,
+                "PersonOneReleaseInfoTo": NameOfPersonOne,
+                "PersonOneRelationship": NameOfPersonOneRelationship,
+                "PersonTwoReleaseInfoTo": NameOfPersonTwo,
+                "PersonTwoRelationship": NameOfPersonTwoRelationship,
+                "PolicyHolderSignature": PolicyHolderSignature,
+                "PolicyHolderSignatureDate": PolicyHolderSignatureDate,
+                "PersonOneSignature": PersonOneSignature,
+                "PersonOneSignatureDate": PersonOneSignatureDate,
+                "PersonTwoSignature": PersonTwoSignature,
+                "PersonTwoSignatureDate": PersonTwoSignatureDate,
+
             }
 
             //var ret = postData('AuthorizationFormEditUpdate', data)
