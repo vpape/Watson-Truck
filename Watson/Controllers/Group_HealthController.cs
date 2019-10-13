@@ -287,7 +287,6 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        //show name of dependents, using foreach loop, include add insurance button where you can view and delete insurance
         public ActionResult GrpHealthEnrollment(int? Employee_id, int? GroupHealthInsurance_id)
         {
             ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
@@ -307,18 +306,10 @@ namespace Watson.Controllers
 
         }
 
-        //Create-GrpHealthEnrollment- when saving info below, the objects commented out were making it fail
-        public JsonResult GrpHealthEnrollmentNew(int? GroupHealthInsurance_id, int? Employee_id, int? FamilyMember_id, 
-            int? OtherInsurance_id, string GroupName, string IMSGroupNumber, string ReasonForGrpCoverageRefusal,
-            string OtherCoverage, string OtherReason, string Myself, string Spouse, string Dependent, /*DateTime CafeteriaPlanYear,*/
-            string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption,
-            string empDepGroupHealthOption, string empFamGroupHealthOption, string GrpHRefusalEmpSignature, /*DateTime GrpHRefusalEmpSignatureDate,*/
-            string GrpHEnrollmentEmpSignature, /*DateTime GrpHEnrollmentEmpSignatureDate,*/ string empDepartment, string empEnrollmentType,
-            int empPayroll_id, string empClass, string empJobTitle, /*DateTime empHireDate,*/ /*decimal empAnnualSalary,*/ 
-            /*DateTime empEffectiveDate,*/ /*int empHrsWkPerWk,*/ string InsMECPlan, string InsStndPlan, string InsBuyUpPlan, string DentalPlan, 
-            string VisionPlan, string spOtherInsCoverage)
+         public JsonResult EmploymentInfoGrpHealthEnrollment(int? Employee_id, string GroupName, string IMSGroupNumber, string empDepartment,
+             string empEnrollmentType, string empPayroll_id, string empClass, string empJobTitle /*DateTime empHireDate,*/ /*decimal empAnnualSalary,*/
+             /* DateTime empEffectiveDate,*/ /*int empHrsWkPerWk*/)
         {
-           
             //Employee emp = new Employee();
             Employee emp = db.Employees
              .Where(i => i.Employee_id == Employee_id)
@@ -332,12 +323,32 @@ namespace Watson.Controllers
             //emp.EffectiveDate = empEffectiveDate;
             //emp.HoursWorkedPerWeek = empHrsWkPerWk;
 
-            ViewBag.Employee_id = Employee_id;
-
-            Group_Health g = new Group_Health();
+            Group_Health g = db.Group_Health
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
 
             g.GroupName = GroupName;
             g.IMSGroupNumber = IMSGroupNumber;
+
+            db.SaveChanges();
+
+            int result = g.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        //Create-GrpHealthEnrollment- when saving info below, the objects commented out were making it fail
+        public JsonResult GrpHealthEnrollmentNew(int? Employee_id, int InsurancePlan_id, string ReasonForGrpCoverageRefusal, 
+            string OtherCoverage, string OtherReason, string Myself, string Spouse, string Dependent, /*DateTime CafeteriaPlanYear,*/
+            string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption, 
+            string empFamGroupHealthOption, string GrpHRefusalEmpSignature, /*DateTime GrpHRefusalEmpSignatureDate,*/string GrpHEnrollmentEmpSignature,
+            /*DateTime GrpHEnrollmentEmpSignatureDate,*/ string InsMECPlan, string InsStndPlan, string InsBuyUpPlan, string DentalPlan,
+            string VisionPlan, string spOtherInsCoverage)
+        {
+           
+            Group_Health g = db.Group_Health
+                .Where(i => i.Employee_id == Employee_id)
+                .Single();
 
             g.ReasonForGrpCoverageRefusal = ReasonForGrpCoverageRefusal;
             g.OtherCoverage = OtherCoverage;
@@ -356,12 +367,10 @@ namespace Watson.Controllers
             g.GrpHEnrollmentEmpSignature = GrpHEnrollmentEmpSignature;
             //g.GrpHEnrollmentEmpSignatureDate = GrpHEnrollmentEmpSignatureDate;
 
-            ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
-
-            db.SaveChanges();
-
+       
             InsurancePlan insPlan = new InsurancePlan();
 
+            insPlan.InsurancePlan_id = InsurancePlan_id;
             insPlan.MECPlan = InsMECPlan;
             insPlan.StandardPlan = InsStndPlan;
             insPlan.BuyUpPlan = InsBuyUpPlan;
@@ -370,31 +379,14 @@ namespace Watson.Controllers
 
             ViewBag.insPlan = insPlan;
 
-            Other_Insurance o = new Other_Insurance();
-
-            o.CoveredByOtherInsurance = spOtherInsCoverage;
-
-
-            ViewBag.OtherInsurance_id = OtherInsurance_id;
-
-        
-            //when saving grouphealth , it fails at this point
-            Family_Info sp = db.Family_Info
-                .Where(i => i.FamilyMember_id == FamilyMember_id)
-                .Single();
-
-            ViewBag.sp = sp;
 
             if (ModelState.IsValid)
             {
-                db.Group_Health.Add(g);
                 db.InsurancePlans.Add(insPlan);
-                db.Other_Insurance.Add(o);
-                
                 db.SaveChanges();
             }
 
-            int result = g.GroupHealthInsurance_id;
+            int result = g.Employee_id;
            
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
@@ -436,7 +428,7 @@ namespace Watson.Controllers
             string Myself, string Spouse, string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear,
             string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption,
             string empFamGroupHealthOption, string GrpHRefusalEmpSignature, DateTime GrpHRefusalEmpSignatureDate, string GrpHEnrollmentEmpSignature,
-            DateTime GrpHEnrollmentEmpSignatureDate, string empDepartment, string empEnrollmentType, int empPayroll_id, string empClass,
+            DateTime GrpHEnrollmentEmpSignatureDate, string empDepartment, string empEnrollmentType, string empPayroll_id, string empClass,
             string empJobTitle, DateTime empHireDate, decimal empAnnualSalary, DateTime empEffectiveDate, int empHrsWkPerWk, string InsMECPlan,
             string InsStndPlan, string InsBuyUpPlan, string DentalPlan, string VisionPlan, string spOtherInsCoverage, string spInsCarrier,
             string spInsPolicyNumber, string spInsPhoneNumber, string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState,

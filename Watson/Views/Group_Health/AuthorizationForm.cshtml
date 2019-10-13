@@ -156,9 +156,10 @@
             </table>
         </div>
     </div>
-    @*<p>
-        @Html.ActionLink("Edit Authorization Form", "EditAuthorizationForm", new { Employee_id = ViewBag.Employee_id }, null)
-    </p>*@
+    <button onclick="return EditAuthorizationForm(this.Employee_id)">Edit Authorization Form</button>
+    <p>
+        @Html.ActionLink("Back to Group Health", "GrpHealthEnrollment", new { Employee_id = ViewBag.Employee_id })
+    </p>
 </body>
 </html>
 
@@ -312,6 +313,13 @@
 
                 }
             }
+        })
+    }
+
+    function EditAuthorizationForm() {
+        document.addEventListener("click", function () {
+
+            window.location.href= "/Group_Health/EditAuthorization?Employee_id=" + @ViewBag.Employee_id;
         })
     }
 

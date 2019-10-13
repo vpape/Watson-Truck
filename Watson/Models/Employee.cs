@@ -59,7 +59,7 @@ namespace Watson.Models
         public Nullable<decimal> AnnualSalary { get; set; }
         public string Department { get; set; }
         public string EnrollmentType { get; set; }
-        public Nullable<int> Payroll_id { get; set; }
+        public string Payroll_id { get; set; }
         public string Class { get; set; }
         public string PObox { get; set; }
         public string CityTwo { get; set; }

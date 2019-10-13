@@ -80,11 +80,11 @@
                     <label style="padding-left: 10px;">
                         Name:
                     </label>
-                    <input type="text" id="PersonOneReleaseInfoTo" name="NameOfPersonOneReleaseInfoTo"  value="@Html.DisplayFor(Model => Model.grpHealth.NameOfPersonOneReleaseInfoTo)" disabled" />
+                    <input type="text" id="PersonOneReleaseInfoTo" name="NameOfPersonOneReleaseInfoTo" value="@Html.DisplayFor(Model => Model.grpHealth.NameOfPersonOneReleaseInfoTo)" disabled" />
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
-                    <input type="text"id="PersonOneRelationship" name="PersonOneRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
+                    <input type="text" id="PersonOneRelationship" name="PersonOneRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
                     <hr />
                     <label style="padding-left: 10px;">
                         Name:
@@ -93,7 +93,7 @@
                     <label style="padding-left: 10px;">
                         Relationship:
                     </label>
-                    <input type="text"id="PersonTwoRelationship" name="PersonTwoRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
+                    <input type="text" id="PersonTwoRelationship" name="PersonTwoRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
                 </div>
             </div>
             <hr />
@@ -157,8 +157,9 @@
         </div>
     </div>
     <p>
-        @Html.ActionLink("Return to Authorization Form", "AuthorizationForm", new { Employee_id = ViewBag.Employee_id }, null)
+        @Html.ActionLink("Return to Authorization Form", "AuthorizationForm", new { Employee_id = ViewBag.Employee_id })
     </p>
+
 </body>
 </html>
 
