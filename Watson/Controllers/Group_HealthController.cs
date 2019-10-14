@@ -294,12 +294,23 @@ namespace Watson.Controllers
 
             GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
 
-            groupHGrpHEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);   
-            groupHGrpHEnrollmentVM.family = db.Family_Info.Where(i=> i.Employee_id == Employee_id).ToList();
+            groupHGrpHEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
             groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
-            groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id).ToList();
 
-            
+            groupHGrpHEnrollmentVM.spouse = db.Family_Info.FirstOrDefault(i=> i.Employee_id == Employee_id && i.RelationshipToInsured == "Spouse");
+            groupHGrpHEnrollmentVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id && i.RelationshipToInsured != "Spouse").ToList();
+            if (groupHGrpHEnrollmentVM.spouse != null)
+            {
+                groupHGrpHEnrollmentVM.spouseInsurance = db.Other_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id && i.FamilyMember_id == groupHGrpHEnrollmentVM.spouse.FamilyMember_id);
+                groupHGrpHEnrollmentVM.otherIns        = db.Other_Insurance.Where(         i => i.Employee_id == Employee_id && i.FamilyMember_id != groupHGrpHEnrollmentVM.spouse.FamilyMember_id).ToList();
+            }
+            else
+            {
+                groupHGrpHEnrollmentVM.spouseInsurance = null;
+                groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id).ToList();
+            }
+
+
             return View(groupHGrpHEnrollmentVM);
 
             //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
