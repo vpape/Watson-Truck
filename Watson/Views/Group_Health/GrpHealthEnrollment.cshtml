@@ -1055,7 +1055,7 @@
                     authorization upon request.
                 </p>
                 <hr />
-                <div>
+                <form>
                     <div>
                         <label style="padding-left: 10px;">
                             Employee Signature:
@@ -1065,9 +1065,8 @@
                             Date:
                         </label>
                         <input type="date" id="GrpHEnrollmentEmpSignatureDate" name="GrpHEnrollmentEmpSignatureDate" value="" />
-                        <hr />
                     </div>
-                </div>
+                </form>
                 <hr />
                 <div>
                     <form class="table-bordered">
@@ -1075,11 +1074,11 @@
                             <h4><b>Refusal of Group Health Coverage</b></h4>
                             <h6>This is to certify I have been given an opportunity to apply for group health coverage available to me through my Employer, and I have decided to not apply coverage for:</h6>
                             <div id="divGrpHRefusalSelection">
-                                <input type="checkbox" class="checkbox-inline" id="Myself" name="Myself" value="Myself" />
+                                <input type="checkbox" class="checkbox-inline" id="Myself" name="Myself" value="Myself" @((Model.grpHealth.Myself == "true") ? "checked" : "") />
                                 <label for="Myself">Myself</label>
-                                <input type="checkbox" class="checkbox-inline" id="Spouse" name="Spouse" value="Spouse" />
+                                <input type="checkbox" class="checkbox-inline" id="Spouse" name="Spouse" value="Spouse" @((Model.grpHealth.Spouse == "true") ? "checked" : "") />
                                 <label for="Spouse">Spouse</label>
-                                <input type="checkbox" class="checkbox-inline" id="Dependent" name="Dependent" value="Child(ren)" />
+                                <input type="checkbox" class="checkbox-inline" id="Dependent" name="Dependent" value="Dependent" @((Model.grpHealth.Dependent == "true") ? "checked" : "") />
                                 <label for="Child(ren)">Child(ren)</label>
                             </div>
                             <p></p>

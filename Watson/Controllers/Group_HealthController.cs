@@ -352,9 +352,9 @@ namespace Watson.Controllers
         public JsonResult GrpHealthEnrollmentNew(int? Employee_id, /*int InsurancePlan_id,*/ string OtherCoverageSelection, string OtherReasonSelection,
             string ReasonForGrpCoverageRefusal, string Myself, string Spouse, string Dependent, /*DateTime CafeteriaPlanYear,*/
             string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption, 
-            string empFamGroupHealthOption, string GrpHRefusalEmpSignature, /*DateTime GrpHRefusalEmpSignatureDate,*/ string GrpHEnrollmentEmpSignature,
-            /*DateTime GrpHEnrollmentEmpSignatureDate,*/ string InsMECPlan, string InsStndPlan, string InsBuyUpPlan, string DentalPlan,
-            string VisionPlan, string spOtherInsCoverage)
+            string empFamGroupHealthOption, string GrpHEnrollmentEmpSignature, /*DateTime GrpHEnrollmentEmpSignatureDate,*/
+            string GrpHRefusalEmpSignature, /*DateTime GrpHRefusalEmpSignatureDate,*/  string InsMECPlan, string InsStndPlan,
+            string InsBuyUpPlan, string DentalPlan, string VisionPlan)
         {
            
             Group_Health g = db.Group_Health
@@ -373,12 +373,12 @@ namespace Watson.Controllers
             g.EmployeeAndSpouse = empSpGroupHealthOption;
             g.EmployeeAndDependent = empDepGroupHealthOption;
             g.EmployeeAndFamily = empFamGroupHealthOption;
-            g.GrpHRefusalEmpSignature = GrpHRefusalEmpSignature;
-            //g.GrpHRefusalEmpSignatureDate = GrpHRefusalEmpSignatureDate;
             g.GrpHEnrollmentEmpSignature = GrpHEnrollmentEmpSignature;
             //g.GrpHEnrollmentEmpSignatureDate = GrpHEnrollmentEmpSignatureDate;
+            g.GrpHRefusalEmpSignature = GrpHRefusalEmpSignature;
+            //g.GrpHRefusalEmpSignatureDate = GrpHRefusalEmpSignatureDate;
 
-       
+
             InsurancePlan insPlan = new InsurancePlan();
 
             //insPlan.InsurancePlan_id = InsurancePlan_id;
