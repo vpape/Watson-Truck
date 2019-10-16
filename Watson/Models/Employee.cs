@@ -54,9 +54,9 @@ namespace Watson.Models
         public string isActive { get; set; }
         public Nullable<System.DateTime> EligibilityDate { get; set; }
         public string WorkStatus { get; set; }
-        public Nullable<int> HoursWorkedPerWeek { get; set; }
+        public string HoursWorkedPerWeek { get; set; }
         public string JobTitle { get; set; }
-        public Nullable<decimal> AnnualSalary { get; set; }
+        public string AnnualSalary { get; set; }
         public string Department { get; set; }
         public string EnrollmentType { get; set; }
         public string Payroll_id { get; set; }

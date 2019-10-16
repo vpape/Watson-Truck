@@ -660,11 +660,11 @@
                 <p></p>
                 <div>
                     <label>Effective Date:</label>
-                    <input type="date" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="" />
+                    <input type="date" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="@Convert.ToDateTime(Model.employee.EffectiveDate).ToString("yyyy-MM-dd")" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="HoursWorkedPerWeek" id="empHrsWrkPerWk" placeholder="Min. Hrs. Worked/Wk" value="@Html.DisplayFor(Model => Model.employee.HoursWorkedPerWeek)" />
+                    <input type="text" class="form-control" name="HoursWorkedPerWeek" id="empHrsWrkPerWk" placeholder="Min. Hrs. Worked/Wk" maxlength="3" value="@Html.DisplayFor(Model => Model.employee.HoursWorkedPerWeek)" />
                 </div>
                 <p></p>
                 <div class="form-group">
@@ -893,17 +893,17 @@
                         </tr>
                         <tr>
                             <td style="padding-left: 20px;">
-                                <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" value="Medical" @((Model.spouse.Medical == "true") ? "checked" : "") readonly />
+                                <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" value="Medical" @((Model.spouse.Medical == "true") ? "checked" : "") disabled />
                                 <text>Medical</text>
-                                <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" value="Dental" @((Model.spouse.Dental == "true") ? "checked" : "") readonly />
+                                <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" value="Dental" @((Model.spouse.Dental == "true") ? "checked" : "") disabled />
                                 <text>Dental</text>
                                 <p></p>
                             </td>
                             @*<select id="spOtherInsCoverage" name="OtherInsuranceCoverage" class="form-control"></select>*@
                             <td style="padding-left: 20px;">
-                                <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" value="Vision" @((Model.spouse.Vision == "true") ? "checked" : "") readonly />
+                                <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" value="Vision" @((Model.spouse.Vision == "true") ? "checked" : "") disabled />
                                 <text>Vision</text>
-                                <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" value="Indemnity" @((Model.spouse.Indemnity == "true") ? "checked" : "") readonly />
+                                <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" value="Indemnity" @((Model.spouse.Indemnity == "true") ? "checked" : "") disabled />
                                 <text>Indemnity</text>
                             </td>
                         </tr>
@@ -1091,7 +1091,7 @@
                             <h4><b>Reason for Refusal</b></h4>
                             <div id="divReasonForRefusalSelection">
                                 <label class="radio-inline" for="OtherCoverage"><input type="radio" id="OtherCoverageSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" />OtherCoverage</label>
-                                <label class="radio-inline" for="OtherReason"><input type="radio" id="OtherReasonSelection" class="radio-inline" name="OtherCoverage" onclick="return showReasonForRefusal()" value="OtherReason" checked />OtherReason</label>
+                                <label class="radio-inline" for="OtherReason"><input type="radio" id="OtherReasonSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" checked />OtherReason</label>
                                 <p></p>
                                 <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="" />
                             </div>
@@ -1353,8 +1353,8 @@
             empPayroll_id = document.getElementById("empPayroll_id").value;
             empClass = document.getElementById("empClass").value;
             empAnnualSalary = document.getElementById("empAnnualSalary").value;
-            empJobTitle = document.getElementById("empJobTitle").value;
-            empHireDate = document.getElementById("empHireDate").value;
+            //empJobTitle = document.getElementById("empJobTitle").value;
+            //empHireDate = document.getElementById("empHireDate").value;
             empEffectiveDate = document.getElementById("empEffectiveDate").value;
             empHrsWrkPerWk = document.getElementById("empHrsWrkPerWk").value;
 
@@ -1367,8 +1367,8 @@
                 "empPayroll_id": empPayroll_id,
                 "empClass": empClass,
                 "empAnnualSalary": empAnnualSalary,
-                "empJobTitle": empJobTitle,
-                "empHireDate": empHireDate,
+                //"empJobTitle": empJobTitle,
+                //"empHireDate": empHireDate,
                 "empEffectiveDate": empEffectiveDate,
                 "empHrsWrkPerWk": empHrsWrkPerWk,
 
@@ -1401,13 +1401,14 @@
 
 
         document.querySelector("#GrpHealthInsStepTwo").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
             NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
             empOnlyGroupHealthOption = document.getElementById("empOnlyGroupHealthOption").value;
             empSpGroupHealthOption = document.getElementById("empSpGroupHealthOption").value;
             empDepGroupHealthOption = document.getElementById("empDepGroupHealthOption").value;
             empFamGroupHealthOption = document.getElementById("empFamGroupHealthOption").value;
 
-            spOtherInsCoverage = document.getElementById("spOtherInsCoverage").value;
+            //spOtherInsCoverage = document.getElementById("spOtherInsCoverage").value;
             //spInsCarrier = document.getElementById("spInsCarrier").value;
             //spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
             //spInsCity = document.getElementById("spInsCity").value;
@@ -1430,23 +1431,24 @@
 
             GrpHEnrollmentEmpSignature = document.getElementById("GrpHEnrollmentEmpSignature").value;
             GrpHEnrollmentEmpSignatureDate = document.getElementById("GrpHEnrollmentEmpSignatureDate").value;
-            Myself = document.getElementById("Myself").value;
-            Spouse = document.getElementById("Spouse").value;
-            Dependent = document.getElementById("Dependent").value;
+            Myself = document.getElementById("Myself").checked;
+            Spouse = document.getElementById("Spouse").checked;
+            Dependent = document.getElementById("Dependent").checked;
+            OtherCoverageSelection = document.getElementById("OtherCoverageSelection").checked;
+            OtherReasonSelection = document.getElementById("OtherReasonSelection").checked;
+            ReasonForGrpCoverageRefusal = document.getElementById("OtherReasonComment").value;
             GrpHRefusalEmpSignature = document.getElementById("GrpHRefusalEmpSignature").value;
             GrpHRefusalEmpSignatureDate = document.getElementById("GrpHRefusalEmpSignatureDate").value;
 
             var data = {
-                "GrpHealth_id": GroupHealthInsurance_id,
                 "Employee_id": Employee_id,
-                "FamilyMember_id": FamilyMember_id,
                 "NoneGroupHealthOption": NoneGroupHealthOption,
                 "empOnlyGroupHealthOption": empOnlyGroupHealthOption,
                 "empSpGroupHealthOption": empSpGroupHealthOption,
                 "empDepGroupHealthOption": empDepGroupHealthOption,
                 "empFamGroupHealthOption": empFamGroupHealthOption,
 
-                "spOtherInsCoverage": spOtherInsCoverage,
+                //"spOtherInsCoverage": spOtherInsCoverage,
                 //"spInsCarrier": spInsCarrier,
                 //"spInsMailingAddress": spInsMailingAddress,
                 //"spInsCity": spInsCity,
@@ -1472,6 +1474,9 @@
                 "Myself": Myself,
                 "Spouse": Spouse,
                 "Dependent": Dependent,
+                "OtherCoverageSelection": OtherCoverageSelection,
+                "OtherReasonSelection": OtherReasonSelection,
+                "ReasonForGrpCoverageRefusal": ReasonForGrpCoverageRefusal,
                 "GrpHRefusalEmpSignature": GrpHRefusalEmpSignature,
                 "GrpHRefusalEmpSignatureDate": GrpHRefusalEmpSignatureDate,
             }

@@ -147,9 +147,9 @@
           <Property Name="isActive" Type="varchar" MaxLength="5" />
           <Property Name="EligibilityDate" Type="date" />
           <Property Name="WorkStatus" Type="varchar" MaxLength="25" />
-          <Property Name="HoursWorkedPerWeek" Type="int" />
+          <Property Name="HoursWorkedPerWeek" Type="varchar" MaxLength="3" />
           <Property Name="JobTitle" Type="varchar" MaxLength="25" />
-          <Property Name="AnnualSalary" Type="decimal" Precision="13" Scale="4" />
+          <Property Name="AnnualSalary" Type="varchar" MaxLength="12" />
           <Property Name="Department" Type="varchar" MaxLength="25" />
           <Property Name="EnrollmentType" Type="varchar" MaxLength="25" />
           <Property Name="Payroll_id" Type="varchar" MaxLength="8" />
@@ -1072,12 +1072,12 @@
           <Property Name="isActive" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
           <Property Name="EligibilityDate" Type="DateTime" Precision="0" />
           <Property Name="WorkStatus" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="HoursWorkedPerWeek" Type="Int32" />
+          <Property Name="HoursWorkedPerWeek" Type="String" />
           <Property Name="JobTitle" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="AnnualSalary" Type="Decimal" Precision="13" Scale="4" />
+          <Property Name="AnnualSalary" Type="String" />
           <Property Name="Department" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="EnrollmentType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="Payroll_id" Type="String" />
+          <Property Name="Payroll_id" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
           <Property Name="Class" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Beneficiaries" Relationship="WatsonTruckModel.FK_Beneficiary_Employee" FromRole="Employee" ToRole="Beneficiary" />
           <NavigationProperty Name="Deductions" Relationship="WatsonTruckModel.FK_Deductions_Employee" FromRole="Employee" ToRole="Deduction" />
