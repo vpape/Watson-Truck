@@ -176,8 +176,6 @@
                     <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="true" @((Model.grpHealth.OtherInsuranceCoverage == "true") ? "checked" : "") />Yes</label>
                     <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="false" @((Model.grpHealth.OtherInsuranceCoverage == "false") ? "checked" : "") />No</label>
                     @*@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Yes", true) Yes @Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "No", false) No*@
-                    @*<label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="@Html.DisplayFor(model => model.grpHealth.OtherInsuranceCoverage, "Yes", true)" />Yes</label>*@
-                    @*<label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="@Html.DisplayFor(model => model.grpHealth.OtherInsuranceCoverage, "No", false)" />No</label>*@
                 </div>
                 <p></p>
                 <div id="empInsInfo">

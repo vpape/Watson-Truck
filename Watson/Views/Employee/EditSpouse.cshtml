@@ -194,6 +194,18 @@
                         <input type="text" id="EmployerPhoneNumber" class="form-control" placeholder="Phone #" name="EmployerPhoneNumber" maxlength="14" value="@Html.DisplayFor(Model => Model.family.EmployerPhoneNumber)" />
                     </div>
                 </div>
+                <div id="SpOtherIns">
+                    <label>Other Insurance Coverage?</label>
+                    <label class="radio-inline"><input type="radio" id="SpOtherInsCoverage" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="yes" checked />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="SpOtherInsCoverage" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="no" />No</label>
+                    <div id="SpOtherInsCoverageSelection">
+                        <label for="OtherInsuranceCoverage" class="control-label">Coverage:</label>
+                        <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" value="Medical" @((Model.family.Medical == "True") ? "checked" : "") /><text for="Medical">Medical</text>
+                        <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" value="Dental" @((Model.family.Dental == "True")? "checked" : "")/><text for="Dental">Dental</text>
+                        <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" value="Vision" @((Model.family.Vision == "True")? "checked" : "")/><text for="Vision">Vision</text>
+                        <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" value="Indemnity" @((Model.family.Indemnity == "True") ? "checked" : "") /><text for="Indemnity">Indemnity</text>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
@@ -334,6 +346,19 @@
         });
     }
 
+    function showHideSpOtherInsCoverage() {
+        document.addEventListener("click", function () {
+            var selection = document.getElementById("SpOtherInsCoverage");
+
+            if (selection.checked == true) {
+
+                document.getElementById("SpOtherInsCoverageSelection").style.visibility = "visible";
+            }
+            else {
+                document.getElementById("SpOtherInsCoverageSelection").style.visibility = "hidden";
+            }
+        });
+    }
 
     document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
         var maritalStatus = document.querySelector("#MaritalStatus").value;

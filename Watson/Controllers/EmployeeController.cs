@@ -589,12 +589,13 @@ namespace Watson.Controllers
         }
 
         //EditUpdate-Spouse
-        public JsonResult SpEditUpdate(int? Employee_id, int? FamilyMember_id, string RelationshipToInsured, string MaritalStatus,
+        public JsonResult SpEditUpdate(int? Employee_id, int? FamilyMember_id, string RelationshipToInsured, string MaritalStatus, 
             string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress,
             string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, string City2, 
             string State2, string ZipCode2, string EmailAddress, string PhoneNumber, string CellPhone, string Employer, 
-            string EmployerAddress, string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode,
-            string EmployerPhoneNumber)
+            string EmployerAddress, string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, 
+            string EmployerPhoneNumber, string spOtherInsuranceCoverage, string spOtherMedicalCoverage, string spOtherDentalCoverage,
+            string spOtherVisionCoverage, string spIndemnityCoverage)
         {
             var sp = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
@@ -644,6 +645,12 @@ namespace Watson.Controllers
             sp.EmployerState = EmployerState;
             sp.EmployerZipCode = EmployerZipCode;
             sp.EmployerPhoneNumber = EmployerPhoneNumber;
+
+            sp.OtherInsuranceCoverage = spOtherInsuranceCoverage;
+            sp.Medical = spOtherMedicalCoverage;
+            sp.Dental = spOtherDentalCoverage;
+            sp.Vision = spOtherVisionCoverage;
+            sp.Indemnity = spIndemnityCoverage;
 
 
             ViewBag.FamilyMember_id = sp.FamilyMember_id;
