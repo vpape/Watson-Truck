@@ -1387,11 +1387,11 @@ namespace Watson.Controllers
 
         //Create-SalaryRedirect
         public JsonResult SalaryRedirectionUpdate(int Employee_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
-            decimal PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, decimal PremiumPostTaxMedIns, string DentalInsProvider,
-            string EEelectionPreTaxDentalIns, decimal PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns,
-            decimal PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
-            decimal PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, decimal PremiumPostTaxVisionIns,
-            decimal TotalPreTax, decimal TotalPostTax, string empSignature, DateTime empSignatureDate, string empInitials1)
+            string PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, string PremiumPostTaxMedIns, string DentalInsProvider,
+            string EEelectionPreTaxDentalIns, string PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns,
+            string PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
+            string PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, string PremiumPostTaxVisionIns,
+            string TotalPreTax, string TotalPostTax, string empSignature, DateTime empSignatureDate, string empInitials1)
         {
             Employee e = db.Employees
             .Where(i => i.Employee_id == Employee_id)
@@ -1458,11 +1458,11 @@ namespace Watson.Controllers
 
         //EditUpdate-SalaryRedirect
         public JsonResult SalaryRedirectionEditUpdate(int Employee_id, int Deductions_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
-            decimal PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, decimal PremiumPostTaxMedIns, string DentalInsProvider,
-            string EEelectionPreTaxDentalIns, decimal PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns,
-            decimal PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
-            decimal PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, decimal PremiumPostTaxVisionIns,
-            decimal TotalPreTax, decimal TotalPostTax, string empSignature, DateTime empSignatureDate, string empInitials1)
+            string PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, string PremiumPostTaxMedIns, string DentalInsProvider,
+            string EEelectionPreTaxDentalIns, string PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns,
+            string PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
+            string PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, string PremiumPostTaxVisionIns,
+            string TotalPreTax, string TotalPostTax, string empSignature, DateTime empSignatureDate, string empInitials1)
         {
             Employee e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)

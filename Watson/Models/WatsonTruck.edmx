@@ -108,11 +108,11 @@
           <Property Name="Coverage" Type="varchar" MaxLength="40" />
           <Property Name="Provider" Type="varchar" MaxLength="40" />
           <Property Name="EEelectionPreTax" Type="varchar" MaxLength="40" />
-          <Property Name="PremiumPreTax" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PremiumPreTax" Type="varchar" MaxLength="9" />
           <Property Name="EEelectionPostTax" Type="varchar" MaxLength="40" />
-          <Property Name="PremiumPostTax" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="TotalPreTax" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="TotalPostTax" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PremiumPostTax" Type="varchar" MaxLength="9" />
+          <Property Name="TotalPreTax" Type="varchar" MaxLength="9" />
+          <Property Name="TotalPostTax" Type="varchar" MaxLength="9" />
           <Property Name="EmployeeSignature" Type="varchar" MaxLength="50" />
           <Property Name="EmployeeSignatureDate" Type="date" />
           <Property Name="EmployeeInitials" Type="varchar" MaxLength="3" />
@@ -1032,11 +1032,11 @@
           <Property Name="Coverage" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="Provider" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPreTax" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="PremiumPreTax" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PremiumPreTax" Type="String" />
           <Property Name="EEelectionPostTax" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="PremiumPostTax" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="TotalPreTax" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="TotalPostTax" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PremiumPostTax" Type="String" />
+          <Property Name="TotalPreTax" Type="String" />
+          <Property Name="TotalPostTax" Type="String" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Deductions_Employee" FromRole="Deduction" ToRole="Employee" />
           <Property Name="EmployeeSignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EmployeeSignatureDate" Type="DateTime" Precision="0" />
@@ -1072,9 +1072,9 @@
           <Property Name="isActive" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
           <Property Name="EligibilityDate" Type="DateTime" Precision="0" />
           <Property Name="WorkStatus" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="HoursWorkedPerWeek" Type="String" />
+          <Property Name="HoursWorkedPerWeek" Type="String" MaxLength="3" Unicode="false" FixedLength="false" />
           <Property Name="JobTitle" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="AnnualSalary" Type="String" />
+          <Property Name="AnnualSalary" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
           <Property Name="Department" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="EnrollmentType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="Payroll_id" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />

@@ -19,11 +19,11 @@ namespace Watson.Models
         public string Coverage { get; set; }
         public string Provider { get; set; }
         public string EEelectionPreTax { get; set; }
-        public Nullable<decimal> PremiumPreTax { get; set; }
+        public string PremiumPreTax { get; set; }
         public string EEelectionPostTax { get; set; }
-        public Nullable<decimal> PremiumPostTax { get; set; }
-        public Nullable<decimal> TotalPreTax { get; set; }
-        public Nullable<decimal> TotalPostTax { get; set; }
+        public string PremiumPostTax { get; set; }
+        public string TotalPreTax { get; set; }
+        public string TotalPostTax { get; set; }
         public string EmployeeSignature { get; set; }
         public Nullable<System.DateTime> EmployeeSignatureDate { get; set; }
         public string EmployeeInitials { get; set; }
