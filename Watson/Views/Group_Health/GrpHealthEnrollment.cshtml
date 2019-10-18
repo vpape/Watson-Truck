@@ -1058,11 +1058,11 @@
                         <label style="padding-left: 10px;">
                             Employee Signature:
                         </label>
-                        <input type="text" id="GrpHEnrollmentEmpSignature" name="GrpHEnrollmentEmpSignature" value="" />
+                        <input type="text" id="GrpHEnrollmentEmpSignature" name="GrpHEnrollmentEmpSignature" value="@Model.grpHealth.GrpHEnrollmentEmpSignature" />
                         <label style="padding-left: 10px;">
                             Date:
                         </label>
-                        <input type="date" id="GrpHEnrollmentEmpSignatureDate" name="GrpHEnrollmentEmpSignatureDate" value="" />
+                        <input type="date" id="GrpHEnrollmentEmpSignatureDate" name="GrpHEnrollmentEmpSignatureDate" value="@Model.grpHealth.GrpHEnrollmentEmpSignatureDate" />
                     </div>
                 </form>
                 <hr />
@@ -1072,11 +1072,11 @@
                             <h4><b>Refusal of Group Health Coverage</b></h4>
                             <h6>This is to certify I have been given an opportunity to apply for group health coverage available to me through my Employer, and I have decided to not apply coverage for:</h6>
                             <div id="divGrpHRefusalSelection">
-                                <input type="checkbox" class="checkbox-inline" id="Myself" name="Myself" value="Myself" @((Model.grpHealth.Myself == "true") ? "checked" : "") />
+                                <input type="checkbox" class="checkbox-inline" id="Myself" name="Myself" value="Myself" @((Model.grpHealth.Myself == "True") ? "checked" : "") />
                                 <label for="Myself">Myself</label>
-                                <input type="checkbox" class="checkbox-inline" id="Spouse" name="Spouse" value="Spouse" @((Model.grpHealth.Spouse == "true") ? "checked" : "") />
+                                <input type="checkbox" class="checkbox-inline" id="Spouse" name="Spouse" value="Spouse" @((Model.grpHealth.Spouse == "True") ? "checked" : "") />
                                 <label for="Spouse">Spouse</label>
-                                <input type="checkbox" class="checkbox-inline" id="Dependent" name="Dependent" value="Dependent" @((Model.grpHealth.Dependent == "true") ? "checked" : "") />
+                                <input type="checkbox" class="checkbox-inline" id="Dependent" name="Dependent" value="Dependent" @((Model.grpHealth.Dependent == "True") ? "checked" : "") />
                                 <label for="Child(ren)">Child(ren)</label>
                             </div>
                             @*@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Yes", true) Yes @Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "No", false) No*@
@@ -1091,7 +1091,7 @@
                                 <label class="radio-inline" for="OtherCoverage"><input type="radio" id="OtherCoverageSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" />OtherCoverage</label>
                                 <label class="radio-inline" for="OtherReason"><input type="radio" id="OtherReasonSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" checked />OtherReason</label>
                                 <p></p>
-                                <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="" />
+                                <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="@Model.grpHealth.ReasonForGrpCoverageRefusal" />
                             </div>
                             @*@Html.RadioButtonFor(model => model.family.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.family.Gender, "female", false) Female*@
                             <hr />
@@ -1099,11 +1099,11 @@
                                 <label style="padding-left: 10px;">
                                     Employee Signature:
                                 </label>
-                                <input type="text" id="GrpHRefusalEmpSignature" name="GrpHRefusalEmpSignature" value="" />
+                                <input type="text" id="GrpHRefusalEmpSignature" name="GrpHRefusalEmpSignature" value="@Model.grpHealth.GrpHRefusalEmpSignature" />
                                 <label style="padding-left: 10px;">
                                     Date:
                                 </label>
-                                <input type="date" id="GrpHRefusalEmpSignatureDate" name="GrpHRefusalEmpSignatureDate" value="" />
+                                <input type="date" id="GrpHRefusalEmpSignatureDate" name="GrpHRefusalEmpSignatureDate" value="@Model.grpHealth.GrpHRefusalEmpSignatureDate" />
                             </div>
                         </div>
                     </form>
@@ -1469,7 +1469,7 @@
                 //"depInsPhoneNumber": depInsPhoneNumber,
 
                 "GrpHEnrollmentEmpSignature": GrpHEnrollmentEmpSignature,
-                "GrpHEnrollmentEmpSignature": GrpHEnrollmentEmpSignatureDate,
+                "GrpHEnrollmentEmpSignatureDate": GrpHEnrollmentEmpSignatureDate,
                 "Myself": Myself,
                 "Spouse": Spouse,
                 "Dependent": Dependent,

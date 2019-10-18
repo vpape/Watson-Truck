@@ -611,8 +611,7 @@ namespace Watson.Controllers
             decimal PremiumPostTaxTermLifeIns, string WholeLifeCoverage, string WholeLifeInsProvider, string EEelectionPreTaxWholeLifeIns,
             decimal PremiumPreTaxWholeLifeIns, string EEelectionPostTaxWholeLifeIns, decimal PremiumPostTaxWholeLifeIns, string OtherCoverage,
             string OtherInsProvider, string EEelectionPreTaxOtherIns, decimal PremiumPreTaxOtherIns, string EEelectionPostTaxOtherIns,
-            decimal PremiumPostTaxOtherIns, decimal TotalPreTax, decimal TotalPostTax, string empInitials1, string empInitials2, 
-            string empInitials3, string empInitials4, string empInitials5, string empSignature, DateTime empSignatureDate)
+            decimal PremiumPostTaxOtherIns, decimal TotalPreTax, decimal TotalPostTax, string empInitials1, string empSignature, DateTime empSignatureDate)
         {
             Employee e = db.Employees
             .Where(i => i.Employee_id == Employee_id)
@@ -700,8 +699,7 @@ namespace Watson.Controllers
             string WholeLifeInsProvider, string EEelectionPreTaxWholeLifeIns, decimal PremiumPreTaxWholeLifeIns, string EEelectionPostTaxWholeLifeIns,
             decimal PremiumPostTaxWholeLifeIns, string OtherCoverage, string OtherInsProvider, string EEelectionPreTaxOtherIns,
             decimal PremiumPreTaxOtherIns, string EEelectionPostTaxOtherIns, decimal PremiumPostTaxOtherIns, decimal TotalPreTax, 
-            decimal TotalPostTax, string empInitials1, string empInitials2, string empInitials3, string empInitials4, 
-            string empInitials5, string empSignature, DateTime empSignatureDate)
+            decimal TotalPostTax, string empInitials1, string empSignature, DateTime empSignatureDate)
         {
             Employee e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)

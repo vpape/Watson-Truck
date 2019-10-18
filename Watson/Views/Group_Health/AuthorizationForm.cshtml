@@ -121,11 +121,11 @@
                             <label style="padding-left: 10px;">
                                 Policyholder's Signature:
                             </label>
-                            <input type="text" id="PolicyHolderSignature" name="AuthorizationFormPolicyHolderSignature" value="@Html.DisplayFor(Model => Model.grpHealth.AuthorizationFormPolicyHolderSignature)" />
+                            <input type="text" id="PolicyHolderSignature" name="AuthorizationFormPolicyHolderSignature" value="@Model.grpHealth.AuthorizationFormPolicyHolderSignature" />
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="PolicyHolderSignatureDate" name="AuthorizationFormPolicyHolderSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.AuthorizationFormPolicyHolderSignatureDate)" />
+                            <input type="date" id="PolicyHolderSignatureDate" name="AuthorizationFormPolicyHolderSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.PersonOneSignatureDate).ToString("yyyy-MM-dd")" />
                             <hr />
                             <label style="padding-left: 10px;">
                                 Signature of person to release information to:
