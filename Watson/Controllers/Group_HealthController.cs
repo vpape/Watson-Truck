@@ -630,61 +630,61 @@ namespace Watson.Controllers
             d.EEelectionPostTaxDentalIns = EEelectionPostTaxDentalIns;
             d.PremiumPostTaxDentalIns = PremiumPostTaxDentalIns;
 
-            //d.VisionCoverage = VisionCoverage;
-            //d.VisionInsProvider = VisionInsProvider;
-            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
-            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
-            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
-            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+            d.VisionCoverage = VisionCoverage;
+            d.VisionInsProvider = VisionInsProvider;
+            d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
 
-            //d.AccidentCoverage = AccidentCoverage;
-            //d.AccidentInsProvider = AccidentInsProvider;
-            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
-            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
-            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
-            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+            d.AccidentCoverage = AccidentCoverage;
+            d.AccidentInsProvider = AccidentInsProvider;
+            d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
 
-            //d.CancerCoverage = CancerCoverage;
-            //d.CancerInsProvider = CancerInsProvider;
-            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
-            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
-            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
-            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+            d.CancerCoverage = CancerCoverage;
+            d.CancerInsProvider = CancerInsProvider;
+            d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
 
-            //d.ShortTermDisabilityCoverage = ShortTermDisabilityCoverage;
-            //d.StDisabilityProvider = StDisabilityProvider;
-            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
-            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
-            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
-            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+            d.ShortTermDisabilityCoverage = ShortTermDisabilityCoverage;
+            d.StDisabilityProvider = StDisabilityProvider;
+            d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
 
-            //d.HospitalIndemnityCoverage = HospitalIndemnityCoverage;
-            //d.HospitalIndemProvider = HospitalIndemProvider;
-            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
-            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
-            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
-            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+            d.HospitalIndemnityCoverage = HospitalIndemnityCoverage;
+            d.HospitalIndemProvider = HospitalIndemProvider;
+            d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
 
-            //d.TermLifeCoverage = TermLifeCoverage;
-            //d.TermLifeInsProvider = TermLifeInsProvider;
-            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
-            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
-            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
-            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+            d.TermLifeCoverage = TermLifeCoverage;
+            d.TermLifeInsProvider = TermLifeInsProvider;
+            d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
 
-            //d.WholeLifeCoverage = WholeLifeCoverage;
-            //d.WholeLifeInsProvider = WholeLifeInsProvider;
-            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
-            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
-            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
-            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+            d.WholeLifeCoverage = WholeLifeCoverage;
+            d.WholeLifeInsProvider = WholeLifeInsProvider;
+            d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
 
-            //d.OtherCoverage = OtherCoverage;
-            //d.OtherInsProvider = OtherInsProvider;
-            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
-            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
-            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
-            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+            d.OtherCoverage = OtherCoverage;
+            d.OtherInsProvider = OtherInsProvider;
+            d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
 
 
             d.TotalPreTax = TotalPreTax;
