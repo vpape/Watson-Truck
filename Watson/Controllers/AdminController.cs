@@ -1386,38 +1386,95 @@ namespace Watson.Controllers
         }
 
         //Create-SalaryRedirect
-        public JsonResult SalaryRedirectionUpdate(int Employee_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
-            string PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, string PremiumPostTaxMedIns, string DentalInsProvider,
-            string EEelectionPreTaxDentalIns, string PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns,
-            string PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
-            string PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, string PremiumPostTaxVisionIns,
-            string TotalPreTax, string TotalPostTax, string empSignature, DateTime empSignatureDate, string empInitials1)
+        public JsonResult SalaryRedirectionUpdate(int Employee_id, int? Deductions_id, string MedicalCoverage, string MedicalInsProvider, string EEelectionPreTaxMedIns,
+            string PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, string PremiumPostTaxMedIns, string DentalCoverage, string DentalInsProvider,
+            string EEelectionPreTaxDentalIns, string PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns, string PremiumPostTaxDentalIns, string VisionCoverage,
+            string VisionInsProvider, string EEelectionPreTaxVisionIns, string PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, string PremiumPostTaxVisionIns,
+            string AccidentCoverage, string AccidentInsProvider, string EEelectionPreTaxAccidentIns, string PremiumPreTaxAccidentIns, string EEelectionPostTaxAccidentIns,
+            string PremiumPostTaxAccidentIns, string CancerCoverage, string CancerInsProvider, string EEelectionPreTaxCancerIns, string PremiumPreTaxCancerIns,
+            string EEelectionPostTaxCancerIns, string PremiumPostTaxCancerIns, string ShortTermDisabilityCoverage, string StDisabilityProvider,
+            string EEelectionPreTaxStDisability, string PremiumPreTaxStDisability, string EEelectionPostTaxStDisability, string PremiumPostTaxStDisability,
+            string HospitalIndemnityCoverage, string HospitalIndemProvider, string EEelectionPreTaxHospitalIndem, string PremiumPreTaxHospitalIndem,
+            string EEelectionPostTaxHospitalIndem, string PremiumPostTaxHospitalIndem, string TermLifeCoverage, string TermLifeInsProvider,
+            string EEelectionPreTaxTermLifeIns, string PremiumPreTaxTermLifeIns, string EEelectionPostTaxTermLifeIns, string PremiumPostTaxTermLifeIns,
+            string WholeLifeCoverage, string WholeLifeInsProvider, string EEelectionPreTaxWholeLifeIns, string PremiumPreTaxWholeLifeIns,
+            string EEelectionPostTaxWholeLifeIns, string PremiumPostTaxWholeLifeIns, string OtherCoverage, string OtherInsProvider, string EEelectionPreTaxOtherIns,
+            string PremiumPreTaxOtherIns, string EEelectionPostTaxOtherIns, string PremiumPostTaxOtherIns, string TotalPreTax, string TotalPostTax,
+            string empInitials1, string empSignature, DateTime empSignatureDate)
         {
-            Employee e = db.Employees
-            .Where(i => i.Employee_id == Employee_id)
-            .Single();
-
-            ViewBag.e = e;
-
             Deduction d = new Deduction();
 
-            d.Provider = MedicalInsProvider;
-            d.EEelectionPreTax = EEelectionPreTaxMedIns;
-            d.PremiumPreTax = PremiumPreTaxMedIns;
-            d.EEelectionPostTax = EEelectionPostTaxMedIns;
-            d.PremiumPostTax = PremiumPostTaxMedIns;
+            d.Employee_id = Employee_id;
+            d.MedicalCoverage = MedicalCoverage;
+            d.MedicalInsProvider = MedicalInsProvider;
+            d.EEelectionPreTaxMedIns = EEelectionPreTaxMedIns;
+            d.PremiumPreTaxMedIns = PremiumPreTaxMedIns;
+            d.EEelectionPostTaxMedIns = EEelectionPostTaxMedIns;
+            d.PremiumPostTaxMedIns = PremiumPostTaxMedIns;
 
-            d.Provider = DentalInsProvider;
-            d.EEelectionPreTax = EEelectionPreTaxDentalIns;
-            d.PremiumPreTax = PremiumPreTaxDentalIns;
-            d.EEelectionPostTax = EEelectionPostTaxDentalIns;
-            d.PremiumPostTax = PremiumPostTaxDentalIns;
+            d.DentalCoverage = DentalCoverage;
+            d.DentalInsProvider = DentalInsProvider;
+            d.EEelectionPreTaxDentalIns = EEelectionPreTaxDentalIns;
+            d.PremiumPreTaxDentalIns = PremiumPreTaxDentalIns;
+            d.EEelectionPostTaxDentalIns = EEelectionPostTaxDentalIns;
+            d.PremiumPostTaxDentalIns = PremiumPostTaxDentalIns;
 
-            d.Provider = VisionInsProvider;
-            d.EEelectionPreTax = EEelectionPreTaxVisionIns;
-            d.PremiumPreTax = PremiumPreTaxVisionIns;
-            d.EEelectionPostTax = EEelectionPostTaxVisionIns;
-            d.PremiumPostTax = PremiumPostTaxVisionIns;
+            //d.VisionCoverage = VisionCoverage;
+            //d.VisionInsProvider = VisionInsProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
+            //d.AccidentCoverage = AccidentCoverage;
+            //d.AccidentInsProvider = AccidentInsProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
+            //d.CancerCoverage = CancerCoverage;
+            //d.CancerInsProvider = CancerInsProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
+            //d.ShortTermDisabilityCoverage = ShortTermDisabilityCoverage;
+            //d.StDisabilityProvider = StDisabilityProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
+            //d.HospitalIndemnityCoverage = HospitalIndemnityCoverage;
+            //d.HospitalIndemProvider = HospitalIndemProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
+            //d.TermLifeCoverage = TermLifeCoverage;
+            //d.TermLifeInsProvider = TermLifeInsProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
+            //d.WholeLifeCoverage = WholeLifeCoverage;
+            //d.WholeLifeInsProvider = WholeLifeInsProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
+            //d.OtherCoverage = OtherCoverage;
+            //d.OtherInsProvider = OtherInsProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
 
             d.TotalPreTax = TotalPreTax;
             d.TotalPostTax = TotalPostTax;
@@ -1425,12 +1482,11 @@ namespace Watson.Controllers
             d.EmployeeSignatureDate = empSignatureDate;
             d.EmployeeInitials = empInitials1;
 
-            ViewBag.d = d;
 
             db.Deductions.Add(d);
             db.SaveChanges();
 
-            int result = d.Employee_id;
+            int result = d.Deductions_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
@@ -1457,47 +1513,103 @@ namespace Watson.Controllers
         }
 
         //EditUpdate-SalaryRedirect
-        public JsonResult SalaryRedirectionEditUpdate(int Employee_id, int Deductions_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
-            string PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, string PremiumPostTaxMedIns, string DentalInsProvider,
-            string EEelectionPreTaxDentalIns, string PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns,
-            string PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
-            string PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, string PremiumPostTaxVisionIns,
-            string TotalPreTax, string TotalPostTax, string empSignature, DateTime empSignatureDate, string empInitials1)
+        public JsonResult SalaryRedirectionEditUpdate(int? Employee_id, int? Deductions_id, string MedicalCoverage, string MedicalInsProvider, string EEelectionPreTaxMedIns,
+            string PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, string PremiumPostTaxMedIns, string DentalCoverage, string DentalInsProvider,
+            string EEelectionPreTaxDentalIns, string PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns, string PremiumPostTaxDentalIns, string VisionCoverage,
+            string VisionInsProvider, string EEelectionPreTaxVisionIns, string PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, string PremiumPostTaxVisionIns,
+            string AccidentCoverage, string AccidentInsProvider, string EEelectionPreTaxAccidentIns, string PremiumPreTaxAccidentIns, string EEelectionPostTaxAccidentIns,
+            string PremiumPostTaxAccidentIns, string CancerCoverage, string CancerInsProvider, string EEelectionPreTaxCancerIns, string PremiumPreTaxCancerIns,
+            string EEelectionPostTaxCancerIns, string PremiumPostTaxCancerIns, string ShortTermDisabilityCoverage, string StDisabilityProvider,
+            string EEelectionPreTaxStDisability, string PremiumPreTaxStDisability, string EEelectionPostTaxStDisability, string PremiumPostTaxStDisability,
+            string HospitalIndemnityCoverage, string HospitalIndemProvider, string EEelectionPreTaxHospitalIndem, string PremiumPreTaxHospitalIndem,
+            string EEelectionPostTaxHospitalIndem, string PremiumPostTaxHospitalIndem, string TermLifeCoverage, string TermLifeInsProvider,
+            string EEelectionPreTaxTermLifeIns, string PremiumPreTaxTermLifeIns, string EEelectionPostTaxTermLifeIns, string PremiumPostTaxTermLifeIns,
+            string WholeLifeCoverage, string WholeLifeInsProvider, string EEelectionPreTaxWholeLifeIns, string PremiumPreTaxWholeLifeIns,
+            string EEelectionPostTaxWholeLifeIns, string PremiumPostTaxWholeLifeIns, string OtherCoverage, string OtherInsProvider, string EEelectionPreTaxOtherIns,
+            string PremiumPreTaxOtherIns, string EEelectionPostTaxOtherIns, string PremiumPostTaxOtherIns, string TotalPreTax, string TotalPostTax,
+            string empInitials1, string empSignature, DateTime empSignatureDate)
         {
-            Employee e = db.Employees
-                .Where(i => i.Employee_id == Employee_id)
-                .Single();
-
-            ViewBag.e = e;
 
             Deduction d = db.Deductions
                 .Where(i => i.Deductions_id == Deductions_id)
                 .Single();
 
-            d.Provider = MedicalInsProvider;
-            d.EEelectionPreTax = EEelectionPreTaxMedIns;
-            d.PremiumPreTax = PremiumPreTaxMedIns;
-            d.EEelectionPostTax = EEelectionPostTaxMedIns;
-            d.PremiumPostTax = PremiumPostTaxMedIns;
+            d.MedicalCoverage = MedicalCoverage;
+            d.MedicalInsProvider = MedicalInsProvider;
+            d.EEelectionPreTaxMedIns = EEelectionPreTaxMedIns;
+            d.PremiumPreTaxMedIns = PremiumPreTaxMedIns;
+            d.EEelectionPostTaxMedIns = EEelectionPostTaxMedIns;
+            d.PremiumPostTaxMedIns = PremiumPostTaxMedIns;
 
-            d.Provider = DentalInsProvider;
-            d.EEelectionPreTax = EEelectionPreTaxDentalIns;
-            d.PremiumPreTax = PremiumPreTaxDentalIns;
-            d.EEelectionPostTax = EEelectionPostTaxDentalIns;
-            d.PremiumPostTax = PremiumPostTaxDentalIns;
+            d.DentalCoverage = DentalCoverage;
+            d.DentalInsProvider = DentalInsProvider;
+            d.EEelectionPreTaxDentalIns = EEelectionPreTaxDentalIns;
+            d.PremiumPreTaxDentalIns = PremiumPreTaxDentalIns;
+            d.EEelectionPostTaxDentalIns = EEelectionPostTaxDentalIns;
+            d.PremiumPostTaxDentalIns = PremiumPostTaxDentalIns;
 
-            d.Provider = VisionInsProvider;
-            d.EEelectionPreTax = EEelectionPreTaxVisionIns;
-            d.PremiumPreTax = PremiumPreTaxVisionIns;
-            d.EEelectionPostTax = EEelectionPostTaxVisionIns;
-            d.PremiumPostTax = PremiumPostTaxVisionIns;
+            //d.VisionCoverage = VisionCoverage;
+            //d.VisionInsProvider = VisionInsProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
+            //d.AccidentCoverage = AccidentCoverage;
+            //d.AccidentInsProvider = AccidentInsProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
+            //d.CancerCoverage = CancerCoverage;
+            //d.CancerInsProvider = CancerInsProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
+            //d.ShortTermDisabilityCoverage = ShortTermDisabilityCoverage;
+            //d.StDisabilityProvider = StDisabilityProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
+            //d.HospitalIndemnityCoverage = HospitalIndemnityCoverage;
+            //d.HospitalIndemProvider = HospitalIndemProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
+            //d.TermLifeCoverage = TermLifeCoverage;
+            //d.TermLifeInsProvider = TermLifeInsProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
+            //d.WholeLifeCoverage = WholeLifeCoverage;
+            //d.WholeLifeInsProvider = WholeLifeInsProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
+            //d.OtherCoverage = OtherCoverage;
+            //d.OtherInsProvider = OtherInsProvider;
+            //d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
+            //d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
+            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            //d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
+
 
             d.TotalPreTax = TotalPreTax;
             d.TotalPostTax = TotalPostTax;
             d.EmployeeSignature = empSignature;
             d.EmployeeSignatureDate = empSignatureDate;
             d.EmployeeInitials = empInitials1;
-            //THere are 5 items that need initials for the salaryRedirect waviers.
 
             ViewBag.d = d;
 
@@ -1517,7 +1629,7 @@ namespace Watson.Controllers
                 RedirectToAction("EmpOverview", new { d.Employee_id });
             }
 
-            int result = d.Employee_id;
+            int result = d.Deductions_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
