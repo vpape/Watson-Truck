@@ -1287,7 +1287,7 @@
 
     function LifeInsurance() {
 
-        window.location.href = "/Life_Insurance/LifeInsuranceEnrollment?Employee_id=@*@Model.employee.Employee_id*@";
+        window.location.href = "/Life_Insurance/LifeInsuranceEnrollment?Employee_id=@Model.employee.Employee_id";
     }
 
 
@@ -1407,27 +1407,6 @@
             empDepGroupHealthOption = document.getElementById("empDepGroupHealthOption").value;
             empFamGroupHealthOption = document.getElementById("empFamGroupHealthOption").value;
 
-            //spOtherInsCoverage = document.getElementById("spOtherInsCoverage").value;
-            //spInsCarrier = document.getElementById("spInsCarrier").value;
-            //spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
-            //spInsCity = document.getElementById("spInsCity").value;
-            //spInsState = document.getElementById("spInsState").value;
-            //spInsZipCode = document.getElementById("spInsZipCode").value;
-            //spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value;
-            //spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value;
-
-            //depFirstName = document.getElementById("depFirstName").value;
-            //depLastName = document.getElementById("depLastName").value;
-            //depSSN = document.getElementById("depSSN").value;
-            //depRelationToInsured = document.getElementById("depRelationToInsured").value;
-            //depDateOfBirth = document.getElementById("depDateOfBirth").value;
-            //depGender = document.getElementById("depGender").value;
-
-            //depOtherInsCoverage = document.getElementById("depOtherInsCoverage").value;
-            //depInsCarrier = document.getElementById("depInsCarrier").value;
-            //depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value;
-            //depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value;
-
             GrpHEnrollmentEmpSignature = document.getElementById("GrpHEnrollmentEmpSignature").value;
             GrpHEnrollmentEmpSignatureDate = document.getElementById("GrpHEnrollmentEmpSignatureDate").value;
             Myself = document.getElementById("Myself").checked;
@@ -1446,27 +1425,6 @@
                 "empSpGroupHealthOption": empSpGroupHealthOption,
                 "empDepGroupHealthOption": empDepGroupHealthOption,
                 "empFamGroupHealthOption": empFamGroupHealthOption,
-
-                //"spOtherInsCoverage": spOtherInsCoverage,
-                //"spInsCarrier": spInsCarrier,
-                //"spInsMailingAddress": spInsMailingAddress,
-                //"spInsCity": spInsCity,
-                //"spInsState": spInsState,
-                //"spInsZipCode": spInsZipCode,
-                //"spInsPhoneNumber": spInsPhoneNumber,
-                //"spInsPolicyNumber": spInsPolicyNumber,
-
-                //"depFirstName": depFirstName,
-                //"depLastName": depLastName,
-                //"depSSN": depSSN,
-                //"depRelationToInsured": depRelationToInsured,
-                //"depDateOfBirth": depDateOfBirth,
-                //"depGender": depGender,
-
-                //"depOtherInsCoverage": depOtherInsCoverage,
-                //"depInsCarrier": depInsCarrier,
-                //"depInsPolicyNumber": depInsPolicyNumber,
-                //"depInsPhoneNumber": depInsPhoneNumber,
 
                 "GrpHEnrollmentEmpSignature": GrpHEnrollmentEmpSignature,
                 "GrpHEnrollmentEmpSignatureDate": GrpHEnrollmentEmpSignatureDate,

@@ -23,10 +23,32 @@ namespace Watson.Controllers
         private static List<Family_Info> family = new List<Family_Info>();
         private static Life_Insurance lifeIns = new Life_Insurance();
 
-        public ActionResult LifeInsuranceEnrollment()
+        public ActionResult LifeInsuranceEnrollment(int? LifeInsurance_id, int? Employee_id, int? GroupHealthInsurance_id)
         {
+            ViewBag.LifeInsurance_id = LifeInsurance_id;
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
 
-            return View();
+            EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
+
+            empAndInsVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
+            empAndInsVM.lifeIns = db.Life_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id);
+
+            empAndInsVM.spouse = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id && i.RelationshipToInsured == "Spouse");
+            empAndInsVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id && i.RelationshipToInsured != "Spouse").ToList();
+            if (empAndInsVM.spouse != null)
+            {
+                empAndInsVM.spouse = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id && i.FamilyMember_id == empAndInsVM.spouse.FamilyMember_id);
+                empAndInsVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id && i.FamilyMember_id != empAndInsVM.spouse.FamilyMember_id).ToList();
+            }
+            else
+            {
+                empAndInsVM.spouse = null;
+                empAndInsVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id).ToList();
+            }
+
+
+            return View(empAndInsVM);
         }
 
         //Create-LifeIns

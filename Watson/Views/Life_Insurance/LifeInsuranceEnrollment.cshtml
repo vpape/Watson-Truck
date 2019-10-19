@@ -1,17 +1,144 @@
-﻿@{
-    Layout = null;
-}
-
+﻿@model Watson.ViewModels.EmployeeAndInsuranceVM
 <!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Life Insurance Enrollment</title>
 </head>
 <body>
+    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.FamilyMember_id />
+    <h4>Guardian Life Insurance</h4>
     <div>
-    
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <div>
+                                    <text>Employer Name:</text>
+                                    <h4><b>Watson Truck & Supply, Inc.</b></h4>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <text>Group Plan Number:</text>
+                                    <input type="text" class="form-control" id="IMSGroupNumber" name="IMSGroupNumber" value="" />
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <text>Benefits Effective Date:</text>
+                                    <input type="text" class="form-control" id="BenefitsEffectiveDate" name="BenefitsEffectiveDate" value="" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <div>
+                                    <h5>PLEASE CHECK APPROPRIATE BOX:</h5>
+                                    <div class="checkboxes">
+                                        <span>
+                                            <input type="checkbox" id="InitialEnrollment" name="InitialEnrollment" value="" /><text>Initial Enrollment</text>
+                                            <input type="checkbox" id="ReEnrollment" name="ReEnrollment" value="" /><text>Re-Enrollment</text>
+                                            <input type="checkbox" id="AddEmployeeAndDependents" name="AddEmployeeAndDependents" value="" /><text>Add Employee/Dependents</text>
+                                            <input type="checkbox" id="DropRefuseCoverage" name="DropRefuseCoverage" value="" /><text>Drop/Refuse Coverage</text>
+                                            <input type="checkbox" id="InformationChange" name="InformationChange" value="" /><text>Information Change</text>
+                                            <input type="checkbox" id="IncreaseAmount" name="IncreaseAmount" value="" /><text>Increase Amount</text>
+                                            <input type="checkbox" id="FamilyStatusChange" name="FamilyStatusChange" value="" /><text>Family Status Change</text>
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="col-sm-4, col-md-3">
+                                <text>Class:</text>
+                                <h5><b>ALL OTHER ELIGIBLE EMPLOYEES ENROLLING IN MEDICAL</b></h5>
+                            </td>
+                            <td>
+                                <label>Division:</label>
+                                <input type="text" class="form-control" id="Division" name="Division" value="" />
+                            </td>
+                            <td>
+                                <label>Subtotal Code:</label>
+                                <input type="text" class="form-control" id="SubtotalCode" name="SubtotalCode" value="" />
+                            </td>
+                        </tr>
+                    </table>
+                    <h4><b>About You:</b></h4>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="col-sm-1, col-md-3">
+                                <input type="text" class="form-control" placeholder="FirstName" id="FirstName" name="FirstName" value="" />
+                            </td>
+                            <td class="col-sm-1, col-md-3">
+                                <input type="text" class="form-control" placeholder="LasttName" id="LasttName" name="LasttName" value="" />
+                            </td>
+                            <td class="col-sm-1, col-md-3">
+                                <input type="text" class="form-control" placeholder="SSN" id="SSN" name="SSN" value="" />
+                            </td>
+                            <td class="col-sm-1, col-md-3">
+                                <input type="text" class="form-control" placeholder="" id="" name="" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" placeholder="Mailing Address" id="" name="" value="" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="City" id="" name="" value="" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="State" id="" name="" value="" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="Zip Code" id="" name="" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="radio-inline"><input type="radio" id="Gender" class="form-group" name="Gender" value="true" />Male</label>
+                                <label class="radio-inline"><input type="radio" id="Gender" class="form-group" name="Gender" value="false" />Female</label>
+
+                            </td>
+                            <td>
+                                <label>Date of Birth:</label>
+                                <input type="date" class="form-control" name="DateOfBirth" value="" />
+                            </td>
+                            <td>
+                                <label>Phone Number:</label>
+                                <input type="text" class="form-control" name="PhoneNumber" value="" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        
+       
+
     </div>
 </body>
 </html>
+<style>
+    .checkboxes {
+    
+     
+    }
+
+    .checkboxes input {
+        margin: 0px 0px 0em 1em;
+    }
+</style>
