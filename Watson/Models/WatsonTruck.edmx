@@ -105,61 +105,51 @@
           </Key>
           <Property Name="Deductions_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Employee_id" Type="int" Nullable="false" />
-          <Property Name="MedicalCoverage" Type="varchar" MaxLength="50" />
           <Property Name="MedicalInsProvider" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPreTaxMedIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPreTaxMedIns" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPostTaxMedIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPostTaxMedIns" Type="varchar" MaxLength="50" />
-          <Property Name="DentalCoverage" Type="varchar" MaxLength="50" />
           <Property Name="DentalInsProvider" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPreTaxDentalIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPreTaxDentalIns" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPostTaxDentalIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPostTaxDentalIns" Type="varchar" MaxLength="50" />
-          <Property Name="VisionCoverage" Type="varchar" MaxLength="50" />
           <Property Name="VisionInsProvider" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPreTaxVisionIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPreTaxVisionIns" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPostTaxVisionIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPostTaxVisionIns" Type="varchar" MaxLength="50" />
-          <Property Name="AccidentCoverage" Type="varchar" MaxLength="50" />
           <Property Name="AccidentInsProvider" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPreTaxAccidentIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPreTaxAccidentIns" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPostTaxAccidentIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPostTaxAccidentIns" Type="varchar" MaxLength="50" />
-          <Property Name="CancerCoverage" Type="varchar" MaxLength="50" />
           <Property Name="CancerInsProvider" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPreTaxCancerIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPreTaxCancerIns" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPostTaxCancerIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPostTaxCancerIns" Type="varchar" MaxLength="50" />
-          <Property Name="ShortTermDisabilityCoverage" Type="varchar" MaxLength="50" />
           <Property Name="StDisabilityProvider" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPreTaxStDisability" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPreTaxStDisability" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPostTaxStDisability" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPostTaxStDisability" Type="varchar" MaxLength="50" />
-          <Property Name="HospitalIndemnityCoverage" Type="varchar" MaxLength="50" />
           <Property Name="HospitalIndemProvider" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPreTaxHospitalIndem" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPreTaxHospitalIndem" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPostTaxHospitalIndem" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPostTaxHospitalIndem" Type="varchar" MaxLength="50" />
-          <Property Name="TermLifeCoverage" Type="varchar" MaxLength="50" />
           <Property Name="TermLifeInsProvider" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPreTaxTermLifeIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPreTaxTermLifeIns" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPostTaxTermLifeIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPostTaxTermLifeIns" Type="varchar" MaxLength="50" />
-          <Property Name="WholeLifeCoverage" Type="varchar" MaxLength="50" />
           <Property Name="WholeLifeInsProvider" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPreTaxWholeLifeIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPreTaxWholeLifeIns" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPostTaxWholeLifeIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPostTaxWholeLifeIns" Type="varchar" MaxLength="50" />
-          <Property Name="OtherCoverage" Type="varchar" MaxLength="50" />
           <Property Name="OtherInsProvider" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPreTaxOtherIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPreTaxOtherIns" Type="varchar" MaxLength="50" />
@@ -1089,61 +1079,51 @@
           <Property Name="EmployeeSignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EmployeeSignatureDate" Type="DateTime" Precision="0" />
           <Property Name="EmployeeInitials" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="MedicalCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MedicalInsProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPreTaxMedIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPreTaxMedIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPostTaxMedIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPostTaxMedIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DentalCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DentalInsProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPreTaxDentalIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPreTaxDentalIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPostTaxDentalIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPostTaxDentalIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="VisionCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="VisionInsProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPreTaxVisionIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPreTaxVisionIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPostTaxVisionIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPostTaxVisionIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="AccidentCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AccidentInsProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPreTaxAccidentIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPreTaxAccidentIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPostTaxAccidentIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPostTaxAccidentIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CancerCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CancerInsProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPreTaxCancerIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPreTaxCancerIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPostTaxCancerIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPostTaxCancerIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ShortTermDisabilityCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="StDisabilityProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPreTaxStDisability" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPreTaxStDisability" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPostTaxStDisability" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPostTaxStDisability" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="HospitalIndemnityCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="HospitalIndemProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPreTaxHospitalIndem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPreTaxHospitalIndem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPostTaxHospitalIndem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPostTaxHospitalIndem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TermLifeCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TermLifeInsProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPreTaxTermLifeIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPreTaxTermLifeIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPostTaxTermLifeIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPostTaxTermLifeIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="WholeLifeCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="WholeLifeInsProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPreTaxWholeLifeIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPreTaxWholeLifeIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPostTaxWholeLifeIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPostTaxWholeLifeIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OtherCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OtherInsProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPreTaxOtherIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPreTaxOtherIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1884,61 +1864,51 @@
                 <ScalarProperty Name="PremiumPreTaxOtherIns" ColumnName="PremiumPreTaxOtherIns" />
                 <ScalarProperty Name="EEelectionPreTaxOtherIns" ColumnName="EEelectionPreTaxOtherIns" />
                 <ScalarProperty Name="OtherInsProvider" ColumnName="OtherInsProvider" />
-                <ScalarProperty Name="OtherCoverage" ColumnName="OtherCoverage" />
                 <ScalarProperty Name="PremiumPostTaxWholeLifeIns" ColumnName="PremiumPostTaxWholeLifeIns" />
                 <ScalarProperty Name="EEelectionPostTaxWholeLifeIns" ColumnName="EEelectionPostTaxWholeLifeIns" />
                 <ScalarProperty Name="PremiumPreTaxWholeLifeIns" ColumnName="PremiumPreTaxWholeLifeIns" />
                 <ScalarProperty Name="EEelectionPreTaxWholeLifeIns" ColumnName="EEelectionPreTaxWholeLifeIns" />
                 <ScalarProperty Name="WholeLifeInsProvider" ColumnName="WholeLifeInsProvider" />
-                <ScalarProperty Name="WholeLifeCoverage" ColumnName="WholeLifeCoverage" />
                 <ScalarProperty Name="PremiumPostTaxTermLifeIns" ColumnName="PremiumPostTaxTermLifeIns" />
                 <ScalarProperty Name="EEelectionPostTaxTermLifeIns" ColumnName="EEelectionPostTaxTermLifeIns" />
                 <ScalarProperty Name="PremiumPreTaxTermLifeIns" ColumnName="PremiumPreTaxTermLifeIns" />
                 <ScalarProperty Name="EEelectionPreTaxTermLifeIns" ColumnName="EEelectionPreTaxTermLifeIns" />
                 <ScalarProperty Name="TermLifeInsProvider" ColumnName="TermLifeInsProvider" />
-                <ScalarProperty Name="TermLifeCoverage" ColumnName="TermLifeCoverage" />
                 <ScalarProperty Name="PremiumPostTaxHospitalIndem" ColumnName="PremiumPostTaxHospitalIndem" />
                 <ScalarProperty Name="EEelectionPostTaxHospitalIndem" ColumnName="EEelectionPostTaxHospitalIndem" />
                 <ScalarProperty Name="PremiumPreTaxHospitalIndem" ColumnName="PremiumPreTaxHospitalIndem" />
                 <ScalarProperty Name="EEelectionPreTaxHospitalIndem" ColumnName="EEelectionPreTaxHospitalIndem" />
                 <ScalarProperty Name="HospitalIndemProvider" ColumnName="HospitalIndemProvider" />
-                <ScalarProperty Name="HospitalIndemnityCoverage" ColumnName="HospitalIndemnityCoverage" />
                 <ScalarProperty Name="PremiumPostTaxStDisability" ColumnName="PremiumPostTaxStDisability" />
                 <ScalarProperty Name="EEelectionPostTaxStDisability" ColumnName="EEelectionPostTaxStDisability" />
                 <ScalarProperty Name="PremiumPreTaxStDisability" ColumnName="PremiumPreTaxStDisability" />
                 <ScalarProperty Name="EEelectionPreTaxStDisability" ColumnName="EEelectionPreTaxStDisability" />
                 <ScalarProperty Name="StDisabilityProvider" ColumnName="StDisabilityProvider" />
-                <ScalarProperty Name="ShortTermDisabilityCoverage" ColumnName="ShortTermDisabilityCoverage" />
                 <ScalarProperty Name="PremiumPostTaxCancerIns" ColumnName="PremiumPostTaxCancerIns" />
                 <ScalarProperty Name="EEelectionPostTaxCancerIns" ColumnName="EEelectionPostTaxCancerIns" />
                 <ScalarProperty Name="PremiumPreTaxCancerIns" ColumnName="PremiumPreTaxCancerIns" />
                 <ScalarProperty Name="EEelectionPreTaxCancerIns" ColumnName="EEelectionPreTaxCancerIns" />
                 <ScalarProperty Name="CancerInsProvider" ColumnName="CancerInsProvider" />
-                <ScalarProperty Name="CancerCoverage" ColumnName="CancerCoverage" />
                 <ScalarProperty Name="PremiumPostTaxAccidentIns" ColumnName="PremiumPostTaxAccidentIns" />
                 <ScalarProperty Name="EEelectionPostTaxAccidentIns" ColumnName="EEelectionPostTaxAccidentIns" />
                 <ScalarProperty Name="PremiumPreTaxAccidentIns" ColumnName="PremiumPreTaxAccidentIns" />
                 <ScalarProperty Name="EEelectionPreTaxAccidentIns" ColumnName="EEelectionPreTaxAccidentIns" />
                 <ScalarProperty Name="AccidentInsProvider" ColumnName="AccidentInsProvider" />
-                <ScalarProperty Name="AccidentCoverage" ColumnName="AccidentCoverage" />
                 <ScalarProperty Name="PremiumPostTaxVisionIns" ColumnName="PremiumPostTaxVisionIns" />
                 <ScalarProperty Name="EEelectionPostTaxVisionIns" ColumnName="EEelectionPostTaxVisionIns" />
                 <ScalarProperty Name="PremiumPreTaxVisionIns" ColumnName="PremiumPreTaxVisionIns" />
                 <ScalarProperty Name="EEelectionPreTaxVisionIns" ColumnName="EEelectionPreTaxVisionIns" />
                 <ScalarProperty Name="VisionInsProvider" ColumnName="VisionInsProvider" />
-                <ScalarProperty Name="VisionCoverage" ColumnName="VisionCoverage" />
                 <ScalarProperty Name="PremiumPostTaxDentalIns" ColumnName="PremiumPostTaxDentalIns" />
                 <ScalarProperty Name="EEelectionPostTaxDentalIns" ColumnName="EEelectionPostTaxDentalIns" />
                 <ScalarProperty Name="PremiumPreTaxDentalIns" ColumnName="PremiumPreTaxDentalIns" />
                 <ScalarProperty Name="EEelectionPreTaxDentalIns" ColumnName="EEelectionPreTaxDentalIns" />
                 <ScalarProperty Name="DentalInsProvider" ColumnName="DentalInsProvider" />
-                <ScalarProperty Name="DentalCoverage" ColumnName="DentalCoverage" />
                 <ScalarProperty Name="PremiumPostTaxMedIns" ColumnName="PremiumPostTaxMedIns" />
                 <ScalarProperty Name="EEelectionPostTaxMedIns" ColumnName="EEelectionPostTaxMedIns" />
                 <ScalarProperty Name="PremiumPreTaxMedIns" ColumnName="PremiumPreTaxMedIns" />
                 <ScalarProperty Name="EEelectionPreTaxMedIns" ColumnName="EEelectionPreTaxMedIns" />
                 <ScalarProperty Name="MedicalInsProvider" ColumnName="MedicalInsProvider" />
-                <ScalarProperty Name="MedicalCoverage" ColumnName="MedicalCoverage" />
                 <ScalarProperty Name="EmployeeInitials" ColumnName="EmployeeInitials" />
                 <ScalarProperty Name="EmployeeSignatureDate" ColumnName="EmployeeSignatureDate" />
                 <ScalarProperty Name="EmployeeSignature" ColumnName="EmployeeSignature" />

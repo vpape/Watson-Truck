@@ -21,61 +21,51 @@ namespace Watson.Models
         public string EmployeeSignature { get; set; }
         public Nullable<System.DateTime> EmployeeSignatureDate { get; set; }
         public string EmployeeInitials { get; set; }
-        public string MedicalCoverage { get; set; }
         public string MedicalInsProvider { get; set; }
         public string EEelectionPreTaxMedIns { get; set; }
         public string PremiumPreTaxMedIns { get; set; }
         public string EEelectionPostTaxMedIns { get; set; }
         public string PremiumPostTaxMedIns { get; set; }
-        public string DentalCoverage { get; set; }
         public string DentalInsProvider { get; set; }
         public string EEelectionPreTaxDentalIns { get; set; }
         public string PremiumPreTaxDentalIns { get; set; }
         public string EEelectionPostTaxDentalIns { get; set; }
         public string PremiumPostTaxDentalIns { get; set; }
-        public string VisionCoverage { get; set; }
         public string VisionInsProvider { get; set; }
         public string EEelectionPreTaxVisionIns { get; set; }
         public string PremiumPreTaxVisionIns { get; set; }
         public string EEelectionPostTaxVisionIns { get; set; }
         public string PremiumPostTaxVisionIns { get; set; }
-        public string AccidentCoverage { get; set; }
         public string AccidentInsProvider { get; set; }
         public string EEelectionPreTaxAccidentIns { get; set; }
         public string PremiumPreTaxAccidentIns { get; set; }
         public string EEelectionPostTaxAccidentIns { get; set; }
         public string PremiumPostTaxAccidentIns { get; set; }
-        public string CancerCoverage { get; set; }
         public string CancerInsProvider { get; set; }
         public string EEelectionPreTaxCancerIns { get; set; }
         public string PremiumPreTaxCancerIns { get; set; }
         public string EEelectionPostTaxCancerIns { get; set; }
         public string PremiumPostTaxCancerIns { get; set; }
-        public string ShortTermDisabilityCoverage { get; set; }
         public string StDisabilityProvider { get; set; }
         public string EEelectionPreTaxStDisability { get; set; }
         public string PremiumPreTaxStDisability { get; set; }
         public string EEelectionPostTaxStDisability { get; set; }
         public string PremiumPostTaxStDisability { get; set; }
-        public string HospitalIndemnityCoverage { get; set; }
         public string HospitalIndemProvider { get; set; }
         public string EEelectionPreTaxHospitalIndem { get; set; }
         public string PremiumPreTaxHospitalIndem { get; set; }
         public string EEelectionPostTaxHospitalIndem { get; set; }
         public string PremiumPostTaxHospitalIndem { get; set; }
-        public string TermLifeCoverage { get; set; }
         public string TermLifeInsProvider { get; set; }
         public string EEelectionPreTaxTermLifeIns { get; set; }
         public string PremiumPreTaxTermLifeIns { get; set; }
         public string EEelectionPostTaxTermLifeIns { get; set; }
         public string PremiumPostTaxTermLifeIns { get; set; }
-        public string WholeLifeCoverage { get; set; }
         public string WholeLifeInsProvider { get; set; }
         public string EEelectionPreTaxWholeLifeIns { get; set; }
         public string PremiumPreTaxWholeLifeIns { get; set; }
         public string EEelectionPostTaxWholeLifeIns { get; set; }
         public string PremiumPostTaxWholeLifeIns { get; set; }
-        public string OtherCoverage { get; set; }
         public string OtherInsProvider { get; set; }
         public string EEelectionPreTaxOtherIns { get; set; }
         public string PremiumPreTaxOtherIns { get; set; }

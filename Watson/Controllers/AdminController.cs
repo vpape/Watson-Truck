@@ -1386,90 +1386,78 @@ namespace Watson.Controllers
         }
 
         //Create-SalaryRedirect
-        public JsonResult SalaryRedirectionUpdate(int Employee_id, int? Deductions_id, string MedicalCoverage, string MedicalInsProvider, string EEelectionPreTaxMedIns,
-            string PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, string PremiumPostTaxMedIns, string DentalCoverage, string DentalInsProvider,
-            string EEelectionPreTaxDentalIns, string PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns, string PremiumPostTaxDentalIns, string VisionCoverage,
-            string VisionInsProvider, string EEelectionPreTaxVisionIns, string PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, string PremiumPostTaxVisionIns,
-            string AccidentCoverage, string AccidentInsProvider, string EEelectionPreTaxAccidentIns, string PremiumPreTaxAccidentIns, string EEelectionPostTaxAccidentIns,
-            string PremiumPostTaxAccidentIns, string CancerCoverage, string CancerInsProvider, string EEelectionPreTaxCancerIns, string PremiumPreTaxCancerIns,
-            string EEelectionPostTaxCancerIns, string PremiumPostTaxCancerIns, string ShortTermDisabilityCoverage, string StDisabilityProvider,
-            string EEelectionPreTaxStDisability, string PremiumPreTaxStDisability, string EEelectionPostTaxStDisability, string PremiumPostTaxStDisability,
-            string HospitalIndemnityCoverage, string HospitalIndemProvider, string EEelectionPreTaxHospitalIndem, string PremiumPreTaxHospitalIndem,
-            string EEelectionPostTaxHospitalIndem, string PremiumPostTaxHospitalIndem, string TermLifeCoverage, string TermLifeInsProvider,
+        public JsonResult SalaryRedirectionUpdate(int Employee_id, int? Deductions_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
+            string PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, string PremiumPostTaxMedIns, string DentalInsProvider, string EEelectionPreTaxDentalIns,
+            string PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns, string PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
+            string PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, string PremiumPostTaxVisionIns, string AccidentInsProvider,
+            string EEelectionPreTaxAccidentIns, string PremiumPreTaxAccidentIns, string EEelectionPostTaxAccidentIns, string PremiumPostTaxAccidentIns,
+            string CancerInsProvider, string EEelectionPreTaxCancerIns, string PremiumPreTaxCancerIns, string EEelectionPostTaxCancerIns,
+            string PremiumPostTaxCancerIns, string StDisabilityProvider, string EEelectionPreTaxStDisability, string PremiumPreTaxStDisability,
+            string EEelectionPostTaxStDisability, string PremiumPostTaxStDisability, string HospitalIndemProvider, string EEelectionPreTaxHospitalIndem,
+            string PremiumPreTaxHospitalIndem, string EEelectionPostTaxHospitalIndem, string PremiumPostTaxHospitalIndem, string TermLifeInsProvider,
             string EEelectionPreTaxTermLifeIns, string PremiumPreTaxTermLifeIns, string EEelectionPostTaxTermLifeIns, string PremiumPostTaxTermLifeIns,
-            string WholeLifeCoverage, string WholeLifeInsProvider, string EEelectionPreTaxWholeLifeIns, string PremiumPreTaxWholeLifeIns,
-            string EEelectionPostTaxWholeLifeIns, string PremiumPostTaxWholeLifeIns, string OtherCoverage, string OtherInsProvider, string EEelectionPreTaxOtherIns,
-            string PremiumPreTaxOtherIns, string EEelectionPostTaxOtherIns, string PremiumPostTaxOtherIns, string TotalPreTax, string TotalPostTax,
-            string empInitials1, string empSignature, DateTime empSignatureDate)
+            string WholeLifeInsProvider, string EEelectionPreTaxWholeLifeIns, string PremiumPreTaxWholeLifeIns, string EEelectionPostTaxWholeLifeIns,
+            string PremiumPostTaxWholeLifeIns, string OtherInsProvider, string EEelectionPreTaxOtherIns, string PremiumPreTaxOtherIns,
+            string EEelectionPostTaxOtherIns, string PremiumPostTaxOtherIns, string TotalPreTax, string TotalPostTax, string empInitials1,
+            string empSignature, DateTime empSignatureDate)
         {
             Deduction d = new Deduction();
 
             d.Employee_id = Employee_id;
-            d.MedicalCoverage = MedicalCoverage;
             d.MedicalInsProvider = MedicalInsProvider;
             d.EEelectionPreTaxMedIns = EEelectionPreTaxMedIns;
             d.PremiumPreTaxMedIns = PremiumPreTaxMedIns;
             d.EEelectionPostTaxMedIns = EEelectionPostTaxMedIns;
             d.PremiumPostTaxMedIns = PremiumPostTaxMedIns;
 
-            d.DentalCoverage = DentalCoverage;
             d.DentalInsProvider = DentalInsProvider;
             d.EEelectionPreTaxDentalIns = EEelectionPreTaxDentalIns;
             d.PremiumPreTaxDentalIns = PremiumPreTaxDentalIns;
             d.EEelectionPostTaxDentalIns = EEelectionPostTaxDentalIns;
             d.PremiumPostTaxDentalIns = PremiumPostTaxDentalIns;
 
-
-            d.VisionCoverage = VisionCoverage;
             d.VisionInsProvider = VisionInsProvider;
             d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
             d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
             d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
             d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
 
-            d.AccidentCoverage = AccidentCoverage;
             d.AccidentInsProvider = AccidentInsProvider;
             d.EEelectionPreTaxAccidentIns = EEelectionPreTaxAccidentIns;
             d.PremiumPreTaxAccidentIns = PremiumPreTaxAccidentIns;
             d.EEelectionPostTaxAccidentIns = EEelectionPostTaxAccidentIns;
             d.PremiumPostTaxAccidentIns = PremiumPostTaxAccidentIns;
 
-            d.CancerCoverage = CancerCoverage;
             d.CancerInsProvider = CancerInsProvider;
             d.EEelectionPreTaxCancerIns = EEelectionPreTaxCancerIns;
             d.PremiumPreTaxCancerIns = PremiumPreTaxCancerIns;
             d.EEelectionPostTaxCancerIns = EEelectionPostTaxCancerIns;
             d.PremiumPostTaxCancerIns = PremiumPostTaxCancerIns;
 
-            d.ShortTermDisabilityCoverage = ShortTermDisabilityCoverage;
             d.StDisabilityProvider = StDisabilityProvider;
             d.EEelectionPreTaxStDisability = EEelectionPreTaxStDisability;
             d.PremiumPreTaxStDisability = PremiumPreTaxStDisability;
             d.EEelectionPostTaxStDisability = EEelectionPostTaxStDisability;
             d.PremiumPostTaxStDisability = PremiumPostTaxStDisability;
 
-            d.HospitalIndemnityCoverage = HospitalIndemnityCoverage;
             d.HospitalIndemProvider = HospitalIndemProvider;
             d.EEelectionPreTaxHospitalIndem = EEelectionPreTaxHospitalIndem;
             d.PremiumPreTaxHospitalIndem = PremiumPreTaxHospitalIndem;
             d.EEelectionPostTaxHospitalIndem = EEelectionPostTaxHospitalIndem;
             d.PremiumPostTaxHospitalIndem = PremiumPostTaxHospitalIndem;
 
-            d.TermLifeCoverage = TermLifeCoverage;
             d.TermLifeInsProvider = TermLifeInsProvider;
             d.EEelectionPreTaxTermLifeIns = EEelectionPreTaxTermLifeIns;
             d.PremiumPreTaxTermLifeIns = PremiumPreTaxTermLifeIns;
             d.EEelectionPostTaxTermLifeIns = EEelectionPostTaxTermLifeIns;
             d.PremiumPostTaxTermLifeIns = PremiumPostTaxTermLifeIns;
 
-            d.WholeLifeCoverage = WholeLifeCoverage;
             d.WholeLifeInsProvider = WholeLifeInsProvider;
             d.EEelectionPreTaxWholeLifeIns = EEelectionPreTaxWholeLifeIns;
             d.PremiumPreTaxWholeLifeIns = PremiumPreTaxWholeLifeIns;
             d.EEelectionPostTaxWholeLifeIns = EEelectionPostTaxWholeLifeIns;
             d.PremiumPostTaxWholeLifeIns = PremiumPostTaxWholeLifeIns;
 
-            d.OtherCoverage = OtherCoverage;
             d.OtherInsProvider = OtherInsProvider;
             d.EEelectionPreTaxOtherIns = EEelectionPreTaxOtherIns;
             d.PremiumPreTaxOtherIns = PremiumPreTaxOtherIns;
@@ -1514,92 +1502,80 @@ namespace Watson.Controllers
         }
 
         //EditUpdate-SalaryRedirect
-        public JsonResult SalaryRedirectionEditUpdate(int? Employee_id, int? Deductions_id, string MedicalCoverage, string MedicalInsProvider, string EEelectionPreTaxMedIns,
-            string PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, string PremiumPostTaxMedIns, string DentalCoverage, string DentalInsProvider,
-            string EEelectionPreTaxDentalIns, string PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns, string PremiumPostTaxDentalIns, string VisionCoverage,
-            string VisionInsProvider, string EEelectionPreTaxVisionIns, string PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, string PremiumPostTaxVisionIns,
-            string AccidentCoverage, string AccidentInsProvider, string EEelectionPreTaxAccidentIns, string PremiumPreTaxAccidentIns, string EEelectionPostTaxAccidentIns,
-            string PremiumPostTaxAccidentIns, string CancerCoverage, string CancerInsProvider, string EEelectionPreTaxCancerIns, string PremiumPreTaxCancerIns,
-            string EEelectionPostTaxCancerIns, string PremiumPostTaxCancerIns, string ShortTermDisabilityCoverage, string StDisabilityProvider,
-            string EEelectionPreTaxStDisability, string PremiumPreTaxStDisability, string EEelectionPostTaxStDisability, string PremiumPostTaxStDisability,
-            string HospitalIndemnityCoverage, string HospitalIndemProvider, string EEelectionPreTaxHospitalIndem, string PremiumPreTaxHospitalIndem,
-            string EEelectionPostTaxHospitalIndem, string PremiumPostTaxHospitalIndem, string TermLifeCoverage, string TermLifeInsProvider,
+        public JsonResult SalaryRedirectionEditUpdate(int Employee_id, int? Deductions_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
+            string PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, string PremiumPostTaxMedIns, string DentalInsProvider, string EEelectionPreTaxDentalIns,
+            string PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns, string PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
+            string PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, string PremiumPostTaxVisionIns, string AccidentInsProvider,
+            string EEelectionPreTaxAccidentIns, string PremiumPreTaxAccidentIns, string EEelectionPostTaxAccidentIns, string PremiumPostTaxAccidentIns,
+            string CancerInsProvider, string EEelectionPreTaxCancerIns, string PremiumPreTaxCancerIns, string EEelectionPostTaxCancerIns,
+            string PremiumPostTaxCancerIns, string StDisabilityProvider, string EEelectionPreTaxStDisability, string PremiumPreTaxStDisability,
+            string EEelectionPostTaxStDisability, string PremiumPostTaxStDisability, string HospitalIndemProvider, string EEelectionPreTaxHospitalIndem,
+            string PremiumPreTaxHospitalIndem, string EEelectionPostTaxHospitalIndem, string PremiumPostTaxHospitalIndem, string TermLifeInsProvider,
             string EEelectionPreTaxTermLifeIns, string PremiumPreTaxTermLifeIns, string EEelectionPostTaxTermLifeIns, string PremiumPostTaxTermLifeIns,
-            string WholeLifeCoverage, string WholeLifeInsProvider, string EEelectionPreTaxWholeLifeIns, string PremiumPreTaxWholeLifeIns,
-            string EEelectionPostTaxWholeLifeIns, string PremiumPostTaxWholeLifeIns, string OtherCoverage, string OtherInsProvider, string EEelectionPreTaxOtherIns,
-            string PremiumPreTaxOtherIns, string EEelectionPostTaxOtherIns, string PremiumPostTaxOtherIns, string TotalPreTax, string TotalPostTax,
-            string empInitials1, string empSignature, DateTime empSignatureDate)
+            string WholeLifeInsProvider, string EEelectionPreTaxWholeLifeIns, string PremiumPreTaxWholeLifeIns, string EEelectionPostTaxWholeLifeIns,
+            string PremiumPostTaxWholeLifeIns, string OtherInsProvider, string EEelectionPreTaxOtherIns, string PremiumPreTaxOtherIns,
+            string EEelectionPostTaxOtherIns, string PremiumPostTaxOtherIns, string TotalPreTax, string TotalPostTax, string empInitials1,
+            string empSignature, DateTime empSignatureDate)
         {
 
             Deduction d = db.Deductions
                 .Where(i => i.Deductions_id == Deductions_id)
                 .Single();
 
-            d.MedicalCoverage = MedicalCoverage;
             d.MedicalInsProvider = MedicalInsProvider;
             d.EEelectionPreTaxMedIns = EEelectionPreTaxMedIns;
             d.PremiumPreTaxMedIns = PremiumPreTaxMedIns;
             d.EEelectionPostTaxMedIns = EEelectionPostTaxMedIns;
             d.PremiumPostTaxMedIns = PremiumPostTaxMedIns;
 
-            d.DentalCoverage = DentalCoverage;
             d.DentalInsProvider = DentalInsProvider;
             d.EEelectionPreTaxDentalIns = EEelectionPreTaxDentalIns;
             d.PremiumPreTaxDentalIns = PremiumPreTaxDentalIns;
             d.EEelectionPostTaxDentalIns = EEelectionPostTaxDentalIns;
             d.PremiumPostTaxDentalIns = PremiumPostTaxDentalIns;
 
-
-            d.VisionCoverage = VisionCoverage;
             d.VisionInsProvider = VisionInsProvider;
             d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
             d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
             d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
             d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
 
-            d.AccidentCoverage = AccidentCoverage;
             d.AccidentInsProvider = AccidentInsProvider;
             d.EEelectionPreTaxAccidentIns = EEelectionPreTaxAccidentIns;
             d.PremiumPreTaxAccidentIns = PremiumPreTaxAccidentIns;
             d.EEelectionPostTaxAccidentIns = EEelectionPostTaxAccidentIns;
             d.PremiumPostTaxAccidentIns = PremiumPostTaxAccidentIns;
 
-            d.CancerCoverage = CancerCoverage;
             d.CancerInsProvider = CancerInsProvider;
             d.EEelectionPreTaxCancerIns = EEelectionPreTaxCancerIns;
             d.PremiumPreTaxCancerIns = PremiumPreTaxCancerIns;
             d.EEelectionPostTaxCancerIns = EEelectionPostTaxCancerIns;
             d.PremiumPostTaxCancerIns = PremiumPostTaxCancerIns;
 
-            d.ShortTermDisabilityCoverage = ShortTermDisabilityCoverage;
             d.StDisabilityProvider = StDisabilityProvider;
             d.EEelectionPreTaxStDisability = EEelectionPreTaxStDisability;
             d.PremiumPreTaxStDisability = PremiumPreTaxStDisability;
             d.EEelectionPostTaxStDisability = EEelectionPostTaxStDisability;
             d.PremiumPostTaxStDisability = PremiumPostTaxStDisability;
 
-            d.HospitalIndemnityCoverage = HospitalIndemnityCoverage;
             d.HospitalIndemProvider = HospitalIndemProvider;
             d.EEelectionPreTaxHospitalIndem = EEelectionPreTaxHospitalIndem;
             d.PremiumPreTaxHospitalIndem = PremiumPreTaxHospitalIndem;
             d.EEelectionPostTaxHospitalIndem = EEelectionPostTaxHospitalIndem;
             d.PremiumPostTaxHospitalIndem = PremiumPostTaxHospitalIndem;
 
-            d.TermLifeCoverage = TermLifeCoverage;
             d.TermLifeInsProvider = TermLifeInsProvider;
             d.EEelectionPreTaxTermLifeIns = EEelectionPreTaxTermLifeIns;
             d.PremiumPreTaxTermLifeIns = PremiumPreTaxTermLifeIns;
             d.EEelectionPostTaxTermLifeIns = EEelectionPostTaxTermLifeIns;
             d.PremiumPostTaxTermLifeIns = PremiumPostTaxTermLifeIns;
 
-            d.WholeLifeCoverage = WholeLifeCoverage;
             d.WholeLifeInsProvider = WholeLifeInsProvider;
             d.EEelectionPreTaxWholeLifeIns = EEelectionPreTaxWholeLifeIns;
             d.PremiumPreTaxWholeLifeIns = PremiumPreTaxWholeLifeIns;
             d.EEelectionPostTaxWholeLifeIns = EEelectionPostTaxWholeLifeIns;
             d.PremiumPostTaxWholeLifeIns = PremiumPostTaxWholeLifeIns;
 
-            d.OtherCoverage = OtherCoverage;
             d.OtherInsProvider = OtherInsProvider;
             d.EEelectionPreTaxOtherIns = EEelectionPreTaxOtherIns;
             d.PremiumPreTaxOtherIns = PremiumPreTaxOtherIns;
