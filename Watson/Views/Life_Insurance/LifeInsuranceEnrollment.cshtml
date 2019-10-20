@@ -13,132 +13,256 @@
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
     <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.FamilyMember_id />
-    <h4>Guardian Life Insurance</h4>
-    <div>
-        <table class="table table-bordered">
-            <tr>
-                <td>
-                    <table class="table">
-                        <tr>
-                            <td>
-                                <div>
-                                    <text>Employer Name:</text>
-                                    <h4><b>Watson Truck & Supply, Inc.</b></h4>
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    <text>Group Plan Number:</text>
-                                    <input type="text" class="form-control" id="IMSGroupNumber" name="IMSGroupNumber" value="" />
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    <text>Benefits Effective Date:</text>
-                                    <input type="text" class="form-control" id="BenefitsEffectiveDate" name="BenefitsEffectiveDate" value="" />
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                    <table class="table">
-                        <tr>
-                            <td>
-                                <div>
-                                    <h5>PLEASE CHECK APPROPRIATE BOX:</h5>
-                                    <div class="checkboxes">
-                                        <span>
-                                            <input type="checkbox" id="InitialEnrollment" name="InitialEnrollment" value="" /><text>Initial Enrollment</text>
-                                            <input type="checkbox" id="ReEnrollment" name="ReEnrollment" value="" /><text>Re-Enrollment</text>
-                                            <input type="checkbox" id="AddEmployeeAndDependents" name="AddEmployeeAndDependents" value="" /><text>Add Employee/Dependents</text>
-                                            <input type="checkbox" id="DropRefuseCoverage" name="DropRefuseCoverage" value="" /><text>Drop/Refuse Coverage</text>
-                                            <input type="checkbox" id="InformationChange" name="InformationChange" value="" /><text>Information Change</text>
-                                            <input type="checkbox" id="IncreaseAmount" name="IncreaseAmount" value="" /><text>Increase Amount</text>
-                                            <input type="checkbox" id="FamilyStatusChange" name="FamilyStatusChange" value="" /><text>Family Status Change</text>
-                                        </span>
+    <div class="form-horizontal">
+        <div class="collapsible" id="FirstStep">Life Insurance Enrollment</div>
+        <div>
+            <h4>Guardian Life Insurance</h4>
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <div>
+                                        <text>Employer Name:</text>
+                                        <h4><b>Watson Truck & Supply, Inc.</b></h4>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                    <table class="table table-bordered">
-                        <tr>
-                            <td class="col-sm-4, col-md-3">
-                                <text>Class:</text>
-                                <h5><b>ALL OTHER ELIGIBLE EMPLOYEES ENROLLING IN MEDICAL</b></h5>
-                            </td>
-                            <td>
-                                <label>Division:</label>
-                                <input type="text" class="form-control" id="Division" name="Division" value="" />
-                            </td>
-                            <td>
-                                <label>Subtotal Code:</label>
-                                <input type="text" class="form-control" id="SubtotalCode" name="SubtotalCode" value="" />
-                            </td>
-                        </tr>
-                    </table>
-                    <h4><b>About You:</b></h4>
-                    <table class="table table-bordered">
-                        <tr>
-                            <td class="col-sm-1, col-md-3">
-                                <input type="text" class="form-control" placeholder="FirstName" id="FirstName" name="FirstName" value="" />
-                            </td>
-                            <td class="col-sm-1, col-md-3">
-                                <input type="text" class="form-control" placeholder="LasttName" id="LasttName" name="LasttName" value="" />
-                            </td>
-                            <td class="col-sm-1, col-md-3">
-                                <input type="text" class="form-control" placeholder="SSN" id="SSN" name="SSN" value="" />
-                            </td>
-                            <td class="col-sm-1, col-md-3">
-                                <input type="text" class="form-control" placeholder="" id="" name="" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" class="form-control" placeholder="Mailing Address" id="" name="" value="" />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" placeholder="City" id="" name="" value="" />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" placeholder="State" id="" name="" value="" />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" placeholder="Zip Code" id="" name="" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="radio-inline"><input type="radio" id="Gender" class="form-group" name="Gender" value="true" />Male</label>
-                                <label class="radio-inline"><input type="radio" id="Gender" class="form-group" name="Gender" value="false" />Female</label>
+                                </td>
+                                <td>
+                                    <div>
+                                        <text>Group Plan Number:</text>
+                                        <input type="text" class="form-control" id="GroupPlanNumber" name="GroupPlanNumber" value="" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <text>Benefits Effective Date:</text>
+                                        <input type="date" class="form-control" id="BenefitsEffectiveDate" name="BenefitsEffectiveDate" value="" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <div>
+                                        <h5>PLEASE CHECK APPROPRIATE BOX:</h5>
+                                        <div class="checkboxes">
+                                            <span>
+                                                <input type="checkbox" id="InitialEnrollment" name="InitialEnrollment" value="" /><label for="InitialEnrollment">Initial Enrollment</label>
+                                                <input type="checkbox" id="ReEnrollment" name="ReEnrollment" value="" /><label for="ReEnrollment">Re-Enrollment</label>
+                                                <input type="checkbox" id="AddEmployeeAndDependents" name="AddEmployeeAndDependents" value="" /><label for="AddEmployeeAndDependents">Add Employee/Dependents</label>
+                                                <input type="checkbox" id="DropRefuseCoverage" name="DropRefuseCoverage" value="" /><label for="DropRefuseCoverage">Drop/Refuse Coverage</label>
+                                                <input type="checkbox" id="InformationChange" name="InformationChange" value="" /><label for="InformationChange">Information Change</label>
+                                                <input type="checkbox" id="IncreaseAmount" name="IncreaseAmount" value="" /><label for="IncreaseAmount">Increase Amount</label>
+                                                <input type="checkbox" id="FamilyStatusChange" name="FamilyStatusChange" value="" /><label for="FamilyStatusChange">Family Status Change</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td class="col-sm-4, col-md-3">
+                                    <text>Class:</text>
+                                    <h5><b>ALL OTHER ELIGIBLE EMPLOYEES ENROLLING IN MEDICAL</b></h5>
+                                </td>
+                                <td>
+                                    <label>Division:</label>
+                                    <input type="text" class="form-control" id="Division" name="Division" value="" />
+                                </td>
+                                <td>
+                                    <label>Subtotal Code:</label>
+                                    <input type="text" class="form-control" id="SubtotalCode" name="SubtotalCode" value="" />
+                                </td>
+                            </tr>
+                        </table>
+                        <h4><b>About You:</b></h4>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td class="col-sm-1, col-md-3">
+                                    <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" />
+                                </td>
+                                <td class="col-sm-1, col-md-3">
+                                    <input type="text" class="form-control" placeholder="Last Name" id="LasttName" name="LasttName" value="" />
+                                </td>
+                                <td class="col-sm-1, col-md-3">
+                                    <input type="text" class="form-control" placeholder="SSN" id="SSN" name="SSN" value="" />
+                                </td>
+                                <td class="col-sm-1, col-md-3">
+                                    <input type="text" class="form-control" placeholder="" id="" name="" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Mailing Address" id="" name="" value="" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="City" id="" name="" value="" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="State" id="" name="" value="" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Zip Code" id="" name="" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="radio-inline"><input type="radio" id="Gender" class="form-group" name="Gender" value="true" />Male</label>
+                                    <label class="radio-inline"><input type="radio" id="Gender" class="form-group" name="Gender" value="false" />Female</label>
 
-                            </td>
-                            <td>
-                                <label>Date of Birth:</label>
-                                <input type="date" class="form-control" name="DateOfBirth" value="" />
-                            </td>
-                            <td>
-                                <label>Phone Number:</label>
-                                <input type="text" class="form-control" name="PhoneNumber" value="" />
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-
-        
-       
-
+                                </td>
+                                <td>
+                                    <label>Date of Birth:</label>
+                                    <input type="date" class="form-control" name="DateOfBirth" value="" />
+                                </td>
+                                <td>
+                                    <label>Phone Number:</label>
+                                    <input type="text" class="form-control" placeholder="" id="PhoneNumber" name="PhoneNumber" value="" />
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form-group">
+                            <div class="col-md-offset-11">
+                                <button type="submit" id="LifeInsUpdate" class="btn">Save</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 </html>
 <style>
+    .collapsible {
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    .btn {
+        background-color: #333;
+        color: white;
+    }
+
+    .button {
+        text-align: right;
+    }
+
     .checkboxes {
     
      
     }
 
     .checkboxes input {
-        margin: 0px 0px 0em 1em;
+        margin: 0px 0px 0em .5em;
     }
 </style>
+
+<script>
+    var col = document.querySelectorAll(".collapsible");
+    var i;
+    var Employee_id;
+
+    for (i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#LifeInsUpdate").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
+            GroupPlanNumber = document.getElementById("GroupPlanNumber").value
+            BenefitsEffectiveDate = document.getElementById("BenefitsEffectiveDate").value;
+            InitialEnrollment = document.getElementById("InitialEnrollment").checked;
+            ReEnrollment = document.getElementById("ReEnrollment").checked;
+            AddEmployeeAndDependents = document.getElementById("AddEmployeeAndDependents").checked;
+            DropRefuseCoverage = document.getElementById("DropRefuseCoverage").checked;
+            InformationChange = document.getElementById("InformationChange").checked;
+            IncreaseAmount = document.getElementById("IncreaseAmount").checked;
+            FamilyStatusChange = document.getElementById("FamilyStatusChange").checked;
+
+            var data = {
+                "Employee_id": Employee_id,
+                "GroupPlanNumber": GroupPlanNumber,
+                "BenefitsEffectiveDate": BenefitsEffectiveDate,
+                "InitialEnrollment": InitialEnrollment,
+                "ReEnrollment": ReEnrollment,
+                "AddEmployeeAndDependents": AddEmployeeAndDependents,
+                "DropRefuseCoverage": DropRefuseCoverage,
+                "InformationChange": InformationChange,
+                "IncreaseAmount": IncreaseAmount,
+                "FamilyStatusChange": FamilyStatusChange,
+            }
+
+            var ret = postData('LifeInsEnrollmentNew', data)
+                .then(data => {
+                    console.log(data);
+                    FirstStep(data);
+                })
+                .catch(error => console.error(error))
+
+        })
+
+        function FirstStep(emp) {
+            document.querySelector("#FirstStep").nextElementSibling.style.display = "block";
+            Employee_id = emp.data;
+
+        }
+
+        function postData(url, data) {
+            //Default options are marked with *
+            console.log(data);
+            console.log(JSON.stringify(data));
+            return fetch(url, {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => console.log('Success:', JSON.stringify(response)))
+                .catch(error => console.error('Error:', error));
+            //.then(Response => {
+            //    console.log(Response);
+            //    Response.json();
+            //}) //parses response to JSON
+        }
+
+    })
+</script>

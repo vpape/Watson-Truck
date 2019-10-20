@@ -481,74 +481,74 @@
           </Key>
           <Property Name="LifeInsurance_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Employee_id" Type="int" Nullable="false" />
-          <Property Name="GroupPlanNumber" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="BenefitsEffectiveDate" Type="date" Nullable="false" />
-          <Property Name="InitialEnrollment" Type="bit" Nullable="false" />
-          <Property Name="ReEnrollment" Type="bit" Nullable="false" />
-          <Property Name="AddEmployeeAndDependents" Type="bit" Nullable="false" />
-          <Property Name="DropRefuseCoverage" Type="bit" Nullable="false" />
-          <Property Name="InformationChange" Type="bit" Nullable="false" />
-          <Property Name="IncreaseAmount" Type="bit" Nullable="false" />
-          <Property Name="FamilyStatusChange" Type="bit" Nullable="false" />
-          <Property Name="MarriedOrHaveSpouse" Type="bit" Nullable="false" />
-          <Property Name="HaveChildrenOrHaveDependents" Type="bit" Nullable="false" />
-          <Property Name="DateOfMarriage" Type="date" Nullable="false" />
-          <Property Name="PlacementDateOfAdoptedChild" Type="date" Nullable="false" />
-          <Property Name="AddDependent" Type="bit" Nullable="false" />
-          <Property Name="DropDependent" Type="bit" Nullable="false" />
-          <Property Name="Student" Type="bit" Nullable="false" />
-          <Property Name="Disabled" Type="bit" Nullable="false" />
-          <Property Name="NonStandardDependent" Type="bit" Nullable="false" />
-          <Property Name="DropEmployee" Type="bit" Nullable="false" />
-          <Property Name="DropSpouse" Type="bit" Nullable="false" />
-          <Property Name="DropDependents" Type="bit" Nullable="false" />
-          <Property Name="LastDayOfCoverage" Type="date" Nullable="false" />
-          <Property Name="TerminationOfEmployment" Type="bit" Nullable="false" />
-          <Property Name="Retirement" Type="bit" Nullable="false" />
-          <Property Name="LastDayWorked" Type="date" Nullable="false" />
-          <Property Name="OtherEvent" Type="bit" Nullable="false" />
-          <Property Name="OtherEventReason" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="OtherEventDate" Type="date" Nullable="false" />
-          <Property Name="EmployeeDentalDrop" Type="bit" Nullable="false" />
-          <Property Name="SpouseDentalDrop" Type="bit" Nullable="false" />
-          <Property Name="DependentDentalDrop" Type="bit" Nullable="false" />
-          <Property Name="EmployeeVisionDrop" Type="bit" Nullable="false" />
-          <Property Name="SpouseVisionDrop" Type="bit" Nullable="false" />
-          <Property Name="DependentVisionDrop" Type="bit" Nullable="false" />
-          <Property Name="DropBasicLife" Type="bit" Nullable="false" />
-          <Property Name="DropDental" Type="bit" Nullable="false" />
-          <Property Name="DropVision" Type="bit" Nullable="false" />
-          <Property Name="TerminationOfEmploymentDate" Type="date" Nullable="false" />
-          <Property Name="Divorce" Type="bit" Nullable="false" />
-          <Property Name="DivorceDate" Type="date" Nullable="false" />
-          <Property Name="DeathOfSpouse" Type="bit" Nullable="false" />
-          <Property Name="DeathOfSpouseDate" Type="date" Nullable="false" />
-          <Property Name="TerminationOrExpirationOfCoverage" Type="bit" Nullable="false" />
+          <Property Name="GroupPlanNumber" Type="varchar" MaxLength="15" />
+          <Property Name="BenefitsEffectiveDate" Type="date" />
+          <Property Name="InitialEnrollment" Type="varchar" MaxLength="15" />
+          <Property Name="ReEnrollment" Type="varchar" MaxLength="15" />
+          <Property Name="AddEmployeeAndDependents" Type="varchar" MaxLength="15" />
+          <Property Name="DropRefuseCoverage" Type="varchar" MaxLength="15" />
+          <Property Name="InformationChange" Type="varchar" MaxLength="15" />
+          <Property Name="IncreaseAmount" Type="varchar" MaxLength="15" />
+          <Property Name="FamilyStatusChange" Type="varchar" MaxLength="15" />
+          <Property Name="MarriedOrHaveSpouse" Type="varchar" MaxLength="15" />
+          <Property Name="HaveChildrenOrHaveDependents" Type="varchar" MaxLength="15" />
+          <Property Name="DateOfMarriage" Type="date" />
+          <Property Name="PlacementDateOfAdoptedChild" Type="date" />
+          <Property Name="AddDependent" Type="varchar" MaxLength="15" />
+          <Property Name="DropDependent" Type="varchar" MaxLength="15" />
+          <Property Name="Student" Type="varchar" MaxLength="15" />
+          <Property Name="Disabled" Type="varchar" MaxLength="15" />
+          <Property Name="NonStandardDependent" Type="varchar" MaxLength="15" />
+          <Property Name="DropEmployee" Type="varchar" MaxLength="15" />
+          <Property Name="DropSpouse" Type="varchar" MaxLength="15" />
+          <Property Name="DropDependents" Type="varchar" MaxLength="15" />
+          <Property Name="LastDayOfCoverage" Type="date" />
+          <Property Name="TerminationOfEmployment" Type="varchar" MaxLength="15" />
+          <Property Name="Retirement" Type="varchar" MaxLength="15" />
+          <Property Name="LastDayWorked" Type="date" />
+          <Property Name="OtherEvent" Type="varchar" MaxLength="15" />
+          <Property Name="OtherEventReason" Type="varchar" MaxLength="50" />
+          <Property Name="OtherEventDate" Type="date" />
+          <Property Name="EmployeeDentalDrop" Type="varchar" MaxLength="15" />
+          <Property Name="SpouseDentalDrop" Type="varchar" MaxLength="15" />
+          <Property Name="DependentDentalDrop" Type="varchar" MaxLength="15" />
+          <Property Name="EmployeeVisionDrop" Type="varchar" MaxLength="15" />
+          <Property Name="SpouseVisionDrop" Type="varchar" MaxLength="15" />
+          <Property Name="DependentVisionDrop" Type="varchar" MaxLength="15" />
+          <Property Name="DropBasicLife" Type="varchar" MaxLength="15" />
+          <Property Name="DropDental" Type="varchar" MaxLength="15" />
+          <Property Name="DropVision" Type="varchar" MaxLength="15" />
+          <Property Name="TerminationOfEmploymentDate" Type="date" />
+          <Property Name="Divorce" Type="varchar" MaxLength="15" />
+          <Property Name="DivorceDate" Type="date" />
+          <Property Name="DeathOfSpouse" Type="varchar" MaxLength="15" />
+          <Property Name="DeathOfSpouseDate" Type="date" />
+          <Property Name="TerminationOrExpirationOfCoverage" Type="varchar" MaxLength="15" />
           <Property Name="TerminationOrExpirationOfCoverageDate" Type="date" Nullable="false" />
-          <Property Name="DentalCoverageLost" Type="bit" Nullable="false" />
-          <Property Name="VisionCoverageLost" Type="bit" Nullable="false" />
-          <Property Name="CoveredUnderOtherInsurance" Type="bit" Nullable="false" />
-          <Property Name="CoveredUnderOtherInsReason" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="EmployeeOnly" Type="bit" Nullable="false" />
-          <Property Name="EmployeeAndSpouse" Type="bit" Nullable="false" />
-          <Property Name="EmployeeAndDependent" Type="bit" Nullable="false" />
-          <Property Name="EmployeeAndFamily" Type="bit" Nullable="false" />
-          <Property Name="DoNotWantDentalCoverage" Type="bit" Nullable="false" />
-          <Property Name="EmployeeCoveredUnderOtherDentalPlan" Type="bit" Nullable="false" />
-          <Property Name="SpouseCoveredUnderOtherDentalPlan" Type="bit" Nullable="false" />
-          <Property Name="DependentsCoveredUnderOtherDentalPlan" Type="bit" Nullable="false" />
-          <Property Name="DoNotWantVisionCoverage" Type="bit" Nullable="false" />
-          <Property Name="EmployeeCoveredUnderOtherVisionPlan" Type="bit" Nullable="false" />
-          <Property Name="SpouseCoveredUnderOtherVisionPlan" Type="bit" Nullable="false" />
-          <Property Name="DependentsCoveredUnderOtherVisionPlan" Type="bit" Nullable="false" />
-          <Property Name="OwnerBasicLifeWithADandDPolicyAmount" Type="money" Nullable="false" />
-          <Property Name="ManagerBasicLifeWithADandDPolicyAmount" Type="money" Nullable="false" />
-          <Property Name="EmployeeBasicLifeWithADandDPolicyAmount" Type="money" Nullable="false" />
-          <Property Name="SpouseBasicLifeWithADandDPolicyAmount" Type="money" Nullable="false" />
-          <Property Name="DoNotWantBasicLifeCoverageWithADandD" Type="bit" Nullable="false" />
-          <Property Name="AmountOfPreviousPolicy" Type="money" Nullable="false" />
-          <Property Name="EmployeeSignature" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="EmployeeSignatureDate" Type="date" Nullable="false" />
+          <Property Name="DentalCoverageLost" Type="varchar" MaxLength="15" />
+          <Property Name="VisionCoverageLost" Type="varchar" MaxLength="15" />
+          <Property Name="CoveredUnderOtherInsurance" Type="varchar" MaxLength="15" />
+          <Property Name="CoveredUnderOtherInsReason" Type="varchar" MaxLength="50" />
+          <Property Name="EmployeeOnly" Type="varchar" MaxLength="15" />
+          <Property Name="EmployeeAndSpouse" Type="varchar" MaxLength="15" />
+          <Property Name="EmployeeAndDependent" Type="varchar" MaxLength="15" />
+          <Property Name="EmployeeAndFamily" Type="varchar" MaxLength="15" />
+          <Property Name="DoNotWantDentalCoverage" Type="varchar" MaxLength="15" />
+          <Property Name="EmployeeCoveredUnderOtherDentalPlan" Type="varchar" MaxLength="15" />
+          <Property Name="SpouseCoveredUnderOtherDentalPlan" Type="varchar" MaxLength="15" />
+          <Property Name="DependentsCoveredUnderOtherDentalPlan" Type="varchar" MaxLength="15" />
+          <Property Name="DoNotWantVisionCoverage" Type="varchar" MaxLength="15" />
+          <Property Name="EmployeeCoveredUnderOtherVisionPlan" Type="varchar" MaxLength="15" />
+          <Property Name="SpouseCoveredUnderOtherVisionPlan" Type="varchar" MaxLength="15" />
+          <Property Name="DependentsCoveredUnderOtherVisionPlan" Type="varchar" MaxLength="15" />
+          <Property Name="OwnerBasicLifeWithADandDPolicyAmount" Type="varchar" MaxLength="15" />
+          <Property Name="ManagerBasicLifeWithADandDPolicyAmount" Type="varchar" MaxLength="15" />
+          <Property Name="EmployeeBasicLifeWithADandDPolicyAmount" Type="varchar" MaxLength="15" />
+          <Property Name="SpouseBasicLifeWithADandDPolicyAmount" Type="varchar" MaxLength="15" />
+          <Property Name="DoNotWantBasicLifeCoverageWithADandD" Type="varchar" MaxLength="15" />
+          <Property Name="AmountOfPreviousPolicy" Type="varchar" MaxLength="15" />
+          <Property Name="EmployeeSignature" Type="varchar" MaxLength="75" />
+          <Property Name="EmployeeSignatureDate" Type="date" />
         </EntityType>
         <EntityType Name="Other_Insurance">
           <Key>
@@ -1335,74 +1335,74 @@
           </Key>
           <Property Name="LifeInsurance_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Employee_id" Type="Int32" Nullable="false" />
-          <Property Name="GroupPlanNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="BenefitsEffectiveDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="InitialEnrollment" Type="Boolean" Nullable="false" />
-          <Property Name="ReEnrollment" Type="Boolean" Nullable="false" />
-          <Property Name="AddEmployeeAndDependents" Type="Boolean" Nullable="false" />
-          <Property Name="DropRefuseCoverage" Type="Boolean" Nullable="false" />
-          <Property Name="InformationChange" Type="Boolean" Nullable="false" />
-          <Property Name="IncreaseAmount" Type="Boolean" Nullable="false" />
-          <Property Name="FamilyStatusChange" Type="Boolean" Nullable="false" />
-          <Property Name="MarriedOrHaveSpouse" Type="Boolean" Nullable="false" />
-          <Property Name="HaveChildrenOrHaveDependents" Type="Boolean" Nullable="false" />
-          <Property Name="DateOfMarriage" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PlacementDateOfAdoptedChild" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="AddDependent" Type="Boolean" Nullable="false" />
-          <Property Name="DropDependent" Type="Boolean" Nullable="false" />
-          <Property Name="Student" Type="Boolean" Nullable="false" />
-          <Property Name="Disabled" Type="Boolean" Nullable="false" />
-          <Property Name="NonStandardDependent" Type="Boolean" Nullable="false" />
-          <Property Name="DropEmployee" Type="Boolean" Nullable="false" />
-          <Property Name="DropSpouse" Type="Boolean" Nullable="false" />
-          <Property Name="DropDependents" Type="Boolean" Nullable="false" />
-          <Property Name="LastDayOfCoverage" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="TerminationOfEmployment" Type="Boolean" Nullable="false" />
-          <Property Name="Retirement" Type="Boolean" Nullable="false" />
-          <Property Name="LastDayWorked" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="OtherEvent" Type="Boolean" Nullable="false" />
-          <Property Name="OtherEventReason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OtherEventDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EmployeeDentalDrop" Type="Boolean" Nullable="false" />
-          <Property Name="SpouseDentalDrop" Type="Boolean" Nullable="false" />
-          <Property Name="DependentDentalDrop" Type="Boolean" Nullable="false" />
-          <Property Name="EmployeeVisionDrop" Type="Boolean" Nullable="false" />
-          <Property Name="SpouseVisionDrop" Type="Boolean" Nullable="false" />
-          <Property Name="DependentVisionDrop" Type="Boolean" Nullable="false" />
-          <Property Name="DropBasicLife" Type="Boolean" Nullable="false" />
-          <Property Name="DropDental" Type="Boolean" Nullable="false" />
-          <Property Name="DropVision" Type="Boolean" Nullable="false" />
-          <Property Name="TerminationOfEmploymentDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Divorce" Type="Boolean" Nullable="false" />
-          <Property Name="DivorceDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DeathOfSpouse" Type="Boolean" Nullable="false" />
-          <Property Name="DeathOfSpouseDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="TerminationOrExpirationOfCoverage" Type="Boolean" Nullable="false" />
+          <Property Name="GroupPlanNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="BenefitsEffectiveDate" Type="DateTime" Precision="0" />
+          <Property Name="InitialEnrollment" Type="String" />
+          <Property Name="ReEnrollment" Type="String" />
+          <Property Name="AddEmployeeAndDependents" Type="String" />
+          <Property Name="DropRefuseCoverage" Type="String" />
+          <Property Name="InformationChange" Type="String" />
+          <Property Name="IncreaseAmount" Type="String" />
+          <Property Name="FamilyStatusChange" Type="String" />
+          <Property Name="MarriedOrHaveSpouse" Type="String" />
+          <Property Name="HaveChildrenOrHaveDependents" Type="String" />
+          <Property Name="DateOfMarriage" Type="DateTime" Precision="0" />
+          <Property Name="PlacementDateOfAdoptedChild" Type="DateTime" Precision="0" />
+          <Property Name="AddDependent" Type="String" />
+          <Property Name="DropDependent" Type="String" />
+          <Property Name="Student" Type="String" />
+          <Property Name="Disabled" Type="String" />
+          <Property Name="NonStandardDependent" Type="String" />
+          <Property Name="DropEmployee" Type="String" />
+          <Property Name="DropSpouse" Type="String" />
+          <Property Name="DropDependents" Type="String" />
+          <Property Name="LastDayOfCoverage" Type="DateTime" Precision="0" />
+          <Property Name="TerminationOfEmployment" Type="String" />
+          <Property Name="Retirement" Type="String" />
+          <Property Name="LastDayWorked" Type="DateTime" Precision="0" />
+          <Property Name="OtherEvent" Type="String" />
+          <Property Name="OtherEventReason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OtherEventDate" Type="DateTime" Precision="0" />
+          <Property Name="EmployeeDentalDrop" Type="String" />
+          <Property Name="SpouseDentalDrop" Type="String" />
+          <Property Name="DependentDentalDrop" Type="String" />
+          <Property Name="EmployeeVisionDrop" Type="String" />
+          <Property Name="SpouseVisionDrop" Type="String" />
+          <Property Name="DependentVisionDrop" Type="String" />
+          <Property Name="DropBasicLife" Type="String" />
+          <Property Name="DropDental" Type="String" />
+          <Property Name="DropVision" Type="String" />
+          <Property Name="TerminationOfEmploymentDate" Type="DateTime" Precision="0" />
+          <Property Name="Divorce" Type="String" />
+          <Property Name="DivorceDate" Type="DateTime" Precision="0" />
+          <Property Name="DeathOfSpouse" Type="String" />
+          <Property Name="DeathOfSpouseDate" Type="DateTime" Precision="0" />
+          <Property Name="TerminationOrExpirationOfCoverage" Type="String" />
           <Property Name="TerminationOrExpirationOfCoverageDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DentalCoverageLost" Type="Boolean" Nullable="false" />
-          <Property Name="VisionCoverageLost" Type="Boolean" Nullable="false" />
-          <Property Name="CoveredUnderOtherInsurance" Type="Boolean" Nullable="false" />
-          <Property Name="CoveredUnderOtherInsReason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmployeeOnly" Type="Boolean" Nullable="false" />
-          <Property Name="EmployeeAndSpouse" Type="Boolean" Nullable="false" />
-          <Property Name="EmployeeAndDependent" Type="Boolean" Nullable="false" />
-          <Property Name="EmployeeAndFamily" Type="Boolean" Nullable="false" />
-          <Property Name="DoNotWantDentalCoverage" Type="Boolean" Nullable="false" />
-          <Property Name="EmployeeCoveredUnderOtherDentalPlan" Type="Boolean" Nullable="false" />
-          <Property Name="SpouseCoveredUnderOtherDentalPlan" Type="Boolean" Nullable="false" />
-          <Property Name="DependentsCoveredUnderOtherDentalPlan" Type="Boolean" Nullable="false" />
-          <Property Name="DoNotWantVisionCoverage" Type="Boolean" Nullable="false" />
-          <Property Name="EmployeeCoveredUnderOtherVisionPlan" Type="Boolean" Nullable="false" />
-          <Property Name="SpouseCoveredUnderOtherVisionPlan" Type="Boolean" Nullable="false" />
-          <Property Name="DependentsCoveredUnderOtherVisionPlan" Type="Boolean" Nullable="false" />
-          <Property Name="OwnerBasicLifeWithADandDPolicyAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="ManagerBasicLifeWithADandDPolicyAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="EmployeeBasicLifeWithADandDPolicyAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="SpouseBasicLifeWithADandDPolicyAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="DoNotWantBasicLifeCoverageWithADandD" Type="Boolean" Nullable="false" />
-          <Property Name="AmountOfPreviousPolicy" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="EmployeeSignature" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="EmployeeSignatureDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DentalCoverageLost" Type="String" />
+          <Property Name="VisionCoverageLost" Type="String" />
+          <Property Name="CoveredUnderOtherInsurance" Type="String" />
+          <Property Name="CoveredUnderOtherInsReason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeOnly" Type="String" />
+          <Property Name="EmployeeAndSpouse" Type="String" />
+          <Property Name="EmployeeAndDependent" Type="String" />
+          <Property Name="EmployeeAndFamily" Type="String" />
+          <Property Name="DoNotWantDentalCoverage" Type="String" />
+          <Property Name="EmployeeCoveredUnderOtherDentalPlan" Type="String" />
+          <Property Name="SpouseCoveredUnderOtherDentalPlan" Type="String" />
+          <Property Name="DependentsCoveredUnderOtherDentalPlan" Type="String" />
+          <Property Name="DoNotWantVisionCoverage" Type="String" />
+          <Property Name="EmployeeCoveredUnderOtherVisionPlan" Type="String" />
+          <Property Name="SpouseCoveredUnderOtherVisionPlan" Type="String" />
+          <Property Name="DependentsCoveredUnderOtherVisionPlan" Type="String" />
+          <Property Name="OwnerBasicLifeWithADandDPolicyAmount" Type="String" />
+          <Property Name="ManagerBasicLifeWithADandDPolicyAmount" Type="String" />
+          <Property Name="EmployeeBasicLifeWithADandDPolicyAmount" Type="String" />
+          <Property Name="SpouseBasicLifeWithADandDPolicyAmount" Type="String" />
+          <Property Name="DoNotWantBasicLifeCoverageWithADandD" Type="String" />
+          <Property Name="AmountOfPreviousPolicy" Type="String" />
+          <Property Name="EmployeeSignature" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeSignatureDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Life_Insurance_Employee" FromRole="Life_Insurance" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Other_Insurance">

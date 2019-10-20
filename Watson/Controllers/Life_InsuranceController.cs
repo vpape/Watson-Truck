@@ -52,83 +52,27 @@ namespace Watson.Controllers
         }
 
         //Create-LifeIns
-        public JsonResult LifeInsEnrollmentNew(int LifeInsurance_id)
+        public JsonResult LifeInsEnrollmentNew(int? LifeInsurance_id, int? Employee_id, string GroupPlanNumber, DateTime BenefitsEffectiveDate, string InitialEnrollment,
+            string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount, string FamilyStatusChange)
         {
-            var output = from e in db.Life_Insurance
-                         select new
-                         {
-                             e.LifeInsurance_id,
-                             e.Employee_id,
-                             e.GroupPlanNumber,
-                             e.BenefitsEffectiveDate,
-                             e.InitialEnrollment,
-                             e.ReEnrollment,
-                             e.AddEmployeeAndDependents,
-                             e.DropRefuseCoverage,
-                             e.InformationChange,
-                             e.IncreaseAmount,
-                             e.FamilyStatusChange,
-                             e.MarriedOrHaveSpouse,
-                             e.HaveChildrenOrHaveDependents,
-                             e.DateOfMarriage,
-                             e.PlacementDateOfAdoptedChild,
-                             e.AddDependent,
-                             e.DropDependent,
-                             e.Student,
-                             e.Disabled,
-                             e.NonStandardDependent,
-                             e.DropEmployee,
-                             e.DropSpouse,
-                             e.DropDependents,
-                             e.LastDayOfCoverage,
-                             e.TerminationOfEmployment,
-                             e.Retirement,
-                             e.LastDayWorked,
-                             e.OtherEvent,
-                             e.OtherEventDate,
-                             e.EmployeeDentalDrop,
-                             e.SpouseDentalDrop,
-                             e.DependentDentalDrop,
-                             e.EmployeeVisionDrop,
-                             e.SpouseVisionDrop,
-                             e.DependentVisionDrop,
-                             e.DropBasicLife,
-                             e.DropDental,
-                             e.DropVision,
-                             e.TerminationOfEmploymentDate,
-                             e.Divorce,
-                             e.DivorceDate,
-                             e.DeathOfSpouse,
-                             e.DeathOfSpouseDate,
-                             e.TerminationOrExpirationOfCoverage,
-                             e.TerminationOrExpirationOfCoverageDate,
-                             e.DentalCoverageLost,
-                             e.VisionCoverageLost,
-                             e.CoveredUnderOtherInsurance,
-                             e.CoveredUnderOtherInsReason,
-                             e.EmployeeOnly,
-                             e.EmployeeAndSpouse,
-                             e.EmployeeAndDependent,
-                             e.EmployeeAndFamily,
-                             e.DoNotWantDentalCoverage,
-                             e.EmployeeCoveredUnderOtherDentalPlan,
-                             e.SpouseCoveredUnderOtherDentalPlan,
-                             e.DependentsCoveredUnderOtherDentalPlan,
-                             e.DoNotWantVisionCoverage,
-                             e.EmployeeCoveredUnderOtherVisionPlan,
-                             e.SpouseCoveredUnderOtherVisionPlan,
-                             e.DependentsCoveredUnderOtherVisionPlan,
-                             e.OwnerBasicLifeWithADandDPolicyAmount,
-                             e.ManagerBasicLifeWithADandDPolicyAmount,
-                             e.EmployeeBasicLifeWithADandDPolicyAmount,
-                             e.SpouseBasicLifeWithADandDPolicyAmount,
-                             e.DoNotWantBasicLifeCoverageWithADandD,
-                             e.AmountOfPreviousPolicy,
-                             e.EmployeeSignature,
-                             e.EmployeeSignatureDate
-                         };
+            Life_Insurance lifeIns = new Life_Insurance();
 
-            return Json(new { data = output }, JsonRequestBehavior.AllowGet);
+            lifeIns.GroupPlanNumber = GroupPlanNumber;
+            lifeIns.BenefitsEffectiveDate = BenefitsEffectiveDate;
+            lifeIns.InitialEnrollment = InitialEnrollment;
+            lifeIns.ReEnrollment = ReEnrollment;
+            lifeIns.AddEmployeeAndDependents = AddEmployeeAndDependents;
+            lifeIns.DropRefuseCoverage = DropRefuseCoverage;
+            lifeIns.InformationChange = InformationChange;
+            lifeIns.IncreaseAmount = IncreaseAmount;
+            lifeIns.FamilyStatusChange = FamilyStatusChange;
+
+            db.Life_Insurance.Add(lifeIns);
+            db.SaveChanges();
+
+            int result = lifeIns.LifeInsurance_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
