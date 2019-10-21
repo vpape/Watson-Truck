@@ -65,6 +65,9 @@ namespace Watson.Models
         public string CityTwo { get; set; }
         public string StateTwo { get; set; }
         public string ZipCodeTwo { get; set; }
+        public string Active { get; set; }
+        public string Retired { get; set; }
+        public string CobraStateContinuation { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Beneficiary> Beneficiaries { get; set; }

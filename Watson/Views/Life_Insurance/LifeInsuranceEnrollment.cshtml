@@ -16,15 +16,14 @@
     <div class="form-horizontal">
         <div class="collapsible" id="FirstStep">Life Insurance Enrollment</div>
         <div>
-            <h4>Guardian Life Insurance</h4>
             <table class="table table-bordered">
                 <tr>
                     <td>
-                        <table class="table">
+                        <table class="table table-condensed">
+                            <caption>Employer Name:</caption>
                             <tr>
                                 <td>
                                     <div>
-                                        <text>Employer Name:</text>
                                         <h4><b>Watson Truck & Supply, Inc.</b></h4>
                                     </div>
                                 </td>
@@ -37,43 +36,41 @@
                                 <td>
                                     <div>
                                         <text>Benefits Effective Date:</text>
-                                        <input type="date" class="form-control" id="BenefitsEffectiveDate" name="BenefitsEffectiveDate" value="" />
+                                        <input type="date" class="form-control" id="BenefitsEffectiveDate" name="BenefitsEffectiveDate" value="@Convert.ToDateTime(Model.employee.EffectiveDate).ToString("yyyy-MM-dd")" disabled />
                                     </div>
                                 </td>
                             </tr>
                         </table>
-                        <table class="table">
+                        <table class="table table-condensed">
+                            <caption>Please Check Appropriate Box:</caption>
                             <tr>
                                 <td>
-                                    <div>
-                                        <h5>PLEASE CHECK APPROPRIATE BOX:</h5>
-                                        <div class="checkboxes">
-                                            <span>
-                                                <input type="checkbox" id="InitialEnrollment" name="InitialEnrollment" value="" /><label for="InitialEnrollment">Initial Enrollment</label>
-                                                <input type="checkbox" id="ReEnrollment" name="ReEnrollment" value="" /><label for="ReEnrollment">Re-Enrollment</label>
-                                                <input type="checkbox" id="AddEmployeeAndDependents" name="AddEmployeeAndDependents" value="" /><label for="AddEmployeeAndDependents">Add Employee/Dependents</label>
-                                                <input type="checkbox" id="DropRefuseCoverage" name="DropRefuseCoverage" value="" /><label for="DropRefuseCoverage">Drop/Refuse Coverage</label>
-                                                <input type="checkbox" id="InformationChange" name="InformationChange" value="" /><label for="InformationChange">Information Change</label>
-                                                <input type="checkbox" id="IncreaseAmount" name="IncreaseAmount" value="" /><label for="IncreaseAmount">Increase Amount</label>
-                                                <input type="checkbox" id="FamilyStatusChange" name="FamilyStatusChange" value="" /><label for="FamilyStatusChange">Family Status Change</label>
-                                            </span>
-                                        </div>
+                                    <div class="checkboxes">
+                                        <span>
+                                            <input type="checkbox" id="InitialEnrollment" name="InitialEnrollment" value="InitialEnrollment" @*@((Model.lifeIns.InitialEnrollment) == "True" ? "checked" : "")*@ /><label for="InitialEnrollment">Initial Enrollment</label>
+                                            <input type="checkbox" id="ReEnrollment" name="ReEnrollment" value="ReEnrollment" @*@((Model.lifeIns.ReEnrollment) == "True" ? "checked" : "")*@ /><label for="ReEnrollment">Re-Enrollment</label>
+                                            <input type="checkbox" id="AddEmployeeAndDependents" name="AddEmployeeAndDependents" value="AddEmployeeAndDependents" @*@((Model.lifeIns.AddEmployeeAndDependents) == "True" ? "checked" : "")*@ /><label for="AddEmployeeAndDependents">Add Employee/Dependents</label>
+                                            <input type="checkbox" id="DropRefuseCoverage" name="DropRefuseCoverage" value="DropRefuseCoverage" @*@((Model.lifeIns.DropRefuseCoverage) == "True" ? "checked" : "")*@ /><label for="DropRefuseCoverage">Drop/Refuse Coverage</label>
+                                            <input type="checkbox" id="InformationChange" name="InformationChange" value="InformationChange" @*@((Model.lifeIns.InformationChange) == "True" ? "checked" : "")*@ /><label for="InformationChange">Information Change</label>
+                                            <input type="checkbox" id="IncreaseAmount" name="IncreaseAmount" value="IncreaseAmount" @*@((Model.lifeIns.IncreaseAmount) == "True" ? "checked" : "")*@ /><label for="IncreaseAmount">Increase Amount</label>
+                                            <input type="checkbox" id="FamilyStatusChange" name="FamilyStatusChange" value="FamilyStatusChange" @*@((Model.lifeIns.FamilyStatusChange) == "True" ? "checked" : "")*@ /><label for="FamilyStatusChange">Family Status Change</label>
+                                        </span>
                                     </div>
                                 </td>
                             </tr>
                         </table>
-                        <table class="table table-bordered">
+                        <table class="table table-condensed">
+                            <caption>Class:</caption>
                             <tr>
                                 <td class="col-sm-4, col-md-3">
-                                    <text>Class:</text>
                                     <h5><b>ALL OTHER ELIGIBLE EMPLOYEES ENROLLING IN MEDICAL</b></h5>
                                 </td>
                                 <td>
-                                    <label>Division:</label>
-                                    <input type="text" class="form-control" id="Division" name="Division" value="" />
+                                    <label style="display:table-cell">Division:</label>
+                                    <input type="text" class="form-control" id="Division" name="Division" value="@Html.Raw(Model.employee.Department)" disabled />
                                 </td>
                                 <td>
-                                    <label>Subtotal Code:</label>
+                                    <label style="display:table-cell">Subtotal Code:</label>
                                     <input type="text" class="form-control" id="SubtotalCode" name="SubtotalCode" value="" />
                                 </td>
                             </tr>
@@ -82,56 +79,236 @@
                         <table class="table table-bordered">
                             <tr>
                                 <td class="col-sm-1, col-md-3">
-                                    <input type="text" class="form-control" placeholder="First Name" id="FirstName" name="FirstName" value="" />
+                                    <input type="text" class="form-control" placeholder="First Name" value="@Html.Raw(Model.employee.FirstName)" disabled />
                                 </td>
                                 <td class="col-sm-1, col-md-3">
-                                    <input type="text" class="form-control" placeholder="Last Name" id="LasttName" name="LasttName" value="" />
+                                    <input type="text" class="form-control" placeholder="Last Name" value="@Html.Raw(Model.employee.LastName)" disabled />
                                 </td>
                                 <td class="col-sm-1, col-md-3">
-                                    <input type="text" class="form-control" placeholder="SSN" id="SSN" name="SSN" value="" />
+                                    <input type="text" class="form-control" placeholder="SSN" value="@Html.Raw(Model.employee.SSN)" disabled />
                                 </td>
                                 <td class="col-sm-1, col-md-3">
-                                    <input type="text" class="form-control" placeholder="" id="" name="" value="" />
+                                    <input type="text" class="form-control" placeholder="" value="" />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" placeholder="Mailing Address" id="" name="" value="" />
+                                    <input type="text" class="form-control" placeholder="Mailing Address" value="@Html.Raw(Model.employee.MailingAddress)" disabled />
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" placeholder="City" id="" name="" value="" />
+                                    <input type="text" class="form-control" placeholder="City" value="@Html.Raw(Model.employee.City)" disabled />
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" placeholder="State" id="" name="" value="" />
+                                    <input type="text" class="form-control" placeholder="State" value="@Html.Raw(Model.employee.State)" disabled />
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" placeholder="Zip Code" id="" name="" value="" />
+                                    <input type="text" class="form-control" placeholder="Zip Code" value="@Html.Raw(Model.employee.ZipCode)" disabled />
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <label class="radio-inline"><input type="radio" id="Gender" class="form-group" name="Gender" value="true" />Male</label>
-                                    <label class="radio-inline"><input type="radio" id="Gender" class="form-group" name="Gender" value="false" />Female</label>
-
+                                <td class="text-center center-block">
+                                    <label class="radio-inline"><input type="radio" id="Gender" class="form-group" name="Gender" value="Male" @((Model.employee.Gender) == "Male" ? "checked" : "") disabled />Male</label>
+                                    <label class="radio-inline"><input type="radio" id="Gender" class="form-group" name="Gender" value="Female" @((Model.employee.Gender) == "Female" ? "checked" : "") disabled />Female</label>
                                 </td>
                                 <td>
-                                    <label>Date of Birth:</label>
-                                    <input type="date" class="form-control" name="DateOfBirth" value="" />
+                                    <label style="display:table-cell">Date of Birth:</label>
+                                    <input type="date" class="form-control" value="@Convert.ToDateTime(Model.employee.DateOfBirth).ToString("yyyy-MM-dd")" disabled />
                                 </td>
                                 <td>
-                                    <label>Phone Number:</label>
-                                    <input type="text" class="form-control" placeholder="" id="PhoneNumber" name="PhoneNumber" value="" />
+                                    <label style="display:table-cell">Phone Number:</label>
+                                    <input type="text" class="form-control" placeholder="Phone Number" value="@Html.Raw(Model.employee.PhoneNumber)" disabled />
+                                </td>
+                                <td>
+                                    <label style="display:table-cell">Email Address:</label>
+                                    <input type="text" class="form-control" placeholder="Email Address" value="@Html.Raw(Model.employee.EmailAddress)" disabled />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="center-block">
+                                    <div>
+                                        <label>Are you Married or do you have a spouse?</label>
+                                        <input type="radio" class="radio-inline" id="Married" onclick="ShowHideDateofMarriage()" name="MarriedOrHaveSpouse" value="True" checked />
+                                        <label>Yes</label>
+                                        <input type="radio" class="radio-inline" id="Married" onclick="ShowHideDateofMarriage()" name="MarriedOrHaveSpouse" value="False" />
+                                        <label>No</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="divDateOfMarriage">
+                                        <div>
+                                            <label style="display:table-cell">Date of Marriage:</label>
+                                            <input type="date" class="form-control" id="DateOfMarriage" name="DateOfMarriage" value="" />
+                                        </div>
+                                        <p></p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label style="display:table-cell">Do you have children or other Dependents?</label>
+                                        <input type="radio" class="radio-inline" id="OtherDependents" onclick="ShowHideDateOfAdoption()" name="HaveChildrenOrHaveDependents" value="True" checked />
+                                        <label>Yes</label>
+                                        <input type="radio" class="radio-inline" id="OtherDependents" onclick="ShowHideDateOfAdoption()" name="HaveChildrenOrHaveDependents" value="False" />
+                                        <label>No</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="divDateOfAdoption">
+                                        <div>
+                                            <label style="display:table-cell">Placement Date of Adoption:</label>
+                                            <input type="date" class="form-control" id="DateOfAdoption" name="PlacementDateOfAdoptedChild" value="" />
+                                        </div>
+                                        <p></p>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
-                        <div class="form-group">
-                            <div class="col-md-offset-11">
-                                <button type="submit" id="LifeInsUpdate" class="btn">Save</button>
-                            </div>
+                        <h4><b>About Your Job:</b></h4>
+                        <table class="table table-condensed">
+                            <tr>
+                                <td>
+                                    <label style="display:table-cell">Job Title:</label>
+                                    <input type="text" class="form-control" name="JobTitle" value="@Html.Raw(Model.employee.JobTitle)" disabled />
+
+                                </td>
+                                <td>
+                                    <label style="display:table-cell">Hours Worked per Week:</label>
+                                    <input type="number" class="form-control" id="HoursWorkedPerWeek" name="HoursWorkedPerWeek" value="@Html.Raw(Model.employee.HoursWorkedPerWeek)" />
+                                </td>
+                                <td class="center-block text-center">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="checkboxes">
+                                                    <label style="display:table-cell">Work Status:</label>
+                                                    <input type="checkbox" class="checkbox-inline" id="WorkStatus" name="WorkStatus" value="Active" @((Model.employee.WorkStatus == "Active") ? "checked" : "") disabled /><label>Active</label>
+                                                    <input type="checkbox" class="checkbox-inline" id="WorkStatus" name="WorkStatus" value="Retired" @((Model.employee.WorkStatus == "Retired") ? "checked" : "") disabled /><label>Retired</label>
+                                                    <input type="checkbox" class="checkbox-inline" id="WorkStatus" name="WorkStatus" value="Cobra/State Continuation" @((Model.employee.WorkStatus == "Cobra") ? "checked" : "") disabled /><label>Cobra/State</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <label style="display:table-cell">Hire Date:</label>
+                                    <input type="date" class="form-control" name="HireDate" value="@Convert.ToDateTime(Model.employee.HireDate).ToString("yyyy-MM-dd")" disabled />
+                                <td>
+                                    <label style="display:table-cell">Annual Salary: $</label>
+                                    <input type="text" class="form-control" name="AnnualSalary" value="@Html.Raw(Model.employee.AnnualSalary)" disabled />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <h4><b>About Your Family:Please include the name of the dependents you wish to enroll for coverage. Additional information may be required for non-standard dpendents such as niece or nephew.</b></h4>
+            <table class="table table-bordered table-condensed">
+                <caption><b>Spouse Information:</b></caption>
+                <tr>
+                    <td>
+                        <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@Model.spouse.FamilyMember_id" />
+                        <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Model.spouse.RelationshipToInsured" />
+                        <input type="text" class="form-control" placeholder="First Name" value="@Html.Raw(Model.spouse.FirstName)" disabled />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" placeholder="Last Name" value="@Html.Raw(Model.spouse.LastName)" disabled />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" placeholder="SSN" value="@Html.Raw(Model.spouse.SSN)" disabled />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" placeholder="" value="@Model.spouse.RelationshipToInsured" disabled />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="form-control" placeholder="Mailing Address" value="@Html.Raw(Model.spouse.MailingAddress)" disabled />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" placeholder="City" value="@Html.Raw(Model.spouse.City)" disabled />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" placeholder="State" value="@Html.Raw(Model.spouse.State)" disabled />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" placeholder="Zip Code" value="@Html.Raw(Model.spouse.ZipCode)" disabled />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center center-block">
+                        <label class="radio-inline"><input type="radio" id="Gender" class="form-group" name="Gender" value="Male" @((Model.spouse.Gender) == "Male" ? "checked" : "" ) disabled />Male</label>
+                        <label class="radio-inline"><input type="radio" id="Gender" class="form-group" name="Gender" value="Female" @((Model.spouse.Gender) =="Female" ? "checked" : "" ) disabled />Female</label>
+                    </td>
+                    <td>
+                        <label style="display:table-cell">Date of Birth:</label>
+                        <input type="date" class="form-control" value="@Convert.ToDateTime(Model.spouse.DateOfBirth).ToString("yyyy-MM-dd")" disabled />
+                    </td>
+                    <td>
+                        <label style="display:table-cell">Phone Number:</label>
+                        <input type="text" class="form-control" placeholder="Phone Number" value="@Html.Raw(Model.spouse.PhoneNumber)" disabled />
+                    </td>
+                </tr>
+            </table>
+            <table class="table table-bordered table-condensed">
+                <caption><b>Dependent Information:</b></caption>
+                <tr>
+                    <td class="col-sm-1, col-md-3">
+                        <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@Model.spouse.FamilyMember_id" />
+                        <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Model.spouse.RelationshipToInsured" />
+                        <input type="text" class="form-control" placeholder="First Name" value="@Html.Raw(Model.spouse.FirstName)" disabled />
+                    </td>
+                    <td class="col-sm-1, col-md-3">
+                        <input type="text" class="form-control" placeholder="Last Name" value="@Html.Raw(Model.spouse.LastName)" disabled />
+                    </td>
+                    <td class="col-sm-1, col-md-3">
+                        <input type="text" class="form-control" placeholder="SSN" value="@Html.Raw(Model.spouse.SSN)" disabled />
+                    </td>
+                    <td class="col-sm-1, col-md-3">
+                        <input type="text" class="form-control" placeholder="" value="@Model.spouse.RelationshipToInsured" disabled />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="form-control" placeholder="Mailing Address" value="@Html.Raw(Model.spouse.MailingAddress)" disabled />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" placeholder="City" value="@Html.Raw(Model.spouse.City)" disabled />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" placeholder="State" value="@Html.Raw(Model.spouse.State)" disabled />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" placeholder="Zip Code" value="@Html.Raw(Model.spouse.ZipCode)" disabled />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center center-block">
+                        <label class="radio-inline"><input type="radio" id="Gender" class="form-group" name="Gender" value="Male" @((Model.spouse.Gender) == "Male" ? "checked" : "") disabled />Male</label>
+                        <label class="radio-inline"><input type="radio" id="Gender" class="form-group" name="Gender" value="Female" @((Model.spouse.Gender) == "Female" ? "checked" : "") disabled />Female</label>
+                    </td>
+                    <td>
+                        <label style="display:table-cell">Date of Birth:</label>
+                        <input type="date" class="form-control" value="@Convert.ToDateTime(Model.spouse.DateOfBirth).ToString("yyyy-MM-dd")" disabled />
+                    </td>
+                    <td>
+                        <label style="display:table-cell">Phone Number:</label>
+                        <input type="text" class="form-control" placeholder="Phone Number" value="@Html.Raw(Model.spouse.PhoneNumber)" disabled />
+                    </td>
+                    <td>
+                        <label style="display:table-cell">Status:</label>
+                        <div class="checkboxes">
+                            <input type="checkbox" class="checkbox-inline" id="Student" name="Student" value="Student" /><label>Student</label>
+                            <input type="checkbox" class="checkbox-inline" id="Disabled" name="Disabled" value="Disabled" /><label>Disabled</label>
+                            <input type="checkbox" class="checkbox-inline" id="NonStandardDep" name="NonStandardDependent" value="NonStandardDependent" /><label>Non Standard</label>
                         </div>
                     </td>
                 </tr>
             </table>
+
+            <div class="form-group">
+                <div class="col-md-offset-11">
+                    <button type="submit" id="LifeInsUpdate" class="btn">Save</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>
@@ -170,12 +347,16 @@
     }
 
     .checkboxes {
-    
+ 
      
     }
 
+    .label {
+        display: table-cell;
+    }
+
     .checkboxes input {
-        margin: 0px 0px 0em .5em;
+        margin: 0em 0em 0em .5em;
     }
 </style>
 
@@ -209,6 +390,11 @@
             InformationChange = document.getElementById("InformationChange").checked;
             IncreaseAmount = document.getElementById("IncreaseAmount").checked;
             FamilyStatusChange = document.getElementById("FamilyStatusChange").checked;
+            //SubTotalCode = document.getElementById("SubTotalCode").value;
+            Married = document.getElementById("Married").checked;
+            DateOfMarriage = document.getElementById("DateOfMarriage").value;
+            OtherDependents = document.getElementById("OtherDependents").checked;
+            DateOfAdoption = document.getElementById("DateOfAdoption").value;          
 
             var data = {
                 "Employee_id": Employee_id,
@@ -221,6 +407,11 @@
                 "InformationChange": InformationChange,
                 "IncreaseAmount": IncreaseAmount,
                 "FamilyStatusChange": FamilyStatusChange,
+                //"SubTotalCode": SubTotalCode,
+                "Married": Married,
+                "DateOfMarriage": DateOfMarriage,
+                "OtherDependents": OtherDependents,
+                "DateOfAdoption": DateOfAdoption,
             }
 
             var ret = postData('LifeInsEnrollmentNew', data)
@@ -229,40 +420,40 @@
                     FirstStep(data);
                 })
                 .catch(error => console.error(error))
-
         })
-
-        function FirstStep(emp) {
-            document.querySelector("#FirstStep").nextElementSibling.style.display = "block";
-            Employee_id = emp.data;
-
-        }
-
-        function postData(url, data) {
-            //Default options are marked with *
-            console.log(data);
-            console.log(JSON.stringify(data));
-            return fetch(url, {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => console.log('Success:', JSON.stringify(response)))
-                .catch(error => console.error('Error:', error));
-            //.then(Response => {
-            //    console.log(Response);
-            //    Response.json();
-            //}) //parses response to JSON
-        }
-
     })
+    
+    function FirstStep(emp) {
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "block";
+        Employee_id = emp.data;
+
+    }
+
+    function postData(url, data) {
+        //Default options are marked with *
+        console.log(data);
+        console.log(JSON.stringify(data));
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'Accept': 'application/json',
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'same-origin', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+        //.then(Response => {
+        //    console.log(Response);
+        //    Response.json();
+        //}) //parses response to JSON
+    }
+
+
 </script>

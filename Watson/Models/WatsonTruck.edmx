@@ -202,6 +202,9 @@
           <Property Name="CityTwo" Type="varchar" MaxLength="30" />
           <Property Name="StateTwo" Type="varchar" MaxLength="30" />
           <Property Name="ZipCodeTwo" Type="varchar" MaxLength="15" />
+          <Property Name="Active" Type="varchar" MaxLength="25" />
+          <Property Name="Retired" Type="varchar" MaxLength="25" />
+          <Property Name="CobraStateContinuation" Type="varchar" MaxLength="25" />
         </EntityType>
         <EntityType Name="Family_Info">
           <Key>
@@ -1180,6 +1183,9 @@
           <Property Name="StateTwo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="ZipCodeTwo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="JobApplicants" Relationship="WatsonTruckModel.FK_JobApplicant_Employee" FromRole="Employee" ToRole="JobApplicant" />
+          <Property Name="Active" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Retired" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CobraStateContinuation" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Family_Info">
           <Key>
@@ -1337,70 +1343,70 @@
           <Property Name="Employee_id" Type="Int32" Nullable="false" />
           <Property Name="GroupPlanNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="BenefitsEffectiveDate" Type="DateTime" Precision="0" />
-          <Property Name="InitialEnrollment" Type="String" />
-          <Property Name="ReEnrollment" Type="String" />
-          <Property Name="AddEmployeeAndDependents" Type="String" />
-          <Property Name="DropRefuseCoverage" Type="String" />
-          <Property Name="InformationChange" Type="String" />
-          <Property Name="IncreaseAmount" Type="String" />
-          <Property Name="FamilyStatusChange" Type="String" />
-          <Property Name="MarriedOrHaveSpouse" Type="String" />
-          <Property Name="HaveChildrenOrHaveDependents" Type="String" />
+          <Property Name="InitialEnrollment" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="ReEnrollment" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="AddEmployeeAndDependents" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DropRefuseCoverage" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="InformationChange" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="IncreaseAmount" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="FamilyStatusChange" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="MarriedOrHaveSpouse" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="HaveChildrenOrHaveDependents" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DateOfMarriage" Type="DateTime" Precision="0" />
           <Property Name="PlacementDateOfAdoptedChild" Type="DateTime" Precision="0" />
-          <Property Name="AddDependent" Type="String" />
-          <Property Name="DropDependent" Type="String" />
-          <Property Name="Student" Type="String" />
-          <Property Name="Disabled" Type="String" />
-          <Property Name="NonStandardDependent" Type="String" />
-          <Property Name="DropEmployee" Type="String" />
-          <Property Name="DropSpouse" Type="String" />
-          <Property Name="DropDependents" Type="String" />
+          <Property Name="AddDependent" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DropDependent" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Student" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Disabled" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="NonStandardDependent" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DropEmployee" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DropSpouse" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DropDependents" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="LastDayOfCoverage" Type="DateTime" Precision="0" />
-          <Property Name="TerminationOfEmployment" Type="String" />
-          <Property Name="Retirement" Type="String" />
+          <Property Name="TerminationOfEmployment" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Retirement" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="LastDayWorked" Type="DateTime" Precision="0" />
-          <Property Name="OtherEvent" Type="String" />
+          <Property Name="OtherEvent" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="OtherEventReason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OtherEventDate" Type="DateTime" Precision="0" />
-          <Property Name="EmployeeDentalDrop" Type="String" />
-          <Property Name="SpouseDentalDrop" Type="String" />
-          <Property Name="DependentDentalDrop" Type="String" />
-          <Property Name="EmployeeVisionDrop" Type="String" />
-          <Property Name="SpouseVisionDrop" Type="String" />
-          <Property Name="DependentVisionDrop" Type="String" />
-          <Property Name="DropBasicLife" Type="String" />
-          <Property Name="DropDental" Type="String" />
-          <Property Name="DropVision" Type="String" />
+          <Property Name="EmployeeDentalDrop" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="SpouseDentalDrop" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DependentDentalDrop" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="EmployeeVisionDrop" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="SpouseVisionDrop" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DependentVisionDrop" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DropBasicLife" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DropDental" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DropVision" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="TerminationOfEmploymentDate" Type="DateTime" Precision="0" />
-          <Property Name="Divorce" Type="String" />
+          <Property Name="Divorce" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DivorceDate" Type="DateTime" Precision="0" />
-          <Property Name="DeathOfSpouse" Type="String" />
+          <Property Name="DeathOfSpouse" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DeathOfSpouseDate" Type="DateTime" Precision="0" />
-          <Property Name="TerminationOrExpirationOfCoverage" Type="String" />
+          <Property Name="TerminationOrExpirationOfCoverage" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="TerminationOrExpirationOfCoverageDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DentalCoverageLost" Type="String" />
-          <Property Name="VisionCoverageLost" Type="String" />
-          <Property Name="CoveredUnderOtherInsurance" Type="String" />
+          <Property Name="DentalCoverageLost" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="VisionCoverageLost" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="CoveredUnderOtherInsurance" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="CoveredUnderOtherInsReason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmployeeOnly" Type="String" />
-          <Property Name="EmployeeAndSpouse" Type="String" />
-          <Property Name="EmployeeAndDependent" Type="String" />
-          <Property Name="EmployeeAndFamily" Type="String" />
-          <Property Name="DoNotWantDentalCoverage" Type="String" />
-          <Property Name="EmployeeCoveredUnderOtherDentalPlan" Type="String" />
-          <Property Name="SpouseCoveredUnderOtherDentalPlan" Type="String" />
-          <Property Name="DependentsCoveredUnderOtherDentalPlan" Type="String" />
-          <Property Name="DoNotWantVisionCoverage" Type="String" />
-          <Property Name="EmployeeCoveredUnderOtherVisionPlan" Type="String" />
-          <Property Name="SpouseCoveredUnderOtherVisionPlan" Type="String" />
-          <Property Name="DependentsCoveredUnderOtherVisionPlan" Type="String" />
-          <Property Name="OwnerBasicLifeWithADandDPolicyAmount" Type="String" />
-          <Property Name="ManagerBasicLifeWithADandDPolicyAmount" Type="String" />
-          <Property Name="EmployeeBasicLifeWithADandDPolicyAmount" Type="String" />
-          <Property Name="SpouseBasicLifeWithADandDPolicyAmount" Type="String" />
-          <Property Name="DoNotWantBasicLifeCoverageWithADandD" Type="String" />
-          <Property Name="AmountOfPreviousPolicy" Type="String" />
+          <Property Name="EmployeeOnly" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="EmployeeAndSpouse" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="EmployeeAndDependent" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="EmployeeAndFamily" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DoNotWantDentalCoverage" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="EmployeeCoveredUnderOtherDentalPlan" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="SpouseCoveredUnderOtherDentalPlan" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DependentsCoveredUnderOtherDentalPlan" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DoNotWantVisionCoverage" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="EmployeeCoveredUnderOtherVisionPlan" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="SpouseCoveredUnderOtherVisionPlan" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DependentsCoveredUnderOtherVisionPlan" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="OwnerBasicLifeWithADandDPolicyAmount" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="ManagerBasicLifeWithADandDPolicyAmount" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="EmployeeBasicLifeWithADandDPolicyAmount" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="SpouseBasicLifeWithADandDPolicyAmount" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="DoNotWantBasicLifeCoverageWithADandD" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="AmountOfPreviousPolicy" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="EmployeeSignature" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="EmployeeSignatureDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Life_Insurance_Employee" FromRole="Life_Insurance" ToRole="Employee" />
@@ -1922,6 +1928,9 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="WatsonTruckModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="CobraStateContinuation" ColumnName="CobraStateContinuation" />
+                <ScalarProperty Name="Retired" ColumnName="Retired" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="ZipCodeTwo" ColumnName="ZipCodeTwo" />
                 <ScalarProperty Name="StateTwo" ColumnName="StateTwo" />
                 <ScalarProperty Name="CityTwo" ColumnName="CityTwo" />

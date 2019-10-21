@@ -25,6 +25,7 @@
                     </select>
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="col-md-2 control-label">Hire Date:</label>
                 <div class="col-md-10">
@@ -87,6 +88,14 @@
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkboxes">
+                    <label style="margin-left: 7em;">Work Status:</label>
+                    <input type="checkbox" class="checkbox-inline" id="Active" name="Active" value="Active" /><label for="Active">Active</label>
+                    <input type="checkbox" class="checkbox-inline" id="Retired" name="Retired" value="Retired" /><label label for="Retired">Retired</label>
+                    <input type="checkbox" class="checkbox-inline" id="Cobra" name="CobraStateContinuation" value="Cobra/State Continuation" /><label label for="Cobra">Cobra/State</label>
                 </div>
             </div>
             <div class="form-group">
@@ -244,6 +253,10 @@
         padding: 8px 8px;
     }
 
+    .checkboxes input {
+        margin: 0em 0em 0em 1em;
+    }
+
     .phone-number .col-xs-3::after {
         content: "-";
         position: absolute;
@@ -348,6 +361,9 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmployeeEnrollmentUpdate").addEventListener("click", function () {
             Role = document.getElementById("Role").value;
+            Active = document.getElementById("Active").value;
+            Retired = document.getElementById("Retired").value;
+            Cobra = document.getElementById("Cobra").value;
             CurrentEmployer = document.getElementById("CurrentEmployer").value;
             JobTitle = document.getElementById("JobTitle").value;
             EmpNumber = document.getElementById("EmpNumber").value;
@@ -357,9 +373,15 @@
             DateOfBirth = document.getElementById("DateOfBirth").value;
             MaritalStatus = document.getElementById("MaritalStatus").value;
             Gender = document.getElementById("Gender").value;
+            Active = document.getElementById("Active").checked;
+            Retired = document.getElementById("Retired").checked;
+            CobraState = document.getElementById("Cobra").checked;
 
             var data = {
                 "Role": Role,
+                "Active": Active,
+                "Retired": Retired,
+                "Cobra": Cobra,
                 "CurrentEmployer": CurrentEmployer,
                 "JobTitle": JobTitle,
                 "EmpNumber": EmpNumber,
@@ -369,6 +391,9 @@
                 "LastName": LastName,
                 "DateOfBirth": DateOfBirth,
                 "Gender": Gender,
+                "Active": Active,
+                "Retired": Retired,
+                "CobraState": CobraState,
             }
 
             //var ret = postData('EmployeeEnrollmentNew', data)

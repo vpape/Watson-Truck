@@ -64,8 +64,8 @@ namespace Watson.Controllers
         }
  
         //Create-EmpEnrollment
-        public JsonResult EmployeeEnrollmentNew(string Role, string CurrentEmployer, string JobTitle, string EmpNumber,
-            DateTime HireDate, string MaritalStatus, string FirstName, string LastName, DateTime DateOfBirth, string Gender)
+        public JsonResult EmployeeEnrollmentNew(string Role, string CurrentEmployer, string JobTitle, string EmpNumber, DateTime HireDate, string MaritalStatus,
+            string FirstName, string LastName, DateTime DateOfBirth, string Gender, string Active, string Retired, string CobraState)
         {
             Employee e = new Employee();
 
@@ -79,6 +79,9 @@ namespace Watson.Controllers
             e.LastName = LastName;
             e.DateOfBirth = DateOfBirth;
             e.Gender = Gender;
+            e.Active = Active;
+            e.Retired = Retired;
+            e.CobraStateContinuation = CobraState;
 
             ViewBag.Employee_id = e.Employee_id;
 

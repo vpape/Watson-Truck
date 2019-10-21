@@ -619,7 +619,7 @@
         <div>
             <p></p>
             <div style="border:solid" class="aside">
-                <label>Employment Information: (To be completed by Employer)</label>
+                <label style="display:table-cell">Employment Information: (To be completed by Employer)</label>
                 <p></p>
                 <div>
                     <input type="text" class="form-control" name="GroupName" id="GroupName" placeholder="Group Name" value="@Html.DisplayFor(Model => Model.grpHealth.GroupName)" />
@@ -630,41 +630,41 @@
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Department" id="empDepartment" placeholder="Department" value="@Html.DisplayFor(Model => Model.employee.Department)" />
+                    <input type="text" class="form-control" name="Department" id="Department" placeholder="Department" value="@Html.DisplayFor(Model => Model.employee.Department)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="EnrollmentType" id="empEnrollmentType" placeholder="Enrollment Type" value="@Html.DisplayFor(Model => Model.employee.EnrollmentType)" />
+                    <input type="text" class="form-control" name="EnrollmentType" id="EnrollmentType" placeholder="Enrollment Type" value="@Html.DisplayFor(Model => Model.employee.EnrollmentType)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Payroll_id" id="empPayroll_id" placeholder="Payroll ID" value="@Html.DisplayFor(Model => Model.employee.Payroll_id)" />
+                    <input type="text" class="form-control" name="Payroll_id" id="Payroll_id" placeholder="Payroll ID" value="@Html.DisplayFor(Model => Model.employee.Payroll_id)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Class" id="empClass" placeholder="Class" value="@Html.DisplayFor(Model => Model.employee.Class)" />
+                    <input type="text" class="form-control" name="Class" id="Class" placeholder="Class" value="@Html.DisplayFor(Model => Model.employee.Class)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="AnnualSalary" id="empAnnualSalary" placeholder="Annual Salary" value="@Html.DisplayFor(Model => Model.employee.AnnualSalary)" />
+                    <input type="text" class="form-control" name="AnnualSalary" id="AnnualSalary" placeholder="Annual Salary" value="@Html.DisplayFor(Model => Model.employee.AnnualSalary)" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="JobTitle" id="empJobTitle" placeholder="Occupation" value="@Html.DisplayFor(Model => Model.employee.JobTitle)" disabled />
+                    <input type="text" class="form-control" name="JobTitle" id="JobTitle" placeholder="Occupation" value="@Html.DisplayFor(Model => Model.employee.JobTitle)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <label>Hire Date:</label>
-                    <input type="date" class="form-control" name="HireDate" id="empHireDate" placeholder="Employment Date" value="@Convert.ToDateTime(Model.employee.HireDate).ToString("yyyy-MM-dd")" disabled />
+                    <label style="display:table-cell">Hire Date:</label>
+                    <input type="date" class="form-control" name="HireDate" id="HireDate" placeholder="Employment Date" value="@Convert.ToDateTime(Model.employee.HireDate).ToString("yyyy-MM-dd")" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <label>Effective Date:</label>
-                    <input type="date" class="form-control" name="EffectiveDate" id="empEffectiveDate" placeholder="Effective Date" value="@Convert.ToDateTime(Model.employee.EffectiveDate).ToString("yyyy-MM-dd")" />
+                    <label style="display:table-cell">Effective Date:</label>
+                    <input type="date" class="form-control" name="EffectiveDate" id="EffectiveDate" placeholder="Effective Date" value="@Convert.ToDateTime(Model.employee.EffectiveDate).ToString("yyyy-MM-dd")" />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="HoursWorkedPerWeek" id="empHrsWrkPerWk" placeholder="Min. Hrs. Worked/Wk" maxlength="3" value="@Html.DisplayFor(Model => Model.employee.HoursWorkedPerWeek)" />
+                    <input type="text" class="form-control" name="HoursWorkedPerWeek" id="HoursWorkedPerWeek" placeholder="Min. Hrs. Worked/Wk" maxlength="3" value="@Html.DisplayFor(Model => Model.employee.HoursWorkedPerWeek)" />
                 </div>
                 <p></p>
                 <div class="form-group">
@@ -688,7 +688,7 @@
                 </div>
                 <p></p>
                 <div class="form-group col-md-6">
-                    <label>Street Address:</label>
+                    <label style="display:table-cell">Street Address:</label>
                     <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(model => model.employee.MailingAddress)" disabled />
                     <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="@Html.DisplayFor(model => model.employee.PObox)" disabled />
                     <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@Html.DisplayFor(model => model.employee.City)" disabled />
@@ -708,7 +708,7 @@
                 </div>
                 <p></p>
                 <div>
-                    <label>Birth Date:</label>
+                    <label style="display:table-cell">Birth Date:</label>
                     <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="@Convert.ToDateTime(Model.employee.DateOfBirth).ToString("yyyy-MM-dd")" disabled />
                 </div>
             </div>
@@ -1028,12 +1028,10 @@
                                             </td>
                                         </tr>
                                     </table>
-
                                 </div>
                                 <hr />
                             }
                         }
-
                     </div>
                 }
             </form>
@@ -1347,30 +1345,25 @@
             Employee_id = document.getElementById("Employee_id").value;
             GroupName = document.getElementById("GroupName").value;
             IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
-            empDepartment = document.getElementById("empDepartment").value;
-            empEnrollmentType = document.getElementById("empEnrollmentType").value;
-            empPayroll_id = document.getElementById("empPayroll_id").value;
-            empClass = document.getElementById("empClass").value;
-            empAnnualSalary = document.getElementById("empAnnualSalary").value;
-            //empJobTitle = document.getElementById("empJobTitle").value;
-            //empHireDate = document.getElementById("empHireDate").value;
-            empEffectiveDate = document.getElementById("empEffectiveDate").value;
-            empHrsWrkPerWk = document.getElementById("empHrsWrkPerWk").value;
+            Department = document.getElementById("Department").value;
+            EnrollmentType = document.getElementById("EnrollmentType").value;
+            Payroll_id = document.getElementById("Payroll_id").value;
+            Class = document.getElementById("Class").value;
+            AnnualSalary = document.getElementById("AnnualSalary").value;
+            EffectiveDate = document.getElementById("EffectiveDate").value;
+            HoursWorkedPerWeek = document.getElementById("HoursWorkedPerWeek").value;
 
             var data = {
                 "Employee_id": Employee_id,
                 "GroupName": GroupName,
                 "IMSGroupNumber": IMSGroupNumber,
-                "empDepartment": empDepartment,
-                "empEnrollmentType": empEnrollmentType,
-                "empPayroll_id": empPayroll_id,
-                "empClass": empClass,
-                "empAnnualSalary": empAnnualSalary,
-                //"empJobTitle": empJobTitle,
-                //"empHireDate": empHireDate,
-                "empEffectiveDate": empEffectiveDate,
-                "empHrsWrkPerWk": empHrsWrkPerWk,
-
+                "Department": Department,
+                "EnrollmentType": EnrollmentType,
+                "Payroll_id": Payroll_id,
+                "Class": Class,
+                "AnnualSalary": AnnualSalary,
+                "EffectiveDate": EffectiveDate,
+                "HoursWorkedPerWeek": HoursWorkedPerWeek,
             }
 
             //var ret = postData('EmploymentInfoGrpHealthEnrollment', data)

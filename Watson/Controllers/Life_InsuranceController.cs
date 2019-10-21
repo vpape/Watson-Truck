@@ -52,11 +52,13 @@ namespace Watson.Controllers
         }
 
         //Create-LifeIns
-        public JsonResult LifeInsEnrollmentNew(int? LifeInsurance_id, int? Employee_id, string GroupPlanNumber, DateTime BenefitsEffectiveDate, string InitialEnrollment,
-            string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount, string FamilyStatusChange)
+        public JsonResult LifeInsEnrollmentNew(int? LifeInsurance_id, int Employee_id, string GroupPlanNumber, DateTime BenefitsEffectiveDate, string InitialEnrollment,
+            string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount, string FamilyStatusChange,
+            string SubTotalCode, string Married, DateTime DateOfMarriage, string OtherDependents, DateTime DateOfAdoption)
         {
             Life_Insurance lifeIns = new Life_Insurance();
 
+            lifeIns.Employee_id = Employee_id;
             lifeIns.GroupPlanNumber = GroupPlanNumber;
             lifeIns.BenefitsEffectiveDate = BenefitsEffectiveDate;
             lifeIns.InitialEnrollment = InitialEnrollment;
@@ -66,6 +68,11 @@ namespace Watson.Controllers
             lifeIns.InformationChange = InformationChange;
             lifeIns.IncreaseAmount = IncreaseAmount;
             lifeIns.FamilyStatusChange = FamilyStatusChange;
+            //lifeIns.SubTotalCode = SubTotalCode;
+            lifeIns.MarriedOrHaveSpouse = Married;
+            lifeIns.DateOfMarriage = DateOfMarriage;
+            lifeIns.HaveChildrenOrHaveDependents = OtherDependents;
+            lifeIns.PlacementDateOfAdoptedChild = DateOfAdoption;
 
             db.Life_Insurance.Add(lifeIns);
             db.SaveChanges();

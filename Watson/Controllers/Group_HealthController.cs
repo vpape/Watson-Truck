@@ -317,22 +317,21 @@ namespace Watson.Controllers
 
         }
 
-         public JsonResult EmploymentInfoGrpHealthEnrollment(int? Employee_id, string GroupName, string IMSGroupNumber, string empDepartment,
-             string empEnrollmentType, string empPayroll_id, string empClass, string empJobTitle, string empAnnualSalary,
-              DateTime empEffectiveDate, string empHrsWkPerWk)
+         public JsonResult EmploymentInfoGrpHealthEnrollment(int? Employee_id, string GroupName, string IMSGroupNumber, string Department,
+             string EnrollmentType, string Payroll_id, string Class, string AnnualSalary, DateTime EffectiveDate, string HoursWorkedPerWeek)
         {
             //Employee emp = new Employee();
             Employee emp = db.Employees
              .Where(i => i.Employee_id == Employee_id)
              .Single();
 
-            emp.Department = empDepartment;
-            emp.EnrollmentType = empEnrollmentType;
-            emp.Payroll_id = empPayroll_id;
-            emp.Class = empClass;
-            emp.AnnualSalary = empAnnualSalary;
-            emp.EffectiveDate = empEffectiveDate;
-            emp.HoursWorkedPerWeek = empHrsWkPerWk;
+            emp.Department = Department;
+            emp.EnrollmentType = EnrollmentType;
+            emp.Payroll_id = Payroll_id;
+            emp.Class = Class;
+            emp.AnnualSalary = AnnualSalary;
+            emp.EffectiveDate = EffectiveDate;
+            emp.HoursWorkedPerWeek = HoursWorkedPerWeek;
 
             Group_Health g = db.Group_Health
                 .Where(i => i.Employee_id == Employee_id)
