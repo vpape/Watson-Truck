@@ -94,9 +94,8 @@ namespace Watson.Controllers
         }
 
         //Create-EmpContact
-        public JsonResult EmpEnrollmentContact(int Employee_id, string MaritalStatus, string MailingAddress, string PObox, 
-            string City, string State, string ZipCode, string County, string CityLimits, string PhysicalAddress,
-            string City2, string State2, string ZipCode2, string EmailAddress, string PhoneNumber, string CellPhone)
+        public JsonResult EmpEnrollmentContact(int Employee_id, string MailingAddress, string PObox, string City, string State, string ZipCode, string CityLimits,
+            string County, string PhysicalAddress, string City2, string State2, string ZipCode2, string EmailAddress, string PhoneNumber, string CellPhone)
         {
             Employee e = db.Employees
                .Where(i => i.Employee_id == Employee_id)
@@ -107,8 +106,8 @@ namespace Watson.Controllers
             e.City = City;
             e.State = State;
             e.ZipCode = ZipCode;
-            e.County = County;
             e.CityLimits = CityLimits;
+            e.County = County;
             e.PhysicalAddress = PhysicalAddress;
             e.CityTwo = City2;
             e.StateTwo = State2;
@@ -117,7 +116,6 @@ namespace Watson.Controllers
             e.PhoneNumber = PhoneNumber;
             e.CellPhone = CellPhone;
 
-            ViewBag.MaritalStatus = e.MaritalStatus;
             ViewBag.Employee_id = e.Employee_id;
 
             if (ModelState.IsValid)
@@ -207,12 +205,11 @@ namespace Watson.Controllers
         }
        
         //EditUpdate-Emp
-        public JsonResult EmployeeEditUpdate(int? Employee_id, string EmpRole, string CurrentEmployer, string JobTitle, 
-            string EmpNumber, /*DateTime HireDate,*/ string FirstName, string LastName, /*DateTime DateOfBirth,*/ string Gender,
-            string MaritalStatus, string MailingAddress, string PObox, string City, string State, string ZipCode, string County,
-            string PhysicalAddress, string City2, string State2, string ZipCode2, string CityLimits, string EmailAddress, 
-            string PhoneNumber, string CellPhone, string OtherGrpHinsCoverage, string InsCarrier,
-            string InsPolicyNumber, string InsPhoneNumber, string Active, string Retired, string CobraState)
+        public JsonResult EmployeeEditUpdate(int? Employee_id, string EmpRole, string CurrentEmployer, string JobTitle, string EmpNumber, /*DateTime HireDate,*/ 
+            string FirstName, string LastName, /*DateTime DateOfBirth,*/ string Gender, string MaritalStatus, string MailingAddress, string PObox, string City, 
+            string State, string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, string CityLimits,
+            string EmailAddress, string PhoneNumber, string CellPhone, string OtherGrpHinsCoverage, string InsCarrier, string InsPolicyNumber,
+            string InsPhoneNumber, string Active, string Retired, string CobraState)
         {
             var e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)
@@ -464,9 +461,9 @@ namespace Watson.Controllers
         }
 
         //Create-SpouseContact
-        public JsonResult SpEnrollmentContact(int? Employee_id, int? FamilyMember_id, string MailingAddress, string PObox, string City,
-            string State, string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, 
-            string EmailAddress, string PhoneNumber, string CellPhone)
+        public JsonResult SpEnrollmentContact(int? Employee_id, int? FamilyMember_id, string MailingAddress, string PObox, string City, string State, 
+            string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, string EmailAddress, string PhoneNumber,
+            string CellPhone)
         {
             Family_Info sp = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
@@ -494,10 +491,9 @@ namespace Watson.Controllers
         }
 
         //Create-SpouseEmployment
-        public JsonResult SpEnrollmentEmployment(int? FamilyMember_id, int Employee_id, string Employer, string EmployerAddress,
-            string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber,
-            string spOtherInsuranceCoverage, string spOtherMedicalCoverage, string spOtherDentalCoverage, string spOtherVisionCoverage,
-            string spIndemnityCoverage)
+        public JsonResult SpEnrollmentEmployment(int? FamilyMember_id, int Employee_id, string Employer, string EmployerAddress, string EmployerPObox, 
+            string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber, string spOtherInsuranceCoverage, 
+            string spOtherMedicalCoverage, string spOtherDentalCoverage, string spOtherVisionCoverage, string spIndemnityCoverage)
         {
             
             var sp = (from fi in db.Family_Info
@@ -535,8 +531,8 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SpOtherInsuranceNew(int Employee_id, int FamilyMember_id, string spOtherInsuranceCoverage, string spInsCarrier, 
-            string spInsMailingAddress, string spInsCity, string spInsState, string spInsZipCode, string spInsPhoneNumber, string spInsPolicyNumber)
+        public JsonResult SpOtherInsuranceNew(int Employee_id, int FamilyMember_id, string spOtherInsuranceCoverage, string spInsCarrier, string spInsMailingAddress, 
+            string spInsCity, string spInsState, string spInsZipCode, string spInsPhoneNumber, string spInsPolicyNumber)
         {
             Other_Insurance other = new Other_Insurance();
 
@@ -590,13 +586,12 @@ namespace Watson.Controllers
         }
 
         //EditUpdate-Spouse
-        public JsonResult SpEditUpdate(int? Employee_id, int? FamilyMember_id, string RelationshipToInsured, string MaritalStatus, 
-            string EmpNumber, string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress,
-            string PObox, string City, string State, string ZipCode, string County, string PhysicalAddress, string City2, 
-            string State2, string ZipCode2, string EmailAddress, string PhoneNumber, string CellPhone, string Employer, 
-            string EmployerAddress, string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, 
-            string EmployerPhoneNumber, string spOtherInsuranceCoverage, string spOtherMedicalCoverage, string spOtherDentalCoverage,
-            string spOtherVisionCoverage, string spIndemnityCoverage)
+        public JsonResult SpEditUpdate(int? Employee_id, int? FamilyMember_id, string RelationshipToInsured, string MaritalStatus, string EmpNumber, 
+            string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress, string PObox, string City, string State, 
+            string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, string EmailAddress, string PhoneNumber, 
+            string CellPhone, string Employer, string EmployerAddress, string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, 
+            string EmployerPhoneNumber, string spOtherInsuranceCoverage, string spOtherMedicalCoverage, string spOtherDentalCoverage, string spOtherVisionCoverage,
+            string spIndemnityCoverage)
         {
             var sp = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
@@ -825,9 +820,8 @@ namespace Watson.Controllers
         }
 
         //Create-DepEnrollment
-        public JsonResult DepEnrollmentNew(int Employee_id, string RelationshipToInsured, string SSN, string DepFirstName, string DepLastName,
-            DateTime DateOfBirth, string Gender, string Student, string Disabled, string NonStandardDependent, string MailingAddress, string City, 
-            string State, string ZipCode)
+        public JsonResult DepEnrollmentNew(int Employee_id, string RelationshipToInsured, string SSN, string DepFirstName, string DepLastName, DateTime DateOfBirth,
+            string Gender, string Student, string Disabled, string NonStandardDependent, string MailingAddress, string City, string State, string ZipCode)
         {
             Family_Info dep = new Family_Info();
 
@@ -854,8 +848,8 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult DepOtherInsuranceNew(int Employee_id, int FamilyMember_id, string depCoveredByOtherInsurance,
-           string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
+        public JsonResult DepOtherInsuranceNew(int Employee_id, int FamilyMember_id, string depCoveredByOtherInsurance, string depInsCarrier, 
+            string depInsPolicyNumber, string depInsPhoneNumber)
         {
             Other_Insurance other = new Other_Insurance();
 

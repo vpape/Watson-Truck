@@ -89,8 +89,8 @@
             <p></p>
             <div id="DepOtherInsCoverage">
                 <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
-                <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="no" />No</label>
+                <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="True" />Yes</label>
+                <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="False" />No</label>
                 <div id="depInsInfo">
                     <div class="form-group col-md-2">
                         <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
@@ -325,7 +325,7 @@
 
 
         document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            //depCoveredByOtherInsurance = document.getElementById("CoveredByOtherInsurance").value
+            depCoveredByOtherInsurance = document.getElementById("CoveredByOtherInsurance").checked
             depInsCarrier = document.getElementById("depInsCarrier").value
             depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
             depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value
@@ -334,7 +334,7 @@
                 "FamilyMember_id": FamilyMember_id,
                 "Employee_id": Employee_id,
                 "RelationshipToInsured": RelationshipToInsured,
-                //"depCoveredByOtherInsurance": depCoveredByOtherInsurance,
+                "depCoveredByOtherInsurance": depCoveredByOtherInsurance,
                 "depInsCarrier": depInsCarrier,
                 "depInsPolicyNumber": depInsPolicyNumber,
                 "depInsPhoneNumber": depInsPhoneNumber,

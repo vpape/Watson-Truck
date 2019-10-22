@@ -125,9 +125,15 @@
                 <div class="col-md-10">
                     <select id="CityLimits" class="form-control">
                         <option value="">Select Option</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
+                        <option value="Yes" @(Model.employee.CityLimits == "Yes" ? "selected": "")>Yes</option>
+                        <option value="No"  @(Model.employee.CityLimits == "No" ? "selected": "")>No</option>
                     </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="County" class="col-md-2 control-label">County:</label>
+                <div class="col-md-10">
+                    <input type="text"  class="form-control" placeholder="County" id="County" name="County" value="@Html.DisplayFor(Model => Model.employee.County)" />
                 </div>
             </div>
             <div class="form-group" id="divMailingAddress">
@@ -372,6 +378,8 @@
             City = document.getElementById("City").value;
             State = document.getElementById("State").value;
             ZipCode = document.getElementById("ZipCode").value;
+            CityLimits = document.getElementById("CityLimits").value;
+            County = document.getElementById("County").value;
             PhysicalAddress = document.getElementById("PhysicalAddress").value;
             City2 = document.getElementById("City2").value;
             State2 = document.getElementById("State2").value;
@@ -379,7 +387,7 @@
             EmailAddress = document.getElementById("EmailAddress").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             CellPhone = document.getElementById("CellPhone").value;
-            CityLimits = document.getElementById("CityLimits").value;
+  
 
             var data = {
                 "Employee_id": Employee_id,
@@ -388,11 +396,12 @@
                 "City": City,
                 "State": State,
                 "ZipCode": ZipCode,
+                "CityLimits": CityLimits,
+                "County": County,
                 "PhysicalAddress": PhysicalAddress,
                 "City2": City2,
                 "State2": State2,
                 "ZipCode2": ZipCode2,
-                "CityLimits": CityLimits,
                 "EmailAddress": EmailAddress,
                 "PhoneNumber": PhoneNumber,
                 "CellPhone": CellPhone,
