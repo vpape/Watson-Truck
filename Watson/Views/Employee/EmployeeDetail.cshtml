@@ -186,7 +186,8 @@
         </div>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditEmployee", "Employee", new { Employee_id = ViewBag.Employee_id }, null)|
+
+        @Html.ActionLink("Edit", "EditEmployee", "Employee", new { Employee_id = Model.employee.Employee_id }, null)|
         @Html.ActionLink("Back to List", "EmpOverview")
     </p>
 </body>
@@ -249,6 +250,13 @@
 
         });
     }
+
+    function EditEmpBtn() {
+
+        window.location.href = "/Employee/EditEmployee?Employee_id=@Model.employee.Employee_id";
+    }
+
+    
 
     //document.addEventListener("DOMContentLoaded", function () {
     //    Role = document.getElementById("Role").value;

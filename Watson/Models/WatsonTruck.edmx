@@ -245,6 +245,9 @@
           <Property Name="Dental" Type="varchar" MaxLength="15" />
           <Property Name="Vision" Type="varchar" MaxLength="15" />
           <Property Name="Indemnity" Type="varchar" MaxLength="15" />
+          <Property Name="Student" Type="varchar" MaxLength="25" />
+          <Property Name="Disabled" Type="varchar" MaxLength="25" />
+          <Property Name="NonStandardDependent" Type="varchar" MaxLength="25" />
         </EntityType>
         <EntityType Name="Group_Health">
           <Key>
@@ -506,7 +509,6 @@
           <Property Name="DropSpouse" Type="varchar" MaxLength="15" />
           <Property Name="DropDependents" Type="varchar" MaxLength="15" />
           <Property Name="LastDayOfCoverage" Type="date" />
-          <Property Name="TerminationOfEmployment" Type="varchar" MaxLength="15" />
           <Property Name="Retirement" Type="varchar" MaxLength="15" />
           <Property Name="LastDayWorked" Type="date" />
           <Property Name="OtherEvent" Type="varchar" MaxLength="15" />
@@ -521,7 +523,6 @@
           <Property Name="DropBasicLife" Type="varchar" MaxLength="15" />
           <Property Name="DropDental" Type="varchar" MaxLength="15" />
           <Property Name="DropVision" Type="varchar" MaxLength="15" />
-          <Property Name="TerminationOfEmploymentDate" Type="date" />
           <Property Name="Divorce" Type="varchar" MaxLength="15" />
           <Property Name="DivorceDate" Type="date" />
           <Property Name="DeathOfSpouse" Type="varchar" MaxLength="15" />
@@ -531,7 +532,6 @@
           <Property Name="DentalCoverageLost" Type="varchar" MaxLength="15" />
           <Property Name="VisionCoverageLost" Type="varchar" MaxLength="15" />
           <Property Name="CoveredUnderOtherInsurance" Type="varchar" MaxLength="15" />
-          <Property Name="CoveredUnderOtherInsReason" Type="varchar" MaxLength="50" />
           <Property Name="EmployeeOnly" Type="varchar" MaxLength="15" />
           <Property Name="EmployeeAndSpouse" Type="varchar" MaxLength="15" />
           <Property Name="EmployeeAndDependent" Type="varchar" MaxLength="15" />
@@ -552,6 +552,13 @@
           <Property Name="AmountOfPreviousPolicy" Type="varchar" MaxLength="15" />
           <Property Name="EmployeeSignature" Type="varchar" MaxLength="75" />
           <Property Name="EmployeeSignatureDate" Type="date" />
+          <Property Name="SubTotalCode" Type="varchar" MaxLength="10" />
+          <Property Name="TerminationEmploymentOfDropCoverage" Type="varchar" MaxLength="15" />
+          <Property Name="TerminationEmploymentDateOfDropCoverage" Type="date" />
+          <Property Name="TerminationEmploymentLossOfOtherCoverage" Type="varchar" MaxLength="15" />
+          <Property Name="TerminationEmploymentDateLossOfOtherCoverage" Type="date" />
+          <Property Name="Other" Type="varchar" MaxLength="10" />
+          <Property Name="OtherReason" Type="varchar" MaxLength="75" />
         </EntityType>
         <EntityType Name="Other_Insurance">
           <Key>
@@ -1228,6 +1235,9 @@
           <Property Name="Dental" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Vision" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Indemnity" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Student" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Disabled" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="NonStandardDependent" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Group_Health">
           <Key>
@@ -1363,7 +1373,6 @@
           <Property Name="DropSpouse" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DropDependents" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="LastDayOfCoverage" Type="DateTime" Precision="0" />
-          <Property Name="TerminationOfEmployment" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="Retirement" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="LastDayWorked" Type="DateTime" Precision="0" />
           <Property Name="OtherEvent" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
@@ -1378,7 +1387,6 @@
           <Property Name="DropBasicLife" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DropDental" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DropVision" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="TerminationOfEmploymentDate" Type="DateTime" Precision="0" />
           <Property Name="Divorce" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DivorceDate" Type="DateTime" Precision="0" />
           <Property Name="DeathOfSpouse" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
@@ -1388,7 +1396,6 @@
           <Property Name="DentalCoverageLost" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="VisionCoverageLost" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="CoveredUnderOtherInsurance" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="CoveredUnderOtherInsReason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EmployeeOnly" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="EmployeeAndSpouse" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="EmployeeAndDependent" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
@@ -1410,6 +1417,13 @@
           <Property Name="EmployeeSignature" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="EmployeeSignatureDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Life_Insurance_Employee" FromRole="Life_Insurance" ToRole="Employee" />
+          <Property Name="SubTotalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TerminationEmploymentOfDropCoverage" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TerminationEmploymentDateOfDropCoverage" Type="DateTime" Precision="0" />
+          <Property Name="TerminationEmploymentLossOfOtherCoverage" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TerminationEmploymentDateLossOfOtherCoverage" Type="DateTime" Precision="0" />
+          <Property Name="Other" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="OtherReason" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Other_Insurance">
           <Key>
@@ -1974,6 +1988,9 @@
           <EntitySetMapping Name="Family_Info">
             <EntityTypeMapping TypeName="WatsonTruckModel.Family_Info">
               <MappingFragment StoreEntitySet="Family_Info">
+                <ScalarProperty Name="NonStandardDependent" ColumnName="NonStandardDependent" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+                <ScalarProperty Name="Student" ColumnName="Student" />
                 <ScalarProperty Name="Indemnity" ColumnName="Indemnity" />
                 <ScalarProperty Name="Vision" ColumnName="Vision" />
                 <ScalarProperty Name="Dental" ColumnName="Dental" />
@@ -2119,6 +2136,13 @@
           <EntitySetMapping Name="Life_Insurance">
             <EntityTypeMapping TypeName="WatsonTruckModel.Life_Insurance">
               <MappingFragment StoreEntitySet="Life_Insurance">
+                <ScalarProperty Name="OtherReason" ColumnName="OtherReason" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="TerminationEmploymentDateLossOfOtherCoverage" ColumnName="TerminationEmploymentDateLossOfOtherCoverage" />
+                <ScalarProperty Name="TerminationEmploymentLossOfOtherCoverage" ColumnName="TerminationEmploymentLossOfOtherCoverage" />
+                <ScalarProperty Name="TerminationEmploymentDateOfDropCoverage" ColumnName="TerminationEmploymentDateOfDropCoverage" />
+                <ScalarProperty Name="TerminationEmploymentOfDropCoverage" ColumnName="TerminationEmploymentOfDropCoverage" />
+                <ScalarProperty Name="SubTotalCode" ColumnName="SubTotalCode" />
                 <ScalarProperty Name="EmployeeSignatureDate" ColumnName="EmployeeSignatureDate" />
                 <ScalarProperty Name="EmployeeSignature" ColumnName="EmployeeSignature" />
                 <ScalarProperty Name="AmountOfPreviousPolicy" ColumnName="AmountOfPreviousPolicy" />
@@ -2139,7 +2163,6 @@
                 <ScalarProperty Name="EmployeeAndDependent" ColumnName="EmployeeAndDependent" />
                 <ScalarProperty Name="EmployeeAndSpouse" ColumnName="EmployeeAndSpouse" />
                 <ScalarProperty Name="EmployeeOnly" ColumnName="EmployeeOnly" />
-                <ScalarProperty Name="CoveredUnderOtherInsReason" ColumnName="CoveredUnderOtherInsReason" />
                 <ScalarProperty Name="CoveredUnderOtherInsurance" ColumnName="CoveredUnderOtherInsurance" />
                 <ScalarProperty Name="VisionCoverageLost" ColumnName="VisionCoverageLost" />
                 <ScalarProperty Name="DentalCoverageLost" ColumnName="DentalCoverageLost" />
@@ -2149,7 +2172,6 @@
                 <ScalarProperty Name="DeathOfSpouse" ColumnName="DeathOfSpouse" />
                 <ScalarProperty Name="DivorceDate" ColumnName="DivorceDate" />
                 <ScalarProperty Name="Divorce" ColumnName="Divorce" />
-                <ScalarProperty Name="TerminationOfEmploymentDate" ColumnName="TerminationOfEmploymentDate" />
                 <ScalarProperty Name="DropVision" ColumnName="DropVision" />
                 <ScalarProperty Name="DropDental" ColumnName="DropDental" />
                 <ScalarProperty Name="DropBasicLife" ColumnName="DropBasicLife" />
@@ -2164,7 +2186,6 @@
                 <ScalarProperty Name="OtherEvent" ColumnName="OtherEvent" />
                 <ScalarProperty Name="LastDayWorked" ColumnName="LastDayWorked" />
                 <ScalarProperty Name="Retirement" ColumnName="Retirement" />
-                <ScalarProperty Name="TerminationOfEmployment" ColumnName="TerminationOfEmployment" />
                 <ScalarProperty Name="LastDayOfCoverage" ColumnName="LastDayOfCoverage" />
                 <ScalarProperty Name="DropDependents" ColumnName="DropDependents" />
                 <ScalarProperty Name="DropSpouse" ColumnName="DropSpouse" />

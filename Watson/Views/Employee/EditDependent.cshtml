@@ -26,17 +26,17 @@
                         <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.DisplayFor(Model => Model.family.RelationshipToInsured)" disabled />
                     </div>
                     @*<div class="col-md-10 col-md-offset-2">
-                            <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                                @if (ViewBag.spouseExist == false)
-                                {
-                                    <option id="Spouse"  name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                                }
-                                else
-                                {
-                                    <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                                }
-                            </select>
-                        </div>*@
+                <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                    @if (ViewBag.spouseExist == false)
+                    {
+                        <option id="Spouse"  name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                    }
+                    else
+                    {
+                        <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                    }
+                </select>
+            </div>*@
                 </div>
                 <div class="form-group">
                     <label for="SSN" class="col-md-2 control-label">SSN:</label>
@@ -67,9 +67,28 @@
                     <div class="col-md-10">
                         <select id="Gender" class="form-control">
                             <option value="">Select Option</option>
-                            <option value="Male" @((Model.family.Gender) == "Male"   ? "selected" : "")>Male</option>
-                            <option value="Female" @((Model.family.Gender) == "Female"   ? "selected" : "")>Female</option>
+                            <option value="Male" @((Model.family.Gender) == "Male" ? "selected" : "")>Male</option>
+                            <option value="Female" @((Model.family.Gender) == "Female" ? "selected" : "")>Female</option>
                         </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkboxes">
+                        <label style="margin-left: 7em;">Status:</label>
+                        <input type="checkbox" class="checkbox-inline" id="Student" name="Student" value="Student" /><label for="Student">Student</label>
+                        <input type="checkbox" class="checkbox-inline" id="Disabled" name="Disabled" value="Disabled" /><label label for="Disabled">Disabled</label>
+                        <input type="checkbox" class="checkbox-inline" id="NonStandardDependent" onclick="showHideMailingAddress()" name="NonStandardDependent" value="NonStandardDependent" /><label for="NonStandardDependent">Non Standard Dependent</label>
+                    </div>
+                </div>
+                <div id="divMailingAddress">
+                    <div class="form-group">
+                        <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
+                            <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
+                            <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
+                            <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -155,6 +174,10 @@
         text-decoration: none;
         display: inline-block;
         padding: 8px 16px;
+    }
+
+    .checkboxes input {
+        margin: 0em 0em 0em .5em;
     }
 </style>
 
@@ -273,8 +296,6 @@
         });
     }
 
-
-
     @*function AddDependent() {
         document.addEventListener("click", function () {
 
@@ -282,6 +303,23 @@
 
         });
     }*@
+
+    $(document).ready(function () {
+        $('#divMailingAddress').hide();
+    });
+
+    function showHideMailingAddress() {
+        document.addEventListener("click", function () {
+            var nonstandard = document.getElementById("NonStandardDependent");
+
+            if (nonstandard.checked == false) {
+                document.getElementById("divMailingAddress").style.display = "none";
+            }
+            else {
+                document.getElementById("divMailingAddress").style.display = "block";
+            }
+        });
+    }
 
     //Redirects to Add Dependent Page
     document.querySelector("#addDep").addEventListener("click", function () {
@@ -382,6 +420,13 @@
             DepLastName = document.getElementById("DepLastName").value
             DateOfBirth = document.getElementById("DateOfBirth").value
             Gender = document.getElementById("Gender").value
+            Student = document.getElementById("Student").checked;
+            Disabled = document.getElementById("Disabled").checked;
+            NonStandardDependent = document.getElementById("NonStandardDependent").checked;
+            MailingAddress = document.getElementById("MailingAddress").value;
+            City = document.getElementById("City").value;
+            State = document.getElementById("State").value;
+            ZipCode = document.getElementById("ZipCode").value;
 
             var data = {
                 "Employee_id": Employee_id,
@@ -391,6 +436,13 @@
                 "DepLastName": DepLastName,
                 "DateOfBirth": DateOfBirth,
                 "Gender": Gender,
+                "Student": Student,
+                "Disabled": Disabled,
+                "NonStandardDependent": NonStandardDependent,
+                "MailingAddress": MailingAddress,
+                "City": City,
+                "State": State,
+                "ZipCode": ZipCode,
 
             }
 

@@ -54,8 +54,14 @@ namespace Watson.Controllers
         //Create-LifeIns
         public JsonResult LifeInsEnrollmentNew(int? LifeInsurance_id, int Employee_id, string GroupPlanNumber, DateTime BenefitsEffectiveDate, string InitialEnrollment,
             string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount, string FamilyStatusChange,
-            string SubTotalCode, string Married, DateTime DateOfMarriage, string OtherDependents, DateTime DateOfAdoption)
+            string SubTotalCode, string Married, DateTime DateOfMarriage, string OtherDependents, DateTime DateOfAdoption, string TerminationEmploymentOfDropCoverage, 
+            string Retirement, DateTime TerminationEmploymentDateOfDropCoverage, string OtherEvent, string OtherEventReason, DateTime OtherEventDate, string DropBasicLife,
+            string EmployeeDentalDrop, string SpouseDentalDrop, string DependentDentalDrop, string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop,
+            string TerminationEmploymentLossOfOtherCoverage, DateTime TerminationEmploymentDateLossOfOtherCoverage, string Divorce, DateTime DivorceDate, 
+            string DeathOfSpouse, DateTime DeathOfSpouseDate, string TerminationOrExpirationOfCoverage, DateTime TerminationOrExpirationOfCoverageDate,
+            string DentalCoverageLost, string VisionCoverageLost, string CoveredUnderOtherInsurance, string Other, string OtherReason)
         {
+
             Life_Insurance lifeIns = new Life_Insurance();
 
             lifeIns.Employee_id = Employee_id;
@@ -68,12 +74,38 @@ namespace Watson.Controllers
             lifeIns.InformationChange = InformationChange;
             lifeIns.IncreaseAmount = IncreaseAmount;
             lifeIns.FamilyStatusChange = FamilyStatusChange;
-            //lifeIns.SubTotalCode = SubTotalCode;
+            lifeIns.SubTotalCode = SubTotalCode;
             lifeIns.MarriedOrHaveSpouse = Married;
             lifeIns.DateOfMarriage = DateOfMarriage;
             lifeIns.HaveChildrenOrHaveDependents = OtherDependents;
             lifeIns.PlacementDateOfAdoptedChild = DateOfAdoption;
-
+            lifeIns.TerminationEmploymentOfDropCoverage = TerminationEmploymentOfDropCoverage;
+            lifeIns.Retirement = Retirement;
+            lifeIns.TerminationEmploymentDateOfDropCoverage = TerminationEmploymentDateOfDropCoverage;
+            lifeIns.OtherEvent = OtherEvent;
+            lifeIns.OtherEventReason = OtherEventReason;
+            lifeIns.OtherEventDate = OtherEventDate;
+            lifeIns.DropBasicLife = DropBasicLife;
+            lifeIns.EmployeeDentalDrop = EmployeeDentalDrop;
+            lifeIns.SpouseDentalDrop = SpouseDentalDrop;
+            lifeIns.DependentDentalDrop = DependentDentalDrop;
+            lifeIns.EmployeeVisionDrop = EmployeeVisionDrop;
+            lifeIns.SpouseVisionDrop = SpouseVisionDrop;
+            lifeIns.DependentVisionDrop = DependentVisionDrop;
+            lifeIns.TerminationEmploymentLossOfOtherCoverage = TerminationEmploymentLossOfOtherCoverage;
+            lifeIns.TerminationEmploymentDateLossOfOtherCoverage = TerminationEmploymentDateLossOfOtherCoverage;
+            lifeIns.Divorce = Divorce;
+            lifeIns.DivorceDate = DivorceDate;
+            lifeIns.DeathOfSpouse = DeathOfSpouse;
+            lifeIns.DeathOfSpouseDate = DeathOfSpouseDate;
+            lifeIns.TerminationOrExpirationOfCoverage = TerminationOrExpirationOfCoverage;
+            lifeIns.TerminationOrExpirationOfCoverageDate = TerminationOrExpirationOfCoverageDate;
+            lifeIns.DentalCoverageLost = DentalCoverageLost;
+            lifeIns.VisionCoverageLost = VisionCoverageLost;
+            lifeIns.CoveredUnderOtherInsurance = CoveredUnderOtherInsurance;
+            lifeIns.Other = Other;
+            lifeIns.OtherReason = OtherReason;
+    
             db.Life_Insurance.Add(lifeIns);
             db.SaveChanges();
 

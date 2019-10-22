@@ -21,7 +21,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
                 <div class="col-md-10">
-                    <input type="text" id="Role" class="form-control" name="EmployeeRole" value="@Html.DisplayFor(model => model.employee.EmployeeRole)">
+                    <input type="text" id="Role" class="form-control" name="EmployeeRole" value="@Html.DisplayFor(model => model.employee.EmployeeRole)" disabled>
                 </div>
             </div>
             <div class="form-group">
@@ -85,6 +85,14 @@
                         <option value="Male" @((Model.employee.Gender) == "Male" ? "selected" : "")>Male</option>
                         <option value="Female" @((Model.employee.Gender) == "Female" ? "selected" : "")>Female</option>
                     </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkboxes">
+                    <label style="margin-left: 7em;">Work Status:</label>
+                    <input type="checkbox" class="checkbox-inline" id="Active" name="Active" value="Active" @((Model.employee.Active)== "True" ? "checked": "")/><label for="Active">Active</label>
+                    <input type="checkbox" class="checkbox-inline" id="Retired" name="Retired" value="Retired" @((Model.employee.Retired)== "True" ? "checked": "") /><label label for="Retired">Retired</label>
+                    <input type="checkbox" class="checkbox-inline" id="Cobra" name="CobraStateContinuation" value="Cobra/State Continuation" @((Model.employee.CobraStateContinuation)== "True" ? "checked": "") /><label label for="Cobra">Cobra/State</label>
                 </div>
             </div>
             <div class="form-group">
@@ -241,6 +249,9 @@
         display: inline-flex;
         padding: 8px 8px;
     }
+    .checkboxes input {
+        margin: 0em 0em 0em 1em;
+    }
 
     .phone-number .col-xs-3::after {
         content: "-";
@@ -299,6 +310,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EditEmployeeEnrollment").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
             Role = document.getElementById("Role").value;
             CurrentEmployer = document.getElementById("CurrentEmployer").value;
             JobTitle = document.getElementById("JobTitle").value;
@@ -309,8 +321,12 @@
             DateOfBirth = document.getElementById("DateOfBirth").value;
             MaritalStatus = document.getElementById("MaritalStatus").value;
             Gender = document.getElementById("Gender").value;
+            Active = document.getElementById("Active").checked;
+            Retired = document.getElementById("Retired").checked;
+            CobraState = document.getElementById("Cobra").checked;
 
             var data = {
+                "Employee_id": Employee_id,
                 "Role": Role,
                 "CurrentEmployer": CurrentEmployer,
                 "JobTitle": JobTitle,
@@ -321,6 +337,9 @@
                 "LastName": LastName,
                 "DateOfBirth": DateOfBirth,
                 "Gender": Gender,
+                "Active": Active,
+                "Retired": Retired,
+                "CobraState": CobraState,
             }
 
             //var ret = postData('EmployeeEditUpdate', data)

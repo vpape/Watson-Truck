@@ -38,7 +38,6 @@ namespace Watson.Models
         public string DropSpouse { get; set; }
         public string DropDependents { get; set; }
         public Nullable<System.DateTime> LastDayOfCoverage { get; set; }
-        public string TerminationOfEmployment { get; set; }
         public string Retirement { get; set; }
         public Nullable<System.DateTime> LastDayWorked { get; set; }
         public string OtherEvent { get; set; }
@@ -53,7 +52,6 @@ namespace Watson.Models
         public string DropBasicLife { get; set; }
         public string DropDental { get; set; }
         public string DropVision { get; set; }
-        public Nullable<System.DateTime> TerminationOfEmploymentDate { get; set; }
         public string Divorce { get; set; }
         public Nullable<System.DateTime> DivorceDate { get; set; }
         public string DeathOfSpouse { get; set; }
@@ -63,7 +61,6 @@ namespace Watson.Models
         public string DentalCoverageLost { get; set; }
         public string VisionCoverageLost { get; set; }
         public string CoveredUnderOtherInsurance { get; set; }
-        public string CoveredUnderOtherInsReason { get; set; }
         public string EmployeeOnly { get; set; }
         public string EmployeeAndSpouse { get; set; }
         public string EmployeeAndDependent { get; set; }
@@ -84,6 +81,13 @@ namespace Watson.Models
         public string AmountOfPreviousPolicy { get; set; }
         public string EmployeeSignature { get; set; }
         public Nullable<System.DateTime> EmployeeSignatureDate { get; set; }
+        public string SubTotalCode { get; set; }
+        public string TerminationEmploymentOfDropCoverage { get; set; }
+        public Nullable<System.DateTime> TerminationEmploymentDateOfDropCoverage { get; set; }
+        public string TerminationEmploymentLossOfOtherCoverage { get; set; }
+        public Nullable<System.DateTime> TerminationEmploymentDateLossOfOtherCoverage { get; set; }
+        public string Other { get; set; }
+        public string OtherReason { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

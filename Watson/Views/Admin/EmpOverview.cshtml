@@ -1,7 +1,4 @@
-﻿@model IEnumerable<Watson.Models.Employee>
-@{
-    ViewBag.Title = "EmpOverview";
-}
+﻿@model List<Watson.Models.Employee>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,12 +8,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Admin-Employee Overview</title>
+    <title>Employee Overview</title>
 </head>
 <body>
-    <h4>Admin-Employee Overview</h4>
-    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
-    <table class="table table-hover">
+    <h4>Employee Overview</h4>
+    <table class="table table-condensed">
         <thead class="thead-dark">
             <tr>
                 <th></th>
@@ -36,21 +32,21 @@
                         </span>
                     </td>
                     <td>
-                        <input type="text" id="empNumber" class="form-control" name="SSN" value="@Html.DisplayFor(model => item.SSN)" readonly />
+                        <input type="text" id="empNumber" class="form-control" name="SSN" value="@Html.Raw(item.SSN)" readonly />
                     </td>
                     <td>
-                        <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(model => item.FirstName)" readonly />
+                        <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.Raw(item.FirstName)" readonly />
                     </td>
                     <td>
-                        <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(model => item.LastName)" readonly />
+                        <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.Raw(item.LastName)" readonly />
                     </td>
                     <td>
-                        <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.DisplayFor(model => item.EmailAddress)" readonly />
+                        <input type="text" id="EmailAddress" class="form-control" name="EmailAddress" value="@Html.Raw(item.EmailAddress)" readonly />
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "EditEmp", "Admin", new { Employee_id = item.Employee_id }, null)|
-                        @Html.ActionLink("Detail", "EmpDetail", "Admin", new { Employee_id = item.Employee_id }, null)|
-                        @Html.ActionLink("Insurance", "EmpInsurance", "Admin", new { Employee_id = item.Employee_id }, null)
+                        @Html.ActionLink("Detail", "EmployeeDetail", "Employee", new { Employee_id = item.Employee_id }, null)
+                        @Html.ActionLink("Insurance", "GrpHealthEnrollment", "Group_Health", new { Employee_id = item.Employee_id }, null)
+                        @Html.ActionLink("Delete", "DeleteEmp", "Employee", new { Employee_id = item.Employee_id }, new { onclick = "return confirm('Are you sure you want to delete');" } )
                     </td>
                 </tr>
             }
@@ -107,68 +103,17 @@
 
 <script>
     function NewEmployeeEnrollment() {
-        window.location.href = "/Admin/EmpEnrollmentSelection";
+        window.location.href = "/Employee/EnrollmentSelection";
 
     }
 
     function FamilyOverview(Employee_id) {
-        window.location.href = "/Admin/EmpFamilyOverview?Employee_id=" + Employee_id;
+        window.location.href = "/Employee/FamilyOverview?Employee_id=" + Employee_id; 
     }
 
-    var Employee_id;
-
-    document.addEventListener("DOMContentLoaded", function () {
-        Employee_id = document.getElementById("Employee_id").value;
-        FirstName = document.getElementById("FirstName").value;
-        LastName = document.getElementById("LastName").value;
-        EmailAddress = document.getElementById("EmailAddress").value;
-
-
-        var data = {
-            "Employee_id": Employee_id,
-            "EmpFirstName": FirstName,
-            "EmpLastName": LastName,
-            "EmailAddress": EmailAddress,
-        }
-
-        var ret = postData('GetEmployee', data)
-            .then(data => {
-                console.log(data);
-                FirstStep(data);
-            })
-            .catch(error => console.error(error))
-    })
-
-    function FirstStep(emp) {
-        Employee_id = emp.data;
-    }
-
-    function postData(url, data) {
-        //Default options are marked with *
-        console.log(data);
-        console.log(JSON.stringify(data));
-        return fetch(url, {
-            body: JSON.stringify(data), //must match 'Content-Type' header
-            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', //include, same-origin, *omit
-            headers: {
-                'Accept': 'application/json',
-                'user-agent': 'Mozilla/4.0 MDN Example',
-                'content-type': 'application/json'
-            },
-            method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            mode: 'same-origin', //no-cors, cors, *same-origin
-            redirect: 'follow', //manual, *follow, error
-            referrer: 'no-referrer', //*client, no-referrer
-        }).then(res => res.json())
-            .then(response => console.log('Success:', JSON.stringify(response)))
-            .catch(error => console.error('Error:', error));
-        //.then(Response => {
-        //    console.log(Response);
-        //    Response.json();
-        //}) //parses response to JSON
-    }
+   
 
 </script>
+
 
 
