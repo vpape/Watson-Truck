@@ -532,10 +532,6 @@
           <Property Name="DentalCoverageLost" Type="varchar" MaxLength="15" />
           <Property Name="VisionCoverageLost" Type="varchar" MaxLength="15" />
           <Property Name="CoveredUnderOtherInsurance" Type="varchar" MaxLength="15" />
-          <Property Name="EmployeeOnly" Type="varchar" MaxLength="15" />
-          <Property Name="EmployeeAndSpouse" Type="varchar" MaxLength="15" />
-          <Property Name="EmployeeAndDependent" Type="varchar" MaxLength="15" />
-          <Property Name="EmployeeAndFamily" Type="varchar" MaxLength="15" />
           <Property Name="DoNotWantDentalCoverage" Type="varchar" MaxLength="15" />
           <Property Name="EmployeeCoveredUnderOtherDentalPlan" Type="varchar" MaxLength="15" />
           <Property Name="SpouseCoveredUnderOtherDentalPlan" Type="varchar" MaxLength="15" />
@@ -559,6 +555,14 @@
           <Property Name="TerminationEmploymentDateLossOfOtherCoverage" Type="date" />
           <Property Name="Other" Type="varchar" MaxLength="10" />
           <Property Name="OtherReason" Type="varchar" MaxLength="75" />
+          <Property Name="EmployeeOnlyDental" Type="varchar" MaxLength="30" />
+          <Property Name="EEAndSpouseDental" Type="varchar" MaxLength="30" />
+          <Property Name="EEAndDependentsDental" Type="varchar" MaxLength="30" />
+          <Property Name="EEAndFamilyDental" Type="varchar" MaxLength="30" />
+          <Property Name="EmployeeOnlyVision" Type="varchar" MaxLength="30" />
+          <Property Name="EEAndSpouseVision" Type="varchar" MaxLength="30" />
+          <Property Name="EEAndDependentsVision" Type="varchar" MaxLength="30" />
+          <Property Name="EEAndFamilyVision" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Other_Insurance">
           <Key>
@@ -1396,10 +1400,6 @@
           <Property Name="DentalCoverageLost" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="VisionCoverageLost" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="CoveredUnderOtherInsurance" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="EmployeeOnly" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="EmployeeAndSpouse" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="EmployeeAndDependent" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="EmployeeAndFamily" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DoNotWantDentalCoverage" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="EmployeeCoveredUnderOtherDentalPlan" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="SpouseCoveredUnderOtherDentalPlan" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
@@ -1424,6 +1424,14 @@
           <Property Name="TerminationEmploymentDateLossOfOtherCoverage" Type="DateTime" Precision="0" />
           <Property Name="Other" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="OtherReason" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeOnlyDental" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EEAndSpouseDental" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EEAndDependentsDental" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EEAndFamilyDental" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeOnlyVision" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EEAndSpouseVision" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EEAndDependentsVision" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EEAndFamilyVision" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Other_Insurance">
           <Key>
@@ -2136,6 +2144,14 @@
           <EntitySetMapping Name="Life_Insurance">
             <EntityTypeMapping TypeName="WatsonTruckModel.Life_Insurance">
               <MappingFragment StoreEntitySet="Life_Insurance">
+                <ScalarProperty Name="EEAndFamilyVision" ColumnName="EEAndFamilyVision" />
+                <ScalarProperty Name="EEAndDependentsVision" ColumnName="EEAndDependentsVision" />
+                <ScalarProperty Name="EEAndSpouseVision" ColumnName="EEAndSpouseVision" />
+                <ScalarProperty Name="EmployeeOnlyVision" ColumnName="EmployeeOnlyVision" />
+                <ScalarProperty Name="EEAndFamilyDental" ColumnName="EEAndFamilyDental" />
+                <ScalarProperty Name="EEAndDependentsDental" ColumnName="EEAndDependentsDental" />
+                <ScalarProperty Name="EEAndSpouseDental" ColumnName="EEAndSpouseDental" />
+                <ScalarProperty Name="EmployeeOnlyDental" ColumnName="EmployeeOnlyDental" />
                 <ScalarProperty Name="OtherReason" ColumnName="OtherReason" />
                 <ScalarProperty Name="Other" ColumnName="Other" />
                 <ScalarProperty Name="TerminationEmploymentDateLossOfOtherCoverage" ColumnName="TerminationEmploymentDateLossOfOtherCoverage" />
@@ -2159,10 +2175,6 @@
                 <ScalarProperty Name="SpouseCoveredUnderOtherDentalPlan" ColumnName="SpouseCoveredUnderOtherDentalPlan" />
                 <ScalarProperty Name="EmployeeCoveredUnderOtherDentalPlan" ColumnName="EmployeeCoveredUnderOtherDentalPlan" />
                 <ScalarProperty Name="DoNotWantDentalCoverage" ColumnName="DoNotWantDentalCoverage" />
-                <ScalarProperty Name="EmployeeAndFamily" ColumnName="EmployeeAndFamily" />
-                <ScalarProperty Name="EmployeeAndDependent" ColumnName="EmployeeAndDependent" />
-                <ScalarProperty Name="EmployeeAndSpouse" ColumnName="EmployeeAndSpouse" />
-                <ScalarProperty Name="EmployeeOnly" ColumnName="EmployeeOnly" />
                 <ScalarProperty Name="CoveredUnderOtherInsurance" ColumnName="CoveredUnderOtherInsurance" />
                 <ScalarProperty Name="VisionCoverageLost" ColumnName="VisionCoverageLost" />
                 <ScalarProperty Name="DentalCoverageLost" ColumnName="DentalCoverageLost" />
