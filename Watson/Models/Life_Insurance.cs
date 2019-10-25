@@ -92,6 +92,8 @@ namespace Watson.Models
         public string EEAndSpouseVision { get; set; }
         public string EEAndDependentsVision { get; set; }
         public string EEAndFamilyVision { get; set; }
+        public string DentalCoverage { get; set; }
+        public string VisionCoverage { get; set; }
     
         public virtual Employee Employee { get; set; }
     }
