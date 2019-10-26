@@ -31,9 +31,6 @@ namespace Watson.Models
         public Nullable<System.DateTime> PlacementDateOfAdoptedChild { get; set; }
         public string AddDependent { get; set; }
         public string DropDependent { get; set; }
-        public string Student { get; set; }
-        public string Disabled { get; set; }
-        public string NonStandardDependent { get; set; }
         public string DropEmployee { get; set; }
         public string DropSpouse { get; set; }
         public string DropDependents { get; set; }

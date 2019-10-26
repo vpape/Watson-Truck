@@ -502,9 +502,6 @@
           <Property Name="PlacementDateOfAdoptedChild" Type="date" />
           <Property Name="AddDependent" Type="varchar" MaxLength="15" />
           <Property Name="DropDependent" Type="varchar" MaxLength="15" />
-          <Property Name="Student" Type="varchar" MaxLength="15" />
-          <Property Name="Disabled" Type="varchar" MaxLength="15" />
-          <Property Name="NonStandardDependent" Type="varchar" MaxLength="15" />
           <Property Name="DropEmployee" Type="varchar" MaxLength="15" />
           <Property Name="DropSpouse" Type="varchar" MaxLength="15" />
           <Property Name="DropDependents" Type="varchar" MaxLength="15" />
@@ -1372,9 +1369,6 @@
           <Property Name="PlacementDateOfAdoptedChild" Type="DateTime" Precision="0" />
           <Property Name="AddDependent" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DropDependent" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="Student" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="Disabled" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="NonStandardDependent" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DropEmployee" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DropSpouse" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DropDependents" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
@@ -2208,9 +2202,6 @@
                 <ScalarProperty Name="DropDependents" ColumnName="DropDependents" />
                 <ScalarProperty Name="DropSpouse" ColumnName="DropSpouse" />
                 <ScalarProperty Name="DropEmployee" ColumnName="DropEmployee" />
-                <ScalarProperty Name="NonStandardDependent" ColumnName="NonStandardDependent" />
-                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
-                <ScalarProperty Name="Student" ColumnName="Student" />
                 <ScalarProperty Name="DropDependent" ColumnName="DropDependent" />
                 <ScalarProperty Name="AddDependent" ColumnName="AddDependent" />
                 <ScalarProperty Name="PlacementDateOfAdoptedChild" ColumnName="PlacementDateOfAdoptedChild" />
