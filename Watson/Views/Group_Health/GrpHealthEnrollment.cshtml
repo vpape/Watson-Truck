@@ -616,7 +616,7 @@
     <hr />
     <div class="form-horizontal">
         <div class="collapsible" id="ThirdStep">Group Health Insurance Enrollment</div>
-        <div>
+        <div class="modal-content">
             <p></p>
             <div style="border:solid" class="aside">
                 <label style="display:table-cell">Employment Information: (To be completed by Employer)</label>
@@ -1122,10 +1122,15 @@
                         <button type="submit" id="GrpHealthInsStepTwo" class="btn">Save</button>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.ActionLink("Edit Group Health", "EditGroupHealthIns", "Group_Health", new { Employee_id = ViewBag.Employee_id }, null)
+                    </div>
+                </div>
             </div>
         </div>
        <p>
-            @Html.ActionLink("Edit Group Health", "EditGroupHealthIns", "Group_Health", new { Employee_id = ViewBag.Employee_id }, null)
+            
         </p>
         
 
@@ -1148,29 +1153,29 @@
     }
 
         .active, .collapsible:hover {
-            background-color: #555;
+            background-color: blue;
         }
 
     .content {
-        padding: 0 18px;
+        padding: 0 10px;
         display: none;
         overflow: hidden;
         background-color: #f1f1f1;
-    }
-
-    .btn {
-        background-color: #333;
-        color: white;
     }
 
     .button {
         text-align: right;
     }
 
+    .btn:hover {
+        background-color: blue;
+        color: white;
+    }
+
     a {
         text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
+        display: inline-flex;
+        padding: 8px 8px;
     }
 
         a:hover {

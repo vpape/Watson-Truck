@@ -484,7 +484,7 @@
     <Content Include="Views\Admin\EmpOverview.cshtml" />
     <Content Include="Views\Admin\FamilyOverview.cshtml" />
     <Content Include="Views\Life_Insurance\AddPrimaryBeneficiary.cshtml" />
-    <Content Include="Views\Life_Insurance\AddContingentBeneficiary.cshtml" />
+    <Content Include="Views\Life_Insurance\AddBeneficiary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

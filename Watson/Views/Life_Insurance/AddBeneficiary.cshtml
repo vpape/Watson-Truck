@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Contingent Beneficiary</title>
+    <title>Beneficiary</title>
 </head>
 <body>
     <div class="form-horizontal">
@@ -16,19 +16,19 @@
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
         <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@ViewBag.Beneficiary_id" />
         <input type="hidden" id="BeneficiaryType_id" class="form-control" name="BeneficiaryType_id" value="@ViewBag.BeneficiaryType_id" />
-        <input type="hidden" id="ContingentBeneficiary" class="form-control" name="ContingentBeneficiary" value="@ViewBag.ContingentBeneficiary" />
-        <div class="collapsible" id="FirstStep">Contingent Information</div>
-        <div id="divContingentEnrollment" class="content">
+        <div class="collapsible" id="FirstStep">Beneficiary Information</div>
+        <div id="divBeneficiaryEnrollment" class="content">
             <p></p>
             <p></p>
-            <div class="form-group" id="divContingentBeneficiary">
-                <label for="ContingentBeneficiary" class="col-md-2 control-label">Beneficiary:</label>
+            <div class="form-group" id="divPrimaryBeneficiary">
+                <label for="Beneficiary" class="col-md-2 control-label">Beneficiary:</label>
                 <div class="col-md-10">
-                    <input type="text" id="ContingentBeneficiary" class="form-control" name="ContingentBeneficiary" value="@ViewBag.ContingentBeneficiary" disabled />
+                    <input type="radio" class="radio-inline" id="PrimaryBeneficiary" name="PrimaryBeneficiary" value=""/><label for="PrimaryBeneficiary">Primary</label>
+                    <input type="radio" class="radio-inline" id="ContingentBeneficiary" name="ContingentBeneficiary" value="" /><label for="ContingentBeneficiary">Contingent</label>
                 </div>
             </div>
             <div class="form-group" id="divRelationshipToInsured">
-                <label for="RelationshipToInsured" class="col-md-2 control-label">Relationship To Employee:</label>
+                <label for="RelationshipToEmployee" class="col-md-2 control-label">Relationship To Employee:</label>
                 <div class="col-md-10">
                     <input type="text" id="RelationshipToEmployee" class="form-control" placeholder="Relationship To Employee" name="RelationshipToEmployee" value="" />
                 </div>
@@ -54,7 +54,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Date of Birth:</label>
                 <div class="col-md-10">
-                    <input type="date" id="DateOfBirth" class="form-control" name="DOB" value="" />
+                    <input type="date" id="DOB" class="form-control" name="DOB" value="" />
                 </div>
             </div>
             <div class="form-group">
@@ -67,12 +67,12 @@
                 <label for="Percentage" class="col-md-2 control-label">Percentage Of Benefits:</label>
                 <div class="col-md-10">
 
-                    <input type="number" id="Percentage" class="form-control" name="PercentageOfBenefits" placeholder="Percentage Of Benefits" value="" />
+                    <input type="number" id="PercentageOfBenefits" class="form-control" name="PercentageOfBenefits" placeholder="Percentage Of Benefits" value="" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <button type="submit" id="submitContingent" class="btn">Save</button>
+                    <button type="submit" id="submitBeneficiary" class="btn">Save</button>
                 </div>
             </div>
         </div>
@@ -80,13 +80,13 @@
     @* Spouse Contact *@
     <div class="form-horizontal">
         <hr />
-        <div class="collapsible" id="SecondStep">Contingent Address</div>
+        <div class="collapsible" id="SecondStep">Beneficiary Address</div>
         <div id="divSpEnrollment" class="content">
             <p></p>
             <p></p>
             <div id="divMailingAddress">
                 <div class="form-group">
-                    <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
+                    <label for="Address" class="col-md-2 control-label">Mailing Address:</label>
                     <div class="col-md-10">
                         <input type="text" id="Address" class="form-control" placeholder="Street" name="Address" value="" />
                         <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
@@ -94,10 +94,11 @@
                         <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
                     </div>
                 </div>
+
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <button type="submit" id="submitContingentStepTwo" class="btn">Save</button>
+                    <button type="submit" id="submitBeneficiaryStepTwo" class="btn">Save</button>
                 </div>
             </div>
         </div>
@@ -127,7 +128,7 @@
         }
 
     .content {
-        padding: 0 18px;
+        padding: 0 10px;
         display: none;
         overflow: hidden;
         background-color: #f1f1f1;
@@ -168,19 +169,29 @@
         });
     }
 
+    $(document).ready(function () {
+        $('.radio-inline').click(function () {
+            $('.radio-inline').not(this).prop('checked', false);
+        });
+    });
+
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#submitContingent").addEventListener("click", function () {
+        document.querySelector("#submitBeneficiary").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
+            PrimaryBeneficiary = document.getElementById("PrimaryBeneficiary").checked;
+            ContingentBeneficiary = document.getElementById("ContingentBeneficiary").checked;
             RelationshipToEmployee = document.getElementById("RelationshipToEmployee").value;
             SSN = document.getElementById("SSN").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
-            DateOfBirth = document.getElementById("DateOfBirth").value;
+            DateOfBirth = document.getElementById("DOB").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             PercentageOfBenefits = document.getElementById("Percent").value;
 
             var data = {
                 "Employee_id": Employee_id,
+                "PrimaryBeneficiary": PrimaryBeneficiary,
+                "ContingentBeneficiary": ContingentBeneficiary,
                 "RelationshipToEmployee": RelationshipToEmployee,
                 "SSN": SSN,
                 "FirstName": FirstName,
@@ -196,7 +207,7 @@
             //                  })
             //    .catch(error => console.error(error))
 
-            fetch('ContingentBeneficiaryUpdate', {
+            fetch('BeneficiaryUpdate', {
                 body: JSON.stringify(data), //must match 'Content-Type' header
                 cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', //include, same-origin, *omit
@@ -214,12 +225,12 @@
                 .catch(error => console.error('Error:', error));
         })
 
-        document.querySelector("#submitContingentStepTwo").addEventListener("click", function () {
+        document.querySelector("#submitBeneficiaryStepTwo").addEventListener("click", function () {
             Address = document.getElementById("Address").value;
             City = document.getElementById("City").value;
             State = document.getElementById("State").value;
             ZipCode = document.getElementById("ZipCode").value;
-     
+
             var data = {
                 "Employee_id": Employee_id,
                 "Address": Address,
@@ -228,14 +239,14 @@
                 "ZipCode": ZipCode,
             }
 
-            //var ret = postData('ContingentBeneficiaryContactUpdate', data)
+            //var ret = postData('PrimaryBeneficiaryContactUpdate', data)
             //    .then(data => {
             //        console.log(data);
             //        SecondStep(data);
             //    })
             //    .catch(error => console.error(error))
 
-            fetch('ContingentBeneficiaryContactUpdate', {
+            fetch('BeneficiaryUpdate', {
                 body: JSON.stringify(data), //must match 'Content-Type' header
                 cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', //include, same-origin, *omit
@@ -256,7 +267,7 @@
 
     function FirstStep(primary) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         Employee_id = primary.data;
     }
 
@@ -291,6 +302,7 @@
             //}) //parses response to JSON
     }
 </script>
+
 
 
 

@@ -79,25 +79,25 @@
           <Property Name="Beneficiary_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BeneficiaryType_id" Type="int" Nullable="false" />
           <Property Name="Employee_id" Type="int" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="SSN" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="DOB" Type="date" Nullable="false" />
-          <Property Name="Address" Type="varchar" MaxLength="35" Nullable="false" />
-          <Property Name="CIty" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="State" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="ZipCode" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="RelationshipToEmployee" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="PercentageOfBenefits" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" />
+          <Property Name="SSN" Type="varchar" MaxLength="15" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="CIty" Type="varchar" MaxLength="30" />
+          <Property Name="State" Type="varchar" MaxLength="30" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="15" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
+          <Property Name="RelationshipToEmployee" Type="varchar" MaxLength="30" />
+          <Property Name="PercentageOfBenefits" Type="varchar" MaxLength="3" />
         </EntityType>
         <EntityType Name="BeneficiaryType">
           <Key>
             <PropertyRef Name="BeneficiaryType_id" />
           </Key>
           <Property Name="BeneficiaryType_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PrimaryBeneficiary" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="ContingentBeneficiary" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PrimaryBeneficiary" Type="varchar" MaxLength="30" />
+          <Property Name="ContingentBeneficiary" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Deductions">
           <Key>
@@ -1057,17 +1057,17 @@
           <Property Name="Beneficiary_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BeneficiaryType_id" Type="Int32" Nullable="false" />
           <Property Name="Employee_id" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="SSN" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Name="CIty" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="State" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="RelationshipToEmployee" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="PercentageOfBenefits" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SSN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CIty" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="RelationshipToEmployee" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PercentageOfBenefits" Type="String" />
           <NavigationProperty Name="BeneficiaryType" Relationship="WatsonTruckModel.FK_Beneficiary_BeneficiaryType" FromRole="Beneficiary" ToRole="BeneficiaryType" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Beneficiary_Employee" FromRole="Beneficiary" ToRole="Employee" />
         </EntityType>
@@ -1076,8 +1076,8 @@
             <PropertyRef Name="BeneficiaryType_id" />
           </Key>
           <Property Name="BeneficiaryType_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PrimaryBeneficiary" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ContingentBeneficiary" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryBeneficiary" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ContingentBeneficiary" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Beneficiaries" Relationship="WatsonTruckModel.FK_Beneficiary_BeneficiaryType" FromRole="BeneficiaryType" ToRole="Beneficiary" />
         </EntityType>
         <EntityType Name="Deduction">

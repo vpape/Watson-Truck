@@ -72,7 +72,7 @@ namespace Watson.Controllers
             string EEAndFamilyVision, string DoNotWantVisionCoverage, string EmployeeCoveredUnderOtherVision, string SpouseCoveredUnderOtherVision,
             string DependentsCoveredUnderOtherVision, string PrimaryBeneficiary, string ContingentBeneficiary, string OwnerBasicLifeADandDPolicyAmount,
             string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount, string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount,
-            string RelationshipToEmployee, string SSN, string FirstName, string LastName, DateTime DateOfBirth, string PhoneNumber, decimal PercentageOfBenefits,
+            string RelationshipToEmployee, string SSN, string FirstName, string LastName, DateTime DateOfBirth, string PhoneNumber, string PercentageOfBenefits,
             string Address, string City, string State, string ZipCode)
         {
 
@@ -234,11 +234,11 @@ namespace Watson.Controllers
         }
         //----------------------------------------------------------------------------------------
 
-        public ActionResult AddPrimaryBeneficiary(int Employee_id, int? BeneficiaryType_id, int? Beneficiary_id, string PrimaryBeneficiary)
+        public ActionResult AddBeneficiary(int Employee_id, int? BeneficiaryType_id, int? Beneficiary_id, string PrimaryBeneficiary)
         {
+            ViewBag.Employee_id = Employee_id;
             ViewBag.BeneficiaryType_id = BeneficiaryType_id;
             ViewBag.Beneficiary_id = Beneficiary_id;
-            ViewBag.Employee_id = Employee_id;
             ViewBag.PrimaryBeneficiary = "Primary";
 
             EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
@@ -249,14 +249,21 @@ namespace Watson.Controllers
             return View(empAndInsVM);
         }
 
-        public JsonResult PrimaryBeneficiaryUpdate(int? Employee_id, int BeneficiaryType_id, int Beneficiary_id, string RelationshipToEmployee, string SSN,
-            string FirstName, string LastName, DateTime DateOfBirth, string PhoneNumber, decimal PercentageOfBenefits, string Address, string City,
-            string State, string ZipCode)
+        public JsonResult BeneficiaryUpdate(int? Employee_id, int? BeneficiaryType_id, int? Beneficiary_id, string PrimaryBeneficiary, string ContingentBeneficiary,
+            string RelationshipToEmployee, string SSN, string FirstName, string LastName, DateTime DateOfBirth, string PhoneNumber, string PercentageOfBenefits, 
+            string Address, string City, string State, string ZipCode)
         {
+            BeneficiaryType benefiType = db.BeneficiaryTypes
+             .Where(i => i.BeneficiaryType_id == BeneficiaryType_id)
+             .Single();
 
-            Beneficiary benefi = new Beneficiary();
+            benefiType.PrimaryBeneficiary = PrimaryBeneficiary;
+            benefiType.ContingentBeneficiary = ContingentBeneficiary;
 
-            benefi.BeneficiaryType_id = BeneficiaryType_id;
+            Beneficiary benefi = db.Beneficiaries
+             .Where(i => i.Beneficiary_id == Beneficiary_id)
+             .Single();
+
             benefi.RelationshipToEmployee = RelationshipToEmployee;
             benefi.SSN = SSN;
             benefi.FirstName = FirstName;
@@ -269,55 +276,54 @@ namespace Watson.Controllers
             benefi.State = State;
             benefi.ZipCode = ZipCode;
 
-            int result = benefi.Beneficiary_id;
+            int result = benefi.Employee_id;
 
-            db.Beneficiaries.Add(benefi);
             db.SaveChanges();
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AddContingentBeneficiary(int Employee_id, int? BeneficiaryType_id, int? Beneficiary_id, string ContingentBeneficiary)
-        {
-            ViewBag.BeneficiaryType_id = BeneficiaryType_id;
-            ViewBag.Beneficiary_id = Beneficiary_id;
-            ViewBag.Employee_id = Employee_id;
-            ViewBag.ContingentBeneficiary = "Contingent";
+        //public ActionResult AddContingentBeneficiary(int Employee_id, int? BeneficiaryType_id, int? Beneficiary_id, string ContingentBeneficiary)
+        //{
+        //    ViewBag.BeneficiaryType_id = BeneficiaryType_id;
+        //    ViewBag.Beneficiary_id = Beneficiary_id;
+        //    ViewBag.Employee_id = Employee_id;
+        //    ViewBag.ContingentBeneficiary = "Contingent";
 
-            EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
+        //    EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
 
-            empAndInsVM.beneficiaryType = db.BeneficiaryTypes.FirstOrDefault(i => i.BeneficiaryType_id == BeneficiaryType_id);
-            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id).ToList();
+        //    empAndInsVM.beneficiaryType = db.BeneficiaryTypes.FirstOrDefault(i => i.BeneficiaryType_id == BeneficiaryType_id);
+        //    empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id).ToList();
 
-            return View(empAndInsVM);
-        }
+        //    return View(empAndInsVM);
+        //}
 
-        public JsonResult ContingentBeneficiaryUpdate(int? Employee_id, int BeneficiaryType_id, int Beneficiary_id, string RelationshipToEmployee, string SSN,
-            string FirstName, string LastName, DateTime DateOfBirth, string PhoneNumber, decimal PercentageOfBenefits, string Address, string City,
-            string State, string ZipCode)
-        {
-            Beneficiary conting = new Beneficiary();
+        //public JsonResult ContingentBeneficiaryUpdate(int? Employee_id, int BeneficiaryType_id, int Beneficiary_id, string RelationshipToEmployee, string SSN,
+        //    string FirstName, string LastName, DateTime DateOfBirth, string PhoneNumber, string PercentageOfBenefits, string Address, string City,
+        //    string State, string ZipCode)
+        //{
+        //    Beneficiary conting = new Beneficiary();
 
-            conting.BeneficiaryType_id = BeneficiaryType_id;
-            conting.RelationshipToEmployee = RelationshipToEmployee;
-            conting.SSN = SSN;
-            conting.FirstName = FirstName;
-            conting.LastName = LastName;
-            conting.DOB = DateOfBirth;
-            conting.PhoneNumber = PhoneNumber;
-            conting.PercentageOfBenefits = PercentageOfBenefits;
-            conting.Address = Address;
-            conting.CIty = City;
-            conting.State = State;
-            conting.ZipCode = ZipCode;
+        //    conting.BeneficiaryType_id = BeneficiaryType_id;
+        //    conting.RelationshipToEmployee = RelationshipToEmployee;
+        //    conting.SSN = SSN;
+        //    conting.FirstName = FirstName;
+        //    conting.LastName = LastName;
+        //    conting.DOB = DateOfBirth;
+        //    conting.PhoneNumber = PhoneNumber;
+        //    conting.PercentageOfBenefits = PercentageOfBenefits;
+        //    conting.Address = Address;
+        //    conting.CIty = City;
+        //    conting.State = State;
+        //    conting.ZipCode = ZipCode;
 
-            int result = conting.Beneficiary_id;
+        //    int result = conting.Beneficiary_id;
 
-            db.Beneficiaries.Add(conting);
-            db.SaveChanges();
+        //    db.Beneficiaries.Add(conting);
+        //    db.SaveChanges();
 
-            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        //}
 
 
 

@@ -20,14 +20,14 @@ namespace Watson.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string SSN { get; set; }
-        public System.DateTime DOB { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
         public string Address { get; set; }
         public string CIty { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string PhoneNumber { get; set; }
         public string RelationshipToEmployee { get; set; }
-        public decimal PercentageOfBenefits { get; set; }
+        public string PercentageOfBenefits { get; set; }
     
         public virtual BeneficiaryType BeneficiaryType { get; set; }
         public virtual Employee Employee { get; set; }
