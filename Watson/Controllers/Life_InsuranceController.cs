@@ -57,19 +57,23 @@ namespace Watson.Controllers
         }
 
         //Create-LifeIns
-        public JsonResult LifeInsEnrollmentNew(int? LifeInsurance_id, int Employee_id, string GroupPlanNumber, DateTime BenefitsEffectiveDate, string InitialEnrollment,
-            string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount, string FamilyStatusChange,
-            string SubTotalCode, string Married, DateTime DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, string AddDependent, string DropDependent,
-            string DropEmployee, string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage, string Retirement, 
-            DateTime? LastDayWorked, string OtherEvent, string OtherEventReason, DateTime? OtherEventDate, string DropBasicLife,
-            string EmployeeDentalDrop, string SpouseDentalDrop, string DependentDentalDrop, string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop, 
-            string TerminationEmploymentLossOfOtherCoverage, DateTime? TerminationEmploymentDateLossOfOtherCoverage, string Divorce, DateTime? DivorceDate, 
-            string DeathOfSpouse, DateTime? DeathOfSpouseDate, string TerminationOrExpirationOfCoverage, /*DateTime? TerminationOrExpirationOfCoverageDate,*/
-            string DentalCoverageLost, string VisionCoverageLost, string CoveredUnderOtherInsurance, string Other, string OtherReason, string DentalCoverage,
-            string EmployeeOnlyDental, string EEAndSpouseDental, string EEAndDependentsDental, string EEAndFamilyDental, string DoNotWantDentalCoverage,
-            string EmployeeCoveredUnderOtherDental, string SpouseCoveredUnderOtherDental, string DependentsCoveredUnderOtherDental, string VisionCoverage, 
-            string EmployeeOnlyVision, string EEAndSpouseVision, string EEAndDependentsVision, string EEAndFamilyVision, string DoNotWantVisionCoverage, 
-            string EmployeeCoveredUnderOtherVision, string SpouseCoveredUnderOtherVision, string DependentsCoveredUnderOtherVision)
+        public JsonResult LifeInsEnrollmentNew(int? LifeInsurance_id, int BeneficiaryType_id, int Beneficiary_id, int Employee_id, string GroupPlanNumber, 
+            DateTime BenefitsEffectiveDate, string InitialEnrollment, string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, 
+            string InformationChange, string IncreaseAmount, string FamilyStatusChange, string SubTotalCode, string Married, DateTime DateOfMarriage, 
+            string OtherDependents, DateTime? DateOfAdoption, string AddDependent, string DropDependent, string DropEmployee, string DropDependents, 
+            DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage, string Retirement, DateTime? LastDayWorked, string OtherEvent, 
+            string OtherEventReason, DateTime? OtherEventDate, string DropBasicLife, string EmployeeDentalDrop, string SpouseDentalDrop, string DependentDentalDrop,
+            string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop, string TerminationEmploymentLossOfOtherCoverage, 
+            DateTime? TerminationEmploymentDateLossOfOtherCoverage, string Divorce, DateTime? DivorceDate, string DeathOfSpouse, DateTime? DeathOfSpouseDate,
+            string TerminationOrExpirationOfCoverage, /*DateTime? TerminationOrExpirationOfCoverageDate,*/string DentalCoverageLost, string VisionCoverageLost,
+            string CoveredUnderOtherInsurance, string Other, string OtherReason, string DentalCoverage, string EmployeeOnlyDental, string EEAndSpouseDental,
+            string EEAndDependentsDental, string EEAndFamilyDental, string DoNotWantDentalCoverage, string EmployeeCoveredUnderOtherDental, string SpouseCoveredUnderOtherDental,
+            string DependentsCoveredUnderOtherDental, string VisionCoverage, string EmployeeOnlyVision, string EEAndSpouseVision, string EEAndDependentsVision,
+            string EEAndFamilyVision, string DoNotWantVisionCoverage, string EmployeeCoveredUnderOtherVision, string SpouseCoveredUnderOtherVision,
+            string DependentsCoveredUnderOtherVision, string PrimaryBeneficiary, string ContingentBeneficiary, string OwnerBasicLifeADandDPolicyAmount,
+            string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount, string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount,
+            string RelationshipToEmployee, string SSN, string FirstName, string LastName, DateTime DateOfBirth, string PhoneNumber, decimal PercentageOfBenefits,
+            string Address, string City, string State, string ZipCode)
         {
 
             Life_Insurance lifeIns = new Life_Insurance();
@@ -120,6 +124,7 @@ namespace Watson.Controllers
             lifeIns.CoveredUnderOtherInsurance = CoveredUnderOtherInsurance;
             lifeIns.Other = Other;
             lifeIns.OtherReason = OtherReason;
+
             //lifeIns.DentalCoverage = DentalCoverage;--might need
             lifeIns.EmployeeOnlyDental = EmployeeOnlyDental;
             lifeIns.EEAndSpouseDental = EEAndSpouseDental;
@@ -138,6 +143,34 @@ namespace Watson.Controllers
             lifeIns.EmployeeCoveredUnderOtherVisionPlan = EmployeeCoveredUnderOtherVision;
             lifeIns.SpouseCoveredUnderOtherVisionPlan = SpouseCoveredUnderOtherVision;
             lifeIns.DependentsCoveredUnderOtherVisionPlan = DependentsCoveredUnderOtherVision;
+
+            lifeIns.OwnerBasicLifeWithADandDPolicyAmount = OwnerBasicLifeADandDPolicyAmount;
+            lifeIns.ManagerBasicLifeWithADandDPolicyAmount = ManagerBasicLifeADandDPolicyAmount;
+            lifeIns.EmployeeBasicLifeWithADandDPolicyAmount = EmployeeBasicLifeADandDPolicyAmount;
+            lifeIns.DoNotWantBasicLifeCoverageWithADandD = DoNotWantBasicLifeCoverageAandD;
+            lifeIns.AmountOfPreviousPolicy = PreviousPolicyAmount;
+
+            BeneficiaryType benefiType = new BeneficiaryType();
+
+            benefiType.BeneficiaryType_id = BeneficiaryType_id;
+            benefiType.PrimaryBeneficiary = PrimaryBeneficiary;
+            benefiType.ContingentBeneficiary = ContingentBeneficiary;
+
+            Beneficiary benefi = new Beneficiary();
+
+            benefi.Beneficiary_id = Beneficiary_id;
+            benefi.BeneficiaryType_id = BeneficiaryType_id;
+            benefi.RelationshipToEmployee = RelationshipToEmployee;
+            benefi.SSN = SSN;
+            benefi.FirstName = FirstName;
+            benefi.LastName = LastName;
+            benefi.DOB = DateOfBirth;
+            benefi.PhoneNumber = PhoneNumber;
+            benefi.PercentageOfBenefits = PercentageOfBenefits;
+            benefi.Address = Address;
+            benefi.CIty = City;
+            benefi.State = State;
+            benefi.ZipCode = ZipCode;
 
             db.Life_Insurance.Add(lifeIns);
             db.SaveChanges();
@@ -216,12 +249,33 @@ namespace Watson.Controllers
             return View(empAndInsVM);
         }
 
-        //public JsonResult PrimaryBeneficiaryUpdate(int? Employee_id)
-        //{
-        //    int result = 
+        public JsonResult PrimaryBeneficiaryUpdate(int? Employee_id, int BeneficiaryType_id, int Beneficiary_id, string RelationshipToEmployee, string SSN,
+            string FirstName, string LastName, DateTime DateOfBirth, string PhoneNumber, decimal PercentageOfBenefits, string Address, string City,
+            string State, string ZipCode)
+        {
 
-        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-        //}
+            Beneficiary benefi = new Beneficiary();
+
+            benefi.BeneficiaryType_id = BeneficiaryType_id;
+            benefi.RelationshipToEmployee = RelationshipToEmployee;
+            benefi.SSN = SSN;
+            benefi.FirstName = FirstName;
+            benefi.LastName = LastName;
+            benefi.DOB = DateOfBirth;
+            benefi.PhoneNumber = PhoneNumber;
+            benefi.PercentageOfBenefits = PercentageOfBenefits;
+            benefi.Address = Address;
+            benefi.CIty = City;
+            benefi.State = State;
+            benefi.ZipCode = ZipCode;
+
+            int result = benefi.Beneficiary_id;
+
+            db.Beneficiaries.Add(benefi);
+            db.SaveChanges();
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult AddContingentBeneficiary(int Employee_id, int? BeneficiaryType_id, int? Beneficiary_id, string ContingentBeneficiary)
         {
@@ -238,12 +292,32 @@ namespace Watson.Controllers
             return View(empAndInsVM);
         }
 
-        //public JsonResult ContingentBeneficiaryUpdate(int? Employee_id)
-        //{
-        //    int result = 
+        public JsonResult ContingentBeneficiaryUpdate(int? Employee_id, int BeneficiaryType_id, int Beneficiary_id, string RelationshipToEmployee, string SSN,
+            string FirstName, string LastName, DateTime DateOfBirth, string PhoneNumber, decimal PercentageOfBenefits, string Address, string City,
+            string State, string ZipCode)
+        {
+            Beneficiary conting = new Beneficiary();
 
-        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-        //}
+            conting.BeneficiaryType_id = BeneficiaryType_id;
+            conting.RelationshipToEmployee = RelationshipToEmployee;
+            conting.SSN = SSN;
+            conting.FirstName = FirstName;
+            conting.LastName = LastName;
+            conting.DOB = DateOfBirth;
+            conting.PhoneNumber = PhoneNumber;
+            conting.PercentageOfBenefits = PercentageOfBenefits;
+            conting.Address = Address;
+            conting.CIty = City;
+            conting.State = State;
+            conting.ZipCode = ZipCode;
+
+            int result = conting.Beneficiary_id;
+
+            db.Beneficiaries.Add(conting);
+            db.SaveChanges();
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
 
 
 
