@@ -1,0 +1,301 @@
+﻿@model Watson.ViewModels.EmployeeAndInsuranceVM
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Contingent Beneficiary</title>
+</head>
+<body>
+    <div class="form-horizontal">
+        <hr />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
+        <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@ViewBag.Beneficiary_id" />
+        <input type="hidden" id="BeneficiaryType_id" class="form-control" name="BeneficiaryType_id" value="@ViewBag.BeneficiaryType_id" />
+        <input type="hidden" id="ContingentBeneficiary" class="form-control" name="ContingentBeneficiary" value="@ViewBag.ContingentBeneficiary" />
+        <div class="collapsible" id="FirstStep">Contingent Information</div>
+        <div id="divContingentEnrollment" class="content">
+            <p></p>
+            <p></p>
+            <div class="form-group" id="divContingentBeneficiary">
+                <label for="ContingentBeneficiary" class="col-md-2 control-label">Beneficiary:</label>
+                <div class="col-md-10">
+                    <input type="text" id="ContingentBeneficiary" class="form-control" name="ContingentBeneficiary" value="@ViewBag.ContingentBeneficiary" disabled />
+                </div>
+            </div>
+            <div class="form-group" id="divRelationshipToInsured">
+                <label for="RelationshipToInsured" class="col-md-2 control-label">Relationship To Employee:</label>
+                <div class="col-md-10">
+                    <input type="text" id="RelationshipToEmployee" class="form-control" placeholder="Relationship To Employee" name="RelationshipToEmployee" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="SSN" class="col-md-2 control-label">SSN:</label>
+                <div class="col-md-10">
+                    <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="FirstName" class="col-md-2 control-label">First Name:</label>
+                <div class="col-md-10">
+                    <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="LastName" class="col-md-2 control-label">Last Name:</label>
+                <div class="col-md-10">
+                    <input type="text" id="LastName" class="form-control" placeholder="Last Name" name="LastName" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Date of Birth:</label>
+                <div class="col-md-10">
+                    <input type="date" id="DateOfBirth" class="form-control" name="DOB" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                <div class="col-md-10">
+                    <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="Phone Number" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Percentage" class="col-md-2 control-label">Percentage Of Benefits:</label>
+                <div class="col-md-10">
+
+                    <input type="number" id="Percentage" class="form-control" name="PercentageOfBenefits" placeholder="Percentage Of Benefits" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-11">
+                    <button type="submit" id="submitContingent" class="btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* Spouse Contact *@
+    <div class="form-horizontal">
+        <hr />
+        <div class="collapsible" id="SecondStep">Contingent Address</div>
+        <div id="divSpEnrollment" class="content">
+            <p></p>
+            <p></p>
+            <div id="divMailingAddress">
+                <div class="form-group">
+                    <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="Address" class="form-control" placeholder="Street" name="Address" value="" />
+                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
+                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
+                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-11">
+                    <button type="submit" id="submitContingentStepTwo" class="btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Back to Life Insurance", "LifeInsuranceEnrollment", "Life_Insurance", new { Employee_id = ViewBag.Employee_id }, null)
+    </p>
+
+</body>
+</html>
+
+<style>
+    .collapsible {
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: blue;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    .button {
+        text-align: right;
+    }
+
+    .btn:hover {
+        background-color: blue;
+        color: white;
+    }
+
+    a {
+        text-decoration: none;
+        display: inline-flex;
+        padding: 8px 8px;
+    }
+</style>
+
+<script>
+    var col = document.querySelectorAll(".collapsible");
+    var i;
+
+    var Employee_id;
+
+    for (i = 0; i < col.length; i++) {
+        col[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#submitContingent").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
+            RelationshipToEmployee = document.getElementById("RelationshipToEmployee").value;
+            SSN = document.getElementById("SSN").value;
+            FirstName = document.getElementById("FirstName").value;
+            LastName = document.getElementById("LastName").value;
+            DateOfBirth = document.getElementById("DateOfBirth").value;
+            PhoneNumber = document.getElementById("PhoneNumber").value;
+            PercentageOfBenefits = document.getElementById("Percent").value;
+
+            var data = {
+                "Employee_id": Employee_id,
+                "RelationshipToEmployee": RelationshipToEmployee,
+                "SSN": SSN,
+                "FirstName": FirstName,
+                "LastName": LastName,
+                "DateOfBirth": DateOfBirth,
+                "PhoneNumber": PhoneNumber,
+                "PercentageOfBenefits": PercentageOfBenefits,
+            }
+
+            //var ret = postData('PrimaryBeneficiaryUpdate', data)
+            //    .then(data => { console.log(data);
+            //                  FirstStep(data);
+            //                  })
+            //    .catch(error => console.error(error))
+
+            fetch('ContingentBeneficiaryUpdate', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
+        })
+
+        document.querySelector("#submitContingentStepTwo").addEventListener("click", function () {
+            Address = document.getElementById("Address").value;
+            City = document.getElementById("City").value;
+            State = document.getElementById("State").value;
+            ZipCode = document.getElementById("ZipCode").value;
+     
+            var data = {
+                "Employee_id": Employee_id,
+                "Address": Address,
+                "City": City,
+                "State": State,
+                "ZipCode": ZipCode,
+            }
+
+            //var ret = postData('ContingentBeneficiaryContactUpdate', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        SecondStep(data);
+            //    })
+            //    .catch(error => console.error(error))
+
+            fetch('ContingentBeneficiaryContactUpdate', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => SecondStep(response))
+                .catch(error => console.error('Error:', error));
+        })
+    })
+
+    function FirstStep(primary) {
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
+        Employee_id = primary.data;
+    }
+
+    function SecondStep(primary) {
+        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
+        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
+    }
+
+    function postData(url, data) {
+        //Default options are marked with *
+        console.log(data);
+        console.log(JSON.stringify(data));
+        return fetch(url, {
+            body: JSON.stringify(data), //must match 'Content-Type' header
+            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', //include, same-origin, *omit
+            headers: {
+                'Accept': 'application/json',
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            mode: 'same-origin', //no-cors, cors, *same-origin
+            redirect: 'follow', //manual, *follow, error
+            referrer: 'no-referrer', //*client, no-referrer
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+            //.then(Response => {
+            //    console.log(Response);
+            //    Response.json();
+            //}) //parses response to JSON
+    }
+</script>
+
+
+
+
+
+
+
+

@@ -14,5 +14,7 @@ namespace Watson.ViewModels
         public Life_Insurance lifeIns { get; set; }
         public Family_Info spouse { get; set; }
         public List<Family_Info> family { get; set; }
+        public BeneficiaryType beneficiaryType { get; set; }
+        public List<Beneficiary> beneficiaryInfo { get; set; }
     }
 }

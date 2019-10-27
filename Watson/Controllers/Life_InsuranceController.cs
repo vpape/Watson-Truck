@@ -23,16 +23,21 @@ namespace Watson.Controllers
         private static List<Family_Info> family = new List<Family_Info>();
         private static Life_Insurance lifeIns = new Life_Insurance();
 
-        public ActionResult LifeInsuranceEnrollment(int? LifeInsurance_id, int? Employee_id, int? GroupHealthInsurance_id)
+        public ActionResult LifeInsuranceEnrollment(int? LifeInsurance_id, int? Employee_id, int? GroupHealthInsurance_id, int? BeneficiaryType_id, int? Beneficiary_id)
         {
             ViewBag.LifeInsurance_id = LifeInsurance_id;
             ViewBag.Employee_id = Employee_id;
             ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
+            ViewBag.BeneficiaryType_id = BeneficiaryType_id;
+            ViewBag.Beneficiary_id = Beneficiary_id;
 
             EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
 
             empAndInsVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
             empAndInsVM.lifeIns = db.Life_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id);
+
+            empAndInsVM.beneficiaryType = db.BeneficiaryTypes.FirstOrDefault(i => i.BeneficiaryType_id == BeneficiaryType_id);
+            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id).ToList();
 
             empAndInsVM.spouse = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id && i.RelationshipToInsured == "Spouse");
             empAndInsVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id && i.RelationshipToInsured != "Spouse").ToList();
@@ -194,6 +199,58 @@ namespace Watson.Controllers
 
             return View(lifeIns);
         }
+        //----------------------------------------------------------------------------------------
+
+        public ActionResult AddPrimaryBeneficiary(int Employee_id, int? BeneficiaryType_id, int? Beneficiary_id, string PrimaryBeneficiary)
+        {
+            ViewBag.BeneficiaryType_id = BeneficiaryType_id;
+            ViewBag.Beneficiary_id = Beneficiary_id;
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.PrimaryBeneficiary = "Primary";
+
+            EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
+
+            empAndInsVM.beneficiaryType = db.BeneficiaryTypes.FirstOrDefault(i => i.BeneficiaryType_id == BeneficiaryType_id);
+            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id).ToList();
+
+            return View(empAndInsVM);
+        }
+
+        //public JsonResult PrimaryBeneficiaryUpdate(int? Employee_id)
+        //{
+        //    int result = 
+
+        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        //}
+
+        public ActionResult AddContingentBeneficiary(int Employee_id, int? BeneficiaryType_id, int? Beneficiary_id, string ContingentBeneficiary)
+        {
+            ViewBag.BeneficiaryType_id = BeneficiaryType_id;
+            ViewBag.Beneficiary_id = Beneficiary_id;
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.ContingentBeneficiary = "Contingent";
+
+            EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
+
+            empAndInsVM.beneficiaryType = db.BeneficiaryTypes.FirstOrDefault(i => i.BeneficiaryType_id == BeneficiaryType_id);
+            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id).ToList();
+
+            return View(empAndInsVM);
+        }
+
+        //public JsonResult ContingentBeneficiaryUpdate(int? Employee_id)
+        //{
+        //    int result = 
+
+        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        //}
+
+
+
+
+
+        //----------------------------------------------------------------------------------------
+
 
         //Delete-LifeInsurance
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteLifeInsurance")]
