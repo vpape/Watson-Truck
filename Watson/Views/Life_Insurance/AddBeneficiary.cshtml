@@ -186,7 +186,7 @@
             LastName = document.getElementById("LastName").value;
             DateOfBirth = document.getElementById("DOB").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
-            PercentageOfBenefits = document.getElementById("Percent").value;
+            PercentageOfBenefits = document.getElementById("PercentageOfBenefits").value;
 
             var data = {
                 "Employee_id": Employee_id,
@@ -201,13 +201,13 @@
                 "PercentageOfBenefits": PercentageOfBenefits,
             }
 
-            //var ret = postData('PrimaryBeneficiaryUpdate', data)
+            //var ret = postData('AddBeneficiaryUpdate', data)
             //    .then(data => { console.log(data);
             //                  FirstStep(data);
             //                  })
             //    .catch(error => console.error(error))
 
-            fetch('BeneficiaryUpdate', {
+            fetch('AddBeneficiaryUpdate', {
                 body: JSON.stringify(data), //must match 'Content-Type' header
                 cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', //include, same-origin, *omit
@@ -239,14 +239,14 @@
                 "ZipCode": ZipCode,
             }
 
-            //var ret = postData('PrimaryBeneficiaryContactUpdate', data)
+            //var ret = postData('AddBeneficiaryAddressUpdate', data)
             //    .then(data => {
             //        console.log(data);
             //        SecondStep(data);
             //    })
             //    .catch(error => console.error(error))
 
-            fetch('BeneficiaryUpdate', {
+            fetch('AddBeneficiaryAddressUpdate', {
                 body: JSON.stringify(data), //must match 'Content-Type' header
                 cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', //include, same-origin, *omit

@@ -14,9 +14,11 @@
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
     <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.FamilyMember_id />
+    <input type="hidden" id="BeneficiaryType_id" class="form-control" name="BeneficiaryType_id" value="@ViewBag.BeneficiaryType_id " />
+    <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@ViewBag.Beneficiary_id " />
     <div class="form-horizontal">
         <div class="collapsible" id="FirstStep">Life Insurance Enrollment</div>
-        <div class="content">
+        <div class="modal-content">
             <table class="table table-bordered">
                 <tr>
                     <td>
@@ -126,9 +128,9 @@
                                 <td class="center-block">
                                     <div>
                                         <label>Are you Married or do you have a spouse?</label>
-                                        <input type="radio" class="radio-inline" id="Married" onclick="ShowHideDateofMarriage()" name="MarriedOrHaveSpouse" value="True" checked />
+                                        <input type="radio" class="radio-inline" id="Married" name="MarriedOrHaveSpouse" value="True" checked />
                                         <label>Yes</label>
-                                        <input type="radio" class="radio-inline" id="Married" onclick="ShowHideDateofMarriage()" name="MarriedOrHaveSpouse" value="False" />
+                                        <input type="radio" class="radio-inline" id="Married" name="MarriedOrHaveSpouse" value="False" />
                                         <label>No</label>
                                     </div>
                                 </td>
@@ -311,11 +313,6 @@
 
                 }
             </table>
-            @*<div class="form-group">
-                    <div class="col-md-offset-11">
-                        <button type="submit" id="LifeInsUpdate" class="btn">Save</button>
-                    </div>
-                </div>*@
             <div class="form-horizontal">
                 <table class="table table-bordered">
                     <caption><b>Coverage:</b></caption>
@@ -465,15 +462,13 @@
                     <caption>Beneficiaries:</caption>
                     <tr>
                         <td>
-                            <input type="hidden" id="BeneficiaryType_id" class="form-control" name="BeneficiaryType_id" value="@ViewBag.BeneficiaryType_id" />
-                            <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
-                            <input type="checkbox" class="checkbox-inline" id="Primary" name="PrimaryBeneficiary" value="" /><label for="Primary">Primary</label>
-                            <input type="checkbox" class="checkbox-inline" id="Contingent" name="ContingentBeneficiary" value="" /><label for="Contingent">Contingent</label>
+                            <input type="checkbox" class="checkbox-inline" id="PrimaryBeneficiary" name="PrimaryBeneficiary" value="" /><label for="Primary">Primary</label>
+                            <input type="checkbox" class="checkbox-inline" id="ContingentBeneficiary" name="ContingentBeneficiary" value="" /><label for="Contingent">Contingent</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@ViewBag.Beneficiary_id" />
+
                             <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First Name" value="" />
                         </td>
                         <td>
@@ -488,7 +483,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" id="Address" class="form-control" name="Address" placeholder="Mailing Address" value="" />
+                            <input type="text" id="MailingAddress" class="form-control" name="Address" placeholder="Mailing Address" value="" />
                         </td>
                         <td>
                             <input type="text" id="City" class="form-control" name="City" placeholder="City" value="" />
@@ -521,10 +516,77 @@
                         </td>
                     </tr>
                 </table>
+                <table class="table table-condensed">
+                    <caption>Beneficiaries:</caption>
+                    @foreach (var benefitType in Model.beneficiaryType)
+                    {
+                        <tr>
+                            <td>
+                                <input type="hidden" id="BeneficiaryType_id" class="form-control" name="BeneficiaryType_id" value="@benefitType.BeneficiaryType_id" />
+                                <input type="checkbox" class="checkbox-inline" id="Primary" name="PrimaryBeneficiary" value="" /><label for="Primary">Primary</label>
+                                <input type="checkbox" class="checkbox-inline" id="Contingent" name="ContingentBeneficiary" value="" /><label for="Contingent">Contingent</label>
+                            </td>
+                        </tr>
+                    }
+
+                    @foreach (var benefitInfo in Model.beneficiaryInfo)
+                    {
+                        <tr>
+                            <td>
+                                <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@benefitInfo.Beneficiary_id" />
+                                <input type="hidden" id="BeneficiaryType_id" class="form-control" name="BeneficiaryType_id" value="@benefitInfo.BeneficiaryType_id" />
+                                <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First Name" value="" />
+                            </td>
+                            <td>
+                                <input type="text" id="LastName" class="form-control" name="LastName" placeholder="Last Name" value="" />
+                            </td>
+                            <td>
+                                <input type="text" id="SSN" class="form-control" name="SSN" placeholder="SSN" value="" />
+                            </td>
+                            <td>
+                                <input type="text" id="RelationshipToEmployee" class="form-control" name="RelationshipToEmployee" placeholder="Relationship to Employee" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" id="MailingAddress" class="form-control" name="Address" placeholder="Mailing Address" value="" />
+                            </td>
+                            <td>
+                                <input type="text" id="City" class="form-control" name="City" placeholder="City" value="" />
+                            </td>
+                            <td>
+                                <input type="text" id="State" class="form-control" name="State" placeholder="State" value="" />
+                            </td>
+                            <td>
+                                <input type="text" id="ZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label style="display:table-cell">Date of Birth:</label>
+                                <input type="date" id="DOB" class="form-control" name="DOB" value="" />
+                            </td>
+                            <td>
+                                <label style="display:table-cell">Phone Number:</label>
+                                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="Phone Number" value="" />
+                            </td>
+                            <td>
+                                <label style="display:table-cell">Percentage Of Benefits:</label>
+                                <input type="number" id="PercentageOfBenefits" class="form-control" name="PercentageOfBenefits" placeholder="Percentage Of Benefits" value="" />
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.ActionLink("Add", "AddBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)|
+                                    @Html.ActionLink("Delete", "DeleteBeneficiary", "Life_Insurance", new { BeneficiaryType_id = @ViewBag.BeneficiaryType_id }, null)
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </table>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <button type="submit" id="LifeInsUpdate" @*id="LifeInsUpdateStepTwo"*@ class="btn">Save</button>
+                    <button type="submit" id="LifeInsUpdate" class="btn">Save</button>
                 </div>
             </div>
         </div>
@@ -753,7 +815,7 @@
             DateOfBirth = document.getElementById("DOB").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             PercentageOfBenefits = document.getElementById("PercentageOfBenefits").value;
-            Address = document.getElementById("Address").value;
+            MailingAddress = document.getElementById("MailingAddress").value;
             City = document.getElementById("City").value;
             State = document.getElementById("State").value;
             ZipCode = document.getElementById("ZipCode").value;
@@ -839,7 +901,7 @@
                 "DateOfBirth": DateOfBirth,
                 "PhoneNumber": PhoneNumber,
                 "PercentageOfBenefits": PercentageOfBenefits,
-                "Address": Address,
+                "MailingAddress": MailingAddress,
                 "City": City,
                 "State": State,
                 "ZipCode": ZipCode,
