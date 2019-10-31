@@ -73,6 +73,22 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
+                    <div class="col-md-10">
+                        <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="" />
+                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
+                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
+                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
+                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="County" class="col-md-2 control-label">County:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="County" class="form-control" placeholder="County" name="County" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="checkboxes">
                         <label style="margin-left: 7em;">Status:</label>
                         <input type="checkbox" class="checkbox-inline" id="Student" name="Student" value="Student" /><label for="Student">Student</label>
@@ -108,8 +124,8 @@
             <p></p>
             <div id="DepOtherInsCoverage">
                 <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
-                <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="no" />No</label>
+                <label class="radio-inline"><input type="radio" id="depCoveredByOtherInsurance" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="yes" />Yes</label>
+                <label class="radio-inline"><input type="radio" id="depCoveredByOtherInsurance" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="no" />No</label>
                 <div id="depInsInfo">
                     <div class="form-group col-md-2">
                         <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
@@ -206,12 +222,12 @@
         var save = document.getElementById("DepInsEnrollmentUpdateStepTwo");
 
         var message;
-        var alert = confirm("Would you like to save your progress?")
+        var alert = confirm("Dependent information has been saved. Click the OK button to proceed. Thank you!")
 
         if (save) {
             if (alert == true) {
 
-                message = "Progress has been saved! Click OK if you want to continue to Group Health Enrollment. Thank you!"
+                message = "Please click OK to proceed to the Group Health Enrollment page, otherwise click cancel to return to Family Overview page. Thank you!!";
                 var alert = confirm(message)
                 if (alert == true) {
 
@@ -276,6 +292,7 @@
             City = document.getElementById("City").value;
             State = document.getElementById("State").value;
             ZipCode = document.getElementById("ZipCode").value;
+            County = document.getElementById("County").value;
 
             var data = {
                 //"FamilyMember_id": FamilyMember_id,
@@ -293,6 +310,7 @@
                 "City": City,
                 "State": State,
                 "ZipCode": ZipCode,
+                "County": County,
             }
 
             //var ret = postData('DepEnrollmentNew', data)
@@ -324,7 +342,7 @@
 
         document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            //depCoveredByOtherInsurance = document.getElementById("CoveredByOtherInsurance").value
+            depCoveredByOtherInsurance = document.getElementById("depCoveredByOtherInsurance").checked
             depInsCarrier = document.getElementById("depInsCarrier").value
             depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
             depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value
@@ -333,7 +351,7 @@
                 "FamilyMember_id": FamilyMember_id,
                 "Employee_id": Employee_id,
                 "RelationshipToInsured": RelationshipToInsured,
-                //"depCoveredByOtherInsurance": depCoveredByOtherInsurance,
+                "depCoveredByOtherInsurance": depCoveredByOtherInsurance,
                 "depInsCarrier": depInsCarrier,
                 "depInsPolicyNumber": depInsPolicyNumber,
                 "depInsPhoneNumber": depInsPhoneNumber,

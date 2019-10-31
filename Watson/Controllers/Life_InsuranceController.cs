@@ -23,11 +23,10 @@ namespace Watson.Controllers
         private static List<Family_Info> family = new List<Family_Info>();
         private static Life_Insurance lifeIns = new Life_Insurance();
 
-        public ActionResult LifeInsuranceEnrollment(int? LifeInsurance_id, int? Employee_id, /*int? GroupHealthInsurance_id,*/ int? BeneficiaryType_id, int? Beneficiary_id)
+        public ActionResult LifeInsuranceEnrollment(int? LifeInsurance_id, int? Employee_id, int? BeneficiaryType_id, int? Beneficiary_id)
         {
             ViewBag.LifeInsurance_id = LifeInsurance_id;
             ViewBag.Employee_id = Employee_id;
-            //ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
             ViewBag.BeneficiaryType_id = BeneficiaryType_id;
             ViewBag.Beneficiary_id = Beneficiary_id;
 
@@ -58,7 +57,7 @@ namespace Watson.Controllers
         }
 
         //Create-LifeIns
-        public JsonResult LifeInsEnrollmentNew(int? LifeInsurance_id, /*int BeneficiaryType_id,*/ /*int Beneficiary_id,*/ int Employee_id, string GroupPlanNumber, 
+        public JsonResult LifeInsEnrollmentNew(int? LifeInsurance_id, int Employee_id, string GroupPlanNumber, 
             DateTime BenefitsEffectiveDate, string InitialEnrollment, string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, 
             string InformationChange, string IncreaseAmount, string FamilyStatusChange, string SubTotalCode, string Married, DateTime DateOfMarriage, 
             string OtherDependents, DateTime? DateOfAdoption, string AddDependent, string DropDependent, string DropEmployee, string DropDependents, 
@@ -72,9 +71,7 @@ namespace Watson.Controllers
             string DependentsCoveredUnderOtherDental, string VisionCoverage, string EmployeeOnlyVision, string EEAndSpouseVision, string EEAndDependentsVision,
             string EEAndFamilyVision, string DoNotWantVisionCoverage, string EmployeeCoveredUnderOtherVision, string SpouseCoveredUnderOtherVision,
             string DependentsCoveredUnderOtherVision, string PrimaryBeneficiary, string ContingentBeneficiary, string OwnerBasicLifeADandDPolicyAmount,
-            string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount, string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount,
-            string RelationshipToEmployee, string SSN, string FirstName, string LastName, DateTime DateOfBirth, string PhoneNumber, string PercentageOfBenefits,
-            string MailingAddress, string City, string State, string ZipCode)
+            string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount, string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount)
         {
 
             Life_Insurance lifeIns = new Life_Insurance();
@@ -152,33 +149,6 @@ namespace Watson.Controllers
             lifeIns.AmountOfPreviousPolicy = PreviousPolicyAmount;
 
             db.Life_Insurance.Add(lifeIns);
-
-            BeneficiaryType benefiType = new BeneficiaryType();
-
-            //benefiType.BeneficiaryType_id = BeneficiaryType_id;
-            benefiType.PrimaryBeneficiary = PrimaryBeneficiary;
-            benefiType.ContingentBeneficiary = ContingentBeneficiary;
-
-            db.BeneficiaryTypes.Add(benefiType);
-
-            Beneficiary benefi = new Beneficiary();
-
-            //benefi.Beneficiary_id = Beneficiary_id;
-            //benefi.BeneficiaryType_id = BeneficiaryType_id;
-            benefi.Employee_id = Employee_id;
-            benefi.RelationshipToEmployee = RelationshipToEmployee;
-            benefi.SSN = SSN;
-            benefi.FirstName = FirstName;
-            benefi.LastName = LastName;
-            benefi.DOB = DateOfBirth;
-            benefi.PhoneNumber = PhoneNumber;
-            benefi.PercentageOfBenefits = PercentageOfBenefits;
-            benefi.Address = MailingAddress;
-            benefi.CIty = City;
-            benefi.State = State;
-            benefi.ZipCode = ZipCode;
-
-            db.Beneficiaries.Add(benefi);
             db.SaveChanges();
 
             int result = lifeIns.LifeInsurance_id;
@@ -240,109 +210,51 @@ namespace Watson.Controllers
         }
         //----------------------------------------------------------------------------------------
 
-        public ActionResult AddBeneficiary(int Employee_id, int? BeneficiaryType_id, int? Beneficiary_id, string PrimaryBeneficiary)
+        public ActionResult AddBeneficiary(int Employee_id, /*int? BeneficiaryType_id,*/ int? Beneficiary_id, string PrimaryBeneficiary)
         {
             ViewBag.Employee_id = Employee_id;
-            ViewBag.BeneficiaryType_id = BeneficiaryType_id;
+            //ViewBag.BeneficiaryType_id = BeneficiaryType_id;
             ViewBag.Beneficiary_id = Beneficiary_id;
-            ViewBag.PrimaryBeneficiary = "Primary";
+            //ViewBag.PrimaryBeneficiary = "Primary";
 
-            EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
+            //EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
 
             //empAndInsVM.beneficiaryType = db.BeneficiaryTypes.Where(i => i.BeneficiaryType_id == BeneficiaryType_id);
-            empAndInsVM.beneficiaryType = db.BeneficiaryTypes.Where(i => i.BeneficiaryType_id == BeneficiaryType_id).ToList();
-            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id && i.BeneficiaryType_id == BeneficiaryType_id).ToList();
+            //empAndInsVM.beneficiaryType = db.BeneficiaryTypes.Where(i => i.BeneficiaryType_id == BeneficiaryType_id).ToList();
+            //empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id && i.BeneficiaryType_id == BeneficiaryType_id).ToList();
 
-            return View(empAndInsVM);
+            return View();
         }
 
-        public JsonResult BeneficiaryUpdate(int Employee_id, int BeneficiaryType_id, int Beneficiary_id, string PrimaryBeneficiary, string ContingentBeneficiary,
-            string RelationshipToEmployee, string SSN, string FirstName, string LastName, DateTime DateOfBirth, string PhoneNumber, string PercentageOfBenefits, 
-            string Address, string City, string State, string ZipCode)
+        public JsonResult AddBeneficiaryUpdate(int Employee_id, /*int? BeneficiaryType_id,*/ string PrimaryBeneficiary, string ContingentBeneficiary, string FirstName, 
+            string LastName, string SSN, string RelationshipToEmployee,  DateTime DateOfBirth, string PhoneNumber, string PercentageOfBenefits, string MailingAddress,
+            string City, string State, string ZipCode)
         {
-            BeneficiaryType benefiType = new BeneficiaryType();
-
-            benefiType.BeneficiaryType_id = BeneficiaryType_id;
-            benefiType.PrimaryBeneficiary = PrimaryBeneficiary;
-            benefiType.ContingentBeneficiary = ContingentBeneficiary;
-
-            db.BeneficiaryTypes.Add(benefiType);
 
             Beneficiary benefi = new Beneficiary();
 
-            benefi.BeneficiaryType_id = BeneficiaryType_id;
-            benefi.Beneficiary_id = Beneficiary_id;
-            benefi.RelationshipToEmployee = RelationshipToEmployee;
-            benefi.SSN = SSN;
+            benefi.Employee_id = Employee_id;
+            //benefi.BeneficiaryType_id = BeneficiaryType_id;
+            benefi.PrimaryBeneficiary = PrimaryBeneficiary;
+            benefi.ContingentBeneficiary = ContingentBeneficiary;
             benefi.FirstName = FirstName;
             benefi.LastName = LastName;
+            benefi.SSN = SSN;
+            benefi.RelationshipToEmployee = RelationshipToEmployee;
             benefi.DOB = DateOfBirth;
             benefi.PhoneNumber = PhoneNumber;
             benefi.PercentageOfBenefits = PercentageOfBenefits;
-            benefi.Address = Address;
+            benefi.Address = MailingAddress;
             benefi.CIty = City;
             benefi.State = State;
             benefi.ZipCode = ZipCode;
 
-            int result = benefi.Employee_id;
+            int result = benefi.Beneficiary_id;
 
             db.Beneficiaries.Add(benefi);
             db.SaveChanges();
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult AddBeneficiaryUpdate(int? Employee_id, int BeneficiaryType_id, int Beneficiary_id, string PrimaryBeneficiary, string ContingentBeneficiary,
-          string RelationshipToEmployee, string SSN, string FirstName, string LastName, DateTime DateOfBirth, string PhoneNumber, string PercentageOfBenefits)
-        {
-            //BeneficiaryType benefiType = db.BeneficiaryTypes
-            // .Where(i => i.BeneficiaryType_id == BeneficiaryType_id)
-            // .Single();
-            BeneficiaryType benefiType = new BeneficiaryType();
-
-            benefiType.BeneficiaryType_id = BeneficiaryType_id;
-            benefiType.PrimaryBeneficiary = PrimaryBeneficiary;
-            benefiType.ContingentBeneficiary = ContingentBeneficiary;
-
-            //Beneficiary benefi = db.Beneficiaries
-            // .Where(i => i.Beneficiary_id == Beneficiary_id)
-            // .Single();
-            Beneficiary benefi = new Beneficiary();
-
-            benefi.BeneficiaryType_id = BeneficiaryType_id;
-            benefi.Beneficiary_id = Beneficiary_id;
-            benefi.RelationshipToEmployee = RelationshipToEmployee;
-            benefi.SSN = SSN;
-            benefi.FirstName = FirstName;
-            benefi.LastName = LastName;
-            benefi.DOB = DateOfBirth;
-            benefi.PhoneNumber = PhoneNumber;
-            benefi.PercentageOfBenefits = PercentageOfBenefits;
-           
-            int result = benefi.Employee_id;
-
-            db.SaveChanges();
-
-            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult AddBeneficiaryAddressUpdate (int? Employee_id, int BeneficiaryType_id, int? Beneficiary_id, string Address, string City, string State, string ZipCode)
-        {
-            Beneficiary benefi = db.Beneficiaries
-           .Where(i => i.Beneficiary_id == Beneficiary_id)
-           .Single();
-
-            benefi.Address = Address;
-            benefi.CIty = City;
-            benefi.State = State;
-            benefi.ZipCode = ZipCode;
-
-            int result = benefi.Employee_id;
-
-            db.SaveChanges();
-
-            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-
         }
 
         //----------------------------------------------------------------------------------------

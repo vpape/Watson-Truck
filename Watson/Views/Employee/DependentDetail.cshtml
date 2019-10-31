@@ -11,73 +11,115 @@
 </head>
 <body>
     <div class="form-horizontal">
-        <div id="divDepDetail">
-            <hr />
-            <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
-            <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
-            <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
-            <div class="collapsible" id="DepDetail">Dependent Detail</div>
-            <div class="content">
-                <p></p>
-                <p></p>
-                <div class="form-group" id="divRelationshipToInsured">
-                    <label for="RelationshipToInsured" class="col-md-2 control-label">Relation To Employee:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="SSN" class="col-md-2 control-label">SSN:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="@Html.DisplayFor(Model => Model.family.SSN)" disabled />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="DepFirstName" class="col-md-2 control-label">First Name:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="DepFirstName" class="form-control" placeholder="First Name" name="FirstName" value="@Html.DisplayFor(Model => Model.family.FirstName)" disabled />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="DepLastName" class="col-md-2 control-label">Last Name:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="DepLastName" class="form-control" placeholder="Last Name" name="LastName" value="@Html.DisplayFor(Model => Model.family.LastName)" disabled />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="DateOfBirth" class="col-md-2 control-label">Date of Birth:</label>
-                    <div class="col-md-10">
-                        <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Html.DisplayFor(Model => Model.family.DateOfBirth)" disabled />
-                    </div>
-                </div>
-                <label class="col-md-2 control-label">Gender:</label>
-                @Html.RadioButtonFor(model => model.family.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.family.Gender, "Female", false) Female
-                @*<label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="@((Model.family.Gender == "Male" ? "selected" : ""))" />Male</label>*@
-                @*<label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="@((Model.family.Gender == "Female" ? "selected" : ""))" />Female</label>*@
-            </div>
+        <hr />
+        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
+        <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
+        <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
+        <div class="collapsible" id="SpDetail">Dependent Detail</div>
+        <div class="content">
             <p></p>
-            <div class="collapsible" id="SecondStep">Dependent Insurance Detail</div>
-            <div id="divDepInsDetail" class="content">
-                <p></p>
-                <div id="DepOtherInsCoverage">
-                    <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                    @*@((ViewBag.Other_Insurance.CoverByOtherInsurance == "Yes") ? "checked" : "")*@ @*onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="Yes" disabled />Yes</label>*@
-                    @*@((ViewBag.Other_Insurance.CoverByOtherInsurance == "No") ? "checked" : "")*@ @*onclick="return CoveredByOtherIns()" name="CoveredByOtherInsurance" value="No" disabled />No</label>*@
-                    <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="yes" disabled />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="depOtherInsCoverage" class="radio-inline" onclick="showHideDepInsCoverage()" name="CoveredByOtherInsurance" value="no" disabled />No</label>
-                    <div id="depInsInfo">
-                        <div class="form-group col-md-2">
-                            <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.DisplayFor(Model => Model.otherIns.InsuranceCarrier)" disabled />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="@Html.DisplayFor(Model => Model.otherIns.PolicyNumber)" disabled />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="@Html.DisplayFor(Model => Model.otherIns.PhoneNumber)" disabled />
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p></p>
+            <dl class="dl-horizontal">
+                <dt>
+                    <label class="col-md-2 control-label">Relationship:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.DisplayFor(Model => Model.family.RelationshipToInsured)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">SSN:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="SSN" class="form-control" name="SSN" value="@Html.DisplayFor(Model => Model.family.SSN)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">First Name:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(Model => Model.family.FirstName)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Last Name:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(Model => Model.family.LastName)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Date of Birth:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" value="@Convert.ToDateTime(Model.family.DateOfBirth).ToString("yyyy-MM-dd")" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Gender:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    @Html.RadioButtonFor(model => model.family.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.family.Gender, "female", false) Female
+                    @*<label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="@((Model.family.Gender == "Male" ? "selected" : ""))" />Male</label>*@
+                    @*<label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="@((Model.family.Gender == "Female" ? "selected" : ""))" />Female</label>*@
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">MailingAddress:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="MailingAddress" class="form-control" name="MailingAddress" value="@Html.DisplayFor(Model => Model.family.MailingAddress)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">City:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="City" class="form-control" name="City" value="@Html.DisplayFor(Model => Model.family.City)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">State:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="State" class="form-control" name="State" value="@Html.DisplayFor(Model => Model.family.State)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Zip Code:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="ZipCode" class="form-control" name="ZipCode" value="@Html.DisplayFor(Model => Model.family.ZipCode)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">County:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="County" class="form-control" name="County" value="@Html.DisplayFor(Model => Model.family.County)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Phone Number:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="tel" id="PhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(Model => Model.family.PhoneNumber)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Other Insurance:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    @*@Html.RadioButtonFor(model => model.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.Gender, "female", false) Female*@
+                    <input type="text" id="spOtherInsCoverage" class="form-control" name="CoveredByOtherInsurance" value="@Html.DisplayFor(Model => Model.otherIns.CoveredByOtherInsurance)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Insurance Carrier:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="text" id="spInsCarrier" class="form-control" name="InsuranceCarrier" value="@Html.DisplayFor(Model => Model.otherIns.InsuranceCarrier)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Policy Number:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="tel" id="spInsPolicyNumber" class="form-control" name="PolicyNumber" value="@Html.DisplayFor(Model => Model.otherIns.PolicyNumber)" disabled>
+                </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Phone Number:</label>
+                </dt>
+                <dd class="col-md-10 form-group">
+                    <input type="tel" id="spInsPhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(Model => Model.otherIns.PhoneNumber)" disabled>
+                </dd>
+            </dl>
         </div>
     </div>
     <p>
@@ -101,7 +143,7 @@
     }
 
         .active, .collapsible:hover {
-            background-color: #555;
+            background-color: blue;
         }
 
     .content {
@@ -111,70 +153,21 @@
         background-color: #f1f1f1;
     }
 
-    .btn {
-        background-color: #333;
-        color: white;
-    }
-
     .button {
         text-align: right;
     }
 
+    .btn:hover {
+        background-color: blue;
+        color: white;
+    }
+
     a {
         text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
-    }
-
-        a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-    .phone-number .col-xs-3::after {
-        content: "-";
-        position: absolute;
-        right: 5px;
-        color: black;
-        border: 0px solid;
-        top: 8px;
-    }
-
-    .phone-number .col-xs-4 {
-        width: 25%;
-    }
-
-    .phone-number .col-xs-3, .phone-number .col-xs-4 {
-        padding-left: 0;
-    }
-
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-        table tr {
-            border-bottom: 1px solid black;
-        }
-
-    td:empty {
-        width: 10px;
-    }
-
-    th, td {
-        text-align: left;
-        padding: 0px;
-    }
-
-    th {
-        border-bottom: 5px solid black;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
+        display: inline-flex;
+        padding: 8px 8px;
     }
 </style>
-
 
 <script>
     var col = document.querySelectorAll(".collapsible");
@@ -184,109 +177,13 @@
     for (i = 0; i < col.length; i++) {
         col[i].addEventListener("click", function () {
             this.classList.toggle("active");
-
             var content = this.nextElementSibling;
             if (content.style.display === "block") {
                 content.style.display = "none";
-            }
-            else {
+            } else {
                 content.style.display = "block";
             }
 
         });
-    }
-</script>
-
-
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        Employee_id = document.getElementById("Employee_id").value;
-        FamilyMember_id = document.getElementById("FamilyMember_id").value;
-        RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
-        SSN = document.getElementById("SSN").value;
-        DepFirstName = document.getElementById("DepFirstName").value
-        DepLastName = document.getElementById("DepLastName").value
-        DateOfBirth = document.getElementById("DateOfBirth").value
-        Gender = document.getElementById("Gender").value
-
-        //depOtherInsCoverage = document.getElementsById("depOtherInsCoverage").value
-        depInsCarrier = document.getElementById("depInsCarrier").value
-        depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
-        depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value
-
-        var data = {
-            "Employee_id": Employee_id,
-            "FamilyMember_id": FamilyMember_id,
-            "RelationshipToInsured": RelationshipToInsured,
-            "SSN": SSN,
-            "DepFirstName": DepFirstName,
-            "DepLastName": DepLastName,
-            "DateOfBirth": DateOfBirth,
-            "Gender": Gender,
-
-            //"depOtherInsCoverage": depOtherInsCoverage,
-            "depInsCarrier": depInsCarrier,
-            "depInsPolicyNumber": depInsPolicyNumber,
-            "depInsPhoneNumber": depInsPhoneNumber,
-
-        }
-
-        //var ret = postData('GetDepDetail', data)
-        //    .then(data => { console.log(data);
-        //                  FirstStep(data);
-        //                  })
-        //    .catch(error => console.error(error))
-
-        fetch('GetDepDetail', {
-            body: JSON.stringify(data), //must match 'Content-Type' header
-            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', //include, same-origin, *omit
-            headers: {
-                'Accept': 'application/json',
-                'user-agent': 'Mozilla/4.0 MDN Example',
-                'content-type': 'application/json'
-            },
-            method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            mode: 'same-origin', //no-cors, cors, *same-origin
-            redirect: 'follow', //manual, *follow, error
-            referrer: 'no-referrer', //*client, no-referrer
-        }).then(res => res.json())
-            .then(response => FirstStep(response))
-            .catch(error => console.error('Error:', error));
-
-    })
-
-    function FirstStep(dep) {
-        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-        console.log(dep);
-        FamilyMember_id = dep.data;
-    }
-
-    function postData(url, data) {
-        //Default options are marked with *
-        console.log(data);
-        console.log(JSON.stringify(data));
-        return fetch(url, {
-            body: JSON.stringify(data), //must match 'Content-Type' header
-            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', //include, same-origin, *omit
-            headers: {
-                'Accept': 'application/json',
-                'user-agent': 'Mozilla/4.0 MDN Example',
-                'content-type': 'application/json'
-            },
-            method: 'Get', //*GET, POST, PUT, DELETE, etc...
-            mode: 'same-origin', //no-cors, cors, *same-origin
-            redirect: 'follow', //manual, *follow, error
-            referrer: 'no-referrer', //*client, no-referrer
-        }).then(res => res.json())
-            .then(response => console.log('Success:', JSON.stringify(response)))
-            .catch(error => console.error('Error:', error));
-        //.then(Response => {
-        //    console.log(Response);
-        //    Response.json();
-        //}) //parses response to JSON
     }
 </script>

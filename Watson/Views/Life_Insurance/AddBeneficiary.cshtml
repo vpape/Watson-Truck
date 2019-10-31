@@ -11,95 +11,76 @@
     <title>Beneficiary</title>
 </head>
 <body>
-    <div class="form-horizontal">
-        <hr />
-        <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
-        <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@ViewBag.Beneficiary_id" />
-        <input type="hidden" id="BeneficiaryType_id" class="form-control" name="BeneficiaryType_id" value="@ViewBag.BeneficiaryType_id" />
-        <div class="collapsible" id="FirstStep">Beneficiary Information</div>
-        <div id="divBeneficiaryEnrollment" class="content">
-            <p></p>
-            <p></p>
-            <div class="form-group" id="divPrimaryBeneficiary">
-                <label for="Beneficiary" class="col-md-2 control-label">Beneficiary:</label>
-                <div class="col-md-10">
-                    <input type="radio" class="radio-inline" id="PrimaryBeneficiary" name="PrimaryBeneficiary" value=""/><label for="PrimaryBeneficiary">Primary</label>
-                    <input type="radio" class="radio-inline" id="ContingentBeneficiary" name="ContingentBeneficiary" value="" /><label for="ContingentBeneficiary">Contingent</label>
-                </div>
-            </div>
-            <div class="form-group" id="divRelationshipToInsured">
-                <label for="RelationshipToEmployee" class="col-md-2 control-label">Relationship To Employee:</label>
-                <div class="col-md-10">
-                    <input type="text" id="RelationshipToEmployee" class="form-control" placeholder="Relationship To Employee" name="RelationshipToEmployee" value="" />
-                </div>
-            </div>
+    <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
+    <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@ViewBag.Beneficiary_id" />
+    <input type="hidden" id="BeneficiaryType_id" class="form-control" name="BeneficiaryType_id" value="@ViewBag.BeneficiaryType_id" />
+    <div class="collapsible" id="BeneficiaryEnrollment">Add Beneficiary</div>
+    <div class="content">
+        <div id="divBeneficiaryInfo">
             <div class="form-group">
-                <label for="SSN" class="col-md-2 control-label">SSN:</label>
-                <div class="col-md-10">
-                    <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="FirstName" class="col-md-2 control-label">First Name:</label>
-                <div class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="LastName" class="col-md-2 control-label">Last Name:</label>
-                <div class="col-md-10">
-                    <input type="text" id="LastName" class="form-control" placeholder="Last Name" name="LastName" value="" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-2 control-label">Date of Birth:</label>
-                <div class="col-md-10">
-                    <input type="date" id="DOB" class="form-control" name="DOB" value="" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
-                <div class="col-md-10">
-                    <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="Phone Number" value="" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="Percentage" class="col-md-2 control-label">Percentage Of Benefits:</label>
-                <div class="col-md-10">
+                <table class="table table-condensed">
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="checkbox-inline" id="PrimaryBeneficiary" name="PrimaryBeneficiary" value="" /><label for="Primary">Primary</label>
+                            <input type="checkbox" class="checkbox-inline" id="ContingentBeneficiary" name="ContingentBeneficiary" value="" /><label for="Contingent">Contingent</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
 
-                    <input type="number" id="PercentageOfBenefits" class="form-control" name="PercentageOfBenefits" placeholder="Percentage Of Benefits" value="" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-11">
-                    <button type="submit" id="submitBeneficiary" class="btn">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    @* Spouse Contact *@
-    <div class="form-horizontal">
-        <hr />
-        <div class="collapsible" id="SecondStep">Beneficiary Address</div>
-        <div id="divSpEnrollment" class="content">
-            <p></p>
-            <p></p>
-            <div id="divMailingAddress">
+                            <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First Name" value="" />
+                        </td>
+                        <td>
+                            <input type="text" id="LastName" class="form-control" name="LastName" placeholder="Last Name" value="" />
+                        </td>
+                        <td>
+                            <input type="text" id="SSN" class="form-control" name="SSN" placeholder="SSN" value="" />
+                        </td>
+                        <td>
+                            <input type="text" id="RelationshipToEmployee" class="form-control" name="RelationshipToEmployee" placeholder="Relationship to Employee" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label style="display:table-cell">Date of Birth:</label>
+                            <input type="date" id="DOB" class="form-control" name="DOB" value="" />
+                        </td>
+                        <td>
+                            <label style="display:table-cell">Phone Number:</label>
+                            <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="" value="" />
+                        </td>
+                        <td>
+                            <label style="display:table-cell">Percentage Of Benefits:</label>
+                            <input type="number" id="PercentageOfBenefits" class="form-control" name="PercentageOfBenefits" placeholder="" value="" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="MailingAddress" class="form-control" name="Address" placeholder="Mailing Address" value="" />
+                        </td>
+                        <td>
+                            <input type="text" id="City" class="form-control" name="City" placeholder="City" value="" />
+                        </td>
+                        <td>
+                            <input type="text" id="State" class="form-control" name="State" placeholder="State" value="" />
+                        </td>
+                        <td>
+                            <input type="text" id="ZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="" />
+                        </td>
+                    </tr>
+
+                </table>
                 <div class="form-group">
-                    <label for="Address" class="col-md-2 control-label">Mailing Address:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="Address" class="form-control" placeholder="Street" name="Address" value="" />
-                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
-                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
-                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
+                    <div class="col-md-offset-11">
+                        <button type="submit" id="submitBeneficiary" class="btn">Save</button>
                     </div>
                 </div>
-
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-11">
-                    <button type="submit" id="submitBeneficiaryStepTwo" class="btn">Save</button>
-                </div>
+                @*<div class="form-group">
+                    <div class="col-md-offset-11">
+                        <button type="submit" id="submitBeneficiaryStepTwo" class="btn">Save</button>
+                    </div>
+                </div>*@
             </div>
         </div>
     </div>
@@ -187,18 +168,28 @@
             DateOfBirth = document.getElementById("DOB").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             PercentageOfBenefits = document.getElementById("PercentageOfBenefits").value;
+            MailingAddress = document.getElementById("MailingAddress").value;
+            City = document.getElementById("City").value;
+            State = document.getElementById("State").value;
+            ZipCode = document.getElementById("ZipCode").value;
 
             var data = {
                 "Employee_id": Employee_id,
+                "Beneficiary_id": Beneficiary_id,
+                "BeneficiaryType_id": BeneficiaryType_id,
                 "PrimaryBeneficiary": PrimaryBeneficiary,
                 "ContingentBeneficiary": ContingentBeneficiary,
-                "RelationshipToEmployee": RelationshipToEmployee,
-                "SSN": SSN,
                 "FirstName": FirstName,
                 "LastName": LastName,
+                "SSN": SSN,
+                "RelationshipToEmployee": RelationshipToEmployee,
                 "DateOfBirth": DateOfBirth,
                 "PhoneNumber": PhoneNumber,
                 "PercentageOfBenefits": PercentageOfBenefits,
+                "MailingAddress": MailingAddress,
+                "City": City,
+                "State": State,
+                "ZipCode": ZipCode,
             }
 
             //var ret = postData('AddBeneficiaryUpdate', data)
@@ -225,56 +216,12 @@
                 .catch(error => console.error('Error:', error));
         })
 
-        document.querySelector("#submitBeneficiaryStepTwo").addEventListener("click", function () {
-            Address = document.getElementById("Address").value;
-            City = document.getElementById("City").value;
-            State = document.getElementById("State").value;
-            ZipCode = document.getElementById("ZipCode").value;
-
-            var data = {
-                "Employee_id": Employee_id,
-                "Address": Address,
-                "City": City,
-                "State": State,
-                "ZipCode": ZipCode,
-            }
-
-            //var ret = postData('AddBeneficiaryAddressUpdate', data)
-            //    .then(data => {
-            //        console.log(data);
-            //        SecondStep(data);
-            //    })
-            //    .catch(error => console.error(error))
-
-            fetch('AddBeneficiaryAddressUpdate', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => SecondStep(response))
-                .catch(error => console.error('Error:', error));
-        })
     })
 
     function FirstStep(primary) {
-        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "none";
         Employee_id = primary.data;
     }
 
-    function SecondStep(primary) {
-        document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
-        document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
-    }
 
     function postData(url, data) {
         //Default options are marked with *

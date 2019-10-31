@@ -28,6 +28,8 @@ namespace Watson.Models
         public string PhoneNumber { get; set; }
         public string RelationshipToEmployee { get; set; }
         public string PercentageOfBenefits { get; set; }
+        public string PrimaryBeneficiary { get; set; }
+        public string ContingentBeneficiary { get; set; }
     
         public virtual BeneficiaryType BeneficiaryType { get; set; }
         public virtual Employee Employee { get; set; }

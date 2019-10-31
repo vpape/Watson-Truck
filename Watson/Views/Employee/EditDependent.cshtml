@@ -25,18 +25,6 @@
                     <div class="col-md-10">
                         <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.DisplayFor(Model => Model.family.RelationshipToInsured)" disabled />
                     </div>
-                    @*<div class="col-md-10 col-md-offset-2">
-                <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                    @if (ViewBag.spouseExist == false)
-                    {
-                        <option id="Spouse"  name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                    }
-                    else
-                    {
-                        <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                    }
-                </select>
-            </div>*@
                 </div>
                 <div class="form-group">
                     <label for="SSN" class="col-md-2 control-label">SSN:</label>
@@ -73,22 +61,27 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="checkboxes">
-                        <label style="margin-left: 7em;">Status:</label>
-                        <input type="checkbox" class="checkbox-inline" id="Student" name="Student" value="Student" /><label for="Student">Student</label>
-                        <input type="checkbox" class="checkbox-inline" id="Disabled" name="Disabled" value="Disabled" /><label label for="Disabled">Disabled</label>
-                        <input type="checkbox" class="checkbox-inline" id="NonStandardDependent" onclick="showHideMailingAddress()" name="NonStandardDependent" value="NonStandardDependent" /><label for="NonStandardDependent">Non Standard Dependent</label>
+                    <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
+                    <div class="col-md-10">
+                        <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@Html.DisplayFor(Model => Model.family.FamilyMember_id)" />
+                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(Model => Model.family.MailingAddress)" />
+                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@Html.DisplayFor(Model => Model.family.City)" />
+                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@Html.DisplayFor(Model => Model.family.State)" />
+                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.DisplayFor(Model => Model.family.ZipCode)" />
                     </div>
                 </div>
-                <div id="divMailingAddress">
-                    <div class="form-group">
-                        <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="" />
-                            <input type="text" id="City" class="form-control" placeholder="City" name="City" value="" />
-                            <input type="text" id="State" class="form-control" placeholder="State" name="State" value="" />
-                            <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="" />
-                        </div>
+                <div class="form-group">
+                    <label for="County" class="col-md-2 control-label">County:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="County" class="form-control" placeholder="County" name="County" value="@Html.DisplayFor(Model => Model.family.County)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkboxes">
+                        <label style="margin-left: 7em;">Status:</label>
+                        <input type="checkbox" class="checkbox-inline" id="Student" name="Student" value="Student" @((Model.family.Student == "True") ? "checked" : "") /><label for="Student">Student</label>
+                        <input type="checkbox" class="checkbox-inline" id="Disabled" name="Disabled" value="Disabled" @((Model.family.Disabled == "True") ? "checked" : "") /><label label for="Disabled">Disabled</label>
+                        <input type="checkbox" class="checkbox-inline" id="NonStandardDependent" onclick="showHideMailingAddress()" name="NonStandardDependent" value="NonStandardDependent" @((Model.family.NonStandardDependent == "True") ? "checked" : "") /><label for="NonStandardDependent">Non Standard Dependent</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -108,8 +101,8 @@
             <p></p>
             <div id="DepOtherInsCoverage">
                 <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="yes" @((Model.otherIns.CoveredByOtherInsurance == "yes") ? "checked" : "") />Yes</label>
-                <label class="radio-inline"><input type="radio" id="DepOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="no" @((Model.otherIns.CoveredByOtherInsurance == "no") ? "checked" : "") />No</label>
+                <label class="radio-inline"><input type="radio" id="depCoveredByOtherInsurance" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="true" @((Model.otherIns.CoveredByOtherInsurance == "true") ? "checked" : "") />Yes</label>
+                <label class="radio-inline"><input type="radio" id="depCoveredByOtherInsurance" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="false" @((Model.otherIns.CoveredByOtherInsurance == "false") ? "checked" : "") />No</label>
                 <div id="depInsInfo">
                     <div class="form-group col-md-2">
                         <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.DisplayFor(Model => Model.otherIns.InsuranceCarrier)" />
@@ -335,16 +328,16 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Employee/AddDependent/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/AddDependent/?Employee_id=" + @ViewBag.Employee_id;
 
                 }
                 else {
-                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + @ViewBag.Employee_id;
                 }
             }
         }
         else {
-            if (alert == false) {
+            if (alert == true) {
 
                 window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id;
             }
@@ -427,6 +420,7 @@
             City = document.getElementById("City").value;
             State = document.getElementById("State").value;
             ZipCode = document.getElementById("ZipCode").value;
+            County = document.getElementById("County").value;
 
             var data = {
                 "Employee_id": Employee_id,
@@ -443,6 +437,7 @@
                 "City": City,
                 "State": State,
                 "ZipCode": ZipCode,
+                "County": County,
 
             }
 
@@ -452,7 +447,7 @@
             //                  })
             //    .catch(error => console.error(error))
 
-            fetch('DepEnrollmentNew', {
+            fetch('DepEditUpdate', {
                 body: JSON.stringify(data), //must match 'Content-Type' header
                 cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', //include, same-origin, *omit
@@ -471,7 +466,7 @@
         })
 
         document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            //depCoveredByOtherInsurance = document.getElementsById("CoveredByOtherInsurance").value
+            depCoveredByOtherInsurance = document.getElementsById("depCoveredByOtherInsurance").checked
             depInsCarrier = document.getElementById("depInsCarrier").value
             depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
             depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value
@@ -479,14 +474,13 @@
             var data = {
                 "FamilyMember_id": FamilyMember_id,
                 "Employee_id": Employee_id,
-                "RelationshipToInsured": RelationshipToInsured,
-                //"CoveredByOtherInsurance": depCoveredByOtherInsurance,
+                "CoveredByOtherInsurance": depCoveredByOtherInsurance,
                 "InsuranceCarrier": depInsCarrier,
                 "PolicyNumber": depInsPolicyNumber,
                 "InsPhoneNumber": depInsPhoneNumber,
             }
 
-            var ret = postData('DepOtherInsuranceNew', data)
+            var ret = postData('DepEditUpdate', data)
                 .then(data => {
                     console.log(data);
                     SecondStep(data);
