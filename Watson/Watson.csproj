@@ -449,8 +449,6 @@
     <Content Include="Views\Employee\FamilyOverview.cshtml" />
     <Content Include="Views\Employee\FamilyEnrollment.cshtml" />
     <Content Include="Views\Employee\NewEmployeeEnrollment.cshtml" />
-    <Content Include="Views\Employee\DeleteSp.cshtml" />
-    <Content Include="Views\Employee\DeleteDep.cshtml" />
     <Content Include="Views\Employee\EmpOverview.cshtml" />
     <Content Include="Views\Group_Health\GrpHealthEnrollment.cshtml" />
     <Content Include="Views\CareerCenter\Index.cshtml" />
@@ -485,6 +483,8 @@
     <Content Include="Views\Admin\FamilyOverview.cshtml" />
     <Content Include="Views\Life_Insurance\AddPrimaryBeneficiary.cshtml" />
     <Content Include="Views\Life_Insurance\AddBeneficiary.cshtml" />
+    <Content Include="Views\Employee\DeleteSp.cshtml" />
+    <Content Include="Views\Employee\DeleteDep.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

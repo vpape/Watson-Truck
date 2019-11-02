@@ -81,7 +81,7 @@
                         <label style="margin-left: 7em;">Status:</label>
                         <input type="checkbox" class="checkbox-inline" id="Student" name="Student" value="Student" @((Model.family.Student == "True") ? "checked" : "") /><label for="Student">Student</label>
                         <input type="checkbox" class="checkbox-inline" id="Disabled" name="Disabled" value="Disabled" @((Model.family.Disabled == "True") ? "checked" : "") /><label label for="Disabled">Disabled</label>
-                        <input type="checkbox" class="checkbox-inline" id="NonStandardDependent" onclick="showHideMailingAddress()" name="NonStandardDependent" value="NonStandardDependent" @((Model.family.NonStandardDependent == "True") ? "checked" : "") /><label for="NonStandardDependent">Non Standard Dependent</label>
+                        <input type="checkbox" class="checkbox-inline" id="NonStandardDependent" name="NonStandardDependent" value="NonStandardDependent" @((Model.family.NonStandardDependent == "True") ? "checked" : "") /><label for="NonStandardDependent">Non Standard Dependent</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -101,8 +101,8 @@
             <p></p>
             <div id="DepOtherInsCoverage">
                 <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                <label class="radio-inline"><input type="radio" id="depCoveredByOtherInsurance" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="true" @((Model.otherIns.CoveredByOtherInsurance == "true") ? "checked" : "") />Yes</label>
-                <label class="radio-inline"><input type="radio" id="depCoveredByOtherInsurance" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="false" @((Model.otherIns.CoveredByOtherInsurance == "false") ? "checked" : "") />No</label>
+                <label class="radio-inline"><input type="radio" id="depCoveredByOtherInsurance" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="True" @((Model.otherIns.CoveredByOtherInsurance) == "True" ? "checked" : "") />Yes</label>
+                <label class="radio-inline"><input type="radio" id="depCoveredByOtherInsurance" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="False" @((Model.otherIns.CoveredByOtherInsurance) == "False"? "checked" : "") />No</label>
                 <div id="depInsInfo">
                     <div class="form-group col-md-2">
                         <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.DisplayFor(Model => Model.otherIns.InsuranceCarrier)" />
@@ -125,7 +125,7 @@
         </div>
     </div>
     <p>
-        @Html.ActionLink("Back to Family Overview", "FamilyOverview", new { Employee_id = ViewBag.Employee_id})
+        @Html.ActionLink("Back to List", "FamilyOverview", new { Employee_id = ViewBag.Employee_id})
     </p>
 </body>
 </html>

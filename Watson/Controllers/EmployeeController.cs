@@ -301,21 +301,6 @@ namespace Watson.Controllers
             return View(employeeAndInsuranceVM);
         }
 
-        //Get-EmpDetail
-        //public JsonResult GetEmpDetail(int? Employee_id, string CurrentEmployer, string JobTitle, string EmpNumber, /*DateTime HireDate,*/
-        //    string FirstName, string LastName, /*DateTime DateOfBirth,*/ string MaritalStatus, string Gender, string MailingAddress, string PObox,
-        //    string City, string State, string ZipCode, string PhysicalAddress, string CityTwo, string StateTwo, string ZipCodeTwo,
-        //    string EmailAddress, string PhoneNumber, string CellPhone, string CityLimits, string empOtherGrpHinsCoverage,
-        //    string empInsuranceCarrier, string empInsPolicyNumber, string empInsPhoneNumber)
-        //{
-        //    Employee e = db.Employees
-        //    .Where(i => i.Employee_id == Employee_id)
-        //    .Single();    
-
-        //    int result = e.Employee_id;
-
-        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);    
-        //}
         //----------------------------------------------------------------------------------------
 
         //DeleteEmp Method
@@ -770,6 +755,14 @@ namespace Watson.Controllers
         //DeleteSp Method
         public ActionResult DeleteSp(int? Employee_id, int? FamilyMember_id)
         {
+            SpouseAndDependentInsVM spAndDepInsVM = new SpouseAndDependentInsVM();
+
+            spAndDepInsVM.family = db.Family_Info.FirstOrDefault(i => i.FamilyMember_id == FamilyMember_id);
+            spAndDepInsVM.otherIns = db.Other_Insurance.FirstOrDefault(i => i.FamilyMember_id == FamilyMember_id);
+
+            ViewBag.FamilyMember_id = spAndDepInsVM.family.FamilyMember_id;
+            ViewBag.Employee_id = spAndDepInsVM.family.Employee_id;
+
             if (FamilyMember_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -779,8 +772,8 @@ namespace Watson.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.sp = sp.FamilyMember_id;
-            return View(sp);
+
+            return View(spAndDepInsVM);
         }
         
         //DeleteSp Method
@@ -1005,6 +998,14 @@ namespace Watson.Controllers
         //DeleteDep Method
         public ActionResult DeleteDep(int? FamilyMember_id)
         {
+            SpouseAndDependentInsVM spAndDepInsVM = new SpouseAndDependentInsVM();
+
+            spAndDepInsVM.family = db.Family_Info.FirstOrDefault(i => i.FamilyMember_id == FamilyMember_id);
+            spAndDepInsVM.otherIns = db.Other_Insurance.FirstOrDefault(i => i.FamilyMember_id == FamilyMember_id);
+
+            ViewBag.FamilyMember_id = spAndDepInsVM.family.FamilyMember_id;
+            ViewBag.Employee_id = spAndDepInsVM.family.Employee_id;
+
             if (FamilyMember_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -1015,7 +1016,7 @@ namespace Watson.Controllers
                 return HttpNotFound();
             }
 
-            return View(dep);
+            return View(spAndDepInsVM);
         }
 
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteDep")]

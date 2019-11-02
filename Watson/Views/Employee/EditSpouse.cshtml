@@ -122,8 +122,8 @@
             <div class="form-group" id="divMailingAddress">
                 <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
                 <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="mailingAddr" class="radio-inline" onclick="showHidePhysicalAddress()" name="Address" value="true" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="mailingAddr" class="radio-inline" onclick="showHidePhysicalAddress()" name="Address" value="false" checked />No</label>
+                    <label class="radio-inline"><input type="radio" id="mailingAddr" class="radio-inline" onclick="showHidePhysicalAddress()" name="Address" value="True" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="mailingAddr" class="radio-inline" onclick="showHidePhysicalAddress()" name="Address" value="False" checked />No</label>
                 </div>
             </div>
             <div id="divPhysicalAddress">
@@ -196,8 +196,8 @@
                 </div>
                 <div id="SpOtherIns">
                     <label>Other Insurance Coverage?</label>
-                    <label class="radio-inline"><input type="radio" id="SpOtherInsCoverage" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="yes" checked />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="SpOtherInsCoverage" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="no" />No</label>
+                    <label class="radio-inline"><input type="radio" id="SpOtherInsCoverage" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="True" @((Model.otherIns.CoveredByOtherInsurance == "True") ? "checked" : "") />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="SpOtherInsCoverage" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="False"@((Model.otherIns.CoveredByOtherInsurance == "False") ? "checked" : "")/>No</label>
                     <div id="SpOtherInsCoverageSelection">
                         <label for="OtherInsuranceCoverage" class="control-label">Coverage:</label>
                         <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" value="Medical" @((Model.family.Medical == "True") ? "checked" : "") /><text for="Medical">Medical</text>
@@ -224,8 +224,8 @@
             <div id="divSpInsurance">
                 <div id="SpOtherInsCoverage">
                     <label>Is your spouse covered by other insurance, including Medicare/Medicaid?</label>
-                    <label class="radio-inline"><input type="radio" id="SpOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="true" @((Model.otherIns.CoveredByOtherInsurance == "true") ? "checked" : "") />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="SpOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="false"@((Model.otherIns.CoveredByOtherInsurance == "false") ? "checked" : "") />No</label>
+                    <label class="radio-inline"><input type="radio" id="SpOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="True" @((Model.otherIns.CoveredByOtherInsurance == "True") ? "checked" : "") />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="SpOtherIns" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="False"@((Model.otherIns.CoveredByOtherInsurance == "False") ? "checked" : "") />No</label>
                     <p></p>
                     <div id="spInsInfo">
                         <div class="form-group">
@@ -571,7 +571,7 @@
 
 
         document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
-            spCoveredByOtherIns = document.getElementById("SpOtherIns").value;
+            spCoveredByOtherIns = document.getElementById("SpOtherIns").checked;
             spInsCarrier = document.getElementById("spInsCarrier").value;
             spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
             spInsCity = document.getElementById("spInsCity").value;

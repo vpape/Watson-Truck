@@ -125,8 +125,8 @@
                 <div class="col-md-10">
                     <select id="CityLimits" class="form-control">
                         <option value="">Select Option</option>
-                        <option value="Yes" @(Model.employee.CityLimits == "Yes" ? "selected": "")>Yes</option>
-                        <option value="No"  @(Model.employee.CityLimits == "No" ? "selected": "")>No</option>
+                        <option value="True" @(Model.employee.CityLimits == "True" ? "selected": "")>Yes</option>
+                        <option value="False"  @(Model.employee.CityLimits == "False" ? "selected": "")>No</option>
                     </select>
                 </div>
             </div>
@@ -139,8 +139,8 @@
             <div class="form-group" id="divMailingAddress">
                 <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
                 <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="mailingAddr" class="radio-inline" onclick="showHidePhysicalAddress()" name="Address" value="true" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="mailingAddr" class="radio-inline" onclick="showHidePhysicalAddress()" name="Address" value="false" checked />No</label>
+                    <label class="radio-inline"><input type="radio" id="mailingAddr" class="radio-inline" onclick="showHidePhysicalAddress()" name="Address" value="True" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="mailingAddr" class="radio-inline" onclick="showHidePhysicalAddress()" name="Address" value="False" checked />No</label>
                 </div>
             </div>
             <div id="divPhysicalAddress">
@@ -187,8 +187,8 @@
             <div>
                 <div class="form-group">
                     <label>Are you covered by any other insurance, including Medicare?</label>
-                    <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="true" @((Model.grpHealth.OtherInsuranceCoverage == "true") ? "checked" : "") />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="false" @((Model.grpHealth.OtherInsuranceCoverage == "false") ? "checked" : "") />No</label>
+                    <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="True" @((Model.grpHealth.OtherInsuranceCoverage == "True") ? "checked" : "") />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="False" @((Model.grpHealth.OtherInsuranceCoverage == "False") ? "checked" : "") />No</label>
                     @*@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Yes", true) Yes @Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "No", false) No*@
                 </div>
                 <p></p>

@@ -16,10 +16,10 @@
     <div class="form-horizontal">
         <p></p>
         <div class="form-horizontal">
-            <hr />
             <div class="collapsible" id="FirstStep">Employee Information:</div>
             <div class="content">
                 <form action="/Employee/DeleteEmp" method="post">
+                    <p></p>
                     <div id="divEmployeeInfo">
                         <dl class="dl-horizontal">
                             <dt>
@@ -43,7 +43,7 @@
                             </dt>
 
                             <dd class="form-group-sm">
-                                "@Convert.ToDateTime(Model.employee.HireDate).ToString("yyyy-MM-dd")"
+                                @Convert.ToDateTime(Model.employee.HireDate).ToString("yyyy-MM-dd")
                             </dd>
                             <dt>
                                 <label class="col-md-offset-2">Effective Date:</label>
@@ -158,8 +158,8 @@
                             </dt>
 
                             <dd class="form-group-sm">
-                                <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="yes" @((Model.employee.CityLimits) == "yes" ? "checked" : "") />Yes</label>
-                                <label class="radio-inline"><input disabled type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="no" @((Model.employee.CityLimits) == "no" ? "checked" : "") />No</label>
+                                <label class="radio-inline"><input disabled type="radio" id="YesCityLimits" class="radio-inline" name="CityLimits" value="True" @((Model.employee.CityLimits) == "True" ? "checked" : "") />Yes</label>
+                                <label class="radio-inline"><input disabled type="radio" id="NoCityLimits" class="radio-inline" name="CityLimits" value="False" @((Model.employee.CityLimits) == "False" ? "checked" : "") />No</label>
                             </dd>
                             <dt>
                                 <label class="col-md-offset-2">County:</label>

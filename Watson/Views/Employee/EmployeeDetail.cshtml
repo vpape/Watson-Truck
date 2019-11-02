@@ -74,6 +74,17 @@
                     <input type="text" id="Gender" class="form-control" name="Gender" value="@Html.DisplayFor(m => Model.employee.Gender)" disabled />
                 </dd>
                 <dt>
+                    <label class="col-md-2 control-label">Work Status:</label>
+                </dt>
+                <dd class="col-md-10 form-group" id="Gender">
+                    <input type="checkbox" class="checkbox-inline" id="Active" name="Active" value="Active" @((Model.employee.Active) == "True" ? "checked" : "") disabled />
+                    <label for="Active">Active</label>
+                    <input type="checkbox" class="checkbox-inline" id="Retired" name="Retired" value="Retired" @((Model.employee.Retired) == "True" ? "checked" : "") disabled />
+                    <label label for="Retired">Retired</label>
+                    <input type="checkbox" class="checkbox-inline" id="Cobra" name="CobraStateContinuation" value="Cobra/State Continuation" @((Model.employee.CobraStateContinuation) == "True" ? "checked" : "") disabled />
+                    <label label for="Cobra">Cobra/State</label>
+                </dd>
+                <dt>
                     <label class="col-md-2 control-label">Marital Status:</label>
                 </dt>
                 <dd class="col-md-10 form-group">

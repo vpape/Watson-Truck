@@ -893,16 +893,16 @@
                         <tr>
                             <td style="padding-left: 20px;">
                                 @*@Html.RadioButtonFor(model => model.Spouse, "true", true) Medical*@
-                                <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" value="Medical" @((Model.spouse.Medical == "True") ? "checked" : "") disabled />Medical
+                                <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" value="True" @((Model.spouse.Medical == "True") ? "checked" : "") disabled />Medical
                                 @*@Html.RadioButtonFor(model => model.Spouse, "true", true) Dental*@
-                                <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" value="Dental" @((Model.spouse.Dental == "True") ? "checked" : "") disabled />Dental
+                                <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" value="True" @((Model.spouse.Dental == "True") ? "checked" : "") disabled />Dental
                                 <p></p>
                             </td>
                             <td style="padding-left: 20px;">
                                 @*@Html.RadioButtonFor(model => model.Spouse, "true", true) Vision*@
-                                <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" value="Vision" @Html.Raw(Model.spouse.Vision == "True" ? "checked" : "") disabled />Vision
+                                <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" value="True" @Html.Raw(Model.spouse.Vision == "True" ? "checked" : "") disabled />Vision
                                 @*@Html.RadioButtonFor(model => model.Spouse, "true", true) Indemnity*@
-                                <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" value="Indemnity" @((Model.spouse.Indemnity == "True") ? "checked" : "") disabled />Indemnity
+                                <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" value="True" @((Model.spouse.Indemnity == "True") ? "checked" : "") disabled />Indemnity
                             </td>
                         </tr>
                     </table>
