@@ -86,14 +86,13 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-11">
-                        <input type="submit" id="DepEnrollmentUpdate" value="Save" class="btn" />
+                        @*<input type="submit" id="DepEnrollmentUpdate" value="Save" class="btn" />*@
                         @*<button type="submit" id="DepEnrollmentUpdate" onclick="DependentEnrollmentUpdate()" class="btn">Save</button>*@
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @* Add Dep Insurance *@
     <div class="form-horizontal">
         <p></p>
         <div class="collapsible" id="SecondStep">Edit Dependent Insurance</div>
@@ -101,8 +100,8 @@
             <p></p>
             <div id="DepOtherInsCoverage">
                 <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                <label class="radio-inline"><input type="radio" id="depCoveredByOtherInsurance" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="True" @((Model.otherIns.CoveredByOtherInsurance) == "True" ? "checked" : "") />Yes</label>
-                <label class="radio-inline"><input type="radio" id="depCoveredByOtherInsurance" class="radio-inline" onclick="showHideSpInsCoverage()" name="CoveredByOtherInsurance" value="False" @((Model.otherIns.CoveredByOtherInsurance) == "False"? "checked" : "") />No</label>
+                <label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="True" @((Model.otherIns.CoveredByOtherInsurance) == "True" ? "checked" : "") />Yes</label>
+                <label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="False" @((Model.otherIns.CoveredByOtherInsurance) == "False"? "checked" : "") />No</label>
                 <div id="depInsInfo">
                     <div class="form-group col-md-2">
                         <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.DisplayFor(Model => Model.otherIns.InsuranceCarrier)" />
@@ -117,9 +116,9 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-10">
-                    <button type="submit" id="DepInsEnrollmentUpdateStepTwo" class="btn">Save</button>
+                    <button type="submit" id="DepEnrollmentUpdate" class="btn">Save</button>
+                    @*<button type="submit" id="DepInsEnrollmentUpdateStepTwo" class="btn">Save</button>*@
                     <button type="submit" @*onclick="AddDependent()"*@ id="addDep" class="btn">Add Dependent</button>
-                    @*<button type="submit" id="DepEnrollmentUpdate" onclick="DependentEnrollmentUpdate()" class="btn">Save</button>*@
                 </div>
             </div>
         </div>
@@ -173,102 +172,6 @@
         margin: 0em 0em 0em .5em;
     }
 </style>
-
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-    <script>
-        var cnt = 1;
-        /* This function recieves a name (string) and finds that element in the document, then removes it from it's parent node.
-         * You have to use the removeChild method on the parent node of the object.
-         */
-        function removeElement(name) {
-            var elementToRemove = document.getElementById(name);
-            elementToRemove.parentNode.removeChild(elementToRemove);
-        }
-
-        function createElement(name, type) {
-            var input = document.createElement("input");
-            input.type = type;
-            var newName = name + cnt;
-            input.name = newName;
-            input.id = newName;
-            return input;
-        }
-
-        /* This function recieves a name (string) and attempts to find it in the document object.  it's going to increment the number at the end
-         * of the name and create a new object, but only if that object doesn't already exist.
-         * It adds three elements, a file input, a red X inside a span tag, and a break tag
-         */
-        function addInputSelection() {
-            // skip the "fname" part of the name and grab the number that is the rest
-            newID = ++cnt;
-            //check to see if the next increment of that object already exists
-            if (document.getElementById("fname" + newID) == null) {
-                //get the form object so you have a reference to add child to for the three objects to create
-                var formObj = document.getElementById("dependentSelectForm");
-                // create the new input objects
-                formObj.appendChild(createElement('fname', 'text'));
-                formObj.appendChild(createElement('lname', 'text'));
-                formObj.appendChild(createElement('dob', 'date'));
-
-                //create the new span tag with the red X in it
-                var spanObj = document.createElement("span");
-                spanObj.id = "x" + newID;
-                spanObj.style = "color:red";
-                spanObj.addEventListener("click", function () {
-                    removeInputSelection(this);
-                })
-                spanObj.innerHTML = "X";
-                formObj.appendChild(spanObj);
-                //create the break tag to make a new line.  have to add an id so we know which one to remove when they click the X
-                var newBR = document.createElement("br");
-                newBR.id = "br" + newID;
-                with (document.getElementById('DepEnrollmentUpdate').style) {
-                    top = (cnt * 25) + 80 + "px";
-                }
-                with (document.getElementById('adddep').style) {
-                    top = (cnt * 25) + 80 + "px";
-                }
-                formObj.appendChild(newBR);
-
-            }
-        }
-        /* This function removes the file, span, and br tags with the same number at the end
-         */
-        function removeInputSelection(o) {
-            cnt--;
-            var elementIdNumber = parseInt(o.id.substring(2, o.id.length - 1));
-
-            removeElement("fname" + elementIdNumber);
-            removeElement("lname" + elementIdNumber);
-            removeElement("dob" + elementIdNumber);
-            removeElement("x" + elementIdNumber);
-            removeElement("br" + elementIdNumber);
-            with (document.getElementById('DepEnrollmentUpdate').style) {
-                top = (cnt * 25) + 80 + "px";
-            }
-            with (document.getElementById('adddep').style) {
-                top = (cnt * 25) + 80 + "px";
-            }
-        }
-    </script>
-</head>
-<body>
-    @*<form id="dependentSelectForm" action="\Home\DependentPoster" method="post">
-            <input type="text" name="fname1" id="fname1" />
-            <input type="text" name="lname1" id="lname1" />
-            <input type="date" name="dob1" id="dob1" />
-
-            <span id="x1" style="color:red" onclick="removeInputSelection(this);">X</span>
-            <br id="br1" />
-
-            <input type="submit" value="Submit" id="DepEnrollmentUpdate" style="position:absolute;top:80px;" />
-            <input type="button" onclick="addInputSelection();" value="Add Dependent" id="adddep" style="position:absolute;top:80px;left:160px">
-        </form>*@
-</body>
-</html>
 
 <script>
     var col = document.querySelectorAll(".collapsible");
@@ -387,16 +290,18 @@
     //    });
     //}
 
-    function showHideDepInsCoverage() {
+    function showHideDepIns() {
         document.addEventListener("click", function () {
-            var selection = document.getElementById("DepOtherIns");
+            var selection = document.getElementById("depInsuranceCoverage");
 
             if (selection.checked == true) {
 
-                document.getElementById("depInsInfo").style.visibility = "visible";
+                //document.getElementById("spInsInfo").style.visibility = "visible";
+                document.getElementById("depInsInfo").style.display = "block";
             }
             else {
-                document.getElementById("depInsInfo").style.visibility = "hidden";
+                //document.getElementById("spInsInfo").style.visibility = "hidden";
+                document.getElementById("depInsInfo").style.display = "none";
             }
         });
     }
@@ -413,31 +318,42 @@
             DepLastName = document.getElementById("DepLastName").value
             DateOfBirth = document.getElementById("DateOfBirth").value
             Gender = document.getElementById("Gender").value
-            Student = document.getElementById("Student").checked;
-            Disabled = document.getElementById("Disabled").checked;
-            NonStandardDependent = document.getElementById("NonStandardDependent").checked;
             MailingAddress = document.getElementById("MailingAddress").value;
             City = document.getElementById("City").value;
             State = document.getElementById("State").value;
             ZipCode = document.getElementById("ZipCode").value;
             County = document.getElementById("County").value;
+            Student = document.getElementById("Student").checked;
+            Disabled = document.getElementById("Disabled").checked;
+            NonStandardDependent = document.getElementById("NonStandardDependent").checked;
+
+            depInsuranceCoverage = document.getElementById("depInsuranceCoverage").checked
+            depInsCarrier = document.getElementById("depInsCarrier").value
+            depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
+            depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value
 
             var data = {
                 "Employee_id": Employee_id,
+                "FamilyMember_id": FamilyMember_id,
                 "RelationshipToInsured": RelationshipToInsured,
                 "SSN": SSN,
                 "DepFirstName": DepFirstName,
                 "DepLastName": DepLastName,
                 "DateOfBirth": DateOfBirth,
                 "Gender": Gender,
-                "Student": Student,
-                "Disabled": Disabled,
-                "NonStandardDependent": NonStandardDependent,
                 "MailingAddress": MailingAddress,
                 "City": City,
                 "State": State,
                 "ZipCode": ZipCode,
                 "County": County,
+                "Student": Student,
+                "Disabled": Disabled,
+                "NonStandardDependent": NonStandardDependent,
+
+                "depInsuranceCoverage": depInsuranceCoverage,
+                "InsuranceCarrier": depInsCarrier,
+                "PolicyNumber": depInsPolicyNumber,
+                "InsPhoneNumber": depInsPhoneNumber,
 
             }
 
@@ -465,45 +381,39 @@
                 .catch(error => console.error('Error:', error));
         })
 
-        document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            depCoveredByOtherInsurance = document.getElementsById("depCoveredByOtherInsurance").checked
-            depInsCarrier = document.getElementById("depInsCarrier").value
-            depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
-            depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value
+        //document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
+       
 
-            var data = {
-                "FamilyMember_id": FamilyMember_id,
-                "Employee_id": Employee_id,
-                "CoveredByOtherInsurance": depCoveredByOtherInsurance,
-                "InsuranceCarrier": depInsCarrier,
-                "PolicyNumber": depInsPolicyNumber,
-                "InsPhoneNumber": depInsPhoneNumber,
-            }
+        //    var data = {
+               
+        //        "Employee_id": Employee_id,
+            
+        //    }
 
-            var ret = postData('DepEditUpdate', data)
-                .then(data => {
-                    console.log(data);
-                    SecondStep(data);
-                })
-                .catch(error => console.error(error))
+        //    var ret = postData('DepEditUpdate', data)
+        //        .then(data => {
+        //            console.log(data);
+        //            SecondStep(data);
+        //        })
+        //        .catch(error => console.error(error))
 
-            //fetch('DepOtherInsuranceNew', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    .then(response => SecondStep(response))
-            //    .catch(error => console.error('Error:', error));
-        })
+        //    //fetch('DepOtherInsuranceNew', {
+        //    //    body: JSON.stringify(data), //must match 'Content-Type' header
+        //    //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+        //    //    credentials: 'same-origin', //include, same-origin, *omit
+        //    //    headers: {
+        //    //        'Accept': 'application/json',
+        //    //        'user-agent': 'Mozilla/4.0 MDN Example',
+        //    //        'content-type': 'application/json'
+        //    //    },
+        //    //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
+        //    //    mode: 'same-origin', //no-cors, cors, *same-origin
+        //    //    redirect: 'follow', //manual, *follow, error
+        //    //    referrer: 'no-referrer', //*client, no-referrer
+        //    //}).then(res => res.json())
+        //    //    .then(response => SecondStep(response))
+        //    //    .catch(error => console.error('Error:', error));
+        //})
     })
 
     function FirstStep(dep) {

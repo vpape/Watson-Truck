@@ -203,13 +203,13 @@
                 <dd class="col-md-10 form-group">
                     <input type="tel" id="spInsPhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(Model => Model.otherIns.PhoneNumber)" disabled>
                 </dd>
+                <dt>
+                    @Html.ActionLink("Edit", "EditSpouse", new { FamilyMember_id = ViewBag.FamilyMember_id }, null)|
+                    @Html.ActionLink("Back to List", "FamilyOverview", new { Employee_id = ViewBag.Employee_id }, null)
+                </dt>
             </dl>
         </div>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "EditSpouse", new { FamilyMember_id = ViewBag.FamilyMember_id }, null)|
-        @Html.ActionLink("Back to List", "FamilyOverview", new { Employee_id = ViewBag.Employee_id }, null)
-    </p>
 </body>
 </html>
 

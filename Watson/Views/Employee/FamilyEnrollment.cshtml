@@ -38,8 +38,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <div id="DependentEnrollment">
-                            <button type="button" class="button" onclick="return DependentEnrollment()">Dependent</button>
+                        <div id="AddDependent">
+                            <button type="button" class="button" onclick="return AddDependent()">Dependent</button>
                             @*@if (ViewBag.spouseExist == false)
                             {
                                 hide if single w/o dep
@@ -55,9 +55,6 @@
             </tbody>
         </table>
     </div>
-    @*<p>
-            @Html.ActionLink("Back to Family Overview", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
-        </p>*@
     <p>
         @Html.ActionLink("Back to Enrollment Selection", "EnrollmentSelection")
     </p>
@@ -109,7 +106,7 @@
 
         var maritalStatus = document.getElementById("MaritalStatus").value;
         var spouse = document.getElementById("SpouseEnrollment");
-        var dependent = document.getElementById("DependentEnrollment");
+        var dependent = document.getElementById("AddDependent");
 
         if (maritalStatus.value == "Single")
         {
@@ -137,7 +134,7 @@
         window.location.href = "/Employee/SpouseEnrollment?Employee_id=@ViewBag.Employee_id" @*+ "&FamilyMember_id=@ViewBag.FamilyMember_id"*@;
     }
 
-    function DependentEnrollment() {
+    function AddDependent() {
         @*window.location.href = "/Employee/NewDependentEnrollment?Employee_id=@ViewBag.Employee_id"*@   @*+ "&FamilyMember_id=@ViewBag.FamilyMember_id"*@;
          window.location.href = "/Employee/AddDependent?Employee_id=@ViewBag.Employee_id" @*+"&FamilyMember_id="+ @ViewBag.FamilyMember_id*@;
     }

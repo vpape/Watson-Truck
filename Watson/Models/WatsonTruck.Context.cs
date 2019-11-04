@@ -33,7 +33,6 @@ namespace Watson.Models
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Beneficiary> Beneficiaries { get; set; }
-        public virtual DbSet<BeneficiaryType> BeneficiaryTypes { get; set; }
         public virtual DbSet<Deduction> Deductions { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Family_Info> Family_Info { get; set; }

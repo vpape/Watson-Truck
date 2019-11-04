@@ -1,5 +1,4 @@
 ﻿@model Watson.ViewModels.GroupHealthGrpHEnrollmentVM
-<h2></h2>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +7,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Salary Redirection</title>
+    <title>Edit Salary Redirection</title>
 </head>
 <body>
-    @* Salary Redirect *@
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+    <input type="hidden" id="Deductions_id" class="form-control" name="Deductions_id" value=@ViewBag.Deductions_id />
     <div class="form-horizontal">
-        <div class="collapsible" id="FourthStep">Salary Redirection Agreement</div>
+        <div class="collapsible" id="FourthStep">Edit Salary Redirection Agreement</div>
         <div class="table table-bordered">
             <table class="table table-condensed" id="SalaryRedirectTable">
                 <tr>
@@ -658,8 +657,7 @@
                 </tr>
             </table>
             <p>
-                @*<button type="button" class="button" onclick="return EditSalaryRedirection()">Employee Enrollment</button>*@
-                @*@Html.ActionLink("Back to Salary Redirect", "SalaryRedirection", "Group_Health", new { Employee_id = Model.employee.Employee_id }, null)*@
+                @Html.ActionLink("Back to List", "GrpHealthEnrollment", new { Employee_id = ViewBag.Employee_id }, null)
             </p>
         </div>
 
@@ -799,11 +797,6 @@
             }
 
         });
-    }
-
-    function EditSalaryRedirection() {
-
-        window.location.href = "/Group_Health/"
     }
 
     document.addEventListener("DOMContentLoaded", function () {

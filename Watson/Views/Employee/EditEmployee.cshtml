@@ -15,6 +15,7 @@
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
         <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value="@ViewBag.GroupHealthInsurance_id" />
         <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
+        <input type="hidden" id="EmployeeRole" class="form-control" name="EmployeeRole" value="@ViewBag.EmployeeRole" />
         <div class="collapsible" id="FirstStep">Edit Info</div>
         <div id="divEmpEnrollment" class="content">
             <p></p>
@@ -90,127 +91,129 @@
             <div class="form-group">
                 <div class="checkboxes">
                     <label style="margin-left: 7em;">Work Status:</label>
-                    <input type="checkbox" class="checkbox-inline" id="Active" name="Active" value="Active" @((Model.employee.Active)== "True" ? "checked": "")/><label for="Active">Active</label>
-                    <input type="checkbox" class="checkbox-inline" id="Retired" name="Retired" value="Retired" @((Model.employee.Retired)== "True" ? "checked": "") /><label label for="Retired">Retired</label>
-                    <input type="checkbox" class="checkbox-inline" id="Cobra" name="CobraStateContinuation" value="Cobra/State Continuation" @((Model.employee.CobraStateContinuation)== "True" ? "checked": "") /><label label for="Cobra">Cobra/State</label>
+                    <input type="checkbox" class="checkbox-inline" id="Active" name="Active" value="Active" @((Model.employee.Active) == "True" ? "checked" : "") /><label for="Active">Active</label>
+                    <input type="checkbox" class="checkbox-inline" id="Retired" name="Retired" value="Retired" @((Model.employee.Retired) == "True" ? "checked" : "") /><label label for="Retired">Retired</label>
+                    <input type="checkbox" class="checkbox-inline" id="Cobra" name="CobraStateContinuation" value="Cobra/State Continuation" @((Model.employee.CobraStateContinuation) == "True" ? "checked" : "") /><label label for="Cobra">Cobra/State</label>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <button id="EditEmployeeEnrollment" class="btn">Save</button>
+                    @*<button id="EditEmployeeEnrollment" class="btn">Save</button>*@
                 </div>
             </div>
         </div>
-    </div>
-    @* Contact Info *@
-    <div class="form-horizontal">
-        <p></p>
-        <div class="collapsible" id="SecondStep">Edit Contact</div>
-        <div id="divEmpEnrollment" class="content">
+        @* Contact Info *@
+        <div class="form-horizontal">
             <p></p>
-            <div id="divMailingAddress">
-                <div class="form-group">
-                    <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(model => model.employee.MailingAddress)" />
-                        <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="@Html.DisplayFor(model => model.employee.PObox)" />
-                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@Html.DisplayFor(model => model.employee.City)" />
-                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@Html.DisplayFor(model => model.employee.State)" />
-                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.DisplayFor(model => model.employee.ZipCode)" />
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-2 control-label">Within City Limits?</label>
-                <div class="col-md-10">
-                    <select id="CityLimits" class="form-control">
-                        <option value="">Select Option</option>
-                        <option value="True" @(Model.employee.CityLimits == "True" ? "selected": "")>Yes</option>
-                        <option value="False"  @(Model.employee.CityLimits == "False" ? "selected": "")>No</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="County" class="col-md-2 control-label">County:</label>
-                <div class="col-md-10">
-                    <input type="text"  class="form-control" placeholder="County" id="County" name="County" value="@Html.DisplayFor(Model => Model.employee.County)" />
-                </div>
-            </div>
-            <div class="form-group" id="divMailingAddress">
-                <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
-                <div class="col-md-10">
-                    <label class="radio-inline"><input type="radio" id="mailingAddr" class="radio-inline" onclick="showHidePhysicalAddress()" name="Address" value="True" />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="mailingAddr" class="radio-inline" onclick="showHidePhysicalAddress()" name="Address" value="False" checked />No</label>
-                </div>
-            </div>
-            <div id="divPhysicalAddress">
-                <div class="form-group">
-                    <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
-                    <div class="col-md-10">
-                        <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="@Html.DisplayFor(model => model.employee.PhysicalAddress)" />
-                        <input type="text" id="City2" class="form-control" placeholder="City" name="CityTwo" value="@Html.DisplayFor(model => model.employee.CityTwo)" />
-                        <input type="text" id="State2" class="form-control" placeholder="State" name="StateTwo" value="@Html.DisplayFor(model => model.employee.StateTwo)" />
-                        <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCodeTwo" value="@Html.DisplayFor(model => model.employee.ZipCodeTwo)" />
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="EmailAddress" class="col-md-2 control-label">Email Address:</label>
-                <div class="col-md-10">
-                    <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="@Html.DisplayFor(model => model.employee.EmailAddress)" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
-                <div class="col-md-10">
-                    <input type="text" id="PhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" maxlength="14" value="@Html.DisplayFor(model => model.employee.PhoneNumber)" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
-                <div class="col-md-10">
-                    <input type="text" id="CellPhone" class="form-control" placeholder="Cell Phone #" name="CellPhone" maxlength="14" value="@Html.DisplayFor(model => model.employee.CellPhone)" />
-                </div>
-            </div>
-            <div class="form-group" id="divRedirect">
-                <div class="col-md-offset-11">
-                    <button id="EditEmployeeEnrollmentStepTwo" class="btn">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="form-horizontal">
-        <p></p>
-        <div class="collapsible" id="ThirdStep">Edit Insurance</div>
-        <div id="divEmpIns" class="content">
-            <p></p>
-            <div>
-                <div class="form-group">
-                    <label>Are you covered by any other insurance, including Medicare?</label>
-                    <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="True" @((Model.grpHealth.OtherInsuranceCoverage == "True") ? "checked" : "") />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="False" @((Model.grpHealth.OtherInsuranceCoverage == "False") ? "checked" : "") />No</label>
-                    @*@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Yes", true) Yes @Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "No", false) No*@
-                </div>
+            <div class="collapsible" id="SecondStep">Edit Contact</div>
+            <div id="divEmpEnrollment" class="content">
                 <p></p>
-                <div id="empInsInfo">
-                    <div class="form-group col-md-3">
-                        <input type="text" id="empInsCarrier" class="form-control" placeholder="Insurance Company" name="InsuranceCarrier" value="@Html.DisplayFor(model => model.grpHealth.InsuranceCarrier)" />
+                <div id="divMailingAddress">
+                    <div class="form-group">
+                        <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(model => model.employee.MailingAddress)" />
+                            <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="@Html.DisplayFor(model => model.employee.PObox)" />
+                            <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@Html.DisplayFor(model => model.employee.City)" />
+                            <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@Html.DisplayFor(model => model.employee.State)" />
+                            <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.DisplayFor(model => model.employee.ZipCode)" />
+                        </div>
                     </div>
-                    <div class="form-group col-md-3">
-                        <input type="text" id="empInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="@Html.DisplayFor(model => model.grpHealth.PolicyNumber)" />
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Within City Limits?</label>
+                    <div class="col-md-10">
+                        <select id="CityLimits" class="form-control">
+                            <option value="">Select Option</option>
+                            <option value="True" @(Model.employee.CityLimits == "True" ? "selected" : "")>Yes</option>
+                            <option value="False" @(Model.employee.CityLimits == "False" ? "selected" : "")>No</option>
+                        </select>
                     </div>
-                    <div class="form-group col-md-3">
-                        <input type="tel" id="empInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="@Html.DisplayFor(model => model.grpHealth.PhoneNumber)" />
+                </div>
+                <div class="form-group">
+                    <label for="County" class="col-md-2 control-label">County:</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" placeholder="County" id="County" name="County" value="@Html.DisplayFor(Model => Model.employee.County)" />
+                    </div>
+                </div>
+                <div class="form-group" id="divMailingAddress">
+                    <label class="col-md-2 control-label">Physical Address same as Mailing Address?</label>
+                    <div class="col-md-10">
+                        <label class="radio-inline"><input type="radio" id="mailingAddr" class="radio-inline" onclick="showHidePhysicalAddress()" name="Address" value="True" />Yes</label>
+                        <label class="radio-inline"><input type="radio" id="mailingAddr" class="radio-inline" onclick="showHidePhysicalAddress()" name="Address" value="False" checked />No</label>
+                    </div>
+                </div>
+                <div id="divPhysicalAddress">
+                    <div class="form-group">
+                        <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="@Html.DisplayFor(model => model.employee.PhysicalAddress)" />
+                            <input type="text" id="City2" class="form-control" placeholder="City" name="CityTwo" value="@Html.DisplayFor(model => model.employee.CityTwo)" />
+                            <input type="text" id="State2" class="form-control" placeholder="State" name="StateTwo" value="@Html.DisplayFor(model => model.employee.StateTwo)" />
+                            <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCodeTwo" value="@Html.DisplayFor(model => model.employee.ZipCodeTwo)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="EmailAddress" class="col-md-2 control-label">Email Address:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="@Html.DisplayFor(model => model.employee.EmailAddress)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="PhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" maxlength="14" value="@Html.DisplayFor(model => model.employee.PhoneNumber)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
+                    <div class="col-md-10">
+                        <input type="text" id="CellPhone" class="form-control" placeholder="Cell Phone #" name="CellPhone" maxlength="14" value="@Html.DisplayFor(model => model.employee.CellPhone)" />
+                    </div>
+                </div>
+                <div class="form-group" id="divRedirect">
+                    <div class="col-md-offset-11">
+                        @*<button id="EditEmployeeEnrollmentStepTwo" class="btn">Save</button>*@
                     </div>
                 </div>
             </div>
-            <div class="form-group" id="divRedirect">
-                <div class="col-md-offset-11">
-                    <button id="EditEmployeeInsStepThree" class="btn">Save</button>
+        </div>
+        <div class="form-horizontal">
+            <p></p>
+            <div class="collapsible" id="ThirdStep">Edit Insurance</div>
+            <div id="divEmpIns" class="content">
+                <p></p>
+                <div>
+                    <div class="form-group">
+                        <label>Are you covered by any other insurance, including Medicare?</label>
+                        <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="True" @((Model.grpHealth.OtherInsuranceCoverage == "True") ? "checked" : "") />Yes</label>
+                        <label class="radio-inline"><input type="radio" id="empOtherGrpHinsCoverage" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="False" @((Model.grpHealth.OtherInsuranceCoverage == "False") ? "checked" : "") />No</label>
+                        @*@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Yes", true) Yes @Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "No", false) No*@
+                    </div>
+                    <p></p>
+                    <div id="empInsInfo">
+                        <div class="form-group col-md-3">
+                            <input type="text" id="empInsCarrier" class="form-control" placeholder="Insurance Company" name="InsuranceCarrier" value="@Html.DisplayFor(model => model.grpHealth.InsuranceCarrier)" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" id="empInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="@Html.DisplayFor(model => model.grpHealth.PolicyNumber)" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="tel" id="empInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="@Html.DisplayFor(model => model.grpHealth.PhoneNumber)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" id="divRedirect">
+                    <div class="col-md-offset-11">
+                        @*<button id="EditEmployeeEnrollmentStepThree" class="btn">Save</button>*@
+                        <button id="EditEmployeeEnrollment" class="btn">Save</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <p>
         @Html.ActionLink("Back to List", "EmpOverview")
     </p>
@@ -331,6 +334,26 @@
             Retired = document.getElementById("Retired").checked;
             CobraState = document.getElementById("Cobra").checked;
 
+            MailingAddress = document.getElementById("MailingAddress").value;
+            PObox = document.getElementById("PObox").value;
+            City = document.getElementById("City").value;
+            State = document.getElementById("State").value;
+            ZipCode = document.getElementById("ZipCode").value;
+            CityLimits = document.getElementById("CityLimits").value;
+            County = document.getElementById("County").value;
+            PhysicalAddress = document.getElementById("PhysicalAddress").value;
+            City2 = document.getElementById("City2").value;
+            State2 = document.getElementById("State2").value;
+            ZipCode2 = document.getElementById("ZipCode2").value;
+            EmailAddress = document.getElementById("EmailAddress").value;
+            PhoneNumber = document.getElementById("PhoneNumber").value;
+            CellPhone = document.getElementById("CellPhone").value;
+
+            OtherGrpHinsCoverage = document.getElementById("empOtherGrpHinsCoverage").value
+            InsCarrier = document.getElementById("empInsCarrier").value
+            InsPolicyNumber = document.getElementById("empInsPolicyNumber").value
+            InsPhoneNumber = document.getElementById("empInsPhoneNumber").value
+
             var data = {
                 "Employee_id": Employee_id,
                 "Role": Role,
@@ -346,51 +369,7 @@
                 "Active": Active,
                 "Retired": Retired,
                 "CobraState": CobraState,
-            }
 
-            //var ret = postData('EmployeeEditUpdate', data)
-            //    .then(data => {
-            //        console.log(data);
-            //        FirstStep(data); })
-            //    .catch(error => console.error(error))
-
-            fetch('EmployeeEditUpdate', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => FirstStep(response))
-                .catch(error => console.error('Error:', error));
-        })
-
-        document.querySelector("#EditEmployeeEnrollmentStepTwo").addEventListener("click", function () {
-            MailingAddress = document.getElementById("MailingAddress").value;
-            PObox = document.getElementById("PObox").value;
-            City = document.getElementById("City").value;
-            State = document.getElementById("State").value;
-            ZipCode = document.getElementById("ZipCode").value;
-            CityLimits = document.getElementById("CityLimits").value;
-            County = document.getElementById("County").value;
-            PhysicalAddress = document.getElementById("PhysicalAddress").value;
-            City2 = document.getElementById("City2").value;
-            State2 = document.getElementById("State2").value;
-            ZipCode2 = document.getElementById("ZipCode2").value;
-            EmailAddress = document.getElementById("EmailAddress").value;
-            PhoneNumber = document.getElementById("PhoneNumber").value;
-            CellPhone = document.getElementById("CellPhone").value;
-  
-
-            var data = {
-                "Employee_id": Employee_id,
                 "MailingAddress": MailingAddress,
                 "PObox": PObox,
                 "City": City,
@@ -405,72 +384,104 @@
                 "EmailAddress": EmailAddress,
                 "PhoneNumber": PhoneNumber,
                 "CellPhone": CellPhone,
-            }
 
-            //var ret = postData('EmployeeEditUpdate', data)
-            //    .then(data => {
-            //        console.log(data);
-            //        SecondStep(data);
-            //    })
-            //    .catch(error => console.error(error))
-
-            fetch('EmployeeEditUpdate', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => SecondStep(response))
-                .catch(error => console.error('Error:', error));
-        })
-
-        document.querySelector("#EditEmployeeInsStepThree").addEventListener("click", function () {
-            Employee_id = document.getElementById("Employee_id").value
-            OtherGrpHinsCoverage = document.getElementById("empOtherGrpHinsCoverage").value
-            InsCarrier = document.getElementById("empInsCarrier").value
-            InsPolicyNumber = document.getElementById("empInsPolicyNumber").value
-            InsPhoneNumber = document.getElementById("empInsPhoneNumber").value
-
-            var data = {
-                "Employee_id": Employee_id,
                 "OtherGrpHinsCoverage": OtherGrpHinsCoverage,
                 "InsCarrier": InsCarrier,
                 "InsPolicyNumber": InsPolicyNumber,
                 "InsPhoneNumber": InsPhoneNumber,
             }
 
-            //var ret = postData('EmployeeEditUpdate', data)
-            //    .then(data => {
-            //        console.log(data);
-            //        ThirdStep(data);
-            //    })
-            //    .catch(error => console.error(error))
+            var ret = postData('EmployeeEditUpdate', data)
+                .then(data => {
+                    console.log(data);
+                    FirstStep(data); })
+                .catch(error => console.error(error))
 
-            fetch('EmployeeEditUpdate', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => ThirdStep(response))
-                .catch(error => console.error('Error:', error));
+            //fetch('EmployeeEditUpdate', {
+            //    body: JSON.stringify(data), //must match 'Content-Type' header
+            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            //    credentials: 'same-origin', //include, same-origin, *omit
+            //    headers: {
+            //        'Accept': 'application/json',
+            //        'user-agent': 'Mozilla/4.0 MDN Example',
+            //        'content-type': 'application/json'
+            //    },
+            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            //    mode: 'same-origin', //no-cors, cors, *same-origin
+            //    redirect: 'follow', //manual, *follow, error
+            //    referrer: 'no-referrer', //*client, no-referrer
+            //}).then(res => res.json())
+            //    .then(response => FirstStep(response))
+            //    .catch(error => console.error('Error:', error));
         })
+
+        //document.querySelector("#EditEmployeeEnrollmentStepTwo").addEventListener("click", function () {
+          
+  
+
+        //    var data = {
+        //        "Employee_id": Employee_id,
+       
+        //    }
+
+        //    //var ret = postData('EmployeeEditUpdate', data)
+        //    //    .then(data => {
+        //    //        console.log(data);
+        //    //        SecondStep(data);
+        //    //    })
+        //    //    .catch(error => console.error(error))
+
+        //    fetch('EmployeeEditUpdate', {
+        //        body: JSON.stringify(data), //must match 'Content-Type' header
+        //        cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+        //        credentials: 'same-origin', //include, same-origin, *omit
+        //        headers: {
+        //            'Accept': 'application/json',
+        //            'user-agent': 'Mozilla/4.0 MDN Example',
+        //            'content-type': 'application/json'
+        //        },
+        //        method: 'Post', //*GET, POST, PUT, DELETE, etc...
+        //        mode: 'same-origin', //no-cors, cors, *same-origin
+        //        redirect: 'follow', //manual, *follow, error
+        //        referrer: 'no-referrer', //*client, no-referrer
+        //    }).then(res => res.json())
+        //        .then(response => SecondStep(response))
+        //        .catch(error => console.error('Error:', error));
+        //})
+
+        //document.querySelector("#EditEmployeeInsStepThree").addEventListener("click", function () {
+        //    Employee_id = document.getElementById("Employee_id").value
+      
+
+        //    var data = {
+        //        "Employee_id": Employee_id,
+              
+        //    }
+
+        //    //var ret = postData('EmployeeEditUpdate', data)
+        //    //    .then(data => {
+        //    //        console.log(data);
+        //    //        ThirdStep(data);
+        //    //    })
+        //    //    .catch(error => console.error(error))
+
+        //    fetch('EmployeeEditUpdate', {
+        //        body: JSON.stringify(data), //must match 'Content-Type' header
+        //        cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+        //        credentials: 'same-origin', //include, same-origin, *omit
+        //        headers: {
+        //            'Accept': 'application/json',
+        //            'user-agent': 'Mozilla/4.0 MDN Example',
+        //            'content-type': 'application/json'
+        //        },
+        //        method: 'Post', //*GET, POST, PUT, DELETE, etc...
+        //        mode: 'same-origin', //no-cors, cors, *same-origin
+        //        redirect: 'follow', //manual, *follow, error
+        //        referrer: 'no-referrer', //*client, no-referrer
+        //    }).then(res => res.json())
+        //        .then(response => ThirdStep(response))
+        //        .catch(error => console.error('Error:', error));
+        //})
     })
 
     function FirstStep(emp) {

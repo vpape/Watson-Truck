@@ -77,7 +77,6 @@
             <PropertyRef Name="Beneficiary_id" />
           </Key>
           <Property Name="Beneficiary_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BeneficiaryType_id" Type="int" Nullable="false" />
           <Property Name="Employee_id" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="30" />
           <Property Name="LastName" Type="varchar" MaxLength="30" />
@@ -92,14 +91,6 @@
           <Property Name="PercentageOfBenefits" Type="varchar" MaxLength="3" />
           <Property Name="PrimaryBeneficiary" Type="varchar" MaxLength="25" />
           <Property Name="ContingentBeneficiary" Type="varchar" MaxLength="25" />
-        </EntityType>
-        <EntityType Name="BeneficiaryType">
-          <Key>
-            <PropertyRef Name="BeneficiaryType_id" />
-          </Key>
-          <Property Name="BeneficiaryType_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PrimaryBeneficiary" Type="varchar" MaxLength="30" />
-          <Property Name="ContingentBeneficiary" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Deductions">
           <Key>
@@ -592,18 +583,6 @@
           <Property Name="SickLeave" Type="int" Nullable="false" />
           <Property Name="PTO" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Beneficiary_BeneficiaryType">
-          <End Role="BeneficiaryType" Type="Self.BeneficiaryType" Multiplicity="1" />
-          <End Role="Beneficiary" Type="Self.Beneficiary" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BeneficiaryType">
-              <PropertyRef Name="BeneficiaryType_id" />
-            </Principal>
-            <Dependent Role="Beneficiary">
-              <PropertyRef Name="BeneficiaryType_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Beneficiary_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Beneficiary" Type="Self.Beneficiary" Multiplicity="*" />
@@ -815,7 +794,6 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Beneficiary" EntityType="Self.Beneficiary" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BeneficiaryType" EntityType="Self.BeneficiaryType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Deductions" EntityType="Self.Deductions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Family_Info" EntityType="Self.Family_Info" Schema="dbo" store:Type="Tables" />
@@ -827,10 +805,6 @@
           <EntitySet Name="Life_Insurance" EntityType="Self.Life_Insurance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Other_Insurance" EntityType="Self.Other_Insurance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vacation" EntityType="Self.Vacation" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Beneficiary_BeneficiaryType" Association="Self.FK_Beneficiary_BeneficiaryType">
-            <End Role="BeneficiaryType" EntitySet="BeneficiaryType" />
-            <End Role="Beneficiary" EntitySet="Beneficiary" />
-          </AssociationSet>
           <AssociationSet Name="FK_Beneficiary_Employee" Association="Self.FK_Beneficiary_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Beneficiary" EntitySet="Beneficiary" />
@@ -910,7 +884,6 @@
           <EntitySet Name="AspNetUserLogins" EntityType="WatsonTruckModel.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="WatsonTruckModel.AspNetUser" />
           <EntitySet Name="Beneficiaries" EntityType="WatsonTruckModel.Beneficiary" />
-          <EntitySet Name="BeneficiaryTypes" EntityType="WatsonTruckModel.BeneficiaryType" />
           <EntitySet Name="Deductions" EntityType="WatsonTruckModel.Deduction" />
           <EntitySet Name="Employees" EntityType="WatsonTruckModel.Employee" />
           <EntitySet Name="Family_Info" EntityType="WatsonTruckModel.Family_Info" />
@@ -928,10 +901,6 @@
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="WatsonTruckModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Beneficiary_BeneficiaryType" Association="WatsonTruckModel.FK_Beneficiary_BeneficiaryType">
-            <End Role="BeneficiaryType" EntitySet="BeneficiaryTypes" />
-            <End Role="Beneficiary" EntitySet="Beneficiaries" />
           </AssociationSet>
           <AssociationSet Name="FK_Beneficiary_Employee" Association="WatsonTruckModel.FK_Beneficiary_Employee">
             <End Role="Employee" EntitySet="Employees" />
@@ -1057,7 +1026,6 @@
             <PropertyRef Name="Beneficiary_id" />
           </Key>
           <Property Name="Beneficiary_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BeneficiaryType_id" Type="Int32" Nullable="false" />
           <Property Name="Employee_id" Type="Int32" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -1070,19 +1038,9 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="RelationshipToEmployee" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="PercentageOfBenefits" Type="String" MaxLength="3" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="BeneficiaryType" Relationship="WatsonTruckModel.FK_Beneficiary_BeneficiaryType" FromRole="Beneficiary" ToRole="BeneficiaryType" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Beneficiary_Employee" FromRole="Beneficiary" ToRole="Employee" />
           <Property Name="PrimaryBeneficiary" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="ContingentBeneficiary" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="BeneficiaryType">
-          <Key>
-            <PropertyRef Name="BeneficiaryType_id" />
-          </Key>
-          <Property Name="BeneficiaryType_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PrimaryBeneficiary" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ContingentBeneficiary" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Beneficiaries" Relationship="WatsonTruckModel.FK_Beneficiary_BeneficiaryType" FromRole="BeneficiaryType" ToRole="Beneficiary" />
         </EntityType>
         <EntityType Name="Deduction">
           <Key>
@@ -1493,18 +1451,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Beneficiary_BeneficiaryType">
-          <End Type="WatsonTruckModel.BeneficiaryType" Role="BeneficiaryType" Multiplicity="1" />
-          <End Type="WatsonTruckModel.Beneficiary" Role="Beneficiary" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BeneficiaryType">
-              <PropertyRef Name="BeneficiaryType_id" />
-            </Principal>
-            <Dependent Role="Beneficiary">
-              <PropertyRef Name="BeneficiaryType_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Beneficiary_Employee">
           <End Type="WatsonTruckModel.Employee" Role="Employee" Multiplicity="1" />
           <End Type="WatsonTruckModel.Beneficiary" Role="Beneficiary" Multiplicity="*" />
@@ -1874,17 +1820,7 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
-                <ScalarProperty Name="BeneficiaryType_id" ColumnName="BeneficiaryType_id" />
                 <ScalarProperty Name="Beneficiary_id" ColumnName="Beneficiary_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BeneficiaryTypes">
-            <EntityTypeMapping TypeName="WatsonTruckModel.BeneficiaryType">
-              <MappingFragment StoreEntitySet="BeneficiaryType">
-                <ScalarProperty Name="ContingentBeneficiary" ColumnName="ContingentBeneficiary" />
-                <ScalarProperty Name="PrimaryBeneficiary" ColumnName="PrimaryBeneficiary" />
-                <ScalarProperty Name="BeneficiaryType_id" ColumnName="BeneficiaryType_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

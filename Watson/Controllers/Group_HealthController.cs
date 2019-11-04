@@ -621,7 +621,7 @@ namespace Watson.Controllers
             d.PremiumPostTaxMedIns = PremiumPostTaxMedIns;
 
             d.DentalInsProvider = DentalInsProvider;
-            //d.EEelectionPreTaxDentalIns = EEelectionPreTaxDentalIns;
+            d.EEelectionPreTaxDentalIns = EEelectionPreTaxDentalIns;
             d.PremiumPreTaxDentalIns = PremiumPreTaxDentalIns;
             d.EEelectionPostTaxDentalIns = EEelectionPostTaxDentalIns;
             d.PremiumPostTaxDentalIns = PremiumPostTaxDentalIns;
@@ -629,16 +629,16 @@ namespace Watson.Controllers
             d.VisionInsProvider = VisionInsProvider;
             d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
             d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
-            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
             d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
 
-            //d.AccidentInsProvider = AccidentInsProvider;
+            d.AccidentInsProvider = AccidentInsProvider;
             d.EEelectionPreTaxAccidentIns = EEelectionPreTaxAccidentIns;
             d.PremiumPreTaxAccidentIns = PremiumPreTaxAccidentIns;
             d.EEelectionPostTaxAccidentIns = EEelectionPostTaxAccidentIns;
             d.PremiumPostTaxAccidentIns = PremiumPostTaxAccidentIns;
 
-            //d.CancerInsProvider = CancerInsProvider;
+            d.CancerInsProvider = CancerInsProvider;
             d.EEelectionPreTaxCancerIns = EEelectionPreTaxCancerIns;
             d.PremiumPreTaxCancerIns = PremiumPreTaxCancerIns;
             d.EEelectionPostTaxCancerIns = EEelectionPostTaxCancerIns;
@@ -694,11 +694,10 @@ namespace Watson.Controllers
         //Edit-SalaryRedirect
         public ActionResult EditSalaryRedirection(int? Employee_id)
         {
-            GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
+             GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
 
-            groupHGrpHEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
+            groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
 
-            ViewBag.Employee_id = groupHGrpHEnrollmentVM.employee.Employee_id;
 
             if (Employee_id == null)
             {
@@ -706,12 +705,14 @@ namespace Watson.Controllers
             }
 
             Group_Health g = db.Group_Health.Find(Employee_id);
+            //Group_Health g = db.Group_Health.Find(Employee_id);
             if (g == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.g = g.Employee_id;
+            ViewBag.Employee_id = g.Employee_id;
+
 
             return View(groupHGrpHEnrollmentVM);
         }
@@ -750,7 +751,7 @@ namespace Watson.Controllers
             d.PremiumPostTaxMedIns = PremiumPostTaxMedIns;
 
             d.DentalInsProvider = DentalInsProvider;
-            //d.EEelectionPreTaxDentalIns = EEelectionPreTaxDentalIns;
+            d.EEelectionPreTaxDentalIns = EEelectionPreTaxDentalIns;
             d.PremiumPreTaxDentalIns = PremiumPreTaxDentalIns;
             d.EEelectionPostTaxDentalIns = EEelectionPostTaxDentalIns;
             d.PremiumPostTaxDentalIns = PremiumPostTaxDentalIns;
@@ -758,16 +759,16 @@ namespace Watson.Controllers
             d.VisionInsProvider = VisionInsProvider;
             d.EEelectionPreTaxVisionIns = EEelectionPreTaxVisionIns;
             d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
-            //d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
+            d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
             d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
 
-            //d.AccidentInsProvider = AccidentInsProvider;
+            d.AccidentInsProvider = AccidentInsProvider;
             d.EEelectionPreTaxAccidentIns = EEelectionPreTaxAccidentIns;
             d.PremiumPreTaxAccidentIns = PremiumPreTaxAccidentIns;
             d.EEelectionPostTaxAccidentIns = EEelectionPostTaxAccidentIns;
             d.PremiumPostTaxAccidentIns = PremiumPostTaxAccidentIns;
 
-            //d.CancerInsProvider = CancerInsProvider;
+            d.CancerInsProvider = CancerInsProvider;
             d.EEelectionPreTaxCancerIns = EEelectionPreTaxCancerIns;
             d.PremiumPreTaxCancerIns = PremiumPreTaxCancerIns;
             d.EEelectionPostTaxCancerIns = EEelectionPostTaxCancerIns;

@@ -35,9 +35,7 @@ namespace Watson.Controllers
             empAndInsVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
             empAndInsVM.lifeIns = db.Life_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id);
 
-            //empAndInsVM.beneficiaryType = db.BeneficiaryTypes.Where(i => i.BeneficiaryType_id == BeneficiaryType_id);
-            empAndInsVM.beneficiaryType = db.BeneficiaryTypes.Where(i => i.BeneficiaryType_id == BeneficiaryType_id).ToList();
-            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id && i.BeneficiaryType_id == BeneficiaryType_id).ToList();
+            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id).ToList();
            
             empAndInsVM.spouse = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id && i.RelationshipToInsured == "Spouse");
             empAndInsVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id && i.RelationshipToInsured != "Spouse").ToList();

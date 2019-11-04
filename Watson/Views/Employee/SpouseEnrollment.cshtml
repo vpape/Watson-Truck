@@ -195,9 +195,9 @@
                 </div>
                 <div id="SpOtherIns">
                     <label>Other Insurance Coverage?</label>
-                    <label class="radio-inline"><input type="radio" id="SpOtherInsCoverage" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="True" checked />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="SpOtherInsCoverage" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="False" />No</label>
-                    <div id="SpOtherInsCoverageSelection">
+                    <label class="radio-inline"><input type="radio" id="spOtherInsurance" class="radio-inline" onclick="showHideSpOtherCoverage()" name="OtherInsuranceCoverage" value="True" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="spOtherInsurance" class="radio-inline" onclick="showHideSpOtherCoverage()" name="OtherInsuranceCoverage" value="False" />No</label>
+                    <div id="SpOtherInsOtherSelect">
                         <label for="OtherInsuranceCoverage" class="control-label">Coverage:</label>
                         <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" value="Medical" /><text for="Medical">Medical</text>
                         <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" value="Dental"/><text for="Dental">Dental</text>
@@ -223,8 +223,8 @@
             <div id="divSpInsurance">
                 <div id="SpInsuranceSelection">
                     <label>Is your spouse covered by other insurance, including Medicare/Medicaid?</label>
-                    <label class="radio-inline"><input type="radio" id="spOtherInsuranceCoverage" class="radio-inline" onclick="showHideSpIns()" name="OtherInsuranceCoverage" value="True" checked/>Yes</label>
-                    <label class="radio-inline"><input type="radio" id="spOtherInsuranceCoverage" class="radio-inline" onclick="showHideSpIns()" name="OtherInsuranceCoverage" value="False" />No</label>
+                    <label class="radio-inline"><input type="radio" id="spInsuranceCoverage" class="radio-inline" onclick="showHideSpIns()" name="OtherInsuranceCoverage" value="True" checked/>Yes</label>
+                    <label class="radio-inline"><input type="radio" id="spInsuranceCoverage" class="radio-inline" onclick="showHideSpIns()" name="OtherInsuranceCoverage" value="False" />No</label>
                     <p></p>
                     <div id="spInsInfo">
                         <div class="form-group">
@@ -391,32 +391,32 @@
         }
     })
 
-    function showHideSpOtherInsCoverage() {
+    function showHideSpOtherCoverage() {
         document.addEventListener("click", function () {
-            var selection = document.getElementById("SpOtherInsCoverage");
+            var selection = document.getElementById("spOtherInsurance");
 
             if (selection.checked == true) {
 
-                document.getElementById("SpOtherInsCoverageSelection").style.visibility = "visible";
+                document.getElementById("SpOtherInsOtherSelect").style.display = "block";
             }
             else {
-                document.getElementById("SpOtherInsCoverageSelection").style.visibility = "hidden";
+                document.getElementById("SpOtherInsOtherSelect").style.display = "none";
             }
         });
     }
 
-
-
     function showHideSpIns() {
         document.addEventListener("click", function () {
-            var selection = document.getElementById("SpIns");
+            var selection = document.getElementById("spInsuranceCoverage");
 
             if (selection.checked == true) {
 
-                document.getElementById("spInsInfo").style.visibility = "visible";
+                //document.getElementById("spInsInfo").style.visibility = "visible";
+                document.getElementById("spInsInfo").style.display = "block";
             }
             else {
-                document.getElementById("spInsInfo").style.visibility = "hidden";
+                //document.getElementById("spInsInfo").style.visibility = "hidden";
+                document.getElementById("spInsInfo").style.display = "none";
             }
         });
     }
@@ -534,7 +534,7 @@
             EmployerState = document.getElementById("EmployerState").value;
             EmployerZipCode = document.getElementById("EmployerZipCode").value;
             EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
-            spOtherInsuranceCoverage = document.getElementById("spOtherInsuranceCoverage").value;
+            spOtherInsurance = document.getElementById("spOtherInsurance").value;
             spOtherMedicalCoverage = document.getElementById("Medical").checked;
             spOtherDentalCoverage = document.getElementById("Dental").checked;
             spOtherVisionCoverage = document.getElementById("Vision").checked;
@@ -551,7 +551,7 @@
                 "EmployerState": EmployerState,
                 "EmployerZipCode": EmployerZipCode,
                 "EmployerPhoneNumber": EmployerPhoneNumber,
-                "spOtherInsuranceCoverage": spOtherInsuranceCoverage,
+                "spOtherInsurance": spOtherInsurance,
                 "spOtherMedicalCoverage": spOtherMedicalCoverage,
                 "spOtherDentalCoverage": spOtherDentalCoverage,
                 "spOtherVisionCoverage": spOtherVisionCoverage,
@@ -585,7 +585,7 @@
 
 
         document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
-            spOtherInsuranceCoverage = document.getElementById("spOtherInsuranceCoverage").value;
+            spInsuranceCoverage = document.getElementById("spInsuranceCoverage").value;
             spInsCarrier = document.getElementById("spInsCarrier").value;
             spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
             spInsCity = document.getElementById("spInsCity").value;
@@ -597,7 +597,7 @@
             var data = {
                 "FamilyMember_id": FamilyMember_id,
                 "Employee_id": Employee_id,
-                "spOtherInsuranceCoverage": spOtherInsuranceCoverage,
+                "spInsuranceCoverage": spInsuranceCoverage,
                 "spInsCarrier": spInsCarrier,
                 "spInsMailingAddress": spInsMailingAddress,
                 "spInsCity": spInsCity,

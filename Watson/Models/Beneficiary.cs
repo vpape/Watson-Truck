@@ -15,7 +15,6 @@ namespace Watson.Models
     public partial class Beneficiary
     {
         public int Beneficiary_id { get; set; }
-        public int BeneficiaryType_id { get; set; }
         public int Employee_id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -31,7 +30,6 @@ namespace Watson.Models
         public string PrimaryBeneficiary { get; set; }
         public string ContingentBeneficiary { get; set; }
     
-        public virtual BeneficiaryType BeneficiaryType { get; set; }
         public virtual Employee Employee { get; set; }
     }
 }

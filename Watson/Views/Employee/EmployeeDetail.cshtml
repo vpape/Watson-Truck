@@ -199,14 +199,13 @@
                 <dd class="col-md-10 form-group">
                     <input type="tel" id="empInsPhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(Model => Model.grpHealth.PhoneNumber)" disabled>
                 </dd>
+                <dt>
+                    @Html.ActionLink("Edit", "EditEmployee", "Employee", new { Employee_id = Model.employee.Employee_id }, null)|
+                    @Html.ActionLink("Back to List", "EmpOverview")
+                </dt>
             </dl>
-        </div>
+        </div> 
     </div>
-    <p>
-
-        @Html.ActionLink("Edit", "EditEmployee", "Employee", new { Employee_id = Model.employee.Employee_id }, null)|
-        @Html.ActionLink("Back to List", "EmpOverview")
-    </p>
 </body>
 </html>
 
