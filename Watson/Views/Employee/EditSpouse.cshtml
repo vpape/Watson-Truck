@@ -42,7 +42,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Marital Status:</label>
                 <div class="col-md-10">
-                    <select id="MaritalStatus" class="form-control" disabled>
+                    <select id="MaritalStatus" class="form-control" >
                         <option value="">Choose Option:</option>
                         <option value="MarriedwDep" @((Model.family.MaritalStatus) == "MarriedwDep" ? "selected" : "")>Married with Dependents</option>
                         <option value="Married" @((Model.family.MaritalStatus) == "Married" ? "selected" : "")>Married</option>
@@ -89,7 +89,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <button type="submit" id="SpouseEnrollmentUpdate" class="btn">Save</button>
+                    @*<button type="submit" id="SpouseEnrollmentUpdate" class="btn">Save</button>*@
                 </div>
             </div>
         </div>
@@ -157,7 +157,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <button type="submit" id="SpouseEnrollmentUpdateStepTwo" class="btn">Save</button>
+                    @*<button type="submit" id="SpouseEnrollmentUpdateStepTwo" class="btn">Save</button>*@
                 </div>
             </div>
         </div>
@@ -209,7 +209,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <input type="submit" id="SpouseEnrollmentUpdateStepThree" value="Save" class="btn" />
+                    @*<input type="submit" id="SpouseEnrollmentUpdateStepThree" value="Save" class="btn" />*@
                 </div>
             </div>
         </div>
@@ -262,7 +262,8 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <input type="submit" id="SpouseEnrollmentUpdateStepFour" value="Save" class="btn" />
+                    <input type="submit" id="SpouseEnrollmentUpdate" value="Save" class="btn" />
+                    @*<input type="submit" id="SpouseEnrollmentUpdateStepFour" value="Save" class="btn" />*@
                 </div>
             </div>
         </div>
@@ -360,7 +361,7 @@
         });
     }
 
-    document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
+    document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
         var maritalStatus = document.querySelector("#MaritalStatus").value;
 
         var message;
@@ -369,22 +370,22 @@
         if (maritalStatus == "SinglewDep" || maritalStatus == "MarriedwDep") {
             if (alert == true) {
 
-                message = "Please proceed to the Dependent Enrollment, Thank you!!";
+                message = "Please proceed to the Dependent Detail for review, Thank you!!";
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Employee/DepEnrollment/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/DependentDetail/?Employee_id=" + @ViewBag.Employee_id;
 
                 }
                 else {
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + @ViewBag.Employee_id;
                 }
             }
         }
         else {
             if (alert == false) {
 
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
             }
             else {
 
@@ -393,12 +394,12 @@
 
                 if (alert == true) {
 
-                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id
+                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + @ViewBag.Employee_id;
 
                 }
                 else {
 
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
                 }
             }
         }
@@ -423,6 +424,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SpouseEnrollmentUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
+            FamilyMember_id = document.getElementById("FamilyMember_id").value;
             RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
             MaritalStatus = document.getElementById("MaritalStatus").value;
             SSN = document.getElementById("SSN").value;
@@ -431,8 +433,45 @@
             DateOfBirth = document.getElementById("DateOfBirth").value;
             Gender = document.getElementById("Gender").value;
 
+            MailingAddress = document.getElementById("MailingAddress").value;
+            PObox = document.getElementById("PObox").value;
+            City = document.getElementById("City").value;
+            State = document.getElementById("State").value;
+            ZipCode = document.getElementById("ZipCode").value;
+            County = document.getElementById("County").value;
+            PhysicalAddress = document.getElementById("PhysicalAddress").value;
+            City2 = document.getElementById("City2").value;
+            State2 = document.getElementById("State2").value;
+            ZipCode2 = document.getElementById("ZipCode2").value;
+            EmailAddress = document.getElementById("EmailAddress").value;
+            PhoneNumber = document.getElementById("PhoneNumber").value;
+            CellPhone = document.getElementById("CellPhone").value;
+
+            Employer = document.getElementById("Employer").value;
+            EmployerAddress = document.getElementById("EmployerAddress").value;
+            EmployerPObox = document.getElementById("EmployerPObox").value;
+            EmployerCity = document.getElementById("EmployerCity").value;
+            EmployerState = document.getElementById("EmployerState").value;
+            EmployerZipCode = document.getElementById("EmployerZipCode").value;
+            EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
+            spOtherInsurance = document.getElementById("spOtherInsurance").value;
+            spOtherMedicalCoverage = document.getElementById("Medical").checked;
+            spOtherDentalCoverage = document.getElementById("Dental").checked;
+            spOtherVisionCoverage = document.getElementById("Vision").checked;
+            spIndemnityCoverage = document.getElementById("Indemnity").checked; 
+
+            spInsuranceCoverage = document.getElementById("spInsuranceCoverage").checked;
+            spInsCarrier = document.getElementById("spInsCarrier").value;
+            spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
+            spInsCity = document.getElementById("spInsCity").value;
+            spInsState = document.getElementById("spInsState").value;
+            spInsZipCode = document.getElementById("spInsZipCode").value;
+            spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value;
+            spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value;
+
             var data = {
                 "Employee_id": Employee_id,
+                "FamilyMember_id": FamilyMember_id,
                 "RelationshipToInsured": RelationshipToInsured,
                 "SSN": SSN,
                 "FirstName": FirstName,
@@ -440,6 +479,41 @@
                 "DateOfBirth": DateOfBirth,
                 "Gender": Gender,
 
+                "MailingAddress": MailingAddress,
+                "PObox": PObox,
+                "City": City,
+                "State": State,
+                "ZipCode": ZipCode,
+                "County": County,
+                "PhysicalAddress": PhysicalAddress,
+                "City2": City2,
+                "State2": State2,
+                "ZipCode2": ZipCode2,
+                "EmailAddress": EmailAddress,
+                "PhoneNumber": PhoneNumber,
+                "CellPhone": CellPhone,
+
+                "Employer": Employer,
+                "EmployerAddress": EmployerAddress,
+                "EmployerPObox": EmployerPObox,
+                "EmployerCity": EmployerCity,
+                "EmployerState": EmployerState,
+                "EmployerZipCode": EmployerZipCode,
+                "EmployerPhoneNumber": EmployerPhoneNumber,
+                "spOtherInsurance": spOtherInsurance,
+                "spOtherMedicalCoverage": spOtherMedicalCoverage,
+                "spOtherDentalCoverage": spOtherDentalCoverage,
+                "spOtherVisionCoverage": spOtherVisionCoverage,
+                "spIndemnityCoverage": spIndemnityCoverage,
+
+                "spInsuranceCoverage": spInsuranceCoverage,
+                "spInsCarrier": spInsCarrier,
+                "spInsMailingAddress": spInsMailingAddress,
+                "spInsCity": spInsCity,
+                "spInsState": spInsState,
+                "spInsZipCode": spInsZipCode,
+                "spInsPhoneNumber": spInsPhoneNumber,
+                "spInsPolicyNumber": spInsPolicyNumber,
             }
 
             //var ret = postData('SpEditUpdate', data)
@@ -466,38 +540,14 @@
                 .catch(error => console.error('Error:', error));
         })
 
-        document.querySelector("#SpouseEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            MailingAddress = document.getElementById("MailingAddress").value;
-            PObox = document.getElementById("PObox").value;
-            City = document.getElementById("City").value;
-            State = document.getElementById("State").value;
-            ZipCode = document.getElementById("ZipCode").value;
-            County = document.getElementById("County").value;
-            PhysicalAddress = document.getElementById("PhysicalAddress").value;
-            City2 = document.getElementById("City2").value;
-            State2 = document.getElementById("State2").value;
-            ZipCode2 = document.getElementById("ZipCode2").value;
-            EmailAddress = document.getElementById("EmailAddress").value;
-            PhoneNumber = document.getElementById("PhoneNumber").value;
-            CellPhone = document.getElementById("CellPhone").value;
+        //document.querySelector("#SpouseEnrollmentUpdateStepTwo").addEventListener("click", function () {
+    
 
-            var data = {
-                "FamilyMember_id": FamilyMember_id,
-                "Employee_id": Employee_id,
-                "MailingAddress": MailingAddress,
-                "PObox": PObox,
-                "City": City,
-                "State": State,
-                "ZipCode": ZipCode,
-                "County": County,
-                "PhysicalAddress": PhysicalAddress,
-                "City2": City2,
-                "State2": State2,
-                "ZipCode2": ZipCode2,
-                "EmailAddress": EmailAddress,
-                "PhoneNumber": PhoneNumber,
-                "CellPhone": CellPhone,
-            }
+        //    var data = {
+        //        "FamilyMember_id": FamilyMember_id,
+        //        "Employee_id": Employee_id,
+           
+        //    }
 
             //var ret = postData('SpEditUpdate', data)
             //    .then(data => {
@@ -506,55 +556,33 @@
             //    })
             //    .catch(error => console.error(error))
 
-            fetch('SpEditUpdate', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => SecondStep(response))
-                .catch(error => console.error('Error:', error));
-        })
+            //fetch('SpEditUpdate', {
+            //    body: JSON.stringify(data), //must match 'Content-Type' header
+            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            //    credentials: 'same-origin', //include, same-origin, *omit
+            //    headers: {
+            //        'Accept': 'application/json',
+            //        'user-agent': 'Mozilla/4.0 MDN Example',
+            //        'content-type': 'application/json'
+            //    },
+            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            //    mode: 'same-origin', //no-cors, cors, *same-origin
+            //    redirect: 'follow', //manual, *follow, error
+            //    referrer: 'no-referrer', //*client, no-referrer
+            //}).then(res => res.json())
+            //    .then(response => SecondStep(response))
+            //    .catch(error => console.error('Error:', error));
+        //})
 
-        document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener("click", function () {
-            Employer = document.getElementById("Employer").value;
-            EmployerAddress = document.getElementById("EmployerAddress").value;
-            EmployerPObox = document.getElementById("EmployerPObox").value;
-            EmployerCity = document.getElementById("EmployerCity").value;
-            EmployerState = document.getElementById("EmployerState").value;
-            EmployerZipCode = document.getElementById("EmployerZipCode").value;
-            EmployerPhoneNumber = document.getElementById("EmployerPhoneNumber").value;
-            spOtherInsurance = document.getElementById("spOtherInsurance").value;
-            spOtherMedicalCoverage = document.getElementById("Medical").checked;
-            spOtherDentalCoverage = document.getElementById("Dental").checked;
-            spOtherVisionCoverage = document.getElementById("Vision").checked;
-            spIndemnityCoverage = document.getElementById("Indemnity").checked; 
+        //document.querySelector("#SpouseEnrollmentUpdateStepThree").addEventListener("click", function () {
+      
 
 
-            var data = {
-                "FamilyMember_id": FamilyMember_id,
-                "Employee_id": Employee_id,
-                "Employer": Employer,
-                "EmployerAddress": EmployerAddress,
-                "EmployerPObox": EmployerPObox,
-                "EmployerCity": EmployerCity,
-                "EmployerState": EmployerState,
-                "EmployerZipCode": EmployerZipCode,
-                "EmployerPhoneNumber": EmployerPhoneNumber,
-                "spOtherInsurance": spOtherInsurance,
-                "spOtherMedicalCoverage": spOtherMedicalCoverage,
-                "spOtherDentalCoverage": spOtherDentalCoverage,
-                "spOtherVisionCoverage": spOtherVisionCoverage,
-                "spIndemnityCoverage": spIndemnityCoverage,
-            }
+        //    var data = {
+        //        "FamilyMember_id": FamilyMember_id,
+        //        "Employee_id": Employee_id,
+             
+        //    }
 
             //var ret = postData('SpEditUpdate', data)
             //    .then(data => {
@@ -563,54 +591,40 @@
             //    })
             //    .catch(error => console.error(error))
 
-            fetch('SpEditUpdate', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => ThirdStep(response))
-                .catch(error => console.error('Error:', error));
-        })
+        //    fetch('SpEditUpdate', {
+        //        body: JSON.stringify(data), //must match 'Content-Type' header
+        //        cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+        //        credentials: 'same-origin', //include, same-origin, *omit
+        //        headers: {
+        //            'Accept': 'application/json',
+        //            'user-agent': 'Mozilla/4.0 MDN Example',
+        //            'content-type': 'application/json'
+        //        },
+        //        method: 'Post', //*GET, POST, PUT, DELETE, etc...
+        //        mode: 'same-origin', //no-cors, cors, *same-origin
+        //        redirect: 'follow', //manual, *follow, error
+        //        referrer: 'no-referrer', //*client, no-referrer
+        //    }).then(res => res.json())
+        //        .then(response => ThirdStep(response))
+        //        .catch(error => console.error('Error:', error));
+        //})
 
 
-        document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
-            spInsuranceCoverage = document.getElementById("spInsuranceCoverage").value;
-            spInsCarrier = document.getElementById("spInsCarrier").value;
-            spInsMailingAddress = document.getElementById("spInsMailingAddress").value;
-            spInsCity = document.getElementById("spInsCity").value;
-            spInsState = document.getElementById("spInsState").value;
-            spInsZipCode = document.getElementById("spInsZipCode").value;
-            spInsPhoneNumber = document.getElementById("spInsPhoneNumber").value;
-            spInsPolicyNumber = document.getElementById("spInsPolicyNumber").value;
+        //document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
+       
 
-            var data = {
-                "FamilyMember_id": FamilyMember_id,
-                "Employee_id": Employee_id,
-                "spInsuranceCoverage": spInsuranceCoverage,
-                "spInsCarrier": spInsCarrier,
-                "spInsMailingAddress": spInsMailingAddress,
-                "spInsCity": spInsCity,
-                "spInsState": spInsState,
-                "spInsZipCode": spInsZipCode,
-                "spInsPhoneNumber": spInsPhoneNumber,
-                "spInsPolicyNumber": spInsPolicyNumber,
-            }
+        //    var data = {
+        //        "FamilyMember_id": FamilyMember_id,
+        //        "Employee_id": Employee_id,
+    
+        //    }
 
-            var ret = postData('SpOtherInsuranceUpdate', data)
-                .then(data => {
-                    console.log(data);
-                    ThirdStep(data);
-                })
-                .catch(error => console.error(error))
+        //    var ret = postData('SpOtherInsuranceUpdate', data)
+        //        .then(data => {
+        //            console.log(data);
+        //            ThirdStep(data);
+        //        })
+        //        .catch(error => console.error(error))
 
             //fetch('SpOtherInsuranceNew', {
             //    body: JSON.stringify(data), //must match 'Content-Type' header
@@ -628,7 +642,7 @@
             //}).then(res => res.json())
             //    .then(response => ThirdStep(response))
             //    .catch(error => console.error('Error:', error));
-        })
+        //})
 
     })
 

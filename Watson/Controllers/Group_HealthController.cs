@@ -705,13 +705,12 @@ namespace Watson.Controllers
             }
 
             Group_Health g = db.Group_Health.Find(Employee_id);
-            //Group_Health g = db.Group_Health.Find(Employee_id);
             if (g == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.Employee_id = g.Employee_id;
+            ViewBag.Employee_id = groupHGrpHEnrollmentVM.grpHealth.Employee_id;
 
 
             return View(groupHGrpHEnrollmentVM);
@@ -830,7 +829,6 @@ namespace Watson.Controllers
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
-        //SalaryRedirect-End----------------------------------------------------------------------------------
 
         //AuthorizationForm-Start-----------------------------------------------------------------------------
 
@@ -950,8 +948,6 @@ namespace Watson.Controllers
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
-
-        //AuthorizationForm-End-----------------------------------------------------------------------------
 
         public ActionResult DeleteGrpHealthIns(int? id)
         {

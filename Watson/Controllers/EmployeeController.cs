@@ -575,17 +575,22 @@ namespace Watson.Controllers
         }
 
         //EditUpdate-Spouse
-        public JsonResult SpEditUpdate(int? Employee_id, int? FamilyMember_id, string RelationshipToInsured, string MaritalStatus, string EmpNumber, 
+        public JsonResult SpEditUpdate(int? Employee_id, int? FamilyMember_id, string RelationshipToInsured, string MaritalStatus, string SSN, 
             string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress, string PObox, string City, string State, 
             string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, string EmailAddress, string PhoneNumber, 
             string CellPhone, string Employer, string EmployerAddress, string EmployerPObox, string EmployerCity, string EmployerState, string EmployerZipCode, 
             string EmployerPhoneNumber, string spOtherInsurance, string spOtherMedicalCoverage, string spOtherDentalCoverage, string spOtherVisionCoverage,
-            string spIndemnityCoverage)
+            string spIndemnityCoverage, string spInsuranceCoverage, string spInsCarrier, string spInsMailingAddress, string spInsCity, string spInsState,
+            string spInsZipCode, string spInsPhoneNumber, string spInsPolicyNumber)
         {
             var sp = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
                 .Where(i => i.RelationshipToInsured == "Spouse")
                 .Single();
+
+            ViewBag.FamilyMember_id = sp.FamilyMember_id;
+            ViewBag.RelationshipToInsured = "Spouse";
+            ViewBag.MaritalStatus = sp.MaritalStatus;
 
             //int record = (from fi in db.Family_Info
             //              where fi.FamilyMember_id == FamilyMember_id
@@ -605,7 +610,7 @@ namespace Watson.Controllers
 
             sp.RelationshipToInsured = RelationshipToInsured;
             sp.MaritalStatus = MaritalStatus;
-            sp.SSN = EmpNumber;
+            sp.SSN = SSN;
             sp.FirstName = FirstName;
             sp.LastName = LastName;
             sp.DateOfBirth = DateOfBirth;
@@ -637,33 +642,45 @@ namespace Watson.Controllers
             sp.Vision = spOtherVisionCoverage;
             sp.Indemnity = spIndemnityCoverage;
 
+            Other_Insurance spOtherIns = db.Other_Insurance
+                  .Where(i => i.FamilyMember_id == FamilyMember_id)
+                  .Single();
 
-            ViewBag.FamilyMember_id = sp.FamilyMember_id;
-            ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
+            spOtherIns.CoveredByOtherInsurance = spInsuranceCoverage;
+            spOtherIns.InsuranceCarrier = spInsCarrier;
+            spOtherIns.MailingAddress = spInsMailingAddress;
+            spOtherIns.City = spInsCity;
+            spOtherIns.State = spInsState;
+            spOtherIns.ZipCode = spInsZipCode;
+            spOtherIns.PhoneNumber = spInsPhoneNumber;
+            spOtherIns.PolicyNumber = spInsPolicyNumber;
 
-            ViewBag.spouseExist = true;
-            ViewBag.MartialStatus = MaritalStatus;
-            ViewBag.RelationshipToInsured = "Spouse";
+            //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
 
-            Employee e = db.Employees.Find(Employee_id);
-            if (e.MaritalStatus == "Single")
-            {
-                ViewBag.spouseExist = false;
-                ViewBag.RelationshipToInsured = "Single";
-            }
-            else if (e.MaritalStatus == "SinglewDep")
-            {
-                ViewBag.spouseExist = false;
-                ViewBag.RelationshipToInsured = "Spouse";
-            }
-            else
-            {
-                ViewBag.RelationshipToInsured = "Dependent";
-            }
+            //ViewBag.spouseExist = true;
+            //ViewBag.MartialStatus = MaritalStatus;
+            //ViewBag.RelationshipToInsured = "Spouse";
+
+            //Employee e = db.Employees.Find(Employee_id);
+            //if (e.MaritalStatus == "Single")
+            //{
+            //    ViewBag.spouseExist = false;
+            //    ViewBag.RelationshipToInsured = "Single";
+            //}
+            //else if (e.MaritalStatus == "SinglewDep")
+            //{
+            //    ViewBag.spouseExist = false;
+            //    ViewBag.RelationshipToInsured = "Spouse";
+            //}
+            //else
+            //{
+            //    ViewBag.RelationshipToInsured = "Dependent";
+            //}
 
             if (ModelState.IsValid)
             {
                 db.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(spOtherIns).State = System.Data.Entity.EntityState.Modified;
 
                 try
                 {
@@ -697,12 +714,12 @@ namespace Watson.Controllers
             //other.FamilyMember_id = FamilyMember_id;
             other.CoveredByOtherInsurance = spInsuranceCoverage;
             other.InsuranceCarrier = spInsCarrier;
-            other.InsuranceCarrier = spInsMailingAddress;
-            other.InsuranceCarrier = spInsCity;
-            other.InsuranceCarrier = spInsState;
-            other.InsuranceCarrier = spInsZipCode;
-            other.InsuranceCarrier = spInsPhoneNumber;
-            other.InsuranceCarrier = spInsPolicyNumber;
+            other.MailingAddress = spInsMailingAddress;
+            other.City = spInsCity;
+            other.State = spInsState;
+            other.ZipCode = spInsZipCode;
+            other.PhoneNumber = spInsPhoneNumber;
+            other.PolicyNumber = spInsPolicyNumber;
 
             if (ModelState.IsValid)
             {

@@ -12,6 +12,7 @@
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+    <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value=@ViewBag.GroupHealthInsurance_id />
     <div class="form-horizontal">
         <div class="collapsible" id="FirstStep">Salary Redirection Agreement</div>
         <div class="modal-content">
@@ -503,7 +504,7 @@
                                     <input type="number" class="form-control prc2" id="PremiumPostTaxOtherIns" name="PremiumPostTaxOtherIns" value="" />
                                 </td>
                             </tr>
-                          
+
                         </table>
                         <table>
                             <tr>
@@ -568,15 +569,12 @@
                                 <button id="SalaryRedirectUpdate" class="btn">Save</button>
                             </div>
                         </div>
-                        @*<div>
-                            <button class="btn" onclick="return EditSalaryRedirection(@ViewBag.Employee_id)">Edit Salary Redirection</button>
-                        </div>*@
                     </td>
                 </tr>
             </table>
             <p>
                 @Html.ActionLink("Edit", "EditSalaryRedirection", new { Employee_id = ViewBag.Employee_id }, null)|
-                @Html.ActionLink("Back to List", "GrpHealthEnrollment", new { Employee_id = ViewBag.Employee_id }, null)
+                @Html.ActionLink("Back to Insurance", "GrpHealthEnrollment", new { Employee_id = ViewBag.Employee_id }, null)
             </p>
         </div>
     </div>
@@ -775,10 +773,10 @@
 
     //}
 
-    function EditSalaryRedirection() {
+    @*function EditSalaryRedirection() {
 
         window.location.href = "/Group_Health/EditSalaryRedirection?Employee_id=@ViewBag.Employee_id";
-    }
+    }*@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#SalaryRedirectUpdate").addEventListener("click", function () {

@@ -217,6 +217,29 @@
         });
     }
 
+    document.querySelector("#DepEnrollmentUpdate").addEventListener("click", function () {
+        var depSubmit = document.getElementById("DepEnrollmentUpdate");
+
+        var message;
+        var alert = confirm("Your progress has been saved. Please proceed to Overview page.")
+
+        if (depSubmit) {
+            if (alert == true) {
+
+                message = "Proceeding to Overview page. Thank you!!";
+                var alert = confirm(message)
+                if (alert == true) {
+
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + @ViewBag.Employee_id;
+
+                }
+                else {
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + @ViewBag.Employee_id;
+                }
+            }
+        }
+    })
+
     //Redirects to Add Dependent Page
     document.querySelector("#addDep").addEventListener("click", function () {
         var depSubmit = document.getElementById("addDep");
@@ -224,7 +247,7 @@
         var message;
         var alert = confirm("Would you like to add another Dependent? If yes, select OK to add Dependent.")
 
-        if (depSubmit.onclick) {
+        if (depSubmit) {
             if (alert == true) {
 
                 message = "Please proceed to add Dependent, Thank you!!";
@@ -239,10 +262,10 @@
                 }
             }
         }
-        else {
+        @*else {
             if (alert == true) {
 
-                window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id;
+                window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" +  @ViewBag.Employee_id;
             }
             else {
 
@@ -251,44 +274,22 @@
 
                 if (alert == true) {
 
-                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + Employee_id;
+                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" +  @ViewBag.Employee_id;
 
                 }
                 else {
 
-                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" +  @ViewBag.Employee_id;
                 }
 
             }
 
-        }
+        }*@
     })
 
 
 
-    //function AddDependent() {
-    //    document.querySelector("#AddDep").addEventListener("click", function () {
-    //        var depSubmit = document.getElementById("AddDep");
-
-    //        var message;
-    //        var alert = confirm("Would you like to add Dependents, If yes, click OK button to continue.")
-
-    //        if (depSubmit) {
-    //            if (alert == true) {
-
-    //                message = "Please proceed to Add Dependents, Thank you!!"
-    //                var alert = confirm(message)
-    //                if (alert == true) {
-
-    //                    window.location.href = "/Employee/AddDependent/?Employee_id=" + Employee_id;
-    //                }
-    //                else {
-    //                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + Employee_id;
-    //                }
-    //            }
-    //        }
-    //    });
-    //}
+  
 
     function showHideDepIns() {
         document.addEventListener("click", function () {
@@ -327,10 +328,10 @@
             Disabled = document.getElementById("Disabled").checked;
             NonStandardDependent = document.getElementById("NonStandardDependent").checked;
 
-            depInsuranceCoverage = document.getElementById("depInsuranceCoverage").checked
-            depInsCarrier = document.getElementById("depInsCarrier").value
-            depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
-            depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value
+            depInsuranceCoverage = document.getElementById("depInsuranceCoverage").checked;
+            depInsCarrier = document.getElementById("depInsCarrier").value;
+            depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value;
+            depInsPhoneNumber = document.getElementById("depInsPhoneNumber").value;
 
             var data = {
                 "Employee_id": Employee_id,
@@ -351,9 +352,9 @@
                 "NonStandardDependent": NonStandardDependent,
 
                 "depInsuranceCoverage": depInsuranceCoverage,
-                "InsuranceCarrier": depInsCarrier,
-                "PolicyNumber": depInsPolicyNumber,
-                "InsPhoneNumber": depInsPhoneNumber,
+                "depInsCarrier": depInsCarrier,
+                "depInsPolicyNumber": depInsPolicyNumber,
+                "depInsPhoneNumber": depInsPhoneNumber,
 
             }
 
