@@ -1,7 +1,5 @@
 ﻿@model Watson.ViewModels.EmployeeAndInsuranceVM
-@{
-    ViewBag.Title = "DeleteEmp";
-}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -223,25 +221,16 @@
                             <dd class="form-group-sm">
                                 @Html.DisplayFor(model => model.employee.CellPhone)
                             </dd>
-                            <dt>
-                                <label class="col-md-offset-2">Active at Watson:</label>
-                            </dt>
-
-                            <dd class="form-group-sm">
-                                <label class="radio-inline"><input disabled type="radio" id="isActive" class="radio-inline" name="isActive" value="true" @((Model.employee.isActive) == "true" ? "checked" : "") />Yes</label>
-                                <label class="radio-inline"><input disabled type="radio" id="NotActive" class="radio-inline" name="isActive" value="false" @((Model.employee.isActive) == "true" ? "checked" : "") />No</label>
-                            </dd>
 
                             <dt>
                                 <label class="col-md-offset-2">Work Status:</label>
                             </dt>
 
                             <dd class="form-group-sm">
-                                <label class="radio-inline"><input disabled type="radio" id="Employed" class="radio-inline" name="WorkStatus" value="Employed" @((Model.employee.WorkStatus == "Employed") ? "checked" : "") />Employed</label>
-                                <label class="radio-inline"><input disabled type="radio" id="Quit" class="radio-inline" name="WorkStatus" value="Quit" @((Model.employee.WorkStatus == "Quit") ? "checked" : "") />Quit</label>
-                                <label class="radio-inline"><input disabled type="radio" id="Terminated" class="radio-inline" name="WorkStatus" value="Terminated" @((Model.employee.WorkStatus == "Terminated") ? "checked" : "") />Terminated</label>
-                                <label class="radio-inline"><input disabled type="radio" id="Retired" class="radio-inline" name="WorkStatus" value="Retired" @((Model.employee.WorkStatus == "Retired") ? "checked" : "") />Retired</label>
-                                <label class="radio-inline"><input disabled type="radio" id="Deceased" class="radio-inline" name="WorkStatus" value="Deceased" @((Model.employee.WorkStatus == "Deceased") ? "checked" : "") />Deceased </label>
+                    
+                                <input type="checkbox" class="checkbox-inline" id="Active" name="Active" value="Active" @((Model.employee.Active == "True") ? "checked" : "") /><label for="Active">Active</label>
+                                <input type="checkbox" class="checkbox-inline" id="Retired" name="Retired" value="Retired" @((Model.employee.Retired == "True") ? "checked" : "") /><label label for="Retired">Retired</label>
+                                <input type="checkbox" class="checkbox-inline" id="CobraStateContinuation" name="CobraStateContinuation" value="CobraStateContinuation" @((Model.employee.CobraStateContinuation == "True") ? "checked" : "") /><label for="CobraStateContinuation">Cobra State Continuation</label>
                             </dd>
 
                             <dt>
@@ -284,18 +273,19 @@
                         </dl>
                     </div>
                 </form>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                        @Html.ActionLink("Back to List", "EmpOverview")
+                    </div>
+                }
             </div>
         </div>
     </div>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "EmpOverview")
-        </div>
-    }
 </body>
 </html>
 

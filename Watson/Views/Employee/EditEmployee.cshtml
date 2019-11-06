@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
                 <div class="col-md-10">
-                    <input type="text" id="Role" class="form-control" name="EmployeeRole" value="@Html.DisplayFor(model => model.employee.EmployeeRole)" disabled>
+                    <input type="text" id="EmpRole" class="form-control" name="EmployeeRole" value="@Html.DisplayFor(model => model.employee.EmployeeRole)" disabled>
                 </div>
             </div>
             <div class="form-group">
@@ -320,7 +320,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EditEmployeeEnrollment").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            Role = document.getElementById("Role").value;
+            EmpRole = document.getElementById("EmpRole").value;
             CurrentEmployer = document.getElementById("CurrentEmployer").value;
             JobTitle = document.getElementById("JobTitle").value;
             EmpNumber = document.getElementById("EmpNumber").value;
@@ -356,7 +356,7 @@
 
             var data = {
                 "Employee_id": Employee_id,
-                "Role": Role,
+                "EmpRole": EmpRole,
                 "CurrentEmployer": CurrentEmployer,
                 "JobTitle": JobTitle,
                 "EmpNumber": EmpNumber,
@@ -415,73 +415,6 @@
             //    .catch(error => console.error('Error:', error));
         })
 
-        //document.querySelector("#EditEmployeeEnrollmentStepTwo").addEventListener("click", function () {
-          
-  
-
-        //    var data = {
-        //        "Employee_id": Employee_id,
-       
-        //    }
-
-        //    //var ret = postData('EmployeeEditUpdate', data)
-        //    //    .then(data => {
-        //    //        console.log(data);
-        //    //        SecondStep(data);
-        //    //    })
-        //    //    .catch(error => console.error(error))
-
-        //    fetch('EmployeeEditUpdate', {
-        //        body: JSON.stringify(data), //must match 'Content-Type' header
-        //        cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-        //        credentials: 'same-origin', //include, same-origin, *omit
-        //        headers: {
-        //            'Accept': 'application/json',
-        //            'user-agent': 'Mozilla/4.0 MDN Example',
-        //            'content-type': 'application/json'
-        //        },
-        //        method: 'Post', //*GET, POST, PUT, DELETE, etc...
-        //        mode: 'same-origin', //no-cors, cors, *same-origin
-        //        redirect: 'follow', //manual, *follow, error
-        //        referrer: 'no-referrer', //*client, no-referrer
-        //    }).then(res => res.json())
-        //        .then(response => SecondStep(response))
-        //        .catch(error => console.error('Error:', error));
-        //})
-
-        //document.querySelector("#EditEmployeeInsStepThree").addEventListener("click", function () {
-        //    Employee_id = document.getElementById("Employee_id").value
-      
-
-        //    var data = {
-        //        "Employee_id": Employee_id,
-              
-        //    }
-
-        //    //var ret = postData('EmployeeEditUpdate', data)
-        //    //    .then(data => {
-        //    //        console.log(data);
-        //    //        ThirdStep(data);
-        //    //    })
-        //    //    .catch(error => console.error(error))
-
-        //    fetch('EmployeeEditUpdate', {
-        //        body: JSON.stringify(data), //must match 'Content-Type' header
-        //        cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-        //        credentials: 'same-origin', //include, same-origin, *omit
-        //        headers: {
-        //            'Accept': 'application/json',
-        //            'user-agent': 'Mozilla/4.0 MDN Example',
-        //            'content-type': 'application/json'
-        //        },
-        //        method: 'Post', //*GET, POST, PUT, DELETE, etc...
-        //        mode: 'same-origin', //no-cors, cors, *same-origin
-        //        redirect: 'follow', //manual, *follow, error
-        //        referrer: 'no-referrer', //*client, no-referrer
-        //    }).then(res => res.json())
-        //        .then(response => ThirdStep(response))
-        //        .catch(error => console.error('Error:', error));
-        //})
     })
 
     function FirstStep(emp) {

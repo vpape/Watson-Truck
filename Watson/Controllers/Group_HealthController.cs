@@ -691,30 +691,44 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        //Edit-SalaryRedirect
         public ActionResult EditSalaryRedirection(int? Employee_id)
         {
-             GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
+            GroupHealthGrpHEnrollmentVM grpHSalaryRedirect = new GroupHealthGrpHEnrollmentVM();
 
-            groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
+            grpHSalaryRedirect.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
+            grpHSalaryRedirect.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
 
-
-            if (Employee_id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Group_Health g = db.Group_Health.Find(Employee_id);
-            if (g == null)
-            {
-                return HttpNotFound();
-            }
-
-            ViewBag.Employee_id = groupHGrpHEnrollmentVM.grpHealth.Employee_id;
+            ViewBag.Employee_id = grpHSalaryRedirect.grpHealth.Employee_id;
+            ViewBag.Employee_id = grpHSalaryRedirect.employee.Employee_id;
 
 
-            return View(groupHGrpHEnrollmentVM);
+            return View(grpHSalaryRedirect);
         }
+
+        //Edit-SalaryRedirect
+        //public ActionResult EditSalaryRedirection(int? Employee_id)
+        //{
+        //     GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
+
+        //    groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
+
+
+        //    if (Employee_id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+
+        //    Group_Health g = db.Group_Health.Find(Employee_id);
+        //    if (g == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    ViewBag.Employee_id = groupHGrpHEnrollmentVM.grpHealth.Employee_id;
+
+
+        //    return View(groupHGrpHEnrollmentVM);
+        //}
 
         //EditUpdate-SalaryRedirect
         public JsonResult SalaryRedirectionEditUpdate(int Employee_id, int? Deductions_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,

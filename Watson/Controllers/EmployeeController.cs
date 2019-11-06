@@ -205,8 +205,8 @@ namespace Watson.Controllers
         }
        
         //EditUpdate-Emp
-        public JsonResult EmployeeEditUpdate(int? Employee_id, string EmpRole, string CurrentEmployer, string JobTitle, string EmpNumber, /*DateTime HireDate,*/ 
-            string FirstName, string LastName, /*DateTime DateOfBirth,*/ string Gender, string MaritalStatus, string MailingAddress, string PObox, string City, 
+        public JsonResult EmployeeEditUpdate(int? Employee_id, string EmpRole, string CurrentEmployer, string JobTitle, string EmpNumber, DateTime? HireDate, 
+            string FirstName, string LastName, DateTime? DateOfBirth, string Gender, string MaritalStatus, string MailingAddress, string PObox, string City, 
             string State, string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, string CityLimits,
             string EmailAddress, string PhoneNumber, string CellPhone, string OtherGrpHinsCoverage, string InsCarrier, string InsPolicyNumber,
             string InsPhoneNumber, string Active, string Retired, string CobraState)
@@ -219,10 +219,10 @@ namespace Watson.Controllers
             e.CurrentEmployer = CurrentEmployer;
             e.JobTitle = JobTitle;
             e.SSN = EmpNumber;
-            //e.HireDate = HireDate;
+            e.HireDate = HireDate;
             e.FirstName = FirstName;
             e.LastName = LastName;
-            //e.DateOfBirth = DateOfBirth;
+            e.DateOfBirth = DateOfBirth;
             e.Gender = Gender;
             e.MaritalStatus = MaritalStatus;
             e.MailingAddress = MailingAddress;

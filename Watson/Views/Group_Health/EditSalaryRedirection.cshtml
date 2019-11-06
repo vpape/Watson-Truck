@@ -137,10 +137,9 @@
                                     <td>
                                         <select id="EEelectionPreTaxMedIns" class="form-control">
                                             <option value="">Select Option:</option>
-                                            <option value="Employee Only-MEC">Employee Only-MEC</option>
-                                            <option value="Employee Only-MEC">Employee Only-MEC</option>
-                                            <option value="Employee Only-Standard">Employee Only-Standard</option>
-                                            <option value="Employee Only-BuyUp">Employee Only-BuyUp</option>
+                                            <option value="Employee Only-MEC" @*@((Model.deduction.EEelectionPreTaxMedIns) == "Employee Only-MEC" ? "selected" : "")*@>Employee Only-MEC</option>
+                                            <option value="Employee Only-Standard" @*@((Model.deduction.EEelectionPreTaxMedIns) == "Employee Only-Standard" ? "selected" : "")*@>Employee Only-Standard</option>
+                                            <option value="Employee Only-BuyUp" @*@((Model.deduction.EEelectionPreTaxMedIns) == "Employee Only-BuyUp" ? "selected" : "")*@>Employee Only-BuyUp</option>
 
                                             <option value="Employee & Spouse-MEC">Employee & Spouse-MEC</option>
                                             <option value="Employee & Spouse-Standard">Employee & Spouse-Standard</option>
@@ -658,7 +657,7 @@
                 </tr>
             </table>
             <p>
-                @Html.ActionLink("Back to List", "GrpHealthEnrollment", new { Employee_id = ViewBag.Employee_id }, null)
+                @Html.ActionLink("Back to Insurance", "GrpHealthEnrollment", new { Employee_id = ViewBag.Employee_id }, null)
             </p>
         </div>
 
@@ -988,5 +987,7 @@
         }
     })
 </script>
+
+
 
 
