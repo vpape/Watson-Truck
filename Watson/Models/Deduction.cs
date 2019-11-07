@@ -71,6 +71,7 @@ namespace Watson.Models
         public string PremiumPreTaxOtherIns { get; set; }
         public string EEelectionPostTaxOtherIns { get; set; }
         public string PremiumPostTaxOtherIns { get; set; }
+        public string PreTaxBenefitWaiverinitials { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

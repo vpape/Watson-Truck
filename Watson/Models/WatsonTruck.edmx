@@ -153,6 +153,7 @@
           <Property Name="EmployeeSignature" Type="varchar" MaxLength="50" />
           <Property Name="EmployeeSignatureDate" Type="date" />
           <Property Name="EmployeeInitials" Type="varchar" MaxLength="3" />
+          <Property Name="PreTaxBenefitWaiverinitials" Type="varchar" MaxLength="3" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -1104,6 +1105,7 @@
           <Property Name="PremiumPreTaxOtherIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPostTaxOtherIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPostTaxOtherIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PreTaxBenefitWaiverinitials" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -1827,6 +1829,7 @@
           <EntitySetMapping Name="Deductions">
             <EntityTypeMapping TypeName="WatsonTruckModel.Deduction">
               <MappingFragment StoreEntitySet="Deductions">
+                <ScalarProperty Name="PreTaxBenefitWaiverinitials" ColumnName="PreTaxBenefitWaiverinitials" />
                 <ScalarProperty Name="PremiumPostTaxOtherIns" ColumnName="PremiumPostTaxOtherIns" />
                 <ScalarProperty Name="EEelectionPostTaxOtherIns" ColumnName="EEelectionPostTaxOtherIns" />
                 <ScalarProperty Name="PremiumPreTaxOtherIns" ColumnName="PremiumPreTaxOtherIns" />

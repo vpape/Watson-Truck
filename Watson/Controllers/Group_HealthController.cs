@@ -606,9 +606,9 @@ namespace Watson.Controllers
             string PremiumPreTaxHospitalIndem, string EEelectionPostTaxHospitalIndem, string PremiumPostTaxHospitalIndem, string TermLifeInsProvider,
             string EEelectionPreTaxTermLifeIns, string PremiumPreTaxTermLifeIns, string EEelectionPostTaxTermLifeIns, string PremiumPostTaxTermLifeIns,
             string WholeLifeInsProvider, string EEelectionPreTaxWholeLifeIns, string PremiumPreTaxWholeLifeIns, string EEelectionPostTaxWholeLifeIns, 
-            string PremiumPostTaxWholeLifeIns, string OtherInsProvider, string EEelectionPreTaxOtherIns, string PremiumPreTaxOtherIns,
-            string EEelectionPostTaxOtherIns, string PremiumPostTaxOtherIns, string TotalPreTax, string TotalPostTax, string empInitials1, 
-            string empSignature, DateTime empSignatureDate)
+            string PremiumPostTaxWholeLifeIns, string OtherInsProvider, string EEelectionPreTaxOtherIns, string PremiumPreTaxOtherIns, string EEelectionPostTaxOtherIns,
+            string PremiumPostTaxOtherIns, string TotalPreTax, string TotalPostTax, string empInitials1, string PreTaxBenefitWaiverinitials, string empSignature,
+            DateTime empSignatureDate)
         {
     
             Deduction d = new Deduction();
@@ -679,6 +679,7 @@ namespace Watson.Controllers
             d.EmployeeSignature = empSignature;
             d.EmployeeSignatureDate = empSignatureDate;
             d.EmployeeInitials = empInitials1;
+            d.PreTaxBenefitWaiverinitials = PreTaxBenefitWaiverinitials;
 
 
             db.Deductions.Add(d);
