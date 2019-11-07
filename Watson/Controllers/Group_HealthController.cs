@@ -591,6 +591,7 @@ namespace Watson.Controllers
 
             ViewBag.Employee_id = groupHGrpHEnrollmentVM.employee.Employee_id;
 
+
             return View(groupHGrpHEnrollmentVM);
         }
 
@@ -692,14 +693,14 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult EditSalaryRedirection(int? Employee_id)
+        public ActionResult EditSalaryRedirection(int? Employee_id, int? Deductions_id)
         {
             GroupHealthGrpHEnrollmentVM grpHSalaryRedirect = new GroupHealthGrpHEnrollmentVM();
 
-            grpHSalaryRedirect.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
             grpHSalaryRedirect.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
+            grpHSalaryRedirect.deduction = db.Deductions.FirstOrDefault(i => i.Employee_id == Employee_id);
 
-            ViewBag.Employee_id = grpHSalaryRedirect.grpHealth.Employee_id;
+            ViewBag.Deductions_id = grpHSalaryRedirect.deduction.Deductions_id;
             ViewBag.Employee_id = grpHSalaryRedirect.employee.Employee_id;
 
 
@@ -743,9 +744,9 @@ namespace Watson.Controllers
             string PremiumPreTaxHospitalIndem, string EEelectionPostTaxHospitalIndem, string PremiumPostTaxHospitalIndem, string TermLifeInsProvider,
             string EEelectionPreTaxTermLifeIns, string PremiumPreTaxTermLifeIns, string EEelectionPostTaxTermLifeIns, string PremiumPostTaxTermLifeIns,
             string WholeLifeInsProvider, string EEelectionPreTaxWholeLifeIns, string PremiumPreTaxWholeLifeIns, string EEelectionPostTaxWholeLifeIns,
-            string PremiumPostTaxWholeLifeIns, string OtherInsProvider, string EEelectionPreTaxOtherIns, string PremiumPreTaxOtherIns,
-            string EEelectionPostTaxOtherIns, string PremiumPostTaxOtherIns, string TotalPreTax, string TotalPostTax, string empInitials1,
-            string empSignature, DateTime empSignatureDate)
+            string PremiumPostTaxWholeLifeIns, string OtherInsProvider, string EEelectionPreTaxOtherIns, string PremiumPreTaxOtherIns, string EEelectionPostTaxOtherIns, 
+            string PremiumPostTaxOtherIns, string TotalPreTax, string TotalPostTax, string empInitials1, string PreTaxBenefitWaiverinitials, string empSignature, 
+            DateTime empSignatureDate)
         {
             Employee e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)
@@ -823,6 +824,7 @@ namespace Watson.Controllers
             d.EmployeeSignature = empSignature;
             d.EmployeeSignatureDate = empSignatureDate;
             d.EmployeeInitials = empInitials1;
+            d.PreTaxBenefitWaiverinitials = PreTaxBenefitWaiverinitials;
 
             if (ModelState.IsValid)
             {

@@ -1,4 +1,5 @@
 ﻿@model Watson.ViewModels.GroupHealthGrpHEnrollmentVM
+<h2></h2>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,15 +8,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Edit Salary Redirection</title>
+    <title>Salary Redirection</title>
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
-    <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value=@ViewBag.GroupHealthInsurance_id />
     <input type="hidden" id="Deductions_id" class="form-control" name="Deductions_id" value=@ViewBag.Deductions_id />
     <div class="form-horizontal">
-        <div class="collapsible" id="FourthStep">Edit Salary Redirection Agreement</div>
-        <div class="table table-bordered">
+        <div class="collapsible" id="FirstStep">Salary Redirection Agreement</div>
+        <div class="modal-content">
             <table class="table table-condensed" id="SalaryRedirectTable">
                 <tr>
                     <td>
@@ -106,16 +106,14 @@
                     tax purposes; therefore, my Social Security benefits could be decreased. I elect to receive the following coverage(s) the
                     Benefits Plan as elected in the pre-tax column. Any previous election and Salary Redirection Agreement under the
                     Benefits Plan relating to the same benefits selected below are hereby revoked. My employer's deduction of premium/contribution
-                    amounts hereunder shall evidnece acceptance of this agreement.
+                    amounts hereunder shall evidence acceptance of this agreement.
                 </p>
             </div>
-
-            @* db.Deductions= PK Deductions_id, FK Employee_id *@
-            <table class="container-fluid table-bordered" id="SalaryRedirectTable" cellpadding="20" cellspacing="20">
+            <table class="container-fluid table-condensed" cellpadding="20" cellspacing="20">
                 <tr>
                     <td>
-                        <label>Check the desired coverage(s) below:</label>
-                        <table class="table table-condensed" width="400" cellpadding="10" cellspacing="10" border="1">
+                        <table class="table table-condensed" id="SalaryRedirectTable" width="400" cellpadding="10" cellspacing="10" border="1">
+                            <caption>Select the desired coverage(s) below:</caption>
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Coverage</th>
@@ -126,479 +124,397 @@
                                     <th>Premium Post-Tax</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <label>Medical Health Insurance:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="MedicalInsProvider" name="Provider" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPreTaxMedIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only-MEC" @*@((Model.deduction.EEelectionPreTaxMedIns) == "Employee Only-MEC" ? "selected" : "")*@>Employee Only-MEC</option>
-                                            <option value="Employee Only-Standard" @*@((Model.deduction.EEelectionPreTaxMedIns) == "Employee Only-Standard" ? "selected" : "")*@>Employee Only-Standard</option>
-                                            <option value="Employee Only-BuyUp" @*@((Model.deduction.EEelectionPreTaxMedIns) == "Employee Only-BuyUp" ? "selected" : "")*@>Employee Only-BuyUp</option>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" id="MedicalHIns" value="Medical:" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="MedicalInsProvider" name="MedicalInsProvider" value="Insurance Mgmt. Service" readonly />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPreTaxMedIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only-MEC">Employee Only-MEC</option>
+                                        <option value="Employee Only-Standard">Employee Only-Standard</option>
+                                        <option value="Employee Only-BuyUp">Employee Only-BuyUp</option>
 
-                                            <option value="Employee & Spouse-MEC">Employee & Spouse-MEC</option>
-                                            <option value="Employee & Spouse-Standard">Employee & Spouse-Standard</option>
-                                            <option value="Employee & Spouse-BuyUp">Employee & Spouse-BuyUp</option>
+                                        <option value="Employee & Spouse-MEC">Employee & Spouse-MEC</option>
+                                        <option value="Employee & Spouse-Standard">Employee & Spouse-Standard</option>
+                                        <option value="Employee & Spouse-BuyUp">Employee & Spouse-BuyUp</option>
 
-                                            <option value="Employee & Child-MEC">Employee & Child-MEC</option>
-                                            <option value="Employee & Child-Standard">Employee & Child-Standard</option>
-                                            <option value="Employee & Child-BuyUp">Employee & Child-BuyUp</option>
+                                        <option value="Employee & Child-MEC">Employee & Child-MEC</option>
+                                        <option value="Employee & Child-Standard">Employee & Child-Standard</option>
+                                        <option value="Employee & Child-BuyUp">Employee & Child-BuyUp</option>
 
-                                            <option value="Employee & Family-MEC">Employee & Family-MEC</option>
-                                            <option value="Employee & Family-Standard">Employee & Family-Standard</option>
-                                            <option value="Employee & Family-BuyUp">Employee & Family-BuyUp</option>
-                                            <option value="Covered By Other Insurance">Covered By Other Insurance</option>
-                                            <option value="Not Interested">Not Interested</option>
-                                        </select>
-                                    </td>
-                                    <td class="col-md-1">
-                                        <input type="text" class="form-control" id="PremiumPreTaxMedIns" name="PremiumPreTax" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPostTaxMedIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only-MEC">Employee Only-MEC</option>
-                                            <option value="Employee Only-Standard">Employee Only-Standard</option>
-                                            <option value="Employee Only-BuyUp">Employee Only-BuyUp</option>
+                                        <option value="Employee & Family-MEC">Employee & Family-MEC</option>
+                                        <option value="Employee & Family-Standard">Employee & Family-Standard</option>
+                                        <option value="Employee & Family-BuyUp">Employee & Family-BuyUp</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc" id="PremiumPreTaxMedIns" name="PremiumPreTaxMedIns" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPostTaxMedIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only-MEC">Employee Only-MEC</option>
+                                        <option value="Employee Only-Standard">Employee Only-Standard</option>
+                                        <option value="Employee Only-BuyUp">Employee Only-BuyUp</option>
 
-                                            <option value="Employee & Spouse-MEC">Employee & Spouse-MEC</option>
-                                            <option value="Employee & Spouse-Standard">Employee & Spouse-Standard</option>
-                                            <option value="Employee & Spouse-BuyUp">Employee & Spouse-BuyUp</option>
+                                        <option value="Employee & Spouse-MEC">Employee & Spouse-MEC</option>
+                                        <option value="Employee & Spouse-Standard">Employee & Spouse-Standard</option>
+                                        <option value="Employee & Spouse-BuyUp">Employee & Spouse-BuyUp</option>
 
-                                            <option value="Employee & Child-MEC">Employee & Child-MEC</option>
-                                            <option value="Employee & Child-Standard">Employee & Child-Standard</option>
-                                            <option value="Employee & Child-BuyUp">Employee & Child-BuyUp</option>
+                                        <option value="Employee & Child-MEC">Employee & Child-MEC</option>
+                                        <option value="Employee & Child-Standard">Employee & Child-Standard</option>
+                                        <option value="Employee & Child-BuyUp">Employee & Child-BuyUp</option>
 
-                                            <option value="Employee & Family-MEC">Employee & Family-MEC</option>
-                                            <option value="Employee & Family-Standard">Employee & Family-Standard</option>
-                                            <option value="Employee & Family-BuyUp">Employee & Family-BuyUp</option>
-                                        </select>
-                                    </td>
-                                    <td class="col-md-1">
-                                        <input type="text" class="form-control" id="PremiumPostTaxMedIns" name="PremiumPostTax" value="" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label>Dental Insurance:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="DentalInsProvider" name="Provider" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPreTaxDentalIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only">Employee Only</option>
-                                            <option value="Employee & Spouse">Employee & Spouse</option>
-                                            <option value="Employee & Child">Employee & Child</option>
-                                            <option value="Employee & Family">Employee & Family</option>
-                                            <option value="Covered By Other Insurance">Covered By Other Insurance</option>
-                                            <option value="Not Interested">Not Interested</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPreTaxDentalIns" name="PremiumPreTax" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPostTaxDentalIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only-MEC">Employee Only-MEC</option>
-                                            <option value="Employee Only-Standard">Employee Only-Standard</option>
-                                            <option value="Employee Only-BuyUp">Employee Only-BuyUp</option>
+                                        <option value="Employee & Family-MEC">Employee & Family-MEC</option>
+                                        <option value="Employee & Family-Standard">Employee & Family-Standard</option>
+                                        <option value="Employee & Family-BuyUp">Employee & Family-BuyUp</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc2" id="PremiumPostTaxMedIns" name="PremiumPostTaxMedIns" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" id="DentalIns" value="Dental:" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="DentalInsProvider" name="DentalInsProvider" value="Guardian Life Ins." readonly />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPreTaxDentalIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc" id="PremiumPreTaxDentalIns" name="PremiumPreTaxDentalIns" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPostTaxDentalIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc2" id="PremiumPostTaxDentalIns" name="PremiumPostTaxDentalIns" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" id="VisionIns" value="Vision:" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="VisionInsProvider" name="VisionInsProvider" value="Guardian Life Ins." readonly />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPreTaxVisionIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc" id="PremiumPreTaxVisionIns" name="PremiumPreTaxVisionIns" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPostTaxVisionIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc2" id="PremiumPostTaxVisionIns" name="PremiumPostTaxVisionIns" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" id="AccidentIns" value="Accident:" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="AccidentInsProvider" name="AccidentInsProvider" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPreTaxAccidentIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc" id="PremiumPreTaxAccidentIns" name="PremiumPreTaxAccidentIns" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPostTaxAccidentIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc2" id="PremiumPostTaxAccidentIns" name="PremiumPostTaxAccidentIns" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" id="CancerIns" value="Cancer:" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="CancerInsProvider" name="CancerInsProvider" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPreTaxCancerIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc" id="PremiumPreTaxCancerIns" name="PremiumPreTaxCancerIns" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPostTaxCancerIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc2" id="PremiumPostTaxCancerIns" name="PremiumPostTaxCancerIns" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" id="Short-termDisability" value="Short-Term Disability:" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="StDisabilityProvider" name="StDisabilityProvider" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPreTaxStDisability" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc" id="PremiumPreTaxStDisability" name="PremiumPreTaxStDisability" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPostTaxStDisability" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc2" id="PremiumPostTaxStDisability" name="PremiumPostTaxStDisability" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" id="HospitalIndemnity" value="Hospital Indemnity:" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="HospitalIndemProvider" name="HospitalIndemProvider" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPreTaxHospitalIndem" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc" id="PremiumPreTaxHospitalIndem" name="PremiumPreTaxHospitalIndem" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPostTaxHospitalIndem" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc2" id="PremiumPostTaxHospitalIndem" name="PremiumPostTaxHospitalIndem" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" id="TermLifeIns" value="Term Life:" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="TermLifeInsProvider" name="TermLifeInsProvider" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPreTaxTermLifeIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc" id="PremiumPreTaxTermLifeIns" name="PremiumPreTaxTermLifeIns" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPostTaxTermLifeIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc2" id="PremiumPostTaxTermLifeIns" name="PremiumPostTaxTermLifeIns" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" id="WholeLifeIns" value="Whole Life:" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="WholeLifeInsProvider" name="WholeLifeInsProvider" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPreTaxWholeLifeIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc" id="PremiumPreTaxWholeLifeIns" name="PremiumPreTaxWholeLifeIns" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPostTaxWholeLifeIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc2" id="PremiumPostTaxWholeLifeIns" name="PremiumPostTaxWholeLifeIns" value="" />
+                                </td>
+                            </tr>
+                            <tr class="">
+                                <td>
+                                    <input type="text" class="form-control" id="OtherIns" value="Other:" readonly />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="OtherInsProvider" name="OtherInsProvider" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPreTaxOtherIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc" id="PremiumPreTaxOtherIns" name="PremiumPreTaxOtherIns" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPostTaxOtherIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc2" id="PremiumPostTaxOtherIns" name="PremiumPostTaxOtherIns" value="" />
+                                </td>
+                            </tr>
 
-                                            <option value="Employee & Spouse-MEC">Employee & Spouse-MEC</option>
-                                            <option value="Employee & Spouse-Standard">Employee & Spouse-Standard</option>
-                                            <option value="Employee & Spouse-BuyUp">Employee & Spouse-BuyUp</option>
-
-                                            <option value="Employee & Child-MEC">Employee & Child-MEC</option>
-                                            <option value="Employee & Child-Standard">Employee & Child-Standard</option>
-                                            <option value="Employee & Child-BuyUp">Employee & Child-BuyUp</option>
-
-                                            <option value="Employee & Family-MEC">Employee & Family-MEC</option>
-                                            <option value="Employee & Family-Standard">Employee & Family-Standard</option>
-                                            <option value="Employee & Family-BuyUp">Employee & Family-BuyUp</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPostTaxDentalIns" name="PremiumPostTax" value="" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label>Vision Insurance:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="VisionInsProvider" name="Provider" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPreTaxVisionIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only">Employee Only</option>
-                                            <option value="Employee & Spouse">Employee & Spouse</option>
-                                            <option value="Employee & Child">Employee & Child</option>
-                                            <option value="Employee & Family">Employee & Family</option>
-                                            <option value="Covered By Other Insurance">Covered By Other Insurance</option>
-                                            <option value="Not Interested">Not Interested</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPreTaxVisionIns" name="PremiumPreTax" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPostTaxVisionIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only-MEC">Employee Only-MEC</option>
-                                            <option value="Employee Only-Standard">Employee Only-Standard</option>
-                                            <option value="Employee Only-BuyUp">Employee Only-BuyUp</option>
-
-                                            <option value="Employee & Spouse-MEC">Employee & Spouse-MEC</option>
-                                            <option value="Employee & Spouse-Standard">Employee & Spouse-Standard</option>
-                                            <option value="Employee & Spouse-BuyUp">Employee & Spouse-BuyUp</option>
-
-                                            <option value="Employee & Child-MEC">Employee & Child-MEC</option>
-                                            <option value="Employee & Child-Standard">Employee & Child-Standard</option>
-                                            <option value="Employee & Child-BuyUp">Employee & Child-BuyUp</option>
-
-                                            <option value="Employee & Family-MEC">Employee & Family-MEC</option>
-                                            <option value="Employee & Family-Standard">Employee & Family-Standard</option>
-                                            <option value="Employee & Family-BuyUp">Employee & Family-BuyUp</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPostTaxVisionIns" name="PremiumPostTax" value="" />
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <label>Accident Insurance:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="AccidentInsProvider" name="Provider" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPreTaxAccidentIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only">Employee Only</option>
-                                            <option value="Employee & Spouse">Employee & Spouse</option>
-                                            <option value="Employee & Child">Employee & Child</option>
-                                            <option value="Employee & Family">Employee & Family</option>
-                                            <option value="Covered By Other Insurance">Covered By Other Insurance</option>
-                                            <option value="Not Interested">Not Interested</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPreTaxAccidentIns" name="PremiumPreTax" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPostTaxAccidentIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only-MEC">Employee Only-MEC</option>
-                                            <option value="Employee Only-Standard">Employee Only-Standard</option>
-                                            <option value="Employee Only-BuyUp">Employee Only-BuyUp</option>
-
-                                            <option value="Employee & Spouse-MEC">Employee & Spouse-MEC</option>
-                                            <option value="Employee & Spouse-Standard">Employee & Spouse-Standard</option>
-                                            <option value="Employee & Spouse-BuyUp">Employee & Spouse-BuyUp</option>
-
-                                            <option value="Employee & Child-MEC">Employee & Child-MEC</option>
-                                            <option value="Employee & Child-Standard">Employee & Child-Standard</option>
-                                            <option value="Employee & Child-BuyUp">Employee & Child-BuyUp</option>
-
-                                            <option value="Employee & Family-MEC">Employee & Family-MEC</option>
-                                            <option value="Employee & Family-Standard">Employee & Family-Standard</option>
-                                            <option value="Employee & Family-BuyUp">Employee & Family-BuyUp</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPostTaxAccidentIns" name="PremiumPostTax" value="" />
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <label>Cancer Insurance:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="CancerInsProvider" name="Provider" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPreTaxCancerIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only">Employee Only</option>
-                                            <option value="Employee & Spouse">Employee & Spouse</option>
-                                            <option value="Employee & Child">Employee & Child</option>
-                                            <option value="Employee & Family">Employee & Family</option>
-                                            <option value="Covered By Other Insurance">Covered By Other Insurance</option>
-                                            <option value="Not Interested">Not Interested</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPreTaxCancerIns" name="PremiumPreTax" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPostTaxCancerIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only-MEC">Employee Only-MEC</option>
-                                            <option value="Employee Only-Standard">Employee Only-Standard</option>
-                                            <option value="Employee Only-BuyUp">Employee Only-BuyUp</option>
-
-                                            <option value="Employee & Spouse-MEC">Employee & Spouse-MEC</option>
-                                            <option value="Employee & Spouse-Standard">Employee & Spouse-Standard</option>
-                                            <option value="Employee & Spouse-BuyUp">Employee & Spouse-BuyUp</option>
-
-                                            <option value="Employee & Child-MEC">Employee & Child-MEC</option>
-                                            <option value="Employee & Child-Standard">Employee & Child-Standard</option>
-                                            <option value="Employee & Child-BuyUp">Employee & Child-BuyUp</option>
-
-                                            <option value="Employee & Family-MEC">Employee & Family-MEC</option>
-                                            <option value="Employee & Family-Standard">Employee & Family-Standard</option>
-                                            <option value="Employee & Family-BuyUp">Employee & Family-BuyUp</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPostTaxCancerIns" name="PremiumPostTax" value="" />
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <label>Short-Term Disability:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="StDisabilityProvider" name="Provider" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPreTaxStDisability" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only">Employee Only</option>
-                                            <option value="Employee & Spouse">Employee & Spouse</option>
-                                            <option value="Employee & Child">Employee & Child</option>
-                                            <option value="Employee & Family">Employee & Family</option>
-                                            <option value="Covered By Other Insurance">Covered By Other Insurance</option>
-                                            <option value="Not Interested">Not Interested</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPreTaxStDisability" name="PremiumPreTax" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPostTaxStDisability" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only-MEC">Employee Only-MEC</option>
-                                            <option value="Employee Only-Standard">Employee Only-Standard</option>
-                                            <option value="Employee Only-BuyUp">Employee Only-BuyUp</option>
-
-                                            <option value="Employee & Spouse-MEC">Employee & Spouse-MEC</option>
-                                            <option value="Employee & Spouse-Standard">Employee & Spouse-Standard</option>
-                                            <option value="Employee & Spouse-BuyUp">Employee & Spouse-BuyUp</option>
-
-                                            <option value="Employee & Child-MEC">Employee & Child-MEC</option>
-                                            <option value="Employee & Child-Standard">Employee & Child-Standard</option>
-                                            <option value="Employee & Child-BuyUp">Employee & Child-BuyUp</option>
-
-                                            <option value="Employee & Family-MEC">Employee & Family-MEC</option>
-                                            <option value="Employee & Family-Standard">Employee & Family-Standard</option>
-                                            <option value="Employee & Family-BuyUp">Employee & Family-BuyUp</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPostTaxStDisability" name="PremiumPostTax" value="" />
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <label>Hospital Indemnity:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="HospitalIndemProvider" name="Provider" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPreTaxHospitalIndemn" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only">Employee Only</option>
-                                            <option value="Employee & Spouse">Employee & Spouse</option>
-                                            <option value="Employee & Child">Employee & Child</option>
-                                            <option value="Employee & Family">Employee & Family</option>
-                                            <option value="Covered By Other Insurance">Covered By Other Insurance</option>
-                                            <option value="Not Interested">Not Interested</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPreTaxHospitalIndem" name="PremiumPreTax" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPostTaxHospitalIndem" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only-MEC">Employee Only-MEC</option>
-                                            <option value="Employee Only-Standard">Employee Only-Standard</option>
-                                            <option value="Employee Only-BuyUp">Employee Only-BuyUp</option>
-
-                                            <option value="Employee & Spouse-MEC">Employee & Spouse-MEC</option>
-                                            <option value="Employee & Spouse-Standard">Employee & Spouse-Standard</option>
-                                            <option value="Employee & Spouse-BuyUp">Employee & Spouse-BuyUp</option>
-
-                                            <option value="Employee & Child-MEC">Employee & Child-MEC</option>
-                                            <option value="Employee & Child-Standard">Employee & Child-Standard</option>
-                                            <option value="Employee & Child-BuyUp">Employee & Child-BuyUp</option>
-
-                                            <option value="Employee & Family-MEC">Employee & Family-MEC</option>
-                                            <option value="Employee & Family-Standard">Employee & Family-Standard</option>
-                                            <option value="Employee & Family-BuyUp">Employee & Family-BuyUp</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPostTaxHospitalIndem" name="PremiumPostTax" value="" />
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <label>Term Life Insurance:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="TermLifeInsProvider" name="Provider" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPreTaxTermLifeIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only">Employee Only</option>
-                                            <option value="Employee & Spouse">Employee & Spouse</option>
-                                            <option value="Employee & Child">Employee & Child</option>
-                                            <option value="Employee & Family">Employee & Family</option>
-                                            <option value="Covered By Other Insurance">Covered By Other Insurance</option>
-                                            <option value="Not Interested">Not Interested</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPreTaxTermLifeIns" name="PremiumPreTax" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPostTaxTermLifeIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only-MEC">Employee Only-MEC</option>
-                                            <option value="Employee Only-Standard">Employee Only-Standard</option>
-                                            <option value="Employee Only-BuyUp">Employee Only-BuyUp</option>
-
-                                            <option value="Employee & Spouse-MEC">Employee & Spouse-MEC</option>
-                                            <option value="Employee & Spouse-Standard">Employee & Spouse-Standard</option>
-                                            <option value="Employee & Spouse-BuyUp">Employee & Spouse-BuyUp</option>
-
-                                            <option value="Employee & Child-MEC">Employee & Child-MEC</option>
-                                            <option value="Employee & Child-Standard">Employee & Child-Standard</option>
-                                            <option value="Employee & Child-BuyUp">Employee & Child-BuyUp</option>
-
-                                            <option value="Employee & Family-MEC">Employee & Family-MEC</option>
-                                            <option value="Employee & Family-Standard">Employee & Family-Standard</option>
-                                            <option value="Employee & Family-BuyUp">Employee & Family-BuyUp</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPostTaxTermLifeIns" name="PremiumPostTax" value="" />
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <label>Whole Life Insurance:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="WholeLifeInsProvider" name="Provider" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPreTaxWholeLifeIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only">Employee Only</option>
-                                            <option value="Employee & Spouse">Employee & Spouse</option>
-                                            <option value="Employee & Child">Employee & Child</option>
-                                            <option value="Employee & Family">Employee & Family</option>
-                                            <option value="Covered By Other Insurance">Covered By Other Insurance</option>
-                                            <option value="Not Interested">Not Interested</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPreTaxWholeLifeIns" name="PremiumPreTax" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPostTaxWholeLifeIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only-MEC">Employee Only-MEC</option>
-                                            <option value="Employee Only-Standard">Employee Only-Standard</option>
-                                            <option value="Employee Only-BuyUp">Employee Only-BuyUp</option>
-
-                                            <option value="Employee & Spouse-MEC">Employee & Spouse-MEC</option>
-                                            <option value="Employee & Spouse-Standard">Employee & Spouse-Standard</option>
-                                            <option value="Employee & Spouse-BuyUp">Employee & Spouse-BuyUp</option>
-
-                                            <option value="Employee & Child-MEC">Employee & Child-MEC</option>
-                                            <option value="Employee & Child-Standard">Employee & Child-Standard</option>
-                                            <option value="Employee & Child-BuyUp">Employee & Child-BuyUp</option>
-
-                                            <option value="Employee & Family-MEC">Employee & Family-MEC</option>
-                                            <option value="Employee & Family-Standard">Employee & Family-Standard</option>
-                                            <option value="Employee & Family-BuyUp">Employee & Family-BuyUp</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPostTaxWholeLifeIns" name="PremiumPostTax" value="" />
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <label>Other:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="OtherInsProvider" name="Provider" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPreTaxOtherIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only">Employee Only</option>
-                                            <option value="Employee & Spouse">Employee & Spouse</option>
-                                            <option value="Employee & Child">Employee & Child</option>
-                                            <option value="Employee & Family">Employee & Family</option>
-                                            <option value="Covered By Other Insurance">Covered By Other Insurance</option>
-                                            <option value="Not Interested">Not Interested</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPreTaxOtherIns" name="PremiumPreTax" value="" />
-                                    </td>
-                                    <td>
-                                        <select id="EEelectionPostTaxOtherIns" class="form-control">
-                                            <option value="">Select Option:</option>
-                                            <option value="Employee Only-MEC">Employee Only-MEC</option>
-                                            <option value="Employee Only-Standard">Employee Only-Standard</option>
-                                            <option value="Employee Only-BuyUp">Employee Only-BuyUp</option>
-
-                                            <option value="Employee & Spouse-MEC">Employee & Spouse-MEC</option>
-                                            <option value="Employee & Spouse-Standard">Employee & Spouse-Standard</option>
-                                            <option value="Employee & Spouse-BuyUp">Employee & Spouse-BuyUp</option>
-
-                                            <option value="Employee & Child-MEC">Employee & Child-MEC</option>
-                                            <option value="Employee & Child-Standard">Employee & Child-Standard</option>
-                                            <option value="Employee & Child-BuyUp">Employee & Child-BuyUp</option>
-
-                                            <option value="Employee & Family-MEC">Employee & Family-MEC</option>
-                                            <option value="Employee & Family-Standard">Employee & Family-Standard</option>
-                                            <option value="Employee & Family-BuyUp">Employee & Family-BuyUp</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="PremiumPostTaxOtherIns" name="PremiumPostTax" value="" />
-                                    </td>
-                                </tr>
-                            </tbody>
                         </table>
                         <table>
                             <tr>
                                 <td>
-                                    <label class="col-md-offset-4">Total Pre-Tax $</label>
-                                    <input type="text" id="TotalPostTax" value="" />
+                                    <text id="PreTaxTotalbtn" @*onclick="return TotalPreTax()"*@ class="col-md-offset-4 btn">Total Pre-Tax</text>
+                                    <input type="text" id="PreTaxTotal" value="" readonly />
                                 </td>
                                 <td>
-                                    <label class="col-md-offset-3">Total Post-Tax $</label>
-                                    <input type="text" id="TotalPostTax" value="" />
+                                    <text id="PostTaxTotalbtn" @*onclick="return TotalPostTax()"*@ class="col-md-offset-3 btn">Total Post-Tax</text>
+                                    <input type="text" id="PostTaxTotal" value="" readonly />
                                 </td>
                             </tr>
                         </table>
@@ -606,25 +522,25 @@
                         <div class="text-justify">
                             <label style="padding-left: 10px;"><u>I understand and agree to the following (inital all):</u></label>
                             <p>
-                                <input type="text" id="empInitials1" name="EmployeeInitials" value="@Html.DisplayFor(Model => Model.deduction.EmployeeInitials)" />
+                                <input type="text" id="empInitials1" name="EmployeeInitials" value="" />
                                 On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                                 insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                                 or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                             </p>
                             <p>
-                                <input type="text" id="empInitials2" name="EmployeeInitials" value="@Html.DisplayFor(Model => Model.deduction.EmployeeInitials)" />
+                                <input type="text" id="empInitials1" name="EmployeeInitials" value="" />
                                 On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                                 insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                                 or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                             </p>
                             <p>
-                                <input type="text" id="empInitials3" name="EmployeeInitials" value="@Html.DisplayFor(Model => Model.deduction.EmployeeInitials)" />
+                                <input type="text" id="empInitials1" name="EmployeeInitials" value="" />
                                 On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                                 insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                                 or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
                             </p>
                             <p>
-                                <input type="text" id="empInitials4" name="EmployeeInitials" value="@Html.DisplayFor(Model => Model.deduction.EmployeeInitials)" />
+                                <input type="text" id="empInitials1" name="EmployeeInitials" value="" />
                                 On separate benefit enrollment form(s), I have enrolled for certain insurance coverage(s) and understand that my
                                 insurance premiums election amount will be deducted from my paycheck by my employer. Unless this agreement is amended
                                 or terminated, these deductions will be continuous and in an eaqual amount to the insurance premiums amount for each
@@ -641,26 +557,26 @@
                                 <label style="padding-left: 10px;">
                                     Employee Signature:
                                 </label>
-                                <input type="text" id="signature" name="EmployeeSignature" value="@Html.DisplayFor(Model => Model.deduction.EmployeeSignature)" />
+                                <input type="text" id="signature" name="EmployeeSignature" value="" />
                                 <label style="padding-left: 10px;">
                                     Date:
                                 </label>
-                                <input type="date" id="signatureDate" name="EmployeeSignatureDate" value="@Convert.ToDateTime(Model.deduction.EmployeeSignatureDate).ToString("yyyy-MM-dd")" />
+                                <input type="date" id="signatureDate" name="EmployeeSignatureDate" value="" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-11">
-                                <button id="SalaryRedirectUpdateStepOne" @*onclick="return ContactUpdate()"*@ class="btn">Save</button>
+                                <button id="SalaryRedirectEditUpdate" class="btn">Save</button>
                             </div>
                         </div>
                     </td>
                 </tr>
             </table>
             <p>
+                @Html.ActionLink("Edit", "EditSalaryRedirection", new { Employee_id = ViewBag.Employee_id }, null)|
                 @Html.ActionLink("Back to Insurance", "GrpHealthEnrollment", new { Employee_id = ViewBag.Employee_id }, null)
             </p>
         </div>
-
     </div>
 
 </body>
@@ -681,29 +597,29 @@
     }
 
         .active, .collapsible:hover {
-            background-color: #555;
+            background-color: blue;
         }
 
     .content {
-        padding: 0 18px;
+        padding: 0 10px;
         display: none;
         overflow: hidden;
         background-color: #f1f1f1;
-    }
-
-    .btn {
-        background-color: #333;
-        color: white;
     }
 
     .button {
         text-align: right;
     }
 
+    .btn:hover {
+        background-color: blue;
+        color: white;
+    }
+
     a {
         text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
+        display: inline-flex;
+        padding: 8px 8px;
     }
 
         a:hover {
@@ -723,16 +639,16 @@
     }
 
     #TotalPreTax, #TotalPostTax {
-        width: 12%;
+        width: 15%;
         border: 0px;
         border-bottom: 1px solid black;
-        height: 20px;
+        height: 30px;
         text-align: center;
     }
 
     #empInitials1, #empInitials2,
     #empInitials3, #empInitials4,
-    #empInitials5 {
+    #PreTaxBenefitWaiverinitials {
         width: 5%;
         border: 0px;
         border-bottom: 1px solid black;
@@ -799,8 +715,73 @@
         });
     }
 
+    $('.col-md-1').on('input', '.prc', function () {
+        var totalSum = 0;
+        $('.col-md-1 .prc').each(function () {
+            var inputVal = $(this).val();
+            if ($.isNumeric(inputVal)) {
+                totalSum += parseFloat(inputVal);
+            }
+        });
+        $('#PreTaxTotal').val(totalSum);
+    });
+
+
+    $('.col-md-1').on('input', '.prc2', function () {
+        var totalSum = 0;
+        $('.col-md-1 .prc2').each(function () {
+            var inputVal = $(this).val();
+            if ($.isNumeric(inputVal)) {
+                totalSum += parseFloat(inputVal);
+            }
+        });
+        $('#PostTaxTotal').val(totalSum);
+    });
+
+    //function TotalPreTax() {
+
+    //    document.addEventListener("click", function () {
+
+    //        var rows = document.querySelectorAll("table tr td:last-child");
+    //        var total = 0;
+
+    //        for (var i = 0; i < rows.length-1; i++) {
+
+    //            total += Number(rows[i].textContent);
+    //        }
+
+    //        document.getElementById("PreTaxTotal").textContent = total;
+
+    //    })
+    //}
+
+    //function TotalPostTax() {
+
+    //    document.addEventListener("click", function () {
+
+    //        var rows = document.querySelectorAll("table tr td:last-child");
+    //        var total = 0;
+
+    //        for (var i = 0; i < rows.length - 1; i++) {
+
+    //            total += Number(rows[i].textContent);
+    //        }
+
+    //        document.getElementById("PostTaxTotal").textContent = total;
+
+    //    })
+
+    //}
+
+    @*function EditSalaryRedirection() {
+
+        window.location.href = "/Group_Health/EditSalaryRedirection?Employee_id=@ViewBag.Employee_id";
+    }*@
+
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#SalaryRedirectUpdateStepOne").addEventListener("click", function () {
+        document.querySelector("#SalaryRedirectEditUpdate").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
+            Deductions_id = document.getElementById("Deductions_id").value;
             MedicalInsProvider = document.getElementById("MedicalInsProvider").value;
             EEelectionPreTaxMedIns = document.getElementById("EEelectionPreTaxMedIns").value;
             PremiumPreTaxMedIns = document.getElementById("PremiumPreTaxMedIns").value;
@@ -808,73 +789,69 @@
             PremiumPostTaxMedIns = document.getElementById("PremiumPostTaxMedIns").value;
 
             DentalInsProvider = document.getElementById("DentalInsProvider").value;
-            EEelectionPreTaxDentalIns = document.getElementById("EEelectionPreTaxDentalIns")
+            EEelectionPreTaxDentalIns = document.getElementById("EEelectionPreTaxDentalIns").value;
             PremiumPreTaxDentalIns = document.getElementById("PremiumPreTaxDentalIns").value;
             EEelectionPostTaxDentalIns = document.getElementById("EEelectionPostTaxDentalIns").value;
             PremiumPostTaxDentalIns = document.getElementById("PremiumPostTaxDentalIns").value;
 
             VisionInsProvider = document.getElementById("VisionInsProvider").value;
             EEelectionPreTaxVisionIns = document.getElementById("EEelectionPreTaxVisionIns").value;
-            PremiumPreTaxVisionIns = document.get("PremiumPreTaxVisionIns").value;
-            EEelectionPostTaxVisionIns = document.getElementById("EEelectionPostTaxVisionIns").Value;
+            PremiumPreTaxVisionIns = document.getElementById("PremiumPreTaxVisionIns").value;
+            EEelectionPostTaxVisionIns = document.getElementById("EEelectionPostTaxVisionIns").value;
             PremiumPostTaxVisionIns = document.getElementById("PremiumPostTaxVisionIns").value;
 
-            //AccidentInsProvider = document.get("AccidentInsProvider").value;
-            //EEelectionPreTaxAccidentIns = document.getElementById("EEelectionPreTaxAccidentIns").value;
-            //PremiumPreTaxAccidentIns = document.getElementById("PremiumPreTaxAccidentIns").value;
-            //EEelectionPostTaxAccidentIns = document.getElementById("EEelectionPostTaxAccidentIns").value;
-            //PremiumPostTaxAccidentIns = document.getElementById("PremiumPostTaxAccidentIns").value;
+            AccidentInsProvider = document.getElementById("AccidentInsProvider").value;
+            EEelectionPreTaxAccidentIns = document.getElementById("EEelectionPreTaxAccidentIns").value;
+            PremiumPreTaxAccidentIns = document.getElementById("PremiumPreTaxAccidentIns").value;
+            EEelectionPostTaxAccidentIns = document.getElementById("EEelectionPostTaxAccidentIns").value;
+            PremiumPostTaxAccidentIns = document.getElementById("PremiumPostTaxAccidentIns").value;
 
-            //CancerInsProvider = document.getElementById("CancerInsProvider").value;
-            //EEelectionPreTaxCancerIns = document.getElementById("EEelectionPreTaxCancerIns").value;
-            //PremiumPreTaxCancerIns = document.getElementById("PremiumPreTaxCancerIns").value;
-            //EEelectionPostTaxCancerIns = document.getElementById("EEelectionPostTaxCancerIns").value;
-            //PremiumPostTaxCancerIns = document.getElementById("PremiumPostTaxCancerIns").value;
+            CancerInsProvider = document.getElementById("CancerInsProvider").value;
+            EEelectionPreTaxCancerIns = document.getElementById("EEelectionPreTaxCancerIns").value;
+            PremiumPreTaxCancerIns = document.getElementById("PremiumPreTaxCancerIns").value;
+            EEelectionPostTaxCancerIns = document.getElementById("EEelectionPostTaxCancerIns").value;
+            PremiumPostTaxCancerIns = document.getElementById("PremiumPostTaxCancerIns").value;
 
-            //StDisabilityProvider = document.getElementById("StDisabilityProvider").value;
-            //EEelectionPreTaxStDisability = document.getElementById("EEelectionPreTaxStDisability").value;
-            //PremiumPreTaxStDisability = document.getElementById("PremiumPreTaxStDisability").value;
-            //EEelectionPostTaxStDisability = document.getElementById("EEelectionPostTaxStDisability").value;
-            //PremiumPostTaxStDisability = document.getElementById("PremiumPostTaxStDisability").value;
+            StDisabilityProvider = document.getElementById("StDisabilityProvider").value;
+            EEelectionPreTaxStDisability = document.getElementById("EEelectionPreTaxStDisability").value;
+            PremiumPreTaxStDisability = document.getElementById("PremiumPreTaxStDisability").value;
+            EEelectionPostTaxStDisability = document.getElementById("EEelectionPostTaxStDisability").value;
+            PremiumPostTaxStDisability = document.getElementById("PremiumPostTaxStDisability").value;
 
-            //HospitalIndemProvider = document.getElementById("HospitalIndemProvider").value;
-            //EEelectionPreTaxHospitalIndemn = document.getElementById("EEelectionPreTaxHospitalIndemn").value;
-            //PremiumPreTaxHospitalIndem = document.getElementById("PremiumPreTaxHospitalIndem").value;
-            //EEelectionPostTaxHospitalIndem = document.getElementById("EEelectionPostTaxHospitalIndem").value;
-            //PremiumPostTaxHospitalIndem = document.getElementById("PremiumPostTaxHospitalIndem").value;
+            HospitalIndemProvider = document.getElementById("HospitalIndemProvider").value;
+            EEelectionPreTaxHospitalIndem = document.getElementById("EEelectionPreTaxHospitalIndem").value;
+            PremiumPreTaxHospitalIndem = document.getElementById("PremiumPreTaxHospitalIndem").value;
+            EEelectionPostTaxHospitalIndem = document.getElementById("EEelectionPostTaxHospitalIndem").value;
+            PremiumPostTaxHospitalIndem = document.getElementById("PremiumPostTaxHospitalIndem").value;
 
-            //TermLifeInsProvider = document.getElementById("TermLifeInsProvider").value;
-            //EEelectionPreTaxTermLifeIns = document.getElementById("EEelectionPreTaxTermLifeIns").value;
-            //PremiumPreTaxTermLifeIns = document.getElementById("PremiumPreTaxTermLifeIns").value;
-            //EEelectionPostTaxTermLifeIns = document.getElementById("EEelectionPostTaxTermLifeIns").value;
-            //PremiumPostTaxTermLifeIns = document.getElementById("PremiumPostTaxTermLifeIns").value;
+            TermLifeInsProvider = document.getElementById("TermLifeInsProvider").value;
+            EEelectionPreTaxTermLifeIns = document.getElementById("EEelectionPreTaxTermLifeIns").value;
+            PremiumPreTaxTermLifeIns = document.getElementById("PremiumPreTaxTermLifeIns").value;
+            EEelectionPostTaxTermLifeIns = document.getElementById("EEelectionPostTaxTermLifeIns").value;
+            PremiumPostTaxTermLifeIns = document.getElementById("PremiumPostTaxTermLifeIns").value;
 
-            //WholeLifeInsProvider = document.getElementById("WholeLifeInsProvider").value;
-            //EEelectionPreTaxWholeLifeIns = document.getElementById("EEelectionPreTaxWholeLifeIns").value;
-            //PremiumPreTaxWholeLifeIns = document.getElementById("PremiumPreTaxWholeLifeIns").value;
-            //EEelectionPostTaxWholeLifeIns = document.getElementById("EEelectionPostTaxWholeLifeIns").value;
-            //PremiumPostTaxWholeLifeIns = document.getElementById("PremiumPostTaxWholeLifeIns").value;
+            WholeLifeInsProvider = document.getElementById("WholeLifeInsProvider").value;
+            EEelectionPreTaxWholeLifeIns = document.getElementById("EEelectionPreTaxWholeLifeIns").value;
+            PremiumPreTaxWholeLifeIns = document.getElementById("PremiumPreTaxWholeLifeIns").value;
+            EEelectionPostTaxWholeLifeIns = document.getElementById("EEelectionPostTaxWholeLifeIns").value;
+            PremiumPostTaxWholeLifeIns = document.getElementById("PremiumPostTaxWholeLifeIns").value;
 
-            //OtherInsProvider = document.getElementById("OtherInsProvider").value;
-            //EEelectionPreTaxOtherIns = document.getElementById("EEelectionPreTaxOtherIns").value;
-            //PremiumPreTaxOtherIns = document.getElementById("PremiumPreTaxOtherIns").value;
-            //EEelectionPostTaxOtherIns = document.getElementById("EEelectionPostTaxOtherIns").value;
-            //PremiumPostTaxOtherIns = document.getElementById("PremiumPostTaxOtherIns").value;
+            OtherInsProvider = document.getElementById("OtherInsProvider").value;
+            EEelectionPreTaxOtherIns = document.getElementById("EEelectionPreTaxOtherIns").value;
+            PremiumPreTaxOtherIns = document.getElementById("PremiumPreTaxOtherIns").value;
+            EEelectionPostTaxOtherIns = document.getElementById("EEelectionPostTaxOtherIns").value;
+            PremiumPostTaxOtherIns = document.getElementById("PremiumPostTaxOtherIns").value;
 
-            TotalPreTax = document.getElementById("TotalPreTax").value;
-            TotalPostTax = document.getElementById("TotalPostTax").value;
+            TotalPreTax = document.getElementById("PreTaxTotal").value;
+            TotalPostTax = document.getElementById("PostTaxTotal").value;
             empSignature = document.getElementById("signature").value;
             empSignatureDate = document.getElementById("signatureDate").value;
-            empInitials1 = document.getElementById("EmpInitials1").value;
-            empInitials2 = document.getElementById("EmpInitials2").value;
-            empInitials3 = document.getElementById("EmpInitials3").value;
-            empInitials4 = document.getElementById("EmpInitials4").value;
+            empInitials1 = document.getElementById("empInitials1").value;
             PreTaxBenefitWaiverinitials = document.getElementById("PreTaxBenefitWaiverinitials").value;
-
-
 
             var data = {
                 "Employee_id": Employee_id,
+                "Deductions_id": Deductions_id,
                 "MedicalInsProvider": MedicalInsProvider,
                 "EEelectionPreTaxMedIns": EEelectionPreTaxMedIns,
                 "PremiumPreTaxMedIns": PremiumPreTaxMedIns,
@@ -893,69 +870,66 @@
                 "EEelectionPostTaxVisionIns": EEelectionPostTaxVisionIns,
                 "PremiumPostTaxVisionIns": PremiumPostTaxVisionIns,
 
+                "AccidentInsProvider ": AccidentInsProvider ,
+                "EEelectionPreTaxAccidentIns": EEelectionPreTaxAccidentIns,
+                "PremiumPreTaxAccidentIns": PremiumPreTaxAccidentIns,
+                "EEelectionPostTaxAccidentIns": EEelectionPostTaxAccidentIns,
+                "PremiumPostTaxAccidentIns": PremiumPostTaxAccidentIns,
+
+                "CancerInsProvider ": CancerInsProvider,
+                "EEelectionPreTaxCancerIns": EEelectionPreTaxCancerIns,
+                "PremiumPreTaxCancerIns": PremiumPreTaxCancerIns,
+                "EEelectionPostTaxCancerIns": EEelectionPostTaxCancerIns,
+                "PremiumPostTaxCancerIns": PremiumPostTaxCancerIns,
+
+                "StDisabilityProvider": StDisabilityProvider,
+                "EEelectionPreTaxStDisability": EEelectionPreTaxStDisability,
+                "PremiumPreTaxStDisability": PremiumPreTaxStDisability,
+                "EEelectionPostTaxStDisability": EEelectionPostTaxStDisability,
+                "PremiumPostTaxStDisability": PremiumPostTaxStDisability,
+
+                "HospitalIndemProvider": HospitalIndemProvider,
+                "EEelectionPreTaxHospitalIndem": EEelectionPreTaxHospitalIndem,
+                "PremiumPreTaxHospitalIndem": PremiumPreTaxHospitalIndem,
+                "EEelectionPostTaxHospitalIndem": EEelectionPostTaxHospitalIndem,
+                "PremiumPostTaxHospitalIndem": PremiumPostTaxHospitalIndem,
+
+                "TermLifeInsProvider": TermLifeInsProvider,
+                "EEelectionPreTaxTermLifeIns": EEelectionPreTaxTermLifeIns,
+                "PremiumPreTaxTermLifeIns": PremiumPreTaxTermLifeIns,
+                "EEelectionPostTaxTermLifeIns": EEelectionPostTaxTermLifeIns,
+                "PremiumPostTaxTermLifeIns": PremiumPostTaxTermLifeIns,
+
+                "WholeLifeInsProvider": WholeLifeInsProvider,
+                "EEelectionPreTaxWholeLifeIns": EEelectionPreTaxWholeLifeIns,
+                "PremiumPreTaxWholeLifeIns": PremiumPreTaxWholeLifeIns,
+                "EEelectionPostTaxWholeLifeIns": EEelectionPostTaxWholeLifeIns,
+                "PremiumPostTaxWholeLifeIns": PremiumPostTaxWholeLifeIns,
+
+                "OtherInsProvider": OtherInsProvider,
+                "EEelectionPreTaxOtherIns": EEelectionPreTaxOtherIns,
+                "PremiumPreTaxOtherIns": PremiumPreTaxOtherIns,
+                "EEelectionPostTaxOtherIns": EEelectionPostTaxOtherIns,
+                "PremiumPostTaxOtherIns": PremiumPostTaxOtherIns,
+
                 "TotalPreTax": TotalPreTax,
                 "TotalPostTax": TotalPostTax,
                 "empSignature": empSignature,
                 "empSignatureDate": empSignatureDate,
                 "empInitials1": empInitials1,
-                "empInitials2": empInitials2,
-                "empInitials3": empInitials3,
-                "empInitials4": empInitials4,
                 "PreTaxBenefitWaiverinitials": PreTaxBenefitWaiverinitials,
-
-                //"AccidentInsProvider ": AccidentInsProvider ,
-                //"EEelectionPreTaxAccidentIns": EEelectionPreTaxAccidentIns,
-                //"PremiumPreTaxAccidentIns": PremiumPreTaxAccidentIns,
-                //"EEelectionPostTaxAccidentIns": EEelectionPostTaxAccidentIns,
-                //"PremiumPostTaxAccidentIns": PremiumPostTaxAccidentIns,
-
-                //"CancerInsProvider ": CancerInsProvider,
-                //"EEelectionPreTaxCancerIns": EEelectionPreTaxCancerIns,
-                //"PremiumPreTaxCancerIns": PremiumPreTaxCancerIns,
-                //"EEelectionPostTaxCancerIns": EEelectionPostTaxCancerIns,
-                //"PremiumPostTaxCancerIns": PremiumPostTaxCancerIns,
-
-                //"StDisabilityProvider": StDisabilityProvider,
-                //"EEelectionPreTaxStDisability": EEelectionPreTaxStDisability,
-                //"PremiumPreTaxStDisability": PremiumPreTaxStDisability,
-                //"EEelectionPostTaxStDisability": EEelectionPostTaxStDisability,
-                //"PremiumPostTaxStDisability": PremiumPostTaxStDisability,
-
-                //"HospitalIndemProvider": HospitalIndemProvider,
-                //"EEelectionPreTaxHospitalIndem": EEelectionPreTaxHospitalIndem,
-                //"PremiumPreTaxHospitalIndem": PremiumPreTaxHospitalIndem,
-                //"EEelectionPostTaxHospitalIndem": EEelectionPostTaxHospitalIndem,
-                //"PremiumPostTaxHospitalIndem": PremiumPostTaxHospitalIndem,
-
-                //"TermLifeInsProvider": TermLifeInsProvider,
-                //"EEelectionPreTaxTermLifeIns": EEelectionPreTaxTermLifeIns,
-                //"PremiumPreTaxTermLifeIns": PremiumPreTaxTermLifeIns,
-                //"EEelectionPostTaxTermLifeIns": EEelectionPostTaxTermLifeIns,
-                //"PremiumPostTaxTermLifeIns": PremiumPostTaxTermLifeIns,
-
-                //"WholeLifeInsProvider": WholeLifeInsProvider,
-                //"EEelectionPreTaxWholeLifeIns": EEelectionPreTaxWholeLifeIns,
-                //"PremiumPreTaxWholeLifeIns": PremiumPreTaxWholeLifeIns,
-                //"EEelectionPostTaxWholeLifeIns": EEelectionPostTaxWholeLifeIns,
-                //"PremiumPostTaxWholeLifeIns": PremiumPostTaxWholeLifeIns,
-
-                //"OtherInsProvider": OtherInsProvider,
-                //"EEelectionPreTaxOtherIns": EEelectionPreTaxOtherIns,
-                //"PremiumPreTaxOtherIns": PremiumPreTaxOtherIns,
-                //"EEelectionPostTaxOtherIns": EEelectionPostTaxOtherIns,
-                //"PremiumPostTaxOtherIns": PremiumPostTaxOtherIns,
             }
 
-            var ret = postData('SalaryRedirectionUpdate', data)
+            var ret = postData('SalaryRedirectionEditUpdate', data)
                 .then(data => {
                     console.log(data);
-                    FourthStep(data);
+                    FirstStep(data);
                 })
                 .catch(error => console.error(error))
 
         })
-        function FourthStep(emp) {
-            document.querySelector("#FourthStep").nextElementSibling.style.display = "block";
+        function FirstStep(emp) {
+            document.querySelector("#FirstStep").nextElementSibling.style.display = "block";
             Employee_id = emp.data;
 
         }
@@ -987,7 +961,4 @@
         }
     })
 </script>
-
-
-
 
