@@ -695,16 +695,16 @@ namespace Watson.Controllers
 
         public ActionResult EditSalaryRedirection(int? Employee_id, int? Deductions_id)
         {
-            GroupHealthGrpHEnrollmentVM grpHSalaryRedirect = new GroupHealthGrpHEnrollmentVM();
+            GroupHealthGrpHEnrollmentVM grpHGrpEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
 
-            grpHSalaryRedirect.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
-            grpHSalaryRedirect.deduction = db.Deductions.FirstOrDefault(i => i.Employee_id == Employee_id);
+            grpHGrpEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
+            grpHGrpEnrollmentVM.deduction = db.Deductions.FirstOrDefault(i => i.Employee_id == Employee_id);
 
-            ViewBag.Deductions_id = grpHSalaryRedirect.deduction.Deductions_id;
-            ViewBag.Employee_id = grpHSalaryRedirect.employee.Employee_id;
+            ViewBag.Deductions_id = grpHGrpEnrollmentVM.deduction.Deductions_id;
+            ViewBag.Employee_id = grpHGrpEnrollmentVM.employee.Employee_id;
 
 
-            return View(grpHSalaryRedirect);
+            return View(grpHGrpEnrollmentVM);
         }
 
         //Edit-SalaryRedirect
@@ -898,30 +898,31 @@ namespace Watson.Controllers
         public ActionResult EditAuthorizationForm(int? Employee_id, int? GroupHealthInsurance_id)
         {
             ViewBag.Employee_id = Employee_id;
-            ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
-
+            
             EmployeeAndInsuranceVM employeeAndInsVM = new EmployeeAndInsuranceVM();
 
             employeeAndInsVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
-            employeeAndInsVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
+            employeeAndInsVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.GroupHealthInsurance_id == GroupHealthInsurance_id);
 
-            if (Employee_id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
 
-            Group_Health g = db.Group_Health.Find(Employee_id);
-            if (g == null)
-            {
-                return HttpNotFound();
-            }
+            //if (Employee_id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+
+            //Group_Health g = db.Group_Health.Find(Employee_id);
+            //if (g == null)
+            //{
+            //    return HttpNotFound();
+            //}
 
 
             return View(employeeAndInsVM);
         }
 
         //EditUpdate-AuthorizationForm
-        public JsonResult AuthorizationFormEditUpdate(int Employee_id, int GroupHealthInsurance_id, string PersonOneReleaseInfoTo, string PersonOneRelationship,
+        public JsonResult AuthorizationFormEditUpdate(int? Employee_id, int? GroupHealthInsurance_id, string PersonOneReleaseInfoTo, string PersonOneRelationship,
             string PersonTwoReleaseInfoTo, string PersonTwoRelationship, string PolicyHolderSignature, DateTime PolicyHolderSignatureDate,
             string PersonOneSignature, DateTime PersonOneSignatureDate, string PersonTwoSignature, DateTime PersonTwoSignatureDate)
         {

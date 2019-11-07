@@ -18,147 +18,150 @@
         <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value="@ViewBag.GroupHealthInsurance_id" />
         <div class="collapsible" id="FirstStep">Authorization Form</div>
         <div class="table table-bordered">
-            <table class="table table-condensed" id="AuthorizationFormTable">
-                <tr>
-                    <td>
-                        <div id="label">
-                            1.<label class="" style="padding-left: 10px;">Policyholder's First Name:</label>
-                            <input type="text" class="form-control" id="FirstName" placeholder="First Name" name="FirstName" value="@Html.DisplayFor(Model => Model.employee.FirstName)" disabled />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div id="label">
-                            2.<label class="" style="padding-left: 10px;">Policyholder's Last Name:</label>
-                            <input type="text" class="form-control" id="LastName" placeholder="Last Name" name="LastName" value="@Html.DisplayFor(Model => Model.employee.LastName)" disabled />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div id="label">
-                            3.<label class="" style="padding-left: 10px;">Policyholder's Employers Name:</label>
-                            <input type="text" class="form-control" id="Employer" placeholder="Employer" name="CurrentEmployer" value="@Html.DisplayFor(Model => Model.employee.CurrentEmployer)" disabled />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div id="label">
-                            4.<label class="" style="padding-left: 10px;">Policyholder's SSN:</label>
-                            <input type="text" class="form-control" id="SSN" placeholder="SSN#" name="SSN" value="@Html.DisplayFor(Model => Model.employee.SSN)" disabled />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div id="label">
-                            5.<label class="" style="padding-left: 10px;">Policyholder's Date of Birth:</label>
-                            <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="@Convert.ToDateTime(Model.employee.DateOfBirth).ToString("yyyy-MM-dd")" disabled />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div id="label">
-                            6.<label class="" style="padding-left: 10px;">Policyholder's Mailing Address:</label>
-                            <input type="text" class="form-control" id="MailingAddress" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(Model => Model.employee.MailingAddress)" disabled />
-                            <input type="text" class="form-control" id="PObox" placeholder="PO Box" name="PObox" value="@Html.DisplayFor(Model => Model.employee.PObox)" disabled />
-                            <input type="text" class="form-control" id="City" placeholder="City" name="City" value="@Html.DisplayFor(Model => Model.employee.City)" disabled />
-                            <input type="text" class="form-control" id="State" placeholder="State" name="State" value="@Html.DisplayFor(Model => Model.employee.State)" disabled />
-                            <input type="text" class="form-control" id="ZipCode" placeholder="ZipCode" name="ZipCode" value="@Html.DisplayFor(Model => Model.employee.ZipCode)" disabled />
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <hr />
-            <div>
-                <div id="label">
-                    7.<label class="" style="padding-left: 10px;">Full Name of person(s) to release Information to:</label>
-                    <p></p>
-                    <label style="padding-left: 10px;">
-                        Name:
-                    </label>
-                    <input type="text" id="PersonOneReleaseInfoTo" name="NameOfPersonOneReleaseInfoTo" value="@Html.DisplayFor(Model => Model.grpHealth.NameOfPersonOneReleaseInfoTo)" disabled" />
-                    <label style="padding-left: 10px;">
-                        Relationship:
-                    </label>
-                    <input type="text" id="PersonOneRelationship" name="PersonOneRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
-                    <hr />
-                    <label style="padding-left: 10px;">
-                        Name:
-                    </label>
-                    <input type="text" id="PersonTwoReleaseInfoTo" name="NameOfPersonTwoReleaseInfoTo" value="@Html.DisplayFor(Model => Model.grpHealth.NameOfPersonTwoReleaseInfoTo)" disabled" />
-                    <label style="padding-left: 10px;">
-                        Relationship:
-                    </label>
-                    <input type="text" id="PersonTwoRelationship" name="PersonTwoRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
-                </div>
-            </div>
-            <hr />
-            <div class="col-md-12 table table-bordered">
-                <p></p>
-                I AUTHORIZE Insurance Management Services to release any and all necessary Protected Health Information (PHI) to
-                the above listed person(s).
-                <p></p>
-                A copy of this authorization remains valid for the term of coverage, unless specified in a written request. I have
-                the right to receive a copy of the authorization upon request.<br />
-                <p></p>
-                *The policyholder must fill out this form in order to authorize another individual, other than themselves, to discuss
-                claims, EOBs, or any other Protected Health Information (PHI) concerning the policyholder and/or dependent(s) on this
-                plan, with this office. This individual may be a spouse, parent, friend, etc.*<br />
-                <p></p>
-                *Without a signed Authorization form, the policyholder will be the only individual that this office will release information
-                to regarding the policy or the individual(s) on the policy.<br />
-                <p></p>
-            </div>
-            <table class="table-bordered" id="AuthorizedSignatures" cellpadding="20" cellspacing="20">
-                <tr>
-                    <td>
-                        <div class="text-justify">
-                            <hr />
-                            <label style="padding-left: 10px;">
-                                Policyholder's Signature:
-                            </label>
-                            <input type="text" id="PolicyHolderSignature" name="AuthorizationFormPolicyHolderSignature" value="@Html.DisplayFor(Model => Model.grpHealth.AuthorizationFormPolicyHolderSignature)" disabled" />
-                            <label style="padding-left: 10px;">
-                                Date:
-                            </label>
-                            <input type="date" id="PolicyHolderSignatureDate" name="AuthorizationFormPolicyHolderSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.AuthorizationFormPolicyHolderSignatureDate)" disabled" />
-                            <hr />
-                            <label style="padding-left: 10px;">
-                                Signature of person to release information to:
-                            </label>
-                            <input type="text" id="PersonOneSignature" name="PersonOneSignature" value="@Html.DisplayFor(Model => Model.grpHealth.PersonOneSignature)" disabled" />
-                            <label style="padding-left: 10px;">
-                                Date:
-                            </label>
-                            <input type="date" id="PersonOneSignatureDate" name="PersonOneSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.PersonOneSignatureDate)" disabled" />
-                            <hr />
-                            <label style="padding-left: 10px;">
-                                Signature of person to release information to:
-                            </label>
-                            <input type="text" id="PersonTwoSignature" name="PersonTwoSignature" value="@Html.DisplayFor(Model => Model.grpHealth.PersonTwoSignature)" disabled" />
-                            <label style="padding-left: 10px;">
-                                Date:
-                            </label>
-                            <input type="date" id="PersonTwoSignatureDate" name="PersonTwoSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.PersonTwoSignatureDate)" />
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            <div class="col-md-offset-11">
-                                <button id="EditAuthorizationFormUpdate" class="btn">Save</button>
+            <div class="modal-content">
+                <table class="table table-condensed" id="AuthorizationFormTable">
+                    <tr>
+                        <td>
+                            <div id="label">
+                                1.<label class="" style="padding-left: 10px;">Policyholder's First Name:</label>
+                                <input type="text" class="form-control" id="FirstName" placeholder="First Name" name="FirstName" value="@Html.DisplayFor(Model => Model.employee.FirstName)" disabled />
                             </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="label">
+                                2.<label class="" style="padding-left: 10px;">Policyholder's Last Name:</label>
+                                <input type="text" class="form-control" id="LastName" placeholder="Last Name" name="LastName" value="@Html.DisplayFor(Model => Model.employee.LastName)" disabled />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="label">
+                                3.<label class="" style="padding-left: 10px;">Policyholder's Employers Name:</label>
+                                <input type="text" class="form-control" id="Employer" placeholder="Employer" name="CurrentEmployer" value="@Html.DisplayFor(Model => Model.employee.CurrentEmployer)" disabled />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="label">
+                                4.<label class="" style="padding-left: 10px;">Policyholder's SSN:</label>
+                                <input type="text" class="form-control" id="SSN" placeholder="SSN#" name="SSN" value="@Html.DisplayFor(Model => Model.employee.SSN)" disabled />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="label">
+                                5.<label class="" style="padding-left: 10px;">Policyholder's Date of Birth:</label>
+                                <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="@Convert.ToDateTime(Model.employee.DateOfBirth).ToString("yyyy-MM-dd")" disabled />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="label">
+                                6.<label class="" style="padding-left: 10px;">Policyholder's Mailing Address:</label>
+                                <input type="text" class="form-control" id="MailingAddress" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(Model => Model.employee.MailingAddress)" disabled />
+                                <input type="text" class="form-control" id="PObox" placeholder="PO Box" name="PObox" value="@Html.DisplayFor(Model => Model.employee.PObox)" disabled />
+                                <input type="text" class="form-control" id="City" placeholder="City" name="City" value="@Html.DisplayFor(Model => Model.employee.City)" disabled />
+                                <input type="text" class="form-control" id="State" placeholder="State" name="State" value="@Html.DisplayFor(Model => Model.employee.State)" disabled />
+                                <input type="text" class="form-control" id="ZipCode" placeholder="ZipCode" name="ZipCode" value="@Html.DisplayFor(Model => Model.employee.ZipCode)" disabled />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <hr />
+                <div>
+                    <div id="label">
+                        7.<label class="" style="padding-left: 10px;">Full Name of person(s) to release Information to:</label>
+                        <p></p>
+                        <label style="padding-left: 10px;">
+                            Name:
+                        </label>
+                        <input type="text" id="PersonOneReleaseInfoTo" name="NameOfPersonOneReleaseInfoTo" value="@Html.DisplayFor(Model => Model.grpHealth.NameOfPersonOneReleaseInfoTo)" disabled" />
+                        <label style="padding-left: 10px;">
+                            Relationship:
+                        </label>
+                        <input type="text" id="PersonOneRelationship" name="PersonOneRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
+                        <hr />
+                        <label style="padding-left: 10px;">
+                            Name:
+                        </label>
+                        <input type="text" id="PersonTwoReleaseInfoTo" name="NameOfPersonTwoReleaseInfoTo" value="@Html.DisplayFor(Model => Model.grpHealth.NameOfPersonTwoReleaseInfoTo)" disabled" />
+                        <label style="padding-left: 10px;">
+                            Relationship:
+                        </label>
+                        <input type="text" id="PersonTwoRelationship" name="PersonTwoRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
+                    </div>
+                </div>
+                <hr />
+                <div class="col-md-12 table table-bordered">
+                    <p></p>
+                    I AUTHORIZE Insurance Management Services to release any and all necessary Protected Health Information (PHI) to
+                    the above listed person(s).
+                    <p></p>
+                    A copy of this authorization remains valid for the term of coverage, unless specified in a written request. I have
+                    the right to receive a copy of the authorization upon request.<br />
+                    <p></p>
+                    *The policyholder must fill out this form in order to authorize another individual, other than themselves, to discuss
+                    claims, EOBs, or any other Protected Health Information (PHI) concerning the policyholder and/or dependent(s) on this
+                    plan, with this office. This individual may be a spouse, parent, friend, etc.*<br />
+                    <p></p>
+                    *Without a signed Authorization form, the policyholder will be the only individual that this office will release information
+                    to regarding the policy or the individual(s) on the policy.<br />
+                    <p></p>
+                </div>
+                <table class="table-bordered" id="AuthorizedSignatures" cellpadding="20" cellspacing="20">
+                    <tr>
+                        <td>
+                            <div class="text-justify">
+                                <hr />
+                                <label style="padding-left: 10px;">
+                                    Policyholder's Signature:
+                                </label>
+                                <input type="text" id="PolicyHolderSignature" name="AuthorizationFormPolicyHolderSignature" value="@Html.DisplayFor(Model => Model.grpHealth.AuthorizationFormPolicyHolderSignature)" />
+                                <label style="padding-left: 10px;">
+                                    Date:
+                                </label>
+                                <input type="date" id="PolicyHolderSignatureDate" name="AuthorizationFormPolicyHolderSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.AuthorizationFormPolicyHolderSignatureDate)" />
+                                <hr />
+                                <label style="padding-left: 10px;">
+                                    Signature of person to release information to:
+                                </label>
+                                <input type="text" id="PersonOneSignature" name="PersonOneSignature" value="@Html.DisplayFor(Model => Model.grpHealth.PersonOneSignature)" />
+                                <label style="padding-left: 10px;">
+                                    Date:
+                                </label>
+                                <input type="date" id="PersonOneSignatureDate" name="PersonOneSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.PersonOneSignatureDate)" />
+                                <hr />
+                                <label style="padding-left: 10px;">
+                                    Signature of person to release information to:
+                                </label>
+                                <input type="text" id="PersonTwoSignature" name="PersonTwoSignature" value="@Html.DisplayFor(Model => Model.grpHealth.PersonTwoSignature)" />
+                                <label style="padding-left: 10px;">
+                                    Date:
+                                </label>
+                                <input type="date" id="PersonTwoSignatureDate" name="PersonTwoSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.PersonTwoSignatureDate)" />
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                <div class="col-md-offset-11">
+                                    <button id="EditAuthorizationFormUpdate" class="btn">Save</button>
+                                </div>
+                            </div>
+                            <p>
+                                @Html.ActionLink("Return to Authorization Form", "AuthorizationForm", new { Employee_id = ViewBag.Employee_id })
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
-    <p>
-        @Html.ActionLink("Return to Authorization Form", "AuthorizationForm", new { Employee_id = ViewBag.Employee_id })
-    </p>
+
 
 </body>
 </html>
@@ -293,7 +296,8 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EditAuthorizationFormUpdate").addEventListener("click", function () {
-
+            Employee_id = document.getElementById("Employee_id").value;
+            GroupHealthInsurance_id = document.getElementById("GroupHealthInsurance_id").value;
             NameOfPersonOne = document.getElementById("PersonOneReleaseInfoTo").value;
             NameOfPersonOneRelationship = document.getElementById("PersonOneRelationship").value;
             NameOfPersonTwo = document.getElementById("PersonTwoReleaseInfoTo").value;

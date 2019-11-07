@@ -312,7 +312,7 @@
             }
             else {
                 if (alert == false) {
-                    
+
                     window.location.href = "/Employee/EmpOverview/?Employee_id=" +  @ViewBag.Employee_id;
 
                 }
@@ -323,11 +323,11 @@
     function EditAuthorizationForm() {
         document.addEventListener("click", function () {
 
-            window.location.href= "/Group_Health/EditAuthorization?Employee_id=" + @ViewBag.Employee_id;
+            window.location.href = "/Group_Health/EditAuthorization?Employee_id=" + @ViewBag.Employee_id;
         })
     }
 
- 
+
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#AuthorizationFormUpdate").addEventListener("click", function () {
