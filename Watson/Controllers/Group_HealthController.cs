@@ -925,9 +925,6 @@ namespace Watson.Controllers
             string PersonTwoReleaseInfoTo, string PersonTwoRelationship, string PolicyHolderSignature, DateTime PolicyHolderSignatureDate,
             string PersonOneSignature, DateTime PersonOneSignatureDate, string PersonTwoSignature, DateTime PersonTwoSignatureDate)
         {
-            Employee e = db.Employees
-               .Where(i => i.Employee_id == Employee_id)
-               .Single();
 
             Group_Health g = db.Group_Health
                 .Where(i => i.GroupHealthInsurance_id == GroupHealthInsurance_id)
@@ -943,7 +940,6 @@ namespace Watson.Controllers
             g.PersonOneSignatureDate = PersonOneSignatureDate;
             g.PersonTwoSignature = PersonTwoSignature;
             g.PersonTwoSignatureDate = PersonTwoSignatureDate;
-
 
             if (ModelState.IsValid)
             {

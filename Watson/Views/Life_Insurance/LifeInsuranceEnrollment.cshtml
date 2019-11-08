@@ -14,7 +14,6 @@
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
     <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.FamilyMember_id />
-    <input type="hidden" id="BeneficiaryType_id" class="form-control" name="BeneficiaryType_id" value="@ViewBag.BeneficiaryType_id " />
     <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@ViewBag.Beneficiary_id " />
     <div class="form-horizontal">
         <div class="collapsible" id="FirstStep">Life Insurance Enrollment</div>
@@ -466,73 +465,74 @@
                 <div>
                     <div class="col-md-11">
                         <button type="button" onclick="AddBeneficiary()" class="btn">Add Beneficiary</button>
+                        @Html.ActionLink("Edit Insurance ", "EditLifeInsurance", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)
                     </div>
                 </div>
                 <hr />
                 @*<div class="collapsible" id="BeneficiaryEnrollment">Beneficiary Information</div>
-        <div class="modal-body">
-            <div id="divBeneficiaryInfo">
-                <div class="form-group">
-                    <table class="table table-condensed">
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="checkbox-inline" id="PrimaryBeneficiary" name="PrimaryBeneficiary" value="" /><label for="Primary">Primary</label>
-                                <input type="checkbox" class="checkbox-inline" id="ContingentBeneficiary" name="ContingentBeneficiary" value="" /><label for="Contingent">Contingent</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
+            <div class="modal-body">
+                <div id="divBeneficiaryInfo">
+                    <div class="form-group">
+                        <table class="table table-condensed">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="checkbox-inline" id="PrimaryBeneficiary" name="PrimaryBeneficiary" value="" /><label for="Primary">Primary</label>
+                                    <input type="checkbox" class="checkbox-inline" id="ContingentBeneficiary" name="ContingentBeneficiary" value="" /><label for="Contingent">Contingent</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
 
-                                <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First Name" value="" />
-                            </td>
-                            <td>
-                                <input type="text" id="LastName" class="form-control" name="LastName" placeholder="Last Name" value="" />
-                            </td>
-                            <td>
-                                <input type="text" id="SSN" class="form-control" name="SSN" placeholder="SSN" value="" />
-                            </td>
-                            <td>
-                                <input type="text" id="RelationshipToEmployee" class="form-control" name="RelationshipToEmployee" placeholder="Relationship to Employee" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" id="MailingAddress" class="form-control" name="Address" placeholder="Mailing Address" value="" />
-                            </td>
-                            <td>
-                                <input type="text" id="City" class="form-control" name="City" placeholder="City" value="" />
-                            </td>
-                            <td>
-                                <input type="text" id="State" class="form-control" name="State" placeholder="State" value="" />
-                            </td>
-                            <td>
-                                <input type="text" id="ZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label style="display:table-cell">Date of Birth:</label>
-                                <input type="date" id="DOB" class="form-control" name="DOB" value="" />
-                            </td>
-                            <td>
-                                <label style="display:table-cell">Phone Number:</label>
-                                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="Phone Number" value="" />
-                            </td>
-                            <td>
-                                <label style="display:table-cell">Percentage Of Benefits:</label>
-                                <input type="number" id="PercentageOfBenefits" class="form-control" name="PercentageOfBenefits" placeholder="Percentage Of Benefits" value="" />
-                            </td>
-                            <td>
-                                <div>
-                                    @Html.ActionLink("Add", "AddBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)|
-                                    @Html.ActionLink("Delete", "DeleteBeneficiary", "Life_Insurance", new { BeneficiaryType_id = @ViewBag.BeneficiaryType_id }, null)
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+                                    <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First Name" value="" />
+                                </td>
+                                <td>
+                                    <input type="text" id="LastName" class="form-control" name="LastName" placeholder="Last Name" value="" />
+                                </td>
+                                <td>
+                                    <input type="text" id="SSN" class="form-control" name="SSN" placeholder="SSN" value="" />
+                                </td>
+                                <td>
+                                    <input type="text" id="RelationshipToEmployee" class="form-control" name="RelationshipToEmployee" placeholder="Relationship to Employee" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" id="MailingAddress" class="form-control" name="Address" placeholder="Mailing Address" value="" />
+                                </td>
+                                <td>
+                                    <input type="text" id="City" class="form-control" name="City" placeholder="City" value="" />
+                                </td>
+                                <td>
+                                    <input type="text" id="State" class="form-control" name="State" placeholder="State" value="" />
+                                </td>
+                                <td>
+                                    <input type="text" id="ZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label style="display:table-cell">Date of Birth:</label>
+                                    <input type="date" id="DOB" class="form-control" name="DOB" value="" />
+                                </td>
+                                <td>
+                                    <label style="display:table-cell">Phone Number:</label>
+                                    <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="Phone Number" value="" />
+                                </td>
+                                <td>
+                                    <label style="display:table-cell">Percentage Of Benefits:</label>
+                                    <input type="number" id="PercentageOfBenefits" class="form-control" name="PercentageOfBenefits" placeholder="Percentage Of Benefits" value="" />
+                                </td>
+                                <td>
+                                    <div>
+                                        @Html.ActionLink("Add", "AddBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)|
+                                        @Html.ActionLink("Delete", "DeleteBeneficiary", "Life_Insurance", new { BeneficiaryType_id = @ViewBag.BeneficiaryType_id }, null)
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
                 <table class="table table-condensed">
                     @foreach (var benefitInfo in Model.beneficiaryInfo)
                     {
@@ -587,7 +587,7 @@
                             <td>
                                 <div>
                                     @Html.ActionLink("Edit", "EditBeneficiaryUpdate", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)|
-                                    @Html.ActionLink("Delete", "DeleteBeneficiary", "Life_Insurance", new { BeneficiaryType_id = @ViewBag.BeneficiaryType_id }, null)
+                                    @Html.ActionLink("Delete", "DeleteBeneficiary", "Life_Insurance", new { Beneficiary_id = @ViewBag.Beneficiary_id }, null)
                                 </div>
                             </td>
                         </tr>
@@ -941,7 +941,6 @@
     })
     
     function FirstStep(emp) {
-        document.querySelector("#BeneficiaryEnrollment").nextElementSibling.style.display = "none";
         Employee_id = emp.data;
     }
 
