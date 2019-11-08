@@ -185,7 +185,7 @@ namespace Watson.Controllers
             employeeAndInsuranceVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
             employeeAndInsuranceVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
 
-            ViewBag.MaritalStatus = employeeAndInsuranceVM.employee.MaritalStatus;
+            //ViewBag.MaritalStatus = employeeAndInsuranceVM.employee.MaritalStatus;
 
             if (Employee_id == null)
             {

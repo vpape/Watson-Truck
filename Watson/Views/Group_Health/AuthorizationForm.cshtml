@@ -154,7 +154,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-10">
-                                    @Html.ActionLink("Edit", "EditAuthorizationForm", new { Employee_id = ViewBag.Employee_id }, null)|
+                                    @Html.ActionLink("Edit", "EditAuthorizationForm", new { Employee_id = ViewBag.Employee_id, GroupHealthInsurance_id = ViewBag.GroupHealthInsurance_id }, null)|
                                     @Html.ActionLink("Back to Insurance", "GrpHealthEnrollment", new { Employee_id = ViewBag.Employee_id })
                                 </div>
                             </div>
@@ -218,7 +218,7 @@
     }
 
     #label {
-        font-weight: bold;
+        font-weight: normal;
         text-align: left;
         font-size: 100%;
     }
@@ -323,7 +323,7 @@
     function EditAuthorizationForm() {
         document.addEventListener("click", function () {
 
-            window.location.href = "/Group_Health/EditAuthorization?Employee_id=" + @ViewBag.Employee_id;
+            window.location.href = "/Group_Health/EditAuthorization?Employee_id=" + @ViewBag.Employee_id + "&GroupHealthInsurance_id=@ViewBag.GroupHealthInsurance_id";
         })
     }
 

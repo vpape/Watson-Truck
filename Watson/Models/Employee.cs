@@ -51,9 +51,7 @@ namespace Watson.Models
         public string CityLimits { get; set; }
         public Nullable<System.DateTime> HireDate { get; set; }
         public Nullable<System.DateTime> EffectiveDate { get; set; }
-        public string isActive { get; set; }
         public Nullable<System.DateTime> EligibilityDate { get; set; }
-        public string WorkStatus { get; set; }
         public string HoursWorkedPerWeek { get; set; }
         public string JobTitle { get; set; }
         public string AnnualSalary { get; set; }

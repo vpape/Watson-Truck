@@ -76,7 +76,7 @@
                 <hr />
                 <div>
                     <div id="label">
-                        7.<label class="" style="padding-left: 10px;">Full Name of person(s) to release Information to:</label>
+                        7.<label style="padding-left: 10px;">Full Name of person(s) to release Information to:</label>
                         <p></p>
                         <label style="padding-left: 10px;">
                             Name:
@@ -85,7 +85,7 @@
                         <label style="padding-left: 10px;">
                             Relationship:
                         </label>
-                        <input type="text" id="PersonOneRelationship" name="PersonOneRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
+                        <input type="text" id="PersonOneRelationship" name="PersonOneRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.PersonOneRelationship)" disabled" />
                         <hr />
                         <label style="padding-left: 10px;">
                             Name:
@@ -94,7 +94,7 @@
                         <label style="padding-left: 10px;">
                             Relationship:
                         </label>
-                        <input type="text" id="PersonTwoRelationship" name="PersonTwoRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.Relationship)" disabled" />
+                        <input type="text" id="PersonTwoRelationship" name="PersonTwoRelationship" value="@Html.DisplayFor(Model => Model.grpHealth.PersonTwoRelationship)" disabled" />
                     </div>
                 </div>
                 <hr />
@@ -126,7 +126,7 @@
                                 <label style="padding-left: 10px;">
                                     Date:
                                 </label>
-                                <input type="date" id="PolicyHolderSignatureDate" name="AuthorizationFormPolicyHolderSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.AuthorizationFormPolicyHolderSignatureDate)" />
+                                <input type="date" id="PolicyHolderSignatureDate" name="AuthorizationFormPolicyHolderSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.AuthorizationFormPolicyHolderSignatureDate).ToString("yyyy-MM-dd")" />
                                 <hr />
                                 <label style="padding-left: 10px;">
                                     Signature of person to release information to:
@@ -135,7 +135,7 @@
                                 <label style="padding-left: 10px;">
                                     Date:
                                 </label>
-                                <input type="date" id="PersonOneSignatureDate" name="PersonOneSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.PersonOneSignatureDate)" />
+                                <input type="date" id="PersonOneSignatureDate" name="PersonOneSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.PersonOneSignatureDate).ToString("yyyy-MM-dd")" />
                                 <hr />
                                 <label style="padding-left: 10px;">
                                     Signature of person to release information to:
@@ -144,7 +144,7 @@
                                 <label style="padding-left: 10px;">
                                     Date:
                                 </label>
-                                <input type="date" id="PersonTwoSignatureDate" name="PersonTwoSignatureDate" value="@Html.DisplayFor(Model => Model.grpHealth.PersonTwoSignatureDate)" />
+                                <input type="date" id="PersonTwoSignatureDate" name="PersonTwoSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.PersonTwoSignatureDate).ToString("yyyy-MM-dd")" />
                             </div>
                             <hr />
                             <div class="form-group">
@@ -217,7 +217,7 @@
     }
 
     #label {
-        font-weight: bold;
+        font-weight: normal;
         text-align: left;
         font-size: 100%;
     }

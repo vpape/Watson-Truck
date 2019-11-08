@@ -865,8 +865,8 @@ namespace Watson.Controllers
 
         //Create-AuthorizationForm
         public JsonResult AuthorizationFormNew(int? GroupHealthInsurance_id, int Employee_id, string PersonOneReleaseInfoTo, string PersonOneRelationship,
-            string PersonTwoReleaseInfoTo, string PersonTwoRelationship, string PolicyHolderSignature, DateTime PolicyHolderSignatureDate,
-            string PersonOneSignature, DateTime PersonOneSignatureDate, string PersonTwoSignature, DateTime PersonTwoSignatureDate)
+            string PersonTwoReleaseInfoTo, string PersonTwoRelationship, string PolicyHolderSignature, DateTime? PolicyHolderSignatureDate,
+            string PersonOneSignature, DateTime? PersonOneSignatureDate, string PersonTwoSignature, DateTime? PersonTwoSignatureDate)
         {
 
             Group_Health g = db.Group_Health
@@ -898,13 +898,12 @@ namespace Watson.Controllers
         public ActionResult EditAuthorizationForm(int? Employee_id, int? GroupHealthInsurance_id)
         {
             ViewBag.Employee_id = Employee_id;
-            
+            ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
+
             EmployeeAndInsuranceVM employeeAndInsVM = new EmployeeAndInsuranceVM();
 
             employeeAndInsVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
-            employeeAndInsVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.GroupHealthInsurance_id == GroupHealthInsurance_id);
-
-            ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
+            employeeAndInsVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
 
             //if (Employee_id == null)
             //{

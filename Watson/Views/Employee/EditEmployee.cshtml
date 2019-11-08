@@ -14,7 +14,7 @@
         <hr />
         <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
         <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value="@ViewBag.GroupHealthInsurance_id" />
-        <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
+        @*<input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />*@
         <input type="hidden" id="EmployeeRole" class="form-control" name="EmployeeRole" value="@ViewBag.EmployeeRole" />
         <div class="collapsible" id="FirstStep">Edit Info</div>
         <div id="divEmpEnrollment" class="content">
@@ -210,13 +210,14 @@
                         <button id="EditEmployeeEnrollment" class="btn">Save</button>
                     </div>
                 </div>
+                <p>
+                    @Html.ActionLink("Back to List", "EmpOverview")
+                </p>
             </div>
         </div>
     </div>
 
-    <p>
-        @Html.ActionLink("Back to List", "EmpOverview")
-    </p>
+
 </body>
 </html>
 
@@ -303,7 +304,6 @@
         });
     }
 
-    //use for radio button
     function showHidEmpOtherInsCoverage() {
         document.addEventListener("click", function () {
             var selection = document.getElementById("empOtherGrpHinsCoverage");
@@ -316,6 +316,36 @@
             }
         })
     }
+
+    document.querySelector("#EditEmployeeEnrollment").addEventListener("click", function () {
+        submit = document.getElementById("EditEmployeeEnrollment");
+
+        var message;
+        alert = confirm("Progress has been saved.")
+
+        if (alert == true) {
+
+            message = "Please proceed to Employee Detail to review information, Thank you!!";
+            var alert = confirm(message)
+            if (alert == true) {
+                    window.location.href = "/Employee/EmployeeDetail?Employee_id=" + @ViewBag.Employee_id;
+            }
+         
+        }
+        else {
+            if (alert == false) {
+
+                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+            }
+            else {
+
+                message = "Your request has been canceled. Please proceed to Employee Overview , Thank you!!";
+                var alert = confirm(message)
+
+                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+            }
+        }
+    });
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EditEmployeeEnrollment").addEventListener("click", function () {
