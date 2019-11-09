@@ -33,9 +33,8 @@ namespace Watson.Controllers
 
             empAndInsVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
             empAndInsVM.lifeIns = db.Life_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id);
+            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Employee_id == Employee_id).ToList();
 
-            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id).ToList();
-           
             empAndInsVM.spouse = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id && i.RelationshipToInsured == "Spouse");
             empAndInsVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id && i.RelationshipToInsured != "Spouse").ToList();
             if (empAndInsVM.spouse != null)
@@ -166,8 +165,7 @@ namespace Watson.Controllers
 
             empAndInsVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
             empAndInsVM.lifeIns = db.Life_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id);
-
-            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id).ToList();
+            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Employee_id == Employee_id).ToList();
 
             empAndInsVM.spouse = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id && i.RelationshipToInsured == "Spouse");
             empAndInsVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id && i.RelationshipToInsured != "Spouse").ToList();
@@ -351,6 +349,48 @@ namespace Watson.Controllers
 
             db.Beneficiaries.Add(benefi);
             db.SaveChanges();
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult EditBeneficaryUpdate(int Employee_id, int? Beneficiary_id, string PrimaryBeneficiary, string ContingentBeneficiary, string FirstName,
+            string LastName, string SSN, string RelationshipToEmployee, DateTime DateOfBirth, string PhoneNumber, string PercentageOfBenefits, string MailingAddress,
+            string City, string State, string ZipCode)
+        {
+
+            Beneficiary benefi = db.Beneficiaries
+                .Where(i => i.Beneficiary_id == Beneficiary_id)
+                .Single();
+
+            benefi.PrimaryBeneficiary = PrimaryBeneficiary;
+            benefi.ContingentBeneficiary = ContingentBeneficiary;
+            benefi.FirstName = FirstName;
+            benefi.LastName = LastName;
+            benefi.SSN = SSN;
+            benefi.RelationshipToEmployee = RelationshipToEmployee;
+            benefi.DOB = DateOfBirth;
+            benefi.PhoneNumber = PhoneNumber;
+            benefi.PercentageOfBenefits = PercentageOfBenefits;
+            benefi.Address = MailingAddress;
+            benefi.CIty = City;
+            benefi.State = State;
+            benefi.ZipCode = ZipCode;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(benefi).State = System.Data.Entity.EntityState.Modified;
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err);
+                }
+            }
+
+            int result = benefi.Employee_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }

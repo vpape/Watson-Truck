@@ -75,17 +75,13 @@
                         <button type="submit" id="submitBeneficiary" class="btn">Save</button>
                     </div>
                 </div>
-                @*<div class="form-group">
-                    <div class="col-md-offset-11">
-                        <button type="submit" id="submitBeneficiaryStepTwo" class="btn">Save</button>
-                    </div>
-                </div>*@
+                <p>
+                    @Html.ActionLink("Back to Life Insurance", "LifeInsuranceEnrollment", "Life_Insurance", new { Employee_id = ViewBag.Employee_id }, null)
+                </p>
             </div>
         </div>
     </div>
-    <p>
-        @Html.ActionLink("Back to Life Insurance", "LifeInsuranceEnrollment", "Life_Insurance", new { Employee_id = ViewBag.Employee_id }, null)
-    </p>
+  
 
 </body>
 </html>
@@ -154,6 +150,37 @@
             $('.radio-inline').not(this).prop('checked', false);
         });
     });
+
+
+    
+    document.querySelector("#submitBeneficiary").addEventListener("click", function () {
+        submit = document.getElementById("submitBeneficiary");
+
+        var message;
+        alert = confirm("Beneificiary information has been saved. Thank you!")
+
+        if (submit.onclick) {
+            if (alert == true) {
+
+                message = "Please proceed to Life Insurance edit page to review information. Thank you!!";
+                var alert = confirm(message)
+                if (alert == true) {
+
+                    window.location.href = "/Life_Insurance/EditLifeInsurance&Employee_id=" + @ViewBag.Employee_id;
+
+                }
+                else {
+                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                }
+            }
+        }
+        else {
+            if (alert == false) {
+
+                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+            }
+        }
+    })
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#submitBeneficiary").addEventListener("click", function () {
