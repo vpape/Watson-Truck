@@ -310,10 +310,7 @@ namespace Watson.Controllers
                 groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id).ToList();
             }
 
-
             return View(groupHGrpHEnrollmentVM);
-
-            //    return Json(new { data = result }, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -703,34 +700,19 @@ namespace Watson.Controllers
             ViewBag.Deductions_id = grpHGrpEnrollmentVM.deduction.Deductions_id;
             ViewBag.Employee_id = grpHGrpEnrollmentVM.employee.Employee_id;
 
+            //    if (Employee_id == null)
+            //    {
+            //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //    }
+
+            //    Group_Health g = db.Group_Health.Find(Employee_id);
+            //    if (g == null)
+            //    {
+            //        return HttpNotFound();
+            //    }
 
             return View(grpHGrpEnrollmentVM);
         }
-
-        //Edit-SalaryRedirect
-        //public ActionResult EditSalaryRedirection(int? Employee_id)
-        //{
-        //     GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
-
-        //    groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
-
-
-        //    if (Employee_id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-
-        //    Group_Health g = db.Group_Health.Find(Employee_id);
-        //    if (g == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    ViewBag.Employee_id = groupHGrpHEnrollmentVM.grpHealth.Employee_id;
-
-
-        //    return View(groupHGrpHEnrollmentVM);
-        //}
 
         //EditUpdate-SalaryRedirect
         public JsonResult SalaryRedirectionEditUpdate(int Employee_id, int? Deductions_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,

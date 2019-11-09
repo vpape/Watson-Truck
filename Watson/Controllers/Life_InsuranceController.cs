@@ -294,23 +294,6 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult DeleteLifeInsurance(int? LifeInsurance_id)
-        {
-            if (LifeInsurance_id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Life_Insurance lifeIns = db.Life_Insurance.Find(LifeInsurance_id);
-            if (lifeIns == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(lifeIns);
-        }
-        //----------------------------------------------------------------------------------------
-
         public ActionResult AddBeneficiary(int Employee_id, int? Beneficiary_id)
         {
             ViewBag.Employee_id = Employee_id;
@@ -323,8 +306,8 @@ namespace Watson.Controllers
             return View(empAndInsVM);
         }
 
-        public JsonResult AddBeneficiaryUpdate(int Employee_id, int? Beneficiary_id, string PrimaryBeneficiary, string ContingentBeneficiary, string FirstName, 
-            string LastName, string SSN, string RelationshipToEmployee,  DateTime DateOfBirth, string PhoneNumber, string PercentageOfBenefits, string MailingAddress,
+        public JsonResult AddBeneficiaryUpdate(int Employee_id, int? Beneficiary_id, string PrimaryBeneficiary, string ContingentBeneficiary, string FirstName,
+            string LastName, string SSN, string RelationshipToEmployee, DateTime DateOfBirth, string PhoneNumber, string PercentageOfBenefits, string MailingAddress,
             string City, string State, string ZipCode)
         {
 
@@ -353,14 +336,30 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult EditBeneficaryUpdate(int Employee_id, int? Beneficiary_id, string PrimaryBeneficiary, string ContingentBeneficiary, string FirstName,
-            string LastName, string SSN, string RelationshipToEmployee, DateTime DateOfBirth, string PhoneNumber, string PercentageOfBenefits, string MailingAddress,
-            string City, string State, string ZipCode)
-        {
 
+        //----------------------------------------------------------------------------------------
+        public ActionResult EditBeneficiary(int Employee_id, int? Beneficiary_id)
+        {
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.Beneficiary_id = Beneficiary_id;
+
+            EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
+
+            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Employee_id == Employee_id).ToList();
+
+            return View(empAndInsVM);
+        }
+
+
+        public JsonResult EditBeneficaryUpdate(int? Employee_id, int? Beneficiary_id, string PrimaryBeneficiary, string ContingentBeneficiary, string FirstName,
+            string LastName, string SSN, string RelationshipToEmployee, string MailingAddress, string City, string State, string ZipCode, DateTime DOB,
+            string PhoneNumber, string PercentageOfBenefits)
+        {
             Beneficiary benefi = db.Beneficiaries
-                .Where(i => i.Beneficiary_id == Beneficiary_id)
-                .Single();
+                     .Where(i => i.Employee_id == Employee_id)
+                     .SingleOrDefault();
+
+            ViewBag.Beneficiary_id = benefi.Beneficiary_id;
 
             benefi.PrimaryBeneficiary = PrimaryBeneficiary;
             benefi.ContingentBeneficiary = ContingentBeneficiary;
@@ -368,13 +367,13 @@ namespace Watson.Controllers
             benefi.LastName = LastName;
             benefi.SSN = SSN;
             benefi.RelationshipToEmployee = RelationshipToEmployee;
-            benefi.DOB = DateOfBirth;
-            benefi.PhoneNumber = PhoneNumber;
-            benefi.PercentageOfBenefits = PercentageOfBenefits;
             benefi.Address = MailingAddress;
             benefi.CIty = City;
             benefi.State = State;
             benefi.ZipCode = ZipCode;
+            benefi.DOB = DOB;
+            benefi.PhoneNumber = PhoneNumber;
+            benefi.PercentageOfBenefits = PercentageOfBenefits;
 
             if (ModelState.IsValid)
             {
@@ -390,13 +389,30 @@ namespace Watson.Controllers
                 }
             }
 
-            int result = benefi.Employee_id;
+            int result = benefi.Beneficiary_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
+
         //----------------------------------------------------------------------------------------
 
+
+        public ActionResult DeleteLifeInsurance(int? LifeInsurance_id)
+        {
+            if (LifeInsurance_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Life_Insurance lifeIns = db.Life_Insurance.Find(LifeInsurance_id);
+            if (lifeIns == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(lifeIns);
+        }
 
         //Delete-LifeInsurance
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteLifeInsurance")]
@@ -408,6 +424,20 @@ namespace Watson.Controllers
             db.SaveChanges();
 
             db.DeleteEmployeeAndDependents(LifeInsurance_id);
+
+            return RedirectToAction("LifeInsuranceEnrollment");
+        }
+
+        //Delete-Beneficiaries
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteBeneficiary")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteBeneficiary(int Beneficiary_id)
+        {
+            Beneficiary beni = db.Beneficiaries.Find(Beneficiary_id);
+            db.Beneficiaries.Remove(beni);
+            db.SaveChanges();
+
+            db.DeleteEmployeeAndDependents(Beneficiary_id);
 
             return RedirectToAction("LifeInsuranceEnrollment");
         }

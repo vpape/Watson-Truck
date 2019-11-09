@@ -13,8 +13,6 @@
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
-    <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value=@ViewBag.FamilyMember_id />
-    <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@ViewBag.Beneficiary_id " />
     <div class="form-horizontal">
         <div class="collapsible" id="FirstStep">Life Insurance Enrollment</div>
         <div class="modal-content">
@@ -521,7 +519,8 @@
                             </td>
                             <td>
                                 <div style="margin-top: 18px;">
-                                    <button type="button" id="EditBeneficiary" onclick="editBeneficiary()" class="btn">Edit</button>
+                                    @Html.ActionLink("Edit", "EditBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)
+                                    @*<button type="button" id="EditBeneficiary" onclick="editBeneficiary()" class="btn">Edit</button>*@
                                 </div>
                             </td>
                         </tr>
@@ -682,7 +681,7 @@
     }
 
     function editBeneficiary() {
-        window.location.href = "/Life_Insurance/EditLifeInsurance?Employee_id=" + @ViewBag.Employee_id;
+        window.location.href = "/Life_Insurance/EditBeneficiary?Employee_id=" + @ViewBag.Employee_id;
     }
     
     document.addEventListener("DOMContentLoaded", function () {

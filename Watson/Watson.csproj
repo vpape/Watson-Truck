@@ -474,6 +474,7 @@
     <Content Include="Views\Employee\DeleteEmp.cshtml" />
     <Content Include="Views\Group_Health\EditSalaryRedirection.cshtml" />
     <Content Include="Views\Life_Insurance\EditLifeInsurance.cshtml" />
+    <Content Include="Views\Life_Insurance\EditBeneficiary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
