@@ -13,6 +13,7 @@
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+    <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value=@ViewBag.Beneficiary_id />
     <div class="form-horizontal">
         <div class="collapsible" id="FirstStep">Life Insurance Enrollment</div>
         <div class="modal-content">
@@ -383,9 +384,12 @@
                 </table>
                 <div>
                     <h5><b>I have been offered the above coverage(s) and wish to drop enrollment for the following reasons:</b></h5>
-                    <input type="checkbox" class="othercheckboxes-inline" id="CoveredUnderOtherInsurance" name="CoveredUnderOtherInsurance" value="" /><label for="CoveredUnderOtherInsurance">Covered Under Another Insurance Plan</label><br />
-                    <input type="checkbox" class="othercheckboxes-inline" id="Other" name="Other" value="" /><label for="Other">Other</label>
-                    <input type="text" id="OtherReason" class="form-control" placeholder="List Reason" name="OtherReason" value="" />
+                    <div class="checkboxes">
+                        <input type="checkbox" class="othercheckboxes-inline" id="CoveredUnderOtherInsurance" name="CoveredUnderOtherInsurance" value="" /><label for="CoveredUnderOtherInsurance">Covered Under Another Insurance Plan</label><br />
+                        <input type="checkbox" class="othercheckboxes-inline" id="Other" name="Other" value="" /><label for="Other">Other</label>
+                        <input type="text" id="OtherReason" class="form-control" placeholder="List Reason" name="OtherReason" value="" />
+                    </div>
+                   
                 </div>
                 <hr />
                 <table class="table table-bordered">
@@ -394,10 +398,15 @@
                         <td>
                             <label>Dental Coverage:</label>
                             <div class="checkboxes">
-                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="EmployeeOnlyDental" name="EmployeeOnlyDental" value="EmployeeOnly" /><label for="EmployeeOnlyDental">Employee Only</label>
+                                @*<input type="checkbox" class="dentalcoveragecheckboxes-inline" id="EmployeeOnlyDental" name="EmployeeOnlyDental" value="EmployeeOnly" /><label for="EmployeeOnlyDental">Employee Only</label>
                                 <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="EEAndSpouseDental" name="EEAndSpouseDental" value="EmployeeAndSpouse" /><label for="EEAndSpouseDental">Employee & Spouse</label><br />
                                 <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="EEAndDependentsDental" name="EEAndDependentsDental" value="EmployeeAndDependent" /><label for="EEAndDependentsDental">Employee & Dependent</label>
-                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="EEAndFamilyDental" name="EEAndFamilyDental" value="EmployeeAndFamily" /><label for="EEAndFamilyDental">Employee & Family</label>
+                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="EEAndFamilyDental" name="EEAndFamilyDental" value="EmployeeAndFamily" /><label for="EEAndFamilyDental">Employee & Family</label>*@
+
+                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan" name="DentalPlan" value="EmployeeOnly" /><label>Employee Only</label>
+                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan" name="DentalPlan" value="EmployeeAndSpouse" /><label>Employee & Spouse</label><br />
+                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan" name="DentalPlan" value="EmployeeAndDependent" /><label>Employee & Dependent</label>
+                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan" name="DentalPlan" value="EmployeeAndFamily" /><label>Employee & Family</label>
                             </div>
                             <p></p>
                             <div class="checkboxes">
@@ -411,10 +420,15 @@
                         <td>
                             <label>Vision Coverage:</label>
                             <div class="checkboxes">
-                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="EmployeeOnlyVision" name="EmployeeOnlyVision" value="EmployeeOnly" /><label for="EmployeeOnlyVision">Employee Only</label>
+                                @*<input type="checkbox" class="visioncoveragecheckboxes-inline" id="EmployeeOnlyVision" name="EmployeeOnlyVision" value="EmployeeOnly" /><label for="EmployeeOnlyVision">Employee Only</label>
                                 <input type="checkbox" class="visioncoveragecheckboxes-inline" id="EEAndSpouseVision" name="EEAndSpouseVision" value="EmployeeAndSpouse" /><label for="EEAndSpouseVision">Employee & Spouse</label><br />
                                 <input type="checkbox" class="visioncoveragecheckboxes-inline" id="EEAndDependentsVision" name="EEAndDependentsVision" value="EmployeeAndDependent" /><label for="EEAndDependentsVision">Employee & Dependent</label>
-                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="EEAndFamilyVision" name="EEAndFamilyVision" value="EmployeeAndFamily" /><label for="EEAndFamilyVision">Employee & Family</label>
+                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="EEAndFamilyVision" name="EEAndFamilyVision" value="EmployeeAndFamily" /><label for="EEAndFamilyVision">Employee & Family</label>*@
+
+                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="VisionPlan" name="VisionPlan" value="EmployeeOnly" /><label>Employee Only</label>
+                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="VisionPlan" name="VisionPlan" value="EmployeeAndSpouse" /><label>Employee & Spouse</label><br />
+                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="VisionPlan" name="VisionPlan" value="EmployeeAndDependent" /><label>Employee & Dependent</label>
+                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="VisionPlan" name="VisionPlan" value="EmployeeAndFamily" /><label>Employee & Family</label>
                             </div>
                             <p></p>
                             <div class="checkboxes">
@@ -466,8 +480,8 @@
                         @Html.ActionLink("Edit Insurance ", "EditLifeInsurance", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)
                     </div>
                 </div>
-                <table class="table table-condensed">
-                    @foreach (var benefitInfo in Model.beneficiaryInfo)
+                <table class="table table-hover">
+                    @foreach (var benefitInfo in Model.benefiList)
                     {
                         <tr>
                             <td>
@@ -507,7 +521,7 @@
                         <tr>
                             <td>
                                 <label style="display:table-cell">Date of Birth:</label>
-                                <input type="date" id="DOB" class="form-control" name="DOB" value="@benefitInfo.DOB" disabled />
+                                <input type="date" id="DOB" class="form-control" name="DOB" value="@Convert.ToDateTime(benefitInfo.DOB).ToString("yyyy-dd-MM")" disabled />
                             </td>
                             <td>
                                 <label style="display:table-cell">Phone Number:</label>
@@ -519,7 +533,7 @@
                             </td>
                             <td>
                                 <div style="margin-top: 18px;">
-                                    @Html.ActionLink("Edit", "EditBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)
+                                    @Html.ActionLink("Edit", "EditBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id, benefitInfo.Beneficiary_id }, null)
                                     @*<button type="button" id="EditBeneficiary" onclick="editBeneficiary()" class="btn">Edit</button>*@
                                 </div>
                             </td>
@@ -681,7 +695,7 @@
     }
 
     function editBeneficiary() {
-        window.location.href = "/Life_Insurance/EditBeneficiary?Employee_id=" + @ViewBag.Employee_id;
+        window.location.href = "/Life_Insurance/EditBeneficiary?Employee_id=" + @ViewBag.Employee_id + "&Beneficiary_id=@ViewBag.Beneficiary_id";
     }
     
     document.addEventListener("DOMContentLoaded", function () {
@@ -733,20 +747,23 @@
             Other = document.getElementById("Other").checked;
             OtherReason = document.getElementById("OtherReason").value;
 
-            //DentalCoverage = document.getElementById("DentalCoverage").value;
-            EmployeeOnlyDental = document.getElementById("EmployeeOnlyDental").checked;
-            EEAndSpouseDental = document.getElementById("EEAndSpouseDental").checked;
-            EEAndDependentsDental = document.getElementById("EEAndDependentsDental").checked;
-            EEAndFamilyDental = document.getElementById("EEAndFamilyDental").checked;
+            //refer to row 400
+            DentalCoverage = document.getElementById("DentalCoverage").value;
+            VisionCoverage = document.getElementById("VisionCoverage").value;
+
+            //EmployeeOnlyDental = document.getElementById("EmployeeOnlyDental").checked;
+            //EEAndSpouseDental = document.getElementById("EEAndSpouseDental").checked;
+            //EEAndDependentsDental = document.getElementById("EEAndDependentsDental").checked;
+            //EEAndFamilyDental = document.getElementById("EEAndFamilyDental").checked;
             DoNotWantDentalCoverage = document.getElementById("DoNotWantDentalCoverage").checked;
             EmployeeCoveredUnderOtherDental = document.getElementById("EmployeeCoveredUnderOtherDental").checked;
             SpouseCoveredUnderOtherDental = document.getElementById("SpouseCoveredUnderOtherDental").checked;
             DependentsCoveredUnderOtherDental = document.getElementById("DependentsCoveredUnderOtherDental").checked;
-            //VisionCoverage = document.getElementById("VisionCoverage").value;
-            EmployeeOnlyVision = document.getElementById("EmployeeOnlyVision").checked;
-            EEAndSpouseVision = document.getElementById("EEAndSpouseVision").checked;
-            EEAndDependentsVision = document.getElementById("EEAndDependentsVision").checked;
-            EEAndFamilyVision = document.getElementById("EEAndFamilyVision").checked;
+
+            //EmployeeOnlyVision = document.getElementById("EmployeeOnlyVision").checked;
+            //EEAndSpouseVision = document.getElementById("EEAndSpouseVision").checked;
+            //EEAndDependentsVision = document.getElementById("EEAndDependentsVision").checked;
+            //EEAndFamilyVision = document.getElementById("EEAndFamilyVision").checked;
             DoNotWantVisionCoverage = document.getElementById("DoNotWantVisionCoverage").checked;
             EmployeeCoveredUnderOtherVision = document.getElementById("EmployeeCoveredUnderOtherVision").checked;
             SpouseCoveredUnderOtherVision = document.getElementById("SpouseCoveredUnderOtherVision").checked;
@@ -806,24 +823,26 @@
                 "Other": Other,
                 "OtherReason": OtherReason,
 
-                //"DentalCoverage": DentalCoverage,
-                "EmployeeOnlyDental": EmployeeOnlyDental,
-                "EEAndSpouseDental": EEAndSpouseDental,
-                "EEAndDependentsDental": EEAndDependentsDental,
-                "EEAndFamilyDental": EEAndFamilyDental,
+                //"EmployeeOnlyDental": EmployeeOnlyDental,
+                //"EEAndSpouseDental": EEAndSpouseDental,
+                //"EEAndDependentsDental": EEAndDependentsDental,
+                //"EEAndFamilyDental": EEAndFamilyDental,
                 "DoNotWantDentalCoverage": DoNotWantDentalCoverage,
                 "EmployeeCoveredUnderOtherDental": EmployeeCoveredUnderOtherDental,
                 "SpouseCoveredUnderOtherDental": SpouseCoveredUnderOtherDental,
                 "DependentsCoveredUnderOtherDental": DependentsCoveredUnderOtherDental,
-                //"VisionCoverage": VisionCoverage,
-                "EmployeeOnlyVision": EmployeeOnlyVision,
-                "EEAndSpouseVision": EEAndSpouseVision,
-                "EEAndDependentsVision": EEAndDependentsVision,
-                "EEAndFamilyVision": EEAndFamilyVision,
+
+                //"EmployeeOnlyVision": EmployeeOnlyVision,
+                //"EEAndSpouseVision": EEAndSpouseVision,
+                //"EEAndDependentsVision": EEAndDependentsVision,
+                //"EEAndFamilyVision": EEAndFamilyVision,
                 "DoNotWantVisionCoverage": DoNotWantVisionCoverage,
                 "EmployeeCoveredUnderOtherVision": EmployeeCoveredUnderOtherVision,
                 "SpouseCoveredUnderOtherVision": SpouseCoveredUnderOtherVision,
                 "DependentsCoveredUnderOtherVision": DependentsCoveredUnderOtherVision,
+
+                "DentalCoverage": DentalCoverage,
+                "VisionCoverage": VisionCoverage,
 
                 "OwnerBasicLifeADandDPolicyAmount": OwnerBasicLifeADandDPolicyAmount,
                 "ManagerBasicLifeADandDPolicyAmount": ManagerBasicLifeADandDPolicyAmount,

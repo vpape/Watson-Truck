@@ -91,10 +91,13 @@
                         <dt>
                             <label class="col-md-offset-2">Status:</label>
                         </dt>
-                        <dd>
-                            <label class="radio-inline"><input disabled type="radio" id="Employed" class="radio-inline" name="WorkStatus" value="Student" @((Model.family.Student == "True") ? "checked" : "") />Student</label>
-                            <label class="radio-inline"><input disabled type="radio" id="Quit" class="radio-inline" name="WorkStatus" value="Disabled" @((Model.family.Disabled == "True") ? "checked" : "") />Disabled</label>
-                            <label class="radio-inline"><input disabled type="radio" id="Terminated" class="radio-inline" name="WorkStatus" value="NonStandardDependent" @((Model.family.NonStandardDependent == "True") ? "checked" : "") />NonStandardDependent</label>
+                        <dd class="form-group-sm">
+                            <input type="checkbox" class="checkbox-inline" id="Student" name="Student" value="Student" @((Model.family.Student) == "True" ? "checked" : "") disabled />
+                            <text>Active</text>
+                            <input type="checkbox" class="checkbox-inline" id="Disabled" name="Disabled" value="Disabled" @((Model.family.Disabled) == "True" ? "checked" : "") disabled />
+                            <text>Retired</text>
+                            <input type="checkbox" class="checkbox-inline" id="NonStandardDependent" name="NonStandardDependent" value="NonStandardDependent" @((Model.family.NonStandardDependent) == "True" ? "checked" : "") disabled />
+                            <text>Cobra/State</text>
                         </dd>
                         <dt>
                             <label class="col-md-offset-2">Other Ins?</label>
@@ -179,6 +182,11 @@
         display: inline-flex;
         padding: 8px 8px;
     }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
 
     .phone-number .col-xs-3::after {
         content: "-";

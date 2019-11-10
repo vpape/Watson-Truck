@@ -27,6 +27,7 @@
                 </tr>
                 <tr>
                     <td>
+                        <p></p>
                         <div id="FamilyEnrollment">
                             <button type="button" class="button" onclick="return FamilyEnrollment(@ViewBag.Employee_id)">Family Enrollment</button>
                         </div>
@@ -34,6 +35,7 @@
                 </tr>
                 <tr>
                     <td>
+                        <p></p>
                         <div id="GroupHealthEnrollment">
                             <button type="button" class="button" onclick="return GrpHealthEnrollment(@ViewBag.Employee_id)">Group Health Enrollment</button>
                         </div>
@@ -41,6 +43,7 @@
                 </tr>
                 <tr>
                     <td>
+                        <p></p>
                         <div id="LifeInsuranceEnrollment">
                             <button type="button" class="button" onclick="return LifeInsuranceEnrollment(@ViewBag.Employee_id)">Life Insurance Enrollment</button>
                         </div>
@@ -49,6 +52,7 @@
             </table>
         </div>
     </div>
+    <p></p>
     <p>
         @Html.ActionLink("Back to Employee Overview", "EmpOverview")
     </p>
@@ -84,6 +88,11 @@
         display: inline-flex;
         padding: 8px 8px;
     }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
 
     table {
         border-collapse: collapse;

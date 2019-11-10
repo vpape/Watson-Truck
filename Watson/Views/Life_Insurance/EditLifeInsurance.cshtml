@@ -467,8 +467,8 @@
                         @Html.ActionLink("Back to Insurance", "LifeInsuranceEnrollment", "Life_Insurance", new { Employee_id = ViewBag.Employee_id }, null)
                     </div>
                 </div>
-                <table class="table table-condensed">
-                    @foreach (var benefitInfo in Model.beneficiaryInfo)
+                <table class="table table-hover">
+                    @foreach (var benefitInfo in Model.benefiList)
                     {
                         <tr>
                             <td>
@@ -520,7 +520,7 @@
                             </td>
                             <td>
                                 <div style="margin-top: 18px;">
-                                    @Html.ActionLink("Edit", "EditBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)
+                                    @Html.ActionLink("Edit", "EditBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id, benefitInfo.Beneficiary_id }, null)
                                     @*@Html.ActionLink("Delete", "DeleteBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)*@
                                 </div>
                             </td>

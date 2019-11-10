@@ -28,17 +28,17 @@
                     <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
                 </div>
                 @*<div class="col-md-10 col-md-offset-2">
-                <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                    @if (ViewBag.spouseExist == false)
-                    {
-                        <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                    }
-                    else
-                    {
-                        <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                    }
-                </select>
-            </div>*@
+                        <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                            @if (ViewBag.spouseExist == false)
+                            {
+                                <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                            }
+                            else
+                            {
+                                <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                            }
+                        </select>
+                    </div>*@
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Marital Status:</label>
@@ -93,12 +93,11 @@
             </div>
         </div>
     </div>
+    <p></p>
     @* Spouse Contact *@
     <div class="form-horizontal">
-        <hr />
         <div class="collapsible" id="SecondStep">Spouse Contact</div>
         <div id="divSpEnrollment" class="content">
-            <p></p>
             <p></p>
             <div id="divMailingAddress">
                 <div class="form-group">
@@ -161,12 +160,11 @@
             </div>
         </div>
     </div>
+    <p></p>
     @* Spouse Employment *@
     <div class="form-horizontal">
-        <hr />
         <div class="collapsible" id="ThirdStep">Spouse Employment</div>
         <div class="content">
-            <p></p>
             <p></p>
             <div id="divSpEmployment">
                 <div class="form-group">
@@ -200,7 +198,7 @@
                     <div id="SpOtherInsOtherSelect">
                         <label for="OtherInsuranceCoverage" class="control-label">Coverage:</label>
                         <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" value="Medical" /><text for="Medical">Medical</text>
-                        <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" value="Dental"/><text for="Dental">Dental</text>
+                        <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" value="Dental" /><text for="Dental">Dental</text>
                         <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" value="Vision" /><text for="Vision">Vision</text>
                         <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" value="Indemnity" /><text for="Indemnity">Indemnity</text>
                     </div>
@@ -213,9 +211,9 @@
             </div>
         </div>
     </div>
+    <p></p>
     @* Spouse Insurance *@
     <div class="form-horizontal">
-        <hr />
         <div class="collapsible" id="FourthStep">Spouse Insurance</div>
         <div class="content">
             <p></p>
@@ -223,7 +221,7 @@
             <div id="divSpInsurance">
                 <div id="SpInsuranceSelection">
                     <label>Is your spouse covered by other insurance, including Medicare/Medicaid?</label>
-                    <label class="radio-inline"><input type="radio" id="spInsuranceCoverage" class="radio-inline" onclick="showHideSpIns()" name="OtherInsuranceCoverage" value="True" checked/>Yes</label>
+                    <label class="radio-inline"><input type="radio" id="spInsuranceCoverage" class="radio-inline" onclick="showHideSpIns()" name="OtherInsuranceCoverage" value="True" checked />Yes</label>
                     <label class="radio-inline"><input type="radio" id="spInsuranceCoverage" class="radio-inline" onclick="showHideSpIns()" name="OtherInsuranceCoverage" value="False" />No</label>
                     <p></p>
                     <div id="spInsInfo">
@@ -256,7 +254,7 @@
                                 <input type="text" class="form-control" id="spInsPolicyNumber" placeholder="Policy #" name="PolicyNumber" value="" />
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -265,12 +263,11 @@
                     <input type="submit" id="SpouseEnrollmentUpdateStepFour" value="Save" class="btn" />
                 </div>
             </div>
+            <p>
+                @Html.ActionLink("Back to List", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
+            </p>
         </div>
     </div>
-    <p>
-        @Html.ActionLink("Back to List", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
-    </p>
-
 </body>
 </html>
 
@@ -312,6 +309,11 @@
         display: inline-flex;
         padding: 8px 8px;
     }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
 </style>
 
 <script>

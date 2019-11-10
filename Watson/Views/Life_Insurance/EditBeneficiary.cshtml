@@ -18,55 +18,55 @@
         <div id="divBeneficiaryInfo">
             <div class="form-group">
                 <table class="table table-condensed">
-                    @foreach (var benefitInfo in Model.beneficiaryInfo)
-                    {
+                    @*@foreach (var benefitInfo in Model.benefiList)
+                    {*@
                         <tr>
                             <td>
-                                <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@benefitInfo.Beneficiary_id" />
-                                <input type="checkbox" class="checkbox-inline" id="PrimaryBeneficiary" name="PrimaryBeneficiary" value="" @((benefitInfo.PrimaryBeneficiary) == "True" ? "checked" : "") /><label for="Primary">Primary</label>
-                                <input type="checkbox" class="checkbox-inline" id="ContingentBeneficiary" name="ContingentBeneficiary" value="" @((benefitInfo.ContingentBeneficiary) == "True" ? "checked" : "") /><label for="Contingent">Contingent</label>
+                                <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@(Model.beneficiary.Beneficiary_id)" />
+                                <input type="checkbox" class="checkbox-inline" id="PrimaryBeneficiary" name="PrimaryBeneficiary" value="" @((Model.beneficiary.PrimaryBeneficiary) == "True" ? "checked" : "") /><label for="Primary">Primary</label>
+                                <input type="checkbox" class="checkbox-inline" id="ContingentBeneficiary" name="ContingentBeneficiary" value="" @((Model.beneficiary.ContingentBeneficiary) == "True" ? "checked" : "") /><label for="Contingent">Contingent</label>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First Name" value="@benefitInfo.FirstName" />
+                                <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First Name" value="@Model.beneficiary.FirstName" />
                             </td>
                             <td>
-                                <input type="text" id="LastName" class="form-control" name="LastName" placeholder="Last Name" value="@benefitInfo.LastName" />
+                                <input type="text" id="LastName" class="form-control" name="LastName" placeholder="Last Name" value="@Model.beneficiary.LastName" />
                             </td>
                             <td>
-                                <input type="text" id="SSN" class="form-control" name="SSN" placeholder="SSN" value="@benefitInfo.SSN" />
+                                <input type="text" id="SSN" class="form-control" name="SSN" placeholder="SSN" value="@Model.beneficiary.SSN" />
                             </td>
                             <td>
-                                <input type="text" id="RelationshipToEmployee" class="form-control" name="RelationshipToEmployee" placeholder="Relationship to Employee" value="@benefitInfo.RelationshipToEmployee" />
+                                <input type="text" id="RelationshipToEmployee" class="form-control" name="RelationshipToEmployee" placeholder="Relationship to Employee" value="@Model.beneficiary.RelationshipToEmployee" />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" id="MailingAddress" class="form-control" name="Address" placeholder="Mailing Address" value="@benefitInfo.Address" />
+                                <input type="text" id="MailingAddress" class="form-control" name="Address" placeholder="Mailing Address" value="@Model.beneficiary.Address" />
                             </td>
                             <td>
-                                <input type="text" id="City" class="form-control" name="City" placeholder="City" value="@benefitInfo.CIty" />
+                                <input type="text" id="City" class="form-control" name="City" placeholder="City" value="@Model.beneficiary.CIty" />
                             </td>
                             <td>
-                                <input type="text" id="State" class="form-control" name="State" placeholder="State" value="@benefitInfo.State" />
+                                <input type="text" id="State" class="form-control" name="State" placeholder="State" value="@Model.beneficiary.State" />
                             </td>
                             <td>
-                                <input type="text" id="ZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="@benefitInfo.ZipCode" />
+                                <input type="text" id="ZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="@Model.beneficiary.ZipCode" />
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label style="display:table-cell">Date of Birth:</label>
-                                <input type="date" id="DOB" class="form-control" name="DOB" value="@Convert.ToDateTime(benefitInfo.DOB).ToString("yyyy-dd-MM")" />
+                                <input type="date" id="DOB" class="form-control" name="DOB" value="@Convert.ToDateTime(Model.beneficiary.DOB).ToString("yyyy-dd-MM")" />
                             </td>
                             <td>
                                 <label style="display:table-cell">Phone Number:</label>
-                                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="Phone Number" value="@benefitInfo.PhoneNumber" />
+                                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="Phone Number" value="@Model.beneficiary.PhoneNumber" />
                             </td>
                             <td>
                                 <label style="display:table-cell">Percentage Of Benefits:</label>
-                                <input type="number" id="PercentageOfBenefits" class="form-control" name="PercentageOfBenefits" placeholder="Percentage Of Benefits" value="@benefitInfo.PercentageOfBenefits" />
+                                <input type="number" id="PercentageOfBenefits" class="form-control" name="PercentageOfBenefits" placeholder="Percentage Of Benefits" value="@Model.beneficiary.PercentageOfBenefits" />
                             </td>
                             <td>
                                 <div style="margin-top: 18px;">
@@ -75,11 +75,11 @@
                                 </div>
                             </td>
                         </tr>
-                    }
+                    @*}*@
                 </table>
                 <div class="form-group">
                     <div class="col-md-offset-11">
-                        <button type="button" id="submitBeneficiaryUpdate" onclick="submitBeneficiary()" class="btn">Save</button>
+                        <button type="button" id="submitBeneficiaryUpdate" class="btn">Save</button>
                     </div>
                 </div>
                 <p>
@@ -131,6 +131,11 @@
         display: inline-flex;
         padding: 8px 8px;
     }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
 </style>
 
 <script>
@@ -192,6 +197,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#submitBeneficiaryUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
+            Beneficiary_id = document.getElementById("Beneficiary_id").value;
             PrimaryBeneficiary = document.getElementById("PrimaryBeneficiary").checked;
             ContingentBeneficiary = document.getElementById("ContingentBeneficiary").checked;
             RelationshipToEmployee = document.getElementById("RelationshipToEmployee").value;

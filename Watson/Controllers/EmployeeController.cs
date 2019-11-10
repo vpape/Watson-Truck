@@ -655,6 +655,30 @@ namespace Watson.Controllers
             spOtherIns.PhoneNumber = spInsPhoneNumber;
             spOtherIns.PolicyNumber = spInsPolicyNumber;
 
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(spOtherIns).State = System.Data.Entity.EntityState.Modified;
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err);
+                }
+
+                //RedirectToAction("FamilyOverview", new { sp.Employee_id });
+            }
+
+            int result = sp.Employee_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+
+
+            //Will use later to reflect change of emp marital status to reflect in spouse informaiton
             //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
 
             //ViewBag.spouseExist = true;
@@ -677,71 +701,7 @@ namespace Watson.Controllers
             //    ViewBag.RelationshipToInsured = "Dependent";
             //}
 
-            if (ModelState.IsValid)
-            {
-                db.Entry(sp).State = System.Data.Entity.EntityState.Modified;
-                db.Entry(spOtherIns).State = System.Data.Entity.EntityState.Modified;
-
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (Exception err)
-                {
-                    Console.WriteLine(err);
-                }
-
-                RedirectToAction("FamilyOverview", new { sp.Employee_id });
-            }
-
-            int result = sp.Employee_id;
-
-            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
-
-        public ActionResult SpOtherInsuranceUpdate(int? Employee_id, int? FamilyMember_id, int? OtherInsurance_id, string spInsuranceCoverage,
-            string spInsCarrier, string spInsMailingAddress, string spInsCity, string spInsState, string spInsZipCode, string spInsPhoneNumber,
-            string spInsPolicyNumber)
-        {
-            var other = db.Other_Insurance
-                .Where(i => i.FamilyMember_id == FamilyMember_id)
-                .Single();
-
-            ViewBag.FamilyMember_id = other.FamilyMember_id;
-            ViewBag.RelationshipToInsured = "Spouse";
-
-            //other.Employee_id = Employee_id;
-            //other.FamilyMember_id = FamilyMember_id;
-            other.CoveredByOtherInsurance = spInsuranceCoverage;
-            other.InsuranceCarrier = spInsCarrier;
-            other.MailingAddress = spInsMailingAddress;
-            other.City = spInsCity;
-            other.State = spInsState;
-            other.ZipCode = spInsZipCode;
-            other.PhoneNumber = spInsPhoneNumber;
-            other.PolicyNumber = spInsPolicyNumber;
-
-            if (ModelState.IsValid)
-            {
-                db.Entry(other).State = System.Data.Entity.EntityState.Modified;
-
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (Exception err)
-                {
-                    Console.WriteLine(err);
-                }
-
-                RedirectToAction("FamilyOverview", new { other.Employee_id });
-            }
-
-            int result = other.OtherInsurance_id;
-
-            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-        }
-   
 
         //Get-SpDetail
         public ActionResult SpouseDetail(int? Employee_id, int? FamilyMember_id, string MaritalStatus)
@@ -911,7 +871,7 @@ namespace Watson.Controllers
         }
 
         //EditUpdate-DepEdit
-        public JsonResult DepEditUpdate(int Employee_id, int FamilyMember_id, string MaritalStatus, string RelationshipToInsured, string DepFirstName, string DepLastName,
+        public JsonResult DepEditUpdate(int Employee_id, int FamilyMember_id, string RelationshipToInsured, string SSN, string DepFirstName, string DepLastName,
             DateTime DateOfBirth, string Gender, string EmpNumber, string MailingAddress, string City, string State, string ZipCode, string County, string Student,
             string Disabled, string NonStandardDependent, string depInsuranceCoverage, string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
         {
@@ -921,6 +881,7 @@ namespace Watson.Controllers
                 .Single();
 
             dep.RelationshipToInsured = RelationshipToInsured;
+            dep.SSN = SSN;
             dep.FirstName = DepFirstName;
             dep.LastName = DepLastName;
             dep.DateOfBirth = DateOfBirth;
@@ -934,8 +895,6 @@ namespace Watson.Controllers
             dep.Student = Student;
             dep.Disabled = Disabled;
             dep.NonStandardDependent = NonStandardDependent;
-
-            ViewBag.MartialStatus = MaritalStatus;
 
             var emp = new Employee()
             {

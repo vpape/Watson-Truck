@@ -33,7 +33,7 @@ namespace Watson.Controllers
 
             empAndInsVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
             empAndInsVM.lifeIns = db.Life_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id);
-            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Employee_id == Employee_id).ToList();
+            empAndInsVM.benefiList = db.Beneficiaries.Where(i => i.Employee_id == Employee_id).ToList();
 
             empAndInsVM.spouse = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id && i.RelationshipToInsured == "Spouse");
             empAndInsVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id && i.RelationshipToInsured != "Spouse").ToList();
@@ -53,21 +53,21 @@ namespace Watson.Controllers
         }
 
         //Create-LifeIns
-        public JsonResult LifeInsEnrollmentNew(int? LifeInsurance_id, int Employee_id, string GroupPlanNumber, DateTime BenefitsEffectiveDate, string InitialEnrollment,
-            string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount, string FamilyStatusChange, 
-            string SubTotalCode, string Married, DateTime DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, string AddDependent, string DropDependent, 
-            string DropEmployee, string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage, string Retirement,
-            DateTime? LastDayWorked, string OtherEvent, string OtherEventReason, DateTime? OtherEventDate, string DropBasicLife, string EmployeeDentalDrop, 
-            string SpouseDentalDrop, string DependentDentalDrop, string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop, 
+        public JsonResult LifeInsEnrollmentNew(int LifeInsurance_id, int Employee_id, int InsurancePlan_id, string GroupPlanNumber, DateTime BenefitsEffectiveDate,
+            string InitialEnrollment, string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount,
+            string FamilyStatusChange, string SubTotalCode, string Married, DateTime DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, 
+            string AddDependent, string DropDependent, string DropEmployee, string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage,
+            string Retirement, DateTime? LastDayWorked, string OtherEvent, string OtherEventReason, DateTime? OtherEventDate, string DropBasicLife, 
+            string EmployeeDentalDrop, string SpouseDentalDrop, string DependentDentalDrop, string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop, 
             string TerminationEmploymentLossOfOtherCoverage, DateTime? TerminationEmploymentDateLossOfOtherCoverage, string Divorce, DateTime? DivorceDate, 
             string DeathOfSpouse, DateTime? DeathOfSpouseDate, string TerminationOrExpirationOfCoverage, /*DateTime? TerminationOrExpirationOfCoverageDate,*/
-            string DentalCoverageLost, string VisionCoverageLost, string CoveredUnderOtherInsurance, string Other, string OtherReason, string DentalCoverage,
-            string EmployeeOnlyDental, string EEAndSpouseDental, string EEAndDependentsDental, string EEAndFamilyDental, string DoNotWantDentalCoverage,
-            string EmployeeCoveredUnderOtherDental, string SpouseCoveredUnderOtherDental, string DependentsCoveredUnderOtherDental, string VisionCoverage, 
-            string EmployeeOnlyVision, string EEAndSpouseVision, string EEAndDependentsVision, string EEAndFamilyVision, string DoNotWantVisionCoverage, 
-            string EmployeeCoveredUnderOtherVision, string SpouseCoveredUnderOtherVision, string DependentsCoveredUnderOtherVision, string PrimaryBeneficiary,
-            string ContingentBeneficiary, string OwnerBasicLifeADandDPolicyAmount, string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount,
-            string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount)
+            string DentalCoverageLost, string VisionCoverageLost, string CoveredUnderOtherInsurance, string Other, string OtherReason, string EmployeeOnlyDental,
+            string EEAndSpouseDental, string EEAndDependentsDental, string EEAndFamilyDental, string DoNotWantDentalCoverage, string EmployeeCoveredUnderOtherDental,
+            string SpouseCoveredUnderOtherDental, string DependentsCoveredUnderOtherDental, string EmployeeOnlyVision, string EEAndSpouseVision, 
+            string EEAndDependentsVision, string EEAndFamilyVision, string DoNotWantVisionCoverage, string EmployeeCoveredUnderOtherVision, 
+            string SpouseCoveredUnderOtherVision, string DependentsCoveredUnderOtherVision, string PrimaryBeneficiary, string ContingentBeneficiary, 
+            string OwnerBasicLifeADandDPolicyAmount, string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount,
+            string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount, string DentalCoverage, string VisionCoverage)
         {
 
             Life_Insurance lifeIns = new Life_Insurance();
@@ -119,20 +119,19 @@ namespace Watson.Controllers
             lifeIns.Other = Other;
             lifeIns.OtherReason = OtherReason;
 
-            //lifeIns.DentalCoverage = DentalCoverage;--might need
-            lifeIns.EmployeeOnlyDental = EmployeeOnlyDental;
-            lifeIns.EEAndSpouseDental = EEAndSpouseDental;
-            lifeIns.EEAndDependentsDental = EEAndDependentsDental;
-            lifeIns.EEAndFamilyDental = EEAndFamilyDental;
+            //lifeIns.EmployeeOnlyDental = EmployeeOnlyDental;
+            //lifeIns.EEAndSpouseDental = EEAndSpouseDental;
+            //lifeIns.EEAndDependentsDental = EEAndDependentsDental;
+            //lifeIns.EEAndFamilyDental = EEAndFamilyDental;
             lifeIns.DoNotWantDentalCoverage = DoNotWantDentalCoverage;
             lifeIns.EmployeeCoveredUnderOtherDentalPlan = EmployeeCoveredUnderOtherDental;
             lifeIns.SpouseCoveredUnderOtherDentalPlan = SpouseCoveredUnderOtherDental;
             lifeIns.DependentsCoveredUnderOtherDentalPlan = DependentsCoveredUnderOtherDental;
-            //lifeIns.VisionCoverage = VisionCoverage;--might need
-            lifeIns.EmployeeOnlyVision = EmployeeOnlyVision;
-            lifeIns.EEAndSpouseVision = EEAndSpouseVision;
-            lifeIns.EEAndDependentsVision = EEAndDependentsVision;
-            lifeIns.EEAndFamilyVision = EEAndFamilyVision;
+         
+            //lifeIns.EmployeeOnlyVision = EmployeeOnlyVision;
+            //lifeIns.EEAndSpouseVision = EEAndSpouseVision;
+            //lifeIns.EEAndDependentsVision = EEAndDependentsVision;
+            //lifeIns.EEAndFamilyVision = EEAndFamilyVision;
             lifeIns.DoNotWantVisionCoverage = DoNotWantVisionCoverage;
             lifeIns.EmployeeCoveredUnderOtherVisionPlan = EmployeeCoveredUnderOtherVision;
             lifeIns.SpouseCoveredUnderOtherVisionPlan = SpouseCoveredUnderOtherVision;
@@ -145,6 +144,16 @@ namespace Watson.Controllers
             lifeIns.AmountOfPreviousPolicy = PreviousPolicyAmount;
 
             db.Life_Insurance.Add(lifeIns);
+            db.SaveChanges();
+
+            InsurancePlan insPlan = db.InsurancePlans
+            .Where(i => i.InsurancePlan_id == InsurancePlan_id)
+            .SingleOrDefault();
+
+            insPlan.Employee_id = Employee_id;
+            insPlan.DentalPlan = DentalCoverage;
+            insPlan.VisionPlan = VisionCoverage;
+
             db.SaveChanges();
 
             int result = lifeIns.LifeInsurance_id;
@@ -165,7 +174,7 @@ namespace Watson.Controllers
 
             empAndInsVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
             empAndInsVM.lifeIns = db.Life_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id);
-            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Employee_id == Employee_id).ToList();
+            empAndInsVM.benefiList = db.Beneficiaries.Where(i => i.Employee_id == Employee_id).ToList();
 
             empAndInsVM.spouse = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id && i.RelationshipToInsured == "Spouse");
             empAndInsVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id && i.RelationshipToInsured != "Spouse").ToList();
@@ -301,7 +310,7 @@ namespace Watson.Controllers
 
             EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
 
-            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id).ToList();
+            empAndInsVM.benefiList = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id).ToList();
 
             return View(empAndInsVM);
         }
@@ -338,14 +347,15 @@ namespace Watson.Controllers
 
 
         //----------------------------------------------------------------------------------------
-        public ActionResult EditBeneficiary(int Employee_id, int? Beneficiary_id)
+        public ActionResult EditBeneficiary(int? Employee_id, int? Beneficiary_id)
         {
             ViewBag.Employee_id = Employee_id;
             ViewBag.Beneficiary_id = Beneficiary_id;
 
             EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
 
-            empAndInsVM.beneficiaryInfo = db.Beneficiaries.Where(i => i.Employee_id == Employee_id).ToList();
+            empAndInsVM.beneficiary = db.Beneficiaries.FirstOrDefault(i => i.Employee_id == Employee_id);
+            //empAndInsVM.benefiList = db.Beneficiaries.Where(i => i.Employee_id == Employee_id).ToList();
 
             return View(empAndInsVM);
         }

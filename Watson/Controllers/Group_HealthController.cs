@@ -44,9 +44,10 @@ namespace Watson.Controllers
         }
 
         //Create-InsPrem---Finish Html page for Admin. Employee will only view Ins Cost and Vision and Dental pdf
-        public JsonResult GrpHealthInsPremiumNew(int Employee_id, int InsurancePremium_id, string EmployeeOnly, 
-            string EmployeeAndSpouse, string EmployeeAndDependent, string EmployeeAndFamily, decimal YearlyPremiumCost)
+        public JsonResult GrpHealthInsPremiumNew(int Employee_id, int InsurancePlan_id, int InsurancePremium_id, string EmployeeOnly, string EmployeeAndSpouse, 
+            string EmployeeAndDependent, string EmployeeAndFamily, decimal YearlyPremiumCost, string InsMECPlan, string InsStndPlan, string InsBuyUpPlan)
         {
+  
             InsurancePremium insPremium = new InsurancePremium();
 
             insPremium.EmployeeOnly = EmployeeOnly;
@@ -64,6 +65,15 @@ namespace Watson.Controllers
             db.InsurancePremiums.Add(insPremium);
 
             db.SaveChanges();
+
+            InsurancePlan insPlan = new InsurancePlan();
+
+            //insPlan.InsurancePlan_id = InsurancePlan_id;
+            insPlan.MECPlan = InsMECPlan;
+            insPlan.StandardPlan = InsStndPlan;
+            insPlan.BuyUpPlan = InsBuyUpPlan;
+
+            ViewBag.insPlan = insPlan;
 
             int result = e.Employee_id;
 
@@ -139,8 +149,7 @@ namespace Watson.Controllers
             return View();
         }
 
-        //Create-InsSupplment---Finish Html page for Admin. Employee will only view Ins Cost and Vision and Dental pdf
-        //ask about the Dental and Vision Cost sheet premimums- do they need to be added to db.InsPremimum table
+        //Create-InsSupplment
         public JsonResult GrpHealthInsSupplementNew(int InsurancePlanDetail_id, string CalendarYearDeductible, string WaivedForPreventive, 
             string AnnualMaximum, string Preventive, string Basic, string Major, string UCRpercentage, string EndoPeridontics,
             string Orthodontia, string OrthodontiaLifetimeMax, string WaitingPeriod, string DentalNetWork, string Exams, 
@@ -314,8 +323,8 @@ namespace Watson.Controllers
 
         }
 
-         public JsonResult EmploymentInfoGrpHealthEnrollment(int? Employee_id, string GroupName, string IMSGroupNumber, string Department,
-             string EnrollmentType, string Payroll_id, string Class, string AnnualSalary, DateTime EffectiveDate, string HoursWorkedPerWeek)
+         public JsonResult EmploymentInfoGrpHealthEnrollment(int? Employee_id, string GroupName, string IMSGroupNumber, string Department, string EnrollmentType, 
+             string Payroll_id, string Class, string AnnualSalary, DateTime EffectiveDate, string HoursWorkedPerWeek)
         {
             //Employee emp = new Employee();
             Employee emp = db.Employees
@@ -344,25 +353,17 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        //Create-GrpHealthEnrollment- when saving info below, the objects commented out were making it fail
-        public JsonResult GrpHealthEnrollmentNew(int? Employee_id, /*int InsurancePlan_id,*/ string OtherCoverageSelection, string OtherReasonSelection,
-            string ReasonForGrpCoverageRefusal, string Myself, string Spouse, string Dependent, /*DateTime CafeteriaPlanYear,*/
-            string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption, 
-            string empFamGroupHealthOption, string GrpHEnrollmentEmpSignature, /*DateTime GrpHEnrollmentEmpSignatureDate,*/
-            string GrpHRefusalEmpSignature, /*DateTime GrpHRefusalEmpSignatureDate,*/  string InsMECPlan, string InsStndPlan,
-            string InsBuyUpPlan, string DentalPlan, string VisionPlan)
+        //Create-GrpHealthEnrollment
+        public JsonResult GrpHealthEnrollmentNew(int? Employee_id, /*DateTime? CafeteriaPlanYear,*/ string NoneGroupHealthOption,
+            string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption, string empFamGroupHealthOption, 
+            string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse, string Dependent, string OtherCoverageSelection, 
+            string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature, DateTime? GrpHRefusalEmpSignatureDate, )
         {
-           
+
             Group_Health g = db.Group_Health
                 .Where(i => i.Employee_id == Employee_id)
                 .Single();
 
-            g.OtherCoverage = OtherCoverageSelection;
-            g.OtherReason = OtherReasonSelection;
-            g.ReasonForGrpCoverageRefusal = ReasonForGrpCoverageRefusal;
-            g.Myself = Myself;
-            g.Spouse = Spouse;
-            g.Dependent = Dependent;
             //g.CafeteriaPlanYear = CafeteriaPlanYear;
             g.NoMedicalPlan = NoneGroupHealthOption;
             g.EmployeeOnly = empOnlyGroupHealthOption;
@@ -370,32 +371,20 @@ namespace Watson.Controllers
             g.EmployeeAndDependent = empDepGroupHealthOption;
             g.EmployeeAndFamily = empFamGroupHealthOption;
             g.GrpHEnrollmentEmpSignature = GrpHEnrollmentEmpSignature;
-            //g.GrpHEnrollmentEmpSignatureDate = GrpHEnrollmentEmpSignatureDate;
+            g.GrpHEnrollmentEmpSignatureDate = GrpHEnrollmentEmpSignatureDate;
+            g.Myself = Myself;
+            g.Spouse = Spouse;
+            g.Dependent = Dependent;
+            g.OtherCoverage = OtherCoverageSelection;
+            g.OtherReason = OtherReasonSelection;
+            g.ReasonForGrpCoverageRefusal = ReasonForGrpCoverageRefusal;
             g.GrpHRefusalEmpSignature = GrpHRefusalEmpSignature;
-            //g.GrpHRefusalEmpSignatureDate = GrpHRefusalEmpSignatureDate;
+            g.GrpHRefusalEmpSignatureDate = GrpHRefusalEmpSignatureDate;
 
-
-            InsurancePlan insPlan = new InsurancePlan();
-
-            //insPlan.InsurancePlan_id = InsurancePlan_id;
-            insPlan.MECPlan = InsMECPlan;
-            insPlan.StandardPlan = InsStndPlan;
-            insPlan.BuyUpPlan = InsBuyUpPlan;
-            insPlan.DentalPlan = DentalPlan;
-            insPlan.VisionPlan = VisionPlan;
-
-            ViewBag.insPlan = insPlan;
-
-
-            if (ModelState.IsValid)
-            {
-                //db.InsurancePlans.Add(insPlan);
-                db.SaveChanges();
-            }
+            db.SaveChanges();
 
             int result = g.Employee_id;
            
-
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
@@ -410,22 +399,23 @@ namespace Watson.Controllers
             GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
 
             groupHGrpHEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
-            groupHGrpHEnrollmentVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id).ToList();
             groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
-            groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id).ToList();
 
-            if (GroupHealthInsurance_id == null)
+            groupHGrpHEnrollmentVM.spouse = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id && i.RelationshipToInsured == "Spouse");
+            groupHGrpHEnrollmentVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id && i.RelationshipToInsured != "Spouse").ToList();
+            if (groupHGrpHEnrollmentVM.spouse != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                groupHGrpHEnrollmentVM.spouseInsurance = db.Other_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id && i.FamilyMember_id == groupHGrpHEnrollmentVM.spouse.FamilyMember_id);
+                groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id && i.FamilyMember_id != groupHGrpHEnrollmentVM.spouse.FamilyMember_id).ToList();
             }
-
-            Group_Health g = db.Group_Health.Find(GroupHealthInsurance_id);
-            if (g == null)
+            else
             {
-                return HttpNotFound();
+                groupHGrpHEnrollmentVM.spouseInsurance = null;
+                groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id).ToList();
             }
 
             return View(groupHGrpHEnrollmentVM);
+
         }
 
         //EditUpdate-GrpHealthEnrollment
@@ -437,9 +427,9 @@ namespace Watson.Controllers
             string empFamGroupHealthOption, string GrpHRefusalEmpSignature, DateTime GrpHRefusalEmpSignatureDate, string GrpHEnrollmentEmpSignature,
             DateTime GrpHEnrollmentEmpSignatureDate, string empDepartment, string empEnrollmentType, string empPayroll_id, string empClass,
             string empJobTitle, DateTime empHireDate, string empAnnualSalary, DateTime empEffectiveDate, string empHrsWkPerWk, string InsMECPlan,
-            string InsStndPlan, string InsBuyUpPlan, string DentalPlan, string VisionPlan, string spOtherInsCoverage, string spInsCarrier,
-            string spInsPolicyNumber, string spInsPhoneNumber, string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState,
-            string spInsZipCode,  string depOtherInsCoverage, string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
+            string InsStndPlan, string InsBuyUpPlan, string spOtherInsCoverage, string spInsCarrier, string spInsPolicyNumber, string spInsPhoneNumber, 
+            string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState, string spInsZipCode,  string depOtherInsCoverage,
+            string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
         {
             var g = db.Group_Health
                 .Where(i => i.GroupHealthInsurance_id == GroupHealthInsurance_id)
@@ -493,9 +483,7 @@ namespace Watson.Controllers
             insPlan.MECPlan = InsMECPlan;
             insPlan.StandardPlan = InsStndPlan;
             insPlan.BuyUpPlan = InsBuyUpPlan;
-            insPlan.DentalPlan = DentalPlan;
-            insPlan.VisionPlan = VisionPlan;
-
+     
             ViewBag.insPlan = insPlan;
 
             Other_Insurance o = db.Other_Insurance

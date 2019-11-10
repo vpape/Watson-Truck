@@ -53,11 +53,27 @@
                 <dt>
                     <label class="col-md-2 control-label">Gender:</label>
                 </dt>
-                <dd class="col-md-10 form-group">
-                    @Html.RadioButtonFor(model => model.family.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.family.Gender, "female", false) Female
+                <dd class="col-md-10 form-group" id="Gender">
+                    <input type="checkbox" class="checkbox-inline" id="Male" name="Gender" value="Male" @((Model.family.Gender) == "Male" ? "checked" : "") disabled />
+                    <text>Male</text>
+                    <input type="checkbox" class="checkbox-inline" id="Female" name="Gender" value="Female" @((Model.family.Gender) == "Female" ? "checked" : "") disabled />
+                    <text>Female</text>
+                    @*@Html.RadioButtonFor(model => model.family.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.family.Gender, "female", false) Female*@
                     @*<label class="radio-inline"><input disabled type="radio" id="Male" class="radio-inline" name="Gender" value="@((Model.family.Gender == "Male" ? "selected" : ""))" />Male</label>*@
                     @*<label class="radio-inline"><input disabled type="radio" id="Female" class="radio-inline" name="Gender" value="@((Model.family.Gender == "Female" ? "selected" : ""))" />Female</label>*@
                 </dd>
+                <dt>
+                    <label class="col-md-2 control-label">Status:</label>
+                </dt>
+                <dd class="col-md-10 form-group" id="Status">
+                    <input type="checkbox" class="checkbox-inline" id="Student" name="Student" value="Student" @((Model.family.Student) == "True" ? "checked" : "") disabled />
+                    <text>Active</text>
+                    <input type="checkbox" class="checkbox-inline" id="Disabled" name="Disabled" value="Disabled" @((Model.family.Disabled) == "True" ? "checked" : "") disabled />
+                    <text>Retired</text>
+                    <input type="checkbox" class="checkbox-inline" id="NonStandardDependent" name="NonStandardDependent" value="NonStandardDependent" @((Model.family.NonStandardDependent) == "True" ? "checked" : "") disabled />
+                    <text>Cobra/State</text>
+                </dd>
+
                 <dt>
                     <label class="col-md-2 control-label">MailingAddress:</label>
                 </dt>
@@ -161,6 +177,11 @@
         display: inline-flex;
         padding: 8px 8px;
     }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
 </style>
 
 <script>

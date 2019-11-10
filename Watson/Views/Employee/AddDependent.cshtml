@@ -93,7 +93,7 @@
                         <label style="margin-left: 7em;">Status:</label>
                         <input type="checkbox" class="checkbox-inline" id="Student" name="Student" value="Student" /><label for="Student">Student</label>
                         <input type="checkbox" class="checkbox-inline" id="Disabled" name="Disabled" value="Disabled" /><label label for="Disabled">Disabled</label>
-                        <input type="checkbox" class="checkbox-inline" id="NonStandardDependent" onclick="showHideMailingAddress()" name="NonStandardDependent" value="NonStandardDependent" /><label for="NonStandardDependent">Non-Standard Dependent</label>
+                        <input type="checkbox" class="checkbox-inline" id="NonStandardDependent" @*onclick="showHideMailingAddress()"*@ name="NonStandardDependent" value="NonStandardDependent" /><label for="NonStandardDependent">Non-Standard Dependent</label>
                     </div>
                 </div>
                 <div id="divMailingAddress">
@@ -143,14 +143,11 @@
                     <button type="button" id="DepInsEnrollmentUpdateStepTwo" class="btn">Save</button>
                 </div>
             </div>
+            <p>
+                @Html.ActionLink("Back to List", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
+            </p>
         </div>
     </div>
-    <p>
-        @Html.ActionLink("Back to List", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
-    </p>
-    @*<p>
-        @Html.ActionLink("Back to Enrollment Selection", "EnrollmentSelection")
-    </p>*@
 </body>
 </html>
 
@@ -189,9 +186,15 @@
 
     a {
         text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
+        display: inline-flex;
+        padding: 8px 8px;
     }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
     .checkboxes input {
         margin: 0em 0em 0em .5em;
     }
