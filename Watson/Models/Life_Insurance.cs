@@ -81,14 +81,6 @@ namespace Watson.Models
         public Nullable<System.DateTime> TerminationEmploymentDateLossOfOtherCoverage { get; set; }
         public string Other { get; set; }
         public string OtherReason { get; set; }
-        public string EmployeeOnlyDental { get; set; }
-        public string EEAndSpouseDental { get; set; }
-        public string EEAndDependentsDental { get; set; }
-        public string EEAndFamilyDental { get; set; }
-        public string EmployeeOnlyVision { get; set; }
-        public string EEAndSpouseVision { get; set; }
-        public string EEAndDependentsVision { get; set; }
-        public string EEAndFamilyVision { get; set; }
         public string DentalCoverage { get; set; }
         public string VisionCoverage { get; set; }
     

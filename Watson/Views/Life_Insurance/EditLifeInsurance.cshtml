@@ -547,11 +547,6 @@
                         </tr>
                     }
                 </table>
-                @*<div class="form-group">
-                        <div class="col-md-offset-10">
-                            <button type="button" id="submitBeneficiary" onclick="submitBeneficiary()" class="btn">Save Beneficiary</button>
-                        </div>
-                    </div>*@
             </div>
         </div>
     </div>
@@ -711,22 +706,6 @@
 
     }
 
-    @*function submitBeneficiary() {
-        document.querySelector("#submitBeneficiary").addEventListener("click", function () {
-            submit = document.getElementById("submitBeneficiary");
-
-            var message;
-            alert = confirm("Beneificary changes have been saved. Thank you!")
-
-            if (alert == true) {
-                confirm(message)
-                if (alert == true) {
-                    window.location.href = "/Life_Insurance/LifeInsuranceEnrollment&Employee_id=" + @ViewBag.Employee_id;
-                }
-            }
-        })
-    }*@
-
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EditLifeInsUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
@@ -781,7 +760,6 @@
             //refer to row 400
             //DentalPlan = document.querySelector('input[name="DentalPlan"]').value;
             //document.getElementById("DentalPlanResult").innerHTML = DentalPlan;
-
             DentalPlan = document.getElementById("divDentalPlan").value;
             document.getElementById("divDentalPlanResult").innerHTML = DentalPlan;
             VisionPlan = document.getElementById("divVisionPlan").value;
@@ -863,19 +841,11 @@
                 "DentalPlan": DentalPlan,
                 "VisionPlan": VisionPlan,
 
-                //"EmployeeOnlyDental": EmployeeOnlyDental,
-                //"EEAndSpouseDental": EEAndSpouseDental,
-                //"EEAndDependentsDental": EEAndDependentsDental,
-                //"EEAndFamilyDental": EEAndFamilyDental,
                 "DoNotWantDentalCoverage": DoNotWantDentalCoverage,
                 "EmployeeCoveredUnderOtherDental": EmployeeCoveredUnderOtherDental,
                 "SpouseCoveredUnderOtherDental": SpouseCoveredUnderOtherDental,
                 "DependentsCoveredUnderOtherDental": DependentsCoveredUnderOtherDental,
 
-                //"EmployeeOnlyVision": EmployeeOnlyVision,
-                //"EEAndSpouseVision": EEAndSpouseVision,
-                //"EEAndDependentsVision": EEAndDependentsVision,
-                //"EEAndFamilyVision": EEAndFamilyVision,
                 "DoNotWantVisionCoverage": DoNotWantVisionCoverage,
                 "EmployeeCoveredUnderOtherVision": EmployeeCoveredUnderOtherVision,
                 "SpouseCoveredUnderOtherVision": SpouseCoveredUnderOtherVision,
@@ -895,65 +865,6 @@
                 })
                 .catch(error => console.error(error))
         })
-
-        //document.querySelector("#submitBeneficiary").addEventListener("click", function () {
-        //    Employee_id = document.getElementById("Employee_id").value;
-        //    Beneficiary_id = document.getElementById("Beneficiary_id").value;
-        //    PrimaryBeneficiary = document.getElementById("PrimaryBeneficiary").checked;
-        //    ContingentBeneficiary = document.getElementById("ContingentBeneficiary").checked;
-        //    FirstName = document.getElementById("FirstName").value;
-        //    LastName = document.getElementById("LastName").value;
-        //    SSN = document.getElementById("SSN").value;
-        //    RelationshipToEmployee = document.getElementById("RelationshipToEmployee").value;
-        //    MailingAddress = document.getElementById("MailingAddress").value;
-        //    City = document.getElementById("City").value;
-        //    State = document.getElementById("State").value;
-        //    ZipCode = document.getElementById("ZipCode").value;
-        //    DOB = document.getElementById("DOB").value;
-        //    PhoneNumber = document.getElementById("PhoneNumber").value;
-        //    PercentageOfBenefits = document.getElementById("PercentageOfBenefits").value;
-
-        //    var data = {
-        //        "Employee_id": Employee_id,
-        //        "Beneficiary_id": Beneficiary_id,
-        //        "PrimaryBeneficiary": PrimaryBeneficiary,
-        //        "ContingentBeneficiary": ContingentBeneficiary,
-        //        "FirstName": FirstName,
-        //        "LastName": LastName,
-        //        "SSN": SSN,
-        //        "RelationshipToEmployee": RelationshipToEmployee,
-        //        "MailingAddress": MailingAddress,
-        //        "City": City,
-        //        "State": State,
-        //        "ZipCode": ZipCode,
-        //        "DOB": DOB,
-        //        "PhoneNumber": PhoneNumber,
-        //        "PercentageOfBenefits": PercentageOfBenefits,
-        //    }
-
-            //var ret = postData('EditBeneficaryUpdate', data)
-            //    .then(data => { console.log(data);
-            //                  FirstStep(data);
-            //                  })
-            //    .catch(error => console.error(error))
-
-        //    fetch('EditBeneficaryUpdate', {
-        //        body: JSON.stringify(data), //must match 'Content-Type' header
-        //        cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-        //        credentials: 'same-origin', //include, same-origin, *omit
-        //        headers: {
-        //            'Accept': 'application/json',
-        //            'user-agent': 'Mozilla/4.0 MDN Example',
-        //            'content-type': 'application/json'
-        //        },
-        //        method: 'Post', //*GET, POST, PUT, DELETE, etc...
-        //        mode: 'same-origin', //no-cors, cors, *same-origin
-        //        redirect: 'follow', //manual, *follow, error
-        //        referrer: 'no-referrer', //*client, no-referrer
-        //    }).then(res => res.json())
-        //        .then(response => FirstStep(response))
-        //        .catch(error => console.error('Error:', error));
-        //})
     })
 
     function FirstStep(emp) {
