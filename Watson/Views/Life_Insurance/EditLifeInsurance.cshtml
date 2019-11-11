@@ -393,11 +393,18 @@
                     <tr>
                         <td>
                             <label>Dental Coverage:</label>
-                            <div class="checkboxes">
+                            <div class="checkboxes" @*id="DentalPlan"*@>
                                 <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="EmployeeOnlyDental" name="EmployeeOnlyDental" value="EmployeeOnly" @((Model.lifeIns.EmployeeOnlyDental) == "True" ? "checked" : "") /><label for="EmployeeOnlyDental">Employee Only</label>
                                 <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="EEAndSpouseDental" name="EEAndSpouseDental" value="EmployeeAndSpouse" @((Model.lifeIns.EEAndSpouseDental) == "True" ? "checked" : "") /><label for="EEAndSpouseDental">Employee & Spouse</label><br />
                                 <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="EEAndDependentsDental" name="EEAndDependentsDental" value="EmployeeAndDependent" @((Model.lifeIns.EEAndDependentsDental) == "True" ? "checked" : "") /><label for="EEAndDependentsDental">Employee & Dependent</label>
                                 <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="EEAndFamilyDental" name="EEAndFamilyDental" value="EmployeeAndFamily" @((Model.lifeIns.EEAndFamilyDental) == "True" ? "checked" : "") /><label for="EEAndFamilyDental">Employee & Family</label>
+
+                                @*<input type="checkbox" class="dentalcoveragecheckboxes-inline" name="DentalPlan" value="EmployeeOnly" @((Model.lifeIns.EmployeeOnlyDental) == "True" ? "checked" : "") /><label>Employee Only</label>
+                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" name="DentalPlan" value="EmployeeAndSpouse" @((Model.lifeIns.EEAndSpouseDental) == "True" ? "checked" : "") /><label>Employee & Spouse</label><br />
+                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" name="DentalPlan" value="EmployeeAndDependent" @((Model.lifeIns.EEAndDependentsDental) == "True" ? "checked" : "") /><label>Employee & Dependent</label>
+                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" name="DentalPlan" value="EmployeeAndFamily" @((Model.lifeIns.EEAndFamilyDental) == "True" ? "checked" : "") /><label>Employee & Family</label>*@
+
+
                             </div>
                             <p></p>
                             <div class="checkboxes">
@@ -410,11 +417,16 @@
                         </td>
                         <td>
                             <label>Vision Coverage:</label>
-                            <div class="checkboxes">
+                            <div class="checkboxes" @*id="VisionPlan"*@>
                                 <input type="checkbox" class="visioncoveragecheckboxes-inline" id="EmployeeOnlyVision" name="EmployeeOnlyVision" value="EmployeeOnly" @((Model.lifeIns.EmployeeOnlyVision) == "True" ? "checked" : "") /><label for="EmployeeOnlyVision">Employee Only</label>
                                 <input type="checkbox" class="visioncoveragecheckboxes-inline" id="EEAndSpouseVision" name="EEAndSpouseVision" value="EmployeeAndSpouse" @((Model.lifeIns.EEAndSpouseVision) == "True" ? "checked" : "") /><label for="EEAndSpouseVision">Employee & Spouse</label><br />
                                 <input type="checkbox" class="visioncoveragecheckboxes-inline" id="EEAndDependentsVision" name="EEAndDependentsVision" value="EmployeeAndDependent" @((Model.lifeIns.EEAndDependentsVision) == "True" ? "checked" : "") /><label for="EEAndDependentsVision">Employee & Dependent</label>
                                 <input type="checkbox" class="visioncoveragecheckboxes-inline" id="EEAndFamilyVision" name="EEAndFamilyVision" value="EmployeeAndFamily" @((Model.lifeIns.EEAndFamilyVision) == "True" ? "checked" : "") /><label for="EEAndFamilyVision">Employee & Family</label>
+
+                                @*<input type="checkbox" class="visioncoveragecheckboxes-inline" name="VisionPlan" value="EmployeeOnly" @((Model.lifeIns.EmployeeOnlyVision) == "True" ? "checked" : "") /><label>Employee Only</label>
+                                <input type="checkbox" class="visioncoveragecheckboxes-inline" name="VisionPlan" value="EmployeeAndSpouse" @((Model.lifeIns.EEAndSpouseVision) == "True" ? "checked" : "") /><label>Employee & Spouse</label><br />
+                                <input type="checkbox" class="visioncoveragecheckboxes-inline" name="VisionPlan" value="EmployeeAndDependent" @((Model.lifeIns.EEAndDependentsVision) == "True" ? "checked" : "") /><label>Employee & Dependent</label>
+                                <input type="checkbox" class="visioncoveragecheckboxes-inline" name="VisionPlan" value="EmployeeAndFamily" @((Model.lifeIns.EEAndFamilyVision) == "True" ? "checked" : "") /><label>Employee & Family</label>*@
                             </div>
                             <p></p>
                             <div class="checkboxes">
@@ -757,7 +769,25 @@
             Other = document.getElementById("Other").checked;
             OtherReason = document.getElementById("OtherReason").value;
 
-            //DentalCoverage = document.getElementById("DentalCoverage").value;
+            //refer to row 400
+            //DentalPlan = document.querySelector('dentalcoveragecheckboxes-inline');
+            //VisionPlan = document.querySelector('visioncoveragecheckboxes-inline');
+
+            //refer to row 400
+            //DentalPlan = document.querySelectorAll('input[name="DentalPlan"]');
+            //VisionPlan = document.getElementById("VisionPlan").value;
+            //DentalPlan = document.querySelector("#DentalPlan");
+
+            //var DentalPlan = document.querySelectorAll('#DentalPlan');
+            //for (var i = 0; i < DentalPlan.length; i++) {
+            //    Dental[i].onclick = function () {
+            //        if (this.checked == true) {
+
+            //            DentalPlan = document.getElementById("DentalPlan").value;
+            //        }
+            //    };
+            //}
+
             EmployeeOnlyDental = document.getElementById("EmployeeOnlyDental").checked;
             EEAndSpouseDental = document.getElementById("EEAndSpouseDental").checked;
             EEAndDependentsDental = document.getElementById("EEAndDependentsDental").checked;
@@ -766,7 +796,7 @@
             EmployeeCoveredUnderOtherDental = document.getElementById("EmployeeCoveredUnderOtherDental").checked;
             SpouseCoveredUnderOtherDental = document.getElementById("SpouseCoveredUnderOtherDental").checked;
             DependentsCoveredUnderOtherDental = document.getElementById("DependentsCoveredUnderOtherDental").checked;
-            //VisionCoverage = document.getElementById("VisionCoverage").value;
+
             EmployeeOnlyVision = document.getElementById("EmployeeOnlyVision").checked;
             EEAndSpouseVision = document.getElementById("EEAndSpouseVision").checked;
             EEAndDependentsVision = document.getElementById("EEAndDependentsVision").checked;
@@ -831,7 +861,9 @@
                 "Other": Other,
                 "OtherReason": OtherReason,
 
-                //"DentalCoverage": DentalCoverage,
+                //"DentalPlan": DentalPlan,
+                //"VisionPlan": VisionPlan,
+
                 "EmployeeOnlyDental": EmployeeOnlyDental,
                 "EEAndSpouseDental": EEAndSpouseDental,
                 "EEAndDependentsDental": EEAndDependentsDental,
@@ -840,7 +872,7 @@
                 "EmployeeCoveredUnderOtherDental": EmployeeCoveredUnderOtherDental,
                 "SpouseCoveredUnderOtherDental": SpouseCoveredUnderOtherDental,
                 "DependentsCoveredUnderOtherDental": DependentsCoveredUnderOtherDental,
-                //"VisionCoverage": VisionCoverage,
+
                 "EmployeeOnlyVision": EmployeeOnlyVision,
                 "EEAndSpouseVision": EEAndSpouseVision,
                 "EEAndDependentsVision": EEAndDependentsVision,

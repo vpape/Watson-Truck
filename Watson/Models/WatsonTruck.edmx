@@ -280,6 +280,9 @@
           <Property Name="PersonTwoRelationship" Type="varchar" MaxLength="15" />
           <Property Name="PersonTwoSignature" Type="varchar" MaxLength="75" />
           <Property Name="PersonTwoSignatureDate" Type="date" />
+          <Property Name="MECPlan" Type="varchar" MaxLength="30" />
+          <Property Name="StandardPlan" Type="varchar" MaxLength="30" />
+          <Property Name="BuyUpPlan" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="InsurancePlan">
           <Key>
@@ -1242,6 +1245,9 @@
           <Property Name="PersonTwoRelationship" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="PersonTwoSignature" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="PersonTwoSignatureDate" Type="DateTime" Precision="0" />
+          <Property Name="MECPlan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="StandardPlan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="BuyUpPlan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="InsurancePlan">
           <Key>
@@ -1977,6 +1983,9 @@
           <EntitySetMapping Name="Group_Health">
             <EntityTypeMapping TypeName="WatsonTruckModel.Group_Health">
               <MappingFragment StoreEntitySet="Group_Health">
+                <ScalarProperty Name="BuyUpPlan" ColumnName="BuyUpPlan" />
+                <ScalarProperty Name="StandardPlan" ColumnName="StandardPlan" />
+                <ScalarProperty Name="MECPlan" ColumnName="MECPlan" />
                 <ScalarProperty Name="PersonTwoSignatureDate" ColumnName="PersonTwoSignatureDate" />
                 <ScalarProperty Name="PersonTwoSignature" ColumnName="PersonTwoSignature" />
                 <ScalarProperty Name="PersonTwoRelationship" ColumnName="PersonTwoRelationship" />

@@ -431,7 +431,6 @@
     <Content Include="Views\Employee\FamilyInsurance.cshtml" />
     <Content Include="Views\Group_Health\GrpHealthInsPremiums.cshtml" />
     <Content Include="Views\Group_Health\GrpHealthInsSupplement.cshtml" />
-    <Content Include="Views\Group_Health\EditGrpHealthIns.cshtml" />
     <Content Include="Views\Group_Health\GrpHealthInsDetail.cshtml" />
     <Content Include="Views\Group_Health\DeleteGrpHealthIns.cshtml" />
     <Content Include="Views\Employee\FamilyOverview.cshtml" />
@@ -465,7 +464,6 @@
     <Content Include="Views\Group_Health\EditAuthorizationForm.cshtml" />
     <Content Include="Views\Group_Health\EditGroupHealthIns.cshtml" />
     <Content Include="Views\Employee\SpouseEnrollment.cshtml" />
-    <Content Include="Views\Employee\DependentEnrollment.cshtml" />
     <Content Include="Views\Admin\EmpOverview.cshtml" />
     <Content Include="Views\Admin\FamilyOverview.cshtml" />
     <Content Include="Views\Life_Insurance\AddBeneficiary.cshtml" />

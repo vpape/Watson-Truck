@@ -49,6 +49,9 @@ namespace Watson.Models
         public string PersonTwoRelationship { get; set; }
         public string PersonTwoSignature { get; set; }
         public Nullable<System.DateTime> PersonTwoSignatureDate { get; set; }
+        public string MECPlan { get; set; }
+        public string StandardPlan { get; set; }
+        public string BuyUpPlan { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

@@ -67,7 +67,7 @@ namespace Watson.Controllers
             string EEAndDependentsVision, string EEAndFamilyVision, string DoNotWantVisionCoverage, string EmployeeCoveredUnderOtherVision, 
             string SpouseCoveredUnderOtherVision, string DependentsCoveredUnderOtherVision, string PrimaryBeneficiary, string ContingentBeneficiary, 
             string OwnerBasicLifeADandDPolicyAmount, string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount,
-            string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount, string DentalCoverage, string VisionCoverage)
+            string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount, string DentalPlan, string VisionPlan)
         {
 
             Life_Insurance lifeIns = new Life_Insurance();
@@ -119,19 +119,22 @@ namespace Watson.Controllers
             lifeIns.Other = Other;
             lifeIns.OtherReason = OtherReason;
 
-            //lifeIns.EmployeeOnlyDental = EmployeeOnlyDental;
-            //lifeIns.EEAndSpouseDental = EEAndSpouseDental;
-            //lifeIns.EEAndDependentsDental = EEAndDependentsDental;
-            //lifeIns.EEAndFamilyDental = EEAndFamilyDental;
+            //lifeIns.DentalCoverage = DentalPlan;
+            //lifeIns.VisionCoverage = VisionPlan;
+
+            lifeIns.EmployeeOnlyDental = EmployeeOnlyDental;
+            lifeIns.EEAndSpouseDental = EEAndSpouseDental;
+            lifeIns.EEAndDependentsDental = EEAndDependentsDental;
+            lifeIns.EEAndFamilyDental = EEAndFamilyDental;
             lifeIns.DoNotWantDentalCoverage = DoNotWantDentalCoverage;
             lifeIns.EmployeeCoveredUnderOtherDentalPlan = EmployeeCoveredUnderOtherDental;
             lifeIns.SpouseCoveredUnderOtherDentalPlan = SpouseCoveredUnderOtherDental;
             lifeIns.DependentsCoveredUnderOtherDentalPlan = DependentsCoveredUnderOtherDental;
-         
-            //lifeIns.EmployeeOnlyVision = EmployeeOnlyVision;
-            //lifeIns.EEAndSpouseVision = EEAndSpouseVision;
-            //lifeIns.EEAndDependentsVision = EEAndDependentsVision;
-            //lifeIns.EEAndFamilyVision = EEAndFamilyVision;
+
+            lifeIns.EmployeeOnlyVision = EmployeeOnlyVision;
+            lifeIns.EEAndSpouseVision = EEAndSpouseVision;
+            lifeIns.EEAndDependentsVision = EEAndDependentsVision;
+            lifeIns.EEAndFamilyVision = EEAndFamilyVision;
             lifeIns.DoNotWantVisionCoverage = DoNotWantVisionCoverage;
             lifeIns.EmployeeCoveredUnderOtherVisionPlan = EmployeeCoveredUnderOtherVision;
             lifeIns.SpouseCoveredUnderOtherVisionPlan = SpouseCoveredUnderOtherVision;
@@ -151,8 +154,8 @@ namespace Watson.Controllers
             .SingleOrDefault();
 
             insPlan.Employee_id = Employee_id;
-            insPlan.DentalPlan = DentalCoverage;
-            insPlan.VisionPlan = VisionCoverage;
+            insPlan.DentalPlan = DentalPlan;
+            insPlan.VisionPlan = VisionPlan;
 
             db.SaveChanges();
 
@@ -207,7 +210,7 @@ namespace Watson.Controllers
             string EmployeeOnlyVision, string EEAndSpouseVision, string EEAndDependentsVision, string EEAndFamilyVision, string DoNotWantVisionCoverage,
             string EmployeeCoveredUnderOtherVision, string SpouseCoveredUnderOtherVision, string DependentsCoveredUnderOtherVision, string PrimaryBeneficiary,
             string ContingentBeneficiary, string OwnerBasicLifeADandDPolicyAmount, string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount,
-            string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount)
+            string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount, string DentalPlan, string VisionPlan)
         {
             Life_Insurance lifeins = db.Life_Insurance
                 .Where(i => i.LifeInsurance_id == LifeInsurance_id)
@@ -259,6 +262,9 @@ namespace Watson.Controllers
             lifeIns.Other = Other;
             lifeIns.OtherReason = OtherReason;
 
+            //lifeIns.DentalCoverage = DentalPlan;
+            //lifeIns.VisionCoverage = VisionPlan;
+
             lifeIns.EmployeeOnlyDental = EmployeeOnlyDental;
             lifeIns.EEAndSpouseDental = EEAndSpouseDental;
             lifeIns.EEAndDependentsDental = EEAndDependentsDental;
@@ -267,6 +273,7 @@ namespace Watson.Controllers
             lifeIns.EmployeeCoveredUnderOtherDentalPlan = EmployeeCoveredUnderOtherDental;
             lifeIns.SpouseCoveredUnderOtherDentalPlan = SpouseCoveredUnderOtherDental;
             lifeIns.DependentsCoveredUnderOtherDentalPlan = DependentsCoveredUnderOtherDental;
+
             lifeIns.EmployeeOnlyVision = EmployeeOnlyVision;
             lifeIns.EEAndSpouseVision = EEAndSpouseVision;
             lifeIns.EEAndDependentsVision = EEAndDependentsVision;

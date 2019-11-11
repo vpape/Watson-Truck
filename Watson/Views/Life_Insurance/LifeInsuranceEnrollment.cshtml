@@ -397,16 +397,20 @@
                     <tr>
                         <td>
                             <label>Dental Coverage:</label>
-                            <div class="checkboxes">
+                            <div class="dentalcheckboxes" id="DentalPlan">
                                 @*<input type="checkbox" class="dentalcoveragecheckboxes-inline" id="EmployeeOnlyDental" name="EmployeeOnlyDental" value="EmployeeOnly" /><label for="EmployeeOnlyDental">Employee Only</label>
                                 <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="EEAndSpouseDental" name="EEAndSpouseDental" value="EmployeeAndSpouse" /><label for="EEAndSpouseDental">Employee & Spouse</label><br />
                                 <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="EEAndDependentsDental" name="EEAndDependentsDental" value="EmployeeAndDependent" /><label for="EEAndDependentsDental">Employee & Dependent</label>
                                 <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="EEAndFamilyDental" name="EEAndFamilyDental" value="EmployeeAndFamily" /><label for="EEAndFamilyDental">Employee & Family</label>*@
 
-                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan" name="DentalPlan" value="EmployeeOnly" /><label>Employee Only</label>
-                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan" name="DentalPlan" value="EmployeeAndSpouse" /><label>Employee & Spouse</label><br />
-                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan" name="DentalPlan" value="EmployeeAndDependent" /><label>Employee & Dependent</label>
-                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan" name="DentalPlan" value="EmployeeAndFamily" /><label>Employee & Family</label>
+                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan" name="DentalPlan" value="EmployeeOnly"  />
+                                <label for="EmployeeOnlyDental">Employee Only</label>
+                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan"  name="DentalPlan" value="EmployeeAndSpouse" />
+                                <label for="EEAndSpouseDental">Employee & Spouse</label><br />
+                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan" name="DentalPlan" value="EmployeeAndDependent" />
+                                <label for="EEAndDependentsDental">Employee & Dependent</label>
+                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan"  name="DentalPlan" value="EmployeeAndFamily" />
+                                <label for="EEAndFamilyDental">Employee & Family</label>
                             </div>
                             <p></p>
                             <div class="checkboxes">
@@ -419,16 +423,16 @@
                         </td>
                         <td>
                             <label>Vision Coverage:</label>
-                            <div class="checkboxes">
-                                @*<input type="checkbox" class="visioncoveragecheckboxes-inline" id="EmployeeOnlyVision" name="EmployeeOnlyVision" value="EmployeeOnly" /><label for="EmployeeOnlyVision">Employee Only</label>
+                            <div class="visioncheckboxes" @*id="VisionPlan"*@>
+                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="EmployeeOnlyVision" name="EmployeeOnlyVision" value="EmployeeOnly" /><label for="EmployeeOnlyVision">Employee Only</label>
                                 <input type="checkbox" class="visioncoveragecheckboxes-inline" id="EEAndSpouseVision" name="EEAndSpouseVision" value="EmployeeAndSpouse" /><label for="EEAndSpouseVision">Employee & Spouse</label><br />
                                 <input type="checkbox" class="visioncoveragecheckboxes-inline" id="EEAndDependentsVision" name="EEAndDependentsVision" value="EmployeeAndDependent" /><label for="EEAndDependentsVision">Employee & Dependent</label>
-                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="EEAndFamilyVision" name="EEAndFamilyVision" value="EmployeeAndFamily" /><label for="EEAndFamilyVision">Employee & Family</label>*@
+                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="EEAndFamilyVision" name="EEAndFamilyVision" value="EmployeeAndFamily" /><label for="EEAndFamilyVision">Employee & Family</label>
 
-                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="VisionPlan" name="VisionPlan" value="EmployeeOnly" /><label>Employee Only</label>
+                                @*<input type="checkbox" class="visioncoveragecheckboxes-inline" id="VisionPlan" name="VisionPlan" value="EmployeeOnly" /><label>Employee Only</label>
                                 <input type="checkbox" class="visioncoveragecheckboxes-inline" id="VisionPlan" name="VisionPlan" value="EmployeeAndSpouse" /><label>Employee & Spouse</label><br />
                                 <input type="checkbox" class="visioncoveragecheckboxes-inline" id="VisionPlan" name="VisionPlan" value="EmployeeAndDependent" /><label>Employee & Dependent</label>
-                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="VisionPlan" name="VisionPlan" value="EmployeeAndFamily" /><label>Employee & Family</label>
+                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="VisionPlan" name="VisionPlan" value="EmployeeAndFamily" /><label>Employee & Family</label>*@
                             </div>
                             <p></p>
                             <div class="checkboxes">
@@ -593,14 +597,15 @@
         display: table-cell;
     }
 
-    .checkboxes input {
+    .checkboxes input, .dentalcheckboxes input,
+    .visioncheckboxes input{
         margin: 0em 0em 0em .5em;
     }
 
 </style>
 
 <script>
-    var col = document.querySelectorAll(".collapsible");
+      var col = document.querySelectorAll(".collapsible");
     var i;
     var Employee_id;
 
@@ -659,7 +664,6 @@
         });
     });
 
-
     document.querySelector("#LifeInsUpdate").addEventListener("click", function () {
         submitLifeIns = document.getElementById("LifeInsUpdate");
 
@@ -697,7 +701,7 @@
     function editBeneficiary() {
         window.location.href = "/Life_Insurance/EditBeneficiary?Employee_id=" + @ViewBag.Employee_id + "&Beneficiary_id=@ViewBag.Beneficiary_id";
     }
-    
+
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#LifeInsUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
@@ -748,22 +752,33 @@
             OtherReason = document.getElementById("OtherReason").value;
 
             //refer to row 400
-            DentalCoverage = document.getElementById("DentalCoverage").value;
-            VisionCoverage = document.getElementById("VisionCoverage").value;
+            //DentalPlan = document.querySelectorAll('input[name="DentalPlan"]');
+            //VisionPlan = document.getElementById("VisionPlan").value;
+            //DentalPlan = document.querySelector("#DentalPlan");
 
-            //EmployeeOnlyDental = document.getElementById("EmployeeOnlyDental").checked;
-            //EEAndSpouseDental = document.getElementById("EEAndSpouseDental").checked;
-            //EEAndDependentsDental = document.getElementById("EEAndDependentsDental").checked;
-            //EEAndFamilyDental = document.getElementById("EEAndFamilyDental").checked;
+            var DentalPlan = document.querySelectorAll('#DentalPlan');
+            for (var i = 0; i < DentalPlan.length; i++) {
+                Dental[i].onclick = function () {
+                    if (this.checked == true) {
+
+                        DentalPlan = document.getElementById("DentalPlan").value;
+                    }
+                };         
+            }
+        
+            EmployeeOnlyDental = document.getElementById("EmployeeOnlyDental").checked;
+            EEAndSpouseDental = document.getElementById("EEAndSpouseDental").checked;
+            EEAndDependentsDental = document.getElementById("EEAndDependentsDental").checked;
+            EEAndFamilyDental = document.getElementById("EEAndFamilyDental").checked;
             DoNotWantDentalCoverage = document.getElementById("DoNotWantDentalCoverage").checked;
             EmployeeCoveredUnderOtherDental = document.getElementById("EmployeeCoveredUnderOtherDental").checked;
             SpouseCoveredUnderOtherDental = document.getElementById("SpouseCoveredUnderOtherDental").checked;
             DependentsCoveredUnderOtherDental = document.getElementById("DependentsCoveredUnderOtherDental").checked;
 
-            //EmployeeOnlyVision = document.getElementById("EmployeeOnlyVision").checked;
-            //EEAndSpouseVision = document.getElementById("EEAndSpouseVision").checked;
-            //EEAndDependentsVision = document.getElementById("EEAndDependentsVision").checked;
-            //EEAndFamilyVision = document.getElementById("EEAndFamilyVision").checked;
+            EmployeeOnlyVision = document.getElementById("EmployeeOnlyVision").checked;
+            EEAndSpouseVision = document.getElementById("EEAndSpouseVision").checked;
+            EEAndDependentsVision = document.getElementById("EEAndDependentsVision").checked;
+            EEAndFamilyVision = document.getElementById("EEAndFamilyVision").checked;
             DoNotWantVisionCoverage = document.getElementById("DoNotWantVisionCoverage").checked;
             EmployeeCoveredUnderOtherVision = document.getElementById("EmployeeCoveredUnderOtherVision").checked;
             SpouseCoveredUnderOtherVision = document.getElementById("SpouseCoveredUnderOtherVision").checked;
@@ -823,34 +838,35 @@
                 "Other": Other,
                 "OtherReason": OtherReason,
 
-                //"EmployeeOnlyDental": EmployeeOnlyDental,
-                //"EEAndSpouseDental": EEAndSpouseDental,
-                //"EEAndDependentsDental": EEAndDependentsDental,
-                //"EEAndFamilyDental": EEAndFamilyDental,
+                //"DentalPlan": DentalPlan,
+                //"VisionPlan": VisionPlan,
+
+                "EmployeeOnlyDental": EmployeeOnlyDental,
+                "EEAndSpouseDental": EEAndSpouseDental,
+                "EEAndDependentsDental": EEAndDependentsDental,
+                "EEAndFamilyDental": EEAndFamilyDental,
                 "DoNotWantDentalCoverage": DoNotWantDentalCoverage,
                 "EmployeeCoveredUnderOtherDental": EmployeeCoveredUnderOtherDental,
                 "SpouseCoveredUnderOtherDental": SpouseCoveredUnderOtherDental,
                 "DependentsCoveredUnderOtherDental": DependentsCoveredUnderOtherDental,
 
-                //"EmployeeOnlyVision": EmployeeOnlyVision,
-                //"EEAndSpouseVision": EEAndSpouseVision,
-                //"EEAndDependentsVision": EEAndDependentsVision,
-                //"EEAndFamilyVision": EEAndFamilyVision,
+                "EmployeeOnlyVision": EmployeeOnlyVision,
+                "EEAndSpouseVision": EEAndSpouseVision,
+                "EEAndDependentsVision": EEAndDependentsVision,
+                "EEAndFamilyVision": EEAndFamilyVision,
                 "DoNotWantVisionCoverage": DoNotWantVisionCoverage,
                 "EmployeeCoveredUnderOtherVision": EmployeeCoveredUnderOtherVision,
                 "SpouseCoveredUnderOtherVision": SpouseCoveredUnderOtherVision,
                 "DependentsCoveredUnderOtherVision": DependentsCoveredUnderOtherVision,
 
-                "DentalCoverage": DentalCoverage,
-                "VisionCoverage": VisionCoverage,
+
 
                 "OwnerBasicLifeADandDPolicyAmount": OwnerBasicLifeADandDPolicyAmount,
                 "ManagerBasicLifeADandDPolicyAmount": ManagerBasicLifeADandDPolicyAmount,
                 "EmployeeBasicLifeADandDPolicyAmount": EmployeeBasicLifeADandDPolicyAmount,
                 "DoNotWantBasicLifeCoverageADandD": DoNotWantBasicLifeCoverageADandD,
-                "PreviousPolicyAmount": PreviousPolicyAmount,       
+                "PreviousPolicyAmount": PreviousPolicyAmount,
             }
-
             var ret = postData('LifeInsEnrollmentNew', data)
                 .then(data => {
                     console.log(data);
@@ -900,7 +916,7 @@
         //    })
         //    .catch(error => console.error(error))
     })
-    
+
     function FirstStep(emp) {
         Employee_id = emp.data;
     }
@@ -930,6 +946,12 @@
         //    Response.json();
         //}) //parses response to JSON
     }
-
-
 </script>
+  
+
+
+          
+
+      
+
+  

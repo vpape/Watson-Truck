@@ -324,7 +324,7 @@ namespace Watson.Controllers
         }
 
          public JsonResult EmploymentInfoGrpHealthEnrollment(int? Employee_id, string GroupName, string IMSGroupNumber, string Department, string EnrollmentType, 
-             string Payroll_id, string Class, string AnnualSalary, DateTime EffectiveDate, string HoursWorkedPerWeek)
+             string Payroll_id, string Class, string AnnualSalary, string JobTitle, DateTime HireDate, DateTime EffectiveDate, string HoursWorkedPerWeek)
         {
             //Employee emp = new Employee();
             Employee emp = db.Employees
@@ -336,6 +336,8 @@ namespace Watson.Controllers
             emp.Payroll_id = Payroll_id;
             emp.Class = Class;
             emp.AnnualSalary = AnnualSalary;
+            emp.JobTitle = JobTitle;
+            emp.HireDate = HireDate;
             emp.EffectiveDate = EffectiveDate;
             emp.HoursWorkedPerWeek = HoursWorkedPerWeek;
 
@@ -354,10 +356,10 @@ namespace Watson.Controllers
         }
 
         //Create-GrpHealthEnrollment
-        public JsonResult GrpHealthEnrollmentNew(int? Employee_id, /*DateTime? CafeteriaPlanYear,*/ string NoneGroupHealthOption,
-            string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption, string empFamGroupHealthOption, 
+        public JsonResult GrpHealthEnrollmentNew(int? Employee_id, /*DateTime? CafeteriaPlanYear,*/ string NoneGroupHealthOption, string MECPlan, string StandardPlan,
+            string BuyUpPlan, string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption, string empFamGroupHealthOption, 
             string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse, string Dependent, string OtherCoverageSelection, 
-            string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature, DateTime? GrpHRefusalEmpSignatureDate, )
+            string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature, DateTime? GrpHRefusalEmpSignatureDate)
         {
 
             Group_Health g = db.Group_Health
@@ -366,10 +368,14 @@ namespace Watson.Controllers
 
             //g.CafeteriaPlanYear = CafeteriaPlanYear;
             g.NoMedicalPlan = NoneGroupHealthOption;
-            g.EmployeeOnly = empOnlyGroupHealthOption;
-            g.EmployeeAndSpouse = empSpGroupHealthOption;
-            g.EmployeeAndDependent = empDepGroupHealthOption;
-            g.EmployeeAndFamily = empFamGroupHealthOption;
+            g.MECPlan = MECPlan;
+            g.StandardPlan = StandardPlan;
+            g.BuyUpPlan = BuyUpPlan;
+            //g.EmployeeOnly = empOnlyGroupHealthOption;
+            //g.EmployeeAndSpouse = empSpGroupHealthOption;
+            //g.EmployeeAndDependent = empDepGroupHealthOption;
+            //g.EmployeeAndFamily = empFamGroupHealthOption;
+
             g.GrpHEnrollmentEmpSignature = GrpHEnrollmentEmpSignature;
             g.GrpHEnrollmentEmpSignatureDate = GrpHEnrollmentEmpSignatureDate;
             g.Myself = Myself;
@@ -419,97 +425,49 @@ namespace Watson.Controllers
         }
 
         //EditUpdate-GrpHealthEnrollment
-        public JsonResult GrpHealthInsEditUpdate(int GroupHealthInsurance_id, int Employee_id, int InsurancePlan_id, int FamilyMember_id, 
-            int OtherInsurance_id, string empInsuranceCarrier, string empInsPolicyNumber, string GroupName, string IMSGroupNumber, 
-            string PhoneNumber, string ReasonForGrpCoverageRefusal, string OtherCoverage, string OtherReason,
-            string Myself, string Spouse, string Dependent, string empOtherInsuranceCoverage, DateTime CafeteriaPlanYear,
-            string NoneGroupHealthOption, string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption,
-            string empFamGroupHealthOption, string GrpHRefusalEmpSignature, DateTime GrpHRefusalEmpSignatureDate, string GrpHEnrollmentEmpSignature,
-            DateTime GrpHEnrollmentEmpSignatureDate, string empDepartment, string empEnrollmentType, string empPayroll_id, string empClass,
-            string empJobTitle, DateTime empHireDate, string empAnnualSalary, DateTime empEffectiveDate, string empHrsWkPerWk, string InsMECPlan,
-            string InsStndPlan, string InsBuyUpPlan, string spOtherInsCoverage, string spInsCarrier, string spInsPolicyNumber, string spInsPhoneNumber, 
-            string spInsMailingAddress, string spInsPObox, string spInsCity, string spInsState, string spInsZipCode,  string depOtherInsCoverage,
-            string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
+        public JsonResult GrpHealthInsEditUpdate(int? Employee_id, /*DateTime? CafeteriaPlanYear,*/ string NoneGroupHealthOption, string MECPlan, string StandardPlan, 
+            string BuyUpPlan, string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption, string empFamGroupHealthOption,
+            string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse, string Dependent, string OtherCoverageSelection,
+            string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature, DateTime? GrpHRefusalEmpSignatureDate)
         {
-            var g = db.Group_Health
-                .Where(i => i.GroupHealthInsurance_id == GroupHealthInsurance_id)
-                .Single();
+            Group_Health g = db.Group_Health
+                 .Where(i => i.Employee_id == Employee_id)
+                 .Single();
 
-            g.InsuranceCarrier = empInsuranceCarrier;
-            g.PolicyNumber = empInsPolicyNumber;
-            g.GroupName = GroupName;
-            g.IMSGroupNumber = IMSGroupNumber;
-            g.PhoneNumber = PhoneNumber;
-            g.ReasonForGrpCoverageRefusal = ReasonForGrpCoverageRefusal;
-            g.OtherCoverage = OtherCoverage;
-            g.OtherReason = OtherReason;
+            //g.CafeteriaPlanYear = CafeteriaPlanYear;
+            g.NoMedicalPlan = NoneGroupHealthOption;
+            g.MECPlan = MECPlan;
+            g.StandardPlan = StandardPlan;
+            g.BuyUpPlan = BuyUpPlan;
+            //g.EmployeeOnly = empOnlyGroupHealthOption;
+            //g.EmployeeAndSpouse = empSpGroupHealthOption;
+            //g.EmployeeAndDependent = empDepGroupHealthOption;
+            //g.EmployeeAndFamily = empFamGroupHealthOption;
+
+            g.GrpHEnrollmentEmpSignature = GrpHEnrollmentEmpSignature;
+            g.GrpHEnrollmentEmpSignatureDate = GrpHEnrollmentEmpSignatureDate;
             g.Myself = Myself;
             g.Spouse = Spouse;
             g.Dependent = Dependent;
-            g.OtherInsuranceCoverage = empOtherInsuranceCoverage;
-            g.CafeteriaPlanYear = CafeteriaPlanYear;
-            g.NoMedicalPlan = NoneGroupHealthOption;
-            g.EmployeeOnly = empOnlyGroupHealthOption;
-            g.EmployeeAndSpouse = empSpGroupHealthOption;
-            g.EmployeeAndDependent = empDepGroupHealthOption;
-            g.EmployeeAndFamily = empFamGroupHealthOption;
+            g.OtherCoverage = OtherCoverageSelection;
+            g.OtherReason = OtherReasonSelection;
+            g.ReasonForGrpCoverageRefusal = ReasonForGrpCoverageRefusal;
             g.GrpHRefusalEmpSignature = GrpHRefusalEmpSignature;
             g.GrpHRefusalEmpSignatureDate = GrpHRefusalEmpSignatureDate;
-            g.GrpHEnrollmentEmpSignature = GrpHEnrollmentEmpSignature;
-            g.GrpHEnrollmentEmpSignatureDate = GrpHEnrollmentEmpSignatureDate;
 
-            ViewBag.g = g;
+            //InsurancePlan insPlan = db.InsurancePlans
+            //  .Where(i => i.InsurancePlan_id == InsurancePlan_id)
+            //  .Single();
 
-            Employee e = db.Employees
-                .Where(i => i.Employee_id == Employee_id)
-                .Single();
+            //insPlan.MECPlan = InsMECPlan;
+            //insPlan.StandardPlan = InsStndPlan;
+            //insPlan.BuyUpPlan = InsBuyUpPlan;
 
-            e.Department = empDepartment;
-            e.EnrollmentType = empEnrollmentType;
-            e.Payroll_id = empPayroll_id;
-            e.Class = empClass;
-            e.AnnualSalary = empAnnualSalary;
-            e.JobTitle = empJobTitle;
-            e.HireDate = empHireDate;
-            e.EffectiveDate = empEffectiveDate;
-            e.HoursWorkedPerWeek = empHrsWkPerWk;
-
-            ViewBag.e = e;
-
-            InsurancePlan insPlan = db.InsurancePlans
-              .Where(i => i.InsurancePlan_id == InsurancePlan_id)
-              .Single();
-
-            insPlan.MECPlan = InsMECPlan;
-            insPlan.StandardPlan = InsStndPlan;
-            insPlan.BuyUpPlan = InsBuyUpPlan;
-     
-            ViewBag.insPlan = insPlan;
-
-            Other_Insurance o = db.Other_Insurance
-               .Where(i => i.OtherInsurance_id == OtherInsurance_id)
-               .Single();
-
-            o.CoveredByOtherInsurance = spOtherInsCoverage;
-            o.InsuranceCarrier = spInsCarrier;
-            o.PolicyNumber = spInsPolicyNumber;
-            o.PhoneNumber = spInsPhoneNumber;
-            o.MailingAddress = spInsMailingAddress;
-            o.PObox = spInsPObox;
-            o.City = spInsCity;
-            o.State = spInsState;
-            o.ZipCode = spInsZipCode;
-            o.CoveredByOtherInsurance = depOtherInsCoverage;
-            o.InsuranceCarrier = depInsCarrier;
-            o.PolicyNumber = depInsPolicyNumber;
-            o.PhoneNumber = depInsPhoneNumber;
+            //ViewBag.insPlan = insPlan;
             
-            ViewBag.o = o;
-
             if (ModelState.IsValid)
             {
                 db.Entry(g).State = System.Data.Entity.EntityState.Modified;
-                db.Entry(o).State = System.Data.Entity.EntityState.Modified;
 
                 try
                 {
@@ -520,7 +478,7 @@ namespace Watson.Controllers
                     Console.WriteLine(err);
                 }
 
-                RedirectToAction("EmpOverview");
+                //RedirectToAction("EmpOverview");
             }
 
             int result = g.Employee_id;
