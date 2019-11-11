@@ -191,7 +191,7 @@ namespace Watson.Controllers
             DateTime? LastDayWorked, string OtherEvent, string OtherEventReason, DateTime? OtherEventDate, string DropBasicLife, string EmployeeDentalDrop,
             string SpouseDentalDrop, string DependentDentalDrop, string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop,
             string TerminationEmploymentLossOfOtherCoverage, DateTime? TerminationEmploymentDateLossOfOtherCoverage, string Divorce, DateTime? DivorceDate,
-            string DeathOfSpouse, DateTime? DeathOfSpouseDate, string TerminationOrExpirationOfCoverage, /*DateTime? TerminationOrExpirationOfCoverageDate,*/
+            string DeathOfSpouse, DateTime? DeathOfSpouseDate, string TerminationOrExpirationOfCoverage, DateTime TerminationOrExpirationOfCoverageDate,
             string DentalCoverageLost, string VisionCoverageLost, string CoveredUnderOtherInsurance, string Other, string OtherReason, string DentalCoverage,
             string DoNotWantDentalCoverage, string EmployeeCoveredUnderOtherDental, string SpouseCoveredUnderOtherDental, string DependentsCoveredUnderOtherDental,
             string VisionCoverage, string DoNotWantVisionCoverage, string EmployeeCoveredUnderOtherVision, string SpouseCoveredUnderOtherVision, 
@@ -242,7 +242,7 @@ namespace Watson.Controllers
             lifeIns.DeathOfSpouse = DeathOfSpouse;
             lifeIns.DeathOfSpouseDate = DeathOfSpouseDate;
             lifeIns.TerminationOrExpirationOfCoverage = TerminationOrExpirationOfCoverage;
-            //lifeIns.TerminationOrExpirationOfCoverageDate = TerminationOrExpirationOfCoverageDate;-- NonNullable error Parameter for DateTime
+            lifeIns.TerminationOrExpirationOfCoverageDate = TerminationOrExpirationOfCoverageDate;//-- NonNullable error Parameter for DateTime
             lifeIns.DentalCoverageLost = DentalCoverageLost;
             lifeIns.VisionCoverageLost = VisionCoverageLost;
             lifeIns.CoveredUnderOtherInsurance = CoveredUnderOtherInsurance;
@@ -292,7 +292,8 @@ namespace Watson.Controllers
 
             EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
 
-            empAndInsVM.benefiList = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id).ToList();
+            //empAndInsVM.benefiList = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id).ToList();
+            empAndInsVM.beneficiary = db.Beneficiaries.FirstOrDefault(i => i.Beneficiary_id == Beneficiary_id);
 
             return View(empAndInsVM);
         }
@@ -336,7 +337,7 @@ namespace Watson.Controllers
 
             EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
 
-            empAndInsVM.beneficiary = db.Beneficiaries.FirstOrDefault(i => i.Employee_id == Employee_id);
+            empAndInsVM.beneficiary = db.Beneficiaries.FirstOrDefault(i => i.Beneficiary_id == Beneficiary_id);
             //empAndInsVM.benefiList = db.Beneficiaries.Where(i => i.Employee_id == Employee_id).ToList();
 
             return View(empAndInsVM);

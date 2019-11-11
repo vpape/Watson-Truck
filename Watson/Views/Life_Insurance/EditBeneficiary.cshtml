@@ -22,7 +22,6 @@
                     {*@
                         <tr>
                             <td>
-                                <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@(Model.beneficiary.Beneficiary_id)" />
                                 <input type="checkbox" class="checkbox-inline" id="PrimaryBeneficiary" name="PrimaryBeneficiary" value="" @((Model.beneficiary.PrimaryBeneficiary) == "True" ? "checked" : "") /><label for="Primary">Primary</label>
                                 <input type="checkbox" class="checkbox-inline" id="ContingentBeneficiary" name="ContingentBeneficiary" value="" @((Model.beneficiary.ContingentBeneficiary) == "True" ? "checked" : "") /><label for="Contingent">Contingent</label>
                             </td>
