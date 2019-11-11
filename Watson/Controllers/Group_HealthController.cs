@@ -356,7 +356,7 @@ namespace Watson.Controllers
         }
 
         //Create-GrpHealthEnrollment
-        public JsonResult GrpHealthEnrollmentNew(int? Employee_id, /*DateTime? CafeteriaPlanYear,*/ string NoneGroupHealthOption, string MECPlan, string StandardPlan,
+        public JsonResult GrpHealthEnrollmentNew(int? Employee_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan, string StandardPlan,
             string BuyUpPlan, string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption, string empFamGroupHealthOption, 
             string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse, string Dependent, string OtherCoverageSelection, 
             string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature, DateTime? GrpHRefusalEmpSignatureDate)
@@ -367,7 +367,7 @@ namespace Watson.Controllers
                 .Single();
 
             //g.CafeteriaPlanYear = CafeteriaPlanYear;
-            g.NoMedicalPlan = NoneGroupHealthOption;
+            g.NoMedicalPlan = NoMedical;
             g.MECPlan = MECPlan;
             g.StandardPlan = StandardPlan;
             g.BuyUpPlan = BuyUpPlan;
@@ -425,7 +425,7 @@ namespace Watson.Controllers
         }
 
         //EditUpdate-GrpHealthEnrollment
-        public JsonResult GrpHealthInsEditUpdate(int? Employee_id, /*DateTime? CafeteriaPlanYear,*/ string NoneGroupHealthOption, string MECPlan, string StandardPlan, 
+        public JsonResult GrpHealthInsEditUpdate(int? Employee_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan, string StandardPlan, 
             string BuyUpPlan, string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption, string empFamGroupHealthOption,
             string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse, string Dependent, string OtherCoverageSelection,
             string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature, DateTime? GrpHRefusalEmpSignatureDate)
@@ -435,7 +435,7 @@ namespace Watson.Controllers
                  .Single();
 
             //g.CafeteriaPlanYear = CafeteriaPlanYear;
-            g.NoMedicalPlan = NoneGroupHealthOption;
+            g.NoMedicalPlan = NoMedical;
             g.MECPlan = MECPlan;
             g.StandardPlan = StandardPlan;
             g.BuyUpPlan = BuyUpPlan;

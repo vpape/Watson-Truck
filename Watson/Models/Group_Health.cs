@@ -30,11 +30,6 @@ namespace Watson.Models
         public string OtherInsuranceCoverage { get; set; }
         public Nullable<System.DateTime> CafeteriaPlanYear { get; set; }
         public string NoMedicalPlan { get; set; }
-        public string EmployeeOnly { get; set; }
-        public string EmployeeAndSpouse { get; set; }
-        public string EmployeeAndDependent { get; set; }
-        public string EmployeeAndFamily { get; set; }
-        public string Relationship { get; set; }
         public string GrpHRefusalEmpSignature { get; set; }
         public Nullable<System.DateTime> GrpHRefusalEmpSignatureDate { get; set; }
         public string GrpHEnrollmentEmpSignature { get; set; }

@@ -738,24 +738,13 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th></th>
                             <th>None</th>
                             <th>MEC Plan</th>
                             <th>Standard Plan</th>
                             <th>Buy-Up Plan</th>
                         </tr>
-                        @*<tr>
-                            <th></th>
-                            <th></th>
-                            <th>None</th>
-                            <th>Employee Only</th>
-                            <th>Employee & Spouse</th>
-                            <th>Employee & Child(ren)</th>
-                            <th>Employee & Family</th>
-                        </tr>*@
                     </thead>
                     <tr>
-                        <td></td>
                         <td>Selection:</td>
                         <td>
                             <select class="form-control" id="NoneGrpHealthOption" name="NoMedicalPlan">
@@ -795,54 +784,6 @@
                             </select>
                         </td>
                     </tr>
-                    @*<tr>
-                        <td>
-                        </td>
-                        <td>Medical Plan:</td>
-                        <td>
-                            <select id="NoneGroupHealthOption" class="form-control">
-                                <option>Select Option:</option>
-                                <option value="N/A" name="NoMedicalPlan"></option>
-                                <option value="No Medical Plan" name="NoMedicalPlan">No Medical Plan</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select id="empOnlyGroupHealthOption" class="form-control">
-                                <option>Select Option:</option>
-                                <option value="N/A" name="EmployeeOnly"></option>
-                                <option value="EO-MEC Plan" name="EmployeeOnly">EO-MEC Plan</option>
-                                <option value="EO-Standard Plan" name="EmployeeOnly">EO-Standard Plan</option>
-                                <option value="EO-Buy Up Plan" name="EmployeeOnly">EO-Buy Up Plan</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select id="empSpGroupHealthOption" class="form-control">
-                                <option>Select Option:</option>
-                                <option value="N/A" name="EmployeeAndSpouse"></option>
-                                <option value="ES-MEC Plan" name="EmployeeAndSpouse">ES-MEC Plan</option>
-                                <option value="ES-Standard Plan" name="EmployeeAndSpouse">ES-Standard Plan</option>
-                                <option value="ES-Buy Up Plan" name="EmployeeAndSpouse">ES-Buy Up Plan</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select id="empDepGroupHealthOption" class="form-control">
-                                <option>Select Option:</option>
-                                <option value="N/A" name="EmployeeAndDependent"></option>
-                                <option value="EC-MEC Plan" name="EmployeeAndDependent">EC-MEC Plan</option>
-                                <option value="EC-Standard Plan" name="EmployeeAndDependent">EC-Standard Plan</option>
-                                <option value="EC-Buy Up Plan" name="EmployeeAndDependent">EC-Buy Up Plan</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select id="empFamGroupHealthOption" class="form-control">
-                                <option>Select Option:</option>
-                                <option value="N/A" name="EmployeeAndFamily"></option>
-                                <option value="EF-MEC Plan" name="EmployeeAndFamily">EF-MEC Plan</option>
-                                <option value="EF-Standard Plan" name="EmployeeAndFamily">EF-Standard Plan</option>
-                                <option value="EF-Buy Up Plan" name="EmployeeAnEmployeeAndFamilydDependent">EF-Buy Up Plan</option>
-                            </select>
-                        </td>
-                    </tr>*@
                 </table>
             </div>
             <form id="spFormId" class="spForm">
@@ -1447,14 +1388,18 @@
 
         document.querySelector("#GrpHealthInsStepTwo").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            NoneGroupHealthOption = document.getElementById("NoneGroupHealthOption").value;
+
+            NoMedical = document.getElementById("NoMedicalGrpHealthOption").value;
+            document.getElementById("NoMedicalOptionResult").innerHTML = NoMedical;
+
             MECPlan = document.getElementById("MECPlanGrpHealthOption").value;
+            document.getElementById("MECPlanOptionResult").innerHTML = MECPlan;
+
             StandardPlan = document.getElementById("StndPlanGrpHealthOption").value;
+            document.getElementById("StndPlanOptionResult").innerHTML = StandardPlan;
+
             BuyUpPlan = document.getElementById("BuyUpPlanGrpHealthOption").value;
-            //empOnlyGroupHealthOption = document.getElementById("empOnlyGroupHealthOption").value;
-            //empSpGroupHealthOption = document.getElementById("empSpGroupHealthOption").value;
-            //empDepGroupHealthOption = document.getElementById("empDepGroupHealthOption").value;
-            //empFamGroupHealthOption = document.getElementById("empFamGroupHealthOption").value;
+            document.getElementById("BuyUpPlanOptionResult").innerHTML = BuyUpPlan;
 
             GrpHEnrollmentEmpSignature = document.getElementById("GrpHEnrollmentEmpSignature").value;
             GrpHEnrollmentEmpSignatureDate = document.getElementById("GrpHEnrollmentEmpSignatureDate").value;
@@ -1469,15 +1414,10 @@
 
             var data = {
                 "Employee_id": Employee_id,
-                "NoneGroupHealthOption": NoneGroupHealthOption,
+                "NoMedical": NoMedical,
                 "MECPlan": MECPlan,
                 "StandardPlan": StandardPlan,
                 "BuyUpPlan": BuyUpPlan,
-                //"empOnlyGroupHealthOption": empOnlyGroupHealthOption,
-                //"empSpGroupHealthOption": empSpGroupHealthOption,
-                //"empDepGroupHealthOption": empDepGroupHealthOption,
-                //"empFamGroupHealthOption": empFamGroupHealthOption,
-
                 "GrpHEnrollmentEmpSignature": GrpHEnrollmentEmpSignature,
                 "GrpHEnrollmentEmpSignatureDate": GrpHEnrollmentEmpSignatureDate,
                 "Myself": Myself,

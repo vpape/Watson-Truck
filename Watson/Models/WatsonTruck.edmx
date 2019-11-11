@@ -261,11 +261,10 @@
           <Property Name="OtherInsuranceCoverage" Type="varchar" MaxLength="15" />
           <Property Name="CafeteriaPlanYear" Type="date" />
           <Property Name="NoMedicalPlan" Type="varchar" MaxLength="15" />
-          <Property Name="EmployeeOnly" Type="varchar" MaxLength="25" />
-          <Property Name="EmployeeAndSpouse" Type="varchar" MaxLength="25" />
-          <Property Name="EmployeeAndDependent" Type="varchar" MaxLength="25" />
+          <Property Name="MECPlan" Type="varchar" MaxLength="25" />
+          <Property Name="StandardPlan" Type="varchar" MaxLength="25" />
+          <Property Name="BuyUpPlan" Type="varchar" MaxLength="25" />
           <Property Name="EmployeeAndFamily" Type="varchar" MaxLength="25" />
-          <Property Name="Relationship" Type="varchar" MaxLength="20" />
           <Property Name="GrpHRefusalEmpSignature" Type="varchar" MaxLength="75" />
           <Property Name="GrpHRefusalEmpSignatureDate" Type="date" />
           <Property Name="GrpHEnrollmentEmpSignature" Type="varchar" MaxLength="75" />
@@ -280,9 +279,6 @@
           <Property Name="PersonTwoRelationship" Type="varchar" MaxLength="15" />
           <Property Name="PersonTwoSignature" Type="varchar" MaxLength="75" />
           <Property Name="PersonTwoSignatureDate" Type="date" />
-          <Property Name="MECPlan" Type="varchar" MaxLength="30" />
-          <Property Name="StandardPlan" Type="varchar" MaxLength="30" />
-          <Property Name="BuyUpPlan" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="InsurancePlan">
           <Key>
@@ -1225,12 +1221,7 @@
           <Property Name="OtherInsuranceCoverage" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="CafeteriaPlanYear" Type="DateTime" Precision="0" />
           <Property Name="NoMedicalPlan" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="EmployeeOnly" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
-          <Property Name="EmployeeAndSpouse" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
-          <Property Name="EmployeeAndDependent" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
-          <Property Name="EmployeeAndFamily" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Employee" Relationship="WatsonTruckModel.FK_Group_Health_Employee" FromRole="Group_Health" ToRole="Employee" />
-          <Property Name="Relationship" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="GrpHRefusalEmpSignature" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="GrpHRefusalEmpSignatureDate" Type="DateTime" Precision="0" />
           <Property Name="GrpHEnrollmentEmpSignature" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
@@ -1245,9 +1236,9 @@
           <Property Name="PersonTwoRelationship" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="PersonTwoSignature" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="PersonTwoSignatureDate" Type="DateTime" Precision="0" />
-          <Property Name="MECPlan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="StandardPlan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="BuyUpPlan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MECPlan" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="StandardPlan" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="BuyUpPlan" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="InsurancePlan">
           <Key>
@@ -2000,11 +1991,6 @@
                 <ScalarProperty Name="GrpHEnrollmentEmpSignature" ColumnName="GrpHEnrollmentEmpSignature" />
                 <ScalarProperty Name="GrpHRefusalEmpSignatureDate" ColumnName="GrpHRefusalEmpSignatureDate" />
                 <ScalarProperty Name="GrpHRefusalEmpSignature" ColumnName="GrpHRefusalEmpSignature" />
-                <ScalarProperty Name="Relationship" ColumnName="Relationship" />
-                <ScalarProperty Name="EmployeeAndFamily" ColumnName="EmployeeAndFamily" />
-                <ScalarProperty Name="EmployeeAndDependent" ColumnName="EmployeeAndDependent" />
-                <ScalarProperty Name="EmployeeAndSpouse" ColumnName="EmployeeAndSpouse" />
-                <ScalarProperty Name="EmployeeOnly" ColumnName="EmployeeOnly" />
                 <ScalarProperty Name="NoMedicalPlan" ColumnName="NoMedicalPlan" />
                 <ScalarProperty Name="CafeteriaPlanYear" ColumnName="CafeteriaPlanYear" />
                 <ScalarProperty Name="OtherInsuranceCoverage" ColumnName="OtherInsuranceCoverage" />
