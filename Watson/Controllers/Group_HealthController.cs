@@ -356,7 +356,7 @@ namespace Watson.Controllers
         }
 
         //Create-GrpHealthEnrollment
-        public JsonResult GrpHealthEnrollmentNew(int? Employee_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan, string StandardPlan,
+        public JsonResult GrpHealthEnrollmentNew(int? Employee_id, int? InsurancePlan_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan, string StandardPlan,
             string BuyUpPlan, string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption, string empFamGroupHealthOption, 
             string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse, string Dependent, string OtherCoverageSelection, 
             string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature, DateTime? GrpHRefusalEmpSignatureDate)
@@ -371,10 +371,6 @@ namespace Watson.Controllers
             g.MECPlan = MECPlan;
             g.StandardPlan = StandardPlan;
             g.BuyUpPlan = BuyUpPlan;
-            //g.EmployeeOnly = empOnlyGroupHealthOption;
-            //g.EmployeeAndSpouse = empSpGroupHealthOption;
-            //g.EmployeeAndDependent = empDepGroupHealthOption;
-            //g.EmployeeAndFamily = empFamGroupHealthOption;
 
             g.GrpHEnrollmentEmpSignature = GrpHEnrollmentEmpSignature;
             g.GrpHEnrollmentEmpSignatureDate = GrpHEnrollmentEmpSignatureDate;
@@ -386,6 +382,15 @@ namespace Watson.Controllers
             g.ReasonForGrpCoverageRefusal = ReasonForGrpCoverageRefusal;
             g.GrpHRefusalEmpSignature = GrpHRefusalEmpSignature;
             g.GrpHRefusalEmpSignatureDate = GrpHRefusalEmpSignatureDate;
+
+
+            //InsurancePlan insPlan = db.InsurancePlans
+            //  .Where(i => i.InsurancePlan_id == InsurancePlan_id)
+            //  .Single();
+
+            //insPlan.MECPlan = MECPlan;
+            //insPlan.StandardPlan = StandardPlan;
+            //insPlan.BuyUpPlan = BuyUpPlan;
 
             db.SaveChanges();
 
@@ -439,10 +444,6 @@ namespace Watson.Controllers
             g.MECPlan = MECPlan;
             g.StandardPlan = StandardPlan;
             g.BuyUpPlan = BuyUpPlan;
-            //g.EmployeeOnly = empOnlyGroupHealthOption;
-            //g.EmployeeAndSpouse = empSpGroupHealthOption;
-            //g.EmployeeAndDependent = empDepGroupHealthOption;
-            //g.EmployeeAndFamily = empFamGroupHealthOption;
 
             g.GrpHEnrollmentEmpSignature = GrpHEnrollmentEmpSignature;
             g.GrpHEnrollmentEmpSignatureDate = GrpHEnrollmentEmpSignatureDate;

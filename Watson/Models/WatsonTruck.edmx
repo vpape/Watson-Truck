@@ -264,7 +264,6 @@
           <Property Name="MECPlan" Type="varchar" MaxLength="25" />
           <Property Name="StandardPlan" Type="varchar" MaxLength="25" />
           <Property Name="BuyUpPlan" Type="varchar" MaxLength="25" />
-          <Property Name="EmployeeAndFamily" Type="varchar" MaxLength="25" />
           <Property Name="GrpHRefusalEmpSignature" Type="varchar" MaxLength="75" />
           <Property Name="GrpHRefusalEmpSignatureDate" Type="date" />
           <Property Name="GrpHEnrollmentEmpSignature" Type="varchar" MaxLength="75" />
