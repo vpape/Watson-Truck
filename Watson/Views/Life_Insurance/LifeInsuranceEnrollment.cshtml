@@ -13,7 +13,6 @@
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
-    <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value=@ViewBag.Beneficiary_id />
     <div class="form-horizontal">
         <div class="collapsible" id="FirstStep">Life Insurance Enrollment</div>
         <div class="modal-content">
@@ -285,8 +284,8 @@
                             <input type="checkbox" id="Gender" name="Gender" value="Male" @((dep.Gender) == "Male" ? "checked" : "") disabled /><label>Male</label>
                             <input type="checkbox" id="Gender" name="Gender" value="Female" @((dep.Gender) == "Female" ? "checked" : "") disabled /><label>Female</label>
                             <div>
-                                <input type="radio" class="radio-inline" id="AddDep" name="AddDependent" value="" checked /><label for="AddDep">Add Dependent</label>
-                                <input type="radio" class="radio-inline" id="DropDep" name="DropDependent" value="" /><label for="DropDep">Drop Dependent</label>
+                                <input type="radio" class="addDropradio-inline" id="AddDropDep" name="AddDependent" value="" checked /><label for="AddDep">Add Dependent</label>
+                                <input type="radio" class="addDropradio-inline" id="AddDropDep" name="DropDependent" value="" /><label for="DropDep">Drop Dependent</label>
                             </div>
                         </td>
                         <td>
@@ -304,11 +303,8 @@
                                 <input type="checkbox" class="checkbox-inline" id="Disabled" name="Disabled" value="" @((dep.Disabled) == "True" ? "checked" : "") disabled /><label>Disabled</label>
                                 <input type="checkbox" class="checkbox-inline" id="NonStandardDependent" name="NonStandardDependent" value="" @((dep.NonStandardDependent) == "True" ? "checked" : "") disabled /><label>Non Standard</label>
                             </div>
-
                         </td>
-
                     </tr>
-
                 }
             </table>
             <div class="form-horizontal">
@@ -361,12 +357,15 @@
                         </td>
                         <td class="checkboxes">
                             <label>Loss Of Other Coverage:</label><br />
-                            <input type="checkbox" class="lossofothercheckboxes-inline" id="TerminationEmploymentLossOfOtherCoverage" name="TerminationEmploymentLossOfOtherCoverage" value="" /><label for="TerminationEmploymentLossOfOtherCoverage">Termination Of Employment</label>
-                            <input type="date" class="form-control" id="TerminationEmploymentDateLossOfOtherCoverage" name="TerminationEmploymentDateLossOfOtherCoverage" value="" />
+                            <div class="checkboxes">
+                                <input type="checkbox" class="lossofothercheckboxes-inline" id="TerminationEmploymentLossOfOtherCoverage" name="TerminationEmploymentLossOfOtherCoverage" value="" /><label for="TerminationEmploymentLossOfOtherCoverage">Termination Of Employment</label>
+                                <input type="date" class="form-control" id="TerminationEmploymentDateLossOfOtherCoverage" name="TerminationEmploymentDateLossOfOtherCoverage" value="" />
+                            </div>
                             <p></p>
-                            <input type="checkbox" class="lossofothercheckboxes-inline" id="Divorce" name="Divorce" value="" /><label for="Divorce">Divorce</label><br />
-                            <input type="date" class="form-control" id="DivorceDate" name="DivorceDate" value="" />
-
+                            <div>
+                                <input type="checkbox" class="lossofothercheckboxes-inline" id="Divorce" name="Divorce" value="" /><label for="Divorce">Divorce</label><br />
+                                <input type="date" class="form-control" id="DivorceDate" name="DivorceDate" value="" />
+                            </div>
                         </td>
                         <td class="checkboxes">
                             <input type="checkbox" class="lossofothercheckboxes-inline" id="DeathOfSpouse" name="DeathOfSpouse" value="" /><label for="DeathOfSpouse">Death Of Spouse</label><br />
@@ -382,16 +381,21 @@
                         </td>
                     </tr>
                 </table>
-                <div>
-                    <h5><b>I have been offered the above coverage(s) and wish to drop enrollment for the following reasons:</b></h5>
-                    <div class="checkboxes">
-                        <input type="checkbox" class="othercheckboxes-inline" id="CoveredUnderOtherInsurance" name="CoveredUnderOtherInsurance" value="" /><label for="CoveredUnderOtherInsurance">Covered Under Another Insurance Plan</label><br />
-                        <input type="checkbox" class="othercheckboxes-inline" id="Other" name="Other" value="" /><label for="Other">Other</label>
-                        <input type="text" id="OtherReason" class="form-control" placeholder="List Reason" name="OtherReason" value="" />
-                    </div>
-                   
-                </div>
-                <hr />
+                <table class="table-condensed">
+                    <tr>
+                        <td>
+                            <div>
+                                <label><b>I have been offered the above coverage(s) and wish to drop enrollment for the following reasons:</b></label>
+                                <br />
+                                <div class="checkboxes">
+                                    <input type="checkbox" class="othercheckboxes-inline" id="CoveredUnderOtherInsurance" name="CoveredUnderOtherInsurance" value="" @((Model.lifeIns.CoveredUnderOtherInsurance) == "True" ? "checked" : "") /><label for="CoveredUnderOtherInsurance">Covered Under Another Insurance Plan</label><br />
+                                    <input type="checkbox" class="othercheckboxes-inline" id="Other" name="Other" value="" @((Model.lifeIns.Other) == "True" ? "checked" : "") /><label for="Other">Other</label>
+                                    <input type="text" id="OtherReason" class="form-control" placeholder="List Reason" name="OtherReason" value="@Html.DisplayFor(Model => Model.lifeIns.OtherReason)" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
                 <table class="table table-bordered">
                     <caption>You must be enrolled to cover your dependents. Check only one box.</caption>
                     <tr>
@@ -407,14 +411,6 @@
                                     <option value="EF-Dental Plan" @((Model.lifeIns.DentalCoverage) == "EF-Dental Plan" ? "selected" : "")>Employee & Family</option>
                                 </select>
                                 <div id="divDentalPlanResult" hidden></div>
-                                @*<input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan" name="DentalPlan" value="EmployeeOnly" />
-                                <label for="EmployeeOnlyDental">Employee Only</label>
-                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan" name="DentalPlan" value="EmployeeAndSpouse" />
-                                <label for="EEAndSpouseDental">Employee & Spouse</label><br />
-                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan" name="DentalPlan" value="EmployeeAndDependent" />
-                                <label for="EEAndDependentsDental">Employee & Dependent</label>
-                                <input type="checkbox" class="dentalcoveragecheckboxes-inline" id="DentalPlan" name="DentalPlan" value="EmployeeAndFamily" />
-                                <label for="EEAndFamilyDental">Employee & Family</label>*@
                             </div>
                             <p></p>
                             <div class="checkboxes">
@@ -437,10 +433,6 @@
                                     <option value="EF-Vision Plan" @((Model.lifeIns.VisionCoverage) == "EF-Vision Plan" ? "selected" : "")>Employee & Family</option>
                                 </select>
                                 <div id="divVisionPlanResult" hidden></div>
-                                @*<input type="checkbox" class="visioncoveragecheckboxes-inline" id="VisionPlan" name="VisionPlan" value="EmployeeOnly" /><label>Employee Only</label>
-                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="VisionPlan" name="VisionPlan" value="EmployeeAndSpouse" /><label>Employee & Spouse</label><br />
-                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="VisionPlan" name="VisionPlan" value="EmployeeAndDependent" /><label>Employee & Dependent</label>
-                                <input type="checkbox" class="visioncoveragecheckboxes-inline" id="VisionPlan" name="VisionPlan" value="EmployeeAndFamily" /><label>Employee & Family</label>*@
                             </div>
                             <p></p>
                             <div class="checkboxes">
@@ -476,21 +468,12 @@
                                     If this Basic Life policy will replace your existing life insurance policy under your current employer, provide the amount of the previous policy.
                                 </label><br />
                                 <input type="number" class="form-control" id="PreviousPolicyAmount" name="AmountOfPreviousPolicy" value="" />
-
                             </div>
                         </td>
                     </tr>
                 </table>
-                <div class="form-group">
-                    <div class="col-md-offset-11">
-                        <button type="submit" id="LifeInsUpdate" class="btn">Save</button>
-                    </div>
-                </div>
-                <div>
-                    <div class="col-md-11">
-                        <button type="button" onclick="AddBeneficiary()" class="btn">Add Beneficiary</button>
-                        @Html.ActionLink("Edit Insurance ", "EditLifeInsurance", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)
-                    </div>
+                <div class="col-md">
+                    @Html.ActionLink("Edit Insurance ", "EditLifeInsurance", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)
                 </div>
                 <table class="table table-hover">
                     @foreach (var benefitInfo in Model.benefiList)
@@ -545,12 +528,114 @@
                             </td>
                             <td>
                                 <div style="margin-top: 18px;">
+                                    <button type="button" onclick="AddBeneficiary()" class="btn">Add Beneficiary</button>
                                     @Html.ActionLink("Edit", "EditBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id, benefitInfo.Beneficiary_id }, null)
-                                    @*<button type="button" id="EditBeneficiary" onclick="editBeneficiary()" class="btn">Edit</button>*@
                                 </div>
                             </td>
                         </tr>
                     }
+                </table>
+                <table class="table table-condensed">
+                    <tr>
+                        <td>
+                            <div class="text-justify">
+                                <p>
+                                    The state in which you reside may have a specific state fraud warning. Please refer to the attached <b>Fraud Warning Statements</b> page.
+                                </p>
+                                <p>
+                                    The laws of New York require the following statement appear: Any person who knowingly and with intent to defraud any insurance company
+                                    or other person files an application for insurance or statement of claim containing any materially false information, or conceals for
+                                    the purpose of misleading, information concerning any fact material thereto, commits a fraudulent insurance act, which is a crime, and
+                                    sall also be subject to a civil penalty not to exceed five thousand dollars and the stated value of th eclaim for each such violation.<br />
+                                    (Does not apply to Life Insurance)
+                                </p>
+                            </div>
+                            <hr />
+                            <div>
+                                <label style="padding-left: 10px;">
+                                    Employee Signature:
+                                </label>
+                                <input type="text" id="EmployeeSignature" name="EmployeeSignature" value="" />
+                                <label style="padding-left: 10px;">
+                                    Date:
+                                </label>
+                                <input type="date" id="EmployeeSignatureDate" name="EmployeeSignatureDate" value="" />
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-11">
+                                    <button type="submit" id="LifeInsUpdate" class="btn">Save</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <hr />
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <div class="text-justify">
+                                <h4><b>Fraud Warning Statments</b></h4>
+                                <p>
+                                    The laws of several states require the following statements to appear on the enrollment form:
+                                </p>
+                                <p>
+                                    <b>Alabama:</b> Any person who knowingly presents a false or fraudulent claim for payment of a loss or benefit or who knowingly presents false information
+                                    in an application for insurance is guilty of a crime and maybe subject to restitution fines or confinement in prison, or any combination thereof.
+                                </p>
+                                <p>
+                                    <b>Arizona:</b>
+                                </p>
+                                <p>
+                                    <b>California:</b>
+                                </p>
+                                <p>
+                                    <b>Colorado:</b>
+                                </p>
+                                <p>
+                                    <b>Connecticut, Iowa, Nebraska, and Oregon:</b>
+                                </p>
+                                <p>
+                                    <b>Delaware, Indiana, and Oklahoma:</b>
+                                </p>
+                                <p>
+                                    <b>District of Columbia:</b>
+                                </p>
+                                <p>
+                                    <b>Florida:</b>
+                                </p>
+                                <p>
+                                    <b>Kansas:</b>
+                                </p>
+                                <p>
+                                    <b>Kentucky:</b>
+                                </p>
+                                <p>
+                                    <b>Louisiana and Texas:</b>
+                                </p>
+                                <p>
+                                    <b>Maine, Tennessee, and Washington:</b>
+                                </p>
+                                <p>
+                                    <b>Maryland:</b>
+                                </p>
+                                <p>
+                                    <b>Rhode Island:</b>
+                                </p>
+                                <p>
+                                    <b>Minnesota:</b>
+                                </p>
+                                <p>
+                                    <b>New Hampshire:</b>
+                                </p>
+                                <p>
+                                    <b>New Jersey:</b>
+                                </p>
+                                <p>
+                                    <b>New Mexico:</b>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -631,8 +716,8 @@
     }
 
     $(document).ready(function () {
-        $('.radio-inline').click(function () {
-            $('.radio-inline').not(this).prop('checked', false);
+        $('.addDropradio-inline').click(function () {
+            $('.addDropradio-inline').not(this).prop('checked', false);
         });
     });
 
@@ -782,6 +867,8 @@
             EmployeeBasicLifeADandDPolicyAmount = document.getElementById("EmployeeBasicLifeADandDPolicyAmount").checked;
             DoNotWantBasicLifeCoverageADandD = document.getElementById("DoNotWantBasicLifeCoverageADandD").checked;
             PreviousPolicyAmount = document.getElementById("PreviousPolicyAmount").value;
+            EmployeeSignature = document.getElementById("EmployeeSignature").value;
+            EmployeeSignatureDate = document.getElementById("EmployeeSignatureDate").value;
 
             var data = {
                 "Employee_id": Employee_id,
@@ -847,6 +934,8 @@
                 "EmployeeBasicLifeADandDPolicyAmount": EmployeeBasicLifeADandDPolicyAmount,
                 "DoNotWantBasicLifeCoverageADandD": DoNotWantBasicLifeCoverageADandD,
                 "PreviousPolicyAmount": PreviousPolicyAmount,
+                "EmployeeSignature": EmployeeSignature,
+                "EmployeeSignatureDate": EmployeeSignatureDate,
             }
             var ret = postData('LifeInsEnrollmentNew', data)
                 .then(data => {

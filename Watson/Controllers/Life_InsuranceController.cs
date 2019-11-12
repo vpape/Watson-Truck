@@ -65,7 +65,7 @@ namespace Watson.Controllers
             string EmployeeCoveredUnderOtherDental, string SpouseCoveredUnderOtherDental, string DependentsCoveredUnderOtherDental, string DoNotWantVisionCoverage, 
             string EmployeeCoveredUnderOtherVision, string SpouseCoveredUnderOtherVision, string DependentsCoveredUnderOtherVision, string PrimaryBeneficiary, 
             string ContingentBeneficiary, string OwnerBasicLifeADandDPolicyAmount, string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount,
-            string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount, string DentalPlan, string VisionPlan)
+            string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount, string DentalPlan, string VisionPlan, string EmployeeSignature, DateTime? EmployeeSignatureDate)
         {
 
             Life_Insurance lifeIns = new Life_Insurance();
@@ -134,7 +134,9 @@ namespace Watson.Controllers
             lifeIns.EmployeeBasicLifeWithADandDPolicyAmount = EmployeeBasicLifeADandDPolicyAmount;
             lifeIns.DoNotWantBasicLifeCoverageWithADandD = DoNotWantBasicLifeCoverageAandD;
             lifeIns.AmountOfPreviousPolicy = PreviousPolicyAmount;
-           
+            lifeIns.EmployeeSignature = EmployeeSignature;
+            lifeIns.EmployeeSignatureDate = EmployeeSignatureDate;
+
             InsurancePlan insPlan = new InsurancePlan();
 
             insPlan.Employee_id = Employee_id;
@@ -154,12 +156,11 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //Edit-LifeIns
-        public ActionResult EditLifeInsurance(int? LifeInsurance_id, int? Employee_id, int? Beneficiary_id, int? InsurancePlan_id)
+        public ActionResult EditLifeInsurance(int? LifeInsurance_id, int? Employee_id, int? Beneficiary_id)
         {
             ViewBag.LifeInsurance_id = LifeInsurance_id;
             ViewBag.Employee_id = Employee_id;
             ViewBag.Beneficiary_id = Beneficiary_id;
-            ViewBag.InsurancePlan_id = InsurancePlan_id;
 
             EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
 
@@ -184,9 +185,9 @@ namespace Watson.Controllers
         }
 
         //EditUpdate-LifeIns
-        public JsonResult EditLifeInsUpdate(int? LifeInsurance_id, int? Employee_id, int? InsurancePlan_id, string GroupPlanNumber, DateTime BenefitsEffectiveDate,
+        public JsonResult EditLifeInsUpdate(int? LifeInsurance_id, int? Employee_id, int? InsurancePlan_id, string GroupPlanNumber, DateTime? BenefitsEffectiveDate,
             string InitialEnrollment, string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount,
-            string FamilyStatusChange, string SubTotalCode, string Married, DateTime DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, string AddDependent,
+            string FamilyStatusChange, string SubTotalCode, string Married, DateTime? DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, string AddDependent,
             string DropDependent, string DropEmployee, string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage, string Retirement,
             DateTime? LastDayWorked, string OtherEvent, string OtherEventReason, DateTime? OtherEventDate, string DropBasicLife, string EmployeeDentalDrop,
             string SpouseDentalDrop, string DependentDentalDrop, string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop,
@@ -197,11 +198,13 @@ namespace Watson.Controllers
             string VisionCoverage, string DoNotWantVisionCoverage, string EmployeeCoveredUnderOtherVision, string SpouseCoveredUnderOtherVision, 
             string DependentsCoveredUnderOtherVision, string PrimaryBeneficiary, string ContingentBeneficiary, string OwnerBasicLifeADandDPolicyAmount, 
             string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount, string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount, 
-            string DentalPlan, string VisionPlan)
+            string DentalPlan, string VisionPlan, string EmployeeSignature, DateTime? EmployeeSignatureDate)
         {
-            Life_Insurance lifeins = db.Life_Insurance
+            Life_Insurance lifeIns = db.Life_Insurance
                 .Where(i => i.Employee_id == Employee_id)
-                .Single();
+                .SingleOrDefault();
+
+            ViewBag.LifeInsurance_id = lifeIns.LifeInsurance_id;
 
             lifeIns.GroupPlanNumber = GroupPlanNumber;
             lifeIns.BenefitsEffectiveDate = BenefitsEffectiveDate;
@@ -266,6 +269,8 @@ namespace Watson.Controllers
             lifeIns.EmployeeBasicLifeWithADandDPolicyAmount = EmployeeBasicLifeADandDPolicyAmount;
             lifeIns.DoNotWantBasicLifeCoverageWithADandD = DoNotWantBasicLifeCoverageAandD;
             lifeIns.AmountOfPreviousPolicy = PreviousPolicyAmount;
+            lifeIns.EmployeeSignature = EmployeeSignature;
+            lifeIns.EmployeeSignatureDate = EmployeeSignatureDate;
 
             //InsurancePlan insPlan = db.InsurancePlans
             //    .Where(i => i.Employee_id == Employee_id)
@@ -276,9 +281,21 @@ namespace Watson.Controllers
             //insPlan.DentalPlan = DentalPlan;
             //insPlan.VisionPlan = VisionPlan;
 
-            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                db.Entry(lifeIns).State = System.Data.Entity.EntityState.Modified;
 
-            int result = lifeins.Employee_id;
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err);
+                }
+            }
+
+            int result = lifeIns.LifeInsurance_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
