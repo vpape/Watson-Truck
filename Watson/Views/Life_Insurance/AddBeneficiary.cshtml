@@ -26,7 +26,6 @@
                     </tr>
                     <tr>
                         <td>
-
                             <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First Name" value="" />
                         </td>
                         <td>
@@ -154,24 +153,20 @@
 
     
     document.querySelector("#submitBeneficiary").addEventListener("click", function () {
-        submit = document.getElementById("submitBeneficiary");
 
         var message;
         alert = confirm("Beneificiary information has been saved. Thank you!")
 
-        if (submit.onclick) {
+        if (alert == true) {
+            message = "Please proceed to Life Insurance edit page to review information. Thank you!!";
+            var alert = confirm(message)
             if (alert == true) {
 
-                message = "Please proceed to Life Insurance edit page to review information. Thank you!!";
-                var alert = confirm(message)
-                if (alert == true) {
+                window.location.href = "/Life_Insurance/EditLifeInsurance/?Employee_id=" + @ViewBag.Employee_id;
 
-                    window.location.href = "/Life_Insurance/EditLifeInsurance&Employee_id=" + @ViewBag.Employee_id;
-
-                }
-                else {
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
-                }
+            }
+            else {
+                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
             }
         }
         else {

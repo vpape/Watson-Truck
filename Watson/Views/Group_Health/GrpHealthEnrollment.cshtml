@@ -747,11 +747,12 @@
                     <tr>
                         <td>Selection:</td>
                         <td>
-                            <select class="form-control" id="NoneGrpHealthOption" name="NoMedicalPlan">
+                            <select class="form-control" id="NoMedicalGrpHealthOption" name="NoMedicalPlan">
                                 <option value="none" selected disabled hidden> Select an Option</option>
                                 <option value="none"></option>
                                 <option value="No Medical Plan">No Medical Plan</option>
                             </select>
+                            <div id="NoMedicalOptionResult" hidden></div>
                         </td>
                         <td>
                             <select class="form-control" id="MECPlanGrpHealthOption" name="MECPlan">
@@ -762,6 +763,7 @@
                                 <option value="EC-MECPlan">Employee & Child</option>
                                 <option value="EF-MECPlan">Employee & Family</option>
                             </select>
+                            <div id="MECPlanOptionResult" hidden></div>
                         </td>
                         <td>
                             <select class="form-control" id="StndPlanGrpHealthOption" name="StandardPlan">
@@ -772,6 +774,7 @@
                                 <option value="EC-StandardPlan">Employee & Child</option>
                                 <option value="EF-StandardPlan">Employee & Family</option>
                             </select>
+                            <div id="StndPlanOptionResult" hidden></div>
                         </td>
                         <td>
                             <select class="form-control" id="BuyUpPlanGrpHealthOption" name="BuyUpPlan">
@@ -782,6 +785,7 @@
                                 <option value="EC-BuyUpPlan">Employee & Child</option>
                                 <option value="EF-BuyUpPlan">Employee & Family</option>
                             </select>
+                            <div id="BuyUpPlanOptionResult" hidden></div>
                         </td>
                     </tr>
                 </table>
@@ -1046,7 +1050,7 @@
                         <label style="padding-left: 10px;">
                             Date:
                         </label>
-                        <input type="date" id="GrpHEnrollmentEmpSignatureDate" name="GrpHEnrollmentEmpSignatureDate" value="@Model.grpHealth.GrpHEnrollmentEmpSignatureDate" />
+                        <input type="date" id="GrpHEnrollmentEmpSignatureDate" name="GrpHEnrollmentEmpSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.GrpHEnrollmentEmpSignatureDate).ToString("yyyy-MM-dd")" />
                     </div>
                 </form>
                 <hr />
@@ -1071,9 +1075,9 @@
                         <div id="divReasonForRefusal">
                             <h4><b>Reason for Refusal</b></h4>
                             <div id="divReasonForRefusalSelection">
-                                <input type="checkbox" id="OtherCoverageSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" />
+                                <input type="checkbox" id="OtherCoverageSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" @((Model.grpHealth.OtherCoverage == "True") ? "checked" : "") />
                                 <label for="OtherCoverageSelection">OtherCoverage</label>
-                                <input type="checkbox" id="OtherReasonSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" />
+                                <input type="checkbox" id="OtherReasonSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" @((Model.grpHealth.OtherReason == "True") ? "checked" : "") />
                                 <label for="OtherReasonSelection">OtherReason</label>
                                 <p></p>
                                 <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="@Model.grpHealth.ReasonForGrpCoverageRefusal" />
@@ -1087,7 +1091,7 @@
                                 <label style="padding-left: 10px;">
                                     Date:
                                 </label>
-                                <input type="date" id="GrpHRefusalEmpSignatureDate" name="GrpHRefusalEmpSignatureDate" value="@Model.grpHealth.GrpHRefusalEmpSignatureDate" />
+                                <input type="date" id="GrpHRefusalEmpSignatureDate" name="GrpHRefusalEmpSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.GrpHRefusalEmpSignatureDate).ToString("yyyy-MM-dd")" />
                             </div>
                         </div>
                     </form>
@@ -1430,40 +1434,35 @@
                 "GrpHRefusalEmpSignatureDate": GrpHRefusalEmpSignatureDate,
             }
 
-            var ret = postData('GrpHealthEnrollmentNew', data)
-                .then(data => {
-                    console.log(data);
-                    FirstStep(data);
-                })
-                .catch(error => console.error(error))
+            //var ret = postData('GrpHealthEnrollmentNew', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        FirstStep(data);
+            //    })
+            //    .catch(error => console.error(error))
 
-            //fetch('GrpHealthEnrollmentNew', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    //.then(response => console.log('Success:', JSON.stringify(response)))
-            //    .then(response => FirstStep(response))
-            //    .catch(error => console.error('Error:', error));
+            fetch('GrpHealthEnrollmentNew', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                //.then(response => console.log('Success:', JSON.stringify(response)))
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
         })
     })
 
     function FirstStep(emp) {
         Employee_id = emp.data;
-    }
-
-    function SecondStep(emp) {
-
-
     }
 
     function postData(url, data) {

@@ -47,13 +47,13 @@
                             <tr>
                                 <td>
                                     <div class="checkboxes">
-                                        <input type="checkbox" id="InitialEnrollment" name="InitialEnrollment" value="InitialEnrollment" @((Model.lifeIns.InitialEnrollment) == "True" ? "checked" : "") /><label for="InitialEnrollment">Initial Enrollment</label>
-                                        <input type="checkbox" id="ReEnrollment" name="ReEnrollment" value="ReEnrollment" @((Model.lifeIns.InitialEnrollment) == "True" ? "checked" : "") /><label for="ReEnrollment">Re-Enrollment</label>
-                                        <input type="checkbox" id="AddEmployeeAndDependents" name="AddEmployeeAndDependents" value="AddEmployeeAndDependents" @((Model.lifeIns.InitialEnrollment) == "True" ? "checked" : "") /><label for="AddEmployeeAndDependents">Add Employee/Dependents</label>
-                                        <input type="checkbox" id="DropRefuseCoverage" name="DropRefuseCoverage" value="DropRefuseCoverage" @((Model.lifeIns.InitialEnrollment) == "True" ? "checked" : "") /><label for="DropRefuseCoverage">Drop/Refuse Coverage</label>
-                                        <input type="checkbox" id="InformationChange" name="InformationChange" value="InformationChange" @((Model.lifeIns.InitialEnrollment) == "True" ? "checked" : "") /><label for="InformationChange">Information Change</label>
-                                        <input type="checkbox" id="IncreaseAmount" name="IncreaseAmount" value="IncreaseAmount" @((Model.lifeIns.InitialEnrollment) == "True" ? "checked" : "") /><label for="IncreaseAmount">Increase Amount</label>
-                                        <input type="checkbox" id="FamilyStatusChange" name="FamilyStatusChange" value="FamilyStatusChange" @((Model.lifeIns.InitialEnrollment) == "True" ? "checked" : "") /><label for="FamilyStatusChange">Family Status Change</label>
+                                        <input type="checkbox" id="InitialEnrollment" name="InitialEnrollment" value="" @((Model.lifeIns.InitialEnrollment) == "True" ? "checked" : "") /><label for="InitialEnrollment">Initial Enrollment</label>
+                                        <input type="checkbox" id="ReEnrollment" name="ReEnrollment" value="ReEnrollment" @((Model.lifeIns.ReEnrollment) == "True" ? "checked" : "") /><label for="ReEnrollment">Re-Enrollment</label>
+                                        <input type="checkbox" id="AddEmployeeAndDependents" name="AddEmployeeAndDependents" value="AddEmployeeAndDependents" @((Model.lifeIns.AddEmployeeAndDependents) == "True" ? "checked" : "") /><label for="AddEmployeeAndDependents">Add Employee/Dependents</label>
+                                        <input type="checkbox" id="DropRefuseCoverage" name="DropRefuseCoverage" value="DropRefuseCoverage" @((Model.lifeIns.DropRefuseCoverage) == "True" ? "checked" : "") /><label for="DropRefuseCoverage">Drop/Refuse Coverage</label>
+                                        <input type="checkbox" id="InformationChange" name="InformationChange" value="InformationChange" @((Model.lifeIns.InformationChange) == "True" ? "checked" : "") /><label for="InformationChange">Information Change</label>
+                                        <input type="checkbox" id="IncreaseAmount" name="IncreaseAmount" value="IncreaseAmount" @((Model.lifeIns.IncreaseAmount) == "True" ? "checked" : "") /><label for="IncreaseAmount">Increase Amount</label>
+                                        <input type="checkbox" id="FamilyStatusChange" name="FamilyStatusChange" value="FamilyStatusChange" @((Model.lifeIns.FamilyStatusChange) == "True" ? "checked" : "") /><label for="FamilyStatusChange">Family Status Change</label>
                                     </div>
                                 </td>
                             </tr>
@@ -136,7 +136,7 @@
                                     <div id="divDateOfMarriage">
                                         <div>
                                             <label style="display:table-cell">Date of Marriage:</label>
-                                            <input type="date" class="form-control" id="DateOfMarriage" name="DateOfMarriage" value="@Convert.ToDateTime(Model.employee.EffectiveDate).ToString("yyyy-MM-dd")" />
+                                            <input type="date" class="form-control" id="DateOfMarriage" name="DateOfMarriage" value="@Convert.ToDateTime(Model.lifeIns.DateOfMarriage).ToString("yyyy-MM-dd")" />
                                         </div>
                                         <p></p>
                                     </div>
@@ -144,9 +144,9 @@
                                 <td>
                                     <div>
                                         <label style="display:table-cell">Do you have children or other Dependents?</label>
-                                        <input type="radio" class="radio-inline" id="OtherDependents" name="HaveChildrenOrHaveDependents" value="True" checked />
+                                        <input type="radio" class="radio-inline" id="OtherDependents" name="HaveChildrenOrHaveDependents" value="True" @((Model.lifeIns.HaveChildrenOrHaveDependents) == "True" ? "checked" : "")/>
                                         <label>Yes</label>
-                                        <input type="radio" class="radio-inline" id="OtherDependents" name="HaveChildrenOrHaveDependents" value="False" />
+                                        <input type="radio" class="radio-inline" id="OtherDependents" name="HaveChildrenOrHaveDependents" value="False" @((Model.lifeIns.HaveChildrenOrHaveDependents) == "True" ? "checked" : "")/>
                                         <label>No</label>
                                     </div>
                                 </td>
@@ -154,7 +154,7 @@
                                     <div id="divDateOfAdoption">
                                         <div>
                                             <label style="display:table-cell">Placement Date of Adoption:</label>
-                                            <input type="date" class="form-control" id="DateOfAdoption" name="PlacementDateOfAdoptedChild" value="@Convert.ToDateTime(Model.employee.EffectiveDate).ToString("yyyy-MM-dd")" />
+                                            <input type="date" class="form-control" id="DateOfAdoption" name="PlacementDateOfAdoptedChild" value="@Convert.ToDateTime(Model.lifeIns.PlacementDateOfAdoptedChild).ToString("yyyy-MM-dd")" />
                                         </div>
                                         <p></p>
                                     </div>
@@ -779,7 +779,7 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Group_Health/GrpHealthEnrollment&Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + @ViewBag.Employee_id;
 
                 }
                 else {
@@ -796,14 +796,14 @@
     })
 
     function AddBeneficiary() {
-         window.location.href = "/Life_Insurance/AddBeneficiary?Employee_id=@Model.employee.Employee_id";
+         window.location.href = "/Life_Insurance/AddBeneficiary/?Employee_id=@Model.employee.Employee_id";
 
     }
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EditLifeInsUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
-            Beneficiary_id = document.getElementById("Beneficiary_id").value;
+            //Beneficiary_id = document.getElementById("Beneficiary_id").value;
             LifeInsurance_id = document.getElementById("LifeInsurance_id").value;
             GroupPlanNumber = document.getElementById("GroupPlanNumber").value
             BenefitsEffectiveDate = document.getElementById("BenefitsEffectiveDate").value;
@@ -878,7 +878,7 @@
 
             var data = {
                 "Employee_id": Employee_id,
-                "Beneficiary_id": Beneficiary_id,
+                //"Beneficiary_id": Beneficiary_id,
                 "LifeInsurance_id": LifeInsurance_id,
                 "GroupPlanNumber": GroupPlanNumber,
                 "BenefitsEffectiveDate": BenefitsEffectiveDate,

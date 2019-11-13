@@ -1076,10 +1076,10 @@
                         <div id="divReasonForRefusal">
                             <h4><b>Reason for Refusal</b></h4>
                             <div id="divReasonForRefusalSelection">
-                                <input type="radio" id="OtherCoverageSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage"  /><label for="OtherCoverage">Other Coverage</label>
-                                <input type="radio" id="OtherReasonSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" checked  /><label for="OtherReason">Other Reason</label>
+                                <input type="radio" id="OtherCoverageSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" @((Model.grpHealth.OtherCoverage == "True") ? "checked" : "") /><label for="OtherCoverage">Other Coverage</label>
+                                <input type="radio" id="OtherReasonSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" @((Model.grpHealth.OtherReason == "True") ? "checked" : "")  /><label for="OtherReason">Other Reason</label>
                                 <p></p>
-                                <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="@Model.grpHealth.ReasonForGrpCoverageRefusal"  />
+                                <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="@Model.grpHealth.ReasonForGrpCoverageRefusal" />
                             </div>
                             @*@Html.RadioButtonFor(model => model.family.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.family.Gender, "female", false) Female*@
                             <hr />

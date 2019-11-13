@@ -794,8 +794,9 @@ namespace Watson.Controllers
         }
 
         //Create-DepEnrollment
-        public JsonResult DepEnrollmentNew(int Employee_id, string RelationshipToInsured, string SSN, string DepFirstName, string DepLastName, DateTime DateOfBirth,
-            string Gender, string Student, string Disabled, string NonStandardDependent, string MailingAddress, string City, string State, string ZipCode, string County)
+        public JsonResult DepEnrollmentNew(int Employee_id, int? FamilyMember_id, string RelationshipToInsured, string SSN, string DepFirstName, string DepLastName, 
+            DateTime DateOfBirth, string Gender, string Student, string Disabled, string NonStandardDependent, string MailingAddress, string City, string State,
+            string ZipCode, string County)
         {
             Family_Info dep = new Family_Info();
 

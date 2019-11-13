@@ -54,7 +54,7 @@ namespace Watson.Models
         public string DeathOfSpouse { get; set; }
         public Nullable<System.DateTime> DeathOfSpouseDate { get; set; }
         public string TerminationOrExpirationOfCoverage { get; set; }
-        public System.DateTime TerminationOrExpirationOfCoverageDate { get; set; }
+        public Nullable<System.DateTime> TerminationOrExpirationOfCoverageDate { get; set; }
         public string DentalCoverageLost { get; set; }
         public string VisionCoverageLost { get; set; }
         public string CoveredUnderOtherInsurance { get; set; }

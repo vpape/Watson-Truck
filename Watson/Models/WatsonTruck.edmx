@@ -515,7 +515,7 @@
           <Property Name="DeathOfSpouse" Type="varchar" MaxLength="15" />
           <Property Name="DeathOfSpouseDate" Type="date" />
           <Property Name="TerminationOrExpirationOfCoverage" Type="varchar" MaxLength="15" />
-          <Property Name="TerminationOrExpirationOfCoverageDate" Type="date" Nullable="false" />
+          <Property Name="TerminationOrExpirationOfCoverageDate" Type="date" />
           <Property Name="DentalCoverageLost" Type="varchar" MaxLength="15" />
           <Property Name="VisionCoverageLost" Type="varchar" MaxLength="15" />
           <Property Name="CoveredUnderOtherInsurance" Type="varchar" MaxLength="15" />
@@ -1340,7 +1340,7 @@
           <Property Name="DeathOfSpouse" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DeathOfSpouseDate" Type="DateTime" Precision="0" />
           <Property Name="TerminationOrExpirationOfCoverage" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="TerminationOrExpirationOfCoverageDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TerminationOrExpirationOfCoverageDate" Type="DateTime" Precision="0" />
           <Property Name="DentalCoverageLost" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="VisionCoverageLost" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="CoveredUnderOtherInsurance" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />

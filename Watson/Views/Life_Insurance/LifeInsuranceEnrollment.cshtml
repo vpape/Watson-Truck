@@ -284,8 +284,8 @@
                             <input type="checkbox" id="Gender" name="Gender" value="Male" @((dep.Gender) == "Male" ? "checked" : "") disabled /><label>Male</label>
                             <input type="checkbox" id="Gender" name="Gender" value="Female" @((dep.Gender) == "Female" ? "checked" : "") disabled /><label>Female</label>
                             <div>
-                                <input type="radio" class="addDropradio-inline" id="AddDropDep" name="AddDependent" value="" checked /><label for="AddDep">Add Dependent</label>
-                                <input type="radio" class="addDropradio-inline" id="AddDropDep" name="DropDependent" value="" /><label for="DropDep">Drop Dependent</label>
+                                <input type="radio" class="addDropradio-inline" id="AddDep" name="AddDependent" value="" /><label for="AddDep">Add Dependent</label>
+                                <input type="radio" class="addDropradio-inline" id="DropDep" name="DropDependent" value="" /><label for="DropDep">Drop Dependent</label>
                             </div>
                         </td>
                         <td>
@@ -388,9 +388,9 @@
                                 <label><b>I have been offered the above coverage(s) and wish to drop enrollment for the following reasons:</b></label>
                                 <br />
                                 <div class="checkboxes">
-                                    <input type="checkbox" class="othercheckboxes-inline" id="CoveredUnderOtherInsurance" name="CoveredUnderOtherInsurance" value="" @((Model.lifeIns.CoveredUnderOtherInsurance) == "True" ? "checked" : "") /><label for="CoveredUnderOtherInsurance">Covered Under Another Insurance Plan</label><br />
-                                    <input type="checkbox" class="othercheckboxes-inline" id="Other" name="Other" value="" @((Model.lifeIns.Other) == "True" ? "checked" : "") /><label for="Other">Other</label>
-                                    <input type="text" id="OtherReason" class="form-control" placeholder="List Reason" name="OtherReason" value="@Html.DisplayFor(Model => Model.lifeIns.OtherReason)" />
+                                    <input type="checkbox" class="othercheckboxes-inline" id="CoveredUnderOtherInsurance" name="CoveredUnderOtherInsurance" value="" @*@((Model.lifeIns.CoveredUnderOtherInsurance) == "True" ? "checked" : "")*@ /><label for="CoveredUnderOtherInsurance">Covered Under Another Insurance Plan</label><br />
+                                    <input type="checkbox" class="othercheckboxes-inline" id="Other" name="Other" value="" @*@((Model.lifeIns.Other) == "True" ? "checked" : "")*@ /><label for="Other">Other</label>
+                                    <input type="text" id="OtherReason" class="form-control" placeholder="List Reason" name="OtherReason" value="" @*@Html.DisplayFor(Model => Model.lifeIns.OtherReason)*@ />
                                 </div>
                             </div>
                         </td>
@@ -405,10 +405,10 @@
                                 <select class="form-control" id="divDentalPlan" name="DentalPlan">
                                     <option value="none" selected disabled hidden> Select an Option</option>
                                     <option value="none"></option>
-                                    <option value="EO-Dental Plan" @((Model.lifeIns.DentalCoverage) == "EO-Dental Plan" ? "selected" : "")>Employee Only</option>
-                                    <option value="ES-Dental Plan" @((Model.lifeIns.DentalCoverage) == "ES-Dental Plan" ? "selected" : "")>Employee & Spouse</option>
-                                    <option value="EC-Dental Plan" @((Model.lifeIns.DentalCoverage) == "EC-Dental Plan" ? "selected" : "")>Employee & Child</option>
-                                    <option value="EF-Dental Plan" @((Model.lifeIns.DentalCoverage) == "EF-Dental Plan" ? "selected" : "")>Employee & Family</option>
+                                    <option value="EO-Dental Plan" @*@((Model.lifeIns.DentalCoverage) == "EO-Dental Plan" ? "selected" : "")*@>Employee Only</option>
+                                    <option value="ES-Dental Plan" @*@((Model.lifeIns.DentalCoverage) == "ES-Dental Plan" ? "selected" : "")*@>Employee & Spouse</option>
+                                    <option value="EC-Dental Plan" @*@((Model.lifeIns.DentalCoverage) == "EC-Dental Plan" ? "selected" : "")*@>Employee & Child</option>
+                                    <option value="EF-Dental Plan" @*@((Model.lifeIns.DentalCoverage) == "EF-Dental Plan" ? "selected" : "")*@>Employee & Family</option>
                                 </select>
                                 <div id="divDentalPlanResult" hidden></div>
                             </div>
@@ -427,10 +427,10 @@
                                 <select class="form-control" id="divVisionPlan" name="VisionPlan">
                                     <option value="none" selected disabled hidden> Select an Option</option>
                                     <option value="none"></option>
-                                    <option value="EO-Vision Plan" @((Model.lifeIns.VisionCoverage) == "EO-Vision Plan" ? "selected" : "")>Employee Only</option>
-                                    <option value="ES-Vision Plan" @((Model.lifeIns.VisionCoverage) == "ES-Vision Plan" ? "selected" : "")>Employee & Spouse</option>
-                                    <option value="EC-Vision Plan" @((Model.lifeIns.VisionCoverage) == "EC-Vision Plan" ? "selected" : "")>Employee & Child</option>
-                                    <option value="EF-Vision Plan" @((Model.lifeIns.VisionCoverage) == "EF-Vision Plan" ? "selected" : "")>Employee & Family</option>
+                                    <option value="EO-Vision Plan" @*@((Model.lifeIns.VisionCoverage) == "EO-Vision Plan" ? "selected" : "")*@>Employee Only</option>
+                                    <option value="ES-Vision Plan" @*@((Model.lifeIns.VisionCoverage) == "ES-Vision Plan" ? "selected" : "")*@>Employee & Spouse</option>
+                                    <option value="EC-Vision Plan" @*@((Model.lifeIns.VisionCoverage) == "EC-Vision Plan" ? "selected" : "")*@>Employee & Child</option>
+                                    <option value="EF-Vision Plan" @*@((Model.lifeIns.VisionCoverage) == "EF-Vision Plan" ? "selected" : "")*@>Employee & Family</option>
                                 </select>
                                 <div id="divVisionPlanResult" hidden></div>
                             </div>
@@ -474,6 +474,7 @@
                 </table>
                 <div class="col-md">
                     @Html.ActionLink("Edit Insurance ", "EditLifeInsurance", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)
+                    <button type="button" onclick="AddBeneficiary()" class="btn">Add Beneficiary</button>
                 </div>
                 <table class="table table-hover">
                     @foreach (var benefitInfo in Model.benefiList)
@@ -528,7 +529,6 @@
                             </td>
                             <td>
                                 <div style="margin-top: 18px;">
-                                    <button type="button" onclick="AddBeneficiary()" class="btn">Add Beneficiary</button>
                                     @Html.ActionLink("Edit", "EditBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id, benefitInfo.Beneficiary_id }, null)
                                 </div>
                             </td>
@@ -770,7 +770,7 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Life_Insurance/LifeInsuranceEnrollment&Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Life_Insurance/LifeInsuranceEnrollment/?Employee_id=" + @ViewBag.Employee_id;
 
                 }
                 else {
@@ -787,12 +787,12 @@
     })
 
     function AddBeneficiary() {
-         window.location.href = "/Life_Insurance/AddBeneficiary?Employee_id=@Model.employee.Employee_id";
+         window.location.href = "/Life_Insurance/AddBeneficiary/?Employee_id=@Model.employee.Employee_id";
 
     }
 
     function editBeneficiary() {
-        window.location.href = "/Life_Insurance/EditBeneficiary?Employee_id=" + @ViewBag.Employee_id + "&Beneficiary_id=@ViewBag.Beneficiary_id";
+        window.location.href = "/Life_Insurance/EditBeneficiary/?Employee_id=" + @ViewBag.Employee_id + "&Beneficiary_id=@ViewBag.Beneficiary_id";
     }
 
     document.addEventListener("DOMContentLoaded", function () {

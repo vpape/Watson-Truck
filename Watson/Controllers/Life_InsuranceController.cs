@@ -53,14 +53,14 @@ namespace Watson.Controllers
         }
 
         //Create-LifeIns
-        public JsonResult LifeInsEnrollmentNew(int LifeInsurance_id, int Employee_id, int InsurancePlan_id, string GroupPlanNumber, DateTime BenefitsEffectiveDate,
+        public JsonResult LifeInsEnrollmentNew(/*int LifeInsurance_id,*/ int Employee_id, /*int InsurancePlan_id,*/ string GroupPlanNumber, DateTime BenefitsEffectiveDate,
             string InitialEnrollment, string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount,
             string FamilyStatusChange, string SubTotalCode, string Married, DateTime DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, 
             string AddDependent, string DropDependent, string DropEmployee, string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage,
             string Retirement, DateTime? LastDayWorked, string OtherEvent, string OtherEventReason, DateTime? OtherEventDate, string DropBasicLife, 
             string EmployeeDentalDrop, string SpouseDentalDrop, string DependentDentalDrop, string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop, 
             string TerminationEmploymentLossOfOtherCoverage, DateTime? TerminationEmploymentDateLossOfOtherCoverage, string Divorce, DateTime? DivorceDate, 
-            string DeathOfSpouse, DateTime? DeathOfSpouseDate, string TerminationOrExpirationOfCoverage, /*DateTime? TerminationOrExpirationOfCoverageDate,*/
+            string DeathOfSpouse, DateTime? DeathOfSpouseDate, string TerminationOrExpirationOfCoverage, DateTime? TerminationOrExpirationOfCoverageDate,
             string DentalCoverageLost, string VisionCoverageLost, string CoveredUnderOtherInsurance, string Other, string OtherReason, string DoNotWantDentalCoverage,
             string EmployeeCoveredUnderOtherDental, string SpouseCoveredUnderOtherDental, string DependentsCoveredUnderOtherDental, string DoNotWantVisionCoverage, 
             string EmployeeCoveredUnderOtherVision, string SpouseCoveredUnderOtherVision, string DependentsCoveredUnderOtherVision, string PrimaryBeneficiary, 
@@ -110,7 +110,7 @@ namespace Watson.Controllers
             lifeIns.DeathOfSpouse = DeathOfSpouse;
             lifeIns.DeathOfSpouseDate = DeathOfSpouseDate;
             lifeIns.TerminationOrExpirationOfCoverage = TerminationOrExpirationOfCoverage;
-            //lifeIns.TerminationOrExpirationOfCoverageDate = TerminationOrExpirationOfCoverageDate;-- NonNullable error Parameter for DateTime
+            lifeIns.TerminationOrExpirationOfCoverageDate = TerminationOrExpirationOfCoverageDate;//-- NonNullable error Parameter for DateTime
             lifeIns.DentalCoverageLost = DentalCoverageLost;
             lifeIns.VisionCoverageLost = VisionCoverageLost;
             lifeIns.CoveredUnderOtherInsurance = CoveredUnderOtherInsurance;
