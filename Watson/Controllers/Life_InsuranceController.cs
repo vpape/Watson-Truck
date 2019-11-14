@@ -56,7 +56,7 @@ namespace Watson.Controllers
         public JsonResult LifeInsEnrollmentNew(/*int LifeInsurance_id,*/ int Employee_id, /*int InsurancePlan_id,*/ string GroupPlanNumber, DateTime BenefitsEffectiveDate,
             string InitialEnrollment, string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount,
             string FamilyStatusChange, string SubTotalCode, string Married, DateTime DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, 
-            string AddDependent, string DropDependent, string DropEmployee, string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage,
+            string AddDep, string DropDep, string DropEmployee, string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage,
             string Retirement, DateTime? LastDayWorked, string OtherEvent, string OtherEventReason, DateTime? OtherEventDate, string DropBasicLife, 
             string EmployeeDentalDrop, string SpouseDentalDrop, string DependentDentalDrop, string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop, 
             string TerminationEmploymentLossOfOtherCoverage, DateTime? TerminationEmploymentDateLossOfOtherCoverage, string Divorce, DateTime? DivorceDate, 
@@ -65,7 +65,7 @@ namespace Watson.Controllers
             string EmployeeCoveredUnderOtherDental, string SpouseCoveredUnderOtherDental, string DependentsCoveredUnderOtherDental, string DoNotWantVisionCoverage, 
             string EmployeeCoveredUnderOtherVision, string SpouseCoveredUnderOtherVision, string DependentsCoveredUnderOtherVision, string PrimaryBeneficiary, 
             string ContingentBeneficiary, string OwnerBasicLifeADandDPolicyAmount, string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount,
-            string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount, string DentalPlan, string VisionPlan, string EmployeeSignature, DateTime? EmployeeSignatureDate)
+            string DoNotWantBasicLifeCoverageADandD, string PreviousPolicyAmount, string DentalPlan, string VisionPlan, string EmployeeSignature, DateTime? EmployeeSignatureDate)
         {
 
             Life_Insurance lifeIns = new Life_Insurance();
@@ -85,8 +85,8 @@ namespace Watson.Controllers
             lifeIns.DateOfMarriage = DateOfMarriage;
             lifeIns.HaveChildrenOrHaveDependents = OtherDependents;
             lifeIns.PlacementDateOfAdoptedChild = DateOfAdoption;
-            lifeIns.AddDependent = AddDependent;
-            lifeIns.DropDependent = DropDependent;
+            lifeIns.AddDependent = AddDep;
+            lifeIns.DropDependent = DropDep;
             lifeIns.DropEmployee = DropEmployee;
             lifeIns.DropDependents = DropDependents;
             lifeIns.LastDayOfCoverage = LastDayOfCoverage;
@@ -110,7 +110,7 @@ namespace Watson.Controllers
             lifeIns.DeathOfSpouse = DeathOfSpouse;
             lifeIns.DeathOfSpouseDate = DeathOfSpouseDate;
             lifeIns.TerminationOrExpirationOfCoverage = TerminationOrExpirationOfCoverage;
-            lifeIns.TerminationOrExpirationOfCoverageDate = TerminationOrExpirationOfCoverageDate;//-- NonNullable error Parameter for DateTime
+            lifeIns.TerminationOrExpirationOfCoverageDate = TerminationOrExpirationOfCoverageDate;
             lifeIns.DentalCoverageLost = DentalCoverageLost;
             lifeIns.VisionCoverageLost = VisionCoverageLost;
             lifeIns.CoveredUnderOtherInsurance = CoveredUnderOtherInsurance;
@@ -132,7 +132,7 @@ namespace Watson.Controllers
             lifeIns.OwnerBasicLifeWithADandDPolicyAmount = OwnerBasicLifeADandDPolicyAmount;
             lifeIns.ManagerBasicLifeWithADandDPolicyAmount = ManagerBasicLifeADandDPolicyAmount;
             lifeIns.EmployeeBasicLifeWithADandDPolicyAmount = EmployeeBasicLifeADandDPolicyAmount;
-            lifeIns.DoNotWantBasicLifeCoverageWithADandD = DoNotWantBasicLifeCoverageAandD;
+            lifeIns.DoNotWantBasicLifeCoverageWithADandD = DoNotWantBasicLifeCoverageADandD;
             lifeIns.AmountOfPreviousPolicy = PreviousPolicyAmount;
             lifeIns.EmployeeSignature = EmployeeSignature;
             lifeIns.EmployeeSignatureDate = EmployeeSignatureDate;
@@ -187,8 +187,8 @@ namespace Watson.Controllers
         //EditUpdate-LifeIns
         public JsonResult EditLifeInsUpdate(int? LifeInsurance_id, int? Employee_id, int? InsurancePlan_id, string GroupPlanNumber, DateTime? BenefitsEffectiveDate,
             string InitialEnrollment, string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount,
-            string FamilyStatusChange, string SubTotalCode, string Married, DateTime? DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, string AddDependent,
-            string DropDependent, string DropEmployee, string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage, string Retirement,
+            string FamilyStatusChange, string SubTotalCode, string Married, DateTime? DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, string AddDep,
+            string DropDep, string DropEmployee, string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage, string Retirement,
             DateTime? LastDayWorked, string OtherEvent, string OtherEventReason, DateTime? OtherEventDate, string DropBasicLife, string EmployeeDentalDrop,
             string SpouseDentalDrop, string DependentDentalDrop, string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop,
             string TerminationEmploymentLossOfOtherCoverage, DateTime? TerminationEmploymentDateLossOfOtherCoverage, string Divorce, DateTime? DivorceDate,
@@ -197,7 +197,7 @@ namespace Watson.Controllers
             string DoNotWantDentalCoverage, string EmployeeCoveredUnderOtherDental, string SpouseCoveredUnderOtherDental, string DependentsCoveredUnderOtherDental,
             string VisionCoverage, string DoNotWantVisionCoverage, string EmployeeCoveredUnderOtherVision, string SpouseCoveredUnderOtherVision, 
             string DependentsCoveredUnderOtherVision, string PrimaryBeneficiary, string ContingentBeneficiary, string OwnerBasicLifeADandDPolicyAmount, 
-            string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount, string DoNotWantBasicLifeCoverageAandD, string PreviousPolicyAmount, 
+            string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount, string DoNotWantBasicLifeCoverageADandD, string PreviousPolicyAmount, 
             string DentalPlan, string VisionPlan, string EmployeeSignature, DateTime? EmployeeSignatureDate)
         {
             Life_Insurance lifeIns = db.Life_Insurance
@@ -220,8 +220,8 @@ namespace Watson.Controllers
             lifeIns.DateOfMarriage = DateOfMarriage;
             lifeIns.HaveChildrenOrHaveDependents = OtherDependents;
             lifeIns.PlacementDateOfAdoptedChild = DateOfAdoption;
-            lifeIns.AddDependent = AddDependent;
-            lifeIns.DropDependent = DropDependent;
+            lifeIns.AddDependent = AddDep;
+            lifeIns.DropDependent = DropDep;
             lifeIns.DropEmployee = DropEmployee;
             lifeIns.DropDependents = DropDependents;
             lifeIns.LastDayOfCoverage = LastDayOfCoverage;
@@ -267,7 +267,7 @@ namespace Watson.Controllers
             lifeIns.OwnerBasicLifeWithADandDPolicyAmount = OwnerBasicLifeADandDPolicyAmount;
             lifeIns.ManagerBasicLifeWithADandDPolicyAmount = ManagerBasicLifeADandDPolicyAmount;
             lifeIns.EmployeeBasicLifeWithADandDPolicyAmount = EmployeeBasicLifeADandDPolicyAmount;
-            lifeIns.DoNotWantBasicLifeCoverageWithADandD = DoNotWantBasicLifeCoverageAandD;
+            lifeIns.DoNotWantBasicLifeCoverageWithADandD = DoNotWantBasicLifeCoverageADandD;
             lifeIns.AmountOfPreviousPolicy = PreviousPolicyAmount;
             lifeIns.EmployeeSignature = EmployeeSignature;
             lifeIns.EmployeeSignatureDate = EmployeeSignatureDate;

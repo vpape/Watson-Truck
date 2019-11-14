@@ -356,10 +356,10 @@ namespace Watson.Controllers
         }
 
         //Create-GrpHealthEnrollment
-        public JsonResult GrpHealthEnrollmentNew(int? Employee_id, int? InsurancePlan_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan, string StandardPlan,
-            string BuyUpPlan, string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption, string empFamGroupHealthOption, 
-            string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse, string Dependent, string OtherCoverageSelection, 
-            string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature, DateTime? GrpHRefusalEmpSignatureDate)
+        public JsonResult GrpHealthEnrollmentNew(int? Employee_id, int? InsurancePlan_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan, 
+            string StandardPlan, string BuyUpPlan, string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse, 
+            string Dependent, string OtherCoverageSelection, string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature,
+            DateTime? GrpHRefusalEmpSignatureDate)
         {
 
             Group_Health g = db.Group_Health
@@ -430,10 +430,10 @@ namespace Watson.Controllers
         }
 
         //EditUpdate-GrpHealthEnrollment
-        public JsonResult GrpHealthInsEditUpdate(int? Employee_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan, string StandardPlan, 
-            string BuyUpPlan, string empOnlyGroupHealthOption, string empSpGroupHealthOption, string empDepGroupHealthOption, string empFamGroupHealthOption,
-            string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse, string Dependent, string OtherCoverageSelection,
-            string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature, DateTime? GrpHRefusalEmpSignatureDate)
+        public JsonResult GrpHealthInsEditUpdate(int? Employee_id, int? InsurancePlan_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan,
+            string StandardPlan, string BuyUpPlan, string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse,
+            string Dependent, string OtherCoverageSelection, string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature,
+            DateTime? GrpHRefusalEmpSignatureDate)
         {
             Group_Health g = db.Group_Health
                  .Where(i => i.Employee_id == Employee_id)
@@ -486,43 +486,6 @@ namespace Watson.Controllers
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
-
-        //----------------------------------------------------------------------------------------
-
-        public ActionResult GrpHealthInsDetail(int? GroupHealthInsurance_id)
-        {
-            if (GroupHealthInsurance_id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Group_Health g = db.Group_Health.Find(GroupHealthInsurance_id);
-            if (g == null)
-            {
-                return HttpNotFound();
-            }
-            return View(g);
-        }
-
-        public JsonResult GetGrpHealthInsDetail(int GroupHealthInsurance_id, int OtherInsurance_id)
-        {
-            var g = db.Group_Health
-                .Where(i => i.GroupHealthInsurance_id == GroupHealthInsurance_id)
-                .Single();
-
-            ViewBag.g = g;
-
-            var o = db.Other_Insurance
-            .Where(i => i.OtherInsurance_id == OtherInsurance_id)
-            .Single();
-
-            ViewBag.o = o;
-
-            int result = g.Employee_id;
-
-            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-        }
-
-        //GroupHealth-End---------------------------------------------------------------------------------------
 
         //SalaryRedirect-Start----------------------------------------------------------------------------------
 
@@ -706,13 +669,13 @@ namespace Watson.Controllers
             d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
             d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
 
-            d.AccidentInsProvider = AccidentInsProvider;
+            d.AccidentInsProvider = AccidentInsProvider;//data shows null
             d.EEelectionPreTaxAccidentIns = EEelectionPreTaxAccidentIns;
             d.PremiumPreTaxAccidentIns = PremiumPreTaxAccidentIns;
             d.EEelectionPostTaxAccidentIns = EEelectionPostTaxAccidentIns;
             d.PremiumPostTaxAccidentIns = PremiumPostTaxAccidentIns;
 
-            d.CancerInsProvider = CancerInsProvider;
+            d.CancerInsProvider = CancerInsProvider; //data shows null
             d.EEelectionPreTaxCancerIns = EEelectionPreTaxCancerIns;
             d.PremiumPreTaxCancerIns = PremiumPreTaxCancerIns;
             d.EEelectionPostTaxCancerIns = EEelectionPostTaxCancerIns;

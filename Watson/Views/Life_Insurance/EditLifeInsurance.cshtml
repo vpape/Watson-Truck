@@ -126,9 +126,9 @@
                                 <td class="center-block">
                                     <div>
                                         <label>Are you Married or do you have a spouse?</label>
-                                        <input type="radio" class="radio-inline" id="Married" name="MarriedOrHaveSpouse" value="True" @((Model.lifeIns.MarriedOrHaveSpouse) == "True" ? "checked" : "") />
+                                        <input type="radio" class="radio-inline" id="Married" name="MarriedOrHaveSpouse" value="" @((Model.lifeIns.MarriedOrHaveSpouse) == "True" ? "checked" : "") />
                                         <label>Yes</label>
-                                        <input type="radio" class="radio-inline" id="Married" name="MarriedOrHaveSpouse" value="False" @((Model.lifeIns.MarriedOrHaveSpouse) == "False" ? "checked" : "") />
+                                        <input type="radio" class="radio-inline" id="Married" name="MarriedOrHaveSpouse" value="" @((Model.lifeIns.MarriedOrHaveSpouse) == "False" ? "checked" : "") />
                                         <label>No</label>
                                     </div>
                                 </td>
@@ -144,9 +144,9 @@
                                 <td>
                                     <div>
                                         <label style="display:table-cell">Do you have children or other Dependents?</label>
-                                        <input type="radio" class="radio-inline" id="OtherDependents" name="HaveChildrenOrHaveDependents" value="True" @((Model.lifeIns.HaveChildrenOrHaveDependents) == "True" ? "checked" : "")/>
+                                        <input type="radio" class="radio-inline" id="OtherDependents" name="HaveChildrenOrHaveDependents" value="" @((Model.lifeIns.HaveChildrenOrHaveDependents) == "True" ? "checked" : "")/>
                                         <label>Yes</label>
-                                        <input type="radio" class="radio-inline" id="OtherDependents" name="HaveChildrenOrHaveDependents" value="False" @((Model.lifeIns.HaveChildrenOrHaveDependents) == "True" ? "checked" : "")/>
+                                        <input type="radio" class="radio-inline" id="OtherDependents" name="HaveChildrenOrHaveDependents" value="" @((Model.lifeIns.HaveChildrenOrHaveDependents) == "False" ? "checked" : "")/>
                                         <label>No</label>
                                     </div>
                                 </td>
@@ -285,8 +285,8 @@
                             <input type="checkbox" id="Gender" name="Gender" value="Male" @((dep.Gender) == "Male" ? "checked" : "") disabled /><label>Male</label>
                             <input type="checkbox" id="Gender" name="Gender" value="Female" @((dep.Gender) == "Female" ? "checked" : "") disabled /><label>Female</label>
                             <div>
-                                <input type="radio" class="addDropradio-inline" id="AddDropDep" name="AddDependent" value="" @((Model.lifeIns.AddDependent) == "True" ? "checked" : "") /><label for="AddDep">Add Dependent</label>
-                                <input type="radio" class="addDropradio-inline" id="AddDropDep" name="DropDependent" value="" @((Model.lifeIns.DropDependent) == "True" ? "checked" : "") /><label for="DropDep">Drop Dependent</label>
+                                <input type="radio" class="addDropradio-inline" id="AddDep" name="AddDependent" value="" @((Model.lifeIns.AddDependent) == "True" ? "checked" : "") /><label for="AddDep">Add Dependent</label>
+                                <input type="radio" class="addDropradio-inline" id="DropDep" name="DropDependent" value="" @((Model.lifeIns.DropDependent) == "True" ? "checked" : "") /><label for="DropDep">Drop Dependent</label>
                             </div>
                         </td>
                         <td>
@@ -337,7 +337,7 @@
                         </td>
                         <td>
                             <input type="checkbox" class="dropcoveragecheckboxes-inline" id="OtherEvent" name="OtherEvent" value="" @((Model.lifeIns.OtherEvent) == "True" ? "checked" : "") /><label for="OtherEvent">Other Event:</label>
-                            <input type="text" class="form-control" id="OtherEventReason" placeholder="List Reason" name="OtherEventReason" value="" />
+                            <input type="text" class="form-control" id="OtherEventReason" placeholder="List Reason" name="OtherEventReason" value="@((Model.lifeIns.OtherEventReason))"  />
                             <input type="date" class="form-control" id="OtherEventDate" name="OtherEventDate" value="@Convert.ToDateTime(Model.lifeIns.OtherEventDate).ToString("yyyy-MM-dd")" />
                         </td>
                     </tr>
@@ -455,10 +455,10 @@
                         <td>
                             <label>Policy Amount:</label>
                             <div class="checkboxes">
-                                <input type="checkbox" class="policyamountcheckboxes-inline" id="OwnerBasicLifeADandDPolicyAmount" name="OwnerBasicLifeWithADandDPolicyAmount" value="OwnerBasicLifePolicyAmount" @((Model.lifeIns.OwnerBasicLifeWithADandDPolicyAmount) == "True" ? "checked" : "") /><label for="OwnerBasicLifeADandDPolicyAmount">Owner</label><br />
-                                <input type="checkbox" class="policyamountcheckboxes-inline" id="ManagerBasicLifeADandDPolicyAmount" name="ManagerBasicLifeWithADandDPolicyAmount" value="ManagerBasicLifePolicyAmount" @((Model.lifeIns.ManagerBasicLifeWithADandDPolicyAmount) == "True" ? "checked" : "") /><label for="ManagerBasicLifeADandDPolicyAmount">Manager</label><br />
-                                <input type="checkbox" class="policyamountcheckboxes-inline" id="EmployeeBasicLifeADandDPolicyAmount" name="EmployeeBasicLifeWithADandDPolicyAmount" value="EmployeeBasicLifePolicyAmount" @((Model.lifeIns.EmployeeBasicLifeWithADandDPolicyAmount) == "True" ? "checked" : "") /><label for="EmployeeBasicLifeADandDPolicyAmount">Employee ($15,000)</label><br />
-                                <input type="checkbox" class="policyamountcheckboxes-inline" id="DoNotWantBasicLifeCoverageADandD" name="DoNotWantBasicLifeCoverageWithADandD" value="DoNotWantBasicLifeCoverage" @((Model.lifeIns.DoNotWantBasicLifeCoverageWithADandD) == "True" ? "checked" : "") /><label for="DoNotWantBasicLifeCoverageADandD">I do not want this coverage</label>
+                                <input type="checkbox" class="policyamountcheckboxes-inline" id="OwnerBasicLifeADandDPolicyAmount" name="OwnerBasicLifeWithADandDPolicyAmount" value="" @((Model.lifeIns.OwnerBasicLifeWithADandDPolicyAmount) == "True" ? "checked" : "") /><label for="OwnerBasicLifeADandDPolicyAmount">Owner</label><br />
+                                <input type="checkbox" class="policyamountcheckboxes-inline" id="ManagerBasicLifeADandDPolicyAmount" name="ManagerBasicLifeWithADandDPolicyAmount" value="" @((Model.lifeIns.ManagerBasicLifeWithADandDPolicyAmount) == "True" ? "checked" : "") /><label for="ManagerBasicLifeADandDPolicyAmount">Manager</label><br />
+                                <input type="checkbox" class="policyamountcheckboxes-inline" id="EmployeeBasicLifeADandDPolicyAmount" name="EmployeeBasicLifeWithADandDPolicyAmount" value="" @((Model.lifeIns.EmployeeBasicLifeWithADandDPolicyAmount) == "True" ? "checked" : "") /><label for="EmployeeBasicLifeADandDPolicyAmount">Employee ($15,000)</label><br />
+                                <input type="checkbox" class="policyamountcheckboxes-inline" id="DoNotWantBasicLifeCoverageADandD" name="DoNotWantBasicLifeCoverageWithADandD" value="" @((Model.lifeIns.DoNotWantBasicLifeCoverageWithADandD) == "True" ? "checked" : "") /><label for="DoNotWantBasicLifeCoverageADandD">I do not want this coverage</label>
                             </div>
                             <p></p>
                             <label>*The Guarantee Amount is $15,000.</label>
@@ -819,8 +819,8 @@
             DateOfMarriage = document.getElementById("DateOfMarriage").value;
             OtherDependents = document.getElementById("OtherDependents").checked;
             DateOfAdoption = document.getElementById("DateOfAdoption").value;
-            AddDependent = document.getElementById("AddDep").checked;
-            DropDependent = document.getElementById("DropDep").checked;
+            AddDep = document.getElementById("AddDep").checked;
+            DropDep = document.getElementById("DropDep").checked;
             DropEmployee = document.getElementById("DropEmployee").checked;
             DropDependents = document.getElementById("DropDependents").checked;
             LastDayOfCoverage = document.getElementById("LastDayOfCoverage").value;
@@ -894,8 +894,8 @@
                 "DateOfMarriage": DateOfMarriage,
                 "OtherDependents": OtherDependents,
                 "DateOfAdoption": DateOfAdoption,
-                "AddDependent": AddDependent,
-                "DropDependent": DropDependent,
+                "AddDep": AddDep,
+                "DropDep": DropDep,
                 "DropEmployee": DropEmployee,
                 "DropDependents": DropDependents,
                 "LastDayOfCoverage": LastDayOfCoverage,

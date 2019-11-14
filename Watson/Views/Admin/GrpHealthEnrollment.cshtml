@@ -1,5 +1,5 @@
 ﻿@model Watson.ViewModels.GroupHealthGrpHEnrollmentVM
-<h3>Health Insurance Premiums</h3>
+<h3>Admin- Health Insurance Premiums</h3>
 <h5>Medical (includes 15K Life Insurance)</h5>
 <!DOCTYPE html>
 <html>
@@ -615,7 +615,7 @@
     </div>
     <p></p>
     <div class="form-horizontal">
-        <div class="collapsible" id="ThirdStep">Group Health Insurance Enrollment</div>
+        <div class="collapsible" id="ThirdStep">Admin- Group Health Insurance Enrollment</div>
         <div class="modal-content">
             <p></p>
             <div style="border:solid" class="aside">
@@ -626,7 +626,7 @@
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="IMSGroupNumber" id="IMSGroupNumber" placeholder="IMS Group Number" value="@Html.DisplayFor(Model => Model.grpHealth.IMSGroupNumber)" disabled/>
+                    <input type="text" class="form-control" name="IMSGroupNumber" id="IMSGroupNumber" placeholder="IMS Group Number" value="@Html.DisplayFor(Model => Model.grpHealth.IMSGroupNumber)" disabled />
                 </div>
                 <p></p>
                 <div>
@@ -634,19 +634,19 @@
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="EnrollmentType" id="EnrollmentType" placeholder="Enrollment Type" value="@Html.DisplayFor(Model => Model.employee.EnrollmentType)" disabled/>
+                    <input type="text" class="form-control" name="EnrollmentType" id="EnrollmentType" placeholder="Enrollment Type" value="@Html.DisplayFor(Model => Model.employee.EnrollmentType)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Payroll_id" id="Payroll_id" placeholder="Payroll ID" value="@Html.DisplayFor(Model => Model.employee.Payroll_id)" disabled/>
+                    <input type="text" class="form-control" name="Payroll_id" id="Payroll_id" placeholder="Payroll ID" value="@Html.DisplayFor(Model => Model.employee.Payroll_id)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Class" id="Class" placeholder="Class" value="@Html.DisplayFor(Model => Model.employee.Class)" disabled/>
+                    <input type="text" class="form-control" name="Class" id="Class" placeholder="Class" value="@Html.DisplayFor(Model => Model.employee.Class)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="AnnualSalary" id="AnnualSalary" placeholder="Annual Salary" value="@Html.DisplayFor(Model => Model.employee.AnnualSalary)" disabled/>
+                    <input type="text" class="form-control" name="AnnualSalary" id="AnnualSalary" placeholder="Annual Salary" value="@Html.DisplayFor(Model => Model.employee.AnnualSalary)" disabled />
                 </div>
                 <p></p>
                 <div>
@@ -660,14 +660,14 @@
                 <p></p>
                 <div>
                     <label style="display:table-cell">Effective Date:</label>
-                    <input type="date" class="form-control" name="EffectiveDate" id="EffectiveDate" placeholder="Effective Date" value="@Convert.ToDateTime(Model.employee.EffectiveDate).ToString("yyyy-MM-dd")" disabled/>
+                    <input type="date" class="form-control" name="EffectiveDate" id="EffectiveDate" placeholder="Effective Date" value="@Convert.ToDateTime(Model.employee.EffectiveDate).ToString("yyyy-MM-dd")" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="HoursWorkedPerWeek" id="HoursWorkedPerWeek" placeholder="Min. Hrs. Worked/Wk" maxlength="3" value="@Html.DisplayFor(Model => Model.employee.HoursWorkedPerWeek)" disabled/>
+                    <input type="text" class="form-control" name="HoursWorkedPerWeek" id="HoursWorkedPerWeek" placeholder="Min. Hrs. Worked/Wk" maxlength="3" value="@Html.DisplayFor(Model => Model.employee.HoursWorkedPerWeek)" disabled />
                 </div>
                 <p></p>
-                <div class="form-group"hidden>
+                <div class="form-group" hidden>
                     <div style="margin-left:15px;">
                         <button type="submit" id="EmploymentInfoUpdate" class="btn" disabled>Save</button>
                     </div>
@@ -717,8 +717,8 @@
                 <div class="">
                     <label>Are you covered by any other insurance, including Medicare?</label>
                     @*<label>@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Male", true) Yes</label> <label>@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Female", false) No</label>*@
-                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="True" checked disabled/>Yes</label>
-                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="False" disabled/>No</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="True" checked disabled />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="False" disabled />No</label>
                 </div>
                 <div id="empInsInfo" disabled>
                     <div class="form-group col-md-3">
@@ -1027,8 +1027,8 @@
                 }
             </form>
             @*<div>
-                @Html.ActionLink("Delete Dependent", "DeleteDep", "Employee", new { FamilyMember_id = @ViewBag.FamilyMember_id }, null)
-            </div>*@
+                    @Html.ActionLink("Delete Dependent", "DeleteDep", "Employee", new { FamilyMember_id = @ViewBag.FamilyMember_id }, null)
+                </div>*@
             <div class="text-justify">
                 <label style="padding-left: 10px;"></label>
                 <p>
@@ -1181,8 +1181,9 @@
         border-bottom: 1px solid black;
         height: 30px;
     }
+
     #empSignatureDate1,
-    #empSignatureDate2{
+    #empSignatureDate2 {
         width: 15%;
         border: 0px;
         border-bottom: 1px solid black;
@@ -1491,4 +1492,5 @@
         //}) //parses response to JSON
     }
 </script>
+
 

@@ -49,6 +49,9 @@
       <HintPath>..\packages\IronPdf.5.2.0.1\lib\net40\IronPdf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Select.HtmlToPdf, Version=19.2.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
+      <HintPath>..\packages\Select.HtmlToPdf.19.2.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -422,7 +425,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Spouse\EditSpouse.cshtml" />
     <Content Include="Views\Employee\EnrollmentSelection.cshtml" />
     <Content Include="Views\Life_Insurance\LifeInsuranceEnrollment.cshtml" />
     <Content Include="Views\Life_Insurance\LifeInsuranceDetail.cshtml" />
@@ -431,7 +433,6 @@
     <Content Include="Views\Employee\FamilyInsurance.cshtml" />
     <Content Include="Views\Group_Health\GrpHealthInsPremiums.cshtml" />
     <Content Include="Views\Group_Health\GrpHealthInsSupplement.cshtml" />
-    <Content Include="Views\Group_Health\GrpHealthInsDetail.cshtml" />
     <Content Include="Views\Group_Health\DeleteGrpHealthIns.cshtml" />
     <Content Include="Views\Employee\FamilyOverview.cshtml" />
     <Content Include="Views\Employee\FamilyEnrollment.cshtml" />
@@ -464,8 +465,6 @@
     <Content Include="Views\Group_Health\EditAuthorizationForm.cshtml" />
     <Content Include="Views\Group_Health\EditGroupHealthIns.cshtml" />
     <Content Include="Views\Employee\SpouseEnrollment.cshtml" />
-    <Content Include="Views\Admin\EmpOverview.cshtml" />
-    <Content Include="Views\Admin\FamilyOverview.cshtml" />
     <Content Include="Views\Life_Insurance\AddBeneficiary.cshtml" />
     <Content Include="Views\Employee\DeleteSp.cshtml" />
     <Content Include="Views\Employee\DeleteDep.cshtml" />
@@ -473,11 +472,32 @@
     <Content Include="Views\Group_Health\EditSalaryRedirection.cshtml" />
     <Content Include="Views\Life_Insurance\EditLifeInsurance.cshtml" />
     <Content Include="Views\Life_Insurance\EditBeneficiary.cshtml" />
+    <Content Include="Views\Admin\EmpOverview.cshtml" />
+    <Content Include="Views\Admin\EnrollmentSelection.cshtml" />
+    <Content Include="Views\Admin\NewEmployeeEnrollment.cshtml" />
+    <Content Include="Views\Admin\EditEmployee.cshtml" />
+    <Content Include="Views\Admin\EmployeeDetail.cshtml" />
+    <Content Include="Views\Admin\DeleteEmp.cshtml" />
+    <Content Include="Views\Admin\FamilyOverview.cshtml" />
+    <Content Include="Views\Admin\FamilyEnrollment.cshtml" />
+    <Content Include="Views\Admin\SpouseEnrollment.cshtml" />
+    <Content Include="Views\Admin\EditSpouse.cshtml" />
+    <Content Include="Views\Admin\SpouseDetail.cshtml" />
+    <Content Include="Views\Admin\DeleteSp.cshtml" />
+    <Content Include="Views\Admin\AddDependent.cshtml" />
+    <Content Include="Views\Admin\EditDependent.cshtml" />
+    <Content Include="Views\Admin\DependentDetail.cshtml" />
+    <Content Include="Views\Admin\DeleteDep.cshtml" />
+    <Content Include="Views\Admin\GrpHealthEnrollment.cshtml" />
+    <Content Include="Views\Admin\EditGroupHealthIns.cshtml" />
+    <Content Include="Views\Admin\SalaryRedirection.cshtml" />
+    <Content Include="Views\Admin\EditSalaryRedirection.cshtml" />
+    <Content Include="Views\Admin\AuthorizationForm.cshtml" />
+    <Content Include="Views\Admin\EditAuthorizationForm.cshtml" />
+    <Content Include="Views\Admin\DeleteGrpHealthIns.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Dependent\" />
-    <Folder Include="Views\test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -16,18 +16,11 @@
     <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
     <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value="@ViewBag.GroupHealthInsurance_id" />
     <input type="hidden" id="InsurancePlan_id" class="form-control" name="InsurancePlan_id" value="@ViewBag.InsurancePlan_id" />
-    @*<input type="hidden" id="InsurancePremium_id" class="form-control" name="InsurancePremium_id" value="@ViewBag.InsurancePremium_id" />*@
-    @*<<input type="hidden" id="InsurancePlanDetail_id" class="form-control" name="InsurancePlanDetail_id" value="@ViewBag.InsurancePlanDetail_id" />*@
-    <div>
-        <button onclick="return AuthorizationForm(@Model.employee.Employee_id)" class="btn">Authorization Form</button>
-        <button onclick="return SalaryRedirection(@Model.employee.Employee_id)" class="btn">Salary Redirection Agreement</button>
-        <button onclick="return LifeInsurance(@Model.employee.Employee_id)" class="btn">Life Insurance</button>
-    </div>
     <p></p>
     <p><embed id="2019InsCost" src="/App_Files/pdfFiles/2019-Insurance-Cost.pdf" type="application/pdf" style="width:100%; height:1122px;" frameborder="0" /></p>
     <p><embed id="2019Dental&VisionBenefits" src="/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf" type="application/pdf" style="width:100%; height:1000px; transform:rotate()" frameborder="0" /></p>
     <div class="form-horizontal" hidden>
-        <div class="collapsible" id="FirstStep">emp-Health Insurance Premiums</div>
+        <div class="collapsible" id="FirstStep">Admin -Health Insurance Premiums</div>
         <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">
             <tr>
                 <td>
@@ -615,7 +608,7 @@
     </div>
     <p></p>
     <div class="form-horizontal">
-        <div class="collapsible" id="ThirdStep">Group Health Insurance Enrollment</div>
+        <div class="collapsible" id="ThirdStep">Admin- Edit Group Health Insurance</div>
         <div class="modal-content">
             <p></p>
             <div style="border:solid" class="aside">
@@ -626,7 +619,7 @@
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="IMSGroupNumber" id="IMSGroupNumber" placeholder="IMS Group Number" value="@Html.DisplayFor(Model => Model.grpHealth.IMSGroupNumber)" disabled/>
+                    <input type="text" class="form-control" name="IMSGroupNumber" id="IMSGroupNumber" placeholder="IMS Group Number" value="@Html.DisplayFor(Model => Model.grpHealth.IMSGroupNumber)" disabled />
                 </div>
                 <p></p>
                 <div>
@@ -634,19 +627,19 @@
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="EnrollmentType" id="EnrollmentType" placeholder="Enrollment Type" value="@Html.DisplayFor(Model => Model.employee.EnrollmentType)" disabled/>
+                    <input type="text" class="form-control" name="EnrollmentType" id="EnrollmentType" placeholder="Enrollment Type" value="@Html.DisplayFor(Model => Model.employee.EnrollmentType)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Payroll_id" id="Payroll_id" placeholder="Payroll ID" value="@Html.DisplayFor(Model => Model.employee.Payroll_id)" disabled/>
+                    <input type="text" class="form-control" name="Payroll_id" id="Payroll_id" placeholder="Payroll ID" value="@Html.DisplayFor(Model => Model.employee.Payroll_id)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="Class" id="Class" placeholder="Class" value="@Html.DisplayFor(Model => Model.employee.Class)" disabled/>
+                    <input type="text" class="form-control" name="Class" id="Class" placeholder="Class" value="@Html.DisplayFor(Model => Model.employee.Class)" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="AnnualSalary" id="AnnualSalary" placeholder="Annual Salary" value="@Html.DisplayFor(Model => Model.employee.AnnualSalary)" disabled/>
+                    <input type="text" class="form-control" name="AnnualSalary" id="AnnualSalary" placeholder="Annual Salary" value="@Html.DisplayFor(Model => Model.employee.AnnualSalary)" disabled />
                 </div>
                 <p></p>
                 <div>
@@ -660,14 +653,14 @@
                 <p></p>
                 <div>
                     <label style="display:table-cell">Effective Date:</label>
-                    <input type="date" class="form-control" name="EffectiveDate" id="EffectiveDate" placeholder="Effective Date" value="@Convert.ToDateTime(Model.employee.EffectiveDate).ToString("yyyy-MM-dd")" disabled/>
+                    <input type="date" class="form-control" name="EffectiveDate" id="EffectiveDate" placeholder="Effective Date" value="@Convert.ToDateTime(Model.employee.EffectiveDate).ToString("yyyy-MM-dd")" disabled />
                 </div>
                 <p></p>
                 <div>
-                    <input type="text" class="form-control" name="HoursWorkedPerWeek" id="HoursWorkedPerWeek" placeholder="Min. Hrs. Worked/Wk" maxlength="3" value="@Html.DisplayFor(Model => Model.employee.HoursWorkedPerWeek)" disabled/>
+                    <input type="text" class="form-control" name="HoursWorkedPerWeek" id="HoursWorkedPerWeek" placeholder="Min. Hrs. Worked/Wk" maxlength="3" value="@Html.DisplayFor(Model => Model.employee.HoursWorkedPerWeek)" disabled />
                 </div>
                 <p></p>
-                <div class="form-group"hidden>
+                <div class="form-group" hidden>
                     <div style="margin-left:15px;">
                         <button type="submit" id="EmploymentInfoUpdate" class="btn" disabled>Save</button>
                     </div>
@@ -714,11 +707,11 @@
             </div>
             <hr />
             <div>
-                <div class="">
+                <div>
                     <label>Are you covered by any other insurance, including Medicare?</label>
                     @*<label>@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Male", true) Yes</label> <label>@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Female", false) No</label>*@
-                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="True" checked disabled/>Yes</label>
-                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="False" disabled/>No</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="True" checked disabled />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="False" disabled />No</label>
                 </div>
                 <div id="empInsInfo" disabled>
                     <div class="form-group col-md-3">
@@ -731,6 +724,10 @@
                         <input type="tel" id="empInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="@Html.DisplayFor(Model => Model.grpHealth.PhoneNumber)" disabled />
                     </div>
                 </div>
+            </div>
+            <div>
+                @Html.ActionLink("Edit Employee", "EditEmployee", "Employee", new { Employee_id = @ViewBag.Employee_id }, null)
+
             </div>
             <p></p>
             <div id="GrpHealthMedicalPlans" class="control-label">
@@ -749,8 +746,8 @@
                         <td>
                             <select class="form-control" id="NoMedicalGrpHealthOption" name="NoMedicalPlan">
                                 <option value="none" selected disabled hidden> Select an Option</option>
-                                <option value="none"></option>
-                                <option value="No Medical Plan">No Medical Plan</option>
+                                <option value="none" @((Model.grpHealth.NoMedicalPlan) == "none" ? "selected" : "")></option>
+                                <option value="No Medical Plan" @((Model.grpHealth.NoMedicalPlan) == "No Medical Plan" ? "selected" : "")>No Medical Plan</option>
                             </select>
                             <div id="NoMedicalOptionResult" hidden></div>
                         </td>
@@ -758,10 +755,10 @@
                             <select class="form-control" id="MECPlanGrpHealthOption" name="MECPlan">
                                 <option value="none" selected disabled hidden> Select an Option</option>
                                 <option value="none"></option>
-                                <option value="EO-MECPlan">Employee Only</option>
-                                <option value="ES-MECPlan">Employee & Spouse</option>
-                                <option value="EC-MECPlan">Employee & Child</option>
-                                <option value="EF-MECPlan">Employee & Family</option>
+                                <option value="EO-MECPlan" @((Model.grpHealth.MECPlan) == "EO-MECPlan" ? "selected" : "")>Employee Only</option>
+                                <option value="ES-MECPlan" @((Model.grpHealth.MECPlan) == "ES-MECPlan" ? "selected" : "")>Employee & Spouse</option>
+                                <option value="EC-MECPlan" @((Model.grpHealth.MECPlan) == "EC-MECPlan" ? "selected" : "")>Employee & Child</option>
+                                <option value="EF-MECPlan" @((Model.grpHealth.MECPlan) == "EF-MECPlan" ? "selected" : "")>Employee & Family</option>
                             </select>
                             <div id="MECPlanOptionResult" hidden></div>
                         </td>
@@ -769,10 +766,10 @@
                             <select class="form-control" id="StndPlanGrpHealthOption" name="StandardPlan">
                                 <option value="none" selected disabled hidden> Select an Option</option>
                                 <option value="none"></option>
-                                <option value="EO-StandardPlan">Employee Only</option>
-                                <option value="ES-StandardPlan">Employee & Spouse</option>
-                                <option value="EC-StandardPlan">Employee & Child</option>
-                                <option value="EF-StandardPlan">Employee & Family</option>
+                                <option value="EO-StandardPlan" @((Model.grpHealth.StandardPlan) == "EO-StandardPlan" ? "selected" : "")>Employee Only</option>
+                                <option value="ES-StandardPlan" @((Model.grpHealth.StandardPlan) == "ES-StandardPlan" ? "selected" : "")>Employee & Spouse</option>
+                                <option value="EC-StandardPlan" @((Model.grpHealth.StandardPlan) == "EC-StandardPlan" ? "selected" : "")>Employee & Child</option>
+                                <option value="EF-StandardPlan" @((Model.grpHealth.StandardPlan) == "EF-StandardPlan" ? "selected" : "")>Employee & Family</option>
                             </select>
                             <div id="StndPlanOptionResult" hidden></div>
                         </td>
@@ -780,10 +777,10 @@
                             <select class="form-control" id="BuyUpPlanGrpHealthOption" name="BuyUpPlan">
                                 <option value="none" selected disabled hidden> Select an Option</option>
                                 <option value="none"></option>
-                                <option value="EO-BuyUpPlan">Employee Only</option>
-                                <option value="ES-BuyUpPlan">Employee & Spouse</option>
-                                <option value="EC-BuyUpPlan">Employee & Child</option>
-                                <option value="EF-BuyUpPlan">Employee & Family</option>
+                                <option value="EO-BuyUpPlan" @((Model.grpHealth.BuyUpPlan) == "EO-BuyUpPlan" ? "selected" : "")>Employee Only</option>
+                                <option value="ES-BuyUpPlan" @((Model.grpHealth.BuyUpPlan) == "ES-BuyUpPlan" ? "selected" : "")>Employee & Spouse</option>
+                                <option value="EC-BuyUpPlan" @((Model.grpHealth.BuyUpPlan) == "EC-BuyUpPlan" ? "selected" : "")>Employee & Child</option>
+                                <option value="EF-BuyUpPlan" @((Model.grpHealth.BuyUpPlan) == "EF-BuyUpPlan" ? "selected" : "")>Employee & Family</option>
                             </select>
                             <div id="BuyUpPlanOptionResult" hidden></div>
                         </td>
@@ -1017,6 +1014,9 @@
                                             <td>
                                                 <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" value="@Html.Raw(depOtherIns.PhoneNumber)" disabled />
                                             </td>
+                                            <td>
+                                                @Html.ActionLink("Add", "AddDependent", "Employee", new { Employee_id = @ViewBag.Employee_id }, null)
+                                            </td>
                                         </tr>
                                     </table>
                                 </div>
@@ -1027,8 +1027,8 @@
                 }
             </form>
             @*<div>
-                @Html.ActionLink("Delete Dependent", "DeleteDep", "Employee", new { FamilyMember_id = @ViewBag.FamilyMember_id }, null)
-            </div>*@
+                    @Html.ActionLink("Delete Dependent", "DeleteDep", "Employee", new { FamilyMember_id = @ViewBag.FamilyMember_id }, null)
+                </div>*@
             <div class="text-justify">
                 <label style="padding-left: 10px;"></label>
                 <p>
@@ -1067,6 +1067,7 @@
                                 <input type="checkbox" class="checkbox-inline" id="Dependent" name="Dependent" value="Dependent" @((Model.grpHealth.Dependent == "True") ? "checked" : "") />
                                 <label for="Dependent">Child(ren)</label>
                             </div>
+                            @*@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Yes", true) Yes @Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "No", false) No*@
                             <p></p>
                         </div>
                     </form>
@@ -1075,13 +1076,12 @@
                         <div id="divReasonForRefusal">
                             <h4><b>Reason for Refusal</b></h4>
                             <div id="divReasonForRefusalSelection">
-                                <input type="checkbox" id="OtherCoverageSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" @((Model.grpHealth.OtherCoverage == "True") ? "checked" : "") />
-                                <label for="OtherCoverageSelection">OtherCoverage</label>
-                                <input type="checkbox" id="OtherReasonSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" @((Model.grpHealth.OtherReason == "True") ? "checked" : "") />
-                                <label for="OtherReasonSelection">OtherReason</label>
+                                <input type="radio" id="OtherCoverageSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" @((Model.grpHealth.OtherCoverage == "True") ? "checked" : "") /><label for="OtherCoverage">Other Coverage</label>
+                                <input type="radio" id="OtherReasonSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" @((Model.grpHealth.OtherReason == "True") ? "checked" : "") /><label for="OtherReason">Other Reason</label>
                                 <p></p>
                                 <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="@Model.grpHealth.ReasonForGrpCoverageRefusal" />
                             </div>
+                            @*@Html.RadioButtonFor(model => model.family.Gender, "Male", true) Male @Html.RadioButtonFor(model => model.family.Gender, "female", false) Female*@
                             <hr />
                             <div>
                                 <label style="padding-left: 10px;">
@@ -1114,7 +1114,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-10">
-                        @Html.ActionLink("Edit Group Health", "EditGroupHealthIns", "Group_Health", new { Employee_id = ViewBag.Employee_id }, null)
+                        @Html.ActionLink("Back to Group Health", "GrpHealthEnrollment", "Group_Health", new { Employee_id = ViewBag.Employee_id }, null)
                     </div>
                 </div>
             </div>
@@ -1181,8 +1181,9 @@
         border-bottom: 1px solid black;
         height: 30px;
     }
+
     #empSignatureDate1,
-    #empSignatureDate2{
+    #empSignatureDate2 {
         width: 15%;
         border: 0px;
         border-bottom: 1px solid black;
@@ -1253,33 +1254,10 @@
         });
     }
 
-
-
     function GroupHealthInsurance() {
 
-       window.location.href = "/Group_Health/GrpHealthEnrollment?Employee_id=@Model.employee.Employee_id" + "&FamilyMember_id=@ViewBag.FamilyMember_id";
+       window.location.href = "/Group_Health/GrpHealthEnrollment?Employee_id=@Model.employee.Employee_id";
     }
-
-    function EditGroupHealthIns() {
-
-        window.location.href = "/Group_Health/EditGroupHealthIns?Employee_id=@Model.employee.Employee_id";
-    }
-
-    function AuthorizationForm() {
-
-        window.location.href = "/Group_Health/AuthorizationForm?Employee_id=@Model.employee.Employee_id" + "&GroupHealthInsurance_id=@Model.grpHealth.GroupHealthInsurance_id";
-    }
-
-    function SalaryRedirection() {
-
-        window.location.href = "/Group_Health/SalaryRedirection?Employee_id=@Model.employee.Employee_id";
-    }
-
-    function LifeInsurance() {
-
-        window.location.href = "/Life_Insurance/LifeInsuranceEnrollment?Employee_id=@Model.employee.Employee_id";
-    }
-
 
     function showHidEmpOtherInsCoverage() {
 
@@ -1311,12 +1289,6 @@
         });
     }
 
-    $(document).ready(function () {
-        $('.refusalcheckbox-inline').click(function () {
-            $('.refusalcheckbox-inline').not(this).prop('checked', false);
-        });
-    });
-
     function showHideReasonForRefusal() {
 
         document.addEventListener("click", function () {
@@ -1324,44 +1296,44 @@
             var refusal = document.getElementById("OtherReasonSelection");
 
             if (refusal.checked == true) {
-                document.getElementById("OtherReasonComment").style.display = "block";
-                //document.getElementById("OtherReasonComment").style.visibility = "visible";
+                //document.getElementById("OtherReasonComment").style.display = "block";
+                document.getElementById("OtherReasonComment").style.visibility = "visible";
             }
             else {
-                document.getElementById("OtherReasonComment").style.display = "none";
-                //document.getElementById("OtherReasonComment").style.visibility = "hidden";
+                //document.getElementById("OtherReasonComment").style.display = "none";
+                document.getElementById("OtherReasonComment").style.visibility = "hidden";
             }
         });
     }
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EmploymentInfoUpdate").addEventListener("click", function () {
-            //Employee_id = document.getElementById("Employee_id").value;
-            //GroupName = document.getElementById("GroupName").value;
-            //IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
-            //Department = document.getElementById("Department").value;
-            //EnrollmentType = document.getElementById("EnrollmentType").value;
-            //Payroll_id = document.getElementById("Payroll_id").value;
-            //Class = document.getElementById("Class").value;
-            //AnnualSalary = document.getElementById("AnnualSalary").value;
-            //JobTitle = document.getElementById("JobTitle").value;
-            //HireDate = document.getElementById("HireDate").value;
-            //EffectiveDate = document.getElementById("EffectiveDate").value;
-            //HoursWorkedPerWeek = document.getElementById("HoursWorkedPerWeek").value;
+           Employee_id = document.getElementById("Employee_id").value;
+            GroupName = document.getElementById("GroupName").value;
+            IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
+            Department = document.getElementById("Department").value;
+            EnrollmentType = document.getElementById("EnrollmentType").value;
+            Payroll_id = document.getElementById("Payroll_id").value;
+            Class = document.getElementById("Class").value;
+            AnnualSalary = document.getElementById("AnnualSalary").value;
+            JobTitle = document.getElementById("JobTitle").value;
+            HireDate = document.getElementById("HireDate").value;
+            EffectiveDate = document.getElementById("EffectiveDate").value;
+            HoursWorkedPerWeek = document.getElementById("HoursWorkedPerWeek").value;
 
             var data = {
-                //"Employee_id": Employee_id,
-                //"GroupName": GroupName,
-                //"IMSGroupNumber": IMSGroupNumber,
-                //"Department": Department,
-                //"EnrollmentType": EnrollmentType,
-                //"Payroll_id": Payroll_id,
-                //"Class": Class,
-                //"AnnualSalary": AnnualSalary,
-                //"JobTitle": JobTitle,
-                //"HireDate": HireDate,
-                //"EffectiveDate": EffectiveDate,
-                //"HoursWorkedPerWeek": HoursWorkedPerWeek,
+                "Employee_id": Employee_id,
+                "GroupName": GroupName,
+                "IMSGroupNumber": IMSGroupNumber,
+                "Department": Department,
+                "EnrollmentType": EnrollmentType,
+                "Payroll_id": Payroll_id,
+                "Class": Class,
+                "AnnualSalary": AnnualSalary,
+                "JobTitle": JobTitle,
+                "HireDate": HireDate,
+                "EffectiveDate": EffectiveDate,
+                "HoursWorkedPerWeek": HoursWorkedPerWeek,
             }
 
             //var ret = postData('EmploymentInfoGrpHealthEnrollment', data)
@@ -1370,22 +1342,22 @@
             //        FirstStep(data); })
             //    .catch(error => console.error(error))
 
-            //fetch('EmploymentInfoGrpHealthEnrollment', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    .then(response => FirstStep(response))
-            //    .catch(error => console.error('Error:', error));
+            fetch('EmploymentInfoGrpHealthEnrollment', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
 
         })
 
@@ -1434,30 +1406,30 @@
                 "GrpHRefusalEmpSignatureDate": GrpHRefusalEmpSignatureDate,
             }
 
-            var ret = postData('GrpHealthEnrollmentNew', data)
-                .then(data => {
-                    console.log(data);
-                    FirstStep(data);
-                })
-                .catch(error => console.error(error))
+            //var ret = postData('GrpHealthEnrollmentNew', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        FirstStep(data);
+            //    })
+            //    .catch(error => console.error(error))
 
-            //fetch('GrpHealthEnrollmentNew', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    //.then(response => console.log('Success:', JSON.stringify(response)))
-            //    .then(response => FirstStep(response))
-            //    .catch(error => console.error('Error:', error));
+            fetch('GrpHealthInsEditUpdate', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                //.then(response => console.log('Success:', JSON.stringify(response)))
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
         })
     })
 
@@ -1491,4 +1463,5 @@
         //}) //parses response to JSON
     }
 </script>
+
 

@@ -451,10 +451,10 @@
                         <td>
                             <label>Policy Amount:</label>
                             <div class="checkboxes">
-                                <input type="checkbox" class="policyamountcheckboxes-inline" id="OwnerBasicLifeADandDPolicyAmount" name="OwnerBasicLifeWithADandDPolicyAmount" value="OwnerBasicLifePolicyAmount" /><label for="OwnerBasicLifeADandDPolicyAmount">Owner</label><br />
-                                <input type="checkbox" class="policyamountcheckboxes-inline" id="ManagerBasicLifeADandDPolicyAmount" name="ManagerBasicLifeWithADandDPolicyAmount" value="ManagerBasicLifePolicyAmount" /><label for="ManagerBasicLifeADandDPolicyAmount">Manager</label><br />
-                                <input type="checkbox" class="policyamountcheckboxes-inline" id="EmployeeBasicLifeADandDPolicyAmount" name="EmployeeBasicLifeWithADandDPolicyAmount" value="EmployeeBasicLifePolicyAmount" /><label for="EmployeeBasicLifeADandDPolicyAmount">Employee ($15,000)</label><br />
-                                <input type="checkbox" class="policyamountcheckboxes-inline" id="DoNotWantBasicLifeCoverageADandD" name="DoNotWantBasicLifeCoverageWithADandD" value="DoNotWantBasicLifeCoverage" /><label for="DoNotWantBasicLifeCoverageADandD">I do not want this coverage</label>
+                                <input type="checkbox" class="policyamountcheckboxes-inline" id="OwnerBasicLifeADandDPolicyAmount" name="OwnerBasicLifeWithADandDPolicyAmount" value="" /><label for="OwnerBasicLifeADandDPolicyAmount">Owner</label><br />
+                                <input type="checkbox" class="policyamountcheckboxes-inline" id="ManagerBasicLifeADandDPolicyAmount" name="ManagerBasicLifeWithADandDPolicyAmount" value="" /><label for="ManagerBasicLifeADandDPolicyAmount">Manager</label><br />
+                                <input type="checkbox" class="policyamountcheckboxes-inline" id="EmployeeBasicLifeADandDPolicyAmount" name="EmployeeBasicLifeWithADandDPolicyAmount" value="" /><label for="EmployeeBasicLifeADandDPolicyAmount">Employee ($15,000)</label><br />
+                                <input type="checkbox" class="policyamountcheckboxes-inline" id="DoNotWantBasicLifeCoverageADandD" name="DoNotWantBasicLifeCoverageWithADandD" value="" /><label for="DoNotWantBasicLifeCoverageADandD">I do not want this coverage</label>
                             </div>
                             <p></p>
                             <label>*The Guarantee Amount is $15,000.</label>
@@ -812,8 +812,8 @@
             DateOfMarriage = document.getElementById("DateOfMarriage").value;
             OtherDependents = document.getElementById("OtherDependents").checked;
             DateOfAdoption = document.getElementById("DateOfAdoption").value;
-            AddDependent = document.getElementById("AddDep").checked;
-            DropDependent = document.getElementById("DropDep").checked;
+            AddDep = document.getElementById("AddDep").checked;
+            DropDep = document.getElementById("DropDep").checked;
             DropEmployee = document.getElementById("DropEmployee").checked;
             DropDependents = document.getElementById("DropDependents").checked;
             LastDayOfCoverage = document.getElementById("LastDayOfCoverage").value;
@@ -886,8 +886,8 @@
                 "DateOfMarriage": DateOfMarriage,
                 "OtherDependents": OtherDependents,
                 "DateOfAdoption": DateOfAdoption,
-                "AddDependent": AddDependent,
-                "DropDependent": DropDependent,
+                "AddDep": AddDep,
+                "DropDep": DropDep,
                 "DropEmployee": DropEmployee,
                 "DropDependents": DropDependents,
                 "LastDayOfCoverage": LastDayOfCoverage,

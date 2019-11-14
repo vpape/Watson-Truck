@@ -770,7 +770,6 @@ namespace Watson.Controllers
 
             db.Family_Info.Remove(sp);
             db.Other_Insurance.Remove(other);
-            db.SaveChanges();
 
             return RedirectToAction("FamilyOverview", new { sp.Employee_id });
         }
@@ -1008,10 +1007,11 @@ namespace Watson.Controllers
         {
             Family_Info dep = db.Family_Info.Find(FamilyMember_id);
 
-            db.DeleteEmployeeAndDependents(FamilyMember_id);
+            Other_Insurance other = db.Other_Insurance.Find(FamilyMember_id);
 
+            db.DeleteEmployeeAndDependents(FamilyMember_id);
             db.Family_Info.Remove(dep);
-            db.SaveChanges();
+            db.Other_Insurance.Remove(other);
 
             return RedirectToAction("FamilyOverview", new { dep.Employee_id });
         }
