@@ -32,7 +32,6 @@ namespace Watson.Models
         public string AddDependent { get; set; }
         public string DropDependent { get; set; }
         public string DropEmployee { get; set; }
-        public string DropSpouse { get; set; }
         public string DropDependents { get; set; }
         public Nullable<System.DateTime> LastDayOfCoverage { get; set; }
         public string Retirement { get; set; }
@@ -83,6 +82,7 @@ namespace Watson.Models
         public string OtherReason { get; set; }
         public string DentalCoverage { get; set; }
         public string VisionCoverage { get; set; }
+        public string AddDropDep { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

@@ -493,7 +493,7 @@
           <Property Name="AddDependent" Type="varchar" MaxLength="15" />
           <Property Name="DropDependent" Type="varchar" MaxLength="15" />
           <Property Name="DropEmployee" Type="varchar" MaxLength="15" />
-          <Property Name="DropSpouse" Type="varchar" MaxLength="15" />
+          <Property Name="AddDropDep" Type="varchar" MaxLength="15" />
           <Property Name="DropDependents" Type="varchar" MaxLength="15" />
           <Property Name="LastDayOfCoverage" Type="date" />
           <Property Name="Retirement" Type="varchar" MaxLength="15" />
@@ -1318,7 +1318,6 @@
           <Property Name="AddDependent" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DropDependent" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DropEmployee" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="DropSpouse" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="DropDependents" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="LastDayOfCoverage" Type="DateTime" Precision="0" />
           <Property Name="Retirement" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
@@ -1370,6 +1369,7 @@
           <Property Name="OtherReason" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="DentalCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="VisionCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AddDropDep" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Other_Insurance">
           <Key>
@@ -2059,6 +2059,7 @@
           <EntitySetMapping Name="Life_Insurance">
             <EntityTypeMapping TypeName="WatsonTruckModel.Life_Insurance">
               <MappingFragment StoreEntitySet="Life_Insurance">
+                <ScalarProperty Name="AddDropDep" ColumnName="AddDropDep" />
                 <ScalarProperty Name="VisionCoverage" ColumnName="VisionCoverage" />
                 <ScalarProperty Name="DentalCoverage" ColumnName="DentalCoverage" />
                 <ScalarProperty Name="OtherReason" ColumnName="OtherReason" />
@@ -2109,7 +2110,6 @@
                 <ScalarProperty Name="Retirement" ColumnName="Retirement" />
                 <ScalarProperty Name="LastDayOfCoverage" ColumnName="LastDayOfCoverage" />
                 <ScalarProperty Name="DropDependents" ColumnName="DropDependents" />
-                <ScalarProperty Name="DropSpouse" ColumnName="DropSpouse" />
                 <ScalarProperty Name="DropEmployee" ColumnName="DropEmployee" />
                 <ScalarProperty Name="DropDependent" ColumnName="DropDependent" />
                 <ScalarProperty Name="AddDependent" ColumnName="AddDependent" />

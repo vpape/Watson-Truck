@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5a211f145d2a4a47bae568790044b174" Name="Diagram1" ZoomLevel="85">
+      <Diagram DiagramId="5a211f145d2a4a47bae568790044b174" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="WatsonTruckModel.Address" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="WatsonTruckModel.AspNetRole" Width="1.5" PointX="5.75" PointY="2.625" />
         <EntityTypeShape EntityType="WatsonTruckModel.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="1" />

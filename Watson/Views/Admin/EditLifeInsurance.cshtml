@@ -282,12 +282,19 @@
                     </tr>
                     <tr>
                         <td class="text-center center-block">
-                            <input type="checkbox" id="Gender" name="Gender" value="Male" @((dep.Gender) == "Male" ? "checked" : "") disabled /><label>Male</label>
-                            <input type="checkbox" id="Gender" name="Gender" value="Female" @((dep.Gender) == "Female" ? "checked" : "") disabled /><label>Female</label>
                             <div>
+                                <label style="display:table-cell">Add/Drop Dependent</label>
+                                <select class="form-control" id="AddDropDep" name="AddDropDep">
+                                    <option value="N/A" selected disabled hidden> Select an Option</option>
+                                    <option value="N/A"></option>
+                                    <option value="AddDep" @((Model.lifeIns.AddDropDep) == "AddDep" ? "selected" : "")>Add Dependent</option>
+                                    <option value="DropDep" @((Model.lifeIns.AddDropDep) == "DropDep" ? "selected" : "")>Drop Dependent</option>
+                                </select>
+                            </div>
+                            @*<div>
                                 <input type="radio" class="addDropradio-inline" id="AddDep" name="AddDependent" value="" @((Model.lifeIns.AddDependent) == "True" ? "checked" : "") /><label for="AddDep">Add Dependent</label>
                                 <input type="radio" class="addDropradio-inline" id="DropDep" name="DropDependent" value="" @((Model.lifeIns.DropDependent) == "True" ? "checked" : "") /><label for="DropDep">Drop Dependent</label>
-                            </div>
+                            </div>*@
                         </td>
                         <td>
                             <label style="display:table-cell">Date of Birth:</label>
@@ -303,10 +310,10 @@
                                 <input type="checkbox" class="checkbox-inline" id="Student" name="Student" value="" @((dep.Student) == "True" ? "checked" : "") disabled /><label>Student</label>
                                 <input type="checkbox" class="checkbox-inline" id="Disabled" name="Disabled" value="" @((dep.Disabled) == "True" ? "checked" : "") disabled /><label>Disabled</label>
                                 <input type="checkbox" class="checkbox-inline" id="NonStandardDependent" name="NonStandardDependent" value="" @((dep.NonStandardDependent) == "True" ? "checked" : "") disabled /><label>Non Standard</label>
+                                <input type="checkbox" id="Gender" name="Gender" value="Male" @((dep.Gender) == "Male" ? "checked" : "") disabled /><label>Male</label>
+                                <input type="checkbox" id="Gender" name="Gender" value="Female" @((dep.Gender) == "Female" ? "checked" : "") disabled /><label>Female</label>
                             </div>
-
                         </td>
-
                     </tr>
 
                 }
@@ -818,8 +825,9 @@
             DateOfMarriage = document.getElementById("DateOfMarriage").value;
             OtherDependents = document.getElementById("OtherDependents").checked;
             DateOfAdoption = document.getElementById("DateOfAdoption").value;
-            AddDep = document.getElementById("AddDep").checked;
-            DropDep = document.getElementById("DropDep").checked;
+            AddDropDep = document.getElementById("AddDropDep").value;
+            //AddDep = document.getElementById("AddDep").checked;
+            //DropDep = document.getElementById("DropDep").checked;
             DropEmployee = document.getElementById("DropEmployee").checked;
             DropDependents = document.getElementById("DropDependents").checked;
             LastDayOfCoverage = document.getElementById("LastDayOfCoverage").value;
@@ -893,8 +901,9 @@
                 "DateOfMarriage": DateOfMarriage,
                 "OtherDependents": OtherDependents,
                 "DateOfAdoption": DateOfAdoption,
-                "AddDep": AddDep,
-                "DropDep": DropDep,
+                "AddDropDep": AddDropDep,
+                //"AddDep": AddDep,
+                //"DropDep": DropDep,
                 "DropEmployee": DropEmployee,
                 "DropDependents": DropDependents,
                 "LastDayOfCoverage": LastDayOfCoverage,

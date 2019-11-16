@@ -55,7 +55,7 @@ namespace Watson.Controllers
         //Create-LifeIns
         public JsonResult LifeInsEnrollmentNew(int Employee_id, string GroupPlanNumber, DateTime BenefitsEffectiveDate, string InitialEnrollment, string ReEnrollment, 
             string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount, string FamilyStatusChange, string SubTotalCode,
-            string Married, DateTime DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, string AddDep, string DropDep, string DropEmployee, 
+            string Married, DateTime DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, /*string AddDep, string DropDep,*/ string AddDropDep, string DropEmployee, 
             string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage, string Retirement, DateTime? LastDayWorked, string OtherEvent,
             string OtherEventReason, DateTime? OtherEventDate, string DropBasicLife, string EmployeeDentalDrop, string SpouseDentalDrop, string DependentDentalDrop, 
             string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop, string TerminationEmploymentLossOfOtherCoverage,
@@ -86,10 +86,9 @@ namespace Watson.Controllers
             lifeIns.DateOfMarriage = DateOfMarriage;
             lifeIns.HaveChildrenOrHaveDependents = OtherDependents;
             lifeIns.PlacementDateOfAdoptedChild = DateOfAdoption;
-            lifeIns.AddDependent = AddDep;
-            lifeIns.DropDependent = DropDep;
-
-      
+            lifeIns.AddDropDep = AddDropDep;
+            //lifeIns.AddDependent = AddDep;
+            //lifeIns.DropDependent = DropDep;
             lifeIns.DropEmployee = DropEmployee;
             lifeIns.DropDependents = DropDependents;
             lifeIns.LastDayOfCoverage = LastDayOfCoverage;
@@ -189,8 +188,8 @@ namespace Watson.Controllers
         //EditUpdate-LifeIns
         public JsonResult EditLifeInsUpdate(int? LifeInsurance_id, int? Employee_id, int? InsurancePlan_id, string GroupPlanNumber, DateTime? BenefitsEffectiveDate,
             string InitialEnrollment, string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount,
-            string FamilyStatusChange, string SubTotalCode, string Married, DateTime? DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, string AddDep,
-            string DropDep, string DropEmployee, string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage, string Retirement,
+            string FamilyStatusChange, string SubTotalCode, string Married, DateTime? DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, /*string AddDep,*/
+            /*string DropDep,*/ string AddDropDep, string DropEmployee, string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage, string Retirement,
             DateTime? LastDayWorked, string OtherEvent, string OtherEventReason, DateTime? OtherEventDate, string DropBasicLife, string EmployeeDentalDrop,
             string SpouseDentalDrop, string DependentDentalDrop, string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop,
             string TerminationEmploymentLossOfOtherCoverage, DateTime? TerminationEmploymentDateLossOfOtherCoverage, string Divorce, DateTime? DivorceDate,
@@ -222,8 +221,9 @@ namespace Watson.Controllers
             lifeIns.DateOfMarriage = DateOfMarriage;
             lifeIns.HaveChildrenOrHaveDependents = OtherDependents;
             lifeIns.PlacementDateOfAdoptedChild = DateOfAdoption;
-            lifeIns.AddDependent = AddDep;
-            lifeIns.DropDependent = DropDep;
+            lifeIns.AddDropDep = AddDropDep;
+            //lifeIns.AddDependent = AddDep;
+            //lifeIns.DropDependent = DropDep;
             lifeIns.DropEmployee = DropEmployee;
             lifeIns.DropDependents = DropDependents;
             lifeIns.LastDayOfCoverage = LastDayOfCoverage;
