@@ -54,26 +54,26 @@
                     @if (item.RelationshipToInsured == "Spouse")
                     {
                         <td>
-                            @Html.ActionLink("Detail", "SpouseDetail", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                            @Html.ActionLink("Detail", "SpouseDetail", "Admin", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "EditSpouse", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                            @Html.ActionLink("Edit", "EditSpouse", "Admin", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
                         </td>
                         <td>
-                            @Html.ActionLink("Delete", "DeleteSp", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                            @Html.ActionLink("Delete", "DeleteSp", "Admin", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
                         </td>
                     }
                     @if (item.RelationshipToInsured == "Dependent")
                     {
                         <td>
-                            @Html.ActionLink("Detail", "DependentDetail", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                            @Html.ActionLink("Detail", "DependentDetail", "Admin", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "EditDependent", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                            @Html.ActionLink("Edit", "EditDependent", "Admin", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
 
                         </td>
                         <td>
-                            @Html.ActionLink("Delete", "DeleteDep", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                            @Html.ActionLink("Delete", "DeleteDep", "Admin", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
                         </td>
 
                     }
@@ -142,13 +142,13 @@
 <script>
     function FamilyInsurance() {
 
-        window.location.href = "/Employee/FamilyInsurance?Employee_id=@ViewBag.Employee_id"; /* + "&FamilyMember_id="+ FamilyMember_id*/
+        window.location.href = "/Admin/FamilyInsurance?Employee_id=@ViewBag.Employee_id"; /* + "&FamilyMember_id="+ FamilyMember_id*/
 
     }
 
     function FamilyEnrollment() {
 
-        window.location.href = "/Employee/FamilyEnrollment?Employee_id=@ViewBag.Employee_id";
+        window.location.href = "/Admin/FamilyEnrollment?Employee_id=@ViewBag.Employee_id";
     }
 
 </script>

@@ -144,7 +144,7 @@
                 </div>
             </div>
             <p>
-                @Html.ActionLink("Back to List", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
+                @Html.ActionLink("Back to List", "FamilyOverview", "Admin", new { Employee_id = ViewBag.Employee_id }, null)
             </p>
         </div>
     </div>
@@ -234,12 +234,12 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                     window.location.href = "/Group_Health/GrphealthEnrollment/?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Admin/GrphealthEnrollment/?Employee_id=" + @ViewBag.Employee_id;
 
                 }
                 else {
                     message = "Returning back to Family Overview. Thank you!!"
-                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Admin/FamilyOverview/?Employee_id=" + @ViewBag.Employee_id;
                 }
 
             }

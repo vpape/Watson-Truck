@@ -113,12 +113,10 @@
           <Property Name="PremiumPreTaxVisionIns" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPostTaxVisionIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPostTaxVisionIns" Type="varchar" MaxLength="50" />
-          <Property Name="AccidentInsProvider" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPreTaxAccidentIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPreTaxAccidentIns" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPostTaxAccidentIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPostTaxAccidentIns" Type="varchar" MaxLength="50" />
-          <Property Name="CancerInsProvider" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPreTaxCancerIns" Type="varchar" MaxLength="50" />
           <Property Name="PremiumPreTaxCancerIns" Type="varchar" MaxLength="50" />
           <Property Name="EEelectionPostTaxCancerIns" Type="varchar" MaxLength="50" />
@@ -154,6 +152,8 @@
           <Property Name="EmployeeSignatureDate" Type="date" />
           <Property Name="EmployeeInitials" Type="varchar" MaxLength="3" />
           <Property Name="PreTaxBenefitWaiverinitials" Type="varchar" MaxLength="3" />
+          <Property Name="AccidentProvider" Type="varchar" MaxLength="50" />
+          <Property Name="CancerProvider" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -1058,12 +1058,10 @@
           <Property Name="PremiumPreTaxVisionIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPostTaxVisionIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPostTaxVisionIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="AccidentInsProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPreTaxAccidentIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPreTaxAccidentIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPostTaxAccidentIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPostTaxAccidentIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CancerInsProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPreTaxCancerIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPreTaxCancerIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EEelectionPostTaxCancerIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1094,6 +1092,8 @@
           <Property Name="EEelectionPostTaxOtherIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PremiumPostTaxOtherIns" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PreTaxBenefitWaiverinitials" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="AccidentProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CancerProvider" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -1805,6 +1805,8 @@
           <EntitySetMapping Name="Deductions">
             <EntityTypeMapping TypeName="WatsonTruckModel.Deduction">
               <MappingFragment StoreEntitySet="Deductions">
+                <ScalarProperty Name="CancerProvider" ColumnName="CancerProvider" />
+                <ScalarProperty Name="AccidentProvider" ColumnName="AccidentProvider" />
                 <ScalarProperty Name="PreTaxBenefitWaiverinitials" ColumnName="PreTaxBenefitWaiverinitials" />
                 <ScalarProperty Name="PremiumPostTaxOtherIns" ColumnName="PremiumPostTaxOtherIns" />
                 <ScalarProperty Name="EEelectionPostTaxOtherIns" ColumnName="EEelectionPostTaxOtherIns" />
@@ -1835,12 +1837,10 @@
                 <ScalarProperty Name="EEelectionPostTaxCancerIns" ColumnName="EEelectionPostTaxCancerIns" />
                 <ScalarProperty Name="PremiumPreTaxCancerIns" ColumnName="PremiumPreTaxCancerIns" />
                 <ScalarProperty Name="EEelectionPreTaxCancerIns" ColumnName="EEelectionPreTaxCancerIns" />
-                <ScalarProperty Name="CancerInsProvider" ColumnName="CancerInsProvider" />
                 <ScalarProperty Name="PremiumPostTaxAccidentIns" ColumnName="PremiumPostTaxAccidentIns" />
                 <ScalarProperty Name="EEelectionPostTaxAccidentIns" ColumnName="EEelectionPostTaxAccidentIns" />
                 <ScalarProperty Name="PremiumPreTaxAccidentIns" ColumnName="PremiumPreTaxAccidentIns" />
                 <ScalarProperty Name="EEelectionPreTaxAccidentIns" ColumnName="EEelectionPreTaxAccidentIns" />
-                <ScalarProperty Name="AccidentInsProvider" ColumnName="AccidentInsProvider" />
                 <ScalarProperty Name="PremiumPostTaxVisionIns" ColumnName="PremiumPostTaxVisionIns" />
                 <ScalarProperty Name="EEelectionPostTaxVisionIns" ColumnName="EEelectionPostTaxVisionIns" />
                 <ScalarProperty Name="PremiumPreTaxVisionIns" ColumnName="PremiumPreTaxVisionIns" />

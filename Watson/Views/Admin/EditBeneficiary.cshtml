@@ -8,72 +8,72 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Edit Beneficiary</title>
+    <title>Admin- Edit Beneficiary</title>
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
     <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@ViewBag.Beneficiary_id" />
-    <div class="collapsible" id="EditBeneficiary">Edit Beneficiary</div>
+    <div class="collapsible" id="EditBeneficiary">Admin- Edit Beneficiary</div>
     <div class="content">
         <div id="divBeneficiaryInfo">
             <div class="form-group">
                 <table class="table table-condensed">
                     @*@foreach (var benefitInfo in Model.benefiList)
-                    {*@
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="checkbox-inline" id="PrimaryBeneficiary" name="PrimaryBeneficiary" value="" @((Model.beneficiary.PrimaryBeneficiary) == "True" ? "checked" : "") /><label for="Primary">Primary</label>
-                                <input type="checkbox" class="checkbox-inline" id="ContingentBeneficiary" name="ContingentBeneficiary" value="" @((Model.beneficiary.ContingentBeneficiary) == "True" ? "checked" : "") /><label for="Contingent">Contingent</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First Name" value="@Model.beneficiary.FirstName" />
-                            </td>
-                            <td>
-                                <input type="text" id="LastName" class="form-control" name="LastName" placeholder="Last Name" value="@Model.beneficiary.LastName" />
-                            </td>
-                            <td>
-                                <input type="text" id="SSN" class="form-control" name="SSN" placeholder="SSN" value="@Model.beneficiary.SSN" />
-                            </td>
-                            <td>
-                                <input type="text" id="RelationshipToEmployee" class="form-control" name="RelationshipToEmployee" placeholder="Relationship to Employee" value="@Model.beneficiary.RelationshipToEmployee" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" id="MailingAddress" class="form-control" name="Address" placeholder="Mailing Address" value="@Model.beneficiary.Address" />
-                            </td>
-                            <td>
-                                <input type="text" id="City" class="form-control" name="City" placeholder="City" value="@Model.beneficiary.CIty" />
-                            </td>
-                            <td>
-                                <input type="text" id="State" class="form-control" name="State" placeholder="State" value="@Model.beneficiary.State" />
-                            </td>
-                            <td>
-                                <input type="text" id="ZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="@Model.beneficiary.ZipCode" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label style="display:table-cell">Date of Birth:</label>
-                                <input type="date" id="DOB" class="form-control" name="DOB" value="@Convert.ToDateTime(Model.beneficiary.DOB).ToString("yyyy-dd-MM")" />
-                            </td>
-                            <td>
-                                <label style="display:table-cell">Phone Number:</label>
-                                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="Phone Number" value="@Model.beneficiary.PhoneNumber" />
-                            </td>
-                            <td>
-                                <label style="display:table-cell">Percentage Of Benefits:</label>
-                                <input type="number" id="PercentageOfBenefits" class="form-control" name="PercentageOfBenefits" placeholder="Percentage Of Benefits" value="@Model.beneficiary.PercentageOfBenefits" />
-                            </td>
-                            <td>
-                                <div style="margin-top: 18px;">
-                                    @*<button type="button" id="submitBeneficiary" onclick="submitBeneficiary()" class="btn">Submit</button>*@
-                                    @Html.ActionLink("Delete", "DeleteBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)
-                                </div>
-                            </td>
-                        </tr>
+                        {*@
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="checkbox-inline" id="PrimaryBeneficiary" name="PrimaryBeneficiary" value="" @((Model.beneficiary.PrimaryBeneficiary) == "True" ? "checked" : "") /><label for="Primary">Primary</label>
+                            <input type="checkbox" class="checkbox-inline" id="ContingentBeneficiary" name="ContingentBeneficiary" value="" @((Model.beneficiary.ContingentBeneficiary) == "True" ? "checked" : "") /><label for="Contingent">Contingent</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First Name" value="@Model.beneficiary.FirstName" />
+                        </td>
+                        <td>
+                            <input type="text" id="LastName" class="form-control" name="LastName" placeholder="Last Name" value="@Model.beneficiary.LastName" />
+                        </td>
+                        <td>
+                            <input type="text" id="SSN" class="form-control" name="SSN" placeholder="SSN" value="@Model.beneficiary.SSN" />
+                        </td>
+                        <td>
+                            <input type="text" id="RelationshipToEmployee" class="form-control" name="RelationshipToEmployee" placeholder="Relationship to Employee" value="@Model.beneficiary.RelationshipToEmployee" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="MailingAddress" class="form-control" name="Address" placeholder="Mailing Address" value="@Model.beneficiary.Address" />
+                        </td>
+                        <td>
+                            <input type="text" id="City" class="form-control" name="City" placeholder="City" value="@Model.beneficiary.CIty" />
+                        </td>
+                        <td>
+                            <input type="text" id="State" class="form-control" name="State" placeholder="State" value="@Model.beneficiary.State" />
+                        </td>
+                        <td>
+                            <input type="text" id="ZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="@Model.beneficiary.ZipCode" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label style="display:table-cell">Date of Birth:</label>
+                            <input type="date" id="DOB" class="form-control" name="DOB" value="@Convert.ToDateTime(Model.beneficiary.DOB).ToString("yyyy-dd-MM")" />
+                        </td>
+                        <td>
+                            <label style="display:table-cell">Phone Number:</label>
+                            <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="Phone Number" value="@Model.beneficiary.PhoneNumber" />
+                        </td>
+                        <td>
+                            <label style="display:table-cell">Percentage Of Benefits:</label>
+                            <input type="number" id="PercentageOfBenefits" class="form-control" name="PercentageOfBenefits" placeholder="Percentage Of Benefits" value="@Model.beneficiary.PercentageOfBenefits" />
+                        </td>
+                        <td>
+                            <div style="margin-top: 18px;">
+                                @*<button type="button" id="submitBeneficiary" onclick="submitBeneficiary()" class="btn">Submit</button>*@
+                                @Html.ActionLink("Delete", "DeleteBeneficiary", "Admin", new { Employee_id = @ViewBag.Employee_id }, null)
+                            </div>
+                        </td>
+                    </tr>
                     @*}*@
                 </table>
                 <div class="form-group">
@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <p>
-                    @Html.ActionLink("Back to Life Insurance", "EditLifeInsurance", "Life_Insurance", new { Employee_id = ViewBag.Employee_id }, null)
+                    @Html.ActionLink("Back to Life Insurance", "EditLifeInsurance", "Admin", new { Employee_id = ViewBag.Employee_id }, null)
                 </p>
             </div>
         </div>
@@ -177,18 +177,18 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Life_Insurance/EditLifeInsurance&Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Admin/EditLifeInsurance&Employee_id=" + @ViewBag.Employee_id;
 
                 }
                 else {
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Admin/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
                 }
             }
         }
         else {
             if (alert == false) {
 
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                window.location.href = "/Admin/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
             }
         }
     })
@@ -286,6 +286,7 @@
             //}) //parses response to JSON
     }
 </script>
+
 
 
 

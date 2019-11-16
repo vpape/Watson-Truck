@@ -1,4 +1,4 @@
-﻿@model Watson.ViewModels.EmployeeAndInsuranceVM
+﻿@model Watson.Models.Beneficiary
 
 <!DOCTYPE html>
 <html>
@@ -8,78 +8,85 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Add Beneficiary</title>
+    <title>Admin- Delete Beneficiary</title>
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
-    <div class="collapsible" id="BeneficiaryEnrollment">Add Beneficiary</div>
+    <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@ViewBag.Beneficiary_id" />
+    <div class="collapsible" id="DeleteBeneficiary">Admin- Delete Beneficiary</div>
     <div class="content">
         <div id="divBeneficiaryInfo">
             <div class="form-group">
                 <table class="table table-condensed">
+                    @*@foreach (var benefitInfo in Model.benefiList)
+                        {*@
                     <tr>
                         <td>
-                            <input type="checkbox" class="checkbox-inline" id="PrimaryBeneficiary" name="PrimaryBeneficiary" value="" /><label for="Primary">Primary</label>
-                            <input type="checkbox" class="checkbox-inline" id="ContingentBeneficiary" name="ContingentBeneficiary" value="" /><label for="Contingent">Contingent</label>
+                            <input type="checkbox" class="checkbox-inline" id="PrimaryBeneficiary" name="PrimaryBeneficiary" value="" @((Model.PrimaryBeneficiary) == "True" ? "checked" : "") /><label for="Primary">Primary</label>
+                            <input type="checkbox" class="checkbox-inline" id="ContingentBeneficiary" name="ContingentBeneficiary" value="" @((Model.ContingentBeneficiary) == "True" ? "checked" : "") /><label for="Contingent">Contingent</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First Name" value="" />
+                            <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First Name" value="@Model.FirstName" />
                         </td>
                         <td>
-                            <input type="text" id="LastName" class="form-control" name="LastName" placeholder="Last Name" value="" />
+                            <input type="text" id="LastName" class="form-control" name="LastName" placeholder="Last Name" value="@Model.LastName" />
                         </td>
                         <td>
-                            <input type="text" id="SSN" class="form-control" name="SSN" placeholder="SSN" value="" />
+                            <input type="text" id="SSN" class="form-control" name="SSN" placeholder="SSN" value="@Model.SSN" />
                         </td>
                         <td>
-                            <input type="text" id="RelationshipToEmployee" class="form-control" name="RelationshipToEmployee" placeholder="Relationship to Employee" value="" />
+                            <input type="text" id="RelationshipToEmployee" class="form-control" name="RelationshipToEmployee" placeholder="Relationship to Employee" value="@Model.beneficiary.RelationshipToEmployee" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="MailingAddress" class="form-control" name="Address" placeholder="Mailing Address" value="@Model.Address" />
+                        </td>
+                        <td>
+                            <input type="text" id="City" class="form-control" name="City" placeholder="City" value="@Model.CIty" />
+                        </td>
+                        <td>
+                            <input type="text" id="State" class="form-control" name="State" placeholder="State" value="@Model.State" />
+                        </td>
+                        <td>
+                            <input type="text" id="ZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="@Model.ZipCode" />
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label style="display:table-cell">Date of Birth:</label>
-                            <input type="date" id="DOB" class="form-control" name="DOB" value="" />
+                            <input type="date" id="DOB" class="form-control" name="DOB" value="@Convert.ToDateTime(Model.DOB).ToString("yyyy-dd-MM")" />
                         </td>
                         <td>
                             <label style="display:table-cell">Phone Number:</label>
-                            <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="" value="" />
+                            <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="Phone Number" value="@Model.PhoneNumber" />
                         </td>
                         <td>
                             <label style="display:table-cell">Percentage Of Benefits:</label>
-                            <input type="number" id="PercentageOfBenefits" class="form-control" name="PercentageOfBenefits" placeholder="" value="" />
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="text" id="MailingAddress" class="form-control" name="Address" placeholder="Mailing Address" value="" />
+                            <input type="number" id="PercentageOfBenefits" class="form-control" name="PercentageOfBenefits" placeholder="Percentage Of Benefits" value="@Model.PercentageOfBenefits" />
                         </td>
                         <td>
-                            <input type="text" id="City" class="form-control" name="City" placeholder="City" value="" />
-                        </td>
-                        <td>
-                            <input type="text" id="State" class="form-control" name="State" placeholder="State" value="" />
-                        </td>
-                        <td>
-                            <input type="text" id="ZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="" />
+                            <div style="margin-top: 18px;">
+                                <button type="submit" id="ConfirmDeleteBeneficiary" value="Delete" class="btn" data-toggle="confirmation">Delete</button>
+                            </div>
                         </td>
                     </tr>
-
+                    @*}*@
                 </table>
                 <div class="form-group">
                     <div class="col-md-offset-11">
-                        <button type="submit" id="submitBeneficiary" class="btn">Save</button>
+                        <button type="submit" id="ConfirmDeleteBeneficiary" value="Delete" class="btn" data-toggle="confirmation">Delete</button>
                     </div>
                 </div>
                 <p>
-                    @Html.ActionLink("Back to Life Insurance", "LifeInsuranceEnrollment", "Life_Insurance", new { Employee_id = ViewBag.Employee_id }, null)
+                    @Html.ActionLink("Back to Life Insurance", "EditLifeInsurance", "Life_Insurance", new { Employee_id = ViewBag.Employee_id }, null)
                 </p>
             </div>
         </div>
     </div>
-  
+
 
 </body>
 </html>
@@ -122,6 +129,11 @@
         display: inline-flex;
         padding: 8px 8px;
     }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
 </style>
 
 <script>
@@ -150,22 +162,26 @@
     });
 
 
-    
-    @*document.querySelector("#submitBeneficiary").addEventListener("click", function () {
+
+    @*document.querySelector("#submitBeneficiaryUpdate").addEventListener("click", function () {
+        beneficiaryUpdate = document.getElementById("submitBeneficiaryUpdate");
 
         var message;
         alert = confirm("Beneificiary information has been saved. Thank you!")
 
-        if (alert == true) {
-            message = "Please proceed to Life Insurance edit page to review information. Thank you!!";
-            var alert = confirm(message)
+        if (beneficiaryUpdate.onclick) {
             if (alert == true) {
 
-                window.location.href = "/Life_Insurance/EditLifeInsurance/?Employee_id=" + @ViewBag.Employee_id;
+                message = "Please proceed to Life Insurance edit page to review information. Thank you!!";
+                var alert = confirm(message)
+                if (alert == true) {
 
-            }
-            else {
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Life_Insurance/EditLifeInsurance&Employee_id=" + @ViewBag.Employee_id;
+
+                }
+                else {
+                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                }
             }
         }
         else {
@@ -177,8 +193,9 @@
     })*@
 
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#submitBeneficiary").addEventListener("click", function () {
+        document.querySelector("#ConfirmDeleteBeneficiary").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
+            Beneficiary_id = document.getElementById("Beneficiary_id").value;
             PrimaryBeneficiary = document.getElementById("PrimaryBeneficiary").checked;
             ContingentBeneficiary = document.getElementById("ContingentBeneficiary").checked;
             RelationshipToEmployee = document.getElementById("RelationshipToEmployee").value;
@@ -195,7 +212,7 @@
 
             var data = {
                 "Employee_id": Employee_id,
-                //"Beneficiary_id": Beneficiary_id,
+                "Beneficiary_id": Beneficiary_id,
                 "PrimaryBeneficiary": PrimaryBeneficiary,
                 "ContingentBeneficiary": ContingentBeneficiary,
                 "FirstName": FirstName,
@@ -211,63 +228,52 @@
                 "ZipCode": ZipCode,
             }
 
-            var ret = postData('AddBeneficiaryUpdate', data)
-                .then(data => { console.log(data);
-                              FirstStep(data);
-                              })
+            var ret = postData('ConfirmDeleteBeneficiary', data)
+                .then(data => ConfirmDeleteBeneficiary(data))
                 .catch(error => console.error(error))
-
-            //fetch('AddBeneficiaryUpdate', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    .then(response => FirstStep(response))
-            //    .catch(error => console.error('Error:', error));
         })
 
     })
 
-    function FirstStep(addBenefi) {
-        Employee_id = addBenefi.data;
-    }
+    function ConfirmDeleteBeneficiary(benefi) {
+        Employee_id = benefi.data;
 
+        document.querySelector("#Employee_id").value = benefi.Employee_id;
+        document.querySelector("#Beneficiary_id").value = benefi.Beneficiary_id;
+        document.querySelector("#PrimaryBeneficiary").value = benefi.PrimaryBeneficiary;
+        document.querySelector("#ContingentBeneficiary").value = benefi.ContingentBeneficiary;
+        document.querySelector("#RelationshipToEmployee").value = benefi.RelationshipToEmployee;
+        document.querySelector("#SSN").value = benefi.SSN;
+        document.querySelector("#FirstName").value = benefi.FirstName;
+        document.querySelector("#LastName").value = benefi.LastName;
+        document.querySelector("#DOB").value = benefi.DOB;
+        document.querySelector("#PhoneNumber").value = benefi.PhoneNumber;
+        document.querySelector("#PercentageOfBenefits").value = benefi.PercentageOfBenefits;
+        document.querySelector("#MailingAddress").value = benefi.MailingAddress;
+        document.querySelector("#City").value = benefi.City;
+        document.querySelector("#State").value = benefi.State;
+        document.querySelector("#ZipCode").value = benefi.ZipCode;
+    }
 
     function postData(url, data) {
         //Default options are marked with *
-        console.log(data);
-        console.log(JSON.stringify(data));
         return fetch(url, {
             body: JSON.stringify(data), //must match 'Content-Type' header
             cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', //include, same-origin, *omit
             headers: {
-                'Accept': 'application/json',
                 'user-agent': 'Mozilla/4.0 MDN Example',
                 'content-type': 'application/json'
             },
-            method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            mode: 'same-origin', //no-cors, cors, *same-origin
+            method: 'Delete', //*GET, POST, PUT, DELETE, etc...
+            mode: 'cors', //no-cors, cors, *same-origin
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer
-        }).then(res => res.json())
-            .then(response => console.log('Success:', JSON.stringify(response)))
-            .catch(error => console.error('Error:', error));
-            //.then(Response => {
-            //    console.log(Response);
-            //    Response.json();
-            //}) //parses response to JSON
+        })
+            .then(Response => Response.json()) //parses response to JSON
     }
 </script>
+
 
 
 

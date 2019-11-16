@@ -298,6 +298,31 @@
         });
     }
 
+    document.querySelector("#EditAuthorizationFormUpdate").addEventListener("click", function () {
+        save = document.getElementById("EditAuthorizationFormUpdate");
+
+        var message;
+        var alert = confirm("Your progress has been saved." + "Click OK to continue.");
+
+        if (alert == true) {
+
+            message = "Please proceed to Group Health page. Thank you!";
+            var alert = confirm(message)
+
+            if (alert == true) {
+
+                window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id="+  @ViewBag.Employee_id;
+            }
+               else {
+                    message = "You request has been canceled. Returning back to current page. Thank you!!"
+                window.location.href = "/Group_Health/EditAuthorizationForm/?Employee_id=" + @ViewBag.Employee_id;
+                }
+        }
+
+         
+
+    })
+
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#EditAuthorizationFormUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;

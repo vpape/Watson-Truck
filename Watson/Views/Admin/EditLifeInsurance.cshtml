@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Edit Life Insurance</title>
+    <title>Admin- Edit Life Insurance</title>
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
     <input type="hidden" id="LifeInsurance_id" class="form-control" name="LifeInsurance_id" value=@ViewBag.LifeInsurance_id />
     <div class="form-horizontal">
-        <div class="collapsible" id="FirstStep">Edit Life Insurance</div>
+        <div class="collapsible" id="FirstStep">Admin- Edit Life Insurance</div>
         <div class="modal-content">
             <table class="table table-bordered">
                 <tr>
@@ -70,7 +70,7 @@
                                 </td>
                                 <td>
                                     <label style="display:table-cell">Subtotal Code:</label>
-                                    <input type="text" class="form-control" id="SubTotalCode" name="SubTotalCode" value="@Html.Raw(Model.lifeIns.SubTotalCode)" disabled/>
+                                    <input type="text" class="form-control" id="SubTotalCode" name="SubTotalCode" value="@Html.Raw(Model.lifeIns.SubTotalCode)" />
                                 </td>
                             </tr>
                         </table>
@@ -144,9 +144,9 @@
                                 <td>
                                     <div>
                                         <label style="display:table-cell">Do you have children or other Dependents?</label>
-                                        <input type="radio" class="radio-inline" id="OtherDependents" name="HaveChildrenOrHaveDependents" value="" @((Model.lifeIns.HaveChildrenOrHaveDependents) == "True" ? "checked" : "")/>
+                                        <input type="radio" class="radio-inline" id="OtherDependents" name="HaveChildrenOrHaveDependents" value="" @((Model.lifeIns.HaveChildrenOrHaveDependents) == "True" ? "checked" : "") />
                                         <label>Yes</label>
-                                        <input type="radio" class="radio-inline" id="OtherDependents" name="HaveChildrenOrHaveDependents" value="" @((Model.lifeIns.HaveChildrenOrHaveDependents) == "False" ? "checked" : "")/>
+                                        <input type="radio" class="radio-inline" id="OtherDependents" name="HaveChildrenOrHaveDependents" value="" @((Model.lifeIns.HaveChildrenOrHaveDependents) == "False" ? "checked" : "") />
                                         <label>No</label>
                                     </div>
                                 </td>
@@ -477,10 +477,9 @@
                     </tr>
                 </table>
                 <div class="col-md">
-                    @Html.ActionLink("Back to Insurance", "LifeInsuranceEnrollment", "Life_Insurance", new { Employee_id = ViewBag.Employee_id }, null)
+                    @Html.ActionLink("Back to Insurance", "LifeInsuranceEnrollment", "Admin", new { Employee_id = ViewBag.Employee_id }, null)
                     <button type="button" onclick="AddBeneficiary()" class="btn">Add Beneficiary</button>
                 </div>
-
                 <table class="table table-hover">
                     @foreach (var benefitInfo in Model.benefiList)
                     {
@@ -534,8 +533,7 @@
                             </td>
                             <td>
                                 <div style="margin-top: 18px;">
-
-                                    @Html.ActionLink("Edit", "EditBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id, benefitInfo.Beneficiary_id }, null)
+                                    @Html.ActionLink("Edit", "EditBeneficiary", "Admin", new { Employee_id = @ViewBag.Employee_id, benefitInfo.Beneficiary_id }, null)
                                 </div>
                             </td>
                         </tr>
@@ -557,12 +555,6 @@
                                     (Does not apply to Life Insurance)
                                 </p>
                             </div>
-                        </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td>
                             <div>
                                 <label style="padding-left: 10px;">
                                     Employee Signature:
@@ -573,14 +565,14 @@
                                 </label>
                                 <input type="date" id="EmployeeSignatureDate" name="EmployeeSignatureDate" value="@Convert.ToDateTime(Model.lifeIns.EmployeeSignatureDate).ToString("yyyy-MM-dd")" />
                             </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-11">
+                                    <button type="submit" id="EditLifeInsUpdate" class="btn">Save</button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </table>
-                <div class="form-group">
-                    <div class="col-md-offset-11">
-                        <button type="submit" id="EditLifeInsUpdate" class="btn">Save</button>
-                    </div>
-                </div>
                 <table class="table table-bordered">
                     <tr>
                         <td>
@@ -786,18 +778,18 @@
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Admin/GrpHealthEnrollment/?Employee_id=" + @ViewBag.Employee_id;
 
                 }
                 else {
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Admin/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
                 }
             }
         }
         else {
             if (alert == false) {
 
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                window.location.href = "/Admin/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
             }
         }
     })
@@ -865,7 +857,7 @@
             document.getElementById("divDentalPlanResult").innerHTML = DentalPlan;
             VisionPlan = document.getElementById("divVisionPlan").value;
             document.getElementById("divVisionPlanResult").innerHTML = VisionPlan;
-      
+
             DoNotWantDentalCoverage = document.getElementById("DoNotWantDentalCoverage").checked;
             EmployeeCoveredUnderOtherDental = document.getElementById("EmployeeCoveredUnderOtherDental").checked;
             SpouseCoveredUnderOtherDental = document.getElementById("SpouseCoveredUnderOtherDental").checked;
@@ -1012,6 +1004,7 @@
 
 
 </script>
+
 
 
 

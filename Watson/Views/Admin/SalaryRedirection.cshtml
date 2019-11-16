@@ -278,94 +278,7 @@
                                     <input type="number" class="form-control prc2" id="PremiumPostTaxVisionIns" name="PremiumPostTaxVisionIns" value="" />
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" class="form-control" id="AccidentIns" value="Accident:" readonly />
-                                </td>
-                                <td>
-                                    @*<input type="text" class="form-control" id="AccidentInsProvider" name="AccidentInsProvider" value="" />*@
-                                    <select id="AccidentInsProvider" name="AccidentInsProvider" class="form-control">
-                                        <option value=""></option>
-                                        <option value="Insurance Mgmt. Service">Insurance Mgmt. Service</option>
-                                        <option value="Guardian Life Ins.">Guardian Life Ins.</option>
-                                        <option value="AFLAC Ins.">AFLAC Ins.</option>
-                                        <option value="Colonial Life Ins.">Colonial Life Ins.</option>
-                                        <option value="New York Life Ins.">New York Life Ins.</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="EEelectionPreTaxAccidentIns" class="form-control">
-                                        <option value=""></option>
-                                        <option value="Employee Only">Employee Only</option>
-                                        <option value="Employee & Spouse">Employee & Spouse</option>
-                                        <option value="Employee & Child">Employee & Child</option>
-                                        <option value="Employee & Family">Employee & Family</option>
-                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
-                                        <option value="Not Interested">Not Interested</option>
-                                    </select>
-                                </td>
-                                <td class="col-md-1">
-                                    <input type="number" class="form-control prc" id="PremiumPreTaxAccidentIns" name="PremiumPreTaxAccidentIns" value="" />
-                                </td>
-                                <td>
-                                    <select id="EEelectionPostTaxAccidentIns" class="form-control">
-                                        <option value=""></option>
-                                        <option value="Employee Only">Employee Only</option>
-                                        <option value="Employee & Spouse">Employee & Spouse</option>
-                                        <option value="Employee & Child">Employee & Child</option>
-                                        <option value="Employee & Family">Employee & Family</option>
-                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
-                                        <option value="Not Interested">Not Interested</option>
-                                    </select>
-                                </td>
-                                <td class="col-md-1">
-                                    <input type="number" class="form-control prc2" id="PremiumPostTaxAccidentIns" name="PremiumPostTaxAccidentIns" value="" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" class="form-control" id="CancerIns" value="Cancer:" readonly />
-                                </td>
-                                <td>
-                                    @*<input type="text" class="form-control" id="CancerInsProvider" name="CancerInsProvider" value="" />*@
-                                    <select id="CancerInsProvider" name="CancerInsProvider" class="form-control">
-                                        <option value=""></option>
-                                        <option value="Insurance Mgmt. Service">Insurance Mgmt. Service</option>
-                                        <option value="Guardian Life Ins.">Guardian Life Ins.</option>
-                                        <option value="AFLAC Ins.">AFLAC Ins.</option>
-                                        <option value="Colonial Life Ins.">Colonial Life Ins.</option>
-                                        <option value="New York Life Ins.">New York Life Ins.</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="EEelectionPreTaxCancerIns" class="form-control">
-                                        <option value=""></option>
-                                        <option value="Employee Only">Employee Only</option>
-                                        <option value="Employee & Spouse">Employee & Spouse</option>
-                                        <option value="Employee & Child">Employee & Child</option>
-                                        <option value="Employee & Family">Employee & Family</option>
-                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
-                                        <option value="Not Interested">Not Interested</option>
-                                    </select>
-                                </td>
-                                <td class="col-md-1">
-                                    <input type="number" class="form-control prc" id="PremiumPreTaxCancerIns" name="PremiumPreTaxCancerIns" value="" />
-                                </td>
-                                <td>
-                                    <select id="EEelectionPostTaxCancerIns" class="form-control">
-                                        <option value=""></option>
-                                        <option value="Employee Only">Employee Only</option>
-                                        <option value="Employee & Spouse">Employee & Spouse</option>
-                                        <option value="Employee & Child">Employee & Child</option>
-                                        <option value="Employee & Family">Employee & Family</option>
-                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
-                                        <option value="Not Interested">Not Interested</option>
-                                    </select>
-                                </td>
-                                <td class="col-md-1">
-                                    <input type="number" class="form-control prc2" id="PremiumPostTaxCancerIns" name="PremiumPostTaxCancerIns" value="" />
-                                </td>
-                            </tr>
+
                             <tr>
                                 <td>
                                     <input type="text" class="form-control" id="Short-termDisability" value="Short-Term Disability:" readonly />
@@ -540,6 +453,96 @@
                                 </td>
                                 <td class="col-md-1">
                                     <input type="number" class="form-control prc2" id="PremiumPostTaxWholeLifeIns" name="PremiumPostTaxWholeLifeIns" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" id="AccidentIns" value="Accident:" readonly />
+                                </td>
+                                <td>
+                                    @*<input type="text" class="form-control" id="AccidentProvider" name="AccidentProvider" value="" />*@
+                                    <select id="AccidentProvider" name="AccidentProvider" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Insurance Mgmt. Service">Insurance Mgmt. Service</option>
+                                        <option value="Guardian Life Ins.">Guardian Life Ins.</option>
+                                        <option value="AFLAC Ins.">AFLAC Ins.</option>
+                                        <option value="Colonial Life Ins.">Colonial Life Ins.</option>
+                                        <option value="New York Life Ins.">New York Life Ins.</option>
+                                    </select>
+                                    @*<div id="AccidentInsOptionResult" hidden></div>*@
+                                </td>
+                                <td>
+                                    <select id="EEelectionPreTaxAccidentIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc" id="PremiumPreTaxAccidentIns" name="PremiumPreTaxAccidentIns" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPostTaxAccidentIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc2" id="PremiumPostTaxAccidentIns" name="PremiumPostTaxAccidentIns" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" id="CancerIns" value="Cancer:" readonly />
+                                </td>
+                                <td>
+                                    @*<input type="text" class="form-control" id="CancerProvider" name="CancerProvider" value="" />*@
+                                    <select id="CancerProvider" name="CancerProvider" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Insurance Mgmt. Service">Insurance Mgmt. Service</option>
+                                        <option value="Guardian Life Ins.">Guardian Life Ins.</option>
+                                        <option value="AFLAC Ins.">AFLAC Ins.</option>
+                                        <option value="Colonial Life Ins.">Colonial Life Ins.</option>
+                                        <option value="New York Life Ins.">New York Life Ins.</option>
+                                    </select>
+                                    @*<div id="CancerInsOptionResult" hidden></div>*@
+                                </td>
+                                <td>
+                                    <select id="EEelectionPreTaxCancerIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc" id="PremiumPreTaxCancerIns" name="PremiumPreTaxCancerIns" value="" />
+                                </td>
+                                <td>
+                                    <select id="EEelectionPostTaxCancerIns" class="form-control">
+                                        <option value=""></option>
+                                        <option value="Employee Only">Employee Only</option>
+                                        <option value="Employee & Spouse">Employee & Spouse</option>
+                                        <option value="Employee & Child">Employee & Child</option>
+                                        <option value="Employee & Family">Employee & Family</option>
+                                        <option value="Covered By Other Insurance">Covered By Other Insurance</option>
+                                        <option value="Not Interested">Not Interested</option>
+                                    </select>
+                                </td>
+                                <td class="col-md-1">
+                                    <input type="number" class="form-control prc2" id="PremiumPostTaxCancerIns" name="PremiumPostTaxCancerIns" value="" />
                                 </td>
                             </tr>
                             <tr class="">
@@ -881,17 +884,7 @@
             EEelectionPostTaxVisionIns = document.getElementById("EEelectionPostTaxVisionIns").value;
             PremiumPostTaxVisionIns = document.getElementById("PremiumPostTaxVisionIns").value;
 
-            AccidentInsProvider = document.getElementById("AccidentInsProvider").value;
-            EEelectionPreTaxAccidentIns = document.getElementById("EEelectionPreTaxAccidentIns").value;
-            PremiumPreTaxAccidentIns = document.getElementById("PremiumPreTaxAccidentIns").value;
-            EEelectionPostTaxAccidentIns = document.getElementById("EEelectionPostTaxAccidentIns").value;
-            PremiumPostTaxAccidentIns = document.getElementById("PremiumPostTaxAccidentIns").value;
 
-            CancerInsProvider = document.getElementById("CancerInsProvider").value;
-            EEelectionPreTaxCancerIns = document.getElementById("EEelectionPreTaxCancerIns").value;
-            PremiumPreTaxCancerIns = document.getElementById("PremiumPreTaxCancerIns").value;
-            EEelectionPostTaxCancerIns = document.getElementById("EEelectionPostTaxCancerIns").value;
-            PremiumPostTaxCancerIns = document.getElementById("PremiumPostTaxCancerIns").value;
 
             StDisabilityProvider = document.getElementById("StDisabilityProvider").value;
             EEelectionPreTaxStDisability = document.getElementById("EEelectionPreTaxStDisability").value;
@@ -916,6 +909,25 @@
             PremiumPreTaxWholeLifeIns = document.getElementById("PremiumPreTaxWholeLifeIns").value;
             EEelectionPostTaxWholeLifeIns = document.getElementById("EEelectionPostTaxWholeLifeIns").value;
             PremiumPostTaxWholeLifeIns = document.getElementById("PremiumPostTaxWholeLifeIns").value;
+
+
+            //refer to line 359 and 505- data passing, but not reaching controller- and the IDs match the controller names
+            AccidentProvider = document.getElementById("AccidentProvider").value;
+            //document.getElementById("AccidentInsOptionResult").innerHTML = AccidentProvider;
+
+            EEelectionPreTaxAccidentIns = document.getElementById("EEelectionPreTaxAccidentIns").value;
+            PremiumPreTaxAccidentIns = document.getElementById("PremiumPreTaxAccidentIns").value;
+            EEelectionPostTaxAccidentIns = document.getElementById("EEelectionPostTaxAccidentIns").value;
+            PremiumPostTaxAccidentIns = document.getElementById("PremiumPostTaxAccidentIns").value;
+
+            //refer to line 359 and 505- data passing, but not reaching controller- and the IDs match the controller names
+            CancerProvider = document.getElementById("CancerProvider").value;
+            //document.getElementById("CancerInsOptionResult").innerHTML = CancerProvider;
+
+            EEelectionPreTaxCancerIns = document.getElementById("EEelectionPreTaxCancerIns").value;
+            PremiumPreTaxCancerIns = document.getElementById("PremiumPreTaxCancerIns").value;
+            EEelectionPostTaxCancerIns = document.getElementById("EEelectionPostTaxCancerIns").value;
+            PremiumPostTaxCancerIns = document.getElementById("PremiumPostTaxCancerIns").value;
 
             OtherInsProvider = document.getElementById("OtherInsProvider").value;
             EEelectionPreTaxOtherIns = document.getElementById("EEelectionPreTaxOtherIns").value;
@@ -950,17 +962,7 @@
                 "EEelectionPostTaxVisionIns": EEelectionPostTaxVisionIns,
                 "PremiumPostTaxVisionIns": PremiumPostTaxVisionIns,
 
-                "AccidentInsProvider ": AccidentInsProvider ,
-                "EEelectionPreTaxAccidentIns": EEelectionPreTaxAccidentIns,
-                "PremiumPreTaxAccidentIns": PremiumPreTaxAccidentIns,
-                "EEelectionPostTaxAccidentIns": EEelectionPostTaxAccidentIns,
-                "PremiumPostTaxAccidentIns": PremiumPostTaxAccidentIns,
 
-                "CancerInsProvider ": CancerInsProvider,
-                "EEelectionPreTaxCancerIns": EEelectionPreTaxCancerIns,
-                "PremiumPreTaxCancerIns": PremiumPreTaxCancerIns,
-                "EEelectionPostTaxCancerIns": EEelectionPostTaxCancerIns,
-                "PremiumPostTaxCancerIns": PremiumPostTaxCancerIns,
 
                 "StDisabilityProvider": StDisabilityProvider,
                 "EEelectionPreTaxStDisability": EEelectionPreTaxStDisability,
@@ -985,6 +987,18 @@
                 "PremiumPreTaxWholeLifeIns": PremiumPreTaxWholeLifeIns,
                 "EEelectionPostTaxWholeLifeIns": EEelectionPostTaxWholeLifeIns,
                 "PremiumPostTaxWholeLifeIns": PremiumPostTaxWholeLifeIns,
+
+                "AccidentProvider  ": AccidentProvider,
+                "EEelectionPreTaxAccidentIns": EEelectionPreTaxAccidentIns,
+                "PremiumPreTaxAccidentIns": PremiumPreTaxAccidentIns,
+                "EEelectionPostTaxAccidentIns": EEelectionPostTaxAccidentIns,
+                "PremiumPostTaxAccidentIns": PremiumPostTaxAccidentIns,
+
+                "CancerProvider ": CancerProvider,
+                "EEelectionPreTaxCancerIns": EEelectionPreTaxCancerIns,
+                "PremiumPreTaxCancerIns": PremiumPreTaxCancerIns,
+                "EEelectionPostTaxCancerIns": EEelectionPostTaxCancerIns,
+                "PremiumPostTaxCancerIns": PremiumPostTaxCancerIns,
 
                 "OtherInsProvider": OtherInsProvider,
                 "EEelectionPreTaxOtherIns": EEelectionPreTaxOtherIns,

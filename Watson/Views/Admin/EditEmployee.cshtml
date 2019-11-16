@@ -332,21 +332,21 @@
             message = "Please proceed to Employee Detail to review information, Thank you!!";
             var alert = confirm(message)
             if (alert == true) {
-                    window.location.href = "/Employee/EmployeeDetail?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Admin/EmployeeDetail?Employee_id=" + @ViewBag.Employee_id;
             }
 
         }
         else {
             if (alert == false) {
 
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                window.location.href = "/Admin/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
             }
             else {
 
                 message = "Your request has been canceled. Please proceed to Employee Overview , Thank you!!";
                 var alert = confirm(message)
 
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                window.location.href = "/Admin/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
             }
         }
     });

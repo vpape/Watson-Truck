@@ -53,23 +53,24 @@ namespace Watson.Controllers
         }
 
         //Create-LifeIns
-        public JsonResult LifeInsEnrollmentNew(/*int LifeInsurance_id,*/ int Employee_id, /*int InsurancePlan_id,*/ string GroupPlanNumber, DateTime BenefitsEffectiveDate,
-            string InitialEnrollment, string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount,
-            string FamilyStatusChange, string SubTotalCode, string Married, DateTime DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, 
-            string AddDep, string DropDep, string DropEmployee, string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage,
-            string Retirement, DateTime? LastDayWorked, string OtherEvent, string OtherEventReason, DateTime? OtherEventDate, string DropBasicLife, 
-            string EmployeeDentalDrop, string SpouseDentalDrop, string DependentDentalDrop, string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop, 
-            string TerminationEmploymentLossOfOtherCoverage, DateTime? TerminationEmploymentDateLossOfOtherCoverage, string Divorce, DateTime? DivorceDate, 
-            string DeathOfSpouse, DateTime? DeathOfSpouseDate, string TerminationOrExpirationOfCoverage, DateTime? TerminationOrExpirationOfCoverageDate,
-            string DentalCoverageLost, string VisionCoverageLost, string CoveredUnderOtherInsurance, string Other, string OtherReason, string DoNotWantDentalCoverage,
-            string EmployeeCoveredUnderOtherDental, string SpouseCoveredUnderOtherDental, string DependentsCoveredUnderOtherDental, string DoNotWantVisionCoverage, 
-            string EmployeeCoveredUnderOtherVision, string SpouseCoveredUnderOtherVision, string DependentsCoveredUnderOtherVision, string PrimaryBeneficiary, 
-            string ContingentBeneficiary, string OwnerBasicLifeADandDPolicyAmount, string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount,
-            string DoNotWantBasicLifeCoverageADandD, string PreviousPolicyAmount, string DentalPlan, string VisionPlan, string EmployeeSignature, DateTime? EmployeeSignatureDate)
+        public JsonResult LifeInsEnrollmentNew(int Employee_id, string GroupPlanNumber, DateTime BenefitsEffectiveDate, string InitialEnrollment, string ReEnrollment, 
+            string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount, string FamilyStatusChange, string SubTotalCode,
+            string Married, DateTime DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, string AddDep, string DropDep, string DropEmployee, 
+            string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage, string Retirement, DateTime? LastDayWorked, string OtherEvent,
+            string OtherEventReason, DateTime? OtherEventDate, string DropBasicLife, string EmployeeDentalDrop, string SpouseDentalDrop, string DependentDentalDrop, 
+            string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop, string TerminationEmploymentLossOfOtherCoverage,
+            DateTime? TerminationEmploymentDateLossOfOtherCoverage, string Divorce, DateTime? DivorceDate, string DeathOfSpouse, DateTime? DeathOfSpouseDate, 
+            string TerminationOrExpirationOfCoverage, DateTime? TerminationOrExpirationOfCoverageDate, string DentalCoverageLost, string VisionCoverageLost, 
+            string CoveredUnderOtherInsurance, string Other, string OtherReason, string DoNotWantDentalCoverage, string EmployeeCoveredUnderOtherDental, 
+            string SpouseCoveredUnderOtherDental, string DependentsCoveredUnderOtherDental, string DoNotWantVisionCoverage, string EmployeeCoveredUnderOtherVision,
+            string SpouseCoveredUnderOtherVision, string DependentsCoveredUnderOtherVision, string PrimaryBeneficiary, string ContingentBeneficiary, 
+            string OwnerBasicLifeADandDPolicyAmount, string ManagerBasicLifeADandDPolicyAmount, string EmployeeBasicLifeADandDPolicyAmount,
+            string DoNotWantBasicLifeCoverageADandD, string PreviousPolicyAmount, string DentalPlan, string VisionPlan, string EmployeeSignature,
+            DateTime? EmployeeSignatureDate)
         {
 
             Life_Insurance lifeIns = new Life_Insurance();
-   
+
             lifeIns.Employee_id = Employee_id;
             lifeIns.GroupPlanNumber = GroupPlanNumber;
             lifeIns.BenefitsEffectiveDate = BenefitsEffectiveDate;
@@ -87,6 +88,8 @@ namespace Watson.Controllers
             lifeIns.PlacementDateOfAdoptedChild = DateOfAdoption;
             lifeIns.AddDependent = AddDep;
             lifeIns.DropDependent = DropDep;
+
+      
             lifeIns.DropEmployee = DropEmployee;
             lifeIns.DropDependents = DropDependents;
             lifeIns.LastDayOfCoverage = LastDayOfCoverage;
@@ -139,7 +142,6 @@ namespace Watson.Controllers
 
             InsurancePlan insPlan = new InsurancePlan();
 
-            insPlan.Employee_id = Employee_id;
             insPlan.DentalPlan = DentalPlan;
             insPlan.VisionPlan = VisionPlan;
 
@@ -302,7 +304,7 @@ namespace Watson.Controllers
 
         //----------------------------------------------------------------------------------------
 
-        public ActionResult AddBeneficiary(int Employee_id, int? Beneficiary_id)
+        public ActionResult AddBeneficiary(int? Employee_id, int? Beneficiary_id)
         {
             ViewBag.Employee_id = Employee_id;
             ViewBag.Beneficiary_id = Beneficiary_id;
@@ -310,7 +312,7 @@ namespace Watson.Controllers
             EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
 
             //empAndInsVM.benefiList = db.Beneficiaries.Where(i => i.Beneficiary_id == Beneficiary_id).ToList();
-            empAndInsVM.beneficiary = db.Beneficiaries.FirstOrDefault(i => i.Beneficiary_id == Beneficiary_id);
+            empAndInsVM.beneficiary = db.Beneficiaries.FirstOrDefault(i => i.Employee_id == Employee_id);
 
             return View(empAndInsVM);
         }
@@ -362,14 +364,16 @@ namespace Watson.Controllers
 
 
         public JsonResult EditBeneficaryUpdate(int? Employee_id, int? Beneficiary_id, string PrimaryBeneficiary, string ContingentBeneficiary, string FirstName,
-            string LastName, string SSN, string RelationshipToEmployee, string MailingAddress, string City, string State, string ZipCode, DateTime DOB,
+            string LastName, string SSN, string RelationshipToEmployee, string MailingAddress, string City, string State, string ZipCode, DateTime? DOB,
             string PhoneNumber, string PercentageOfBenefits)
         {
             Beneficiary benefi = db.Beneficiaries
                      .Where(i => i.Employee_id == Employee_id)
+                     .Where(i => i.Beneficiary_id == Beneficiary_id)
                      .SingleOrDefault();
 
-            ViewBag.Beneficiary_id = benefi.Beneficiary_id;
+
+            //ViewBag.Beneficiary_id = benefi.Beneficiary_id;
 
             benefi.PrimaryBeneficiary = PrimaryBeneficiary;
             benefi.ContingentBeneficiary = ContingentBeneficiary;
@@ -404,12 +408,50 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
+        //Delete-Beneficiaries
+        //----------------------------------------------------------------------------------------
+
+        public ActionResult DeleteBeneficiary(int? Beneficiary_id, int? Employee_id)
+        {
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.Beneficiary_id = Beneficiary_id;
+
+            if (Beneficiary_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Beneficiary beni = db.Beneficiaries.Find(Beneficiary_id);
+            if (lifeIns == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(beni);
+        }
+
+
+        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteBeneficiary")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmDeleteBeneficiary(int Beneficiary_id)
+        {
+            Beneficiary beni = db.Beneficiaries.Find(Beneficiary_id);
+            db.Beneficiaries.Remove(beni);
+            db.SaveChanges();
+
+            db.DeleteEmployeeAndDependents(Beneficiary_id);
+
+            return RedirectToAction("LifeInsuranceEnrollment");
+        }
 
         //----------------------------------------------------------------------------------------
 
 
-        public ActionResult DeleteLifeInsurance(int? LifeInsurance_id)
+        public ActionResult DeleteLifeInsurance(int? LifeInsurance_id, int? Employee_id)
         {
+            ViewBag.Employee_id = Employee_id;
+            ViewBag.LifeInsurance_id = LifeInsurance_id;
+
             if (LifeInsurance_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -427,27 +469,13 @@ namespace Watson.Controllers
         //Delete-LifeInsurance
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteLifeInsurance")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteLifeIns(int LifeInsurance_id)
+        public ActionResult ConfirmDeleteLifeIns(int LifeInsurance_id)
         {
             Life_Insurance lifeIns = db.Life_Insurance.Find(LifeInsurance_id);
             db.Life_Insurance.Remove(lifeIns);
             db.SaveChanges();
 
             db.DeleteEmployeeAndDependents(LifeInsurance_id);
-
-            return RedirectToAction("LifeInsuranceEnrollment");
-        }
-
-        //Delete-Beneficiaries
-        [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteBeneficiary")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteBeneficiary(int Beneficiary_id)
-        {
-            Beneficiary beni = db.Beneficiaries.Find(Beneficiary_id);
-            db.Beneficiaries.Remove(beni);
-            db.SaveChanges();
-
-            db.DeleteEmployeeAndDependents(Beneficiary_id);
 
             return RedirectToAction("LifeInsuranceEnrollment");
         }
@@ -460,9 +488,6 @@ namespace Watson.Controllers
             }
             base.Dispose(disposing);
         }
-
-
-        //LifeInsurance-End-----------------------------------------------------------------------------
 
     }
 }

@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Add Beneficiary</title>
+    <title>Admin- Add Beneficiary</title>
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
-    <div class="collapsible" id="BeneficiaryEnrollment">Add Beneficiary</div>
+    <div class="collapsible" id="BeneficiaryEnrollment">Admin- Add Beneficiary</div>
     <div class="content">
         <div id="divBeneficiaryInfo">
             <div class="form-group">
@@ -74,12 +74,12 @@
                     </div>
                 </div>
                 <p>
-                    @Html.ActionLink("Back to Life Insurance", "LifeInsuranceEnrollment", "Life_Insurance", new { Employee_id = ViewBag.Employee_id }, null)
+                    @Html.ActionLink("Back to Life Insurance", "LifeInsuranceEnrollment", "Admin", new { Employee_id = ViewBag.Employee_id }, null)
                 </p>
             </div>
         </div>
     </div>
-  
+
 
 </body>
 </html>
@@ -150,7 +150,7 @@
     });
 
 
-    
+
     @*document.querySelector("#submitBeneficiary").addEventListener("click", function () {
 
         var message;
@@ -161,17 +161,17 @@
             var alert = confirm(message)
             if (alert == true) {
 
-                window.location.href = "/Life_Insurance/EditLifeInsurance/?Employee_id=" + @ViewBag.Employee_id;
+                window.location.href = "/Admin/EditLifeInsurance/?Employee_id=" + @ViewBag.Employee_id;
 
             }
             else {
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                window.location.href = "/Admin/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
             }
         }
         else {
             if (alert == false) {
 
-                window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                window.location.href = "/Admin/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
             }
         }
     })*@
@@ -268,6 +268,7 @@
             //}) //parses response to JSON
     }
 </script>
+
 
 
 

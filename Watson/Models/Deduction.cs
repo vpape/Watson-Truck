@@ -36,12 +36,10 @@ namespace Watson.Models
         public string PremiumPreTaxVisionIns { get; set; }
         public string EEelectionPostTaxVisionIns { get; set; }
         public string PremiumPostTaxVisionIns { get; set; }
-        public string AccidentInsProvider { get; set; }
         public string EEelectionPreTaxAccidentIns { get; set; }
         public string PremiumPreTaxAccidentIns { get; set; }
         public string EEelectionPostTaxAccidentIns { get; set; }
         public string PremiumPostTaxAccidentIns { get; set; }
-        public string CancerInsProvider { get; set; }
         public string EEelectionPreTaxCancerIns { get; set; }
         public string PremiumPreTaxCancerIns { get; set; }
         public string EEelectionPostTaxCancerIns { get; set; }
@@ -72,6 +70,8 @@ namespace Watson.Models
         public string EEelectionPostTaxOtherIns { get; set; }
         public string PremiumPostTaxOtherIns { get; set; }
         public string PreTaxBenefitWaiverinitials { get; set; }
+        public string AccidentProvider { get; set; }
+        public string CancerProvider { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

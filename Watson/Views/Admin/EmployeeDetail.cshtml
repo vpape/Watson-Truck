@@ -200,7 +200,7 @@
                     <input type="tel" id="empInsPhoneNumber" class="form-control" name="PhoneNumber" value="@Html.DisplayFor(Model => Model.grpHealth.PhoneNumber)" disabled>
                 </dd>
                 <dt>
-                    @Html.ActionLink("Edit", "EditEmployee", "Employee", new { Employee_id = Model.employee.Employee_id }, null)|
+                    @Html.ActionLink("Edit", "EditEmployee", "Admin", new { Employee_id = Model.employee.Employee_id }, null)|
                     @Html.ActionLink("Back to List", "EmpOverview")
                 </dt>
             </dl>
@@ -272,8 +272,4 @@
         });
     }
 
-    function EditEmpBtn() {
-
-        window.location.href = "/Employee/EditEmployee?Employee_id=@Model.employee.Employee_id";
-    }
 </script>

@@ -69,7 +69,7 @@
                                 </td>
                                 <td>
                                     <label style="display:table-cell">Subtotal Code:</label>
-                                    <input type="text" class="form-control" id="SubTotalCode" name="SubTotalCode" value="" />
+                                    <input type="text" class="form-control" id="SubTotalCode" name="SubTotalCode" value="" disabled/>
                                 </td>
                             </tr>
                         </table>
@@ -474,67 +474,8 @@
                 </table>
                 <div class="col-md">
                     @Html.ActionLink("Edit Insurance ", "EditLifeInsurance", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)
-                    <button type="button" onclick="AddBeneficiary()" class="btn">Add Beneficiary</button>
+                    @*<button type="button" onclick="AddBeneficiary()" class="btn">Add Beneficiary</button>*@
                 </div>
-                <table class="table table-hover">
-                    @foreach (var benefitInfo in Model.benefiList)
-                    {
-                        <tr>
-                            <td>
-                                <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@benefitInfo.Beneficiary_id" />
-                                <input type="checkbox" class="checkbox-inline" id="Primary" name="PrimaryBeneficiary" value="" @((benefitInfo.PrimaryBeneficiary) == "True" ? "checked" : "") disabled /><label for="Primary">Primary</label>
-                                <input type="checkbox" class="checkbox-inline" id="Contingent" name="ContingentBeneficiary" value="" @((benefitInfo.ContingentBeneficiary) == "True" ? "checked" : "") disabled /><label for="Contingent">Contingent</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First Name" value="@benefitInfo.FirstName" disabled />
-                            </td>
-                            <td>
-                                <input type="text" id="LastName" class="form-control" name="LastName" placeholder="Last Name" value="@benefitInfo.LastName" disabled />
-                            </td>
-                            <td>
-                                <input type="text" id="SSN" class="form-control" name="SSN" placeholder="SSN" value="@benefitInfo.SSN" disabled />
-                            </td>
-                            <td>
-                                <input type="text" id="RelationshipToEmployee" class="form-control" name="RelationshipToEmployee" placeholder="Relationship to Employee" value="@benefitInfo.RelationshipToEmployee" disabled />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" id="MailingAddress" class="form-control" name="Address" placeholder="Mailing Address" value="@benefitInfo.Address" disabled />
-                            </td>
-                            <td>
-                                <input type="text" id="City" class="form-control" name="CIty" placeholder="City" value="@benefitInfo.CIty" disabled />
-                            </td>
-                            <td>
-                                <input type="text" id="State" class="form-control" name="State" placeholder="State" value="@benefitInfo.State" disabled />
-                            </td>
-                            <td>
-                                <input type="text" id="ZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="@benefitInfo.ZipCode" disabled />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label style="display:table-cell">Date of Birth:</label>
-                                <input type="date" id="DOB" class="form-control" name="DOB" value="@Convert.ToDateTime(benefitInfo.DOB).ToString("yyyy-dd-MM")" disabled />
-                            </td>
-                            <td>
-                                <label style="display:table-cell">Phone Number:</label>
-                                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="Phone Number" value="@benefitInfo.PhoneNumber" disabled />
-                            </td>
-                            <td>
-                                <label style="display:table-cell">Percentage Of Benefits:</label>
-                                <input type="number" id="PercentageOfBenefits" class="form-control" name="PercentageOfBenefits" placeholder="Percentage Of Benefits" value="@benefitInfo.PercentageOfBenefits" disabled />
-                            </td>
-                            <td>
-                                <div style="margin-top: 18px;">
-                                    @Html.ActionLink("Edit", "EditBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id, benefitInfo.Beneficiary_id }, null)
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </table>
                 <table class="table table-condensed">
                     <tr>
                         <td>
@@ -550,7 +491,12 @@
                                     (Does not apply to Life Insurance)
                                 </p>
                             </div>
-                            <hr />
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
                             <div>
                                 <label style="padding-left: 10px;">
                                     Employee Signature:
@@ -561,82 +507,14 @@
                                 </label>
                                 <input type="date" id="EmployeeSignatureDate" name="EmployeeSignatureDate" value="" />
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-11">
-                                    <button type="submit" id="LifeInsUpdate" class="btn">Save</button>
-                                </div>
-                            </div>
                         </td>
                     </tr>
                 </table>
-                <hr />
-                <table class="table table-bordered">
-                    <tr>
-                        <td>
-                            <div class="text-justify">
-                                <h4><b>Fraud Warning Statments</b></h4>
-                                <p>
-                                    The laws of several states require the following statements to appear on the enrollment form:
-                                </p>
-                                <p>
-                                    <b>Alabama:</b> Any person who knowingly presents a false or fraudulent claim for payment of a loss or benefit or who knowingly presents false information
-                                    in an application for insurance is guilty of a crime and maybe subject to restitution fines or confinement in prison, or any combination thereof.
-                                </p>
-                                <p>
-                                    <b>Arizona:</b>
-                                </p>
-                                <p>
-                                    <b>California:</b>
-                                </p>
-                                <p>
-                                    <b>Colorado:</b>
-                                </p>
-                                <p>
-                                    <b>Connecticut, Iowa, Nebraska, and Oregon:</b>
-                                </p>
-                                <p>
-                                    <b>Delaware, Indiana, and Oklahoma:</b>
-                                </p>
-                                <p>
-                                    <b>District of Columbia:</b>
-                                </p>
-                                <p>
-                                    <b>Florida:</b>
-                                </p>
-                                <p>
-                                    <b>Kansas:</b>
-                                </p>
-                                <p>
-                                    <b>Kentucky:</b>
-                                </p>
-                                <p>
-                                    <b>Louisiana and Texas:</b>
-                                </p>
-                                <p>
-                                    <b>Maine, Tennessee, and Washington:</b>
-                                </p>
-                                <p>
-                                    <b>Maryland:</b>
-                                </p>
-                                <p>
-                                    <b>Rhode Island:</b>
-                                </p>
-                                <p>
-                                    <b>Minnesota:</b>
-                                </p>
-                                <p>
-                                    <b>New Hampshire:</b>
-                                </p>
-                                <p>
-                                    <b>New Jersey:</b>
-                                </p>
-                                <p>
-                                    <b>New Mexico:</b>
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+                <div class="form-group">
+                    <div class="col-md-offset-11">
+                        <button type="submit" id="LifeInsUpdate" class="btn">Save</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -787,11 +665,11 @@
     })
 
     function AddBeneficiary() {
-         window.location.href = "/Life_Insurance/AddBeneficiary/?Employee_id=@Model.employee.Employee_id";
+         window.location.href = "/Life_Insurance/AddBeneficiary/?Employee_id=@ViewBag.Employee_id";
 
     }
 
-    function editBeneficiary() {
+    function EditBeneficiary() {
         window.location.href = "/Life_Insurance/EditBeneficiary/?Employee_id=" + @ViewBag.Employee_id + "&Beneficiary_id=@ViewBag.Beneficiary_id";
     }
 
@@ -812,6 +690,7 @@
             DateOfMarriage = document.getElementById("DateOfMarriage").value;
             OtherDependents = document.getElementById("OtherDependents").checked;
             DateOfAdoption = document.getElementById("DateOfAdoption").value;
+
             AddDep = document.getElementById("AddDep").checked;
             DropDep = document.getElementById("DropDep").checked;
             DropEmployee = document.getElementById("DropEmployee").checked;

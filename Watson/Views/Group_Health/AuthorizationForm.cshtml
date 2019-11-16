@@ -303,21 +303,21 @@
     function redirect() {
         document.addEventListener("click", function () {
             var message;
-            var alert = confirm("Would you like to save your progress?" + "Click OK to continue.")
+            var alert = confirm("Your progress has been saved." + "Click OK to continue.")
 
             if (alert == true) {
 
-                message = "Your progress has been saved. Thank you!"
+                message = "Please proceed to the review page. Thank you!"
                 var alert = confirm(message)
 
                 if (alert == true) {
-                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id="+  @ViewBag.Employee_id;
+                    window.location.href = "/Group_Health/EditAuthorizationForm/?Employee_id="+  @ViewBag.Employee_id;
                 }
             }
             else {
                 if (alert == false) {
 
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" +  @ViewBag.Employee_id;
+                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" +  @ViewBag.Employee_id;
 
                 }
             }

@@ -243,12 +243,10 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CareerCenterController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
-    <Compile Include="Controllers\Family_InfoController.cs" />
     <Compile Include="Controllers\FileUploadingController.cs" />
     <Compile Include="Controllers\Group_HealthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Life_InsuranceController.cs" />
-    <Compile Include="Controllers\Other_InsuranceController.cs" />
     <Compile Include="Controllers\testController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -490,11 +488,18 @@
     <Content Include="Views\Admin\DeleteDep.cshtml" />
     <Content Include="Views\Admin\GrpHealthEnrollment.cshtml" />
     <Content Include="Views\Admin\EditGroupHealthIns.cshtml" />
-    <Content Include="Views\Admin\SalaryRedirection.cshtml" />
-    <Content Include="Views\Admin\EditSalaryRedirection.cshtml" />
     <Content Include="Views\Admin\AuthorizationForm.cshtml" />
     <Content Include="Views\Admin\EditAuthorizationForm.cshtml" />
     <Content Include="Views\Admin\DeleteGrpHealthIns.cshtml" />
+    <Content Include="Views\Admin\SalaryRedirection.cshtml" />
+    <Content Include="Views\Admin\EditSalaryRedirection.cshtml" />
+    <Content Include="Views\Admin\LifeInsuranceEnrollment.cshtml" />
+    <Content Include="Views\Admin\EditLifeInsurance.cshtml" />
+    <Content Include="Views\Admin\DeleteLifeInsurance.cshtml" />
+    <Content Include="Views\Life_Insurance\DeleteBeneficiary.cshtml" />
+    <Content Include="Views\Admin\DeleteBeneficiary.cshtml" />
+    <Content Include="Views\Admin\AddBeneficiary.cshtml" />
+    <Content Include="Views\Admin\EditBeneficiary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

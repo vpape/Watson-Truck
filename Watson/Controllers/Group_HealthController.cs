@@ -506,16 +506,15 @@ namespace Watson.Controllers
         public JsonResult SalaryRedirectionUpdate(int Employee_id, int? Deductions_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
             string PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, string PremiumPostTaxMedIns, string DentalInsProvider, string EEelectionPreTaxDentalIns, 
             string PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns, string PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns, 
-            string PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, string PremiumPostTaxVisionIns, string AccidentInsProvider, 
-            string EEelectionPreTaxAccidentIns, string PremiumPreTaxAccidentIns, string EEelectionPostTaxAccidentIns, string PremiumPostTaxAccidentIns, 
-            string CancerInsProvider, string EEelectionPreTaxCancerIns, string PremiumPreTaxCancerIns, string EEelectionPostTaxCancerIns, 
-            string PremiumPostTaxCancerIns, string StDisabilityProvider, string EEelectionPreTaxStDisability, string PremiumPreTaxStDisability, 
+            string PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, string PremiumPostTaxVisionIns,  string StDisabilityProvider, string EEelectionPreTaxStDisability, string PremiumPreTaxStDisability, 
             string EEelectionPostTaxStDisability, string PremiumPostTaxStDisability, string HospitalIndemProvider, string EEelectionPreTaxHospitalIndem,
             string PremiumPreTaxHospitalIndem, string EEelectionPostTaxHospitalIndem, string PremiumPostTaxHospitalIndem, string TermLifeInsProvider,
             string EEelectionPreTaxTermLifeIns, string PremiumPreTaxTermLifeIns, string EEelectionPostTaxTermLifeIns, string PremiumPostTaxTermLifeIns,
             string WholeLifeInsProvider, string EEelectionPreTaxWholeLifeIns, string PremiumPreTaxWholeLifeIns, string EEelectionPostTaxWholeLifeIns, 
             string PremiumPostTaxWholeLifeIns, string OtherInsProvider, string EEelectionPreTaxOtherIns, string PremiumPreTaxOtherIns, string EEelectionPostTaxOtherIns,
-            string PremiumPostTaxOtherIns, string TotalPreTax, string TotalPostTax, string empInitials1, string PreTaxBenefitWaiverinitials, string empSignature,
+            string PremiumPostTaxOtherIns, string AccidentProvider, string EEelectionPreTaxAccidentIns, string PremiumPreTaxAccidentIns, string EEelectionPostTaxAccidentIns,
+            string PremiumPostTaxAccidentIns, string CancerProvider, string EEelectionPreTaxCancerIns, string PremiumPreTaxCancerIns, string EEelectionPostTaxCancerIns,
+            string PremiumPostTaxCancerIns, string TotalPreTax, string TotalPostTax, string empInitials1, string PreTaxBenefitWaiverinitials, string empSignature,
             DateTime empSignatureDate)
         {
     
@@ -540,17 +539,7 @@ namespace Watson.Controllers
             d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
             d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
 
-            d.AccidentInsProvider = AccidentInsProvider;
-            d.EEelectionPreTaxAccidentIns = EEelectionPreTaxAccidentIns;
-            d.PremiumPreTaxAccidentIns = PremiumPreTaxAccidentIns;
-            d.EEelectionPostTaxAccidentIns = EEelectionPostTaxAccidentIns;
-            d.PremiumPostTaxAccidentIns = PremiumPostTaxAccidentIns;
-
-            d.CancerInsProvider = CancerInsProvider;
-            d.EEelectionPreTaxCancerIns = EEelectionPreTaxCancerIns;
-            d.PremiumPreTaxCancerIns = PremiumPreTaxCancerIns;
-            d.EEelectionPostTaxCancerIns = EEelectionPostTaxCancerIns;
-            d.PremiumPostTaxCancerIns = PremiumPostTaxCancerIns;
+          
 
             d.StDisabilityProvider = StDisabilityProvider;
             d.EEelectionPreTaxStDisability = EEelectionPreTaxStDisability;
@@ -575,6 +564,18 @@ namespace Watson.Controllers
             d.PremiumPreTaxWholeLifeIns = PremiumPreTaxWholeLifeIns;
             d.EEelectionPostTaxWholeLifeIns = EEelectionPostTaxWholeLifeIns;
             d.PremiumPostTaxWholeLifeIns = PremiumPostTaxWholeLifeIns;
+
+            d.AccidentProvider = AccidentProvider;
+            d.EEelectionPreTaxAccidentIns = EEelectionPreTaxAccidentIns;
+            d.PremiumPreTaxAccidentIns = PremiumPreTaxAccidentIns;
+            d.EEelectionPostTaxAccidentIns = EEelectionPostTaxAccidentIns;
+            d.PremiumPostTaxAccidentIns = PremiumPostTaxAccidentIns;
+
+            d.CancerProvider = CancerProvider;
+            d.EEelectionPreTaxCancerIns = EEelectionPreTaxCancerIns;
+            d.PremiumPreTaxCancerIns = PremiumPreTaxCancerIns;
+            d.EEelectionPostTaxCancerIns = EEelectionPostTaxCancerIns;
+            d.PremiumPostTaxCancerIns = PremiumPostTaxCancerIns;
 
             d.OtherInsProvider = OtherInsProvider;
             d.EEelectionPreTaxOtherIns = EEelectionPreTaxOtherIns;
@@ -628,24 +629,17 @@ namespace Watson.Controllers
         public JsonResult SalaryRedirectionEditUpdate(int Employee_id, int? Deductions_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
             string PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, string PremiumPostTaxMedIns, string DentalInsProvider, string EEelectionPreTaxDentalIns,
             string PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns, string PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
-            string PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, string PremiumPostTaxVisionIns, string AccidentInsProvider,
-            string EEelectionPreTaxAccidentIns, string PremiumPreTaxAccidentIns, string EEelectionPostTaxAccidentIns, string PremiumPostTaxAccidentIns,
-            string CancerInsProvider, string EEelectionPreTaxCancerIns, string PremiumPreTaxCancerIns, string EEelectionPostTaxCancerIns,
-            string PremiumPostTaxCancerIns, string StDisabilityProvider, string EEelectionPreTaxStDisability, string PremiumPreTaxStDisability,
+            string PremiumPreTaxVisionIns, string EEelectionPostTaxVisionIns, string PremiumPostTaxVisionIns,  string StDisabilityProvider, string EEelectionPreTaxStDisability, string PremiumPreTaxStDisability,
             string EEelectionPostTaxStDisability, string PremiumPostTaxStDisability, string HospitalIndemProvider, string EEelectionPreTaxHospitalIndem,
             string PremiumPreTaxHospitalIndem, string EEelectionPostTaxHospitalIndem, string PremiumPostTaxHospitalIndem, string TermLifeInsProvider,
             string EEelectionPreTaxTermLifeIns, string PremiumPreTaxTermLifeIns, string EEelectionPostTaxTermLifeIns, string PremiumPostTaxTermLifeIns,
             string WholeLifeInsProvider, string EEelectionPreTaxWholeLifeIns, string PremiumPreTaxWholeLifeIns, string EEelectionPostTaxWholeLifeIns,
             string PremiumPostTaxWholeLifeIns, string OtherInsProvider, string EEelectionPreTaxOtherIns, string PremiumPreTaxOtherIns, string EEelectionPostTaxOtherIns, 
-            string PremiumPostTaxOtherIns, string TotalPreTax, string TotalPostTax, string empInitials1, string PreTaxBenefitWaiverinitials, string empSignature, 
+            string PremiumPostTaxOtherIns, string AccidentProvider, string EEelectionPreTaxAccidentIns, string PremiumPreTaxAccidentIns, string EEelectionPostTaxAccidentIns,
+            string PremiumPostTaxAccidentIns, string CancerProvider, string EEelectionPreTaxCancerIns, string PremiumPreTaxCancerIns, string EEelectionPostTaxCancerIns,
+            string PremiumPostTaxCancerIns, string TotalPreTax, string TotalPostTax, string empInitials1, string PreTaxBenefitWaiverinitials, string empSignature, 
             DateTime empSignatureDate)
         {
-            Employee e = db.Employees
-                .Where(i => i.Employee_id == Employee_id)
-                .Single();
-
-            ViewBag.e = e;
-
             Deduction d = db.Deductions
                 .Where(i => i.Deductions_id == Deductions_id)
                 .Single();
@@ -668,18 +662,6 @@ namespace Watson.Controllers
             d.PremiumPreTaxVisionIns = PremiumPreTaxVisionIns;
             d.EEelectionPostTaxVisionIns = EEelectionPostTaxVisionIns;
             d.PremiumPostTaxVisionIns = PremiumPostTaxVisionIns;
-
-            d.AccidentInsProvider = AccidentInsProvider;//data shows null
-            d.EEelectionPreTaxAccidentIns = EEelectionPreTaxAccidentIns;
-            d.PremiumPreTaxAccidentIns = PremiumPreTaxAccidentIns;
-            d.EEelectionPostTaxAccidentIns = EEelectionPostTaxAccidentIns;
-            d.PremiumPostTaxAccidentIns = PremiumPostTaxAccidentIns;
-
-            d.CancerInsProvider = CancerInsProvider; //data shows null
-            d.EEelectionPreTaxCancerIns = EEelectionPreTaxCancerIns;
-            d.PremiumPreTaxCancerIns = PremiumPreTaxCancerIns;
-            d.EEelectionPostTaxCancerIns = EEelectionPostTaxCancerIns;
-            d.PremiumPostTaxCancerIns = PremiumPostTaxCancerIns;
 
             d.StDisabilityProvider = StDisabilityProvider;
             d.EEelectionPreTaxStDisability = EEelectionPreTaxStDisability;
@@ -704,6 +686,18 @@ namespace Watson.Controllers
             d.PremiumPreTaxWholeLifeIns = PremiumPreTaxWholeLifeIns;
             d.EEelectionPostTaxWholeLifeIns = EEelectionPostTaxWholeLifeIns;
             d.PremiumPostTaxWholeLifeIns = PremiumPostTaxWholeLifeIns;
+
+            d.AccidentProvider = AccidentProvider;//data shows null
+            d.EEelectionPreTaxAccidentIns = EEelectionPreTaxAccidentIns;
+            d.PremiumPreTaxAccidentIns = PremiumPreTaxAccidentIns;
+            d.EEelectionPostTaxAccidentIns = EEelectionPostTaxAccidentIns;
+            d.PremiumPostTaxAccidentIns = PremiumPostTaxAccidentIns;
+
+            d.CancerProvider = CancerProvider; //data shows null
+            d.EEelectionPreTaxCancerIns = EEelectionPreTaxCancerIns;
+            d.PremiumPreTaxCancerIns = PremiumPreTaxCancerIns;
+            d.EEelectionPostTaxCancerIns = EEelectionPostTaxCancerIns;
+            d.PremiumPostTaxCancerIns = PremiumPostTaxCancerIns;
 
             d.OtherInsProvider = OtherInsProvider;
             d.EEelectionPreTaxOtherIns = EEelectionPreTaxOtherIns;

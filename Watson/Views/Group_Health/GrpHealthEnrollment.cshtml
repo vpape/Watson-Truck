@@ -1070,7 +1070,6 @@
                             <p></p>
                         </div>
                     </form>
-                    <p></p>
                     <form class="table-bordered">
                         <div id="divReasonForRefusal">
                             <h4><b>Reason for Refusal</b></h4>
@@ -1334,62 +1333,32 @@
         });
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#EmploymentInfoUpdate").addEventListener("click", function () {
-            //Employee_id = document.getElementById("Employee_id").value;
-            //GroupName = document.getElementById("GroupName").value;
-            //IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
-            //Department = document.getElementById("Department").value;
-            //EnrollmentType = document.getElementById("EnrollmentType").value;
-            //Payroll_id = document.getElementById("Payroll_id").value;
-            //Class = document.getElementById("Class").value;
-            //AnnualSalary = document.getElementById("AnnualSalary").value;
-            //JobTitle = document.getElementById("JobTitle").value;
-            //HireDate = document.getElementById("HireDate").value;
-            //EffectiveDate = document.getElementById("EffectiveDate").value;
-            //HoursWorkedPerWeek = document.getElementById("HoursWorkedPerWeek").value;
+    document.querySelector("#GrpHealthInsStepTwo").addEventListener("click", function () {
+        var save = document.getElementById("GrpHealthInsStepTwo");
 
-            var data = {
-                //"Employee_id": Employee_id,
-                //"GroupName": GroupName,
-                //"IMSGroupNumber": IMSGroupNumber,
-                //"Department": Department,
-                //"EnrollmentType": EnrollmentType,
-                //"Payroll_id": Payroll_id,
-                //"Class": Class,
-                //"AnnualSalary": AnnualSalary,
-                //"JobTitle": JobTitle,
-                //"HireDate": HireDate,
-                //"EffectiveDate": EffectiveDate,
-                //"HoursWorkedPerWeek": HoursWorkedPerWeek,
+        var message;
+        var alert = confirm("Group Health information has been saved. Click the OK button to proceed. Thank you!")
+
+        if (save) {
+            if (alert == true) {
+
+                message = "Please click OK to proceed to review Group Health Insurance. Otherwise click Cancel to return to current page. Thank you!!";
+                var alert = confirm(message)
+                if (alert == true) {
+
+                    window.location.href = "/Group_Health/EditGroupHealthIns/?Employee_id=" + @ViewBag.Employee_id;
+
+                }
+                else {
+                    message = "You request has been canceled. Returning back to Family Overview. Thank you!!"
+                    window.location.href = "/Employee/FamilyOverview/?Employee_id=" + @ViewBag.Employee_id;
+                }
+
             }
+        }
+    })
 
-            //var ret = postData('EmploymentInfoGrpHealthEnrollment', data)
-            //    .then(data => {
-            //        console.log(data);
-            //        FirstStep(data); })
-            //    .catch(error => console.error(error))
-
-            //fetch('EmploymentInfoGrpHealthEnrollment', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    .then(response => FirstStep(response))
-            //    .catch(error => console.error('Error:', error));
-
-        })
-
-
+    document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#GrpHealthInsStepTwo").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
 
@@ -1434,34 +1403,36 @@
                 "GrpHRefusalEmpSignatureDate": GrpHRefusalEmpSignatureDate,
             }
 
-            var ret = postData('GrpHealthEnrollmentNew', data)
-                .then(data => {
-                    console.log(data);
-                    FirstStep(data);
-                })
-                .catch(error => console.error(error))
+            //data failed to pass to controller when using 
+            //var ret = postData('GrpHealthEnrollmentNew', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        FirstStep(data);
+            //    })
+            //    .catch(error => console.error(error))
 
-            //fetch('GrpHealthEnrollmentNew', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    //.then(response => console.log('Success:', JSON.stringify(response)))
-            //    .then(response => FirstStep(response))
-            //    .catch(error => console.error('Error:', error));
+            fetch('GrpHealthEnrollmentNew', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                //.then(response => console.log('Success:', JSON.stringify(response)))
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
         })
     })
 
     function FirstStep(emp) {
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
         Employee_id = emp.data;
     }
 

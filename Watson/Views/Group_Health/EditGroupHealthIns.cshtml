@@ -725,13 +725,15 @@
                     </div>
                 </div>
             </div>
-            <div>
-                @Html.ActionLink("Edit Employee", "EditEmployee", "Employee", new { Employee_id = @ViewBag.Employee_id }, null)
-
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.ActionLink("Edit Employee", "EditEmployee", "Employee", new { Employee_id = @ViewBag.Employee_id }, null)
+                    @*<button type="submit" id="EditEmployee" class="btn">Edit</button>*@
+                </div>
             </div>
             <p></p>
             <div id="GrpHealthMedicalPlans" class="control-label">
-                <table class="table table-bordered" >
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th></th>
@@ -744,7 +746,7 @@
                     <tr>
                         <td>Selection:</td>
                         <td>
-                            <select class="form-control" id="NoMedicalGrpHealthOption" name="NoMedicalPlan" >
+                            <select class="form-control" id="NoMedicalGrpHealthOption" name="NoMedicalPlan">
                                 <option value="none" selected disabled hidden> Select an Option</option>
                                 <option value="none" @((Model.grpHealth.NoMedicalPlan) == "none" ? "selected" : "")></option>
                                 <option value="No Medical Plan" @((Model.grpHealth.NoMedicalPlan) == "No Medical Plan" ? "selected" : "")>No Medical Plan</option>
@@ -752,7 +754,7 @@
                             <div id="NoMedicalOptionResult" hidden></div>
                         </td>
                         <td>
-                            <select class="form-control" id="MECPlanGrpHealthOption" name="MECPlan" >
+                            <select class="form-control" id="MECPlanGrpHealthOption" name="MECPlan">
                                 <option value="none" selected disabled hidden> Select an Option</option>
                                 <option value="none"></option>
                                 <option value="EO-MECPlan" @((Model.grpHealth.MECPlan) == "EO-MECPlan" ? "selected" : "")>Employee Only</option>
@@ -763,7 +765,7 @@
                             <div id="MECPlanOptionResult" hidden></div>
                         </td>
                         <td>
-                            <select class="form-control" id="StndPlanGrpHealthOption" name="StandardPlan" >
+                            <select class="form-control" id="StndPlanGrpHealthOption" name="StandardPlan">
                                 <option value="none" selected disabled hidden> Select an Option</option>
                                 <option value="none"></option>
                                 <option value="EO-StandardPlan" @((Model.grpHealth.StandardPlan) == "EO-StandardPlan" ? "selected" : "")>Employee Only</option>
@@ -774,7 +776,7 @@
                             <div id="StndPlanOptionResult" hidden></div>
                         </td>
                         <td>
-                            <select class="form-control" id="BuyUpPlanGrpHealthOption" name="BuyUpPlan" >
+                            <select class="form-control" id="BuyUpPlanGrpHealthOption" name="BuyUpPlan">
                                 <option value="none" selected disabled hidden> Select an Option</option>
                                 <option value="none"></option>
                                 <option value="EO-BuyUpPlan" @((Model.grpHealth.BuyUpPlan) == "EO-BuyUpPlan" ? "selected" : "")>Employee Only</option>
@@ -952,6 +954,7 @@
                 </div>
             </form>
             <p></p>
+
             <form id="depFormId" class="depForm">
                 <label><u>Dependent Information- Complete this section for all dependents you want covered.</u></label>
                 @foreach (var dep in Model.family)
@@ -987,7 +990,6 @@
                                 </td>
                             </tr>
                         </table>
-
                         @foreach (var depOtherIns in Model.otherIns)
                         {
                             if (dep.FamilyMember_id == depOtherIns.FamilyMember_id)
@@ -1014,9 +1016,7 @@
                                             <td>
                                                 <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" value="@Html.Raw(depOtherIns.PhoneNumber)" disabled />
                                             </td>
-                                            <td>
-                                                @Html.ActionLink("Add", "AddDependent", "Employee", new { Employee_id = @ViewBag.Employee_id }, null)
-                                            </td>                                            
+                                            <td></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -1026,9 +1026,14 @@
                     </div>
                 }
             </form>
-            @*<div>
-            @Html.ActionLink("Delete Dependent", "DeleteDep", "Employee", new { FamilyMember_id = @ViewBag.FamilyMember_id }, null)
-        </div>*@
+            <div class="form-group">
+                <div class="col-md-offset-11">
+                    <button type="submit" id="AddDep" class="btn">Add</button>
+                </div>
+            </div>
+            <div>
+                @*@Html.ActionLink("Delete Dependent", "DeleteDep", "Employee", new { FamilyMember_id = @ViewBag.FamilyMember_id }, null)*@
+            </div>
             <div class="text-justify">
                 <label style="padding-left: 10px;"></label>
                 <p>
@@ -1046,11 +1051,11 @@
                         <label style="padding-left: 10px;">
                             Employee Signature:
                         </label>
-                        <input type="text" id="GrpHEnrollmentEmpSignature" name="GrpHEnrollmentEmpSignature" value="@Model.grpHealth.GrpHEnrollmentEmpSignature"  />
+                        <input type="text" id="GrpHEnrollmentEmpSignature" name="GrpHEnrollmentEmpSignature" value="@Model.grpHealth.GrpHEnrollmentEmpSignature" />
                         <label style="padding-left: 10px;">
                             Date:
                         </label>
-                        <input type="date" id="GrpHEnrollmentEmpSignatureDate" name="GrpHEnrollmentEmpSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.GrpHEnrollmentEmpSignatureDate).ToString("yyyy-MM-dd")"  />
+                        <input type="date" id="GrpHEnrollmentEmpSignatureDate" name="GrpHEnrollmentEmpSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.GrpHEnrollmentEmpSignatureDate).ToString("yyyy-MM-dd")" />
                     </div>
                 </form>
                 <hr />
@@ -1071,13 +1076,12 @@
                             <p></p>
                         </div>
                     </form>
-                    <p></p>
                     <form class="table-bordered">
                         <div id="divReasonForRefusal">
                             <h4><b>Reason for Refusal</b></h4>
                             <div id="divReasonForRefusalSelection">
                                 <input type="radio" id="OtherCoverageSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" @((Model.grpHealth.OtherCoverage == "True") ? "checked" : "") /><label for="OtherCoverage">Other Coverage</label>
-                                <input type="radio" id="OtherReasonSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" @((Model.grpHealth.OtherReason == "True") ? "checked" : "")  /><label for="OtherReason">Other Reason</label>
+                                <input type="radio" id="OtherReasonSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" @((Model.grpHealth.OtherReason == "True") ? "checked" : "") /><label for="OtherReason">Other Reason</label>
                                 <p></p>
                                 <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="@Model.grpHealth.ReasonForGrpCoverageRefusal" />
                             </div>
@@ -1109,7 +1113,7 @@
                 <hr />
                 <div class="form-group">
                     <div class="col-md-offset-11">
-                        <button type="submit" id="GrpHealthInsStepTwo" class="btn">Save</button>
+                        <button type="submit" id="EditGrpHealthInsStepTwo" class="btn">Save</button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -1259,6 +1263,12 @@
        window.location.href = "/Group_Health/GrpHealthEnrollment?Employee_id=@Model.employee.Employee_id";
     }
 
+    document.querySelector("#AddDep").addEventListener("click", function () {
+
+        window.location.href = "/Employee/AddDependent?Employee_id=@ViewBag.Employee_id";
+
+    })
+
     function showHidEmpOtherInsCoverage() {
 
         document.addEventListener("click", function () {
@@ -1306,63 +1316,33 @@
         });
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#EmploymentInfoUpdate").addEventListener("click", function () {
-           Employee_id = document.getElementById("Employee_id").value;
-            GroupName = document.getElementById("GroupName").value;
-            IMSGroupNumber = document.getElementById("IMSGroupNumber").value;
-            Department = document.getElementById("Department").value;
-            EnrollmentType = document.getElementById("EnrollmentType").value;
-            Payroll_id = document.getElementById("Payroll_id").value;
-            Class = document.getElementById("Class").value;
-            AnnualSalary = document.getElementById("AnnualSalary").value;
-            JobTitle = document.getElementById("JobTitle").value;
-            HireDate = document.getElementById("HireDate").value;
-            EffectiveDate = document.getElementById("EffectiveDate").value;
-            HoursWorkedPerWeek = document.getElementById("HoursWorkedPerWeek").value;
+    document.querySelector("#EditGrpHealthInsStepTwo").addEventListener("click", function () {
+        var save = document.getElementById("EditGrpHealthInsStepTwo");
 
-            var data = {
-                "Employee_id": Employee_id,
-                "GroupName": GroupName,
-                "IMSGroupNumber": IMSGroupNumber,
-                "Department": Department,
-                "EnrollmentType": EnrollmentType,
-                "Payroll_id": Payroll_id,
-                "Class": Class,
-                "AnnualSalary": AnnualSalary,
-                "JobTitle": JobTitle,
-                "HireDate": HireDate,
-                "EffectiveDate": EffectiveDate,
-                "HoursWorkedPerWeek": HoursWorkedPerWeek,
+        var message;
+        var alert = confirm("Group Health information has been saved. Click the OK button to proceed. Thank you!")
+
+        if (save) {
+            if (alert == true) {
+
+                message = "Please click OK to proceed to Group Health Enrollment page. Otherwise click Cancel to return back to current page. Thank you!!";
+                var alert = confirm(message)
+                if (alert == true) {
+
+                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + @ViewBag.Employee_id;
+
+                }
+                else {
+                    message = "You request has been canceled. Returning back to current page. Thank you!!"
+                    window.location.href = "/Group_Health/EditGroupHealthIns/?Employee_id=" + @ViewBag.Employee_id;
+                }
+
             }
+        }
+    })
 
-            //var ret = postData('EmploymentInfoGrpHealthEnrollment', data)
-            //    .then(data => {
-            //        console.log(data);
-            //        FirstStep(data); })
-            //    .catch(error => console.error(error))
-
-            fetch('EmploymentInfoGrpHealthEnrollment', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => FirstStep(response))
-                .catch(error => console.error('Error:', error));
-
-        })
-
-
-        document.querySelector("#GrpHealthInsStepTwo").addEventListener("click", function () {
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#EditGrpHealthInsStepTwo").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
 
             NoMedical = document.getElementById("NoMedicalGrpHealthOption").value;
@@ -1406,6 +1386,7 @@
                 "GrpHRefusalEmpSignatureDate": GrpHRefusalEmpSignatureDate,
             }
 
+            //data failed to pass to controller when using 
             //var ret = postData('GrpHealthEnrollmentNew', data)
             //    .then(data => {
             //        console.log(data);
@@ -1434,6 +1415,7 @@
     })
 
     function FirstStep(emp) {
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
         Employee_id = emp.data;
     }
 

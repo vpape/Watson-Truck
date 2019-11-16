@@ -311,25 +311,25 @@
                 var alert = confirm(message)
 
                 if (alert == true) {
-                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id="+  @ViewBag.Employee_id;
+                    window.location.href = "/Admin/GrpHealthEnrollment/?Employee_id="+  @ViewBag.Employee_id;
                 }
             }
             else {
                 if (alert == false) {
 
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" +  @ViewBag.Employee_id;
+                    window.location.href = "/Admin/EmpOverview/?Employee_id=" +  @ViewBag.Employee_id;
 
                 }
             }
         })
     }
 
-    function EditAuthorizationForm() {
+    @*function EditAuthorizationForm() {
         document.addEventListener("click", function () {
 
-            window.location.href = "/Group_Health/EditAuthorization?Employee_id=" + @ViewBag.Employee_id + "&GroupHealthInsurance_id=@ViewBag.GroupHealthInsurance_id";
+            window.location.href = "/Admin/EditAuthorization?Employee_id=" + @ViewBag.Employee_id + "&GroupHealthInsurance_id=@ViewBag.GroupHealthInsurance_id";
         })
-    }
+    }*@
 
 
 
