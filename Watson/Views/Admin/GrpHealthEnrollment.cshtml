@@ -1080,23 +1080,23 @@
                         <div id="divReasonForRefusal">
                             <h4><b>Reason for Refusal</b></h4>
                             <div id="divReasonForRefusalSelection">
-                                <input type="checkbox" id="OtherCoverageSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" @((Model.grpHealth.OtherCoverage == "True") ? "checked" : "") disabled/>
+                                <input type="checkbox" id="OtherCoverageSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" @((Model.grpHealth.OtherCoverage == "True") ? "checked" : "") />
                                 <label for="OtherCoverageSelection">OtherCoverage</label>
-                                <input type="checkbox" id="OtherReasonSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" @((Model.grpHealth.OtherReason == "True") ? "checked" : "") disabled/>
+                                <input type="checkbox" id="OtherReasonSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" @((Model.grpHealth.OtherReason == "True") ? "checked" : "") />
                                 <label for="OtherReasonSelection">OtherReason</label>
                                 <p></p>
-                                <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="@Model.grpHealth.ReasonForGrpCoverageRefusal" disabled/>
+                                <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="@Model.grpHealth.ReasonForGrpCoverageRefusal" />
                             </div>
                             <hr />
                             <div>
                                 <label style="padding-left: 10px;">
                                     Employee Signature:
                                 </label>
-                                <input type="text" id="GrpHRefusalEmpSignature" name="GrpHRefusalEmpSignature" value="@Model.grpHealth.GrpHRefusalEmpSignature" disabled/>
+                                <input type="text" id="GrpHRefusalEmpSignature" name="GrpHRefusalEmpSignature" value="@Model.grpHealth.GrpHRefusalEmpSignature" disabled />
                                 <label style="padding-left: 10px;">
                                     Date:
                                 </label>
-                                <input type="date" id="GrpHRefusalEmpSignatureDate" name="GrpHRefusalEmpSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.GrpHRefusalEmpSignatureDate).ToString("yyyy-MM-dd")" disabled/>
+                                <input type="date" id="GrpHRefusalEmpSignatureDate" name="GrpHRefusalEmpSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.GrpHRefusalEmpSignatureDate).ToString("yyyy-MM-dd")" disabled />
                             </div>
                         </div>
                     </td>
@@ -1263,8 +1263,6 @@
 
         });
     }
-
-
 
     function GroupHealthInsurance() {
 

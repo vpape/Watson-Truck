@@ -1085,12 +1085,12 @@
                         <div id="divReasonForRefusal">
                             <h4><b>Reason for Refusal</b></h4>
                             <div id="divReasonForRefusalSelection">
-                                <input type="radio" id="OtherCoverageSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" @((Model.grpHealth.OtherCoverage == "True") ? "checked" : "")  disabled/>
-                                <label for="OtherCoverage">Other Coverage</label>
-                                <input type="radio" id="OtherReasonSelection" class="radio-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" @((Model.grpHealth.OtherReason == "True") ? "checked" : "")  disabled/>
-                                <label for="OtherReason">Other Reason</label>
+                                <input type="checkbox" id="OtherCoverageSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" @((Model.grpHealth.OtherCoverage == "True") ? "checked" : "") disabled/>
+                                <label for="OtherCoverageSelection">OtherCoverage</label>
+                                <input type="checkbox" id="OtherReasonSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" @((Model.grpHealth.OtherReason == "True") ? "checked" : "") disabled/>
+                                <label for="OtherReasonSelection">OtherReason</label>
                                 <p></p>
-                                <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="@Model.grpHealth.ReasonForGrpCoverageRefusal"  disabled/>
+                                <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="@Model.grpHealth.ReasonForGrpCoverageRefusal" disabled/>
                             </div>
                             @*@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Yes", true) Yes @Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "No", false) No*@
                             <hr />
@@ -1098,11 +1098,11 @@
                                 <label style="padding-left: 10px;">
                                     Employee Signature:
                                 </label>
-                                <input type="text" id="GrpHRefusalEmpSignature" name="GrpHRefusalEmpSignature" value="@Model.grpHealth.GrpHRefusalEmpSignature" disabled/>
+                                <input type="text" id="GrpHRefusalEmpSignature" name="GrpHRefusalEmpSignature" value="@Model.grpHealth.GrpHRefusalEmpSignature" disabled />
                                 <label style="padding-left: 10px;">
                                     Date:
                                 </label>
-                                <input type="date" id="GrpHRefusalEmpSignatureDate" name="GrpHRefusalEmpSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.GrpHRefusalEmpSignatureDate).ToString("yyyy-MM-dd")" disabled/>
+                                <input type="date" id="GrpHRefusalEmpSignatureDate" name="GrpHRefusalEmpSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.GrpHRefusalEmpSignatureDate).ToString("yyyy-MM-dd")" disabled />
                             </div>
                         </div>
                     </td>
@@ -1310,6 +1310,12 @@
             }
         });
     }
+
+    $(document).ready(function () {
+        $('.refusalcheckbox-inline').click(function () {
+            $('.refusalcheckbox-inline').not(this).prop('checked', false);
+        });
+    });
 
     function showHideReasonForRefusal() {
 

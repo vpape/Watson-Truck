@@ -1088,12 +1088,12 @@
                         <div id="divReasonForRefusal">
                             <h4><b>Reason for Refusal</b></h4>
                             <div id="divReasonForRefusalSelection">
-                                <input type="checkbox" id="OtherCoverageSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" @((Model.grpHealth.OtherCoverage == "True") ? "checked" : "") />
+                                <input type="checkbox" id="OtherCoverageSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" @((Model.grpHealth.OtherCoverage == "True") ? "checked" : "")  />
                                 <label for="OtherCoverageSelection">OtherCoverage</label>
-                                <input type="checkbox" id="OtherReasonSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" @((Model.grpHealth.OtherReason == "True") ? "checked" : "") />
+                                <input type="checkbox" id="OtherReasonSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" @((Model.grpHealth.OtherReason == "True") ? "checked" : "")  />
                                 <label for="OtherReasonSelection">OtherReason</label>
                                 <p></p>
-                                <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="@Model.grpHealth.ReasonForGrpCoverageRefusal" />
+                                <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="@Model.grpHealth.ReasonForGrpCoverageRefusal"  />
                             </div>
                             <hr />
                             <div>
@@ -1319,6 +1319,12 @@
         });
     }
 
+    $(document).ready(function () {
+        $('.refusalcheckbox-inline').click(function () {
+            $('.refusalcheckbox-inline').not(this).prop('checked', false);
+        });
+    });
+
     function showHideReasonForRefusal() {
 
         document.addEventListener("click", function () {
@@ -1326,12 +1332,12 @@
             var refusal = document.getElementById("OtherReasonSelection");
 
             if (refusal.checked == true) {
-                //document.getElementById("OtherReasonComment").style.display = "block";
-                document.getElementById("OtherReasonComment").style.visibility = "visible";
+                document.getElementById("OtherReasonComment").style.display = "block";
+                //document.getElementById("OtherReasonComment").style.visibility = "visible";
             }
             else {
-                //document.getElementById("OtherReasonComment").style.display = "none";
-                document.getElementById("OtherReasonComment").style.visibility = "hidden";
+                document.getElementById("OtherReasonComment").style.display = "none";
+                //document.getElementById("OtherReasonComment").style.visibility = "hidden";
             }
         });
     }
