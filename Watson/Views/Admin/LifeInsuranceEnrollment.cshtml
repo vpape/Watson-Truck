@@ -481,8 +481,27 @@
                         </td>
                     </tr>
                 </table>
+                <hr />
+                <table>
+                    <tr>
+                        <td>
+                            <div>
+                                <label style="padding-left: 10px;">
+                                    Employee Signature:
+                                </label>
+                                <input type="text" id="EmployeeSignature" name="EmployeeSignature" value="" />
+                                <label style="padding-left: 10px;">
+                                    Date:
+                                </label>
+                                <input type="date" id="EmployeeSignatureDate" name="EmployeeSignatureDate" value="" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <hr />
                 <div class="col-md">
-                    @Html.ActionLink("Edit Insurance ", "EditLifeInsurance", "Admin", new { Employee_id = @ViewBag.Employee_id }, null)
+                    @*@Html.ActionLink("Edit Insurance ", "EditLifeInsurance", "Admin", new { Employee_id = @ViewBag.Employee_id }, null)*@
+                    <button type="submit" id="EditLifeIns" class="btn">Edit Life Ins.</button>
                     <button type="button" onclick="AddBeneficiary()" class="btn">Add Beneficiary</button>
                 </div>
                 <table class="table table-hover">
@@ -543,40 +562,6 @@
                             </td>
                         </tr>
                     }
-                </table>
-                <table class="table table-condensed">
-                    <tr>
-                        <td>
-                            <div class="text-justify">
-                                <p>
-                                    The state in which you reside may have a specific state fraud warning. Please refer to the attached <b>Fraud Warning Statements</b>on the Edit page.
-                                </p>
-                                <p>
-                                    The laws of New York require the following statement appear: Any person who knowingly and with intent to defraud any insurance company
-                                    or other person files an application for insurance or statement of claim containing any materially false information, or conceals for
-                                    the purpose of misleading, information concerning any fact material thereto, commits a fraudulent insurance act, which is a crime, and
-                                    sall also be subject to a civil penalty not to exceed five thousand dollars and the stated value of th eclaim for each such violation.<br />
-                                    (Does not apply to Life Insurance)
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td>
-                            <div>
-                                <label style="padding-left: 10px;">
-                                    Employee Signature:
-                                </label>
-                                <input type="text" id="EmployeeSignature" name="EmployeeSignature" value="" />
-                                <label style="padding-left: 10px;">
-                                    Date:
-                                </label>
-                                <input type="date" id="EmployeeSignatureDate" name="EmployeeSignatureDate" value="" />
-                            </div>
-                        </td>
-                    </tr>
                 </table>
                 <div class="form-group">
                     <div class="col-md-offset-11">
@@ -736,9 +721,19 @@
 
     }
 
-    function editBeneficiary() {
-        window.location.href = "/Admin/EditBeneficiary/?Employee_id=" + @ViewBag.Employee_id + "&Beneficiary_id=@ViewBag.Beneficiary_id";
-    }
+   document.querySelector("#EditLifeIns").addEventListener("click", function () {
+        editLife = document.getElementById("EditLifeIns");
+
+        var message;
+        alert = confirm("To make changes to your Life Insurance policy. Please contact HR Manager, Lynetta Richards, at 575-397-2411 ext. 443");
+
+        if (alert == true) {
+
+            window.location.href = "/Admin/EditLifeInsurance/?Employee_id=@ViewBag.Employee_id";
+
+        }
+    })
+    
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#LifeInsUpdate").addEventListener("click", function () {

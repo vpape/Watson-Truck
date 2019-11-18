@@ -212,9 +212,10 @@
             }
 
             var ret = postData('AddBeneficiaryUpdate', data)
-                .then(data => { console.log(data);
-                              FirstStep(data);
-                              })
+                .then(data => {
+                    console.log(data);
+                    FirstStep(data);
+                })
                 .catch(error => console.error(error))
 
             //fetch('AddBeneficiaryUpdate', {
@@ -231,16 +232,16 @@
             //    redirect: 'follow', //manual, *follow, error
             //    referrer: 'no-referrer', //*client, no-referrer
             //}).then(res => res.json())
+            //    //.then(response => console.log('Success:', JSON.stringify(response)))
             //    .then(response => FirstStep(response))
             //    .catch(error => console.error('Error:', error));
         })
 
     })
 
-    function FirstStep(addBenefi) {
-        Employee_id = addBenefi.data;
+    function FirstStep(emp) {
+        Employee_id = emp.data;
     }
-
 
     function postData(url, data) {
         //Default options are marked with *
@@ -262,10 +263,10 @@
         }).then(res => res.json())
             .then(response => console.log('Success:', JSON.stringify(response)))
             .catch(error => console.error('Error:', error));
-            //.then(Response => {
-            //    console.log(Response);
-            //    Response.json();
-            //}) //parses response to JSON
+        //.then(Response => {
+        //    console.log(Response);
+        //    Response.json();
+        //}) //parses response to JSON
     }
 </script>
 

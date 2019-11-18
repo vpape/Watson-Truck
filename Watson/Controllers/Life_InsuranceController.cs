@@ -317,9 +317,9 @@ namespace Watson.Controllers
             return View(empAndInsVM);
         }
 
-        public JsonResult AddBeneficiaryUpdate(int Employee_id, int? Beneficiary_id, string PrimaryBeneficiary, string ContingentBeneficiary, string FirstName,
-            string LastName, string SSN, string RelationshipToEmployee, DateTime DateOfBirth, string PhoneNumber, string PercentageOfBenefits, string MailingAddress,
-            string City, string State, string ZipCode)
+        public JsonResult AddBeneficiaryUpdate(int Employee_id, string PrimaryBeneficiary, string ContingentBeneficiary, string FirstName, string LastName, string SSN,
+            string RelationshipToEmployee, DateTime DateOfBirth, string PhoneNumber, string PercentageOfBenefits, string MailingAddress, string City, string State,
+            string ZipCode)
         {
 
             Beneficiary benefi = new Beneficiary();
@@ -356,7 +356,7 @@ namespace Watson.Controllers
 
             EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
 
-            empAndInsVM.beneficiary = db.Beneficiaries.FirstOrDefault(i => i.Beneficiary_id == Beneficiary_id);
+            empAndInsVM.beneficiary = db.Beneficiaries.FirstOrDefault(i => i.Employee_id == Employee_id);
             //empAndInsVM.benefiList = db.Beneficiaries.Where(i => i.Employee_id == Employee_id).ToList();
 
             return View(empAndInsVM);

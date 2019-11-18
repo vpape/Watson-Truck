@@ -30,7 +30,7 @@
                                 <td>
                                     <div>
                                         <text>Group Plan Number:</text>
-                                        <input type="text" class="form-control" id="GroupPlanNumber" name="GroupPlanNumber" value="" />
+                                        <input type="text" class="form-control" id="GroupPlanNumber" name="GroupPlanNumber" value="" disabled/>
                                     </div>
                                 </td>
                                 <td>
@@ -86,7 +86,7 @@
                                     <input type="text" class="form-control" placeholder="SSN" value="@Html.Raw(Model.employee.SSN)" disabled />
                                 </td>
                                 <td class="col-sm-1, col-md-3">
-                                    <input type="text" class="form-control" placeholder="" value="" />
+                                    <input type="text" class="form-control" placeholder="" value="" disabled/>
                                 </td>
                             </tr>
                             <tr>
@@ -125,9 +125,9 @@
                                 <td class="center-block">
                                     <div>
                                         <label>Are you Married or do you have a spouse?</label>
-                                        <input type="radio" class="radio-inline" id="Married" name="MarriedOrHaveSpouse" value="True" checked />
+                                        <input type="radio" class="radio-inline" id="Married" name="MarriedOrHaveSpouse" value="True" @*@((Model.employee.MaritalStatus) == "MarriedwDep" ? "checked" : "")*@ checked/>
                                         <label>Yes</label>
-                                        <input type="radio" class="radio-inline" id="Married" name="MarriedOrHaveSpouse" value="False" />
+                                        <input type="radio" class="radio-inline" id="Married" name="MarriedOrHaveSpouse" value="False" @*@((Model.employee.MaritalStatus) == "SinglewDep" ? "checked" : "")*@ />
                                         <label>No</label>
                                     </div>
                                 </td>
@@ -281,12 +281,12 @@
                     </tr>
                     <tr>
                         <td class="text-center center-block">
-                            <div>
+                            <div >
                                 <label style="display:table-cell">Add/Drop Dependent</label>
-                                <select class="form-control" id="AddDropDep" name="AddDropDep">
+                                <select class="form-control" id="AddDropDep" name="AddDropDep" >
                                     <option value="N/A" selected disabled hidden> Select an Option</option>
                                     <option value="N/A"></option>
-                                    <option value="AddDep">Add Dependent</option>
+                                    <option value="AddDep" >Add Dependent</option>
                                     <option value="DropDep">Drop Dependent</option>
                                 </select>
                             </div>
@@ -481,28 +481,7 @@
                         </td>
                     </tr>
                 </table>
-                <div class="col-md">
-                    @Html.ActionLink("Edit Insurance ", "EditLifeInsurance", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id }, null)
-                    @*<button type="button" onclick="AddBeneficiary()" class="btn">Add Beneficiary</button>*@
-                </div>
-                <table class="table table-condensed">
-                    <tr>
-                        <td>
-                            <div class="text-justify">
-                                <p>
-                                    The state in which you reside may have a specific state fraud warning. Please refer to the attached <b>Fraud Warning Statements</b> page.
-                                </p>
-                                <p>
-                                    The laws of New York require the following statement appear: Any person who knowingly and with intent to defraud any insurance company
-                                    or other person files an application for insurance or statement of claim containing any materially false information, or conceals for
-                                    the purpose of misleading, information concerning any fact material thereto, commits a fraudulent insurance act, which is a crime, and
-                                    sall also be subject to a civil penalty not to exceed five thousand dollars and the stated value of th eclaim for each such violation.<br />
-                                    (Does not apply to Life Insurance)
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+                <hr />
                 <table>
                     <tr>
                         <td>
@@ -518,6 +497,72 @@
                             </div>
                         </td>
                     </tr>
+                </table>
+                <hr />
+                <div class="col-md-3">
+                    <button type="submit" id="EditLifeIns" class="btn">Edit Life Ins.</button>
+                    <button type="button" onclick="AddBeneficiary()" class="btn">Add Beneficiary</button>
+                </div>
+                <table class="table table-condensed">
+                    @foreach (var benefitInfo in Model.benefiList)
+                    {
+                        <tr>
+                            <td>
+                                <input type="hidden" id="Beneficiary_id" class="form-control" name="Beneficiary_id" value="@benefitInfo.Beneficiary_id" />
+                                <input type="checkbox" class="checkbox-inline" id="PrimaryBeneficiary" name="PrimaryBeneficiary" value="" @((benefitInfo.PrimaryBeneficiary) == "True" ? "checked" : "") disabled /><label for="Primary">Primary</label>
+                                <input type="checkbox" class="checkbox-inline" id="ContingentBeneficiary" name="ContingentBeneficiary" value="" @((benefitInfo.ContingentBeneficiary) == "True" ? "checked" : "") disabled /><label for="Contingent">Contingent</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First Name" value="@benefitInfo.FirstName" disabled />
+                            </td>
+                            <td>
+                                <input type="text" id="LastName" class="form-control" name="LastName" placeholder="Last Name" value="@benefitInfo.LastName" disabled />
+                            </td>
+                            <td>
+                                <input type="text" id="SSN" class="form-control" name="SSN" placeholder="SSN" value="@benefitInfo.SSN" disabled />
+                            </td>
+                            <td>
+                                <input type="text" id="RelationshipToEmployee" class="form-control" name="RelationshipToEmployee" placeholder="Relationship to Employee" value="@benefitInfo.RelationshipToEmployee" disabled />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" id="MailingAddress" class="form-control" name="Address" placeholder="Mailing Address" value="@benefitInfo.Address" disabled />
+                            </td>
+                            <td>
+                                <input type="text" id="City" class="form-control" name="City" placeholder="City" value="@benefitInfo.CIty" disabled />
+                            </td>
+                            <td>
+                                <input type="text" id="State" class="form-control" name="State" placeholder="State" value="@benefitInfo.State" disabled />
+                            </td>
+                            <td>
+                                <input type="text" id="ZipCode" class="form-control" name="ZipCode" placeholder="Zip Code" value="@benefitInfo.ZipCode" disabled />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label style="display:table-cell">Date of Birth:</label>
+                                <input type="date" id="DOB" class="form-control" name="DOB" value="@Convert.ToDateTime(benefitInfo.DOB).ToString("yyyy-dd-MM")" disabled />
+                            </td>
+                            <td>
+                                <label style="display:table-cell">Phone Number:</label>
+                                <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" placeholder="Phone Number" value="@benefitInfo.PhoneNumber" disabled />
+                            </td>
+                            <td>
+                                <label style="display:table-cell">Percentage Of Benefits:</label>
+                                <input type="number" id="PercentageOfBenefits" class="form-control" name="PercentageOfBenefits" placeholder="Percentage Of Benefits" value="@benefitInfo.PercentageOfBenefits" disabled />
+                            </td>
+                            <td>
+                                <div style="margin-top: 18px;">
+
+                                    @Html.ActionLink("Edit", "EditBeneficiary", "Life_Insurance", new { Employee_id = @ViewBag.Employee_id, benefitInfo.Beneficiary_id }, null)
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
                 </table>
                 <div class="form-group">
                     <div class="col-md-offset-11">
@@ -644,6 +689,28 @@
         });
     });
 
+    function AddBeneficiary() {
+        window.location.href = "/Life_Insurance/AddBeneficiary/?Employee_id=@ViewBag.Employee_id";
+
+    }
+
+    function EditBeneficiary() {
+        window.location.href = "/Life_Insurance/EditBeneficiary/?Employee_id=@ViewBag.Employee_id @*+ "&Beneficiary_id=@ViewBag.Beneficiary_id*@";
+    }
+
+    document.querySelector("#EditLifeIns").addEventListener("click", function () {
+        editLife = document.getElementById("EditLifeIns");
+
+        var message;
+        alert = confirm("To make changes to your Life Insurance policy. Please contact HR Manager, Lynetta Richards, at 575-397-2411 ext. 443");
+
+        if (alert == true) {
+
+            window.location.href = "/Life_Insurance/EditLifeInsurance/?Employee_id=@ViewBag.Employee_id";
+
+        }
+    })
+    
     document.querySelector("#LifeInsUpdate").addEventListener("click", function () {
         submitLifeIns = document.getElementById("LifeInsUpdate");
 
@@ -673,14 +740,9 @@
         }
     })
 
-    function AddBeneficiary() {
-         window.location.href = "/Life_Insurance/AddBeneficiary/?Employee_id=@ViewBag.Employee_id";
 
-    }
 
-    function EditBeneficiary() {
-        window.location.href = "/Life_Insurance/EditBeneficiary/?Employee_id=" + @ViewBag.Employee_id + "&Beneficiary_id=@ViewBag.Beneficiary_id";
-    }
+    document.querySelector("#EditLifeInsurance").
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#LifeInsUpdate").addEventListener("click", function () {
