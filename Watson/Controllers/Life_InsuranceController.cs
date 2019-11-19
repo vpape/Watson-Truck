@@ -23,11 +23,13 @@ namespace Watson.Controllers
         private static List<Family_Info> family = new List<Family_Info>();
         private static Life_Insurance lifeIns = new Life_Insurance();
 
-        public ActionResult LifeInsuranceEnrollment(int? LifeInsurance_id, int? Employee_id, int? Beneficiary_id)
+        public ActionResult LifeInsuranceEnrollment(int? LifeInsurance_id, int? Employee_id, int? Beneficiary_id, string Message)
         {
             ViewBag.LifeInsurance_id = LifeInsurance_id;
             ViewBag.Employee_id = Employee_id;
             ViewBag.Beneficiary_id = Beneficiary_id;
+            ViewBag.Message = Message;
+
 
             EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
 
@@ -48,14 +50,13 @@ namespace Watson.Controllers
                 empAndInsVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id).ToList();
             }
 
-
             return View(empAndInsVM);
         }
 
         //Create-LifeIns
-        public JsonResult LifeInsEnrollmentNew(int Employee_id, string GroupPlanNumber, DateTime BenefitsEffectiveDate, string InitialEnrollment, string ReEnrollment, 
+        public JsonResult LifeInsEnrollmentNew(int? Employee_id, string GroupPlanNumber, DateTime? BenefitsEffectiveDate, string InitialEnrollment, string ReEnrollment, 
             string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount, string FamilyStatusChange, string SubTotalCode,
-            string Married, DateTime DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, /*string AddDep, string DropDep,*/ string AddDropDep, string DropEmployee, 
+            string Married, DateTime? DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, /*string AddDep, string DropDep,*/ string AddDropDep, string DropEmployee, 
             string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage, string Retirement, DateTime? LastDayWorked, string OtherEvent,
             string OtherEventReason, DateTime? OtherEventDate, string DropBasicLife, string EmployeeDentalDrop, string SpouseDentalDrop, string DependentDentalDrop, 
             string EmployeeVisionDrop, string SpouseVisionDrop, string DependentVisionDrop, string TerminationEmploymentLossOfOtherCoverage,
@@ -68,10 +69,24 @@ namespace Watson.Controllers
             string DoNotWantBasicLifeCoverageADandD, string PreviousPolicyAmount, string DentalPlan, string VisionPlan, string EmployeeSignature,
             DateTime? EmployeeSignatureDate)
         {
+            string response = "";
 
+            int record = (from life in db.Life_Insurance
+                          where life.Employee_id == Employee_id
+                          select life).Count();
+
+            if (record > 0)
+            {
+                response = "Record already exists.";
+       
+            }
+            else
+            {
+
+         
             Life_Insurance lifeIns = new Life_Insurance();
 
-            lifeIns.Employee_id = Employee_id;
+            lifeIns.Employee_id = (int)Employee_id;
             lifeIns.GroupPlanNumber = GroupPlanNumber;
             lifeIns.BenefitsEffectiveDate = BenefitsEffectiveDate;
             lifeIns.InitialEnrollment = InitialEnrollment;
@@ -149,9 +164,11 @@ namespace Watson.Controllers
 
             db.SaveChanges();
 
-            int result = lifeIns.Employee_id;
+            }
+            int result = (int)Employee_id;
+            
 
-            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = result, error = response }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------
@@ -339,10 +356,10 @@ namespace Watson.Controllers
             benefi.State = State;
             benefi.ZipCode = ZipCode;
 
-            int result = benefi.Beneficiary_id;
-
             db.Beneficiaries.Add(benefi);
             db.SaveChanges();
+
+            int result = Employee_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
@@ -356,7 +373,7 @@ namespace Watson.Controllers
 
             EmployeeAndInsuranceVM empAndInsVM = new EmployeeAndInsuranceVM();
 
-            empAndInsVM.beneficiary = db.Beneficiaries.FirstOrDefault(i => i.Employee_id == Employee_id);
+            empAndInsVM.beneficiary = db.Beneficiaries.FirstOrDefault(i => i.Beneficiary_id == Beneficiary_id);
             //empAndInsVM.benefiList = db.Beneficiaries.Where(i => i.Employee_id == Employee_id).ToList();
 
             return View(empAndInsVM);
@@ -371,9 +388,6 @@ namespace Watson.Controllers
                      .Where(i => i.Employee_id == Employee_id)
                      .Where(i => i.Beneficiary_id == Beneficiary_id)
                      .SingleOrDefault();
-
-
-            //ViewBag.Beneficiary_id = benefi.Beneficiary_id;
 
             benefi.PrimaryBeneficiary = PrimaryBeneficiary;
             benefi.ContingentBeneficiary = ContingentBeneficiary;
@@ -436,10 +450,13 @@ namespace Watson.Controllers
         public ActionResult ConfirmDeleteBeneficiary(int Beneficiary_id)
         {
             Beneficiary beni = db.Beneficiaries.Find(Beneficiary_id);
-            db.Beneficiaries.Remove(beni);
-            db.SaveChanges();
 
             db.DeleteEmployeeAndDependents(Beneficiary_id);
+
+            db.Beneficiaries.Remove(beni);
+            //db.SaveChanges();
+
+          
 
             return RedirectToAction("LifeInsuranceEnrollment");
         }
@@ -472,10 +489,11 @@ namespace Watson.Controllers
         public ActionResult ConfirmDeleteLifeIns(int LifeInsurance_id)
         {
             Life_Insurance lifeIns = db.Life_Insurance.Find(LifeInsurance_id);
-            db.Life_Insurance.Remove(lifeIns);
-            db.SaveChanges();
 
             db.DeleteEmployeeAndDependents(LifeInsurance_id);
+
+            db.Life_Insurance.Remove(lifeIns);
+            //db.SaveChanges();
 
             return RedirectToAction("LifeInsuranceEnrollment");
         }

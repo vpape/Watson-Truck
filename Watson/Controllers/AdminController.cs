@@ -1923,10 +1923,10 @@ namespace Watson.Controllers
             benefi.State = State;
             benefi.ZipCode = ZipCode;
 
-            int result = benefi.Beneficiary_id;
-
             db.Beneficiaries.Add(benefi);
             db.SaveChanges();
+
+            int result = Employee_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
@@ -2018,10 +2018,13 @@ namespace Watson.Controllers
         public ActionResult ConfirmDeleteBeneficiary(int Beneficiary_id)
         {
             Beneficiary beni = db.Beneficiaries.Find(Beneficiary_id);
-            db.Beneficiaries.Remove(beni);
-            db.SaveChanges();
 
             db.DeleteEmployeeAndDependents(Beneficiary_id);
+
+            db.Beneficiaries.Remove(beni);
+            //db.SaveChanges();
+
+            
 
             return RedirectToAction("LifeInsuranceEnrollment");
         }
@@ -2054,15 +2057,14 @@ namespace Watson.Controllers
         public ActionResult ConfirmDeleteLifeIns(int LifeInsurance_id)
         {
             Life_Insurance lifeIns = db.Life_Insurance.Find(LifeInsurance_id);
-            db.Life_Insurance.Remove(lifeIns);
-            db.SaveChanges();
 
             db.DeleteEmployeeAndDependents(LifeInsurance_id);
 
+            db.Life_Insurance.Remove(lifeIns);
+            //db.SaveChanges();
+
             return RedirectToAction("LifeInsuranceEnrollment");
         }
-
-      
 
         protected override void Dispose(bool disposing)
         {

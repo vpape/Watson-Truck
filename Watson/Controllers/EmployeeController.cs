@@ -389,15 +389,16 @@ namespace Watson.Controllers
 
             return View();
         }
-        
+
         //----------------------------------------------------------------------------------------
 
         //SpEnrollment Method
-        public ActionResult SpouseEnrollment(int Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured)
+        public ActionResult SpouseEnrollment(int Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured, string Message)
         {
             ViewBag.Employee_id = Employee_id;
             ViewBag.FamilyMember_id = FamilyMember_id;
             ViewBag.RelationshipToInsured = RelationshipToInsured = "Spouse";
+            ViewBag.Message = Message;
 
             Employee e = db.Employees.Find(Employee_id);
             ViewBag.MaritalStatus = e.MaritalStatus;
@@ -410,22 +411,21 @@ namespace Watson.Controllers
             string FirstName, string LastName, DateTime DateOfBirth, string Gender)
         {
 
-            //int record = (from fi in db.Family_Info
-            //              where fi.FamilyMember_id == FamilyMember_id
-            //              where fi.RelationshipToInsured == "Spouse"
-            //              select fi).Count();
+            int record = (from fi in db.Family_Info
+                          where fi.FamilyMember_id == FamilyMember_id
+                          where fi.RelationshipToInsured == "Spouse"
+                          select fi).Count();
 
-            //if (record > 0)
-            //{
-            //    ViewBag.Message = "Record already exists.";
-            //    RedirectToAction("FamilyOverview", new { sp.Employee_id });
-            //}
-            //else
-            //{
-            //    RedirectToAction("DepEnrollment", new { sp.Employee_id });
+            if (record > 0)
+            {
+                ViewBag.Message = "Record already exists.";
+                RedirectToAction("FamilyOverview", new { ViewBag.Employee_id });
+            }
+            else
+            {
 
-            //}
-
+            }
+         
             Family_Info sp = new Family_Info();
 
             sp.Employee_id = Employee_id;
@@ -441,7 +441,7 @@ namespace Watson.Controllers
             db.SaveChanges();
 
             int result = sp.FamilyMember_id;
-
+      
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
 
         }

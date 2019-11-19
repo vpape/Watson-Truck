@@ -18,6 +18,7 @@
         <input type="hidden" id="OtherInsurance_id" class="form-control" name="OtherInsurance_id" value="@ViewBag.OtherInsurance_id" />
         <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
         <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
+        <input type="hidden" id="ExistingRecord" class="form-control" value="@ViewBag.Message" />
         <div class="collapsible" id="FirstStep">Spouse Enrollment</div>
         <div id="divSpEnrollment" class="content">
             <p></p>
@@ -28,17 +29,17 @@
                     <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
                 </div>
                 @*<div class="col-md-10 col-md-offset-2">
-                        <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                            @if (ViewBag.spouseExist == false)
-                            {
-                                <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                            }
-                            else
-                            {
-                                <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                            }
-                        </select>
-                    </div>*@
+                    <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                        @if (ViewBag.spouseExist == false)
+                        {
+                            <option id="Spouse" name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                        }
+                        else
+                        {
+                            <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                        }
+                    </select>
+                </div>*@
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">Marital Status:</label>
@@ -347,7 +348,6 @@
             }
         });
     }
-
 
     document.querySelector("#SpouseEnrollmentUpdateStepFour").addEventListener("click", function () {
         var maritalStatus = document.querySelector("#MaritalStatus").value;

@@ -211,7 +211,7 @@
                 "ZipCode": ZipCode,
             }
 
-            var ret = postData('AddBeneficiaryUpdate', data)
+            var ret = postData('/Life_Insurance/AddBeneficiaryUpdate', data)
                 .then(data => { console.log(data);
                               FirstStep(data);
                               })

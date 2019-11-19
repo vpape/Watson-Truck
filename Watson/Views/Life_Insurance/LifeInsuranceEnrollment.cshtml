@@ -13,6 +13,7 @@
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value=@ViewBag.Employee_id />
+    <input type="hidden" id="ExistingRecord" class="form-control" value=@ViewBag.Message />
     <div class="form-horizontal">
         <div class="collapsible" id="FirstStep">Life Insurance Enrollment</div>
         <div class="modal-content">
@@ -30,7 +31,7 @@
                                 <td>
                                     <div>
                                         <text>Group Plan Number:</text>
-                                        <input type="text" class="form-control" id="GroupPlanNumber" name="GroupPlanNumber" value="" disabled/>
+                                        <input type="text" class="form-control" id="GroupPlanNumber" name="GroupPlanNumber" value="" disabled />
                                     </div>
                                 </td>
                                 <td>
@@ -69,7 +70,7 @@
                                 </td>
                                 <td>
                                     <label style="display:table-cell">Subtotal Code:</label>
-                                    <input type="text" class="form-control" id="SubTotalCode" name="SubTotalCode" value="" disabled/>
+                                    <input type="text" class="form-control" id="SubTotalCode" name="SubTotalCode" value="" disabled />
                                 </td>
                             </tr>
                         </table>
@@ -86,7 +87,7 @@
                                     <input type="text" class="form-control" placeholder="SSN" value="@Html.Raw(Model.employee.SSN)" disabled />
                                 </td>
                                 <td class="col-sm-1, col-md-3">
-                                    <input type="text" class="form-control" placeholder="" value="" disabled/>
+                                    <input type="text" class="form-control" placeholder="" value="" disabled />
                                 </td>
                             </tr>
                             <tr>
@@ -125,7 +126,7 @@
                                 <td class="center-block">
                                     <div>
                                         <label>Are you Married or do you have a spouse?</label>
-                                        <input type="radio" class="radio-inline" id="Married" name="MarriedOrHaveSpouse" value="True" @*@((Model.employee.MaritalStatus) == "MarriedwDep" ? "checked" : "")*@ checked/>
+                                        <input type="radio" class="radio-inline" id="Married" name="MarriedOrHaveSpouse" value="True" @*@((Model.employee.MaritalStatus) == "MarriedwDep" ? "checked" : "")*@ checked />
                                         <label>Yes</label>
                                         <input type="radio" class="radio-inline" id="Married" name="MarriedOrHaveSpouse" value="False" @*@((Model.employee.MaritalStatus) == "SinglewDep" ? "checked" : "")*@ />
                                         <label>No</label>
@@ -281,19 +282,19 @@
                     </tr>
                     <tr>
                         <td class="text-center center-block">
-                            <div >
+                            <div>
                                 <label style="display:table-cell">Add/Drop Dependent</label>
-                                <select class="form-control" id="AddDropDep" name="AddDropDep" >
+                                <select class="form-control" id="AddDropDep" name="AddDropDep">
                                     <option value="N/A" selected disabled hidden> Select an Option</option>
                                     <option value="N/A"></option>
-                                    <option value="AddDep" >Add Dependent</option>
+                                    <option value="AddDep">Add Dependent</option>
                                     <option value="DropDep">Drop Dependent</option>
                                 </select>
                             </div>
                             @*<div>
-                                <input type="radio" class="addDropradio-inline" id="AddDep" name="AddDependent" value="" /><label for="AddDep">Add Dependent</label>
-                                <input type="radio" class="addDropradio-inline" id="DropDep" name="DropDependent" value="" /><label for="DropDep">Drop Dependent</label>
-                            </div>*@
+                                    <input type="radio" class="addDropradio-inline" id="AddDep" name="AddDependent" value="" /><label for="AddDep">Add Dependent</label>
+                                    <input type="radio" class="addDropradio-inline" id="DropDep" name="DropDependent" value="" /><label for="DropDep">Drop Dependent</label>
+                                </div>*@
                         </td>
                         <td>
                             <label style="display:table-cell">Date of Birth:</label>
@@ -544,7 +545,7 @@
                         <tr>
                             <td>
                                 <label style="display:table-cell">Date of Birth:</label>
-                                <input type="date" id="DOB" class="form-control" name="DOB" value="@Convert.ToDateTime(benefitInfo.DOB).ToString("yyyy-dd-MM")" disabled />
+                                <input type="date" id="DOB" class="form-control" name="DOB" value="@Convert.ToDateTime(benefitInfo.DOB).ToString("yyyy-MM-dd")" disabled />
                             </td>
                             <td>
                                 <label style="display:table-cell">Phone Number:</label>
@@ -741,9 +742,6 @@
     })
 
 
-
-    document.querySelector("#EditLifeInsurance").
-
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#LifeInsUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
@@ -891,13 +889,22 @@
             var ret = postData('LifeInsEnrollmentNew', data)
                 .then(data => {
                     console.log(data);
-                    FirstStep(data);
+                    if (data != undefined) {
+
+                        FirstStep(data);
+                    }
+  
                 })
                 .catch(error => console.error(error))
         })
     })
 
     function FirstStep(emp) {
+        if (emp.error.length > 0) {
+
+            alert(emp.error);
+        }
+         
         Employee_id = emp.data;
     }
 
@@ -919,7 +926,10 @@
             redirect: 'follow', //manual, *follow, error
             referrer: 'no-referrer', //*client, no-referrer
         }).then(res => res.json())
-            .then(response => console.log('Success:', JSON.stringify(response)))
+            .then(response => {
+                console.log('Success:', JSON.stringify(response));
+                FirstStep(response);
+    })
             .catch(error => console.error('Error:', error));
         //.then(Response => {
         //    console.log(Response);

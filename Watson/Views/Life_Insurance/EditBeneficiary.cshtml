@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <p>
-                    @Html.ActionLink("Back to Life Insurance", "EditLifeInsurance", "Life_Insurance", new { Employee_id = ViewBag.Employee_id }, null)
+                    @Html.ActionLink("Back to Insurance", "EditLifeInsurance", "Life_Insurance", new { Employee_id = ViewBag.Employee_id }, null)
                 </p>
             </div>
         </div>
@@ -203,7 +203,7 @@
             SSN = document.getElementById("SSN").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
-            DateOfBirth = document.getElementById("DOB").value;
+            DOB = document.getElementById("DOB").value;
             PhoneNumber = document.getElementById("PhoneNumber").value;
             PercentageOfBenefits = document.getElementById("PercentageOfBenefits").value;
             MailingAddress = document.getElementById("MailingAddress").value;
@@ -220,7 +220,7 @@
                 "LastName": LastName,
                 "SSN": SSN,
                 "RelationshipToEmployee": RelationshipToEmployee,
-                "DateOfBirth": DateOfBirth,
+                "DOB": DOB,
                 "PhoneNumber": PhoneNumber,
                 "PercentageOfBenefits": PercentageOfBenefits,
                 "MailingAddress": MailingAddress,

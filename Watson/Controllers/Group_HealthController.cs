@@ -362,6 +362,20 @@ namespace Watson.Controllers
             DateTime? GrpHRefusalEmpSignatureDate)
         {
 
+            //int record = (from grp in db.Group_Health
+            //              where grp.Employee_id == Employee_id
+            //              select grp).Count();
+
+            //if (record > 0)
+            //{
+            //    ViewBag.Message = "Record already exists.";
+            //    RedirectToAction("EditLifeInsurance", new { ViewBag.Employee_id });
+            //}
+            //else
+            //{
+
+            //}
+
             Group_Health g = db.Group_Health
                 .Where(i => i.Employee_id == Employee_id)
                 .Single();
