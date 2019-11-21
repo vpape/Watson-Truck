@@ -20,13 +20,13 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Employee Role:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmpRole" class="form-control" name="EmployeeRole" value="@Html.DisplayFor(model => model.employee.EmployeeRole)" disabled>
+                    <input type="text" id="EmpRole" class="form-control" name="EmployeeRole" value="@Html.Raw(Model.employee.EmployeeRole)" disabled>
                 </div>
             </div>
             <div class="form-group">
                 <label for="CurrentEmployer" class="col-md-2 control-label">Current Employer:</label>
                 <div class="col-md-10">
-                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@Html.DisplayFor(model => model.employee.CurrentEmployer)" />
+                    <input type="text" id="CurrentEmployer" class="form-control" name="CurrentEmployer" value="@Html.Raw(Model.employee.CurrentEmployer)" />
                 </div>
             </div>
             <div class="form-group">
@@ -38,13 +38,13 @@
             <div class="form-group">
                 <label for="JobTitle" class="col-md-2 control-label">Job Title:</label>
                 <div class="col-md-10">
-                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@Html.DisplayFor(model => model.employee.JobTitle)" />
+                    <input type="text" id="JobTitle" class="form-control" name="JobTitle" value="@Html.Raw(Model.employee.JobTitle)" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="EmpNumber" class="col-md-2 control-label">Employee Number:</label>
                 <div class="col-md-10">
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.DisplayFor(model => model.employee.SSN)" />
+                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.Raw(Model.employee.SSN)" />
                 </div>
             </div>
             <div class="form-group">
@@ -62,13 +62,13 @@
             <div class="form-group">
                 <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.DisplayFor(model => model.employee.FirstName)" />
+                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.Raw(Model.employee.FirstName)" />
                 </div>
             </div>
             <div class="form-group">
                 <label for="LastName" class="col-md-2 control-label">Last Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.DisplayFor(model => model.employee.LastName)" />
+                    <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.Raw(Model.employee.LastName)" />
                 </div>
             </div>
             <div class="form-group">
@@ -110,11 +110,11 @@
                     <div class="form-group">
                         <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
                         <div class="col-md-10">
-                            <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(model => model.employee.MailingAddress)" />
-                            <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="@Html.DisplayFor(model => model.employee.PObox)" />
-                            <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@Html.DisplayFor(model => model.employee.City)" />
-                            <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@Html.DisplayFor(model => model.employee.State)" />
-                            <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.DisplayFor(model => model.employee.ZipCode)" />
+                            <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@Html.Raw(Model.employee.MailingAddress)" />
+                            <input type="text" id="PObox" class="form-control" placeholder="PO Box" name="PObox" value="@Html.Raw(Model.employee.PObox)" />
+                            <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@Html.Raw(Model.employee.City)" />
+                            <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@Html.Raw(Model.employee.State)" />
+                            <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.Raw(Model.employee.ZipCode)" />
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
                 <div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" placeholder="County" id="County" name="County" value="@Html.DisplayFor(Model => Model.employee.County)" />
+                        <input type="text" class="form-control" placeholder="County" id="County" name="County" value="@Html.Raw(Model.employee.County)" />
                     </div>
                 </div>
                 <div class="form-group" id="divMailingAddress">
@@ -145,29 +145,29 @@
                     <div class="form-group">
                         <label for="PhysicalAddress" class="col-md-2 control-label">Physical Address:</label>
                         <div class="col-md-10">
-                            <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="@Html.DisplayFor(model => model.employee.PhysicalAddress)" />
-                            <input type="text" id="City2" class="form-control" placeholder="City" name="CityTwo" value="@Html.DisplayFor(model => model.employee.CityTwo)" />
-                            <input type="text" id="State2" class="form-control" placeholder="State" name="StateTwo" value="@Html.DisplayFor(model => model.employee.StateTwo)" />
-                            <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCodeTwo" value="@Html.DisplayFor(model => model.employee.ZipCodeTwo)" />
+                            <input type="text" id="PhysicalAddress" class="form-control" placeholder="Street" name="PhysicalAddress" value="@Html.Raw(Model.employee.PhysicalAddress)" />
+                            <input type="text" id="City2" class="form-control" placeholder="City" name="CityTwo" value="@Html.Raw(Model.employee.CityTwo)" />
+                            <input type="text" id="State2" class="form-control" placeholder="State" name="StateTwo" value="@Html.Raw(Model.employee.StateTwo)" />
+                            <input type="text" id="ZipCode2" class="form-control" placeholder="Zip Code" name="ZipCodeTwo" value="@Html.Raw(Model.employee.ZipCodeTwo)" />
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="EmailAddress" class="col-md-2 control-label">Email Address:</label>
                     <div class="col-md-10">
-                        <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="@Html.DisplayFor(model => model.employee.EmailAddress)" />
+                        <input type="text" id="EmailAddress" class="form-control" placeholder="Email" name="EmailAddress" value="@Html.Raw(Model.employee.EmailAddress)" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="PhoneNumber" class="col-md-2 control-label">Phone Number:</label>
                     <div class="col-md-10">
-                        <input type="text" id="PhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" maxlength="14" value="@Html.DisplayFor(model => model.employee.PhoneNumber)" />
+                        <input type="text" id="PhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" maxlength="14" value="@Html.Raw(Model.employee.PhoneNumber)" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="CellPhone" class="col-md-2 control-label">Cell Phone:</label>
                     <div class="col-md-10">
-                        <input type="text" id="CellPhone" class="form-control" placeholder="Cell Phone #" name="CellPhone" maxlength="14" value="@Html.DisplayFor(model => model.employee.CellPhone)" />
+                        <input type="text" id="CellPhone" class="form-control" placeholder="Cell Phone #" name="CellPhone" maxlength="14" value="@Html.Raw(Model.employee.CellPhone)" />
                     </div>
                 </div>
                 <div class="form-group" id="divRedirect">
@@ -192,13 +192,13 @@
                     <p></p>
                     <div id="empInsInfo">
                         <div class="form-group col-md-3">
-                            <input type="text" id="empInsCarrier" class="form-control" placeholder="Insurance Company" name="InsuranceCarrier" value="@Html.DisplayFor(model => model.grpHealth.InsuranceCarrier)" />
+                            <input type="text" id="empInsCarrier" class="form-control" placeholder="Insurance Company" name="InsuranceCarrier" value="@Html.Raw(Model.grpHealth.InsuranceCarrier)"  />
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" id="empInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="@Html.DisplayFor(model => model.grpHealth.PolicyNumber)" />
+                            <input type="text" id="empInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="@Html.Raw(Model.grpHealth.PolicyNumber)" />
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="tel" id="empInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="@Html.DisplayFor(model => model.grpHealth.PhoneNumber)" />
+                            <input type="tel" id="empInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="@Html.Raw(Model.grpHealth.PhoneNumber)" />
                         </div>
                     </div>
                 </div>
@@ -424,28 +424,28 @@
                 "InsPhoneNumber": InsPhoneNumber,
             }
 
-            var ret = postData('EmployeeEditUpdate', data)
-                .then(data => {
-                    console.log(data);
-                    FirstStep(data); })
-                .catch(error => console.error(error))
+            //var ret = postData('EmployeeEditUpdate', data)
+            //    .then(data => {
+            //        console.log(data);
+            //        FirstStep(data); })
+            //    .catch(error => console.error(error))
 
-            //fetch('EmployeeEditUpdate', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    .then(response => FirstStep(response))
-            //    .catch(error => console.error('Error:', error));
+            fetch('EmployeeEditUpdate', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
         })
 
     })

@@ -356,61 +356,69 @@ namespace Watson.Controllers
         }
 
         //Create-GrpHealthEnrollment
-        public JsonResult GrpHealthEnrollmentNew(int? Employee_id, int? InsurancePlan_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan, 
+        public JsonResult GrpHealthEnrollmentNew(int Employee_id,/* int? InsurancePlan_id,*/ /*DateTime? CafeteriaPlanYear,*/ string empCoveredByOtherIns,
+            string empInsCarrier, string empInsPolicyNumber, string empInsPhoneNumber, string NoMedical, string MECPlan, 
             string StandardPlan, string BuyUpPlan, string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse, 
             string Dependent, string OtherCoverageSelection, string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature,
             DateTime? GrpHRefusalEmpSignatureDate)
         {
+            string response = "";
 
-            //int record = (from grp in db.Group_Health
-            //              where grp.Employee_id == Employee_id
-            //              select grp).Count();
+            int record = (from grpH in db.Group_Health
+                          where grpH.Employee_id == Employee_id
+                          select grpH).Count();
 
-            //if (record > 0)
-            //{
-            //    ViewBag.Message = "Record already exists.";
-            //    RedirectToAction("EditLifeInsurance", new { ViewBag.Employee_id });
-            //}
-            //else
-            //{
+            if (record > 0)
+            {
+                response = "Record already exists.";
+            }
+            else
+            {
 
-            //}
+                Group_Health g = db.Group_Health
+                    .Where(i => i.Employee_id == Employee_id)
+                    .Single();
 
-            Group_Health g = db.Group_Health
-                .Where(i => i.Employee_id == Employee_id)
-                .Single();
+                //Group_Health g = new Group_Health();
 
-            //g.CafeteriaPlanYear = CafeteriaPlanYear;
-            g.NoMedicalPlan = NoMedical;
-            g.MECPlan = MECPlan;
-            g.StandardPlan = StandardPlan;
-            g.BuyUpPlan = BuyUpPlan;
+                g.Employee_id = Employee_id;
+                //g.OtherInsuranceCoverage = empCoveredByOtherIns;
+                //g.InsuranceCarrier = empInsCarrier;
+                //g.PolicyNumber = empInsPolicyNumber;
+                //g.PhoneNumber = empInsPhoneNumber;
 
-            g.GrpHEnrollmentEmpSignature = GrpHEnrollmentEmpSignature;
-            g.GrpHEnrollmentEmpSignatureDate = GrpHEnrollmentEmpSignatureDate;
-            g.Myself = Myself;
-            g.Spouse = Spouse;
-            g.Dependent = Dependent;
-            g.OtherCoverage = OtherCoverageSelection;
-            g.OtherReason = OtherReasonSelection;
-            g.ReasonForGrpCoverageRefusal = ReasonForGrpCoverageRefusal;
-            g.GrpHRefusalEmpSignature = GrpHRefusalEmpSignature;
-            g.GrpHRefusalEmpSignatureDate = GrpHRefusalEmpSignatureDate;
+                //g.CafeteriaPlanYear = CafeteriaPlanYear;
+                g.NoMedicalPlan = NoMedical;
+                g.MECPlan = MECPlan;
+                g.StandardPlan = StandardPlan;
+                g.BuyUpPlan = BuyUpPlan;
 
+                g.GrpHEnrollmentEmpSignature = GrpHEnrollmentEmpSignature;
+                g.GrpHEnrollmentEmpSignatureDate = GrpHEnrollmentEmpSignatureDate;
+                g.Myself = Myself;
+                g.Spouse = Spouse;
+                g.Dependent = Dependent;
+                g.OtherCoverage = OtherCoverageSelection;
+                g.OtherReason = OtherReasonSelection;
+                g.ReasonForGrpCoverageRefusal = ReasonForGrpCoverageRefusal;
+                g.GrpHRefusalEmpSignature = GrpHRefusalEmpSignature;
+                g.GrpHRefusalEmpSignatureDate = GrpHRefusalEmpSignatureDate;
 
-            //InsurancePlan insPlan = db.InsurancePlans
-            //  .Where(i => i.InsurancePlan_id == InsurancePlan_id)
-            //  .Single();
+                //InsurancePlan insPlan = db.InsurancePlans
+                //  .Where(i => i.InsurancePlan_id == InsurancePlan_id)
+                //  .Single();
 
-            //insPlan.MECPlan = MECPlan;
-            //insPlan.StandardPlan = StandardPlan;
-            //insPlan.BuyUpPlan = BuyUpPlan;
+                //insPlan.MECPlan = MECPlan;
+                //insPlan.StandardPlan = StandardPlan;
+                //insPlan.BuyUpPlan = BuyUpPlan;
 
-            db.SaveChanges();
-
-            int result = g.Employee_id;
+                //db.Group_Health.Add(g);
+                db.SaveChanges();
+            }
+            
+            int result = Employee_id;
            
-            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = result, error = response }, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------

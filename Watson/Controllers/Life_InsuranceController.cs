@@ -54,7 +54,7 @@ namespace Watson.Controllers
         }
 
         //Create-LifeIns
-        public JsonResult LifeInsEnrollmentNew(int? Employee_id, string GroupPlanNumber, DateTime? BenefitsEffectiveDate, string InitialEnrollment, string ReEnrollment, 
+        public JsonResult LifeInsEnrollmentNew(int Employee_id, string GroupPlanNumber, DateTime? BenefitsEffectiveDate, string InitialEnrollment, string ReEnrollment, 
             string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount, string FamilyStatusChange, string SubTotalCode,
             string Married, DateTime? DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, /*string AddDep, string DropDep,*/ string AddDropDep, string DropEmployee, 
             string DropDependents, DateTime? LastDayOfCoverage, string TerminationEmploymentOfDropCoverage, string Retirement, DateTime? LastDayWorked, string OtherEvent,
@@ -78,15 +78,14 @@ namespace Watson.Controllers
             if (record > 0)
             {
                 response = "Record already exists.";
-       
+
             }
             else
             {
-
-         
+            
             Life_Insurance lifeIns = new Life_Insurance();
 
-            lifeIns.Employee_id = (int)Employee_id;
+            lifeIns.Employee_id = Employee_id;
             lifeIns.GroupPlanNumber = GroupPlanNumber;
             lifeIns.BenefitsEffectiveDate = BenefitsEffectiveDate;
             lifeIns.InitialEnrollment = InitialEnrollment;
@@ -154,21 +153,15 @@ namespace Watson.Controllers
             lifeIns.EmployeeSignature = EmployeeSignature;
             lifeIns.EmployeeSignatureDate = EmployeeSignatureDate;
 
-            InsurancePlan insPlan = new InsurancePlan();
-
-            insPlan.DentalPlan = DentalPlan;
-            insPlan.VisionPlan = VisionPlan;
-
-            db.InsurancePlans.Add(insPlan);
             db.Life_Insurance.Add(lifeIns);
 
             db.SaveChanges();
-
             }
-            int result = (int)Employee_id;
+
+            int result = Employee_id;
             
 
-            return Json(new { data = result, error = response }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = result, error = response}, JsonRequestBehavior.AllowGet);
         }
 
         //----------------------------------------------------------------------------------------

@@ -248,6 +248,8 @@ namespace Watson.Controllers
               .Where(i => i.Employee_id == Employee_id)
               .Single();
 
+            //Group_Health grph = new Group_Health();
+
             grph.OtherInsuranceCoverage = OtherGrpHinsCoverage;
             grph.InsuranceCarrier = InsCarrier;
             grph.PolicyNumber = InsPolicyNumber;
@@ -393,56 +395,56 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         //SpEnrollment Method
-        public ActionResult SpouseEnrollment(int Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured, string Message)
+        public ActionResult SpouseEnrollment(int Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured)
         {
             ViewBag.Employee_id = Employee_id;
             ViewBag.FamilyMember_id = FamilyMember_id;
             ViewBag.RelationshipToInsured = RelationshipToInsured = "Spouse";
-            ViewBag.Message = Message;
 
             Employee e = db.Employees.Find(Employee_id);
             ViewBag.MaritalStatus = e.MaritalStatus;
-            
+
             return View();
         }
 
         //Create-SpouseEnrollment
-        public JsonResult SpEnrollmentNew(int Employee_id, int? FamilyMember_id, string RelationshipToInsured, string MaritalStatus, string SSN, 
+        public JsonResult SpEnrollmentNew(int Employee_id, int? FamilyMember_id, string RelationshipToInsured, string MaritalStatus, string SSN,
             string FirstName, string LastName, DateTime DateOfBirth, string Gender)
         {
 
-            int record = (from fi in db.Family_Info
-                          where fi.FamilyMember_id == FamilyMember_id
-                          where fi.RelationshipToInsured == "Spouse"
-                          select fi).Count();
+            //string response = "";
 
-            if (record > 0)
-            {
-                ViewBag.Message = "Record already exists.";
-                RedirectToAction("FamilyOverview", new { ViewBag.Employee_id });
-            }
-            else
-            {
+            //int record = (from spouse in db.Family_Info
+            //              where spouse.FamilyMember_id == FamilyMember_id
+            //              select spouse).Count();
 
-            }
+            //if (record > 0)
+            //{
+            //    response = "Record already exists.";
+
+            //}
+            //else
+            //{
+            //}
+
+                Family_Info sp = new Family_Info();
+
+                sp.Employee_id = Employee_id;
+                sp.RelationshipToInsured = RelationshipToInsured;
+                sp.MaritalStatus = MaritalStatus;
+                sp.SSN = SSN;
+                sp.FirstName = FirstName;
+                sp.LastName = LastName;
+                sp.DateOfBirth = DateOfBirth;
+                sp.Gender = Gender;
+
+                db.Family_Info.Add(sp);
+                db.SaveChanges();
          
-            Family_Info sp = new Family_Info();
-
-            sp.Employee_id = Employee_id;
-            sp.RelationshipToInsured = RelationshipToInsured;
-            sp.MaritalStatus = MaritalStatus;
-            sp.SSN = SSN;
-            sp.FirstName = FirstName;
-            sp.LastName = LastName;
-            sp.DateOfBirth = DateOfBirth;
-            sp.Gender = Gender;
-
-            db.Family_Info.Add(sp);
-            db.SaveChanges();
 
             int result = sp.FamilyMember_id;
       
-            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = result /*, error = response */}, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -451,6 +453,7 @@ namespace Watson.Controllers
             string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, string EmailAddress, string PhoneNumber,
             string CellPhone)
         {
+
             Family_Info sp = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
                 .Single();
@@ -508,12 +511,6 @@ namespace Watson.Controllers
            
             int result = sp.FamilyMember_id;
 
-            //redirection is not working
-            //if (MaritalStatus == "MarriedwDep")
-            //{
-            //    RedirectToAction("DepEnrollment", "Family_info", new { sp.Employee_id, e.MaritalStatus  });
-            //}
-
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
@@ -533,13 +530,10 @@ namespace Watson.Controllers
             other.PhoneNumber = spInsPhoneNumber;
             other.PolicyNumber = spInsPolicyNumber;
 
-            ViewBag.Employee_id = other.Employee_id;
-            ViewBag.FamilyMember_id = other.FamilyMember_id;
-
-            int result = other.OtherInsurance_id;
-
             db.Other_Insurance.Add(other);
             db.SaveChanges();
+
+            int result = other.OtherInsurance_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }

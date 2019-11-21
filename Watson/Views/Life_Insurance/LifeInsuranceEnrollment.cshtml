@@ -696,7 +696,7 @@
     }
 
     function EditBeneficiary() {
-        window.location.href = "/Life_Insurance/EditBeneficiary/?Employee_id=@ViewBag.Employee_id @*+ "&Beneficiary_id=@ViewBag.Beneficiary_id*@";
+        window.location.href = "/Life_Insurance/EditBeneficiary/?Employee_id=@ViewBag.Employee_id";
     }
 
     document.querySelector("#EditLifeIns").addEventListener("click", function () {
@@ -718,18 +718,18 @@
         var message
         var alert = confirm("Life Insurance has been saved. Click the OK button to proceed. Thank you!");
 
-        if (submitLifeIns.onclick) {
+        if (submitLifeIns) {
             if (alert == true) {
 
                 message = "Please proceed to Life Insurance edit page to review information. Thank you!!";
                 var alert = confirm(message)
                 if (alert == true) {
 
-                    window.location.href = "/Life_Insurance/LifeInsuranceEnrollment/?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Life_Insurance/EditLifeInsurance/?Employee_id=@ViewBag.Employee_id";
 
                 }
                 else {
-                    window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
+                    window.location.href = "/Employee/LifeInsuranceEnrollment/?Employee_id=@ViewBag.Employee_id";
                 }
             }
         }
@@ -903,6 +903,9 @@
         if (emp.error.length > 0) {
 
             alert(emp.error);
+        }
+        else {
+            window.location.href = "/Life_Insurance/EditLifeInsurance/?Employee_id=@ViewBag.Employee_id";
         }
          
         Employee_id = emp.data;

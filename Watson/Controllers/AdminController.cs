@@ -534,10 +534,10 @@ namespace Watson.Controllers
             ViewBag.Employee_id = other.Employee_id;
             ViewBag.FamilyMember_id = other.FamilyMember_id;
 
-            int result = other.OtherInsurance_id;
-
             db.Other_Insurance.Add(other);
             db.SaveChanges();
+
+            int result = other.OtherInsurance_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }

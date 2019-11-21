@@ -18,7 +18,6 @@
         <input type="hidden" id="OtherInsurance_id" class="form-control" name="OtherInsurance_id" value="@ViewBag.OtherInsurance_id" />
         <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
         <input type="hidden" id="MaritalStatus" class="form-control" name="MaritalStatus" value="@ViewBag.MaritalStatus" />
-        <input type="hidden" id="ExistingRecord" class="form-control" value="@ViewBag.Message" />
         <div class="collapsible" id="FirstStep">Spouse Enrollment</div>
         <div id="divSpEnrollment" class="content">
             <p></p>
@@ -640,6 +639,14 @@
     function FirstStep(sp) {
         document.querySelector("#FirstStep").nextElementSibling.style.display = "none";
         document.querySelector("#SecondStep").nextElementSibling.style.display = "block";
+
+        @*if (sp.error.length > 0) {
+
+            alert(sp.error);
+
+            window.location.href = "/Employee/FamilyOverview/?Employee_id=@ViewBag.Employee_id";
+        }*@
+
         FamilyMember_id = sp.data;
     }
 
