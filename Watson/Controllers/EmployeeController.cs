@@ -365,29 +365,6 @@ namespace Watson.Controllers
 
             ViewBag.Employee_id = Employee_id;
             ViewBag.FamilyMember_id = FamilyMember_id;
-            //ViewBag.MaritalStatus = e.MaritalStatus;
-
-            //if (e.MaritalStatus == "Single")
-            //{
-            //    ViewBag.spouseExist = false;
-            //    ViewBag.MaritalStatus = "Single";
-            //}
-            //else if (e.MaritalStatus == "SinglewDep")
-            //{
-            //    ViewBag.spouseExist = false;
-            //    ViewBag.MaritalStatus = "SinglewDep";
-            //}
-            //else if (e.MaritalStatus == "Married")
-            //{
-            //    ViewBag.spouseExist = true;
-            //    ViewBag.MaritalStatus = "Married";
-            //}
-            //else
-            //{
-            //    ViewBag.spouseExist = true;
-            //    ViewBag.MaritalStatus = "MarriedwDep";
-            //}
-
 
             return View();
         }
@@ -411,12 +388,11 @@ namespace Watson.Controllers
         public JsonResult SpEnrollmentNew(int Employee_id, int? FamilyMember_id, string RelationshipToInsured, string MaritalStatus, string SSN,
             string FirstName, string LastName, DateTime DateOfBirth, string Gender)
         {
+            string response = "";
 
-            //string response = "";
-
-            //int record = (from spouse in db.Family_Info
-            //              where spouse.FamilyMember_id == FamilyMember_id
-            //              select spouse).Count();
+            //int record = (from fi in db.Family_Info
+            //              where fi.Employee_id == Employee_id
+            //              select fi).Count();
 
             //if (record > 0)
             //{
@@ -424,27 +400,26 @@ namespace Watson.Controllers
 
             //}
             //else
-            //{
-            //}
+            //{ }
 
-                Family_Info sp = new Family_Info();
+            Family_Info sp = new Family_Info();
 
-                sp.Employee_id = Employee_id;
-                sp.RelationshipToInsured = RelationshipToInsured;
-                sp.MaritalStatus = MaritalStatus;
-                sp.SSN = SSN;
-                sp.FirstName = FirstName;
-                sp.LastName = LastName;
-                sp.DateOfBirth = DateOfBirth;
-                sp.Gender = Gender;
+            sp.Employee_id = Employee_id;
+            sp.RelationshipToInsured = RelationshipToInsured;
+            sp.MaritalStatus = MaritalStatus;
+            sp.SSN = SSN;
+            sp.FirstName = FirstName;
+            sp.LastName = LastName;
+            sp.DateOfBirth = DateOfBirth;
+            sp.Gender = Gender;
 
-                db.Family_Info.Add(sp);
-                db.SaveChanges();
-         
+            db.Family_Info.Add(sp);
+            db.SaveChanges();
+      
 
             int result = sp.FamilyMember_id;
       
-            return Json(new { data = result /*, error = response */}, JsonRequestBehavior.AllowGet);
+            return Json(new { data = result, error = response}, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -454,9 +429,9 @@ namespace Watson.Controllers
             string CellPhone)
         {
 
-            Family_Info sp = db.Family_Info
-                .Where(i => i.FamilyMember_id == FamilyMember_id)
-                .Single();
+            var sp = (from fi in db.Family_Info
+                      where fi.FamilyMember_id == FamilyMember_id
+                      select fi).SingleOrDefault();
 
             sp.MailingAddress = MailingAddress;
             sp.PObox = PObox;
@@ -488,8 +463,6 @@ namespace Watson.Controllers
             var sp = (from fi in db.Family_Info
                       where fi.FamilyMember_id == FamilyMember_id
                       select fi).SingleOrDefault();
-
-            ViewBag.Employee_id = Employee_id;
             
             sp.Employee_id = Employee_id;
             sp.Employer = Employer;
@@ -586,22 +559,6 @@ namespace Watson.Controllers
             ViewBag.RelationshipToInsured = "Spouse";
             ViewBag.MaritalStatus = sp.MaritalStatus;
 
-            //int record = (from fi in db.Family_Info
-            //              where fi.FamilyMember_id == FamilyMember_id
-            //              where fi.RelationshipToInsured == "Spouse"
-            //              select fi).Count();
-
-            //if (record > 0)
-            //{
-            //    ViewBag.Message = "Record already exists.";
-            //    RedirectToAction("FamilyOverview", new { sp.Employee_id });
-            //}
-            //else
-            //{
-            //    RedirectToAction("DepEnrollment", new { sp.Employee_id });
-
-            //}
-
             sp.RelationshipToInsured = RelationshipToInsured;
             sp.MaritalStatus = MaritalStatus;
             sp.SSN = SSN;
@@ -663,37 +620,11 @@ namespace Watson.Controllers
                 {
                     Console.WriteLine(err);
                 }
-
-                //RedirectToAction("FamilyOverview", new { sp.Employee_id });
             }
 
             int result = sp.Employee_id;
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-
-
-            //Will use later to reflect change of emp marital status to reflect in spouse informaiton
-            //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
-
-            //ViewBag.spouseExist = true;
-            //ViewBag.MartialStatus = MaritalStatus;
-            //ViewBag.RelationshipToInsured = "Spouse";
-
-            //Employee e = db.Employees.Find(Employee_id);
-            //if (e.MaritalStatus == "Single")
-            //{
-            //    ViewBag.spouseExist = false;
-            //    ViewBag.RelationshipToInsured = "Single";
-            //}
-            //else if (e.MaritalStatus == "SinglewDep")
-            //{
-            //    ViewBag.spouseExist = false;
-            //    ViewBag.RelationshipToInsured = "Spouse";
-            //}
-            //else
-            //{
-            //    ViewBag.RelationshipToInsured = "Dependent";
-            //}
 
         }
 

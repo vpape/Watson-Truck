@@ -23,25 +23,25 @@
                 <div class="form-group" id="divRelationshipToInsured">
                     <label for="RelationshipToInsured" class="col-md-2 control-label">Relation To Employee:</label>
                     <div class="col-md-10">
-                        <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.DisplayFor(Model => Model.family.RelationshipToInsured)" disabled />
+                        <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.Raw(Model.family.RelationshipToInsured)" disabled />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="SSN" class="col-md-2 control-label">SSN:</label>
                     <div class="col-md-10">
-                        <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="@Html.DisplayFor(Model => Model.family.SSN)" />
+                        <input type="text" id="SSN" class="form-control" placeholder="SSN" name="SSN" value="@Html.Raw(Model.family.SSN)" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="DepFirstName" class="col-md-2 control-label">First Name:</label>
                     <div class="col-md-10">
-                        <input type="text" id="DepFirstName" class="form-control" placeholder="First Name" name="FirstName" value="@Html.DisplayFor(Model => Model.family.FirstName)" />
+                        <input type="text" id="DepFirstName" class="form-control" placeholder="First Name" name="FirstName" value="@Html.Raw(Model.family.FirstName)" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="DepLastName" class="col-md-2 control-label">Last Name:</label>
                     <div class="col-md-10">
-                        <input type="text" id="DepLastName" class="form-control" placeholder="Last Name" name="LastName" value="@Html.DisplayFor(Model => Model.family.LastName)" />
+                        <input type="text" id="DepLastName" class="form-control" placeholder="Last Name" name="LastName" value="@Html.Raw(Model.family.LastName)" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -63,17 +63,17 @@
                 <div class="form-group">
                     <label for="MailingAddress" class="col-md-2 control-label">Mailing Address:</label>
                     <div class="col-md-10">
-                        <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@Html.DisplayFor(Model => Model.family.FamilyMember_id)" />
-                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@Html.DisplayFor(Model => Model.family.MailingAddress)" />
-                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@Html.DisplayFor(Model => Model.family.City)" />
-                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@Html.DisplayFor(Model => Model.family.State)" />
-                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.DisplayFor(Model => Model.family.ZipCode)" />
+                        <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@Html.Raw(Model.family.FamilyMember_id)" />
+                        <input type="text" id="MailingAddress" class="form-control" placeholder="Street" name="MailingAddress" value="@Html.Raw(Model.family.MailingAddress)" />
+                        <input type="text" id="City" class="form-control" placeholder="City" name="City" value="@Html.Raw(Model.family.City)" />
+                        <input type="text" id="State" class="form-control" placeholder="State" name="State" value="@Html.Raw(Model.family.State)" />
+                        <input type="text" id="ZipCode" class="form-control" placeholder="Zip Code" name="ZipCode" value="@Html.Raw(Model.family.ZipCode)" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="County" class="col-md-2 control-label">County:</label>
                     <div class="col-md-10">
-                        <input type="text" id="County" class="form-control" placeholder="County" name="County" value="@Html.DisplayFor(Model => Model.family.County)" />
+                        <input type="text" id="County" class="form-control" placeholder="County" name="County" value="@Html.Raw(Model.family.County)" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -103,13 +103,13 @@
                 <label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="False" @((Model.otherIns.CoveredByOtherInsurance) == "False" ? "checked" : "") />No</label>
                 <div id="depInsInfo">
                     <div class="form-group col-md-2">
-                        <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.DisplayFor(Model => Model.otherIns.InsuranceCarrier)" />
+                        <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.Raw(Model.otherIns.InsuranceCarrier)" />
                     </div>
                     <div class="form-group col-md-2">
-                        <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="@Html.DisplayFor(Model => Model.otherIns.PolicyNumber)" />
+                        <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="@Html.Raw(Model.otherIns.PolicyNumber)" />
                     </div>
                     <div class="form-group col-md-2">
-                        <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="@Html.DisplayFor(Model => Model.otherIns.PhoneNumber)" />
+                        <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="@Html.Raw(Model.otherIns.PhoneNumber)" />
                     </div>
                 </div>
             </div>

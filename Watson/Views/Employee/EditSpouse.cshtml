@@ -23,7 +23,7 @@
             <div class="form-group" id="divRelationshipToInsured">
                 <label for="RelationshipToInsured" class="col-md-2 control-label">Relation To Employee:</label>
                 <div class="col-md-10">
-                    <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.DisplayFor(Model => Model.family.RelationshipToInsured)" disabled />
+                    <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.Raw(Model.family.RelationshipToInsured)" disabled />
                 </div>
                 @*<div class="col-md-10 col-md-offset-2">
                 <select id="RelationshipToInsured" name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
@@ -59,7 +59,7 @@
             <div class="form-group">
                 <label for="FirstName" class="col-md-2 control-label">First Name:</label>
                 <div class="col-md-10">
-                    <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="@Html.Raw( Model.family.FirstName)" />
+                    <input type="text" id="FirstName" class="form-control" placeholder="First Name" name="FirstName" value="@Html.Raw(Model.family.FirstName)" />
                 </div>
             </div>
             <div class="form-group">
@@ -195,8 +195,8 @@
                 </div>
                 <div id="SpOtherIns">
                     <label>Other Insurance Coverage?</label>
-                    <label class="radio-inline"><input type="radio" id="spOtherInsurance" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="True" @*@((Model.otherIns.CoveredByOtherInsurance == "True") ? "checked" : "")*@ />Yes</label>
-                    <label class="radio-inline"><input type="radio" id="spOtherInsurance" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="False"@*@((Model.otherIns.CoveredByOtherInsurance == "False") ? "checked" : "")*@/>No</label>
+                    <label class="radio-inline"><input type="radio" id="spOtherInsurance" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="True" @Html.Raw((Model.family.OtherInsuranceCoverage) == "True" ? "checked" : "") />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="spOtherInsurance" class="radio-inline" onclick="showHideSpOtherInsCoverage()" name="OtherInsuranceCoverage" value="False" @Html.Raw((Model.family.OtherInsuranceCoverage) == "False" ? "checked" : "")/>No</label>
                     <div id="SpOtherInsCoverageSelect">
                         <label for="OtherInsuranceCoverage" class="control-label">Coverage:</label>
                         <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" value="Medical" @((Model.family.Medical == "True") ? "checked" : "") /><text for="Medical">Medical</text>
@@ -230,7 +230,7 @@
                         <div class="form-group">
                             <label for="Employer" class="col-md-2 control-label">Insurance Name:</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="spInsCarrier" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.DisplayFor(Model => Model.otherIns.InsuranceCarrier)" />
+                                <input type="text" class="form-control" id="spInsCarrier" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.Raw(Model.otherIns.InsuranceCarrier)" />
                             </div>
                         </div>
                         <div id="divInsAddress">

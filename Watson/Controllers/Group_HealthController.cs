@@ -356,7 +356,7 @@ namespace Watson.Controllers
         }
 
         //Create-GrpHealthEnrollment
-        public JsonResult GrpHealthEnrollmentNew(int Employee_id,/* int? InsurancePlan_id,*/ /*DateTime? CafeteriaPlanYear,*/ string empCoveredByOtherIns,
+        public JsonResult GrpHealthEnrollmentNew(int Employee_id,/*DateTime? CafeteriaPlanYear,*/ string empCoveredByOtherIns,
             string empInsCarrier, string empInsPolicyNumber, string empInsPhoneNumber, string NoMedical, string MECPlan, 
             string StandardPlan, string BuyUpPlan, string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse, 
             string Dependent, string OtherCoverageSelection, string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature,
@@ -404,15 +404,6 @@ namespace Watson.Controllers
                 g.GrpHRefusalEmpSignature = GrpHRefusalEmpSignature;
                 g.GrpHRefusalEmpSignatureDate = GrpHRefusalEmpSignatureDate;
 
-                //InsurancePlan insPlan = db.InsurancePlans
-                //  .Where(i => i.InsurancePlan_id == InsurancePlan_id)
-                //  .Single();
-
-                //insPlan.MECPlan = MECPlan;
-                //insPlan.StandardPlan = StandardPlan;
-                //insPlan.BuyUpPlan = BuyUpPlan;
-
-                //db.Group_Health.Add(g);
                 db.SaveChanges();
             }
             
