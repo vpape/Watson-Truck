@@ -58,6 +58,7 @@ namespace Watson.Models
         public string Student { get; set; }
         public string Disabled { get; set; }
         public string NonStandardDependent { get; set; }
+        public string AddDropDepLifeIns { get; set; }
     
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

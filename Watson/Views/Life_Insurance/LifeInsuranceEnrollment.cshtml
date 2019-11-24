@@ -284,11 +284,10 @@
                         <td class="text-center center-block">
                             <div>
                                 <label style="display:table-cell">Add/Drop Dependent</label>
-                                <select class="form-control" id="AddDropDep" name="AddDropDep">
+                                <select class="form-control" id="AddDropDepLifeIns" disabled>
                                     <option value="N/A" selected disabled hidden> Select an Option</option>
-                                    <option value="N/A"></option>
-                                    <option value="AddDep">Add Dependent</option>
-                                    <option value="DropDep">Drop Dependent</option>
+                                    <option value="" @((dep.AddDropDepLifeIns) == "AddDep" ? "selected" : "") disabled>Add Dependent</option>
+                                    <option value="" @((dep.AddDropDepLifeIns) == "DropDep" ? "selected" : "") disabled>Drop Dependent</option>
                                 </select>
                             </div>
                             @*<div>
@@ -759,9 +758,7 @@
             DateOfMarriage = document.getElementById("DateOfMarriage").value;
             OtherDependents = document.getElementById("OtherDependents").checked;
             DateOfAdoption = document.getElementById("DateOfAdoption").value;
-            AddDropDep = document.getElementById("AddDropDep").value;
-            //AddDep = document.getElementById("AddDep").checked;
-            //DropDep = document.getElementById("DropDep").checked;
+            //AddDropDepLifeIns = document.getElementById("AddDropDepLifeIns").value;
             DropEmployee = document.getElementById("DropEmployee").checked;
             DropDependents = document.getElementById("DropDependents").checked;
             LastDayOfCoverage = document.getElementById("LastDayOfCoverage").value;
@@ -834,7 +831,7 @@
                 "DateOfMarriage": DateOfMarriage,
                 "OtherDependents": OtherDependents,
                 "DateOfAdoption": DateOfAdoption,
-                "AddDropDep": AddDropDep,
+                //"AddDropDepLifeIns": AddDropDepLifeIns,
                 //"AddDep": AddDep,
                 //"DropDep": DropDep,
                 "DropEmployee": DropEmployee,

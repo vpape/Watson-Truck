@@ -240,6 +240,7 @@
           <Property Name="Student" Type="varchar" MaxLength="25" />
           <Property Name="Disabled" Type="varchar" MaxLength="25" />
           <Property Name="NonStandardDependent" Type="varchar" MaxLength="25" />
+          <Property Name="AddDropDepLifeIns" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Group_Health">
           <Key>
@@ -493,7 +494,6 @@
           <Property Name="AddDependent" Type="varchar" MaxLength="15" />
           <Property Name="DropDependent" Type="varchar" MaxLength="15" />
           <Property Name="DropEmployee" Type="varchar" MaxLength="15" />
-          <Property Name="AddDropDep" Type="varchar" MaxLength="15" />
           <Property Name="DropDependents" Type="varchar" MaxLength="15" />
           <Property Name="LastDayOfCoverage" Type="date" />
           <Property Name="Retirement" Type="varchar" MaxLength="15" />
@@ -1191,6 +1191,7 @@
           <Property Name="Student" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="Disabled" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="NonStandardDependent" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="AddDropDepLifeIns" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Group_Health">
           <Key>
@@ -1369,7 +1370,6 @@
           <Property Name="OtherReason" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="DentalCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="VisionCoverage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="AddDropDep" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Other_Insurance">
           <Key>
@@ -1913,6 +1913,7 @@
           <EntitySetMapping Name="Family_Info">
             <EntityTypeMapping TypeName="WatsonTruckModel.Family_Info">
               <MappingFragment StoreEntitySet="Family_Info">
+                <ScalarProperty Name="AddDropDepLifeIns" ColumnName="AddDropDepLifeIns" />
                 <ScalarProperty Name="NonStandardDependent" ColumnName="NonStandardDependent" />
                 <ScalarProperty Name="Disabled" ColumnName="Disabled" />
                 <ScalarProperty Name="Student" ColumnName="Student" />
@@ -2059,7 +2060,6 @@
           <EntitySetMapping Name="Life_Insurance">
             <EntityTypeMapping TypeName="WatsonTruckModel.Life_Insurance">
               <MappingFragment StoreEntitySet="Life_Insurance">
-                <ScalarProperty Name="AddDropDep" ColumnName="AddDropDep" />
                 <ScalarProperty Name="VisionCoverage" ColumnName="VisionCoverage" />
                 <ScalarProperty Name="DentalCoverage" ColumnName="DentalCoverage" />
                 <ScalarProperty Name="OtherReason" ColumnName="OtherReason" />

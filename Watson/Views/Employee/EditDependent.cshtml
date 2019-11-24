@@ -54,7 +54,7 @@
                     <label class="col-md-2 control-label">Gender:</label>
                     <div class="col-md-10">
                         <select id="Gender" class="form-control">
-                            <option value="">Select Option</option>
+                            <option value="N/A" selected disabled hidden>Select Option</option>
                             <option value="Male" @((Model.family.Gender) == "Male" ? "selected" : "")>Male</option>
                             <option value="Female" @((Model.family.Gender) == "Female" ? "selected" : "")>Female</option>
                         </select>
@@ -82,6 +82,17 @@
                         <input type="checkbox" class="checkbox-inline" id="Student" name="Student" value="Student" @((Model.family.Student == "True") ? "checked" : "") /><label for="Student">Student</label>
                         <input type="checkbox" class="checkbox-inline" id="Disabled" name="Disabled" value="Disabled" @((Model.family.Disabled == "True") ? "checked" : "") /><label for="Disabled">Disabled</label>
                         <input type="checkbox" class="checkbox-inline" id="NonStandardDependent" name="NonStandardDependent" @*onclick="showHideMailingAddress()"*@ value="NonStandardDependent" @((Model.family.NonStandardDependent == "True") ? "checked" : "") /><label for="NonStandardDependent">Non Standard Dependent</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Add/Drop on Life Ins.</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="AddDropDepLifeIns">
+                        <option value="N/A" selected disabled hidden> Select an Option</option>
+                        <option value="AddDep" @Html.Raw(Model.family.AddDropDepLifeIns)>Add Dependent</option>
+                        <option value="DropDep" @Html.Raw(Model.family.AddDropDepLifeIns)>Drop Dependent</option>
+                    </select>
+                    <div id="divAddDropDepResult" hidden></div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -115,7 +126,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-10">
-                    <button type="submit" id="DepEnrollmentUpdate" class="btn">Save</button>
+                    <button type="submit" id="EditDepEnrollmentUpdate" class="btn">Save</button>
                     <button type="submit" @*onclick="AddDependent()"*@ id="addDep" class="btn">Add Dependent</button>
                 </div>
             </div>
@@ -220,8 +231,8 @@
         });
     }
 
-    document.querySelector("#DepEnrollmentUpdate").addEventListener("click", function () {
-        var depSubmit = document.getElementById("DepEnrollmentUpdate");
+    @*document.querySelector("#EditDepEnrollmentUpdate").addEventListener("click", function () {
+        var depSubmit = document.getElementById("EditDepEnrollmentUpdate");
 
         var message;
         var alert = confirm("Your progress has been saved. Please proceed to Overview page.")
@@ -241,7 +252,7 @@
                 }
             }
         }
-    })
+    })*@
 
     //Redirects to Add Dependent Page
     document.querySelector("#addDep").addEventListener("click", function () {
@@ -309,7 +320,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#DepEnrollmentUpdate").addEventListener("click", function () {
+        document.querySelector("#EditDepEnrollmentUpdate").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
             FamilyMember_id = document.getElementById("FamilyMember_id").value;
             RelationshipToInsured = document.getElementById("RelationshipToInsured").value;
@@ -326,7 +337,9 @@
             Student = document.getElementById("Student").checked;
             Disabled = document.getElementById("Disabled").checked;
             NonStandardDependent = document.getElementById("NonStandardDependent").checked;
-
+            AddDropDepLifeIns = document.getElementById("AddDropDepLifeIns").value;
+            document.getElementById("divAddDropDepResult").innerHTML = AddDropDepLifeIns;
+            
             depInsuranceCoverage = document.getElementById("depInsuranceCoverage").checked;
             depInsCarrier = document.getElementById("depInsCarrier").value;
             depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value;
@@ -349,6 +362,7 @@
                 "Student": Student,
                 "Disabled": Disabled,
                 "NonStandardDependent": NonStandardDependent,
+                "AddDropDepLifeIns": AddDropDepLifeIns,
 
                 "depInsuranceCoverage": depInsuranceCoverage,
                 "depInsCarrier": depInsCarrier,

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Net;
 using System.Dynamic;
 using System.Data;
@@ -13,9 +16,10 @@ using Watson.Models;
 using Watson.ViewModels;
 
 
+
 namespace Watson.Controllers
 {
-    //[Authorize]
+    //[System.Web.Mvc.Authorize]
     public class EmployeeController : System.Web.Mvc.Controller
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
@@ -23,12 +27,12 @@ namespace Watson.Controllers
         private static List<Family_Info> family = new List<Family_Info>();
         private static List<Other_Insurance> otherins = new List<Other_Insurance>();
 
-        private IEmployeeRepository _employeeRepository;
+        //private IEmployeeRepository _employeeRepository;
 
-        public EmployeeController(IEmployeeRepository employeeRepository)
-        {
-            _employeeRepository = employeeRepository;
-        }
+        //public EmployeeController(IEmployeeRepository employeeRepository)
+        //{
+        //    _employeeRepository = employeeRepository;
+        //}
 
         public EmployeeController()
         {
@@ -719,8 +723,8 @@ namespace Watson.Controllers
 
         //Create-DepEnrollment
         public JsonResult DepEnrollmentNew(int Employee_id, int? FamilyMember_id, string RelationshipToInsured, string SSN, string DepFirstName, string DepLastName, 
-            DateTime DateOfBirth, string Gender, string Student, string Disabled, string NonStandardDependent, string MailingAddress, string City, string State,
-            string ZipCode, string County)
+            DateTime DateOfBirth, string Gender, string MailingAddress, string City, string State, string ZipCode, string County, string Student, string Disabled,
+            string NonStandardDependent, string AddDropDepLifeIns)
         {
             Family_Info dep = new Family_Info();
 
@@ -731,14 +735,15 @@ namespace Watson.Controllers
             dep.LastName = DepLastName;
             dep.DateOfBirth = DateOfBirth;
             dep.Gender = Gender;
-            dep.Student = Student;
-            dep.Disabled = Disabled;
-            dep.NonStandardDependent = NonStandardDependent;
             dep.MailingAddress = MailingAddress;
             dep.City = City;
             dep.State = State;
             dep.ZipCode = ZipCode;
             dep.County = County;
+            dep.Student = Student;
+            dep.Disabled = Disabled;
+            dep.NonStandardDependent = NonStandardDependent;
+            dep.AddDropDepLifeIns = AddDropDepLifeIns;
 
             db.Family_Info.Add(dep);
             db.SaveChanges();
@@ -798,7 +803,8 @@ namespace Watson.Controllers
         //EditUpdate-DepEdit
         public JsonResult DepEditUpdate(int Employee_id, int FamilyMember_id, string RelationshipToInsured, string SSN, string DepFirstName, string DepLastName,
             DateTime DateOfBirth, string Gender, string EmpNumber, string MailingAddress, string City, string State, string ZipCode, string County, string Student,
-            string Disabled, string NonStandardDependent, string depInsuranceCoverage, string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
+            string Disabled, string NonStandardDependent, string AddDropDepLifeIns, string depInsuranceCoverage, string depInsCarrier, string depInsPolicyNumber, 
+            string depInsPhoneNumber)
         {
             Family_Info dep = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
@@ -811,7 +817,6 @@ namespace Watson.Controllers
             dep.LastName = DepLastName;
             dep.DateOfBirth = DateOfBirth;
             dep.Gender = Gender;
-  
             dep.MailingAddress = MailingAddress;
             dep.City = City;
             dep.State = State;
@@ -820,6 +825,7 @@ namespace Watson.Controllers
             dep.Student = Student;
             dep.Disabled = Disabled;
             dep.NonStandardDependent = NonStandardDependent;
+            dep.AddDropDepLifeIns = AddDropDepLifeIns;
 
             var emp = new Employee()
             {

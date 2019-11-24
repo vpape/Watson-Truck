@@ -82,7 +82,6 @@ namespace Watson.Models
         public string OtherReason { get; set; }
         public string DentalCoverage { get; set; }
         public string VisionCoverage { get; set; }
-        public string AddDropDep { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

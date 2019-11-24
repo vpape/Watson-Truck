@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using SelectPdf;
 using System.Net;
 using System.Dynamic;
 using System.Data;
@@ -12,8 +16,10 @@ using System.Web.Mvc;
 using Watson.Models;
 using Watson.ViewModels;
 
+
 namespace Watson.Controllers
 {
+    //[System.Web.Mvc.Authorize]
     public class Group_HealthController : System.Web.Mvc.Controller
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
@@ -24,12 +30,12 @@ namespace Watson.Controllers
         private static List<Other_Insurance> otherIns = new List<Other_Insurance>();
 
         //use for dependency injection
-        private IEmployeeRepository _employeeRepository;
+        //private IEmployeeRepository _employeeRepository;
 
-        public Group_HealthController(IEmployeeRepository employeeRepository)
-        {
-            _employeeRepository = employeeRepository;
-        }
+        //public Group_HealthController(IEmployeeRepository employeeRepository)
+        //{
+        //    _employeeRepository = employeeRepository;
+        //}
 
         public Group_HealthController()
         {
@@ -295,6 +301,56 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
+
+        // GET: Pdf
+        public ActionResult CreateGrpHPDF(int? Employee_id, int? GroupHealthInsurance_id)
+        {
+            ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
+            ViewBag.Employee_id = Employee_id;
+
+            GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
+
+
+            groupHGrpHEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
+            groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
+
+            groupHGrpHEnrollmentVM.spouse = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id && i.RelationshipToInsured == "Spouse");
+            groupHGrpHEnrollmentVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id && i.RelationshipToInsured != "Spouse").ToList();
+            if (groupHGrpHEnrollmentVM.spouse != null)
+            {
+                groupHGrpHEnrollmentVM.spouseInsurance = db.Other_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id && i.FamilyMember_id == groupHGrpHEnrollmentVM.spouse.FamilyMember_id);
+                groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id && i.FamilyMember_id != groupHGrpHEnrollmentVM.spouse.FamilyMember_id).ToList();
+            }
+            else
+            {
+                groupHGrpHEnrollmentVM.spouseInsurance = null;
+                groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id).ToList();
+            }
+
+
+            return View(groupHGrpHEnrollmentVM);
+        }
+
+        [System.Web.Mvc.HttpPost]
+        public ActionResult CreateGrpHealthPdf(FormCollection collection)
+        {
+            // instantiate a html to pdf converter object
+            HtmlToPdf converter = new HtmlToPdf();
+
+            // create a new pdf document converting an url
+            PdfDocument doc = converter.ConvertUrl(collection["TxtUrl"]);
+
+            // save pdf document
+            byte[] pdf = doc.Save();
+
+            // close pdf document
+            doc.Close();
+
+            // return resulted pdf document
+            FileResult fileResult = new FileContentResult(pdf, "application/pdf");
+            fileResult.FileDownloadName = "Grp_Health_Insurance.pdf";
+            return fileResult;
+        }
 
         public ActionResult GrpHealthEnrollment(int? Employee_id, int? GroupHealthInsurance_id)
         {
@@ -621,7 +677,7 @@ namespace Watson.Controllers
             grpHGrpEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
             grpHGrpEnrollmentVM.deduction = db.Deductions.FirstOrDefault(i => i.Employee_id == Employee_id);
 
-            ViewBag.Deductions_id = grpHGrpEnrollmentVM.deduction.Deductions_id;
+            //ViewBag.Deductions_id = grpHGrpEnrollmentVM.deduction.Deductions_id;
             ViewBag.Employee_id = grpHGrpEnrollmentVM.employee.Employee_id;
 
             //    if (Employee_id == null)
@@ -899,6 +955,5 @@ namespace Watson.Controllers
             base.Dispose(disposing);
         }
 
-      
     }
 }

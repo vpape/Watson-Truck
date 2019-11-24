@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -100,7 +103,6 @@ namespace Watson.Controllers
             lifeIns.DateOfMarriage = DateOfMarriage;
             lifeIns.HaveChildrenOrHaveDependents = OtherDependents;
             lifeIns.PlacementDateOfAdoptedChild = DateOfAdoption;
-            lifeIns.AddDropDep = AddDropDep;
             //lifeIns.AddDependent = AddDep;
             //lifeIns.DropDependent = DropDep;
             lifeIns.DropEmployee = DropEmployee;
@@ -231,7 +233,6 @@ namespace Watson.Controllers
             lifeIns.DateOfMarriage = DateOfMarriage;
             lifeIns.HaveChildrenOrHaveDependents = OtherDependents;
             lifeIns.PlacementDateOfAdoptedChild = DateOfAdoption;
-            lifeIns.AddDropDep = AddDropDep;
             //lifeIns.AddDependent = AddDep;
             //lifeIns.DropDependent = DropDep;
             lifeIns.DropEmployee = DropEmployee;
@@ -283,6 +284,12 @@ namespace Watson.Controllers
             lifeIns.AmountOfPreviousPolicy = PreviousPolicyAmount;
             lifeIns.EmployeeSignature = EmployeeSignature;
             lifeIns.EmployeeSignatureDate = EmployeeSignatureDate;
+
+            //Family_Info depAddDrop = db.Family_Info
+            //    .Where(i => i.Employee_id == Employee_id)
+            //    .SingleOrDefault();
+
+            //depAddDrop.AddDropDepLifeIns = AddDropDep;
 
             //InsurancePlan insPlan = db.InsurancePlans
             //    .Where(i => i.Employee_id == Employee_id)

@@ -151,7 +151,7 @@
 
 
     
-    @*document.querySelector("#submitBeneficiary").addEventListener("click", function () {
+    document.querySelector("#submitBeneficiary").addEventListener("click", function () {
 
         var message;
         alert = confirm("Beneificiary information has been saved. Thank you!")
@@ -174,7 +174,7 @@
                 window.location.href = "/Employee/EmpOverview/?Employee_id=" + @ViewBag.Employee_id;
             }
         }
-    })*@
+    })
 
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#submitBeneficiary").addEventListener("click", function () {

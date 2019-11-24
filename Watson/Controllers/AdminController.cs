@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Net;
 using System.Dynamic;
 using System.Data;
@@ -18,7 +21,7 @@ namespace Watson.Controllers
     /// <summary>
     /// This is where I give you all the information about my employees
     /// </summary>
-    //[Authorize]
+     //[System.Web.Mvc.Authorize ="Admin"]
     public class AdminController : System.Web.Mvc.Controller
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
@@ -792,8 +795,8 @@ namespace Watson.Controllers
 
         //Create-DepEnrollment
         public JsonResult DepEnrollmentNew(int Employee_id, int? FamilyMember_id, string RelationshipToInsured, string SSN, string DepFirstName, string DepLastName,
-            DateTime DateOfBirth, string Gender, string Student, string Disabled, string NonStandardDependent, string MailingAddress, string City, string State,
-            string ZipCode, string County)
+            DateTime DateOfBirth, string Gender, string MailingAddress, string City, string State, string ZipCode, string County, string Student, string Disabled, 
+            string NonStandardDependent, string AddDropDepLifeIns)
         {
             Family_Info dep = new Family_Info();
 
@@ -804,14 +807,15 @@ namespace Watson.Controllers
             dep.LastName = DepLastName;
             dep.DateOfBirth = DateOfBirth;
             dep.Gender = Gender;
-            dep.Student = Student;
-            dep.Disabled = Disabled;
-            dep.NonStandardDependent = NonStandardDependent;
             dep.MailingAddress = MailingAddress;
             dep.City = City;
             dep.State = State;
             dep.ZipCode = ZipCode;
             dep.County = County;
+            dep.Student = Student;
+            dep.Disabled = Disabled;
+            dep.NonStandardDependent = NonStandardDependent;
+            dep.AddDropDepLifeIns = AddDropDepLifeIns;
 
             db.Family_Info.Add(dep);
             db.SaveChanges();
@@ -871,7 +875,8 @@ namespace Watson.Controllers
         //EditUpdate-DepEdit
         public JsonResult DepEditUpdate(int Employee_id, int FamilyMember_id, string RelationshipToInsured, string SSN, string DepFirstName, string DepLastName,
             DateTime DateOfBirth, string Gender, string EmpNumber, string MailingAddress, string City, string State, string ZipCode, string County, string Student,
-            string Disabled, string NonStandardDependent, string depInsuranceCoverage, string depInsCarrier, string depInsPolicyNumber, string depInsPhoneNumber)
+            string Disabled, string NonStandardDependent, string AddDropDepLifeIns, string depInsuranceCoverage, string depInsCarrier, string depInsPolicyNumber,
+            string depInsPhoneNumber)
         {
             Family_Info dep = db.Family_Info
                 .Where(i => i.FamilyMember_id == FamilyMember_id)
@@ -893,6 +898,7 @@ namespace Watson.Controllers
             dep.Student = Student;
             dep.Disabled = Disabled;
             dep.NonStandardDependent = NonStandardDependent;
+            dep.AddDropDepLifeIns = AddDropDepLifeIns;
 
             var emp = new Employee()
             {
@@ -1334,17 +1340,6 @@ namespace Watson.Controllers
             ViewBag.Deductions_id = grpHGrpEnrollmentVM.deduction.Deductions_id;
             ViewBag.Employee_id = grpHGrpEnrollmentVM.employee.Employee_id;
 
-            //    if (Employee_id == null)
-            //    {
-            //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //    }
-
-            //    Group_Health g = db.Group_Health.Find(Employee_id);
-            //    if (g == null)
-            //    {
-            //        return HttpNotFound();
-            //    }
-
             return View(grpHGrpEnrollmentVM);
         }
 
@@ -1516,18 +1511,6 @@ namespace Watson.Controllers
             employeeAndInsVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
             employeeAndInsVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
 
-            //if (Employee_id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-
-            //Group_Health g = db.Group_Health.Find(Employee_id);
-            //if (g == null)
-            //{
-            //    return HttpNotFound();
-            //}
-
-
             return View(employeeAndInsVM);
         }
 
@@ -1669,7 +1652,6 @@ namespace Watson.Controllers
             lifeIns.DateOfMarriage = DateOfMarriage;
             lifeIns.HaveChildrenOrHaveDependents = OtherDependents;
             lifeIns.PlacementDateOfAdoptedChild = DateOfAdoption;
-            lifeIns.AddDropDep = AddDropDep;
             //lifeIns.AddDependent = AddDep;
             //lifeIns.DropDependent = DropDep;
             lifeIns.DropEmployee = DropEmployee;
@@ -1805,7 +1787,6 @@ namespace Watson.Controllers
             lifeIns.DateOfMarriage = DateOfMarriage;
             lifeIns.HaveChildrenOrHaveDependents = OtherDependents;
             lifeIns.PlacementDateOfAdoptedChild = DateOfAdoption;
-            lifeIns.AddDropDep = AddDropDep;
             //lifeIns.AddDependent = AddDep;
             //lifeIns.DropDependent = DropDep;
             lifeIns.DropEmployee = DropEmployee;
@@ -1857,6 +1838,12 @@ namespace Watson.Controllers
             lifeIns.AmountOfPreviousPolicy = PreviousPolicyAmount;
             lifeIns.EmployeeSignature = EmployeeSignature;
             lifeIns.EmployeeSignatureDate = EmployeeSignatureDate;
+
+            //Family_Info depAddDrop = db.Family_Info
+            //    .Where(i => i.Employee_id == Employee_id)
+            //    .SingleOrDefault();
+
+            //depAddDrop.AddDropDepLifeIns = AddDropDep;
 
             //InsurancePlan insPlan = db.InsurancePlans
             //    .Where(i => i.Employee_id == Employee_id)

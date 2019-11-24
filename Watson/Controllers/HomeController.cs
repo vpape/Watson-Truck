@@ -16,13 +16,6 @@ namespace Watson.Controllers
 {
     public class HomeController : System.Web.Mvc.Controller
     {
-        //private IEmployeeRepository _employeeRepository;
-
-        //public HomeController(IEmployeeRepository employeeRepository)
-        //{
-        //    _employeeRepository = employeeRepository;
-        //}
-
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";

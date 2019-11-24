@@ -243,11 +243,11 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CareerCenterController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EncryptionController.cs" />
     <Compile Include="Controllers\FileUploadingController.cs" />
     <Compile Include="Controllers\Group_HealthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Life_InsuranceController.cs" />
-    <Compile Include="Controllers\testController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -278,6 +278,7 @@
     <Compile Include="Models\Employee.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Encryption.cs" />
     <Compile Include="Models\Family_Info.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
@@ -500,9 +501,11 @@
     <Content Include="Views\Admin\DeleteBeneficiary.cshtml" />
     <Content Include="Views\Admin\AddBeneficiary.cshtml" />
     <Content Include="Views\Admin\EditBeneficiary.cshtml" />
+    <Content Include="Views\Group_Health\CreateGrpHPDF.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Encryption\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

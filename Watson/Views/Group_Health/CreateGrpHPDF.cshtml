@@ -14,601 +14,9 @@
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
     <input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@ViewBag.FamilyMember_id" />
-    <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value="@ViewBag.GroupHealthInsurance_id" />
-    <input type="hidden" id="InsurancePlan_id" class="form-control" name="InsurancePlan_id" value="@ViewBag.InsurancePlan_id" />
-    <p></p>
-    <p><embed id="2019InsCost" src="/App_Files/pdfFiles/2019-Insurance-Cost.pdf" type="application/pdf" style="width:100%; height:1122px;" frameborder="0" /></p>
-    <p><embed id="2019Dental&VisionBenefits" src="/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf" type="application/pdf" style="width:100%; height:1000px; transform:rotate()" frameborder="0" /></p>
-    <div class="form-horizontal" hidden>
-        <div class="collapsible" id="FirstStep">emp-Health Insurance Premiums</div>
-        <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">
-            <tr>
-                <td>
-                    <table class="table table-condensed table-hover" width="400" cellpadding="10" cellspacing="10" border="1">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Plan</th>
-                                <th>Employee Only</th>
-                                <th>Employee/Spouse</th>
-                                <th>Employee/Child(ren)</th>
-                                <th>Employee/Family</th>
-                                <th>Cost</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <label>(MEC Plan) Monthly Cost per Employee:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="MECmonthlyCostEmpOnly" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="MECmonthlyCostEmpSp" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="MECmonthlyCostEmpDep" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="MECmonthlyCostEmpFam" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="MECMnthyearlyPremiumCost" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>(MEC Plan) Bi-weekly Cost per Employee:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="MECbiweeklyCostEmpOnly" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="MECbiweeklyCostEmpSp" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="MECbiweeklyCostEmpDep" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="MECbiweeklyCostEmpFam" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="MECBiWkyearlyPremiumCost" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>(Standard Plan) Monthly Cost per Employee:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="StndmonthlyCostEmpOnly" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="StndmonthlyCostEmpSp" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="StndmonthlyCostEmpDep" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="StndmonthlyCostEmpFam" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="StndMnthyearlyPremiumCost" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>(Standard Plan) Bi-weekly Cost per Employee:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="StndbiweeklyCostEmpOnly" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="StndbiweeklyCostEmpSp" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="StndbiweeklyCostEmpDep" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="StndbiweeklyCostEmpFam" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="StndBiWkyearlyPremiumCost" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>(Buy Up Plan) Monthly Cost per Employee:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="BuyUpmonthlyCostEmpOnly" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="BuyUpmonthlyCostEmpSp" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="BuyUpmonthlyCostEmpDep" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="BuyUpmonthlyCostEmpFam" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="BuyUpMnthyearlyPremiumCost" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>(Buy Up Plan) Bi-weekly Cost per Employee:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeOnly" size="10" id="BuyUpbiweeklyCostEmpOnly" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndSpouse" size="10" id="BuyUpbiweeklyCostEmpSp" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndDependent" size="10" id="BuyUpbiweeklyCostEmpDep" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="EmployeeAndFamily" size="10" id="BuyUpbiweeklyCostEmpAndFam" value="" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-10">
-                                        <input type="text" name="YearlyPremiumCost" size="10" id="BuyUpBiWkyearlyPremiumCost" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="col-md-12 table-bordered" readonly>
-                        These prices are in effect for 01-01-2019 through 12-31-2019<br />
-                        <p></p>
-                        Estimated costs* for COBRA participants for the 2019 year:<br />
-                        <p></p>
-                        Employee rate MEC plan $75.00 per month<br />
-                        Employee/Family rate MEC plan $230.00 per month<br />
-                        --------------------------------------------------<br />
-                        Employee rate Premium plan $638.52 per month<br />
-                        Employee/Family rate Premium plan $1,518 per month<br />
-                        <p></p>
-                        *Note: a 2% Adminstration fee will be added to the COBRA rates listed<br />
-                    </div>
-                    @*<p>
-                            <button type="submit" class="btn" id="InsPremiumUpdateStepThree" @*onclick="InsPremiumUpdate()" value="Submit">Save</button>
-                        </p>*@
-                    <div class="form-group">
-                        <div class="col-md-offset-11">
-                            <button id="InsPremiumUpdateStepOne" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            @*<p>
-                    @Html.ActionLink("Edit Insurance Premium", "", new { Employee_id = @ViewBag.Employee_id }, null)
-                </p>*@
-        </table>
-    </div>
-    @* db.InsurancePlanDetail- col- Item, Detail - InsurancePlanDetail_id as primary and InsurancePlan_id as foreign *@
-    <div class="form-horizontal" hidden>
-        <hr />
-        <div class="collapsible" id="SecondStep">emp-Health Insurance Supplement</div>
-        <table class="container-fluid table-bordered" id="InsSupplementTable" cellpadding="20" cellspacing="20">
-            <tr>
-                <td>
-                    <table class="table table-condensed" width="400" cellpadding="10" cellspacing="10" border="1">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th><u>Dental Cost Analysis</u></th>
-                                <th><u>Guardian Dental Plan</u></th>
-                                <th></th>
-                                <th><u>Vision Cost Analysis</u></th>
-                                <th><u>Guardian Vision Plan</u></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <label>Employee Only:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="DentalCostEmpOnly" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Employee Only:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="VisionCostEmpOnly" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Employee + Spouse:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="DentalCostEmpSp" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Employee + Spouse:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="VisionCostEmpSp" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Employee + Child(ren):</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="DentalCostEmpDep" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Employee + Child(ren):</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="VisionCostEmpDep" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Employee + Family:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="DentalCostEmpFam" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Employee + Family:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="VisionCostEmpFam" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Summary of Dental Benefits:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="SummaryOfDentalBenefits" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Summary of Dental Benefits:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="SummaryOfVisionBenefits" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Calendar Year Deductible:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="CalendarYearDeductible" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Co-pay:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="CoPay" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Waived for Preventive:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="WaivedForPreventive" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Exams:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="Exams" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Annual Maximum:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="AnnualMaximum" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Materials:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="Materials" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Preventive:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="Preventive" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Lenses Single Vision:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="LensesSingleVision" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Basic:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="Basic" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Bifocal:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="BiFocal" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Major:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="Major" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Trifocal:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="TriFocal" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>UCR%:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="UCRpercent" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Lenticular:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="Lenticular" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Endodontics/Peridontics:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="EndoPeridontics" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Contact (medically necessary):</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="ContactsMedicallyNecessary" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Orthodontics:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="Orthodontics" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Contact (elective):</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="ContactsElective" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Orthodontia Lifetime Maximum:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="OrthodontiaLifetimeMax" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Frames:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="Frames" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Waiting Period:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="WaitingPeriod" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Network:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="NetWork" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Dental Network:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="DentalNetwork" value="" />
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <label>Rate Guarantee:</label>
-                                </td>
-                                <td>
-                                    <div class="col-md-6">
-                                        <input type="text" name="Item" size="10" id="RateGuarantee" value="" />
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p>
-                        **Rates guarantee for 1 year<br />
-                        -Subject to maxiumum rollover (Threshold $500; Rollover amount $250)<br />
-                        -Basic Life/AD&D: Only those on medical are eligible for basic life & AD&D
-                    </p>
-                    <div class="form-group">
-                        <div class="col-md-offset-11">
-                            <button id="InsSupplementUpdateStepTwo" class="btn" @*onclick="return ContactUpdate()"*@>Save</button>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            @*<p>
-                    @Html.ActionLink("Edit Insurance Supplement", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
-                </p>*@
-        </table>
-    </div>
     <p></p>
     <div class="form-horizontal">
-        <div class="collapsible" id="ThirdStep">Edit Group Health Insurance</div>
+        <div class="collapsible" id="ThirdStep">Create PDF-Group Health Ins</div>
         <div class="modal-content">
             <p></p>
             <div style="border:solid" class="aside">
@@ -709,7 +117,6 @@
             <div>
                 <div>
                     <label>Are you covered by any other insurance, including Medicare?</label>
-                    @*<label>@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Male", true) Yes</label> <label>@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Female", false) No</label>*@
                     <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="True" @Html.Raw((Model.grpHealth.OtherInsuranceCoverage) == "True" ? "checked" : "") disabled />Yes</label>
                     <label class="radio-inline"><input type="radio" id="empCoveredByOtherIns" class="radio-inline" onclick="showHidEmpOtherInsCoverage()" name="OtherInsuranceCoverage" value="False" @Html.Raw((Model.grpHealth.OtherInsuranceCoverage) == "False" ? "checked" : "") disabled />No</label>
                 </div>
@@ -723,12 +130,6 @@
                     <div class="form-group col-md-3">
                         <input type="tel" id="empInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="@Html.Raw(Model.grpHealth.PhoneNumber)" disabled />
                     </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-3">
-                    @Html.ActionLink("Edit Employee", "EditEmployee", "Employee", new { Employee_id = @ViewBag.Employee_id }, null)
-                    @*<button type="submit" id="EditEmployee" class="btn">Edit</button>*@
                 </div>
             </div>
             <p></p>
@@ -746,7 +147,7 @@
                     <tr>
                         <td>Selection:</td>
                         <td>
-                            <select class="form-control" id="NoMedicalGrpHealthOption" name="NoMedicalPlan">
+                            <select class="form-control" id="NoMedicalGrpHealthOption" name="NoMedicalPlan" disabled>
                                 <option value="none" selected disabled hidden> Select an Option</option>
                                 <option value="none" @((Model.grpHealth.NoMedicalPlan) == "none" ? "selected" : "")></option>
                                 <option value="No Medical Plan" @((Model.grpHealth.NoMedicalPlan) == "No Medical Plan" ? "selected" : "")>No Medical Plan</option>
@@ -754,7 +155,7 @@
                             <div id="NoMedicalOptionResult" hidden></div>
                         </td>
                         <td>
-                            <select class="form-control" id="MECPlanGrpHealthOption" name="MECPlan">
+                            <select class="form-control" id="MECPlanGrpHealthOption" name="MECPlan" disabled>
                                 <option value="none" selected disabled hidden> Select an Option</option>
                                 <option value="none"></option>
                                 <option value="EO-MECPlan" @((Model.grpHealth.MECPlan) == "EO-MECPlan" ? "selected" : "")>Employee Only</option>
@@ -765,7 +166,7 @@
                             <div id="MECPlanOptionResult" hidden></div>
                         </td>
                         <td>
-                            <select class="form-control" id="StndPlanGrpHealthOption" name="StandardPlan">
+                            <select class="form-control" id="StndPlanGrpHealthOption" name="StandardPlan" disabled>
                                 <option value="none" selected disabled hidden> Select an Option</option>
                                 <option value="none"></option>
                                 <option value="EO-StandardPlan" @((Model.grpHealth.StandardPlan) == "EO-StandardPlan" ? "selected" : "")>Employee Only</option>
@@ -776,7 +177,7 @@
                             <div id="StndPlanOptionResult" hidden></div>
                         </td>
                         <td>
-                            <select class="form-control" id="BuyUpPlanGrpHealthOption" name="BuyUpPlan">
+                            <select class="form-control" id="BuyUpPlanGrpHealthOption" name="BuyUpPlan" disabled>
                                 <option value="none" selected disabled hidden> Select an Option</option>
                                 <option value="none"></option>
                                 <option value="EO-BuyUpPlan" @((Model.grpHealth.BuyUpPlan) == "EO-BuyUpPlan" ? "selected" : "")>Employee Only</option>
@@ -885,16 +286,12 @@
                         </tr>
                         <tr>
                             <td style="padding-left: 20px;">
-                                @*@Html.RadioButtonFor(model => model.Spouse, "true", true) Medical*@
                                 <input type="checkbox" class="checkbox-inline" id="Medical" name="Medical" value="True" @Html.Raw((Model.spouse.Medical == "True") ? "checked" : "") disabled />Medical
-                                @*@Html.RadioButtonFor(model => model.Spouse, "true", true) Dental*@
                                 <input type="checkbox" class="checkbox-inline" id="Dental" name="Dental" value="True" @Html.Raw((Model.spouse.Dental == "True") ? "checked" : "") disabled />Dental
                                 <p></p>
                             </td>
                             <td style="padding-left: 20px;">
-                                @*@Html.RadioButtonFor(model => model.Spouse, "true", true) Vision*@
                                 <input type="checkbox" class="checkbox-inline" id="Vision" name="Vision" value="True" @Html.Raw((Model.spouse.Vision == "True") ? "checked" : "") disabled />Vision
-                                @*@Html.RadioButtonFor(model => model.Spouse, "true", true) Indemnity*@
                                 <input type="checkbox" class="checkbox-inline" id="Indemnity" name="Indemnity" value="True" @Html.Raw((Model.spouse.Indemnity == "True") ? "checked" : "") disabled />Indemnity
                             </td>
                         </tr>
@@ -964,7 +361,6 @@
                             <tr>
                                 <td>
                                     <span>
-                                        @* redirects to to view family insurance *@
                                         <i class="fa fa-arrow-circle-o-right" style="font-size:24px" onclick="DependentInfo()"></i>
                                     </span>
                                 </td>
@@ -999,13 +395,11 @@
                                         <tr>
                                             <td>
                                                 <span>
-                                                    @* redirects to to view family insurance *@
                                                     <i class="fa fa-arrow-circle-o-right" style="font-size:24px" onclick="DependentInsInfo()"></i>
                                                 </span>
                                             </td>
                                             <td></td>
                                             <td>
-                                                @*<input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@depOtherIns.FamilyMember_id" />*@
                                                 <label style="display:table-cell">Insurance Carrier:</label>
                                                 <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.Raw(depOtherIns.InsuranceCarrier)" disabled />
                                             </td>
@@ -1028,11 +422,6 @@
                     </div>
                 }
             </form>
-            <div class="form-group">
-                <div class="col-md-offset-11">
-                    <button type="submit" id="AddDep" class="btn">Add</button>
-                </div>
-            </div>
             <table class="table table-bordered">
                 <tr>
                     <td>
@@ -1053,12 +442,12 @@
                             <label style="padding-left: 10px;">
                                 Employee Signature:
                             </label>
-                            <input type="text" id="GrpHEnrollmentEmpSignature" name="GrpHEnrollmentEmpSignature" value="@Model.grpHealth.GrpHEnrollmentEmpSignature" />
+                            <input type="text" id="GrpHEnrollmentEmpSignature" name="GrpHEnrollmentEmpSignature" value="@Model.grpHealth.GrpHEnrollmentEmpSignature" disabled/>
 
                             <label style="padding-left: 10px;">
                                 Date:
                             </label>
-                            <input type="date" id="GrpHEnrollmentEmpSignatureDate" name="GrpHEnrollmentEmpSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.GrpHEnrollmentEmpSignatureDate).ToString("yyyy-MM-dd")" />
+                            <input type="date" id="GrpHEnrollmentEmpSignatureDate" name="GrpHEnrollmentEmpSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.GrpHEnrollmentEmpSignatureDate).ToString("yyyy-MM-dd")" disabled/>
                         </div>
                     </td>
                 </tr>
@@ -1070,11 +459,11 @@
                             <h4><b>Refusal of Group Health Coverage</b></h4>
                             <h6>This is to certify I have been given an opportunity to apply for group health coverage available to me through my Employer, and I have decided to not apply coverage for:</h6>
                             <div id="divGrpHRefusalSelection">
-                                <input type="checkbox" class="checkbox-inline" id="Myself" name="Myself" value="Myself" @((Model.grpHealth.Myself == "True") ? "checked" : "") />
+                                <input type="checkbox" class="checkbox-inline" id="Myself" name="Myself" value="Myself" @((Model.grpHealth.Myself == "True") ? "checked" : "") disabled/>
                                 <label for="Myself">Myself</label>
-                                <input type="checkbox" class="checkbox-inline" id="Spouse" name="Spouse" value="Spouse" @((Model.grpHealth.Spouse == "True") ? "checked" : "") />
+                                <input type="checkbox" class="checkbox-inline" id="Spouse" name="Spouse" value="Spouse" @((Model.grpHealth.Spouse == "True") ? "checked" : "") disabled/>
                                 <label for="Spouse">Spouse</label>
-                                <input type="checkbox" class="checkbox-inline" id="Dependent" name="Dependent" value="Dependent" @((Model.grpHealth.Dependent == "True") ? "checked" : "") />
+                                <input type="checkbox" class="checkbox-inline" id="Dependent" name="Dependent" value="Dependent" @((Model.grpHealth.Dependent == "True") ? "checked" : "") disabled/>
                                 <label for="Dependent">Child(ren)</label>
                             </div>
                         </div>
@@ -1087,24 +476,23 @@
                         <div id="divReasonForRefusal">
                             <h4><b>Reason for Refusal</b></h4>
                             <div id="divReasonForRefusalSelection">
-                                <input type="checkbox" id="OtherCoverageSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" @((Model.grpHealth.OtherCoverage == "True") ? "checked" : "") />
+                                <input type="checkbox" id="OtherCoverageSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherCoverage" @((Model.grpHealth.OtherCoverage == "True") ? "checked" : "") disabled/>
                                 <label for="OtherCoverageSelection">OtherCoverage</label>
-                                <input type="checkbox" id="OtherReasonSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" @((Model.grpHealth.OtherReason == "True") ? "checked" : "") />
+                                <input type="checkbox" id="OtherReasonSelection" class="refusalcheckbox-inline" name="OtherCoverage" onclick="return showHideReasonForRefusal()" value="OtherReason" @((Model.grpHealth.OtherReason == "True") ? "checked" : "") disabled/>
                                 <label for="OtherReasonSelection">OtherReason</label>
                                 <p></p>
-                                <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="@Model.grpHealth.ReasonForGrpCoverageRefusal" />
+                                <input type="text" id="OtherReasonComment" class="form-control" placeholder="Please input other reason" name="ReasonForGrpCoverageRefusal" value="@Model.grpHealth.ReasonForGrpCoverageRefusal" disabled/>
                             </div>
-                            @*@Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "Yes", true) Yes @Html.RadioButtonFor(model => model.grpHealth.OtherInsuranceCoverage, "No", false) No*@
                             <hr />
                             <div>
                                 <label style="padding-left: 10px;">
                                     Employee Signature:
                                 </label>
-                                <input type="text" id="GrpHRefusalEmpSignature" name="GrpHRefusalEmpSignature" value="@Model.grpHealth.GrpHRefusalEmpSignature" />
+                                <input type="text" id="GrpHRefusalEmpSignature" name="GrpHRefusalEmpSignature" value="@Model.grpHealth.GrpHRefusalEmpSignature" disabled/>
                                 <label style="padding-left: 10px;">
                                     Date:
                                 </label>
-                                <input type="date" id="GrpHRefusalEmpSignatureDate" name="GrpHRefusalEmpSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.GrpHRefusalEmpSignatureDate).ToString("yyyy-MM-dd")" />
+                                <input type="date" id="GrpHRefusalEmpSignatureDate" name="GrpHRefusalEmpSignatureDate" value="@Convert.ToDateTime(Model.grpHealth.GrpHRefusalEmpSignatureDate).ToString("yyyy-MM-dd")" disabled/>
                             </div>
                         </div>
                     </td>
@@ -1128,16 +516,10 @@
             <hr />
             <div class="form-group">
                 <div class="col-md-offset-11">
-                    <button type="submit" id="EditGrpHealthInsStepTwo" class="btn">Save</button>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-10">
-                    @Html.ActionLink("Back to Group Health", "GrpHealthEnrollment", "Group_Health", new { Employee_id = ViewBag.Employee_id }, null)
                     <button type="submit" id="CreateGrpHPDF" class="btn">Create</button>
                 </div>
             </div>
-        </div>   
+        </div>
     </div>
 </body>
 </html>
@@ -1273,104 +655,8 @@
         });
     }
 
-    function GroupHealthInsurance() {
-
-       window.location.href = "/Group_Health/GrpHealthEnrollment?Employee_id=@Model.employee.Employee_id";
-    }
-
-    document.querySelector("#AddDep").addEventListener("click", function () {
-
-        window.location.href = "/Employee/AddDependent?Employee_id=@ViewBag.Employee_id";
-
-    })
-
-    document.querySelector("#CreateGrpHPDF").addEventListener("click", function () {
-
-        window.location.href = "/Group_Health/CreateGrpHPDF?Employee_id=@ViewBag.Employee_id";
-
-    })
-
-
-    function showHidEmpOtherInsCoverage() {
-
-        document.addEventListener("click", function () {
-            var selection = document.getElementById("empCoveredByOtherIns");
-
-            if (selection.checked == true) {
-                document.getElementById("empInsInfo").style.display = "block";
-            }
-            else {
-                document.getElementById("empInsInfo").style.display = "none";
-            }
-        })
-    }
-
-    function showHideDepOtherInsCoverage() {
-        document.addEventListener("click", function () {
-            var selection = document.getElementById("depOtherInsCoverage");
-
-            if (selection.checked == true) {
-                depOtherInsCoverage
-                document.getElementById("depInsInfo").style.display = "block";
-                //document.getElementById("depInsInfo").style.visibility = "visible";
-            }
-            else {
-                document.getElementById("depInsInfo").style.display = "none";
-                //document.getElementById("depInsInfo").style.visibility = "hidden";
-            }
-        });
-    }
-
-    $(document).ready(function () {
-        $('.refusalcheckbox-inline').click(function () {
-            $('.refusalcheckbox-inline').not(this).prop('checked', false);
-        });
-    });
-
-    function showHideReasonForRefusal() {
-
-        document.addEventListener("click", function () {
-
-            var refusal = document.getElementById("OtherReasonSelection");
-
-            if (refusal.checked == true) {
-                //document.getElementById("OtherReasonComment").style.display = "block";
-                document.getElementById("OtherReasonComment").style.visibility = "visible";
-            }
-            else {
-                //document.getElementById("OtherReasonComment").style.display = "none";
-                document.getElementById("OtherReasonComment").style.visibility = "hidden";
-            }
-        });
-    }
-
-    document.querySelector("#EditGrpHealthInsStepTwo").addEventListener("click", function () {
-        var save = document.getElementById("EditGrpHealthInsStepTwo");
-
-        var message;
-        var alert = confirm("Group Health information has been saved. Click the OK button to proceed. Thank you!")
-
-        if (save) {
-            if (alert == true) {
-
-                message = "Please click OK to proceed to Group Health Enrollment page. Otherwise click Cancel to return back to current page. Thank you!!";
-                var alert = confirm(message)
-                if (alert == true) {
-
-                    window.location.href = "/Group_Health/GrpHealthEnrollment/?Employee_id=" + @ViewBag.Employee_id;
-
-                }
-                else {
-                    message = "You request has been canceled. Returning back to current page. Thank you!!"
-                    window.location.href = "/Group_Health/EditGroupHealthIns/?Employee_id=" + @ViewBag.Employee_id;
-                }
-
-            }
-        }
-    })
-
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#EditGrpHealthInsStepTwo").addEventListener("click", function () {
+        document.querySelector("#CreateGrpHPDF").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
 
             NoMedical = document.getElementById("NoMedicalGrpHealthOption").value;
@@ -1414,15 +700,15 @@
                 "GrpHRefusalEmpSignatureDate": GrpHRefusalEmpSignatureDate,
             }
 
-            //data failed to pass to controller when using 
-            //var ret = postData('GrpHealthEnrollmentNew', data)
+            //data failed to pass to controller when using
+            //var ret = postData('CreateGrpHealthPdf', data)
             //    .then(data => {
             //        console.log(data);
             //        FirstStep(data);
             //    })
             //    .catch(error => console.error(error))
 
-            fetch('GrpHealthInsEditUpdate', {
+            fetch('CreateGrpHealthPdf', {
                 body: JSON.stringify(data), //must match 'Content-Type' header
                 cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', //include, same-origin, *omit
@@ -1473,4 +759,5 @@
         //}) //parses response to JSON
     }
 </script>
+
 

@@ -1007,20 +1007,22 @@
                                             <td></td>
                                             <td>
                                                 @*<input type="hidden" id="FamilyMember_id" class="form-control" name="FamilyMember_id" value="@depOtherIns.FamilyMember_id" />*@
+                                                <label style="display:table-cell">Insurance Carrier:</label>
                                                 <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.Raw(depOtherIns.InsuranceCarrier)" disabled />
                                             </td>
                                             <td></td>
                                             <td>
+                                                <label style="display:table-cell">Policy Number:</label>
                                                 <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="@Html.Raw(depOtherIns.PolicyNumber)" disabled />
                                             </td>
                                             <td></td>
                                             <td>
+                                                <label style="display:table-cell">Phone Number:</label>
                                                 <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" value="@Html.Raw(depOtherIns.PhoneNumber)" disabled />
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
-                                <hr />
                             }
                         }
                     </div>

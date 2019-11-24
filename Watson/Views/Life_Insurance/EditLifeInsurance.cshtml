@@ -47,13 +47,13 @@
                             <tr>
                                 <td>
                                     <div class="checkboxes">
-                                        <input type="checkbox" id="InitialEnrollment" name="InitialEnrollment" value="" @((Model.lifeIns.InitialEnrollment) == "True" ? "checked" : "") disabled/><label for="InitialEnrollment">Initial Enrollment</label>
-                                        <input type="checkbox" id="ReEnrollment" name="ReEnrollment" value="ReEnrollment" @((Model.lifeIns.ReEnrollment) == "True" ? "checked" : "") disabled/><label for="ReEnrollment">Re-Enrollment</label>
-                                        <input type="checkbox" id="AddEmployeeAndDependents" name="AddEmployeeAndDependents" value="AddEmployeeAndDependents" @((Model.lifeIns.AddEmployeeAndDependents) == "True" ? "checked" : "") disabled/><label for="AddEmployeeAndDependents">Add Employee/Dependents</label>
-                                        <input type="checkbox" id="DropRefuseCoverage" name="DropRefuseCoverage" value="DropRefuseCoverage" @((Model.lifeIns.DropRefuseCoverage) == "True" ? "checked" : "") disabled/><label for="DropRefuseCoverage">Drop/Refuse Coverage</label>
-                                        <input type="checkbox" id="InformationChange" name="InformationChange" value="InformationChange" @((Model.lifeIns.InformationChange) == "True" ? "checked" : "") disabled/><label for="InformationChange">Information Change</label>
-                                        <input type="checkbox" id="IncreaseAmount" name="IncreaseAmount" value="IncreaseAmount" @((Model.lifeIns.IncreaseAmount) == "True" ? "checked" : "") disabled/><label for="IncreaseAmount">Increase Amount</label>
-                                        <input type="checkbox" id="FamilyStatusChange" name="FamilyStatusChange" value="FamilyStatusChange" @((Model.lifeIns.FamilyStatusChange) == "True" ? "checked" : "") disabled/><label for="FamilyStatusChange">Family Status Change</label>
+                                        <input type="checkbox" id="InitialEnrollment" name="InitialEnrollment" value="InitialEnrollment" disabled/><label for="InitialEnrollment">Initial Enrollment</label>
+                                        <input type="checkbox" id="ReEnrollment" name="ReEnrollment" value="ReEnrollment" disabled/><label for="ReEnrollment">Re-Enrollment</label>
+                                        <input type="checkbox" id="AddEmployeeAndDependents" name="AddEmployeeAndDependents" value="AddEmployeeAndDependents"  disabled/><label for="AddEmployeeAndDependents">Add Employee/Dependents</label>
+                                        <input type="checkbox" id="DropRefuseCoverage" name="DropRefuseCoverage" value="DropRefuseCoverage"  disabled/><label for="DropRefuseCoverage">Drop/Refuse Coverage</label>
+                                        <input type="checkbox" id="InformationChange" name="InformationChange" value="InformationChange"  disabled/><label for="InformationChange">Information Change</label>
+                                        <input type="checkbox" id="IncreaseAmount" name="IncreaseAmount" value="IncreaseAmount"  disabled/><label for="IncreaseAmount">Increase Amount</label>
+                                        <input type="checkbox" id="FamilyStatusChange" name="FamilyStatusChange" value="FamilyStatusChange" @*@((Model.lifeIns.FamilyStatusChange) == "True" ? "checked" : "")*@ disabled/><label for="FamilyStatusChange">Family Status Change</label>
                                     </div>
                                 </td>
                             </tr>
@@ -281,16 +281,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center center-block">
+                        <td class="text-center center-block">                          
                             <div>
                                 <label style="display:table-cell">Add/Drop Dependent</label>
-                                <select class="form-control" id="AddDropDep" name="AddDropDep" disabled>
+                                <select class="form-control" id="AddDropDepLifeIns" disabled>
                                     <option value="N/A" selected disabled hidden> Select an Option</option>
-                                    <option value="N/A"></option>
-                                    <option value="AddDep" @((Model.lifeIns.AddDropDep) == "AddDep" ? "selected" : "")>Add Dependent</option>
-                                    <option value="DropDep"@((Model.lifeIns.AddDropDep) == "DropDep" ? "selected" : "")>Drop Dependent</option>
+                                    <option value="" @((dep.AddDropDepLifeIns) == "AddDep" ? "selected" : "") disabled>Add Dependent</option>
+                                    <option value="" @((dep.AddDropDepLifeIns) == "DropDep" ? "selected" : "") disabled>Drop Dependent</option>
                                 </select>
-                            </div>
+                            </div>                          
                             @*<div>
                                 <input type="radio" class="addDropradio-inline" id="AddDep" name="AddDependent" value="" @((Model.lifeIns.AddDependent) == "True" ? "checked" : "") /><label for="AddDep">Add Dependent</label>
                                 <input type="radio" class="addDropradio-inline" id="DropDep" name="DropDependent" value="" @((Model.lifeIns.DropDependent) == "True" ? "checked" : "") /><label for="DropDep">Drop Dependent</label>
@@ -573,11 +572,11 @@
                                 <label style="padding-left: 10px;">
                                     Employee Signature:
                                 </label>
-                                <input type="text" id="EmployeeSignature" name="EmployeeSignature" value="@Model.lifeIns.EmployeeSignature" disabled />
+                                <input type="text" id="EmployeeSignature" name="EmployeeSignature" value="@Model.lifeIns.EmployeeSignature"  />
                                 <label style="padding-left: 10px;">
                                     Date:
                                 </label>
-                                <input type="date" id="EmployeeSignatureDate" name="EmployeeSignatureDate" value="@Convert.ToDateTime(Model.lifeIns.EmployeeSignatureDate).ToString("yyyy-MM-dd")" disabled />
+                                <input type="date" id="EmployeeSignatureDate" name="EmployeeSignatureDate" value="@Convert.ToDateTime(Model.lifeIns.EmployeeSignatureDate).ToString("yyyy-MM-dd")"  />
                             </div>
                         </td>
                     </tr>
@@ -867,7 +866,7 @@
             DateOfMarriage = document.getElementById("DateOfMarriage").value;
             OtherDependents = document.getElementById("OtherDependents").checked;
             DateOfAdoption = document.getElementById("DateOfAdoption").value;
-            AddDropDep = document.getElementById("AddDropDep").value;
+            //AddDropDepLifeIns = document.getElementById("AddDropDepLifeIns").value;
             //AddDep = document.getElementById("AddDep").checked;
             //DropDep = document.getElementById("DropDep").checked;
             DropEmployee = document.getElementById("DropEmployee").checked;
@@ -943,7 +942,7 @@
                 "DateOfMarriage": DateOfMarriage,
                 "OtherDependents": OtherDependents,
                 "DateOfAdoption": DateOfAdoption,
-                "AddDropDep": AddDropDep,
+                //"AddDropDepLifeIns": AddDropDepLifeIns,
                 //"AddDep": AddDep,
                 //"DropDep": DropDep,
                 "DropEmployee": DropEmployee,
