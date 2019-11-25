@@ -9,7 +9,6 @@
 
 </head>
 <body>
-    <div id="header1"><img class="modal-header" src="@Url.Content("~/App_Files/images/WatsonTruckImage.jpg")" width="155" height="90" alt="Image Logo" /></div>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -42,11 +41,6 @@
     <div class="container body-content">
         @RenderBody()
         <footer>
-            <div id="footerContainer" class="container">
-                <div id="footer1" class="modal-footer"><img src="~/App_Files/images/WatsonTruckImage.jpg" width="155" height="100" style="padding-top: 40px;" /></div>
-                <div id="footer2" class="modal-footer"></div>
-                @*<p>&copy; @DateTime.Now.Year - V.A.P Inc. Agile Development</p>*@
-            </div>
         </footer>
     </div>
     @Scripts.Render("~/bundles/jquery")
@@ -55,19 +49,4 @@
 </body>
 </html>
 
-<style>
-    #footerContainer {
-        float: right;
-    }
 
-    .modal-footer {
-        /*width: 20%;
-        padding: 20px;
-        padding-top: 20px;
-        padding-right: 20px;
-        padding-left: 20px;
-        padding-bottom: 20px;*/
-    }
-
-
-</style>

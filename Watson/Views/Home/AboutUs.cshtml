@@ -9,7 +9,97 @@
 <body>
     <div>
         <h3>@ViewBag.Message</h3>
-     
+
     </div>
 </body>
 </html>
+
+<div class="container body-content">
+    <footer>
+        <div id="footerContainer" class="container">
+            <div class="col-md-12">
+                <div id="FooterTop">
+                    <div id="footerWatsonTruck" class="containerWatsonTruck">
+                        <img src="@Url.Content("~/App_Files/images/WatsonTruckImage.jpg")" width="155" height="54"><br>
+                        <img src="@Url.Content("~/App_Files/images/WatsonHopperImage.jpg")" width="155" height="89" style="padding-top:20px;">
+                    </div>
+                    <div id="footerWatsonTruck" class="containerWatsonTruck">
+                        <label>Watson Truck & Supply</label><br />
+                        <div>1501 N Grimes</div>
+                        <div>Hobbs, NM 88240</div><br />
+                        <label style="display:table-cell">Contact:</label>
+                        <div>Jerry Elliott</div>
+                        <div>575-397-2411</div>
+                        <a href="mailto:jerryelliot@watsontruck.com">jerryelliot@watsontruck.com</a>
+                    </div>
+                    <div id="footerWatsonHopper" class="containerWatsonHopper">
+                        <label>Watson Hopper, Inc.</label><br />
+                        <div>1700 West Marland</div>
+                        <div>Hobbs, NM 88240</div><br />
+                        <label style="display:table-cell">Contact:</label>
+                        <div>Mike Slaugh</div>
+                        <div>575-397-2411</div>
+                        <a href="mailto:mslaugh@watsonhopper.com">mslaugh@watsonhopper.com</a>
+                    </div>
+                    <div id="footerUnitShop" class="containerUnitShop">
+                        <label>Unit Shop, LLC</label><br />
+                        <div>1501 N Grimes</div>
+                        <div>Hobbs, NM 88240</div><br />
+                        <label style="display:table-cell">Contact:</label>
+                        <div>Dale May</div>
+                        <div>575-397-2411</div>
+                        <a href="mailto:dmay@watsontruck.com">dmay@watsontruck.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+<style>
+    #FooterTop {
+        clear: both;
+        min-height: 37px;
+        height: 37px;
+        border-top: 2px solid #147;
+    }
+
+    #footerContainer {
+        display: flex;
+        font-size: 12px;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        color: #147;
+    }
+
+    .col-md-12 {
+        width: 100%;
+        width: 100%;
+        padding: 10px;
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-bottom: 30px;
+    }
+
+    #footerWatsonTruck, #footerWatsonHopper, #UnitShop {
+        border-right: 1px solid #ccc;
+        border-right-style: solid;
+        border-right-color: #147;
+    }
+
+    .containerWatsonTruck, .containerWatsonHopper,
+    .containerUnitShop {
+        width: 25%;
+        padding: 20px;
+        padding-top: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+        float: left;
+    }
+</style>
