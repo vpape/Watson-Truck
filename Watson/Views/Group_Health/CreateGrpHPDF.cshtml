@@ -514,9 +514,9 @@
                 </tr>
             </table>
             <hr />
-            <div class="form-group">
-                <div class="col-md-offset-11">
-                    <button type="submit" id="CreateGrpHPDF" class="btn">Print</button>
+            <div>
+                <div>
+                    <button type="submit" id="CreateGrpHealthPdf" class="btn">Generate</button>
                 </div>
             </div>
         </div>
@@ -656,7 +656,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#CreateGrpHPDF").addEventListener("click", function () {
+        document.querySelector("#CreateGrpHealthPdf").addEventListener("click", function () {
             Employee_id = document.getElementById("Employee_id").value;
 
             NoMedical = document.getElementById("NoMedicalGrpHealthOption").value;

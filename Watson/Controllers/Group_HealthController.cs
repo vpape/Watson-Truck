@@ -338,7 +338,8 @@ namespace Watson.Controllers
             HtmlToPdf converter = new HtmlToPdf();
 
             // create a new pdf document converting an url
-            PdfDocument doc = converter.ConvertUrl(collection["TxtUrl"]);
+            //PdfDocument doc = converter.ConvertUrl(collection["TxtUrl"]);
+            PdfDocument doc = converter.ConvertUrl(collection["Group_Health/CreateGrpHPDF"]);
 
             // save pdf document
             byte[] pdf = doc.Save();
