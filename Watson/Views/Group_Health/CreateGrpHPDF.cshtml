@@ -516,7 +516,7 @@
             <hr />
             <div>
                 <div>
-                    <button type="submit" id="CreateGrpHealthPdf" class="btn">Generate</button>
+                    <button type="submit" id="CreateGrpHealthPdf" onclick="CreateGrpHealthPdf();" class="btn">Generate</button>
                 </div>
             </div>
         </div>
@@ -527,7 +527,7 @@
 
 <style>
     .collapsible {
-        background-color: #147;
+        background-color: #2e4593;
         color: white;
         cursor: pointer;
         padding: 18px;
@@ -539,14 +539,14 @@
     }
 
         .active, .collapsible:hover {
-            background-color: #147;
+            background-color: #2e4593;
         }
 
     .content {
         padding: 0 10px;
         display: none;
         overflow: hidden;
-        background-color: #147;
+        background-color: #2e4593;
     }
 
     .button {
@@ -554,7 +554,7 @@
     }
 
     .btn:hover {
-        background-color: #147;
+        background-color: #2e4593;
         color: white;
     }
 
@@ -653,6 +653,10 @@
             }
 
         });
+    }
+
+    function CreateGrpHealthPdf() {
+
     }
 
     //document.addEventListener("DOMContentLoaded", function () {

@@ -12,8 +12,6 @@
         <button onclick="return Career()" class="btn">Careers</button>
         <button onclick="return ListJobs()" class="btn">View Open Positions</button>
     </div>
-</body>
-</html>
 
 <script>
     function ListJobs() {
@@ -22,16 +20,16 @@
 </script>
 
 
-<div class="container body-content">
-    <footer>
-        <div id="footerContainer" class="container">
-            <div class="col-md-12">
-                <div id="FooterTop">
-                    <div id="footerWatsonTruck" class="containerWatsonTruck">
+<div class="">
+    <footer >
+        <div class="footer_container" id="footerTop">
+            <div class="inner_footer">
+                <div>
+                    <div class="logo_container">
                         <img src="@Url.Content("~/App_Files/images/WatsonTruckImage.jpg")" width="155" height="54"><br>
                         <img src="@Url.Content("~/App_Files/images/WatsonHopperImage.jpg")" width="155" height="120" style="padding-top:20px;">
                     </div>
-                    <div id="footerWatsonTruck" class="containerWatsonTruck">
+                    <div id="footerWatsonTruck" class="footer_third">
                         <label>Watson Truck & Supply</label><br />
                         <div>1501 N Grimes</div>
                         <div>Hobbs, NM 88240</div><br />
@@ -40,7 +38,7 @@
                         <div>575-397-2411</div>
                         <a href="mailto:jerryelliot@watsontruck.com">jerryelliot@watsontruck.com</a>
                     </div>
-                    <div id="footerWatsonHopper" class="containerWatsonHopper">
+                    <div id="footerWatsonHopper" class="footer_third">
                         <label>Watson Hopper, Inc.</label><br />
                         <div>1700 West Marland</div>
                         <div>Hobbs, NM 88240</div><br />
@@ -49,7 +47,7 @@
                         <div>575-397-2411</div>
                         <a href="mailto:mslaugh@watsonhopper.com">mslaugh@watsonhopper.com</a>
                     </div>
-                    <div id="footerUnitShop" class="containerUnitShop">
+                    <div id="footerUnitShop" class="footer_third">
                         <label>Unit Shop, LLC</label><br />
                         <div>1501 N Grimes</div>
                         <div>Hobbs, NM 88240</div><br />
@@ -63,52 +61,73 @@
         </div>
     </footer>
 </div>
+</body>
+</html>
 
 
 <style>
-    #FooterTop {
-        clear: both;
-        min-height: 37px;
-        height: 37px;
-        border-top: 2px solid #147;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+html, body {
+    height: 100%;
+}
+
+#footerTop {
+    border-top: 10px solid #2e4593;
+    padding-top: 35px;
+}
+
+.footer_container {
+    display: flex;
+    overflow: hidden;
+    padding: 30px 0;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    clear: both;
+}
 
 
-    #footerContainer {
-        display: flex;
-        font-size: 12px;
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: white;
-        color: #147;
-    }
 
-    .col-md-12 {
-        width: 100%;
-        width: 100%;
-        padding: 10px;
-        padding-top: 10px;
-        padding-right: 10px;
-        padding-left: 10px;
-        padding-bottom: 30px;
-    }
+.inner_footer {
+    display: block;
+    margin: 0 auto;
+    width: 1100px;
+    height: 100%;
+}
 
-    #footerWatsonTruck, #footerWatsonHopper, #footerUnitShop {
-        border-right: 1px solid #ccc;
-        border-right-style: solid;
-        border-right-color: #147;
-    }
+.inner_footer .logo_container {
+    width: 30%;
+    float: left;
+    height: 100%;
+    display: block;
+}
 
-    .containerWatsonTruck, .containerWatsonHopper, 
-    .containerUnitShop{
-        width: 25%;
-        padding: 20px;
-        padding-top: 20px;
-        padding-right: 20px;
-        padding-bottom: 20px;
-        padding-left: 20px;
-        float: left;
-    }
+.inner_footer .logo_container img {
+    width: 50%;
+    height: auto;
+}
+
+.inner_footer .footer_third {
+    width: 21%;
+    margin-right: 10px;
+    float: left;
+    height: 100%;
+}
+
+
+.inner_footer .footer_third:last-child {
+    margin-right: 0;
+}
+
+#footerWatsonTruck, #footerWatsonHopper, #UnitShop {
+    border-right: 1px solid;
+    border-right-style: solid;
+    border-right-color: #2e4593;
+}
 </style>

@@ -14,6 +14,7 @@
     <title>Family Overview</title>
 </head>
 <body>
+    <hr />
     <h4>Family Overview</h4>
     <input type="hidden" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" />
     <table class="table table-condensed">
@@ -30,54 +31,54 @@
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    <span>
-                        <i class="fa fa-file-text-o" style="font-size:24px" onclick="FamilyInsurance(@Html.Raw(item.Employee_id))"></i>
-                    </span>
-                </td>
-                <td>
-                    <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.Raw(item.RelationshipToInsured)" readonly />
-                </td>
-                <td>
-                    <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.Raw(item.FirstName)" readonly />
-                </td>
-                <td>
-                    <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.Raw(item.LastName)" readonly />
-                </td>
-                <td>
-                    <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.Raw(item.Employee.SSN)" readonly />
-                </td>
-                <td>
-                    <input type="text" id="EmpFirstName" class="form-control" name="FirstName" value="@Html.Raw(item.Employee.FirstName)" readonly />
-                </td>
-                @if (item.RelationshipToInsured == "Spouse")
-                {
+                <tr>
                     <td>
-                        @Html.ActionLink("Detail", "SpouseDetail", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                        <span>
+                            <i class="fa fa-file-text-o" style="font-size:24px" onclick="FamilyInsurance(@Html.Raw(item.Employee_id))"></i>
+                        </span>
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "EditSpouse", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                        <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@Html.Raw(item.RelationshipToInsured)" readonly />
                     </td>
                     <td>
-                        @Html.ActionLink("Delete", "DeleteSp", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
-                    </td>
-                }
-                @if (item.RelationshipToInsured == "Dependent")
-                {
-                    <td>
-                        @Html.ActionLink("Detail", "DependentDetail", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                        <input type="text" id="FirstName" class="form-control" name="FirstName" value="@Html.Raw(item.FirstName)" readonly />
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "EditDependent", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                        <input type="text" id="LastName" class="form-control" name="LastName" value="@Html.Raw(item.LastName)" readonly />
+                    </td>
+                    <td>
+                        <input type="text" id="EmpNumber" class="form-control" name="SSN" value="@Html.Raw(item.Employee.SSN)" readonly />
+                    </td>
+                    <td>
+                        <input type="text" id="EmpFirstName" class="form-control" name="FirstName" value="@Html.Raw(item.Employee.FirstName)" readonly />
+                    </td>
+                    @if (item.RelationshipToInsured == "Spouse")
+                    {
+                        <td>
+                            @Html.ActionLink("Detail", "SpouseDetail", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditSpouse", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "DeleteSp", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                        </td>
+                    }
+                    @if (item.RelationshipToInsured == "Dependent")
+                    {
+                        <td>
+                            @Html.ActionLink("Detail", "DependentDetail", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditDependent", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
 
-                    </td>
-                    <td>
-                        @Html.ActionLink("Delete", "DeleteDep", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
-                    </td>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "DeleteDep", "Employee", new { FamilyMember_id = item.FamilyMember_id, item.RelationshipToInsured }, null)
+                        </td>
 
-                }
-            </tr>
+                    }
+                </tr>
             }
         </tbody>
     </table>
@@ -95,7 +96,7 @@
 
 <style>
     .btn:hover {
-        background-color: #147;
+        background-color: #2e4593;
         color: white;
     }
 
@@ -111,13 +112,13 @@
 
         a:hover {
             background-color: #ddd;
-            color: #147;
+            color: #2e4593;
         }
 
     .fa-arrow-circle-o-right:hover {
         border-radius: 50%;
         color: white;
-        background-color: #147;
+        background-color: #2e4593;
     }
 
     table {

@@ -303,55 +303,55 @@ namespace Watson.Controllers
         //----------------------------------------------------------------------------------------
 
         // GET: Pdf
-        public ActionResult CreateGrpHPDF(int? Employee_id, int? GroupHealthInsurance_id)
-        {
-            ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
-            ViewBag.Employee_id = Employee_id;
+        //public ActionResult CreateGrpHPDF(int? Employee_id, int? GroupHealthInsurance_id)
+        //{
+        //    ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
+        //    ViewBag.Employee_id = Employee_id;
 
-            GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
-
-
-            groupHGrpHEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
-            groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
-
-            groupHGrpHEnrollmentVM.spouse = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id && i.RelationshipToInsured == "Spouse");
-            groupHGrpHEnrollmentVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id && i.RelationshipToInsured != "Spouse").ToList();
-            if (groupHGrpHEnrollmentVM.spouse != null)
-            {
-                groupHGrpHEnrollmentVM.spouseInsurance = db.Other_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id && i.FamilyMember_id == groupHGrpHEnrollmentVM.spouse.FamilyMember_id);
-                groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id && i.FamilyMember_id != groupHGrpHEnrollmentVM.spouse.FamilyMember_id).ToList();
-            }
-            else
-            {
-                groupHGrpHEnrollmentVM.spouseInsurance = null;
-                groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id).ToList();
-            }
+        //    GroupHealthGrpHEnrollmentVM groupHGrpHEnrollmentVM = new GroupHealthGrpHEnrollmentVM();
 
 
-            return View(groupHGrpHEnrollmentVM);
-        }
+        //    groupHGrpHEnrollmentVM.employee = db.Employees.FirstOrDefault(i => i.Employee_id == Employee_id);
+        //    groupHGrpHEnrollmentVM.grpHealth = db.Group_Health.FirstOrDefault(i => i.Employee_id == Employee_id);
 
-        [System.Web.Mvc.HttpPost]
-        public ActionResult CreateGrpHealthPdf(FormCollection collection)
-        {
-            // instantiate a html to pdf converter object
-            HtmlToPdf converter = new HtmlToPdf();
+        //    groupHGrpHEnrollmentVM.spouse = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id && i.RelationshipToInsured == "Spouse");
+        //    groupHGrpHEnrollmentVM.family = db.Family_Info.Where(i => i.Employee_id == Employee_id && i.RelationshipToInsured != "Spouse").ToList();
+        //    if (groupHGrpHEnrollmentVM.spouse != null)
+        //    {
+        //        groupHGrpHEnrollmentVM.spouseInsurance = db.Other_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id && i.FamilyMember_id == groupHGrpHEnrollmentVM.spouse.FamilyMember_id);
+        //        groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id && i.FamilyMember_id != groupHGrpHEnrollmentVM.spouse.FamilyMember_id).ToList();
+        //    }
+        //    else
+        //    {
+        //        groupHGrpHEnrollmentVM.spouseInsurance = null;
+        //        groupHGrpHEnrollmentVM.otherIns = db.Other_Insurance.Where(i => i.Employee_id == Employee_id).ToList();
+        //    }
 
-            // create a new pdf document converting an url
-            //PdfDocument doc = converter.ConvertUrl(collection["TxtUrl"]);
-            PdfDocument doc = converter.ConvertUrl(collection["Group_Health/CreateGrpHPDF"]);
 
-            // save pdf document
-            byte[] pdf = doc.Save();
+        //    return View(groupHGrpHEnrollmentVM);
+        //}
 
-            // close pdf document
-            doc.Close();
+        //[System.Web.Mvc.HttpPost]
+        //public ActionResult CreateGrpHealthPdf(FormCollection collection)
+        //{
+        //    // instantiate a html to pdf converter object
+        //    HtmlToPdf converter = new HtmlToPdf();
 
-            // return resulted pdf document
-            FileResult fileResult = new FileContentResult(pdf, "application/pdf");
-            fileResult.FileDownloadName = "Grp_Health_Insurance.pdf";
-            return fileResult;
-        }
+        //    // create a new pdf document converting an url
+        //    //PdfDocument doc = converter.ConvertUrl(collection["TxtUrl"]);
+        //    PdfDocument doc = converter.ConvertUrl(collection["Group_Health/CreateGrpHPDF"]);
+
+        //    // save pdf document
+        //    byte[] pdf = doc.Save();
+
+        //    // close pdf document
+        //    doc.Close();
+
+        //    // return resulted pdf document
+        //    FileResult fileResult = new FileContentResult(pdf, "application/pdf");
+        //    fileResult.FileDownloadName = "Grp_Health_Insurance.pdf";
+        //    return fileResult;
+        //}
 
         public ActionResult GrpHealthEnrollment(int? Employee_id, int? GroupHealthInsurance_id)
         {
@@ -417,7 +417,7 @@ namespace Watson.Controllers
             string empInsCarrier, string empInsPolicyNumber, string empInsPhoneNumber, string NoMedical, string MECPlan, 
             string StandardPlan, string BuyUpPlan, string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse, 
             string Dependent, string OtherCoverageSelection, string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature,
-            DateTime? GrpHRefusalEmpSignatureDate)
+            DateTime? GrpHRefusalEmpSignatureDate, FormCollection collection)
         {
             string response = "";
 
@@ -463,7 +463,7 @@ namespace Watson.Controllers
 
                 db.SaveChanges();
             }
-            
+
             int result = Employee_id;
            
             return Json(new { data = result, error = response }, JsonRequestBehavior.AllowGet);
@@ -503,7 +503,7 @@ namespace Watson.Controllers
         public JsonResult GrpHealthInsEditUpdate(int? Employee_id, int? InsurancePlan_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan,
             string StandardPlan, string BuyUpPlan, string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse,
             string Dependent, string OtherCoverageSelection, string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature,
-            DateTime? GrpHRefusalEmpSignatureDate)
+            DateTime? GrpHRefusalEmpSignatureDate, FormCollection collection)
         {
             Group_Health g = db.Group_Health
                  .Where(i => i.Employee_id == Employee_id)
@@ -548,11 +548,27 @@ namespace Watson.Controllers
                 {
                     Console.WriteLine(err);
                 }
-
-                //RedirectToAction("EmpOverview");
             }
 
+            // instantiate a html to pdf converter object
+            HtmlToPdf converter = new HtmlToPdf();
+
+            // create a new pdf document converting an url
+            PdfDocument doc = converter.ConvertUrl(collection["Group_Health/EditGroupHealthIns"]);
+
+            // save pdf document
+            byte[] pdf = doc.Save();
+      
+            // close pdf document
+            doc.Close();
+
+            // return resulted pdf document
+            //FileResult fileResult = new FileContentResult(pdf, "application/pdf");
+            //fileResult.FileDownloadName = "Grp_Health_Insurance.pdf";
+            //return fileResult;
+
             int result = g.Employee_id;
+
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }

@@ -11,6 +11,7 @@
     <title>Employee Overview</title>
 </head>
 <body>
+    <hr />
     <h4>Employee Overview</h4>
     <table class="table table-condensed">
         <thead class="thead-dark">
@@ -46,7 +47,7 @@
                     <td>
                         @Html.ActionLink("Detail", "EmployeeDetail", "Employee", new { Employee_id = item.Employee_id }, null)
                         @Html.ActionLink("Insurance", "GrpHealthEnrollment", "Group_Health", new { Employee_id = item.Employee_id }, null)
-                        @Html.ActionLink("Delete", "DeleteEmp", "Employee", new { Employee_id = item.Employee_id }, new { onclick = "return confirm('Are you sure you want to delete');" } )
+                        @Html.ActionLink("Delete", "DeleteEmp", "Employee", new { Employee_id = item.Employee_id }, new { onclick = "return confirm('Are you sure you want to delete');" })
                     </td>
                 </tr>
             }
@@ -66,12 +67,12 @@
     }
 
     .btn:hover {
-        background-color: #147;
+        background-color: #2e4593;
         color: white;
     }
 
     .next {
-        background-color: #147;
+        background-color: #2e4593;
         padding-left: 1px;
     }
 
@@ -93,7 +94,7 @@
     .fa-arrow-circle-o-right:hover {
         border-radius: 50%;
         color: white;
-        background-color: #147;
+        background-color: #2e4593;
     }
 
     table {

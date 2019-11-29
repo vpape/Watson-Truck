@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SelectPdf;
 using System.Net;
 using System.Dynamic;
 using System.Data;
@@ -210,7 +211,7 @@ namespace Watson.Controllers
             string FirstName, string LastName, DateTime? DateOfBirth, string Gender, string MaritalStatus, string MailingAddress, string PObox, string City,
             string State, string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, string CityLimits,
             string EmailAddress, string PhoneNumber, string CellPhone, string OtherGrpHinsCoverage, string InsCarrier, string InsPolicyNumber,
-            string InsPhoneNumber, string Active, string Retired, string CobraState)
+            string InsPhoneNumber, string Active, string Retired, string CobraState, FormCollection collection)
         {
             var e = db.Employees
                 .Where(i => i.Employee_id == Employee_id)
@@ -271,8 +272,24 @@ namespace Watson.Controllers
                     Console.WriteLine(err);
                 }
 
-                RedirectToAction("EmpOverview", new { e.Employee_id });
             }
+
+            // instantiate a html to pdf converter object
+            HtmlToPdf converter = new HtmlToPdf();
+
+            // create a new pdf document converting an url
+            PdfDocument doc = converter.ConvertUrl(collection["http://localhost:57772/Admin/EmployeeDetail?Employee_id=" + Employee_id]);
+
+            // save pdf document
+            byte[] pdf = doc.Save();
+
+            // close pdf document
+            doc.Close();
+
+            // return resulted pdf document
+            //FileResult fileResult = new FileContentResult(pdf, "application/pdf");
+            //fileResult.FileDownloadName = "Grp_Health_Insurance.pdf";
+            //return fileResult;
 
             int result = e.Employee_id;
 

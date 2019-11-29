@@ -1,2 +1,54 @@
-﻿body {
+﻿* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+.footerTop {
+    border-top: 10px solid #147;
+}
+
+.footer {
+    display: block;
+    overflow: hidden;
+    padding: 70px 0;
+    box-sizing: border-box;
+}
+
+.inner_footer {
+    display: block;
+    margin: 0 auto;
+    width: 1100px;
+    height: 100%;
+}
+
+    .inner_footer .logo_container {
+        width: 30%;
+        float: left;
+        height: 100%;
+        display: block;
+    }
+
+        .inner_footer .logo_container img {
+            width: 50%;
+            height: auto;
+        }
+
+    .inner_footer .footer_third {
+        width: 21%;
+        margin-right: 10px;
+        float: left;
+        height: 100%;
+    }
+
+
+        .inner_footer .footer_third:last-child {
+            margin-right: 0;
+        }
+
+#footerWatsonTruck, #footerWatsonHopper, #UnitShop {
+    border-right: 1px solid;
+    border-right-style: solid;
+    border-right-color: #147;
 }
