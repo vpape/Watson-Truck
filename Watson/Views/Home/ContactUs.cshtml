@@ -3,21 +3,82 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/2987c70fa3.js" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <title>Contact Us</title>
 </head>
+
 <body>
-    <h3></h3>
-    <div class="mapouter">
-        <div class="gmap_canvas">
-            <iframe width="560" height="400" id="gmap_canvas"
-                    src="https://maps.google.com/maps?q=1501%20n%20grimes%20hobbs%20new%20mexico&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>Google Maps Generator by <a href="https://www.embedgooglemap.net"></a>
+    <div id="sidebar">
+        <div class="toggle-btn" onclick="toggleSidebar()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
+        <ul>
+            <li>
+                <label>Watson Truck & Supply</label><br />
+                <label style="display:table-cell">Oil Field Supply & Int'l Parts</label>
+                <div>1501 N Grimes</div>
+                <div>Hobbs, NM 88240</div><br />
+                <label style="display:table-cell">Contact:</label>
+                <div>Bruce Dew</div>
+                <div>575-397-2411 ext.227</div>
+                <a href="mailto:bdew@watsontruck.com">bdew@watsontruck.com</a>
+            </li>
+            <li>
+                <label style="display:">Watson Hopper, Inc.</label><br />
+                <div>1700 West Marland</div>
+                <div>Hobbs, NM 88240</div><br />
+                <label style="display:table-cell">Contact:</label>
+                <div>Mike Slaugh</div>
+                <div>575-397-2411 ext.425</div>
+                <a href="mailto:mslaugh@watsonhopper.com">mslaugh@watsonhopper.com</a>
+            </li>
+            <li>
+                <label>Unit Shop</label><br />
+                <div>1501 N Grimes</div>
+                <div>Hobbs, NM 88240</div><br />
+                <label style="display:table-cell">Contact:</label>
+                <div>Dale May</div>
+                <div>575-397-2411 ext.335</div>
+                <a href="mailto:dmay@watsontruck.com">dmay@watsontruck.com</a>
+            </li>
+            <li>
+                <label>Truck Sales</label><br />
+                <div>1501 N Grimes</div>
+                <div>Hobbs, NM 88240</div><br />
+                <label style="display:table-cell">Contact:</label>
+                <div>Brad Hawkins</div>
+                <div>575-397-2411 ext.401</div>
+                <a href="mailto:bhawkins@watsontruck.com">bhawkins@watsontruck.com</a>
+            </li>
+            <li>
+                <label>Truck Shop</label><br />
+                <div>1501 N Grimes</div>
+                <div>Hobbs, NM 88240</div><br />
+                <label style="display:table-cell">Contact:</label>
+                <div>Dan Wharff</div>
+                <div>575-397-2411 ext.272</div>
+                <a href="mailto:dwharff@watsontruck.com">dwharff@watsontruck.com</a>
+            </li>
+        </ul>
     </div>
-    <p></p>
-    <p></p>
-    <div class="form-horizontal">
-        <div class="col-md-3">
+    <hr /> 
+    <div class="body-content" style="margin-left:15%">
+        <div class="mapouter" style="padding-left: 10px">
+            <div class="gmap_canvas">
+                <iframe width="600" height="400" id="gmap_canvas"
+                        src="https://maps.google.com/maps?q=1501%20n%20grimes%20hobbs%20new%20mexico&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>Google Maps Generator by <a href="https://www.embedgooglemap.net"></a>
+            </div>
+        </div>
+        <p></p>
+        <div class="col-md-4">
             <div id="divFirstName" class="form-group">
                 <input type="text" class="form-control" id="txtFirstName" name="FirstName" placeholder="First Name" />
             </div>
@@ -31,7 +92,7 @@
                 <input type="text" class="form-control" id="txtPhoneNumber" name="PhoneNumber" placeholder="Phone Number" />
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div id="divSubject" class="form-group">
                 <input type="text" class="form-control" id="txtSubject" name="Subject" placeholder="Subject" />
             </div>
@@ -39,53 +100,13 @@
                 <textarea class="form-control" id="txtComment" name="Comment" placeholder="Please leave comment here!"></textarea>
             </div>
             <div class="divSubmit">
-                <input type="submit" @*onclick="Submit()"*@ value="Submit" class="btn">
+                <input type="submit" value="Submit" class="btn">
             </div>
         </div>
-    </div>
-
-    <div class="">
-        <footer>
-            <div class="footer_container" id="footerTop">
-                <div class="inner_footer">
-                    <div>
-                        <div class="logo_container">
-                            <img src="@Url.Content("~/App_Files/images/WatsonTruckImage.jpg")" width="155" height="54"><br>
-                            <img src="@Url.Content("~/App_Files/images/WatsonHopperImage.jpg")" width="155" height="120" style="padding-top:20px;">
-                        </div>
-                        <div id="footerWatsonTruck" class="footer_third">
-                            <label>Watson Truck & Supply</label><br />
-                            <div>1501 N Grimes</div>
-                            <div>Hobbs, NM 88240</div><br />
-                            <label style="display:table-cell">Contact:</label>
-                            <div>Jerry Elliott</div>
-                            <div>575-397-2411</div>
-                            <a href="mailto:jerryelliot@watsontruck.com">jerryelliot@watsontruck.com</a>
-                        </div>
-                        <div id="footerWatsonHopper" class="footer_third">
-                            <label>Watson Hopper, Inc.</label><br />
-                            <div>1700 West Marland</div>
-                            <div>Hobbs, NM 88240</div><br />
-                            <label style="display:table-cell">Contact:</label>
-                            <div>Mike Slaugh</div>
-                            <div>575-397-2411</div>
-                            <a href="mailto:mslaugh@watsonhopper.com">mslaugh@watsonhopper.com</a>
-                        </div>
-                        <div id="footerUnitShop" class="footer_third">
-                            <label>Unit Shop, LLC</label><br />
-                            <div>1501 N Grimes</div>
-                            <div>Hobbs, NM 88240</div><br />
-                            <label style="display:table-cell">Contact:</label>
-                            <div>Dale May</div>
-                            <div>575-397-2411</div>
-                            <a href="mailto:dmay@watsontruck.com">dmay@watsontruck.com</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        
     </div>
 </body>
+
 </html>
 
 <style>
@@ -93,15 +114,15 @@
     position: relative;
     text-align: right;
     height: 400px;
-    width: 560px;
+    width: 650px;
 }
 
-.gmap_canvas {
-    overflow: hidden;
-    background: none !important;
-    height: 400px;
-    width: 560px;
-}
+    .gmap_canvas {
+        overflow: hidden;
+        background: none !important;
+        height: 400px;
+        width: 650px;
+    }
 
 .btn:hover {
     background-color: #2e4593;
@@ -113,68 +134,53 @@
     padding: 0;
     list-style: none;
     text-decoration: none;
+    box-sizing: border-box;
+    list-style: none;
 }
 
-html, body {
-    height: 100%;
-}
-
-    #footerTop {
-        border-top: 10px solid #2e4593;
-        padding-top: 35px;
+    #sidebar {
+        position: fixed;
+        width: 200px;
+        height: 100%;
+        background: #2e4593;
+        left: -200px;
+        transition: all 500ms linear;
     }
 
-.footer_container {
-    display: flex;
-    overflow: hidden;
-    padding: 30px 0;
-    box-sizing: border-box;
-    position: fixed;
-    bottom: 0;
-    clear: both;
-}
+    #sidebar.active{
+        left:0px;
+    }
 
+    #sidebar ul li{
+        color: rgba(230,230,230,0.9);
+        list-style: none;
+        padding: 15px 10px;
+        border-bottom: 1px solid rgba(100,100,100,0.3)
+    }
 
+    #sidebar .toggle-btn{
+        position: absolute;
+        left: 230px;
+        top: 20px;
 
-.inner_footer {
-    display: block;
-    margin: 0 auto;
-    width: 1100px;
-    height: 100%;
-}
+    }
 
-.inner_footer .logo_container {
-    width: 30%;
-    float: left;
-    height: 100%;
-    display: block;
-}
+        #sidebar .toggle-btn span {
+            display: block;
+            width: 30px;
+            height: 5px;
+            background: #2e4593;
+            margin: 5px 0px;
+        }
 
-.inner_footer .logo_container img {
-    width: 50%;
-    height: auto;
-}
-
-.inner_footer .footer_third {
-    width: 21%;
-    margin-right: 10px;
-    float: left;
-    height: 100%;
-}
-
-
-.inner_footer .footer_third:last-child {
-    margin-right: 0;
-}
-
-#footerWatsonTruck, #footerWatsonHopper, #UnitShop {
-    border-right: 1px solid;
-    border-right-style: solid;
-    border-right-color: #2e4593;
-}
 </style>
 
 <script>
+
+    function toggleSidebar() {
+        document.getElementById("sidebar").classList.toggle('active');
+    }
+    
 
     var JobApplicant_id;
 
