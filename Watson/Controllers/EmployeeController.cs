@@ -335,7 +335,7 @@ namespace Watson.Controllers
         //DeleteEmp Method
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteEmp")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int Employee_id)
+        public ActionResult DeleteConfirmed(int? Employee_id)
         {
             Employee e = db.Employees.Find(Employee_id);
 
@@ -685,11 +685,11 @@ namespace Watson.Controllers
 
             return View(spAndDepInsVM);
         }
-        
+
         //DeleteSp Method
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteSp")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int? FamilyMember_id)
+        public ActionResult SpDeleteConfirmed(int? FamilyMember_id)
         {
             Family_Info sp = db.Family_Info.Find(FamilyMember_id);
 
@@ -709,10 +709,10 @@ namespace Watson.Controllers
         public ActionResult AddDependent(int Employee_id, int? FamilyMember_id, string RelationshipToInsured)
         {
 
-            SpouseAndDependentInsVM spAndDepInsVM = new SpouseAndDependentInsVM();
+            //SpouseAndDependentInsVM spAndDepInsVM = new SpouseAndDependentInsVM();
 
-            spAndDepInsVM.family = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id);
-            spAndDepInsVM.otherIns = db.Other_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id);
+            //spAndDepInsVM.family = db.Family_Info.FirstOrDefault(i => i.Employee_id == Employee_id);
+            //spAndDepInsVM.otherIns = db.Other_Insurance.FirstOrDefault(i => i.Employee_id == Employee_id);
 
             ViewBag.Employee_id = Employee_id;
             ViewBag.FamilyMember_id = FamilyMember_id;
@@ -758,8 +758,8 @@ namespace Watson.Controllers
         {
             Other_Insurance other = new Other_Insurance();
 
-            other.FamilyMember_id = FamilyMember_id;
             other.Employee_id = Employee_id;
+            other.FamilyMember_id = FamilyMember_id;
             other.CoveredByOtherInsurance = depInsuranceCoverage;
             other.InsuranceCarrier = depInsCarrier;
             other.PolicyNumber = depInsPolicyNumber;
@@ -801,7 +801,7 @@ namespace Watson.Controllers
         }
 
         //EditUpdate-DepEdit
-        public JsonResult DepEditUpdate(int Employee_id, int FamilyMember_id, string RelationshipToInsured, string SSN, string DepFirstName, string DepLastName,
+        public JsonResult DepEditUpdate(int? Employee_id, int? FamilyMember_id, string RelationshipToInsured, string SSN, string DepFirstName, string DepLastName,
             DateTime DateOfBirth, string Gender, string EmpNumber, string MailingAddress, string City, string State, string ZipCode, string County, string Student,
             string Disabled, string NonStandardDependent, string AddDropDepLifeIns, string depInsuranceCoverage, string depInsCarrier, string depInsPolicyNumber, 
             string depInsPhoneNumber)
@@ -934,7 +934,7 @@ namespace Watson.Controllers
 
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteDep")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirm(int? FamilyMember_id)
+        public ActionResult DepDeleteConfirm(int? FamilyMember_id)
         {
             Family_Info dep = db.Family_Info.Find(FamilyMember_id);
 

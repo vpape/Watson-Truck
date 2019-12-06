@@ -7,10 +7,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/2987c70fa3.js" crossorigin="anonymous"></script>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
@@ -18,8 +16,6 @@
     <input type="hidden" id="GroupHealthInsurance_id" class="form-control" name="GroupHealthInsurance_id" value="@ViewBag.GroupHealthInsurance_id" />
     <input type="hidden" id="InsurancePlan_id" class="form-control" name="InsurancePlan_id" value="@ViewBag.InsurancePlan_id" />
     <p></p>
-    <p><embed id="2019InsCost" src="/App_Files/pdfFiles/2019-Insurance-Cost.pdf" type="application/pdf" style="width:100%; height:1122px;" frameborder="0" /></p>
-    <p><embed id="2019Dental&VisionBenefits" src="/App_Files/pdfFiles/2019-Guardian-Dental-&-Vision-Benefits.pdf" type="application/pdf" style="width:100%; height:1000px; transform:rotate()" frameborder="0" /></p>
     <div class="form-horizontal" hidden>
         <div class="collapsible" id="FirstStep">emp-Health Insurance Premiums</div>
         <table class="container-fluid table-bordered" id="InsPremTable" cellpadding="20" cellspacing="20">

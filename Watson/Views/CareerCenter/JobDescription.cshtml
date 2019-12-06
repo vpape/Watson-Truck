@@ -1,4 +1,4 @@
-﻿
+﻿@model Watson.ViewModels.JobApplicantVM
 <!DOCTYPE html>
 
 <html>
@@ -9,7 +9,10 @@
 <body>
     <input type="hidden" id="JobApplicant_id" class="form-control" name="JobApplicant_id" value="@ViewBag.JobApplicant_id" />
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" />
-    <div class="form-horizontal">
+    <hr />
+    <div class="modal-content">
+        <p></p>
+        <embed src="~/App_Files/images/WatsonTruckImage.jpg" width="200" height="80" style="margin-left:460px;" />
         <div id="divJobDescription">
             <div class="jobInfo">
                 <div>
@@ -99,15 +102,14 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-offset-11">
+                <button id="jobApplication" onclick="return Apply()" class="btn">Apply</button>
+            </div>
         </div>
-    </div>
-    <div class="col-md-offset-11">
-        <button id="jobApplication" onclick="return Apply()" class="btn">Apply</button>
-    </div>
-    <hr />
-    <p>
-        @Html.ActionLink("Back to Home", "Index", "Home")
-    </p>
+        <p>
+            @Html.ActionLink("Back to Home", "Index", "Home")
+        </p>
+    </div>    
 </body>
 </html>
 

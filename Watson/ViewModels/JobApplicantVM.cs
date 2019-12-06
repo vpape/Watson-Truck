@@ -9,7 +9,10 @@ namespace Watson.ViewModels
 {
     public class JobApplicantVM
     {
-        public List<JobApplicant> jobapplicant { get; set; }
+        public List<JobApplicant> jobApplicants { get; set; }
+        //public List<JobList> jobLists { get; set; }
+        //public List<JobDescription> jobDescriptions  { get; set; }
+
         //add ListOfJobs table in db.WatsonTruck
    
     }

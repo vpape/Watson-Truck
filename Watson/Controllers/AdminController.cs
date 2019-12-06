@@ -31,13 +31,13 @@ namespace Watson.Controllers
         private static List<Other_Insurance> otherIns = new List<Other_Insurance>();
         private static Group_Health grpHealth = new Group_Health();
         private static Life_Insurance lifeIns = new Life_Insurance();
+        private static List<JobApplicant> applicant = new List<JobApplicant>();
 
         public AdminController()
         {
 
         }
 
-        //EmpOverview
         public ActionResult EmpOverview(int? Employee_id)
         {
             ViewBag.Employee_id = Employee_id;
@@ -53,8 +53,6 @@ namespace Watson.Controllers
             }
         }
 
-        //----------------------------------------------------------------------------------------
-
         public ActionResult EnrollmentSelection()
         {
             return View();
@@ -64,8 +62,10 @@ namespace Watson.Controllers
         {
             return View();
         }
-
+        //====================================
         //Create-EmpEnrollment
+        //====================================
+
         public JsonResult EmployeeEnrollmentNew(string Role, string CurrentEmployer, string JobTitle, string EmpNumber, DateTime HireDate, string MaritalStatus,
             string FirstName, string LastName, DateTime DateOfBirth, string Gender, string Active, string Retired, string CobraState)
         {
@@ -94,8 +94,10 @@ namespace Watson.Controllers
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
-
+        //====================================
         //Create-EmpContact
+        //====================================
+
         public JsonResult EmpEnrollmentContact(int Employee_id, string MailingAddress, string PObox, string City, string State, string ZipCode, string CityLimits,
             string County, string PhysicalAddress, string City2, string State2, string ZipCode2, string EmailAddress, string PhoneNumber, string CellPhone)
         {
@@ -178,8 +180,10 @@ namespace Watson.Controllers
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
-
+        //====================================
         //Edit-Emp
+        //====================================
+
         public ActionResult EditEmployee(int? Employee_id, string MaritalStatus)
         {
             EmployeeAndInsuranceVM employeeAndInsuranceVM = new EmployeeAndInsuranceVM();
@@ -205,8 +209,10 @@ namespace Watson.Controllers
 
             return View(employeeAndInsuranceVM);
         }
-
+        //====================================
         //EditUpdate-Emp
+        //====================================
+
         public JsonResult EmployeeEditUpdate(int? Employee_id, string EmpRole, string CurrentEmployer, string JobTitle, string EmpNumber, DateTime? HireDate,
             string FirstName, string LastName, DateTime? DateOfBirth, string Gender, string MaritalStatus, string MailingAddress, string PObox, string City,
             string State, string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, string CityLimits,
@@ -295,8 +301,10 @@ namespace Watson.Controllers
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
-
+        //====================================
         //Get-EmpDetail
+        //====================================
+
         public ActionResult EmployeeDetail(int? Employee_id)
         {
             EmployeeAndInsuranceVM employeeAndInsuranceVM = new EmployeeAndInsuranceVM();
@@ -320,9 +328,11 @@ namespace Watson.Controllers
             return View(employeeAndInsuranceVM);
         }
 
-        //----------------------------------------------------------------------------------------
 
+        //====================================
         //DeleteEmp Method
+        //====================================
+
         public ActionResult DeleteEmp(int? Employee_id)
         {
             EmployeeAndInsuranceVM employeeAndInsuranceVM = new EmployeeAndInsuranceVM();
@@ -344,7 +354,6 @@ namespace Watson.Controllers
             return View(employeeAndInsuranceVM);
         }
 
-        //DeleteEmp Method
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteEmp")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int Employee_id)
@@ -408,9 +417,10 @@ namespace Watson.Controllers
             return View();
         }
 
-        //----------------------------------------------------------------------------------------
-
+        //====================================
         //SpEnrollment Method
+        //====================================
+
         public ActionResult SpouseEnrollment(int Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured)
         {
             ViewBag.Employee_id = Employee_id;
@@ -423,7 +433,6 @@ namespace Watson.Controllers
             return View();
         }
 
-        //Create-SpouseEnrollment
         public JsonResult SpEnrollmentNew(int Employee_id, int? FamilyMember_id, string RelationshipToInsured, string MaritalStatus, string SSN,
             string FirstName, string LastName, DateTime DateOfBirth, string Gender)
         {
@@ -463,8 +472,10 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
 
         }
-
+        //====================================
         //Create-SpouseContact
+        //====================================
+
         public JsonResult SpEnrollmentContact(int? Employee_id, int? FamilyMember_id, string MailingAddress, string PObox, string City, string State,
             string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, string EmailAddress, string PhoneNumber,
             string CellPhone)
@@ -494,7 +505,10 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
+        //====================================
         //Create-SpouseEmployment
+        //====================================
+
         public JsonResult SpEnrollmentEmployment(int? FamilyMember_id, int Employee_id, string Employer, string EmployerAddress, string EmployerPObox,
             string EmployerCity, string EmployerState, string EmployerZipCode, string EmployerPhoneNumber, string spOtherInsurance,
             string spOtherMedicalCoverage, string spOtherDentalCoverage, string spOtherVisionCoverage, string spIndemnityCoverage)
@@ -562,9 +576,10 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        //----------------------------------------------------------------------------------------
-
+        //====================================
         //EditSp Method
+        //====================================
+
         public ActionResult EditSpouse(int? FamilyMember_id, int? Employee_id, int? OtherInsurance_id, string MaritalStatus, string RelationshipToInsured)
         {
             SpouseAndDependentInsVM spAndDepInsVM = new SpouseAndDependentInsVM();
@@ -591,8 +606,10 @@ namespace Watson.Controllers
 
             return View(spAndDepInsVM);
         }
-
+        //====================================
         //EditUpdate-Spouse
+        //====================================
+
         public JsonResult SpEditUpdate(int? Employee_id, int? FamilyMember_id, string RelationshipToInsured, string MaritalStatus, string SSN,
             string FirstName, string LastName, DateTime DateOfBirth, string Gender, string MailingAddress, string PObox, string City, string State,
             string ZipCode, string County, string PhysicalAddress, string City2, string State2, string ZipCode2, string EmailAddress, string PhoneNumber,
@@ -720,8 +737,10 @@ namespace Watson.Controllers
             //}
 
         }
-
+        //====================================
         //Get-SpDetail
+        //====================================
+
         public ActionResult SpouseDetail(int? Employee_id, int? FamilyMember_id, string MaritalStatus)
         {
             //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
@@ -749,9 +768,10 @@ namespace Watson.Controllers
             return View(spAndDepInsVM);
         }
 
-        //----------------------------------------------------------------------------------------
-
+        //====================================
         //DeleteSp Method
+        //====================================
+
         public ActionResult DeleteSp(int? Employee_id, int? FamilyMember_id)
         {
             SpouseAndDependentInsVM spAndDepInsVM = new SpouseAndDependentInsVM();
@@ -775,7 +795,6 @@ namespace Watson.Controllers
             return View(spAndDepInsVM);
         }
 
-        //DeleteSp Method
         [System.Web.Mvc.HttpPost, System.Web.Mvc.ActionName("DeleteSp")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? FamilyMember_id)
@@ -809,8 +828,10 @@ namespace Watson.Controllers
 
             return View();
         }
-
+        //====================================
         //Create-DepEnrollment
+        //====================================
+
         public JsonResult DepEnrollmentNew(int Employee_id, int? FamilyMember_id, string RelationshipToInsured, string SSN, string DepFirstName, string DepLastName,
             DateTime DateOfBirth, string Gender, string MailingAddress, string City, string State, string ZipCode, string County, string Student, string Disabled, 
             string NonStandardDependent, string AddDropDepLifeIns)
@@ -862,7 +883,10 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
+        //====================================
         //EditDep Method
+        //====================================
+
         public ActionResult EditDependent(int? Employee_id, int? FamilyMember_id, string RelationshipToInsured)
         {
             SpouseAndDependentInsVM spAndDepInsVM = new SpouseAndDependentInsVM();
@@ -889,7 +913,10 @@ namespace Watson.Controllers
             return View(spAndDepInsVM);
         }
 
+        //====================================
         //EditUpdate-DepEdit
+        //====================================
+
         public JsonResult DepEditUpdate(int Employee_id, int FamilyMember_id, string RelationshipToInsured, string SSN, string DepFirstName, string DepLastName,
             DateTime DateOfBirth, string Gender, string EmpNumber, string MailingAddress, string City, string State, string ZipCode, string County, string Student,
             string Disabled, string NonStandardDependent, string AddDropDepLifeIns, string depInsuranceCoverage, string depInsCarrier, string depInsPolicyNumber,
@@ -954,8 +981,10 @@ namespace Watson.Controllers
 
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
-
+        //====================================
         //Get-DepDetail
+        //====================================
+
         public ActionResult DependentDetail(int? Employee_id, int? FamilyMember_id, string MaritalStatus, string RelationshipToInsured)
         {
             //ViewBag.spouseExist = !(MaritalStatus == "Single" || MaritalStatus == "SinglewDep");
@@ -996,9 +1025,10 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        //----------------------------------------------------------------------------------------
-
+        //====================================
         //DeleteDep Method
+        //====================================
+
         public ActionResult DeleteDep(int? FamilyMember_id)
         {
             SpouseAndDependentInsVM spAndDepInsVM = new SpouseAndDependentInsVM();
@@ -1037,10 +1067,10 @@ namespace Watson.Controllers
             return RedirectToAction("FamilyOverview", new { dep.Employee_id });
         }
 
-        //----------------------------------------------------------------------------------------
-
-        //----------------------------------------------------------------------------------------
+        //====================================
         //GroupHealth Methods: Excludes the GrpHealthInsPremium and GrpHealthSupplmental Methods
+        //====================================
+
 
         public ActionResult GrpHealthEnrollment(int? Employee_id, int? GroupHealthInsurance_id)
         {
@@ -1101,7 +1131,10 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
+        //====================================
         //Create-GrpHealthEnrollment
+        //====================================
+
         public JsonResult GrpHealthEnrollmentNew(int? Employee_id, int? InsurancePlan_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan,
             string StandardPlan, string BuyUpPlan, string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse,
             string Dependent, string OtherCoverageSelection, string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature,
@@ -1145,9 +1178,11 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        //----------------------------------------------------------------------------------------
 
+        //====================================
         //Edit-GrpHealthEnrollment
+        //====================================
+
         public ActionResult EditGroupHealthIns(int? Employee_id, int? GroupHealthInsurance_id)
         {
             ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
@@ -1175,7 +1210,10 @@ namespace Watson.Controllers
 
         }
 
+        //====================================
         //EditUpdate-GrpHealthEnrollment
+        //====================================
+
         public JsonResult GrpHealthInsEditUpdate(int? Employee_id, int? InsurancePlan_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan,
             string StandardPlan, string BuyUpPlan, string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse,
             string Dependent, string OtherCoverageSelection, string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature,
@@ -1233,8 +1271,10 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        //SalaryRedirect-Start----------------------------------------------------------------------------------
-
+        //====================================
+        //SalaryRedirect-Start-
+        //====================================
+     
         public ActionResult SalaryRedirection(int Employee_id)
         {
 
@@ -1248,7 +1288,10 @@ namespace Watson.Controllers
             return View(groupHGrpHEnrollmentVM);
         }
 
+        //====================================
         //Create-SalaryRedirect
+        //====================================
+
         public JsonResult SalaryRedirectionUpdate(int Employee_id, int? Deductions_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
             string PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, string PremiumPostTaxMedIns, string DentalInsProvider, string EEelectionPreTaxDentalIns,
             string PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns, string PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
@@ -1360,7 +1403,11 @@ namespace Watson.Controllers
             return View(grpHGrpEnrollmentVM);
         }
 
+
+        //====================================
         //EditUpdate-SalaryRedirect
+        //====================================
+
         public JsonResult SalaryRedirectionEditUpdate(int Employee_id, int? Deductions_id, string MedicalInsProvider, string EEelectionPreTaxMedIns,
             string PremiumPreTaxMedIns, string EEelectionPostTaxMedIns, string PremiumPostTaxMedIns, string DentalInsProvider, string EEelectionPreTaxDentalIns,
             string PremiumPreTaxDentalIns, string EEelectionPostTaxDentalIns, string PremiumPostTaxDentalIns, string VisionInsProvider, string EEelectionPreTaxVisionIns,
@@ -1470,7 +1517,9 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        //AuthorizationForm-Start-----------------------------------------------------------------------------
+        //====================================
+        //AuthorizationForm-Start
+        //====================================
 
         public ActionResult AuthorizationForm(int? Employee_id, int? GroupHealthInsurance_id)
         {
@@ -1486,7 +1535,10 @@ namespace Watson.Controllers
             return View(employeeAndInsVM);
         }
 
+        //====================================
         //Create-AuthorizationForm
+        //====================================
+
         public JsonResult AuthorizationFormNew(int? GroupHealthInsurance_id, int Employee_id, string PersonOneReleaseInfoTo, string PersonOneRelationship,
             string PersonTwoReleaseInfoTo, string PersonTwoRelationship, string PolicyHolderSignature, DateTime? PolicyHolderSignatureDate,
             string PersonOneSignature, DateTime? PersonOneSignatureDate, string PersonTwoSignature, DateTime? PersonTwoSignatureDate)
@@ -1516,8 +1568,10 @@ namespace Watson.Controllers
         }
 
         //----------------------------------------------------------------------------------------
-
+        //====================================
         //Edit-AuthorizationForm
+        //====================================
+
         public ActionResult EditAuthorizationForm(int? Employee_id, int? GroupHealthInsurance_id)
         {
             ViewBag.Employee_id = Employee_id;
@@ -1531,7 +1585,10 @@ namespace Watson.Controllers
             return View(employeeAndInsVM);
         }
 
+        //====================================
         //EditUpdate-AuthorizationForm
+        //====================================
+
         public JsonResult AuthorizationFormEditUpdate(int? Employee_id, int? GroupHealthInsurance_id, string PersonOneReleaseInfoTo, string PersonOneRelationship,
             string PersonTwoReleaseInfoTo, string PersonTwoRelationship, string PolicyHolderSignature, DateTime PolicyHolderSignatureDate,
             string PersonOneSignature, DateTime PersonOneSignatureDate, string PersonTwoSignature, DateTime PersonTwoSignatureDate)
@@ -1602,10 +1659,10 @@ namespace Watson.Controllers
             return RedirectToAction("GrpHealthEnrollment");
         }
 
-        //----------------------------------------------------------------------------------------
-
-        //----------------------------------------------------------------------------------------
+        //====================================
         //Life Insurance Methods
+        //====================================
+
 
         public ActionResult LifeInsuranceEnrollment(int? LifeInsurance_id, int? Employee_id, int? Beneficiary_id)
         {
@@ -1635,8 +1692,10 @@ namespace Watson.Controllers
 
             return View(empAndInsVM);
         }
-
+        //====================================
         //Create-LifeIns
+        //====================================
+
         public JsonResult LifeInsEnrollmentNew(/*int LifeInsurance_id,*/ int Employee_id, /*int InsurancePlan_id,*/ string GroupPlanNumber, DateTime BenefitsEffectiveDate,
             string InitialEnrollment, string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount,
             string FamilyStatusChange, string SubTotalCode, string Married, DateTime DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, /*string AddDep,*/
@@ -1737,9 +1796,10 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-        //----------------------------------------------------------------------------------------
-
+        //====================================
         //Edit-LifeIns
+        //====================================
+
         public ActionResult EditLifeInsurance(int? LifeInsurance_id, int? Employee_id, int? Beneficiary_id)
         {
             ViewBag.LifeInsurance_id = LifeInsurance_id;
@@ -1768,7 +1828,10 @@ namespace Watson.Controllers
             return View(empAndInsVM);
         }
 
+        //====================================
         //EditUpdate-LifeIns
+        //====================================
+
         public JsonResult EditLifeInsUpdate(int? LifeInsurance_id, int? Employee_id, int? InsurancePlan_id, string GroupPlanNumber, DateTime? BenefitsEffectiveDate,
             string InitialEnrollment, string ReEnrollment, string AddEmployeeAndDependents, string DropRefuseCoverage, string InformationChange, string IncreaseAmount,
             string FamilyStatusChange, string SubTotalCode, string Married, DateTime? DateOfMarriage, string OtherDependents, DateTime? DateOfAdoption, /*string AddDep,*/
@@ -1994,8 +2057,10 @@ namespace Watson.Controllers
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
+
+        //====================================
         //Delete-Beneficiaries
-        //----------------------------------------------------------------------------------------
+        //====================================
 
         public ActionResult DeleteBeneficiary(int? Beneficiary_id, int? Employee_id)
         {
@@ -2079,6 +2144,232 @@ namespace Watson.Controllers
             base.Dispose(disposing);
         }
 
+        //====================================
+        //Job Applicant
+        //====================================
 
+        // GET: CareerCenter
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult ListJobs()
+        {
+            return View();
+        }
+
+        public ActionResult JobDescription()
+        {
+            return View();
+        }
+
+        // GET: CareerCenter/JobApplicantDetails/id
+        public ActionResult JobApplicantDetails(int? id)
+        {
+            return View();
+        }
+
+        // GET: Create
+        public ActionResult CreateJobApplicant()
+        {
+            return View();
+        }
+
+        // POST: Create
+        [System.Web.Mvc.HttpPost]
+        public JsonResult JobApplication(int JobApplicant_id, int Employee_id, string PositionApplyingFor, DateTime StartDateAvailability,
+            string ApplicantSignature, string ApplicantSignatureDate, string FirstName, string LastName, string Address, string PObox,
+            string City, string State, string ZipCode, string YearsResidedAtPresentAddress, string PreviousAddress, string PreviousPObox,
+            string PreviousCity, string PreviousState, string PreviousZipCode, string YearsResidedAtPreviousAddr, string PhoneNumber, string OverEighteen,
+            string PreviouslyEmployedAtWatson, DateTime EmploymentDatesAtWatsonFrom, DateTime EmploymentDatesAtWatsonTo, string DriversLicense,
+            string LicenseState, string LicenseNumber, DateTime LicenseExpirationDate, string ElementaryInstitution, string YearsCompletedElementary,
+            string FieldOfStudyElementary, string GraduateElementary, string HighSchoolInstitution, string YearsCompletedHighSchool,
+            string FieldOfStudyHighSchool, string GraduateHighSchool, string CollegeInstitution, string YearsCompletedCollege,
+            string FieldOfStudyCollege, string GraduateOrDegreeCollege, string TechnicalInstitution, string YearsCompletedTechnical,
+            string FieldOfStudyTechnical, string GraduateOrDegreeTechnical, string AdditionalInstitution, string YearsCompletedAtAdditional,
+            string FieldOfStudyAtAdditional, string GraduateOrDegreeAtAdditional, string Veteran, string MOSorSpecializedTraining,
+            string PresentOrLastEmployer, string EmployerPhoneNumber, string EmployerAddress, string EmployerCity, string EmployerState,
+            string EmployerZipCode, DateTime EmployedFromDate, DateTime EmployedToDate, string TitleOfPositionHeld, string TypeOfWorkedPerformed,
+            string NameOfSupervisor, string PresentOrLastEmployerTwo, string EmployerPhoneNumberTwo, string EmployerAddressTwo,
+            string EmployerCityTwo, string EmployerStateTwo, string EmployerZipCodeTwo, DateTime EmployedFromDateTwo, DateTime EmployedToDateTwo,
+            string TitleOfPositionHeldTwo, string TypeOfWorkedPerformedTwo, string NameOfSupervisorTwo, string PresentOrLastEmployerThree,
+            string EmployerPhoneNumberThree, string EmployerAddressThree, string EmployerCityThree, string EmployerStateThree,
+            string EmployerZipCodeThree, DateTime EmployedFromDateThree, DateTime EmployedToDateThree, string TitleOfPositionHeldThree,
+            string TypeOfWorkedPerformedThree, string NameOfSupervisorThree, string TerminatedOrResigned, string ReasonForTerminationOrResignation,
+            string ReasonForEmploymentGaps, string ReferenceFirstName, string ReferenceLastName, string ReferencePhoneNumber,
+            string ReferenceAddress, string ReferenceCity, string ReferenceState, string ReferenceZipCode, string ReferenceOccupation,
+            string YearsKnownReference, string ReferenceFirstNameTwo, string ReferenceLastNameTwo, string ReferenceAddressTwo,
+            string ReferenceCityTwo, string ReferenceStateTwo, string ReferenceZipCodeTwo, string ReferenceOccupationTwo, string YearsKnownReferenceTwo,
+            string ReferencePhoneNumberTwo, string ReferenceFirstNameThree, string ReferenceLastNameThree, string ReferenceAddressThree,
+            string ReferenceCityThree, string ReferenceStateThree, string ReferenceZipCodeThree, string ReferenceOccupationThree,
+            string YearsKnownReferenceThree, string ReferencePhoneNumberThree, string Experience, string ListOtherExperience, string Certification,
+            string ApplicantSignatureTwo, DateTime ApplicantSignatureDateTwo)
+        {
+            JobApplicant a = new JobApplicant();
+
+            a.JobApplicant_id = JobApplicant_id;
+            a.Employee_id = Employee_id;
+            a.PositionApplyingFor = PositionApplyingFor;
+            a.StartDateAvailability = StartDateAvailability;
+            a.ApplicantSignature = ApplicantSignature;
+            a.FirstName = FirstName;
+            a.LastName = LastName;
+            a.Address = Address;
+            a.City = City;
+            a.State = State;
+            a.ZipCode = ZipCode;
+            a.YearsResidedAtPresentAddr = YearsResidedAtPresentAddress;
+            a.PreviousAddress = PreviousAddress;
+            a.PreviousCity = PreviousCity;
+            a.PreviousState = PreviousState;
+            a.PreviousZipCode = PreviousZipCode;
+            a.YearsResidedAtPreviousAddr = YearsResidedAtPreviousAddr;
+            a.PhoneNumber = PhoneNumber;
+            //a.Age = Age;
+            a.OverEighteen = OverEighteen;
+            a.PreviouslyEmployedAtWatson = PreviouslyEmployedAtWatson;
+            a.EmploymentDatesAtWatsonFrom = EmploymentDatesAtWatsonFrom;
+            a.EmploymentDatesAtWatsonTo = EmploymentDatesAtWatsonTo;
+            a.DriversLicense = DriversLicense;
+            a.LicenseState = LicenseState;
+            a.LicenseNumber = LicenseNumber;
+            a.LicenseExpirationDate = LicenseExpirationDate;
+            a.ElementaryInstitution = ElementaryInstitution;
+            a.YearsCompletedElementary = YearsCompletedElementary;
+            a.FieldOfStudyElementary = FieldOfStudyElementary;
+            a.GraduateElementary = GraduateElementary;
+            a.HighSchoolInstitution = HighSchoolInstitution;
+            a.YearsCompletedHighSchool = YearsCompletedHighSchool;
+            a.FieldOfStudyHighSchool = FieldOfStudyHighSchool;
+            a.GraduateHighSchool = GraduateHighSchool;
+            a.CollegeInstitution = CollegeInstitution;
+            a.YearsCompletedCollege = YearsCompletedCollege;
+            a.FieldOfStudyCollege = FieldOfStudyCollege;
+            a.GraduateOrDegreeCollege = GraduateOrDegreeCollege;
+            a.TechnicalInstitution = TechnicalInstitution;
+            a.YearsCompletedTechnical = YearsCompletedTechnical;
+            a.FieldOfStudyTechnical = FieldOfStudyTechnical;
+            a.GraduateOrDegreeTechnical = GraduateOrDegreeTechnical;
+            a.AdditionalInstitution = AdditionalInstitution;
+            a.YearsCompletedAtAdditional = YearsCompletedAtAdditional;
+            a.FieldOfStudyAtAdditional = FieldOfStudyAtAdditional;
+            a.GraduateOrDegreeAtAdditional = GraduateOrDegreeAtAdditional;
+            a.Veteran = Veteran;
+            a.MOSorSpecializedTraining = MOSorSpecializedTraining;
+            a.PresentOrLastEmployer = PresentOrLastEmployer;
+            a.EmployerPhoneNumber = EmployerPhoneNumber;
+            a.EmployerAddress = EmployerAddress;
+            a.EmployerCity = EmployerCity;
+            a.EmployerState = EmployerState;
+            a.EmployerZipCode = EmployerZipCode;
+            a.EmployedFromDate = EmployedFromDate;
+            a.EmployedToDate = EmployedToDate;
+            a.TitleOfPositionHeld = TitleOfPositionHeld;
+            a.TypeOfWorkedPerformed = TypeOfWorkedPerformed;
+            a.NameOfSupervisor = NameOfSupervisor;
+            a.PresentOrLastEmployerTwo = PresentOrLastEmployerTwo;
+            a.EmployerPhoneNumberTwo = EmployerPhoneNumberTwo;
+            a.EmployerAddressTwo = EmployerAddressTwo;
+            a.EmployerCityTwo = EmployerCityTwo;
+            a.EmployerStateTwo = EmployerStateTwo;
+            a.EmployerZipCodeTwo = EmployerZipCodeTwo;
+            a.EmployedFromDateTwo = EmployedFromDateTwo;
+            a.EmployedToDateTwo = EmployedToDateTwo;
+            a.TitleOfPositionHeldTwo = TitleOfPositionHeldTwo;
+            a.TypeOfWorkedPerformedTwo = TypeOfWorkedPerformedTwo;
+            a.NameOfSupervisorTwo = NameOfSupervisorTwo;
+            a.PresentOrLastEmployerThree = PresentOrLastEmployerThree;
+            a.EmployerPhoneNumberThree = EmployerPhoneNumberThree;
+            a.EmployerAddressThree = EmployerAddressThree;
+            a.EmployerCityThree = EmployerCityThree;
+            a.EmployerStateThree = EmployerStateThree;
+            a.EmployerZipCodeThree = EmployerZipCodeThree;
+            a.EmployedFromDateThree = EmployedFromDateThree;
+            a.EmployedToDateThree = EmployedToDateThree;
+            a.TitleOfPositionHeldThree = TitleOfPositionHeldThree;
+            a.TypeOfWorkedPerformedThree = TypeOfWorkedPerformedThree;
+            a.NameOfSupervisorThree = NameOfSupervisorThree;
+            a.TerminatedOrResigned = TerminatedOrResigned;
+            a.ReasonForTerminationOrResignation = ReasonForTerminationOrResignation;
+            a.ReasonForEmploymentGaps = ReasonForEmploymentGaps;
+            a.ReferenceFirstName = ReferenceFirstName;
+            a.ReferenceLastName = ReferenceLastName;
+            a.ReferencePhoneNumber = ReferencePhoneNumber;
+            a.ReferenceAddress = ReferenceAddress;
+            a.ReferenceCity = ReferenceCity;
+            a.ReferenceState = ReferenceState;
+            a.ReferenceZipCode = ReferenceZipCode;
+            a.ReferenceOccupation = ReferenceOccupation;
+            a.YearsKnownReference = YearsKnownReference;
+            a.ReferenceFirstNameTwo = ReferenceFirstNameTwo;
+            a.ReferenceLastNameTwo = ReferenceLastNameTwo;
+            a.ReferenceAddressTwo = ReferenceAddressTwo;
+            a.ReferenceCityTwo = ReferenceCityTwo;
+            a.ReferenceStateTwo = ReferenceStateTwo;
+            a.ReferenceZipCodeTwo = ReferenceZipCodeTwo;
+            a.ReferenceOccupationTwo = ReferenceOccupationTwo;
+            a.YearsKnownReferenceTwo = YearsKnownReferenceTwo;
+            a.ReferencePhoneNumberTwo = ReferencePhoneNumberTwo;
+            a.ReferenceFirstNameThree = ReferenceFirstNameThree;
+            a.ReferenceLastNameThree = ReferenceLastNameThree;
+            a.ReferenceAddressThree = ReferenceAddressThree;
+            a.ReferenceCityThree = ReferenceCityThree;
+            a.ReferenceStateThree = ReferenceStateThree;
+            a.ReferenceZipCodeThree = ReferenceZipCodeThree;
+            a.ReferenceOccupationThree = ReferenceOccupationThree;
+            a.YearsKnownReferenceThree = YearsKnownReferenceThree;
+            a.ReferencePhoneNumberThree = ReferencePhoneNumberThree;
+            a.Experience = Experience;
+            a.ListOtherExperience = ListOtherExperience;
+            a.Certification = Certification;
+            a.ApplicantSignatureTwo = ApplicantSignatureTwo;
+            a.ApplicantSignatureDateTwo = ApplicantSignatureDateTwo;
+
+            ViewBag.JobApplicant_id = a.JobApplicant_id;
+
+            db.JobApplicants.Add(a);
+            db.SaveChanges();
+
+            int result = a.JobApplicant_id;
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: CareerCenter/EditJobApplicant/id
+        public ActionResult EditJobApplicant(int? id)
+        {
+            return View();
+        }
+
+        // POST: CareerCenter/EditJobApplicant/id
+        [System.Web.Mvc.HttpPost]
+        public ActionResult EditJobApplicant(FormCollection collection)
+        {
+            return View();
+        }
+
+
+        // GET: CareerCenter/DeleteJobApplicant/id
+        public ActionResult DeleteJobApplicant(int? id)
+        {
+            return View();
+        }
+
+        // POST: CareerCenter/DeleteJobApplicant/id
+        [System.Web.Mvc.HttpPost]
+        public ActionResult DeleteJobApplicant(FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }

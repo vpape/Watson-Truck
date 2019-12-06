@@ -7,10 +7,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/2987c70fa3.js" crossorigin="anonymous"></script>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
@@ -660,52 +658,52 @@
 
     }
 
-    //document.addEventListener("DOMContentLoaded", function () {
-    //    document.querySelector("#CreateGrpHealthPdf").addEventListener("click", function () {
-    //        Employee_id = document.getElementById("Employee_id").value;
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#CreateGrpHealthPdf").addEventListener("click", function () {
+            Employee_id = document.getElementById("Employee_id").value;
 
-    //        NoMedical = document.getElementById("NoMedicalGrpHealthOption").value;
-    //        document.getElementById("NoMedicalOptionResult").innerHTML = NoMedical;
+            NoMedical = document.getElementById("NoMedicalGrpHealthOption").value;
+            document.getElementById("NoMedicalOptionResult").innerHTML = NoMedical;
 
-    //        MECPlan = document.getElementById("MECPlanGrpHealthOption").value;
-    //        document.getElementById("MECPlanOptionResult").innerHTML = MECPlan;
+            MECPlan = document.getElementById("MECPlanGrpHealthOption").value;
+            document.getElementById("MECPlanOptionResult").innerHTML = MECPlan;
 
-    //        StandardPlan = document.getElementById("StndPlanGrpHealthOption").value;
-    //        document.getElementById("StndPlanOptionResult").innerHTML = StandardPlan;
+            StandardPlan = document.getElementById("StndPlanGrpHealthOption").value;
+            document.getElementById("StndPlanOptionResult").innerHTML = StandardPlan;
 
-    //        BuyUpPlan = document.getElementById("BuyUpPlanGrpHealthOption").value;
-    //        document.getElementById("BuyUpPlanOptionResult").innerHTML = BuyUpPlan;
+            BuyUpPlan = document.getElementById("BuyUpPlanGrpHealthOption").value;
+            document.getElementById("BuyUpPlanOptionResult").innerHTML = BuyUpPlan;
 
-    //        GrpHEnrollmentEmpSignature = document.getElementById("GrpHEnrollmentEmpSignature").value;
-    //        GrpHEnrollmentEmpSignatureDate = document.getElementById("GrpHEnrollmentEmpSignatureDate").value;
-    //        Myself = document.getElementById("Myself").checked;
-    //        Spouse = document.getElementById("Spouse").checked;
-    //        Dependent = document.getElementById("Dependent").checked;
-    //        OtherCoverageSelection = document.getElementById("OtherCoverageSelection").checked;
-    //        OtherReasonSelection = document.getElementById("OtherReasonSelection").checked;
-    //        ReasonForGrpCoverageRefusal = document.getElementById("OtherReasonComment").value;
-    //        GrpHRefusalEmpSignature = document.getElementById("GrpHRefusalEmpSignature").value;
-    //        GrpHRefusalEmpSignatureDate = document.getElementById("GrpHRefusalEmpSignatureDate").value;
+            GrpHEnrollmentEmpSignature = document.getElementById("GrpHEnrollmentEmpSignature").value;
+            GrpHEnrollmentEmpSignatureDate = document.getElementById("GrpHEnrollmentEmpSignatureDate").value;
+            Myself = document.getElementById("Myself").checked;
+            Spouse = document.getElementById("Spouse").checked;
+            Dependent = document.getElementById("Dependent").checked;
+            OtherCoverageSelection = document.getElementById("OtherCoverageSelection").checked;
+            OtherReasonSelection = document.getElementById("OtherReasonSelection").checked;
+            ReasonForGrpCoverageRefusal = document.getElementById("OtherReasonComment").value;
+            GrpHRefusalEmpSignature = document.getElementById("GrpHRefusalEmpSignature").value;
+            GrpHRefusalEmpSignatureDate = document.getElementById("GrpHRefusalEmpSignatureDate").value;
 
-    //        var data = {
-    //            "Employee_id": Employee_id,
-    //            "NoMedical": NoMedical,
-    //            "MECPlan": MECPlan,
-    //            "StandardPlan": StandardPlan,
-    //            "BuyUpPlan": BuyUpPlan,
-    //            "GrpHEnrollmentEmpSignature": GrpHEnrollmentEmpSignature,
-    //            "GrpHEnrollmentEmpSignatureDate": GrpHEnrollmentEmpSignatureDate,
-    //            "Myself": Myself,
-    //            "Spouse": Spouse,
-    //            "Dependent": Dependent,
-    //            "OtherCoverageSelection": OtherCoverageSelection,
-    //            "OtherReasonSelection": OtherReasonSelection,
-    //            "ReasonForGrpCoverageRefusal": ReasonForGrpCoverageRefusal,
-    //            "GrpHRefusalEmpSignature": GrpHRefusalEmpSignature,
-    //            "GrpHRefusalEmpSignatureDate": GrpHRefusalEmpSignatureDate,
-    //        }
+            var data = {
+                "Employee_id": Employee_id,
+                "NoMedical": NoMedical,
+                "MECPlan": MECPlan,
+                "StandardPlan": StandardPlan,
+                "BuyUpPlan": BuyUpPlan,
+                "GrpHEnrollmentEmpSignature": GrpHEnrollmentEmpSignature,
+                "GrpHEnrollmentEmpSignatureDate": GrpHEnrollmentEmpSignatureDate,
+                "Myself": Myself,
+                "Spouse": Spouse,
+                "Dependent": Dependent,
+                "OtherCoverageSelection": OtherCoverageSelection,
+                "OtherReasonSelection": OtherReasonSelection,
+                "ReasonForGrpCoverageRefusal": ReasonForGrpCoverageRefusal,
+                "GrpHRefusalEmpSignature": GrpHRefusalEmpSignature,
+                "GrpHRefusalEmpSignatureDate": GrpHRefusalEmpSignatureDate,
+            }
 
-            //data failed to pass to controller when using
+            ////data failed to pass to controller when using
             //var ret = postData('CreateGrpHealthPdf', data)
             //    .then(data => {
             //        console.log(data);
@@ -713,30 +711,30 @@
             //    })
             //    .catch(error => console.error(error))
 
-    //        fetch('CreateGrpHealthPdf', {
-    //            body: JSON.stringify(data), //must match 'Content-Type' header
-    //            cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-    //            credentials: 'same-origin', //include, same-origin, *omit
-    //            headers: {
-    //                'Accept': 'application/json',
-    //                'user-agent': 'Mozilla/4.0 MDN Example',
-    //                'content-type': 'application/json'
-    //            },
-    //            method: 'Post', //*GET, POST, PUT, DELETE, etc...
-    //            mode: 'same-origin', //no-cors, cors, *same-origin
-    //            redirect: 'follow', //manual, *follow, error
-    //            referrer: 'no-referrer', //*client, no-referrer
-    //        }).then(res => res.json())
-    //            //.then(response => console.log('Success:', JSON.stringify(response)))
-    //            .then(response => FirstStep(response))
-    //            .catch(error => console.error('Error:', error));
-    //    })
-    //})
+            fetch('CreateGrpHealthPdf', {
+                body: JSON.stringify(data), //must match 'Content-Type' header
+                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', //include, same-origin, *omit
+                headers: {
+                    'Accept': 'application/json',
+                    'user-agent': 'Mozilla/4.0 MDN Example',
+                    'content-type': 'application/json'
+                },
+                method: 'Post', //*GET, POST, PUT, DELETE, etc...
+                mode: 'same-origin', //no-cors, cors, *same-origin
+                redirect: 'follow', //manual, *follow, error
+                referrer: 'no-referrer', //*client, no-referrer
+            }).then(res => res.json())
+                //.then(response => console.log('Success:', JSON.stringify(response)))
+                .then(response => FirstStep(response))
+                .catch(error => console.error('Error:', error));
+        })
+    })
 
-    //function FirstStep(emp) {
-    //    document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
-    //    Employee_id = emp.data;
-    //}
+    function FirstStep(emp) {
+        document.querySelector("#ThirdStep").nextElementSibling.style.display = "none";
+        Employee_id = emp.data;
+    }
 
     //function postData(url, data) {
     //    //Default options are marked with *

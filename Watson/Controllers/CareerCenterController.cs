@@ -14,7 +14,6 @@ using Watson.ViewModels;
 
 namespace Watson.Controllers
 {
-    //Need to add JobApplicant code to Admin Controller and View
     public class CareerCenterController : System.Web.Mvc.Controller
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
@@ -27,18 +26,23 @@ namespace Watson.Controllers
             return View();
         }
 
-        public ActionResult ListJobs()
+        public ActionResult ListJobs(int? Job_id)
         {
             return View();
         }
 
-        public ActionResult JobDescription()
+        public ActionResult JobDescription(int? Job_id)
+        {
+            return View();
+        }
+
+        public ActionResult CreateJobPosition()
         {
             return View();
         }
 
         // GET: CareerCenter/JobApplicantDetails/id
-        public ActionResult JobApplicantDetails(int? id)
+        public ActionResult JobApplicantDetails(int? JobApplicant_id)
         {
             return View();
         }
@@ -51,7 +55,7 @@ namespace Watson.Controllers
 
         // POST: Create
         [System.Web.Mvc.HttpPost]
-        public JsonResult JobApplication(int JobApplicant_id, int Employee_id, string PositionApplyingFor, DateTime StartDateAvailability,
+        public JsonResult JobApplicationNew(int JobApplicant_id, int Employee_id, string PositionApplyingFor, DateTime StartDateAvailability,
             string ApplicantSignature, string ApplicantSignatureDate, string FirstName, string LastName, string Address, string PObox,
             string City, string State, string ZipCode, string YearsResidedAtPresentAddress, string PreviousAddress, string PreviousPObox,
             string PreviousCity, string PreviousState, string PreviousZipCode, string YearsResidedAtPreviousAddr, string PhoneNumber, string OverEighteen,
@@ -199,8 +203,6 @@ namespace Watson.Controllers
             a.ApplicantSignatureTwo = ApplicantSignatureTwo;
             a.ApplicantSignatureDateTwo = ApplicantSignatureDateTwo;
 
-            ViewBag.JobApplicant_id = a.JobApplicant_id;
-
             db.JobApplicants.Add(a);
             db.SaveChanges();
 
@@ -223,26 +225,5 @@ namespace Watson.Controllers
         }
 
 
-        // GET: CareerCenter/DeleteJobApplicant/id
-        public ActionResult DeleteJobApplicant(int? id)
-        {
-            return View();
-        }
-
-        // POST: CareerCenter/DeleteJobApplicant/id
-        [System.Web.Mvc.HttpPost]
-        public ActionResult DeleteJobApplicant(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

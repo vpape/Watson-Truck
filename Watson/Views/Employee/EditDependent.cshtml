@@ -5,10 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/2987c70fa3.js" crossorigin="anonymous"></script>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Edit Dependent Enrollment</title>
 </head>
 <body>
@@ -83,16 +81,16 @@
                         <label style="margin-left: 7em;">Status:</label>
                         <input type="checkbox" class="checkbox-inline" id="Student" name="Student" value="Student" @((Model.family.Student == "True") ? "checked" : "") /><label for="Student">Student</label>
                         <input type="checkbox" class="checkbox-inline" id="Disabled" name="Disabled" value="Disabled" @((Model.family.Disabled == "True") ? "checked" : "") /><label for="Disabled">Disabled</label>
-                        <input type="checkbox" class="checkbox-inline" id="NonStandardDependent" name="NonStandardDependent" @*onclick="showHideMailingAddress()"*@ value="NonStandardDependent" @((Model.family.NonStandardDependent == "True") ? "checked" : "") /><label for="NonStandardDependent">Non Standard Dependent</label>
+                        <input type="checkbox" class="checkbox-inline" id="NonStandardDependent" name="NonStandardDependent" value="NonStandardDependent" @((Model.family.NonStandardDependent == "True") ? "checked" : "") /><label for="NonStandardDependent">Non Standard Dependent</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">Add/Drop on Life Ins.</label>
                     <div class="col-md-10">
                         <select class="form-control" id="AddDropDepLifeIns">
-                        <option value="N/A" selected disabled hidden> Select an Option</option>
-                        <option value="AddDep" @Html.Raw(Model.family.AddDropDepLifeIns)>Add Dependent</option>
-                        <option value="DropDep" @Html.Raw(Model.family.AddDropDepLifeIns)>Drop Dependent</option>
+                        <option value="N/A"  disabled hidden> Select an Option</option>
+                        <option value="AddDep"  @((Model.family.AddDropDepLifeIns) == "AddDep" ? "selected" : "")>Add Dependent</option>
+                        <option value="DropDep" @((Model.family.AddDropDepLifeIns) == "DropDep" ? "selected" : "")>Drop Dependent</option>
                     </select>
                     <div id="divAddDropDepResult" hidden></div>
                     </div>
@@ -112,8 +110,8 @@
             <p></p>
             <div id="DepOtherInsCoverage">
                 <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                <label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="True" @((Model.otherIns.CoveredByOtherInsurance) == "True" ? "checked" : "") />Yes</label>
-                <label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="False" @((Model.otherIns.CoveredByOtherInsurance) == "False" ? "checked" : "") />No</label>
+                @*<label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="True" @((Model.otherIns.CoveredByOtherInsurance) == "True" ? "checked" : "") />Yes</label>
+                <label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="False" @((Model.otherIns.CoveredByOtherInsurance) == "False" ? "checked" : "") />No</label>*@
                 <div id="depInsInfo">
                     <div class="form-group col-md-2">
                         <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.Raw(Model.otherIns.InsuranceCarrier)" />

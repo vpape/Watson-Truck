@@ -5,10 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/2987c70fa3.js" crossorigin="anonymous"></script>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Add Dependent</title>
 </head>
 <body>
@@ -28,17 +26,17 @@
                         <input type="text" id="RelationshipToInsured" class="form-control" name="RelationshipToInsured" value="@ViewBag.RelationshipToInsured" disabled />
                     </div>
                     @*<div class="col-md-10 col-md-offset-2">
-                <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
-                    @if (ViewBag.spouseExist == false)
-                    {
-                        <option id="Spouse"  name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
-                    }
-                    else
-                    {
-                        <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
-                    }
-                </select>
-            </div>*@
+                        <select id="RelationshipToInsured"  name="RelationshipToInsured" onchange="SpouseOrDependent()" class="form-control" disabled>
+                            @if (ViewBag.spouseExist == false)
+                            {
+                                <option id="Spouse"  name="RelationshipToInsured" value="Spouse" @((ViewBag.RelationshipToInsured.ToLower() == "Spouse") ? "selected" : "")>Spouse</option>
+                            }
+                            else
+                            {
+                                <option id="Dependent" name="RelationshipToInsured" value="Dependent" @((ViewBag.RelationshipToInsured.ToLower() == "Dependent") ? "selected" : "")>Dependent</option>
+                            }
+                        </select>
+                    </div>*@
                 </div>
                 <div class="form-group">
                     <label for="SSN" class="col-md-2 control-label">SSN:</label>
@@ -121,45 +119,46 @@
                             <div id="divAddDropDepResult" hidden></div>
                         </div>
                     </div>
-                <div class="form-group">
-                    <div class="col-md-offset-11">
-                        <input type="button" id="DepEnrollmentUpdate" value="Save" @*onclick="DependentEnrollmentUpdate()"*@ class="btn" />
-                        @*<button type="submit" id="DepEnrollmentUpdate" onclick="DependentEnrollmentUpdate()" class="btn">Save</button>*@
+                    <div class="form-group">
+                        <div class="col-md-offset-11">
+                            <input type="button" id="DepEnrollmentUpdate" value="Save" @*onclick="DependentEnrollmentUpdate()"*@ class="btn" />
+                            @*<button type="submit" id="DepEnrollmentUpdate" onclick="DependentEnrollmentUpdate()" class="btn">Save</button>*@
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    @* Add Dep Insurance *@
-    <div class="form-horizontal">
-        <p></p>
-        <div class="collapsible" id="SecondStep">Add Dependent Insurance</div>
-        <div id="divDepInsEnrollment" class="content">
+        @* Add Dep Insurance *@
+        <div class="form-horizontal">
             <p></p>
-            <div id="DepOtherInsCoverage">
-                <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                <label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="True" />Yes</label>
-                <label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="False" />No</label>
-                <div id="depInsInfo">
-                    <div class="form-group col-md-2">
-                        <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
-                    </div>
-                    <div class="form-group col-md-2">
-                        <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
-                    </div>
-                    <div class="form-group col-md-2">
-                        <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+            <div class="collapsible" id="SecondStep">Add Dependent Insurance</div>
+            <div id="divDepInsEnrollment" class="content">
+                <p></p>
+                <div id="DepOtherInsCoverage">
+                    <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
+                    <label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="True" />Yes</label>
+                    <label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="False" />No</label>
+                    <div id="depInsInfo">
+                        <div class="form-group col-md-2">
+                            <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="text" id="depInsPolicyNumber" class="form-control" placeholder="Policy #" name="PolicyNumber" value="" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="tel" id="depInsPhoneNumber" class="form-control" placeholder="Phone #" name="PhoneNumber" size="3" maxlength="14" value="" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-11">
-                    <button type="button" id="DepInsEnrollmentUpdateStepTwo" class="btn">Save</button>
+                <div class="form-group">
+                    <div class="col-md-offset-11">
+                        <button type="button" id="DepInsEnrollmentUpdateStepTwo" class="btn">Save</button>
+                    </div>
                 </div>
+                <p>
+                    @Html.ActionLink("Back to List", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
+                </p>
             </div>
-            <p>
-                @Html.ActionLink("Back to List", "FamilyOverview", "Employee", new { Employee_id = ViewBag.Employee_id }, null)
-            </p>
         </div>
     </div>
 </body>
@@ -363,7 +362,6 @@
         })
 
         document.querySelector("#DepInsEnrollmentUpdateStepTwo").addEventListener("click", function () {
-            Employee_id = document.getElementById("Employee_id").value;
             depInsuranceCoverage = document.getElementById("depInsuranceCoverage").checked
             depInsCarrier = document.getElementById("depInsCarrier").value
             depInsPolicyNumber = document.getElementById("depInsPolicyNumber").value
@@ -379,29 +377,29 @@
                 "depInsPhoneNumber": depInsPhoneNumber,
             }
 
-            //var ret = postData('OtherInsuranceNew', data)
-            //    .then(data => {
-            //        console.log(data);
-            //        SecondStep(data);
-            //    })
-            //    .catch(error => console.error(error))
+            var ret = postData('DepOtherInsuranceNew', data)
+                .then(data => {
+                    console.log(data);
+                    SecondStep(data);
+                })
+                .catch(error => console.error(error))
 
-            fetch('DepOtherInsuranceNew', {
-                body: JSON.stringify(data), //must match 'Content-Type' header
-                cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', //include, same-origin, *omit
-                headers: {
-                    'Accept': 'application/json',
-                    'user-agent': 'Mozilla/4.0 MDN Example',
-                    'content-type': 'application/json'
-                },
-                method: 'Post', //*GET, POST, PUT, DELETE, etc...
-                mode: 'same-origin', //no-cors, cors, *same-origin
-                redirect: 'follow', //manual, *follow, error
-                referrer: 'no-referrer', //*client, no-referrer
-            }).then(res => res.json())
-                .then(response => SecondStep(response))
-                .catch(error => console.error('Error:', error));
+            //fetch('DepOtherInsuranceNew', {
+            //    body: JSON.stringify(data), //must match 'Content-Type' header
+            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
+            //    credentials: 'same-origin', //include, same-origin, *omit
+            //    headers: {
+            //        'Accept': 'application/json',
+            //        'user-agent': 'Mozilla/4.0 MDN Example',
+            //        'content-type': 'application/json'
+            //    },
+            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
+            //    mode: 'same-origin', //no-cors, cors, *same-origin
+            //    redirect: 'follow', //manual, *follow, error
+            //    referrer: 'no-referrer', //*client, no-referrer
+            //}).then(res => res.json())
+            //    .then(response => SecondStep(response))
+            //    .catch(error => console.error('Error:', error));
         })
     })
 

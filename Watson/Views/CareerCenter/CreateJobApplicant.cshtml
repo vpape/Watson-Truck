@@ -10,11 +10,11 @@
 </head>
 <body>
     <input type="hidden" id="JobApplicant_id" class="form-control" name="JobApplicant_id" value="@ViewBag.JobApplicant_id" />
-    <div class="form-horizontal">
+    <hr />
+    <div class="modal-content">
         <div id="divApplicantStatement">
-            <h2 class="text-center">
-                Application for Employment
-            </h2>
+            <p></p>
+            <embed src="~/App_Files/images/WatsonTruckImage.jpg" width="200" height="80" style="margin-left:460px;"/>
             <div id="labelPosStartDt">
                 <div>
                     <label>Position:</label>
@@ -36,9 +36,9 @@
                 </p>
             </div>
             <form>
-                <fieldset id="applicantStatement">
+                <fieldset>
                     <h3 class="text-center"><label>Applicant's Statment</label></h3>
-                    <p class="text-justify">
+                    <p style="text-align:center">
                         I understand that this application will be given consideration, but it is not a promise of employment.<br />
                         <br />
                         I understand that if hired, my employment will be for no definite period, regardless of the period of payment of my wages<br />
@@ -59,6 +59,7 @@
                         <br />
                     </p>
                 </fieldset>
+                <hr />
                 <div>
                     <div>
                         <label>
@@ -195,7 +196,6 @@
                     <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber" name="PhoneNumber" value="" />
                 </div>
             </div>
-         
         </div>
         <hr />
         <h4><label>Education:</label></h4>
@@ -327,7 +327,6 @@
                 </tr>
             </table>
         </div>
-        <hr />
         <div class="form-group col-md-12" id="divPrevEmploymentInfo">
             <div id="PrevEmploymentInfo1" class="floatLeft">
                 <table class="table-bordered">
@@ -525,7 +524,7 @@
                 </table>
             </div>
         </div>
-        <hr />
+
         <table class="table-condensed">
             <tr>
                 <td>
@@ -555,7 +554,6 @@
                 </td>
             </tr>
         </table>
-        <hr />
         <table class="table-bordered" id="ReferenceTable">
             <tr>
                 <td>
@@ -712,7 +710,6 @@
                 </td>
             </tr>
         </table>
-        <hr />
         <h4><label>General Information:</label></h4>
         <div id="divExperience">
             <table id="GeneralInfoTable" class="table table-condensed">
@@ -839,14 +836,9 @@
                             <input type="checkbox" class="checkbox-inline" name="Experience" value="Other" />
                             <label>Other</label>
                         </div>
-
                     </td>
                 </tr>
             </table>
-            <button type="button">Get Values</button>
-            <script>
-             
-            </script>
             <hr />
             <form id="divCertiExperience">
                 <fieldset>
@@ -907,6 +899,10 @@
         display: none;
         overflow: hidden;
         background-color: #f1f1f1;
+    }
+
+    div{
+        padding-left: 2px;
     }
 
     .btn {
@@ -1066,7 +1062,6 @@
             ApplicantSignatureDate = document.getElementById("ApplicantSignatureDate1").value;
             FirstName = document.getElementById("FirstName").value;
             LastName = document.getElementById("LastName").value;
-            //ApplicantSSN = document.getElementById("").value;
             Address = document.getElementById("Address").value;
             //ApplicantPresentPObox = document.getElementById("PresentPObox").value;
             City = document.getElementById("City").value;
@@ -1410,29 +1405,13 @@
 
             }
 
-            var ret = postData('CreateJobApplicant', data)
+            var ret = postData('JobApplicationNew', data)
                 .then(data => {
                     console.log(data);
                     Submit(data);
                 })
                 .catch(error => console.error(error))
 
-            //fetch('CreateJobApplicant', {
-            //    body: JSON.stringify(data), //must match 'Content-Type' header
-            //    cache: 'no-cache', //*default, no-cache, reload, force-cache, only-if-cached
-            //    credentials: 'same-origin', //include, same-origin, *omit
-            //    headers: {
-            //        'Accept': 'application/json',
-            //        'user-agent': 'Mozilla/4.0 MDN Example',
-            //        'content-type': 'application/json'
-            //    },
-            //    method: 'Post', //*GET, POST, PUT, DELETE, etc...
-            //    mode: 'same-origin', //no-cors, cors, *same-origin
-            //    redirect: 'follow', //manual, *follow, error
-            //    referrer: 'no-referrer', //*client, no-referrer
-            //}).then(res => res.json())
-            //    .then(response => Submit(response))
-            //    .catch(error => console.error('Error:', error));
         });     
     })
 
