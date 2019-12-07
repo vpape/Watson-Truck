@@ -88,7 +88,7 @@
                     <label class="col-md-2 control-label">Add/Drop on Life Ins.</label>
                     <div class="col-md-10">
                         <select class="form-control" id="AddDropDepLifeIns">
-                        <option value="N/A"  disabled hidden> Select an Option</option>
+                        <option value="N/A" selected disabled hidden> Select an Option</option>
                         <option value="AddDep"  @((Model.family.AddDropDepLifeIns) == "AddDep" ? "selected" : "")>Add Dependent</option>
                         <option value="DropDep" @((Model.family.AddDropDepLifeIns) == "DropDep" ? "selected" : "")>Drop Dependent</option>
                     </select>
@@ -110,8 +110,8 @@
             <p></p>
             <div id="DepOtherInsCoverage">
                 <label>Is your dependent covered by other insurance, including Medicare/Medicaid?</label>
-                @*<label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="True" @((Model.otherIns.CoveredByOtherInsurance) == "True" ? "checked" : "") />Yes</label>
-                <label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="False" @((Model.otherIns.CoveredByOtherInsurance) == "False" ? "checked" : "") />No</label>*@
+                <label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="True" @((Model.otherIns.CoveredByOtherInsurance) == "True" ? "checked" : "") />Yes</label>
+                <label class="radio-inline"><input type="radio" id="depInsuranceCoverage" class="radio-inline" onclick="showHideDepIns()" name="CoveredByOtherInsurance" value="False" @((Model.otherIns.CoveredByOtherInsurance) == "False" ? "checked" : "") />No</label>
                 <div id="depInsInfo">
                     <div class="form-group col-md-2">
                         <input type="text" id="depInsCarrier" class="form-control" placeholder="Insurance Carrier" name="InsuranceCarrier" value="@Html.Raw(Model.otherIns.InsuranceCarrier)" />

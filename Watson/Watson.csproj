@@ -205,7 +205,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiHelper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -287,7 +286,6 @@
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\IEmployeeRepository.cs" />
     <Compile Include="Models\InsurancePlan.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
@@ -303,10 +301,10 @@
     <Compile Include="Models\Life_Insurance.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MockEmployeeRepository.cs" />
     <Compile Include="Models\Other_Insurance.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SelectPdfParameters.cs" />
     <Compile Include="Models\Vacation.cs">
       <DependentUpon>WatsonTruck.tt</DependentUpon>
     </Compile>

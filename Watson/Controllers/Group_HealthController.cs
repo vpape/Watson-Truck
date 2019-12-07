@@ -5,11 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SelectPdf;
-//using IronPdf;
+using Newtonsoft.Json;
 using System.Net;
 using System.IO;
 using System.Text;
-using Newtonsoft.Json;
 using System.Dynamic;
 using System.Data;
 using System.Configuration;
@@ -27,25 +26,10 @@ namespace Watson.Controllers
     public class Group_HealthController : System.Web.Mvc.Controller
     {
         private WatsonTruckEntities db = new WatsonTruckEntities();
-
-        public static string apiEndpoint = "https://selectpdf.com/api2/convert/";
-        public static string apiKey = "your license key here";
-        public static string grpHInsURL = "http://localhost:57772/Group_Health/EditGroupHealthIns?Employee_id=";
-        //public static string testUrl = "https://selectpdf.com";
-
-
         private static Group_Health grpHealth = new Group_Health();
         private static Employee employee = new Employee();
         private static List<Family_Info> family = new List<Family_Info>();
         private static List<Other_Insurance> otherIns = new List<Other_Insurance>();
-
-        //use for dependency injection
-        //private readonly IEmployeeRepository _employeeRepository;
-
-        //public Group_HealthController()
-        //{
-        //    _employeeRepository = new InMemoryEmployeeRepository;
-        //}
 
         public Group_HealthController()
         {
@@ -345,13 +329,12 @@ namespace Watson.Controllers
         [System.Web.Mvc.HttpPost]
         public ActionResult CreateGrpHealthPdf(int Employee_id, FormCollection collection)
         {
+          
             ViewBag.Employee_id = Employee_id;
 
-            //SelectPdf Library
             // instantiate a html to pdf converter object
             HtmlToPdf converter = new HtmlToPdf();
 
-            
             // create a new pdf document converting an url
             //PdfDocument doc = converter.ConvertUrl(collection["TxtUrl"]);
             PdfDocument doc = converter.ConvertUrl(collection["http://localhost:57772/Group_Health/EditGroupHelathIns/?Employee_id=" + Employee_id]);
@@ -437,6 +420,9 @@ namespace Watson.Controllers
         //Create-GrpHealthEnrollment
         //====================================
 
+        //DEMO LICENSE KEY for Selectpdf Html to PDF API:
+        //"7df5f5a6-4672-4cd7-9277-3de3615ffdfc";
+
         public JsonResult GrpHealthEnrollmentNew(int Employee_id,/*DateTime? CafeteriaPlanYear,*/ string empCoveredByOtherIns,
             string empInsCarrier, string empInsPolicyNumber, string empInsPhoneNumber, string NoMedical, string MECPlan, 
             string StandardPlan, string BuyUpPlan, string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse, 
@@ -493,9 +479,10 @@ namespace Watson.Controllers
             return Json(new { data = result, error = response }, JsonRequestBehavior.AllowGet);
         }
 
-        //----------------------------------------------------------------------------------------
-
+        //====================================
         //Edit-GrpHealthEnrollment
+        //====================================
+
         public ActionResult EditGroupHealthIns(int? Employee_id, int? GroupHealthInsurance_id)
         {
             ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
@@ -523,12 +510,81 @@ namespace Watson.Controllers
 
         }
 
+        //====================================
         //EditUpdate-GrpHealthEnrollment
+        //====================================
+
+        public static string apiEndpoint = "https://selectpdf.com/api2/convert/";
+        public static string apiKey = "7df5f5a6-4672-4cd7-9277-3de3615ffdfc";
+        //public static string testUrl = "https://selectpdf.com";
+        public static string grpHInsURL = "http://localhost:57772/Group_Health/EditGroupHealthIns?Employee_id="+ grpHealth.Employee_id;
+
+        public static void Main(string[] args)
+        {
+            // POST JSON example using WebClient (and Newtonsoft for JSON serialization)
+            SelectPdfPostWithWebClient();
+        }
+
+        // POST JSON example using WebClient (and Newtonsoft for JSON serialization)
+        public static void SelectPdfPostWithWebClient()
+        {
+            System.Console.WriteLine("Starting conversion with WebClient ...");
+
+            // set parameters
+            SelectPdfParameters parameters = new SelectPdfParameters();
+            parameters.key = apiKey;
+            parameters.url = grpHInsURL;
+
+            // JSON serialize parameters
+            string jsonData = JsonConvert.SerializeObject(parameters);
+            byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
+
+            // create WebClient object
+            WebClient webClient = new WebClient();
+            webClient.Headers.Add(HttpRequestHeader.ContentType, "application/json");
+
+            // POST parameters (if response code is not 200 OK, a WebException is raised)
+            try
+            {
+                byte[] result = webClient.UploadData(apiEndpoint, "POST", byteData);
+
+                // all ok - read PDF and write on disk (binary read!!!!)
+                MemoryStream ms = new MemoryStream(result);
+
+                // write to file
+                FileStream file = new FileStream("Grp_Health_Insurance.pdf", FileMode.Create, FileAccess.Write);
+                ms.WriteTo(file);
+                file.Close();
+            }
+            catch (WebException webEx)
+            {
+                // an error occurred
+                System.Console.WriteLine("Error: " + webEx.Message);
+
+                HttpWebResponse response = (HttpWebResponse)webEx.Response;
+                Stream responseStream = response.GetResponseStream();
+
+                // get details of the error message if available (text read!!!)
+                StreamReader readStream = new StreamReader(responseStream);
+                string message = readStream.ReadToEnd();
+                responseStream.Close();
+
+                System.Console.WriteLine("Error Message: " + message);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("Error: " + ex.Message);
+            }
+
+            System.Console.WriteLine("Finished.");
+        }
+
         public JsonResult GrpHealthInsEditUpdate(int? Employee_id, int? InsurancePlan_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan,
             string StandardPlan, string BuyUpPlan, string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse,
             string Dependent, string OtherCoverageSelection, string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature,
             DateTime? GrpHRefusalEmpSignatureDate, FormCollection collection)
         {
+
             Group_Health g = db.Group_Health
                  .Where(i => i.Employee_id == Employee_id)
                  .Single();
