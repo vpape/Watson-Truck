@@ -6,9 +6,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    @*<script src="https://kit.fontawesome.com/2987c70fa3.js" crossorigin="anonymous"></script>*@
 </head>
 <body>
     <input type="hidden" id="Employee_id" class="form-control" name="Employee_id" value="@ViewBag.Employee_id" />
@@ -606,9 +608,9 @@
     <p></p>
     <div class="form-horizontal">
         <div class="collapsible" id="ThirdStep">Edit Group Health Insurance</div>
-        <div class="modal-content">
+        <div class="content">
             <p></p>
-            <div style="border:solid" class="aside">
+            <div style="border:solid; margin-right:5px;" class="aside" >
                 <label style="display:table-cell">Employment Information: (To be completed by Employer)</label>
                 <p></p>
                 <div>
@@ -1131,14 +1133,15 @@
             <div class="form-group">
                 <div class="col-md-10">
                     @Html.ActionLink("Back to Group Health", "GrpHealthEnrollment", "Group_Health", new { Employee_id = ViewBag.Employee_id }, null)
-                    <button type="submit" id="CreateGrpHPDF" class="btn">Create PDF</button>
+                    <button type="submit" id="CreateGrpHPDF" class="btn">Select PDF</button>
+                    @*<button type="submit" id="CreateGrpHealthPdf" onclick="CreateGrpHealthPdf();" class="btn">Generate PDF</button>*@
+                    @Html.ActionLink("Generate PDF", "CreateGrpHealthPdf", "Group_Health", new { Employee_id = ViewBag.Employee_id }, null)
                 </div>
             </div>
         </div>   
     </div>
 </body>
 </html>
-
 
 <style>
     .collapsible {
@@ -1161,7 +1164,7 @@
         padding: 0 10px;
         display: none;
         overflow: hidden;
-        background-color: #f1f1f1;
+        /*background-color: #f1f1f1;*/
     }
 
     .button {
@@ -1269,6 +1272,11 @@
 
         });
     }
+
+    //function CreateGrpHealthPdf() {
+
+    //    window.location.href = "http://localhost:57772/Group_Health/CreateGrpHealthPDF?Employee_id=" + grpHealth.Employee_id;
+    //}
 
     function GroupHealthInsurance() {
 

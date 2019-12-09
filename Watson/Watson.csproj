@@ -45,9 +45,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IronPdf, Version=5.2.0.22321, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\IronPdf.5.2.0.1\lib\net40\IronPdf.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Select.HtmlToPdf, Version=19.2.0.0, Culture=neutral, PublicKeyToken=e0ae9f6e27a97018, processorArchitecture=MSIL">
       <HintPath>..\packages\Select.HtmlToPdf.19.2.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
@@ -443,7 +440,6 @@
     <Content Include="Views\CareerCenter\EditJobApplicant.cshtml" />
     <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\Home\ContactUs.cshtml" />
-    <Content Include="Views\Home\Leadership.cshtml" />
     <Content Include="Views\CareerCenter\ListJobs.cshtml" />
     <Content Include="Views\CareerCenter\JobDescription.cshtml" />
     <Content Include="Views\Other_Insurance\AddOtherInsurance.cshtml" />
@@ -501,6 +497,7 @@
     <Content Include="Views\Admin\EditBeneficiary.cshtml" />
     <Content Include="Views\Group_Health\CreateGrpHPDF.cshtml" />
     <Content Include="Views\CareerCenter\CreateJobPosition.cshtml" />
+    <Content Include="Views\Home\OurTeam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

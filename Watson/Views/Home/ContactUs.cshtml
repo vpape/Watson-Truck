@@ -32,7 +32,7 @@
                 <a href="mailto:bdew@watsontruck.com">bdew@watsontruck.com</a>
             </li>
             <li>
-                <label style="display:">Watson Hopper, Inc.</label><br />
+                <label>Watson Hopper, Inc.</label><br />
                 <div>1700 West Marland</div>
                 <div>Hobbs, NM 88240</div><br />
                 <label style="display:table-cell">Contact:</label>
@@ -70,41 +70,45 @@
         </ul>
     </div>
     <hr /> 
-    <div class="body-content" style="margin-left:15%">
-        <div class="mapouter" style="padding-left: 10px">
-            <div class="gmap_canvas">
-                <iframe width="600" height="400" id="gmap_canvas"
-                        src="https://maps.google.com/maps?q=1501%20n%20grimes%20hobbs%20new%20mexico&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>Google Maps Generator by <a href="https://www.embedgooglemap.net"></a>
+    <div class="container">
+        <div class="body-content" style="margin-left:15%">
+            <div class="mapouter" style="padding-left: 10px">
+                <div class="gmap_canvas">
+                    <iframe width="600" height="400" id="gmap_canvas"
+                            src="https://maps.google.com/maps?q=1501%20n%20grimes%20hobbs%20new%20mexico&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>Google Maps Generator by <a href="https://www.embedgooglemap.net"></a>
+                </div>
             </div>
+            <p></p>
+            <div class="col-md-4">
+                <div id="divFirstName" class="form-group">
+                    <input type="text" class="form-control" id="txtFirstName" name="FirstName" placeholder="First Name" />
+                </div>
+                <div id="divLastName" class="form-group">
+                    <input type="text" class="form-control" id="txtLastName" name="LastName" placeholder="Last Name" />
+                </div>
+                <div id="divEmail" class="form-group">
+                    <input type="text" class="form-control" id="txtEmail" name="Email" placeholder="Email" />
+                </div>
+                <div id="divPhoneNumber" class="form-group">
+                    <input type="text" class="form-control" id="txtPhoneNumber" name="PhoneNumber" placeholder="Phone Number" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="divSubject" class="form-group">
+                    <input type="text" class="form-control" id="txtSubject" name="Subject" placeholder="Subject" />
+                </div>
+                <div id="divCommentBox" class="form-group">
+                    <textarea class="form-control" id="txtComment" name="Comment" placeholder="Please leave comment here!"></textarea>
+                </div>
+                <div class="divSubmit">
+                    <input type="submit" value="Submit" class="btn">
+                </div>
+            </div>
+
         </div>
-        <p></p>
-        <div class="col-md-4">
-            <div id="divFirstName" class="form-group">
-                <input type="text" class="form-control" id="txtFirstName" name="FirstName" placeholder="First Name" />
-            </div>
-            <div id="divLastName" class="form-group">
-                <input type="text" class="form-control" id="txtLastName" name="LastName" placeholder="Last Name" />
-            </div>
-            <div id="divEmail" class="form-group">
-                <input type="text" class="form-control" id="txtEmail" name="Email" placeholder="Email" />
-            </div>
-            <div id="divPhoneNumber" class="form-group">
-                <input type="text" class="form-control" id="txtPhoneNumber" name="PhoneNumber" placeholder="Phone Number" />
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div id="divSubject" class="form-group">
-                <input type="text" class="form-control" id="txtSubject" name="Subject" placeholder="Subject" />
-            </div>
-            <div id="divCommentBox" class="form-group">
-                <textarea class="form-control" id="txtComment" name="Comment" placeholder="Please leave comment here!"></textarea>
-            </div>
-            <div class="divSubmit">
-                <input type="submit" value="Submit" class="btn">
-            </div>
-        </div>
-        
     </div>
+    
 </body>
 
 </html>
@@ -137,6 +141,15 @@
     box-sizing: border-box;
     list-style: none;
 }
+
+    html, body {
+        height: 100%;
+    }
+
+    .container {
+        position: relative;
+        width: 1200px;
+    }
 
     #sidebar {
         position: fixed;
@@ -172,6 +185,18 @@
             background: #2e4593;
             margin: 5px 0px;
         }
+
+    .container .box {
+        position: relative;
+        width: calc(400px - 60px);
+        height: calc(300px - 50px);
+        background: #2e4593;
+        float: left;
+        margin: 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+        border-radius: 10px;
+    }
 
 </style>
 

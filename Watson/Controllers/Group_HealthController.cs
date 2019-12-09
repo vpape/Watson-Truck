@@ -6,8 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SelectPdf;
 using Newtonsoft.Json;
-using System.Net;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Dynamic;
 using System.Data;
@@ -296,10 +296,10 @@ namespace Watson.Controllers
 
 
         //====================================
-        // GET: GroupHealth Insurance PDF 
+        // GET: CreateGrpHPDF PDF 
         //====================================  
 
-        public ActionResult CreateGrpHPDF(int? Employee_id, int? GroupHealthInsurance_id)
+        public ActionResult CreateGrpHPDF(int? Employee_id, int? GroupHealthInsurance_id, FormCollection collection)
         {
             ViewBag.GroupHealthInsurance_id = GroupHealthInsurance_id;
             ViewBag.Employee_id = Employee_id;
@@ -326,33 +326,9 @@ namespace Watson.Controllers
             return View(groupHGrpHEnrollmentVM);
         }
 
-        [System.Web.Mvc.HttpPost]
-        public ActionResult CreateGrpHealthPdf(int Employee_id, FormCollection collection)
-        {
-          
-            ViewBag.Employee_id = Employee_id;
-
-            // instantiate a html to pdf converter object
-            HtmlToPdf converter = new HtmlToPdf();
-
-            // create a new pdf document converting an url
-            //PdfDocument doc = converter.ConvertUrl(collection["TxtUrl"]);
-            PdfDocument doc = converter.ConvertUrl(collection["http://localhost:57772/Group_Health/EditGroupHelathIns/?Employee_id=" + Employee_id]);
-
-            // save pdf document
-            byte[] pdf = doc.Save();
-
-            // close pdf document
-            doc.Close();
-
-            // return resulted pdf document
-            FileResult fileResult = new FileContentResult(pdf, "application/pdf");
-            fileResult.FileDownloadName = "Grp_Health_Insurance.pdf";
-            return fileResult;
-        }
-
+    
         //====================================
-        // View: GroupHealthEnrollment
+        // Get: GroupHealthEnrollment
         //====================================
         public ActionResult GrpHealthEnrollment(int? Employee_id, int? GroupHealthInsurance_id)
         {
@@ -417,7 +393,7 @@ namespace Watson.Controllers
         }
 
         //====================================
-        //Create-GrpHealthEnrollment
+        //Post-GrpHealthEnrollment
         //====================================
 
         //DEMO LICENSE KEY for Selectpdf Html to PDF API:
@@ -516,8 +492,7 @@ namespace Watson.Controllers
 
         public static string apiEndpoint = "https://selectpdf.com/api2/convert/";
         public static string apiKey = "7df5f5a6-4672-4cd7-9277-3de3615ffdfc";
-        //public static string testUrl = "https://selectpdf.com";
-        public static string grpHInsURL = "http://localhost:57772/Group_Health/EditGroupHealthIns?Employee_id="+ grpHealth.Employee_id;
+        public static string GrpHInsURL = "http://localhost:57772/Group_Health/EditGroupHealthIns?Employee_id=";
 
         public static void Main(string[] args)
         {
@@ -528,58 +503,10 @@ namespace Watson.Controllers
         // POST JSON example using WebClient (and Newtonsoft for JSON serialization)
         public static void SelectPdfPostWithWebClient()
         {
-            System.Console.WriteLine("Starting conversion with WebClient ...");
-
-            // set parameters
-            SelectPdfParameters parameters = new SelectPdfParameters();
-            parameters.key = apiKey;
-            parameters.url = grpHInsURL;
-
-            // JSON serialize parameters
-            string jsonData = JsonConvert.SerializeObject(parameters);
-            byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
-
-            // create WebClient object
-            WebClient webClient = new WebClient();
-            webClient.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-
-            // POST parameters (if response code is not 200 OK, a WebException is raised)
-            try
-            {
-                byte[] result = webClient.UploadData(apiEndpoint, "POST", byteData);
-
-                // all ok - read PDF and write on disk (binary read!!!!)
-                MemoryStream ms = new MemoryStream(result);
-
-                // write to file
-                FileStream file = new FileStream("Grp_Health_Insurance.pdf", FileMode.Create, FileAccess.Write);
-                ms.WriteTo(file);
-                file.Close();
-            }
-            catch (WebException webEx)
-            {
-                // an error occurred
-                System.Console.WriteLine("Error: " + webEx.Message);
-
-                HttpWebResponse response = (HttpWebResponse)webEx.Response;
-                Stream responseStream = response.GetResponseStream();
-
-                // get details of the error message if available (text read!!!)
-                StreamReader readStream = new StreamReader(responseStream);
-                string message = readStream.ReadToEnd();
-                responseStream.Close();
-
-                System.Console.WriteLine("Error Message: " + message);
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine("Error: " + ex.Message);
-            }
-
-            System.Console.WriteLine("Finished.");
+           
         }
-
-        public JsonResult GrpHealthInsEditUpdate(int? Employee_id, int? InsurancePlan_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan,
+    
+    public JsonResult GrpHealthInsEditUpdate(int? Employee_id, int? InsurancePlan_id, /*DateTime? CafeteriaPlanYear,*/ string NoMedical, string MECPlan,
             string StandardPlan, string BuyUpPlan, string GrpHEnrollmentEmpSignature, DateTime? GrpHEnrollmentEmpSignatureDate, string Myself, string Spouse,
             string Dependent, string OtherCoverageSelection, string OtherReasonSelection, string ReasonForGrpCoverageRefusal, string GrpHRefusalEmpSignature,
             DateTime? GrpHRefusalEmpSignatureDate, FormCollection collection)
@@ -632,7 +559,69 @@ namespace Watson.Controllers
 
             int result = g.Employee_id;
 
+            CreateGrpHealthPDF(g.Employee_id);
+
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        public void CreateGrpHealthPDF(int Employee_id)
+        {
+            System.Console.WriteLine("Starting conversion with WebClient ...");
+
+            // set parameters
+            SelectPdfParameters parameters = new SelectPdfParameters();
+            parameters.key = apiKey;
+            parameters.url = GrpHInsURL + Employee_id;
+
+            // JSON serialize parameters
+            string jsonData = JsonConvert.SerializeObject(parameters);
+            byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
+
+            // create WebClient object
+            WebClient webClient = new WebClient();
+            webClient.Headers.Add(HttpRequestHeader.ContentType, "application/json");
+
+            // POST parameters (if response code is not 200 OK, a WebException is raised)
+            try
+            {
+                byte[] result = webClient.UploadData(apiEndpoint, "POST", byteData);
+
+                // all ok - read PDF and write on disk (binary read!!!!)
+                MemoryStream ms = new MemoryStream(result);
+
+                // write to file
+                FileStream file = new FileStream("test2.pdf", FileMode.Create, FileAccess.Write);
+                ms.WriteTo(file);
+                file.Close();
+
+            }
+            catch (WebException webEx)
+            {
+                // an error occurred
+                System.Console.WriteLine("Error: " + webEx.Message);
+
+                HttpWebResponse response = (HttpWebResponse)webEx.Response;
+                Stream responseStream = response.GetResponseStream();
+
+                // get details of the error message if available (text read!!!)
+                StreamReader readStream = new StreamReader(responseStream);
+                string message = readStream.ReadToEnd();
+                responseStream.Close();
+
+                System.Console.WriteLine("Error Message: " + message);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("Error: " + ex.Message);
+            }
+
+            System.Console.WriteLine("Finished.");
+
+            // return resulted pdf document
+            //FileResult fileResult = new FileContentResult(pdf, "application/pdf");
+            //fileResult.FileDownloadName = "GrpHealth_Insurance.pdf";
+            //return fileResult;
+
         }
 
         //SalaryRedirect-Start----------------------------------------------------------------------------------

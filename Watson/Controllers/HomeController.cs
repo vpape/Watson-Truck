@@ -1,7 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using SelectPdf;
+using Newtonsoft.Json;
+using System.IO;
 using System.Net;
+using System.Text;
 using System.Dynamic;
 using System.Data;
 using System.Configuration;
@@ -11,6 +18,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using Watson.Models;
 using Watson.ViewModels;
+
+
 
 namespace Watson.Controllers
 {
@@ -37,9 +46,9 @@ namespace Watson.Controllers
             return View();
         }
 
-        public ActionResult Leadership()
+        public ActionResult OurTeam()
         {
-            ViewBag.Message = "View Leadership and descriptions.";
+            ViewBag.Message = "Meet our team!";
 
             return View();
         }

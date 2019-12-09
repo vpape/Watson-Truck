@@ -4,7 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SelectPdf;
+using Newtonsoft.Json;
+using System.IO;
 using System.Net;
+using System.Text;
 using System.Dynamic;
 using System.Data;
 using System.Configuration;
@@ -14,7 +18,6 @@ using System.Web.Http;
 using System.Web.Mvc;
 using Watson.Models;
 using Watson.ViewModels;
-
 
 
 namespace Watson.Controllers
@@ -693,12 +696,12 @@ namespace Watson.Controllers
         {
             Family_Info sp = db.Family_Info.Find(FamilyMember_id);
 
-            Other_Insurance other = db.Other_Insurance.Find(FamilyMember_id);
+            //Other_Insurance other = db.Other_Insurance.Find(FamilyMember_id);
 
             db.DeleteEmployeeAndDependents(FamilyMember_id);
 
             db.Family_Info.Remove(sp);
-            db.Other_Insurance.Remove(other);
+            //db.Other_Insurance.Remove(other);
 
             return RedirectToAction("FamilyOverview", new { sp.Employee_id });
         }
@@ -938,11 +941,11 @@ namespace Watson.Controllers
         {
             Family_Info dep = db.Family_Info.Find(FamilyMember_id);
 
-            Other_Insurance other = db.Other_Insurance.Find(FamilyMember_id);
+            //Other_Insurance other = db.Other_Insurance.Find(FamilyMember_id);
 
             db.DeleteEmployeeAndDependents(FamilyMember_id);
             db.Family_Info.Remove(dep);
-            db.Other_Insurance.Remove(other);
+            //db.Other_Insurance.Remove(other);
 
             return RedirectToAction("FamilyOverview", new { dep.Employee_id });
         }

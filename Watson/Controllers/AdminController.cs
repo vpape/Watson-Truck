@@ -5,7 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SelectPdf;
+using Newtonsoft.Json;
+using System.IO;
 using System.Net;
+using System.Text;
 using System.Dynamic;
 using System.Data;
 using System.Configuration;
@@ -279,23 +282,6 @@ namespace Watson.Controllers
                 }
 
             }
-
-            // instantiate a html to pdf converter object
-            HtmlToPdf converter = new HtmlToPdf();
-
-            // create a new pdf document converting an url
-            PdfDocument doc = converter.ConvertUrl(collection["http://localhost:57772/Admin/EmployeeDetail?Employee_id=" + Employee_id]);
-
-            // save pdf document
-            byte[] pdf = doc.Save();
-
-            // close pdf document
-            doc.Close();
-
-            // return resulted pdf document
-            //FileResult fileResult = new FileContentResult(pdf, "application/pdf");
-            //fileResult.FileDownloadName = "Grp_Health_Insurance.pdf";
-            //return fileResult;
 
             int result = e.Employee_id;
 
