@@ -34,6 +34,7 @@ namespace Watson
                 RequireLowercase = true,
                 RequireUppercase = true,
             };
+
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
